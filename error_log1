@@ -1,0 +1,9 @@
+[24-Oct-2022 06:48:01 America/New_York] PHP Warning:  require(/home/meraqfig/jusoutbeauty.com/site/vendor/symfony/polyfill-mbstring/bootstrap80.php): Failed to open stream: No such file or directory in /home/meraqfig/jusoutbeauty.com/site/vendor/symfony/polyfill-mbstring/bootstrap.php on line 15
+[24-Oct-2022 06:48:01 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/meraqfig/jusoutbeauty.com/site/vendor/symfony/polyfill-mbstring/bootstrap80.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/meraqfig/jusoutbeauty.com/site/vendor/symfony/polyfill-mbstring/bootstrap.php:15
+Stack trace:
+#0 /home/meraqfig/jusoutbeauty.com/site/vendor/composer/autoload_real.php(55): require()
+#1 /home/meraqfig/jusoutbeauty.com/site/vendor/composer/autoload_real.php(38): composerRequire47c7c33dcdefbd3e3deb8266187f493b()
+#2 /home/meraqfig/jusoutbeauty.com/site/vendor/autoload.php(12): ComposerAutoloaderInit47c7c33dcdefbd3e3deb8266187f493b::getLoader()
+#3 /home/meraqfig/jusoutbeauty.com/site/index.php(34): require('/home/meraqfig/...')
+#4 {main}
+  thrown in /home/meraqfig/jusoutbeauty.com/site/vendor/symfony/polyfill-mbstring/bootstrap.php on line 15

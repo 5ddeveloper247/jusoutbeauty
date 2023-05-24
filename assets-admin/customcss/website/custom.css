@@ -1,0 +1,99 @@
+.pref-lang > div{
+	display: flex;
+    width: 100px;
+}
+.required{
+	color:red;
+}
+
+.create-partner-rigt{
+	width: unset !important;
+	margin: unset !important;
+}
+.cp-right-img{
+	width: 100%;
+    border-radius: 1vw;
+    margin-bottom: 3vw;
+}
+
+.yes-quiz{
+    margin-top: 10vw;
+}
+.yes-quiz h5{
+	text-align: center;
+    font-size: 23px;
+    font-weight: 500;
+}
+.yes-quiz a{
+	font-size: 17px;
+}
+.hide-tab{
+	display:none;
+}
+.tab-content{
+	margin-left: 12rem;
+    margin-top: 5rem;
+    margin-right: 12rem;
+}
+
+.tabs {
+  display: flex;
+  list-style-type: none;
+  border-bottom: 1px solid #ccc;
+  overflow-x: auto;
+  font-size:30px;
+  margin-left:50px;
+  
+  
+}
+
+.tabs a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: capitalize;
+  border-bottom: 2px solid transparent;
+  position: relative;
+  margin-bottom: 0;
+  margin-left: 40px;
+}
+
+.tabs a.active::after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: tomato;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  border-radius: 4px;
+}
+
+.tab-panel {
+  display: none;
+ 
+  padding: 10px;
+  font-size: 14px;
+}
+
+.tab-panel.active {
+  display: block;
+} 
+.categories-btn{
+	width:auto;margin-right:1vw;
+}
+.categoies-swiper-div{
+	justify-content: center;
+    margin: 2vw;
+}
+.main-categories{
+	
+/*     display: flex; */
+/*     place-content: center; */
+/*     padding-top: 3vw */
+}
+.active-category{
+	background: white;
+    color: black;
+    border-color: #F89880;
+}
