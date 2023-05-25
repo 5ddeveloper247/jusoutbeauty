@@ -6940,22 +6940,21 @@ class AdminController extends Controller
 		}
 		
 		$subCatArray = $CategoryModel->getAllSubCategoryIdsWrtCategoryIdCaseDelete($categoryId);
-
-		
-	
 		$subSubCatArray = $CategoryModel->getAllSubSubCategoryIdsWrtCategoryIdCaseDelete($subCatArray != null ? $subCatArray : array());
-
 		
-		foreach ($subSubCatArray as $subSubCatArrayList) {
-
-			DB::table ( 'jb_sub_sub_category_tbl' )->where ( 'SUB_SUB_CATEGORY_ID', $subSubCatArrayList )->delete ();
+		if(isset($subSubCatArray) && count($subSubCatArray) > 0){
+			foreach ($subSubCatArray as $subSubCatArrayList) {
+				DB::table ( 'jb_sub_sub_category_tbl' )->where('SUB_SUB_CATEGORY_ID', $subSubCatArrayList)->delete();
+			}
+		}
+		
+		if(isset($subCatArray) && count($subCatArray) > 0){
+			foreach ($subCatArray as $subCatArrayList) {
+				DB::table('jb_sub_category_tbl')->where('SUB_CATEGORY_ID', $subCatArrayList)->delete();
+			}
 		}
 
-		foreach ($subCatArray as $subCatArrayList) {
-
-			DB::table ( 'jb_sub_category_tbl' )->where ( 'CATEGORY_ID', $categoryId )->delete ();
-		}
-
+		DB::table ( 'jb_category_tbl' )->where( 'CATEGORY_ID', $categoryId )->delete();
 
 		//  $existCheckSubCategory = $CategoryModel->checkSubCategoryExistWrtCategory($categoryId);
 		

@@ -411,11 +411,19 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	}
 	
 	$scope.alertDeleteMsg = '';
+	$scope.alertDelCate = '';
+
+	$scope.deleteCategoryModel = function(id){
+		
+		$scope.alertDelCate = id;
+		$("#alertDelCate").modal('show');
+
+	}
 	
 	$scope.deleteCategoryRecord = function(id){
 		
 		var data = {};
-	    data.recordId = id;
+	    data.recordId = $scope.alertDelCate;
 	    data.userId = userId;
     	var temp = $.param({details: data});
     	
@@ -432,6 +440,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.getAllAdminCategorylov();
+				$("#alertDelCate").modal('hide');
+
 				$("#show_products").css('display', 'none');
 
 				
@@ -439,7 +449,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			
 				$scope.alertDeleteMsg = data.msg;
 				$scope.displayCollectionProductsName = data.product_data;
-
+				$("#alertDelCate").modal('hide');
 				// $("#alertDel").modal('show');
 				$("#alertDelWithproductName").modal('show');
 			}

@@ -76,7 +76,7 @@ var site = '<?php echo session('site');?>';
 															<a class="dropdown-item" href="javascript:;" ng-click="statusChange(@{{row.CATEGORY_ID}});" ng-if="row.STATUS != 'active'">Active</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="statusChange(@{{row.CATEGORY_ID}});" ng-if="row.STATUS == 'active'">InActive</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="continouRecord(@{{row.CATEGORY_ID}});">Edit</a>
-															<a class="dropdown-item" href="javascript:;" ng-click="deleteCategoryRecord(@{{row.CATEGORY_ID}});">Delete</a>
+															<a class="dropdown-item" href="javascript:;" ng-click="deleteCategoryModel(@{{row.CATEGORY_ID}});">Delete</a>
 														</div>
 													</div>
 												</td>												
@@ -344,6 +344,22 @@ var site = '<?php echo session('site');?>';
 							<button type="button" class="btn btn-danger light"
 								data-dismiss="modal">No</button>
 							<button type="button" class="btn btn-primary" ng-click="deleteSubSubCategoryRecord()">Yes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="alertDelCate">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						
+						<div class="modal-body">
+                           <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
+                        </div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light"
+								data-dismiss="modal">No</button>
+							<button type="button" class="btn btn-primary" ng-click="deleteCategoryRecord()">Yes</button>
 						</div>
 					</div>
 				</div>
