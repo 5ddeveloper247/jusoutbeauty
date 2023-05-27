@@ -451,6 +451,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				$scope.displayCollectionProductsName = data.product_data;
 				$("#alertDelCate").modal('hide');
 				// $("#alertDel").modal('show');
+				$("#show_products").css('display', 'none');
 				$("#alertDelWithproductName").modal('show');
 			}
 		})

@@ -11,8 +11,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid pt-0" ng-show="editView == '0'">
                 <!-- row -->
-				<div class="row">
-                	<div class="col-10">
+				<div class="row mt-4">
+                	<div class="col-6 ">
                 		<div class="page-titles pt-0 pb-0 mb-0">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="javascript:void(0)">Products</a></li>
@@ -20,8 +20,11 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 							</ol>
 		                </div>
                 	</div>
-                   	<div class="col-2">
-                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" href="javascript:void(0)" ng-click="addNew();">Add new Product</a>
+					<div class="col-3">
+						<a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" href="javascript:void(0)" ng-click="quickAddProduct();">Quick Add Product</a>
+						</div>
+                   	<div class="col-3">
+                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3 float-left" href="javascript:void(0)" ng-click="addNew();">Add new Product</a>
                    	</div>
                 </div>
 				
@@ -1406,6 +1409,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
         ***********************************-->
 
     </div>
+	<form class="" id="quickProductdetilsForm" method="POST" action="{{ url('/productQuickAdd') }}"
+		enctype="multipart/form-data" style="display:none;">
+		<input type="hidden" name="_method" value="POST">
+		{{ csrf_field() }}
+		<input type="hidden" class="productID" id="productID" name="productID" value="">
+	</form>
     @include('admin.admin-footer')
     
     <script src="{{ url('/assets-admin') }}/customjs/script_adminproduct.js?v={{time()}}"></script>
