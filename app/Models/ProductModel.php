@@ -14,6 +14,51 @@ class ProductModel extends Model
 {
     use HasFactory;
     
+	public function getQuickAddProductDataWrtProductID($productID){
+		$result = DB::table('jb_product_tbl as a')
+		->where('a.PRODUCT_ID',$productID)
+    	->get();
+    
+    	
+    	foreach ($result as $row){
+			$arrRes['P_1'] = $row->NAME;
+    		$arrRes['P_2'] = $row->SUB_TITLE;
+    		$arrRes['P_3'] = number_format($row->UNIT_PRICE,2);
+
+    		$arrRes['P_4'] = $row->UNIT;
+			$arrRes['P_5'] = $row->SHORT_DESCRIPTION;
+    		$arrRes['P_6'] = $row->QUANTITY;
+
+    		$arrRes['PRODUCT_ID'] = $row->PRODUCT_ID;
+    		$arrRes['USER_ID'] = $row->USER_ID;
+    		$arrRes['SLUG'] = $row->SLUG;
+    		
+    		$arrRes['MINIMUM_PURCHASE_QUANTITY'] = $row->MINIMUM_PURCHASE_QUANTITY;
+    		$arrRes['TAGS'] = $row->TAGS;
+    		$arrRes['BARCODE'] = $row->BARCODE;
+    		$arrRes['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
+    		$arrRes['CATEGORY_ID'] = $row->CATEGORY_ID;
+    		// $arrRes['CATEGORY_NAME'] = $row->categoryName;
+    		$arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+    		// $arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+    	
+    		$arrRes['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
+    		
+    		$arrRes['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
+    		$descText = strip_tags(base64_decode($row->DESCRIPTION));
+    		$arrRes['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
+    		$arrRes['STATUS'] = $row->STATUS;
+    		$arrRes['DATE'] = $row->DATE;
+    		$arrRes['CREATED_BY'] = $row->CREATED_BY;
+    		$arrRes['CREATED_ON'] = $row->CREATED_ON;
+    		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
+    		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
+    		
+    	}
+    
+    	return isset($arrRes) ? $arrRes : null;
+	}
+
     public function getProductsLov(){
     
     	$result = DB::table('jb_product_tbl as a')->select('a.*')

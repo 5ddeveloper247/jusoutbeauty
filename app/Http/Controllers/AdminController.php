@@ -44,6 +44,97 @@ use DateTime;
 
 class AdminController extends Controller
 {
+	public function productQuickAdd(){
+		$ProductModel = new ProductModel();
+
+		$productID = isset($_REQUEST['productID']) ? $_REQUEST['productID'] : "";
+
+		$data['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		
+		$data['page'] = 'Quick Add Product';
+		return view('admin.quick-addproduct')->with($data);
+	}
+	/* quickAddProduct start */ 
+	public function quickAddProduct(){
+
+    	$data['page'] = 'Quick Add Product';
+		return view('admin.quick-addproduct')->with($data);
+	}
+	public function getQuickAddAdminProduct(){
+
+		$details = $_REQUEST ['details'];
+		$userId = $details ['userId'];
+		$productID = $details ['productId'];
+
+		$ProductModel = new ProductModel();
+		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+
+		echo json_encode ( $arrRes );
+
+	}
+	public function updateAdminQuickProductBasicInfo(){
+		$details = $_REQUEST ['details'];
+
+		$data = $details['record'];
+	
+		$basic = [];
+
+		$basic['NAME'] = $data['P_1'];
+		$basic['SUB_TITLE'] = $data['P_2'];
+		$basic['UNIT_PRICE'] = $data['P_3'];
+		$basic['UNIT'] = $data['P_4'];
+		$basic['SHORT_DESCRIPTION'] = $data['P_5'];
+		$basic['QUANTITY'] = $data['P_6'];
+
+		DB::table('jb_product_tbl')->where('PRODUCT_ID',$data['PRODUCT_ID'])->update($basic);
+		
+		$arrRes ['msg'] = 'Data updated successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+
+	}
+	/* quickAddProduct end */ 
+	public function saveAdminQuickProductBasicInfo(){
+		$details = $_REQUEST ['details'];
+		$userId = $details ['userId'];
+
+		$result = DB::table ( 'jb_product_tbl' )
+				->insertGetId (
+					array ( 'USER_ID' => $userId,
+							'NAME' => 'Product Name',
+							'SUB_TITLE' => 'Sub Title',
+							'SHORT_DESCRIPTION' => 'Nunc interdum, turpis id aliquam luctus,leo quam condimentum orci, ac pellentesque leo dui accumsan magna.Ut vel arcu congue, quis cursus arcu cursus at.turpis lacus pretium eros, vitae sagittis lorem metus non ante.Pellentesque ut diam eget ex scelerisque finibus hendrerit ac urna.Vestibulum pulvinar vestibulum interdum. Cras feugiat pharetrasem quis luctus. Donec feugiat pellentesque facilisis.',
+							'UNIT' => '200',
+							'UNIT_PRICE' => '4000',
+							'QUANTITY' => '200',
+							// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
+							// 'TAGS' => $data ['P_5'],
+							// 'BARCODE' => $data ['P_6'],
+							// 'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
+							// 'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
+							// 'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
+							// 'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
+							// 'SLUG' => $data ['P_10'],
+							
+							// 'DESCRIPTION_TITLE' => $data ['P_12'],
+							// 'DESCRIPTION' => base64_encode($data['P_13']),
+							'STATUS' => 'inactive',
+							// 'FEATURE_ID' => isset($feature_id) ? rtrim($feature_id,',') : '',
+							'DATE' => date ( 'Y-m-d H:i:s' ),
+							'CREATED_BY' => $userId,
+							'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+							// 'UPDATED_BY' => $userId,
+							// 'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+					)
+				);
+	
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Product Created Successfully';
+				$arrRes ['id'] = $result;
+				echo json_encode ( $arrRes );
+
+	}
+
 	/* Selfie code */  
 	public function ChangeAdminProductSnapSelfieStatus(){
 		$ProductSelfiModel = new ProductSelfiModel();
@@ -6927,7 +7018,7 @@ class AdminController extends Controller
 		$userId = $details ['userId'];
 
 
-		$result = DB::table('jb_product_tbl')->where('CATEGORY_ID', $categoryId)->pluck('NAME');
+		$result = DB::table('jb_product_tbl')->where('IS_DELETED',0 )->where('CATEGORY_ID', $categoryId)->pluck('NAME');
 		
 		if(count($result) > 0){
 			$arrRes ['done'] = false;

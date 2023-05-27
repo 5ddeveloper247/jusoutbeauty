@@ -154,5 +154,9 @@ class UserModel extends Model
 		return isset($arrRes) ? $arrRes : null;
 	}
 
+	public function getUserData(){
+		
+	}
+
 }
 

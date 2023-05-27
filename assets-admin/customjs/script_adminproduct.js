@@ -237,7 +237,40 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$("#basicInfo_description").summernote("code", "");
 		$("#video_description").summernote("code", "");
 	}
-	
+
+	$scope.quickAddProduct = function(){
+		var data = {};
+	    data.userId = userId;
+	    
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash, 
+			url : site+"/saveAdminQuickProductBasicInfo",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			if(data.done == true || data.done == 'true'){
+				console.log(data.id);
+				toastr.success(data.msg, '', {timeOut: 3000})
+				$('#productID').val(data.id);
+
+				setTimeout(function(){
+					$('#quickProductdetilsForm').submit();
+				}, 500);
+
+				
+				
+			}else{
+				toastr.error(data.msg, '', {timeOut: 3000})
+			}
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
 	$scope.addNew = function(){
 		
 		$scope.product={};

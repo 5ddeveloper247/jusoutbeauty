@@ -22,7 +22,7 @@ use App\Http\Controllers\CloverController;
 //     return view('welcome');
 // });
 
-session()->put('site', '/site');
+session()->put('site', '/jusoutbeauty');
 
 cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
 cookie()->queue(cookie()->forever('site_url', url('/home')));
@@ -206,6 +206,11 @@ Route::get('/showAllRoutineTypes',[AdminController::class,'getAllRoutineTypes'])
 
 Route::group(['middleware' => ['AdminAuth']], function(){
 
+	//for quick add product start
+	Route::get('/quick-add-product', [AdminController::class, 'quickAddProduct']);
+	Route::post('/updateAdminQuickProductBasicInfo', [AdminController::class, 'updateAdminQuickProductBasicInfo']);
+	Route::post('/getQuickAddAdminProduct', [AdminController::class, 'getQuickAddAdminProduct']);
+	//for quick add product end
 	Route::post('/getAllAdminProductSnapSelfielov', [AdminController::class, 'getAllAdminProductSnapSelfielov']);
 	Route::post('/ChangeAdminProductSnapSelfieStatus', [AdminController::class, 'ChangeAdminProductSnapSelfieStatus']);
 
@@ -383,6 +388,9 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/getproductswrtsubcategory', [AdminController::class, 'getproductswrtsubcategory']);
 	Route::post('/getSubSubCategoriesWrtSubCategory', [AdminController::class, 'getSubSubCategoriesWrtSubCategory']);
 	Route::post('/saveAdminProductBasicInfo', [AdminController::class, 'saveAdminProductBasicInfo']);
+	Route::post('/saveAdminQuickProductBasicInfo', [AdminController::class, 'saveAdminQuickProductBasicInfo']);
+	Route::post('/productQuickAdd', [AdminController::class, 'productQuickAdd']);
+	Route::get('/productQuickAdd', [AdminController::class, 'viewProducts']);
 	Route::post('/editAdminProduct', [AdminController::class, 'editAdminProduct']);
 	Route::post('/saveAdminProductVideoDetails', [AdminController::class, 'saveAdminProductVideoDetails']);
 	Route::post('/markPrimaryProdImage', [AdminController::class, 'markPrimaryProdImage']);
