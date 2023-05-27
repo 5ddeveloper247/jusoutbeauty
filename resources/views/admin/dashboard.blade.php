@@ -14,118 +14,428 @@
         ***********************************-->
         <div class="content-body">
             <!-- row -->
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xl-9 col-xxl-8">  
-            <div class="row">
-              <div class="col-xl-4 col-xxl-6 col-lg-4 col-sm-6">
+        <div class="container-fluid">
+          <div class="row">
+              <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
                 <div class="card border-card">
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-success">43</h2>
+                        <h2 class="text-success">{{ $getTotalUsers }}</h2>
                         <span class="position">Users</span>
                       </div>
                       <span class="cd-icon bgl-success align-center-verticle">
                          <i class="fa fa-user dashboard-user-av"></i>
-<!--                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
-<!--                          <path d="M38.4998 10.4995H35.0002V38.4999H38.4998C40.4245 38.4999 42 36.9238 42 34.9992V13.9992C42 12.075 40.4245 10.4995 38.4998 10.4995Z" fill="#2BC155"/> -->
-<!--                          <path d="M27.9998 10.4995V6.9998C27.9998 5.07515 26.4243 3.49963 24.5001 3.49963H17.4998C15.5757 3.49963 14.0001 5.07515 14.0001 6.9998V10.4995H10.5V38.4998H31.5V10.4995H27.9998ZM24.5001 10.4995H17.4998V6.99929H24.5001V10.4995Z" fill="#2BC155"/> -->
-<!--                          <path d="M3.50017 10.4995C1.57551 10.4995 0 12.075 0 13.9997V34.9997C0 36.9243 1.57551 38.5004 3.50017 38.5004H6.99983V10.4995H3.50017Z" fill="#2BC155"/> -->
-<!--                        </svg> -->
                       </span>
                     </div>
                   </div>
                   <span class="line bg-success"></span>
                 </div>
               </div>
-              <div class="col-xl-4 col-xxl-6 col-lg-4 col-sm-6">
+              <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
                 <div class="card border-card">
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-secondary">27</h2>
-                        <span class="position">Orders</span>
+                        <h2 class="text-secondary">{{ $getTotalTickets }}</h2>
+                        <span class="position">Open Tickets</span>
                       </div>
                       <span class="cd-icon bgl-secondary align-center-verticle">
                           <i class="fa fa-shopping-cart dashboard-orders-av"></i>
-<!--                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
-<!--                          <path d="M33.25 8.75H31.5V5.25C31.5 4.78587 31.3156 4.34075 30.9874 4.01256C30.6593 3.68437 30.2141 3.5 29.75 3.5C29.2859 3.5 28.8407 3.68437 28.5126 4.01256C28.1844 4.34075 28 4.78587 28 5.25V8.75H14V5.25C14 4.78587 13.8156 4.34075 13.4874 4.01256C13.1592 3.68437 12.7141 3.5 12.25 3.5C11.7859 3.5 11.3408 3.68437 11.0126 4.01256C10.6844 4.34075 10.5 4.78587 10.5 5.25V8.75H8.75C7.35761 8.75 6.02226 9.30312 5.03769 10.2877C4.05312 11.2723 3.5 12.6076 3.5 14V15.75H38.5V14C38.5 12.6076 37.9469 11.2723 36.9623 10.2877C35.9777 9.30312 34.6424 8.75 33.25 8.75Z" fill="#3F9AE0"/> -->
-<!--                          <path d="M3.5 33.25C3.5 34.6424 4.05312 35.9777 5.03769 36.9623C6.02226 37.9469 7.35761 38.5 8.75 38.5H33.25C34.6424 38.5 35.9777 37.9469 36.9623 36.9623C37.9469 35.9777 38.5 34.6424 38.5 33.25V19.25H3.5V33.25Z" fill="#3F9AE0"/> -->
-<!--                        </svg> -->
                       </span>
                     </div>
                   </div>
                   <span class="line bg-secondary"></span>
                 </div>
               </div>
-              <div class="col-xl-4 col-xxl-12 col-lg-4 col-md-12">
+              <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
                 <div class="card border-card">
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-warning">52k</h2>
-                        <span class="position">Payments</span>
+                        <h2 class="text-warning">{{ $getTotalProducts }}</h2>
+                        <span class="position">Products</span>
                       </div>
                       <span class="cd-icon bgl-warning align-center-verticle">
-                           <i class="fa fa-credit-card dashboard-payments-av"></i>
-<!--                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
-<!--                          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1812 22.0083C15.0651 21.9063 14.7969 21.6695 14.7015 21.5799C12.3755 19.3941 10.8517 15.9712 10.8517 12.1138C10.8517 5.37813 15.4869 0.0410156 21.0011 0.0410156C26.5152 0.0410156 31.1503 5.37813 31.1503 12.1138C31.1503 15.9679 29.6292 19.3884 27.3094 21.5778C27.2118 21.6699 26.9385 21.9116 26.8238 22.0125L26.8139 22.1799C26.8789 23.1847 27.5541 24.0553 28.5233 24.3626C35.7277 26.641 40.9507 32.0853 41.8277 38.538C41.9484 39.3988 41.6902 40.2696 41.1198 40.9254C40.5495 41.5813 39.723 41.9579 38.8541 41.9579C32.4956 41.9591 9.50675 41.9591 3.14821 41.9591C2.27873 41.9591 1.45183 41.5824 0.881272 40.9263C0.310711 40.2701 0.0524068 39.3989 0.172348 38.5437C1.05148 32.0851 6.27447 26.641 13.4778 24.3628C14.4504 24.0544 15.1263 23.1802 15.1885 22.1722L15.1812 22.0083Z" fill="#FF9B52"/> -->
-<!--                        </svg> -->
+                          <i class="flaticon-381-box " style=" font-size: 40px ;color:#ff9b52 ;"></i>
                       </span>
                     </div>
                   </div>
                   <span class="line bg-warning"></span>
                 </div>
               </div>
-              <div class="col-xl-12">
-                <div class="card">
-                  <div class="card-header border-0 pb-0 flex-wrap">
-                    <h4 class="fs-20 text-black mr-4 mb-2">Order Stats</h4>
-                    
-                    <div class="dropdown custom-dropdown mb-0 mt-3 mt-sm-0 mb-2">
-                      <div class="btn border text-black rounded" role="button" data-toggle="dropdown" aria-expanded="false">
-                        This Month
-                        <i class="las la-angle-down scale5 text-primary ml-3"></i>
+          </div>
+          <div class="row">
+            <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header border-0 pb-0 flex-wrap">
+                <h4 class="fs-20 text-black mr-4 mb-2">Order Stats</h4>
+                
+                <div class="dropdown custom-dropdown mb-0 mt-3 mt-sm-0 mb-2">
+                  <div class="btn border text-black rounded" role="button" data-toggle="dropdown" aria-expanded="false">
+                    This Month
+                    <i class="las la-angle-down scale5 text-primary ml-3"></i>
+                  </div>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="javascript:void(0);">This Month</a>
+                    <a class="dropdown-item" href="javascript:void(0);">January</a>
+                    <a class="dropdown-item" href="javascript:void(0);">February</a>
+                    <a class="dropdown-item" href="javascript:void(0);">March</a>
+                    <a class="dropdown-item" href="javascript:void(0);">April</a>
+                    <a class="dropdown-item" href="javascript:void(0);">May</a>
+                    <a class="dropdown-item" href="javascript:void(0);">June</a>
+                    <a class="dropdown-item" href="javascript:void(0);">Jully</a>
+                    <a class="dropdown-item" href="javascript:void(0);">August</a>
+                    <a class="dropdown-item" href="javascript:void(0);">September</a>
+                    <a class="dropdown-item" href="javascript:void(0);">October</a>
+                    <a class="dropdown-item" href="javascript:void(0);">November</a>
+                    <a class="dropdown-item" href="javascript:void(0);">Decemeber</a>
+                    <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body"> 
+                <div id="lineChart" class="line-chart"></div>
+                <div class="d-flex flex-wrap align-items-center justify-content-center mt-3">
+                  <div class="fs-14 text-black mr-4">
+                    <svg class="mr-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="19" height="19" rx="9.5" fill="#2BC155"/>
+                    </svg>
+                    Facial
+                  </div>
+                  <div class="fs-14 text-black mr-4">
+                    <svg class="mr-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="19" height="19" rx="9.5" fill="#3F9AE0"/>
+                    </svg>
+                    Hair
+                  </div>
+                  <div class="fs-14 text-black">
+                    <svg class="mr-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="19" height="19" rx="9.5" fill="#FF424D"/>
+                    </svg>
+                    Eyes
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-success">{{ $getTotalPayments }}</h2>
+                      <span class="position">Payments</span>
+                    </div>
+                    <span class="cd-icon bgl-success align-center-verticle">
+                         <i class="fa fa-credit-card" style="font-size: 40px;color:#45c96b;"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-success"></span>
+              </div>
+            </div>
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-secondary">{{ $getTotalBundles }}</h2>
+                      <span class="position">Bundles</span>
+                    </div>
+                    <span class="cd-icon bgl-secondary align-center-verticle">
+                        <i class="fa fa-shopping-cart dashboard-orders-av"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-secondary"></span>
+              </div>
+            </div>
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-warning">{{ $getTotalBlogs }}</h2>
+                      <span class="position">Blogs</span>
+                    </div>
+                    <span class="cd-icon bgl-warning align-center-verticle">
+                      <i class="flaticon-381-box " style=" font-size: 40px ;color:#ff9b52 ;"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-warning"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
+                <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Products</h4>
+                <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a>
+              </div>
+              <div class="testimonial-one owl-carousel">
+                <div class="items">
+                  <div class="card">
+                    <div class="card-body"> 
+                      <div class="media pb-4 border-bottom mb-4 align-items-center">
+                        
+                        <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
+                        <div class="media-body">
+                          <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
+                          <div class="d-flex">
+                            <p class="mb-0 mr-auto">Lipstick</p>
+                          </div>
+                        </div>
                       </div>
-                      <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0);">This Month</a>
-                        <a class="dropdown-item" href="javascript:void(0);">January</a>
-                        <a class="dropdown-item" href="javascript:void(0);">February</a>
-                        <a class="dropdown-item" href="javascript:void(0);">March</a>
-                        <a class="dropdown-item" href="javascript:void(0);">April</a>
-                        <a class="dropdown-item" href="javascript:void(0);">May</a>
-                        <a class="dropdown-item" href="javascript:void(0);">June</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Jully</a>
-                        <a class="dropdown-item" href="javascript:void(0);">August</a>
-                        <a class="dropdown-item" href="javascript:void(0);">September</a>
-                        <a class="dropdown-item" href="javascript:void(0);">October</a>
-                        <a class="dropdown-item" href="javascript:void(0);">November</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Decemeber</a>
-                        <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip3)">
+                            <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
+                            <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
+                            <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
+                            <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
+                            <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip3">
+                            <rect width="28" height="28" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        $14</span>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <i class="fa fa-database dashboard-custom-icon"></i>
+                        200</span>
+                      </div>
+                      <div>
+                        <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
+                        1500</span>
                       </div>
                     </div>
                   </div>
-                  <div class="card-body"> 
-                    <div id="lineChart" class="line-chart"></div>
-                    <div class="d-flex flex-wrap align-items-center justify-content-center mt-3">
-                      <div class="fs-14 text-black mr-4">
-                        <svg class="mr-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect width="19" height="19" rx="9.5" fill="#2BC155"/>
-                        </svg>
-                        Facial
+                </div>
+                
+                <div class="items">
+                  <div class="card">
+                    <div class="card-body"> 
+                      <div class="media pb-4 border-bottom mb-4 align-items-center">
+                        
+                        <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
+                        <div class="media-body">
+                          <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
+                          <div class="d-flex">
+                            <p class="mb-0 mr-auto">Lipstick</p>
+                          </div>
+                        </div>
                       </div>
-                      <div class="fs-14 text-black mr-4">
-                        <svg class="mr-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect width="19" height="19" rx="9.5" fill="#3F9AE0"/>
-                        </svg>
-                        Hair
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip3)">
+                            <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
+                            <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
+                            <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
+                            <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
+                            <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip3">
+                            <rect width="28" height="28" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        $14</span>
                       </div>
-                      <div class="fs-14 text-black">
-                        <svg class="mr-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect width="19" height="19" rx="9.5" fill="#FF424D"/>
-                        </svg>
-                        Eyes
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <i class="fa fa-database dashboard-custom-icon"></i>
+                        200</span>
+                      </div>
+                      <div>
+                        <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
+                        1500</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="items">
+                  <div class="card">
+                    <div class="card-body"> 
+                      <div class="media pb-4 border-bottom mb-4 align-items-center">
+                        
+                        <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
+                        <div class="media-body">
+                          <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
+                          <div class="d-flex">
+                            <p class="mb-0 mr-auto">Lipstick</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip3)">
+                            <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
+                            <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
+                            <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
+                            <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
+                            <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip3">
+                            <rect width="28" height="28" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        $14</span>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <i class="fa fa-database dashboard-custom-icon"></i>
+                        200</span>
+                      </div>
+                      <div>
+                        <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
+                        1500</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="items">
+                  <div class="card">
+                    <div class="card-body"> 
+                      <div class="media pb-4 border-bottom mb-4 align-items-center">
+                        
+                        <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
+                        <div class="media-body">
+                          <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
+                          <div class="d-flex">
+                            <p class="mb-0 mr-auto">Lipstick</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip3)">
+                            <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
+                            <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
+                            <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
+                            <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
+                            <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip3">
+                            <rect width="28" height="28" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        $14</span>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <i class="fa fa-database dashboard-custom-icon"></i>
+                        200</span>
+                      </div>
+                      <div>
+                        <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
+                        1500</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="items">
+                  <div class="card">
+                    <div class="card-body"> 
+                      <div class="media pb-4 border-bottom mb-4 align-items-center">
+                        
+                        <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
+                        <div class="media-body">
+                          <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
+                          <div class="d-flex">
+                            <p class="mb-0 mr-auto">Lipstick</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip3)">
+                            <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
+                            <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
+                            <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
+                            <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
+                            <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip3">
+                            <rect width="28" height="28" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        $14</span>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <i class="fa fa-database dashboard-custom-icon"></i>
+                        200</span>
+                      </div>
+                      <div>
+                        <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
+                        1500</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="items">
+                  <div class="card">
+                    <div class="card-body"> 
+                      <div class="media pb-4 border-bottom mb-4 align-items-center">
+                        
+                        <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
+                        <div class="media-body">
+                          <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
+                          <div class="d-flex">
+                            <p class="mb-0 mr-auto">Lipstick</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip3)">
+                            <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
+                            <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
+                            <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
+                            <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
+                            <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip3">
+                            <rect width="28" height="28" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        $14</span>
+                      </div>
+                      <div class="d-flex mb-3">
+                        <span class="text-black mr-auto font-w500">
+                          <i class="fa fa-database dashboard-custom-icon"></i>
+                        200</span>
+                      </div>
+                      <div>
+                        <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
+                        1500</span>
                       </div>
                     </div>
                   </div>
@@ -133,7 +443,229 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-xxl-4">
+          <div class="row">
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-success">{{ $getTotalOrders }}</h2>
+                      <span class="position">Orders</span>
+                    </div>
+                    <span class="cd-icon bgl-successalign-center-verticle">
+                         <i class="fa fa-credit-card" style="font-size: 40px;color:#45c96b;"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-success"></span>
+              </div>
+            </div>
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-secondary">{{ $getShippedOrders }}</h2>
+                      <span class="position">Shipped</span>
+                    </div>
+                    <span class="cd-icon bgl-secondary align-center-verticle">
+                        <i class="fa fa-shopping-cart dashboard-orders-av"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-secondary"></span>
+              </div>
+            </div>
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-warning">{{ $getTotalTransactions }}</h2>
+                      <span class="position">In Transactions</span>
+                    </div>
+                    <span class="cd-icon bgl-warning align-center-verticle">
+                        <i class="fa fa-shopping-cart" style=" font-size: 40px ;color:#ff9b52 ;"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-warning"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
+                <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Admin Users</h4>
+                <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a>
+              </div>
+            </div>
+            <div class="col-xl-12">
+              <div class="row sp-sm-15">
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
+                      <span class="text-primary">3 Roles</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-success">{{ $getTotalSubscriptions }}</h2>
+                      <span class="position">Total Subscriptions</span>
+                    </div>
+                    <span class="cd-icon bgl-success align-center-verticle">
+                         <i class="fa fa-credit-card" style="font-size: 40px;color:#45c96b;"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-success"></span>
+              </div>
+            </div>
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-secondary">{{ $getTotalReviews }}</h2>
+                      <span class="position">Reviews</span>
+                    </div>
+                    <span class="cd-icon bgl-secondary align-center-verticle">
+                        <i class="fa fa-shopping-cart dashboard-orders-av"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-secondary"></span>
+              </div>
+            </div>
+            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="card border-card">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body mr-3">
+                      <h2 class="text-warning">{{ $getTotalGivings}}</h2>
+                      <span class="position">Total Givings</span>
+                    </div>
+                    <span class="cd-icon bgl-warning align-center-verticle">
+                        <i class="fa fa-shopping-cart" style=" font-size: 40px ;color:#ff9b52 ;"></i>
+                    </span>
+                  </div>
+                </div>
+                <span class="line bg-warning"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+          {{-- <div class="col-xl-3 col-xxl-4">
             <div class="row">
               <div class="col-xl-12">
                 <div class="card d-flex flex-xl-column flex-sm-column flex-md-row flex-column">
@@ -187,401 +719,10 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-12">
-            <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
-              <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Products</h4>
-              <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a>
-            </div>
-            <div class="testimonial-one owl-carousel">
-              <div class="items">
-                <div class="card">
-                  <div class="card-body"> 
-                    <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
-                      <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
-                      <div class="media-body">
-                        <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
-                        <div class="d-flex">
-                          <p class="mb-0 mr-auto">Lipstick</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip3)">
-                          <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
-                          <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
-                          <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
-                          <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
-                          <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip3">
-                          <rect width="28" height="28" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-                      $14</span>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <i class="fa fa-database dashboard-custom-icon"></i>
-                      200</span>
-                    </div>
-                    <div>
-                      <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
-                      1500</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="items">
-                <div class="card">
-                  <div class="card-body"> 
-                    <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
-                      <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
-                      <div class="media-body">
-                        <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
-                        <div class="d-flex">
-                          <p class="mb-0 mr-auto">Lipstick</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip3)">
-                          <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
-                          <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
-                          <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
-                          <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
-                          <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip3">
-                          <rect width="28" height="28" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-                      $14</span>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <i class="fa fa-database dashboard-custom-icon"></i>
-                      200</span>
-                    </div>
-                    <div>
-                      <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
-                      1500</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="items">
-                <div class="card">
-                  <div class="card-body"> 
-                    <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
-                      <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
-                      <div class="media-body">
-                        <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
-                        <div class="d-flex">
-                          <p class="mb-0 mr-auto">Lipstick</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip3)">
-                          <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
-                          <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
-                          <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
-                          <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
-                          <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip3">
-                          <rect width="28" height="28" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-                      $14</span>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <i class="fa fa-database dashboard-custom-icon"></i>
-                      200</span>
-                    </div>
-                    <div>
-                      <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
-                      1500</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="items">
-                <div class="card">
-                  <div class="card-body"> 
-                    <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
-                      <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
-                      <div class="media-body">
-                        <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
-                        <div class="d-flex">
-                          <p class="mb-0 mr-auto">Lipstick</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip3)">
-                          <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
-                          <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
-                          <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
-                          <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
-                          <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip3">
-                          <rect width="28" height="28" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-                      $14</span>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <i class="fa fa-database dashboard-custom-icon"></i>
-                      200</span>
-                    </div>
-                    <div>
-                      <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
-                      1500</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="items">
-                <div class="card">
-                  <div class="card-body"> 
-                    <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
-                      <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
-                      <div class="media-body">
-                        <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
-                        <div class="d-flex">
-                          <p class="mb-0 mr-auto">Lipstick</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip3)">
-                          <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
-                          <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
-                          <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
-                          <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
-                          <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip3">
-                          <rect width="28" height="28" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-                      $14</span>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <i class="fa fa-database dashboard-custom-icon"></i>
-                      200</span>
-                    </div>
-                    <div>
-                      <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
-                      1500</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="items">
-                <div class="card">
-                  <div class="card-body"> 
-                    <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
-                      <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
-                      <div class="media-body">
-                        <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
-                        <div class="d-flex">
-                          <p class="mb-0 mr-auto">Lipstick</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <svg class="mr-3" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip3)">
-                          <path d="M14.0001 7.83997C10.5987 7.83997 7.65356 10.2024 6.91568 13.5229L4.49921 24.397C4.48149 24.4768 4.47254 24.5583 4.47254 24.64C4.47254 25.2585 4.97398 25.76 5.59254 25.76H22.4077C22.4894 25.76 22.5709 25.751 22.6507 25.7333C23.2545 25.5991 23.6352 25.0008 23.501 24.397L21.0846 13.5229C20.3467 10.2024 17.4016 7.83997 14.0001 7.83997ZM14.0001 5.59997C18.4515 5.59997 22.3056 8.69164 23.2712 13.037L25.6877 23.9111C26.0902 25.7226 24.9481 27.5174 23.1366 27.92C22.8973 27.9731 22.6529 28 22.4077 28H5.59254C3.73687 28 2.23254 26.4956 2.23254 24.64C2.23254 24.3948 2.25937 24.1504 2.31256 23.9111L4.72902 13.037C5.69466 8.69164 9.54877 5.59997 14.0001 5.59997Z" fill="#A9A9A9"/>
-                          <path d="M16.2402 12.32C16.8588 12.32 17.3602 12.8214 17.3602 13.44C17.3602 14.0585 16.8588 14.56 16.2402 14.56H13.4402C13.1309 14.56 12.8802 14.8107 12.8802 15.12C12.8802 15.4292 13.1309 15.68 13.4402 15.68H14.5602C16.1066 15.68 17.3602 16.9336 17.3602 18.48C17.3602 20.0264 16.1066 21.28 14.5602 21.28H11.7602C11.1416 21.28 10.6402 20.7785 10.6402 20.16C10.6402 19.5414 11.1416 19.04 11.7602 19.04H14.5602C14.8695 19.04 15.1202 18.7892 15.1202 18.48C15.1202 18.1707 14.8695 17.92 14.5602 17.92H13.4402C11.8938 17.92 10.6402 16.6664 10.6402 15.12C10.6402 13.5736 11.8938 12.32 13.4402 12.32H16.2402Z" fill="#A9A9A9"/>
-                          <path d="M12.8802 11.2C12.8802 10.5814 13.3817 10.08 14.0002 10.08C14.6188 10.08 15.1203 10.5814 15.1203 11.2V13.44C15.1203 14.0586 14.6188 14.56 14.0002 14.56C13.3817 14.56 12.8802 14.0586 12.8802 13.44V11.2Z" fill="#A9A9A9"/>
-                          <path d="M15.1203 22.4C15.1203 23.0186 14.6188 23.52 14.0002 23.52C13.3817 23.52 12.8802 23.0186 12.8802 22.4V20.16C12.8802 19.5414 13.3817 19.04 14.0002 19.04C14.6188 19.04 15.1203 19.5414 15.1203 20.16V22.4Z" fill="#A9A9A9"/>
-                          <path d="M12.8001 6.30404C13.0298 6.87836 12.7504 7.53017 12.1761 7.75989C11.6018 7.98962 10.95 7.71027 10.7203 7.13596L8.48027 1.53596C8.11627 0.625951 9.01409 -0.279605 9.92718 0.0765737C10.7659 0.403728 11.391 0.56 11.7602 0.56C11.8521 0.56 11.9283 0.540358 12.0946 0.469683C12.1387 0.450919 12.1906 0.428012 12.3122 0.374186C12.8915 0.12032 13.3491 -3.76254e-07 14.0002 -3.76254e-07C14.6497 -3.76254e-07 15.1146 0.12064 15.6957 0.372056C15.8432 0.43663 15.9021 0.462313 15.9542 0.483786C16.0978 0.542916 16.1669 0.56 16.2402 0.56C16.5878 0.56 17.2185 0.402322 18.0812 0.0734544C18.9932 -0.274175 19.8825 0.629785 19.5201 1.53596L17.2801 7.13596C17.0503 7.71027 16.3985 7.98962 15.8242 7.75989C15.2499 7.53017 14.9705 6.87836 15.2003 6.30404L16.6096 2.78073C16.4808 2.79355 16.3578 2.8 16.2402 2.8C15.8314 2.8 15.4927 2.7162 15.1013 2.55506C15.0241 2.52324 14.9394 2.4863 14.8064 2.42794C14.4822 2.28767 14.2985 2.24 14.0002 2.24C13.7048 2.24 13.5313 2.28561 13.2114 2.42581C13.1015 2.47449 13.0319 2.50524 12.9706 2.53126C12.5512 2.70952 12.2002 2.8 11.7602 2.8C11.6419 2.8 11.5189 2.79386 11.3911 2.78165L12.8001 6.30404Z" fill="#A9A9A9"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip3">
-                          <rect width="28" height="28" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-                      $14</span>
-                    </div>
-                    <div class="d-flex mb-3">
-                      <span class="text-black mr-auto font-w500">
-                        <i class="fa fa-database dashboard-custom-icon"></i>
-                      200</span>
-                    </div>
-                    <div>
-                      <i class="fa fa-cart-arrow-down dashboard-custom-icon"></i>
-                      1500</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              
-            </div>
-          </div>
-          <div class="col-xl-12">
-            <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
-              <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Admin Users</h4>
-              <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a>
-            </div>
-          </div>
-          <div class="col-xl-12">
-            <div class="row sp-sm-15">
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                    <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">Usman</a></h6>
-                    <span class="text-primary">3 Roles</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-            </div>
-        </div>
+          </div> --}}
+          
+          
+        
         <!--**********************************
             Content body end
         ***********************************-->

@@ -181,6 +181,24 @@ class TypeName extends model
 		return  isset($arrRes) ? $arrRes : null;;
 	}
 
+	public function getallroutinetypelov(){
+
+		$result = DB::table('jb_type_name_tbl as a')->select('a.*')
+		->where('a.STATUS','active')
+		->orderBy('a.NAME_ID','desc')
+		->get();
+		 
+		$i=0;
+		foreach ($result as $row){
+		   $arrRes[$i]['id'] = $row->NAME_ID;
+		   $arrRes[$i]['name'] = $row->TYPE_NAME;
+		   $i++;
+		}
+	 
+		return isset($arrRes) ? $arrRes : null;
+	}
+
+
 
    
 }
