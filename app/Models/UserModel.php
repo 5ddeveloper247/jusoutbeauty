@@ -127,8 +127,11 @@ class UserModel extends Model
 			$arrRes[$i]['date'] = date('d M,Y H:i A', strtotime($row->START_DATE));
 			$i++;
 		}
+
 		return isset($arrRes) ? $arrRes : null;
 	}
+
+	
 	public function getSpecificUserDetail($userId){
 	
 		$result = DB::table('fnd_user_tbl')->select('*')

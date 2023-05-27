@@ -22,7 +22,7 @@ use App\Http\Controllers\CloverController;
 //     return view('welcome');
 // });
 
-session()->put('site', '/site');
+session()->put('site', '/jusoutbeauty');
 
 cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
 cookie()->queue(cookie()->forever('site_url', url('/home')));
@@ -540,6 +540,8 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/uploadEmailConfigLogo', [AttachmentController::class, 'uploadEmailConfigLogo']);
 
 	Route::post('/updateSpecificUserSubscriptionStatusAdmin', [AdminController::class, 'updateSpecificUserSubscriptionStatusAdmin']);
+
+	Route::get('/getTotalUsers',[AdminController::class,'getTotalUsers']);
 
 	
 });
