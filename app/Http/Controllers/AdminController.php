@@ -242,10 +242,11 @@ class AdminController extends Controller
 		$data['getTotalBlogs']= $User->getTotalBlogs();
 		$data['getTotalOrders']= $User->getTotalOrders();
 		$data['getShippedOrders']= $User->getTotalShippedOrders();
-		$data['getTotalTransactions']= $User->getTotalShippedOrders();
+		$data['getTotalInTransitOrders']= $User->getTotalInTransitOrders();
 		$data['getTotalSubscriptions']= $User->getTotalSubscriptions();
 		$data['getTotalReviews']= $User->getTotalReviews();
 		$data['getTotalGivings']= $User->getTotalGivings();
+		$data['mostSaledItems']= $User->mostSaleItems();
    		$data['page'] = 'Dashboard';
    		return view('admin.dashboard')->with($data);
    	}
@@ -7814,6 +7815,14 @@ class AdminController extends Controller
 
 		echo json_encode ( $results );
 
+	}
+
+	public function getMostSaledItems(){
+
+			$OrderDetailModel = new OrderDetailModel();
+			$result [ 'mostSaleItems' ] = $OrderDetailModel->mostSaleItems();
+
+			echo json_encode($result);
 	}
 
 	

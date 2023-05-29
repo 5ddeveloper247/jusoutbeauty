@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use PHPUnit\Framework\Constraint\Count;
 
 class User extends Authenticatable
 {
@@ -113,7 +114,9 @@ class User extends Authenticatable
 
     public function getTotalProducts(){
 
-        $totalProducts = DB::table('jb_product_tbl')->count();
+        $totalProducts = DB::table('jb_product_tbl')
+                         ->where('IS_DELETED','0')
+                         ->count();
         return isset($totalProducts) ? $totalProducts :null;
     }
 
@@ -133,7 +136,9 @@ class User extends Authenticatable
 
     public function getTotalBundles(){
 
-        $totalBundles = DB::table('jb_bundle_product_tbl')->count();
+        $totalBundles = DB::table('jb_bundle_product_tbl')
+                        ->where('IS_DELETED','0')
+                        ->count();
         return isset($totalBundles) ?  $totalBundles:null;
     }
 
@@ -147,7 +152,9 @@ class User extends Authenticatable
 
     public function getTotalSubscriptions(){
 
-        $totalSubscriptions = DB:: table('jb_user_subscription_tbl')->count();
+        $totalSubscriptions = DB:: table('jb_subscription_tbl')
+                              ->where('IS_DELETED','1')
+                              ->count();
         return isset($totalSubscriptions ) ? $totalSubscriptions :null;
     }
 
@@ -161,6 +168,130 @@ class User extends Authenticatable
 
         $totalReviews = DB::table('jb_reviews_tbl')->count();
         return isset( $totalReviews) ?  $totalReviews :null;
+    }
+
+    public function getTotalInTransitOrders(){
+        $getTotalInTransitOrders = DB::table('jb_order_shippment_detail_tbl')
+            ->where('STATUS','In-Transit')
+            ->count();
+        return isset( $getTotalInTransitOrders) ?  $getTotalInTransitOrders :null;
+    }
+
+    public function mostSaleItems(){
+		$result = DB::table('jb_product_tbl as p')
+		->join('jb_order_detail_tbl as o', 'p.product_id', '=', 'o.product_id')
+        ->join('jb_category_tbl as c','p.CATEGORY_ID','=','c.CATEGORY_ID')
+		->select('p.PRODUCT_ID','p.name','c.CATEGORY_NAME','p.QUANTITY','p.UNIT_PRICE' ,'o.TOTAL_AMOUNT_INC_VAT')
+		->distinct('p.product_id')
+		->orderBy('o.TOTAL_AMOUNT_INC_VAT', 'DESC')
+		->limit(10)
+		->get();
+
+        $arrRes = [];
+
+    	for ($i=0 ; $i < count($result);$i++){
+            $arrRes[$i]['productName'] = $result[$i]->name;
+            $arrRes[$i]['categoryName'] = $result[$i]->CATEGORY_NAME;
+            $arrRes[$i]['productTotalUnits'] = $this->getShadesQuantity($result[$i]->PRODUCT_ID) == null ?  $result[$i]->QUANTITY : $this->getShadesQuantity($result[$i]->PRODUCT_ID) ;
+            $arrRes[$i]['productprice'] = $result[$i]->UNIT_PRICE;
+            $arrRes[$i]['revenue'] = $this->getRevevueWRTProductID($result[$i]->PRODUCT_ID);
+            $arrRes[$i]['productImage'] = $this->getProductImage($result[$i]->PRODUCT_ID)->DOWN_PATH;
+        }
+        
+        return isset( $arrRes) ?  $arrRes :null;
+	}
+    
+    public function getShadesQuantity($PRODUCT_ID){
+        $result = DB::table('jb_product_shades_tbl as j')
+        ->select('j.Quantity')
+        ->where('j.PRODUCT_ID',$PRODUCT_ID)
+        ->select('j.Quantity')
+        ->get();
+
+        $totalShadeQuantity=0;
+        for($i=0;$i<count($result);$i++){
+            $shadeQuantity=$result[$i]->Quantity;
+            $totalShadeQuantity=$shadeQuantity + $totalShadeQuantity;
+        }
+
+        return isset($totalShadeQuantity) ?  $totalShadeQuantity :null;
+    }
+
+    public function getRevevueWRTProductID($PRODUCT_ID)
+    {
+        // Calculation of Revenue Through Total Transaction Made with status PAID
+
+        $result = DB::table('jb_order_detail_tbl as o')
+        ->join('jb_order_payment_tbl as p','p.ORDER_ID','=','o.ORDER_ID')
+        ->select('p.TRANSACTION_RESPONSE')
+        ->where('o.PRODUCT_ID',$PRODUCT_ID)
+        ->where('PAYMENT_STATUS','paid')
+        ->where('TRANSACTION_STATUS','succeeded')
+        ->select('TRANSACTION_RESPONSE')
+        ->get();
+
+        $totalRevenue=0;
+        for($i=0;$i<count($result);$i++){
+            $transactional_response=$result[$i]->TRANSACTION_RESPONSE;
+            $decode_transactional_response=json_decode($transactional_response);
+            $totalRevenue=$decode_transactional_response->amount + $totalRevenue;
+        }
+
+        $totalRevenue=round($totalRevenue / 100);
+
+        if ($totalRevenue < 900) {
+            // 0 - 900
+            $n_format = number_format($totalRevenue, 1);
+            $suffix = '';
+        } else if ($totalRevenue < 900000) {
+            // 0.9k-850k
+            $n_format = number_format($totalRevenue / 1000, 1);
+            $suffix = 'K';
+        } else if ($totalRevenue < 900000000) {
+            // 0.9m-850m
+            $n_format = number_format($totalRevenue / 1000000, 1);
+            $suffix = 'M';
+        } else if ($totalRevenue< 900000000000) {
+            // 0.9b-850b
+            $n_format = number_format($totalRevenue / 1000000000, 1);
+            $suffix = 'B';
+        } else {
+            // 0.9t+
+            $n_format = number_format($totalRevenue / 1000000000000, 1);
+            $suffix = 'T';
+        }
+
+        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+        // Intentionally does not affect partials, eg "1.50" -> "1.50"
+
+        if ( 1 > 0 ) {
+            $dotzero = '.' . str_repeat( '0', 1 );
+            $n_format = str_replace( $dotzero, '', $n_format );
+        }
+        
+        $totalRevenue=$n_format . $suffix;
+
+        return isset($totalRevenue) ?  $totalRevenue :null;
+
+        // Calculation of Revenue Through Total Orders Price
+        // $result = DB::table('jb_product_tbl as p')
+        // ->join('jb_order_detail_tbl as o', 'p.product_id', '=', 'o.product_id')
+        // ->select(DB::raw('SUM(o.total_amount)'))
+        // ->where('p.product_id', '=', $PRODUCT_ID)
+        // ->get();
+
+        // return isset( $result[0]->SUM(o.total_amount) ) ?  $result[0] :null;
+    }
+
+    public function getProductImage($PRODUCT_ID)
+    {
+        $result = DB::table('jb_product_images_tbl as pi')
+        ->where('pi.PRODUCT_ID', '=', $PRODUCT_ID)
+        ->select('pi.DOWN_PATH')
+        ->first();
+
+        return isset( $result ) ?  $result :null;
+        
     }
 
 }
