@@ -68,10 +68,33 @@ class AdminController extends Controller
 		$productID = $details ['productId'];
 
 		$ProductModel = new ProductModel();
-		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		$features = new Feature();
 
+		$arrRes['features']= $features->getactivefeaturesdata();
+		// $arrRes['activeFeatures']= $ProductModel->getQuickfeaturesdata();
+		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		// dd($arrRes['productDetails']);
 		echo json_encode ( $arrRes );
 
+	}
+	public function updateFeatures(){
+		$ProductModel = new ProductModel();
+
+		$details = $_REQUEST ['details'];
+		$data = $details['featuresArr'];
+		$productId = $details['productId'];
+
+		$featuresArray = implode(',', array_column($data, 'id'));
+
+		DB::table('jb_product_tbl')->where('PRODUCT_ID',$productId)->update([
+			'FEATURE_ID' => $featuresArray
+		]);
+
+		$arrRes['getSelectedFeatures'] = $ProductModel->getQuickfeaturesdata($featuresArray);
+		// dd($arrRes['getSelectedFeatures']);
+		$arrRes ['msg'] = 'Features updated successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
 	}
 	public function updateAdminQuickProductBasicInfo(){
 		$details = $_REQUEST ['details'];
@@ -88,6 +111,7 @@ class AdminController extends Controller
 		$basic['QUANTITY'] = $data['P_6'];
 
 		DB::table('jb_product_tbl')->where('PRODUCT_ID',$data['PRODUCT_ID'])->update($basic);
+
 		
 		$arrRes ['msg'] = 'Data updated successfully!';
 		$arrRes ['done'] = true;
@@ -112,7 +136,7 @@ class AdminController extends Controller
 							// 'TAGS' => $data ['P_5'],
 							// 'BARCODE' => $data ['P_6'],
 							// 'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
-							// 'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
+							 'CATEGORY_ID' => '5',
 							// 'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 							// 'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
 							// 'SLUG' => $data ['P_10'],
@@ -3241,7 +3265,6 @@ class AdminController extends Controller
 		$Product = new ProductModel();
 	
 		$details = $_REQUEST ['details'];
-		
 		$imageId = $details ['imageId'];
 		$flag = $details ['flag'];
 		$productId = $details ['productId'];
@@ -3263,6 +3286,7 @@ class AdminController extends Controller
 	
 			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 				array ( 'PRIMARY_FLAG' => '1',
+						'SECONDARY_FLAG' => '0',
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
@@ -3281,6 +3305,7 @@ class AdminController extends Controller
 	
 			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 					array ( 'SECONDARY_FLAG' => '1',
+							'PRIMARY_FLAG' => '0',
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)

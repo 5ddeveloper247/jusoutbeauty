@@ -22,7 +22,7 @@ use App\Http\Controllers\CloverController;
 //     return view('welcome');
 // });
 
-session()->put('site', '/jusoutbeauty');
+session()->put('site', '/site');
 
 cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
 cookie()->queue(cookie()->forever('site_url', url('/home')));
@@ -210,6 +210,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/quick-add-product', [AdminController::class, 'quickAddProduct']);
 	Route::post('/updateAdminQuickProductBasicInfo', [AdminController::class, 'updateAdminQuickProductBasicInfo']);
 	Route::post('/getQuickAddAdminProduct', [AdminController::class, 'getQuickAddAdminProduct']);
+	Route::post('/updateFeatures', [AdminController::class, 'updateFeatures']);
 	//for quick add product end
 	Route::post('/getAllAdminProductSnapSelfielov', [AdminController::class, 'getAllAdminProductSnapSelfielov']);
 	Route::post('/ChangeAdminProductSnapSelfieStatus', [AdminController::class, 'ChangeAdminProductSnapSelfieStatus']);
