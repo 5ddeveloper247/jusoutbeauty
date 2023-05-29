@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ url('/assets-web') }}/vendors/mapbox-gl/mapbox-gl.min.css">
     <link rel="stylesheet" href="{{ url('/assets-web') }}/vendors/fonts/font-phosphor/css/phosphor.min.css">
     <link rel="stylesheet" href="{{ url('/assets-web') }}/vendors/fonts/tuesday-night/stylesheet.min.css">
-
+    <link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/select2/css/select2.min.css">
     <link rel="stylesheet" href="{{ url('/assets-web') }}/css/themes.css">
     <link rel="stylesheet" href="{{ url('/assets-web') }}/css/inc_style.css">
     <link href="{{ url('/assets-web') }}/customcss/website/custom.css" rel="stylesheet">
@@ -35,7 +35,7 @@
     <!-- Summernote -->
     <link href="{{ url('/assets-admin') }}/third_party/admin/summernote/summernote.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/third_party/admin/jqvmap/css/jqvmap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/chartist/css/chartist.min.css">
 
     <link rel="stylesheet" href="{{ url('/public') }}/third_party/toastr/css/toastr.min.css" />
 
@@ -58,14 +58,99 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <style>
-        .note-editable, .note-code{
-            height: 350px; /* custom size */
-            min-height: 350px; /* custom size */
-            max-height: 350px !important; /* custom size */
+       span.select2.select2-container.select2-container--default{
+            width: 100% !important
         }
-        .gap{
+        .cursor-pointer {
+            cursor: pointer;
+
+        }
+
+        .image-box {
+            display: block;
+            width: 14vw;
+            height: 9vw;
+        }
+
+        div.show-image {
+            position: relative;
+            float: left;
+
+        }
+
+        div.show-image:hover img {
+            opacity: 0.5;
+        }
+
+        div.show-image:hover video {
+            opacity: 0.5;
+        }
+
+        div.show-image:hover .delete {
+            display: block;
+        }
+
+
+        div.show-image .delete {
+            position: absolute;
+            display: none;
+        }
+
+        div.show-image .delete {
+            top: .5rem;
+            left: 86%;
+        }
+
+        div.show-image .markprimary {
+            top: .5rem;
+            left: 66%;
+        }
+        div.show-image .primary {
+            top: .5rem;
+            left: 04%;
+        }
+        div.show-image .secondary {
+            top: .5rem;
+            left: 04%;
+        }
+
+        div.show-image .markprimary {
+            position: absolute;
+            display: none;
+        }
+        div.show-image .primary {
+            position: absolute;
+            display: none;
+        }
+        div.show-image .secondary {
+            position: absolute;
+            display: none;
+        }
+
+        div.show-image:hover .markprimary {
+            display: block;
+        }
+        div.show-image:hover .primary {
+            display: block;
+        }
+        div.show-image:hover .secondary {
+            display: block;
+        }
+
+        .note-editable,
+        .note-code {
+            height: 350px;
+            /* custom size */
+            min-height: 350px;
+            /* custom size */
+            max-height: 350px !important;
+            /* custom size */
+        }
+
+        .gap {
             gap: 5px
         }
+
         .numbermbl {
             display: inline-block;
             position: relative;
@@ -434,11 +519,11 @@
         }
     </style>
     <script>
-        var site = '<?php echo session('site');?>';
+        var site = '<?php echo session('site'); ?>';
 
-        var userId = '<?php echo session('userId');?>';
+        var userId = '<?php echo session('userId'); ?>';
         var productId = "<?php echo isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : ''; ?>";
-       
+        var baseurl = "<?php echo url('/assets-admin'); ?>";
     </script>
 </head>
 
@@ -453,38 +538,53 @@
                     <div class="row no-gutters">
                         <div class="col-md-6 col-xl-8 mb-8 mb-md-0 pr-xl-0 pr-md-3">
                             <div class="row no-gutters mx-n1">
+                                <form class="" id="uploadattch" method="POST"
+                                    action="uploadProductImageAttachment" enctype="multipart/form-data">
+                                    <input type="hidden" name="_method" value="POST">
 
-                                <div class="col-sm-6 col-6 px-1 mb-2">
-                                    <img src="https://jusoutbeauty.com/site/public/uploads/product/images/292.jpg"
-                                        alt="Image" class="prod_img_detail img-w35 img-product-gall">
+                                    {{ csrf_field() }}
+
+                                    <input type="hidden" id="userId" name="userId" value="<?php echo session('userId'); ?>">
+                                    <input type="hidden" id="sourceId" name="sourceId"
+                                        value="@{{ QuickProduct.PRODUCT_ID }}">
+                                    <input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_IMG">
+                                    <input type="file" id="uploadattl" name="uploadattl" class="file-input"
+                                        style="display: none;">
+
+                                </form>
+                                <div class="col-sm-6 col-6 px-1 mb-2" >
+
+                                    <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
+                                        onclick="form1();" alt="Image"
+                                        class="prod_img_detail img-w35 img-product-gall cursor-pointer"
+                                        style="border:5px dotted grey">
                                 </div>
-                                <div class="col-sm-6 col-6 px-1 mb-2">
-                                    <img src="https://jusoutbeauty.com/site/public/uploads/product/images/293.jpg"
-                                        alt="Image" class="prod_img_detail img-w35 img-product-gall">
+                                <div class id="p_att">
+
                                 </div>
-                                <div class="col-sm-6 col-6 px-1 mb-2">
-                                    <img src="https://jusoutbeauty.com/site/public/uploads/product/images/294.jpg"
-                                        alt="Image" class="prod_img_detail img-w35 img-product-gall">
+
+
+                                <div class="col-md-6 px-1 pb-1" ng-repeat="row in displayImagesLov">
+
+                                    <div class="show-image">
+
+                                        <img src="@{{ row.DOWN_PATH }}" alt="Image"
+                                            class="prod_img_detail img-w35 img-product-gall">
+                                        <span class="badge badge-warning primary" ng-if="row.PRIMARY_FLAG == '1'">Primary</span>
+                                        <span class="badge badge-warning secondary" ng-if="row.SECONDARY_FLAG == '1'">Secondary</span>
+                                        <button class="btn btn-danger btn-sm delete" ng-click="deleteProductImage(@{{ row.IMAGE_ID }})">DELETE</button>
+                                        <button class="btn btn-info btn-sm markprimary" ng-click="markProdImagePriSec(@{{ row.IMAGE_ID }})">Mark Image</button>
+                                    </div>
+
                                 </div>
-                                <div class="col-sm-6 col-6 px-1 mb-2">
-                                    <img src="https://jusoutbeauty.com/site/public/uploads/product/images/295.jpg"
-                                        alt="Image" class="prod_img_detail img-w35 img-product-gall">
-                                </div>
-                                <div class="col-sm-6 col-6 px-1 mb-2">
-                                    <img src="https://jusoutbeauty.com/site/public/uploads/product/images/296.jpg"
-                                        alt="Image" class="prod_img_detail img-w35 img-product-gall">
-                                </div>
-                                <div class="col-sm-6 col-6 px-1 mb-2">
-                                    <img src="https://jusoutbeauty.com/site/public/uploads/product/images/297.jpg"
-                                        alt="Image" class="prod_img_detail img-w35 img-product-gall">
-                                </div>
+
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3" ng-show="basicEditView == '0'">
                             <div class="primary-summary-inner">
                                 <h2 class="fs-30 mb-0" id="p7">{{ $productDetails['P_1'] }}</h2>
-                                <p
-                                    class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4" id="p8">
+                                <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4"
+                                    id="p8">
                                     {{ $productDetails['P_2'] }}</p>
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -493,7 +593,8 @@
                                                 <p class="mb-1 fs" id="p9">{{ $productDetails['P_3'] }}</p>
                                             </div>
                                             <div class="col-sm-6 col-6">
-                                                <p class="mb-1 fs text-right" id="p10">{{ $productDetails['P_4'] }}</p>
+                                                <p class="mb-1 fs text-right" id="p10">
+                                                    {{ $productDetails['P_4'] }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -511,7 +612,7 @@
                                         <div class="col-sm-8 mb-6 px-2 d-flex gap">
                                             <button type="button" class="btn btn-primary btn-block text-capitalize"
                                                 ng-click="editBasicInfo()">Edit</button>
-                                           
+
                                         </div>
                                     </div>
                                 </form>
@@ -521,8 +622,10 @@
                         </div>
                         <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3" ng-show="basicEditView != '0'">
                             <div class="primary-summary-inner">
-                                <input type="text" class="form-control" placeholder="Product Name" id="p1" ng-model="QuickProduct['P_1']" >
-                                <input type="text" class="form-control mt-1" placeholder="Sub Title" id="p2" ng-model="QuickProduct['P_2']" >
+                                <input type="text" class="form-control" placeholder="Product Name" id="p1"
+                                    ng-model="QuickProduct['P_1']">
+                                <input type="text" class="form-control mt-1" placeholder="Sub Title"
+                                    id="p2" ng-model="QuickProduct['P_2']">
                                 {{-- <p
                                     class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
                                     For Women</p> --}}
@@ -530,12 +633,14 @@
                                     <div class="col-lg-12 mt-1">
                                         <div class="row">
                                             <div class="col-sm-6 col-6">
-                                                <input type="text" class="form-control" id="p3" placeholder="Price" ng-model="QuickProduct['P_3']" >
+                                                <input type="text" class="form-control" id="p3"
+                                                    placeholder="Price" ng-model="QuickProduct['P_3']">
                                                 {{-- <p class="mb-1 fs">$1,000.00</p> --}}
                                             </div>
                                             <div class="col-sm-6 col-6">
                                                 {{-- <p class="mb-1 fs text-right">1000</p> --}}
-                                                <input type="text" class="form-control" id="p4" placeholder="Size" ng-model="QuickProduct['P_4']" >
+                                                <input type="text" class="form-control" id="p4"
+                                                    placeholder="Size" ng-model="QuickProduct['P_4']">
 
                                             </div>
                                         </div>
@@ -547,20 +652,22 @@
                                     readable content of a page when looking at its layout. It is a long established fact
                                     that a reader will be distracted by the readable content of a page when looking at
                                     its layout.</p> --}}
-                                    <div class="col-md-12 p-0 mt-1">
-                                        <textarea id="p5" class="form-control" name="" id=""  rows="8" ng-model="QuickProduct['P_5']"></textarea>
-                                    </div>
+                                <div class="col-md-12 p-0 mt-1">
+                                    <textarea id="p5" class="form-control" name="" id="" rows="8"
+                                        ng-model="QuickProduct['P_5']"></textarea>
+                                </div>
 
                                 <form class="cart-roww">
                                     <div class="row align-items-end no-gutters mx-n2">
                                         <div class="col-sm-4 form-group px-2 mb-6">
                                             <label class="text-primary fs-19-qua font-weight-bold my-3"
                                                 for="number">Quantity: </label>
-                                            <input type="number" class="form-control" id='p6' ng-model="QuickProduct['P_6']">
+                                            <input type="number" class="form-control" id='p6'
+                                                ng-model="QuickProduct['P_6']">
                                         </div>
                                         <div class="col-sm-8 mb-6 px-2 d-flex gap">
-                                            <button type="button" class="btn btn-primary text-capitalize w-50" ng-click="updateBasicInfo()"
-                                                >Update</button>
+                                            <button type="button" class="btn btn-primary text-capitalize w-50"
+                                                ng-click="updateBasicInfo()">Update</button>
                                             <button type="button" class="btn btn-primary text-capitalize w-50"
                                                 ng-click="cancelBasicInfo()">Cancel</button>
                                         </div>
@@ -576,8 +683,8 @@
 
             <section class="pb-11 pb-lg-6">
                 <div class="container container-custom container-xxl mt-8">
-                    <h3 class="text-center my-4">Features</h3>
-                    <div class="slick-slider "
+                    <h3 class="text-center my-4">Features <i class="fas fa-plus-circle cursor-pointer" ng-click="addFeaturesModal()"></i></h3>
+                    <div class=" features_slider"
                         data-slick-options='{"slidesToShow": 5,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":false,"responsive":[
                         {"breakpoint": 1400,"settings": {"slidesToShow": 5}},
                         {"breakpoint": 1200,"settings": {"slidesToShow": 3}},
@@ -586,7 +693,7 @@
                         {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
 
 
-                        <div class="box px-1" data-animate="fadeInUp">
+                        {{-- <div class="box px-1" data-animate="fadeInUp">
                             <div class="ag-courses_item">
                                 <a href="#!" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
@@ -609,9 +716,9 @@
                                     </div>
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="box px-1" data-animate="fadeInUp">
+                        {{-- <div class="box px-1" data-animate="fadeInUp">
                             <div class="ag-courses_item">
                                 <a href="#!" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
@@ -809,7 +916,7 @@
                                     </div>
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </section>
@@ -1998,7 +2105,8 @@
                                                     <i class="fas fa-star" style="color:gray;"></i>
                                                 </li>
                                             </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="122">
+                                            <div class="d-flex align-items-center mb-2 productdetail"
+                                                data-id="122">
                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                     <a href="javascript:;">Nude 10 Shade Matte Eyeshadow Palette</a>
                                                 </h3>
@@ -2068,7 +2176,8 @@
                                                     <i class="fas fa-star" style="color:gray;"></i>
                                                 </li>
                                             </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="121">
+                                            <div class="d-flex align-items-center mb-2 productdetail"
+                                                data-id="121">
                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                     <a href="javascript:;">Whitening Cream</a>
                                                 </h3>
@@ -3185,7 +3294,63 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="confirmProdImageModal">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+					<!-- 	<h5 class="modal-title">Change State</h5> -->
+							<button type="button" class="close" data-dismiss="modal">
+								<span>&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							
+							<div class="row">
+							   <div class="col-12">
+							     <label><b>Selected Image mark as primary or secondary!!!</b></label>
+							   </div>
+							</div>
+							
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" ng-click="closeProdImageModal();">Close</button>
+							<button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(1);">Mark Primary</button>
+							<button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
+            <div class="modal fade" id="addFeaturesModal">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+					<!-- 	<h5 class="modal-title">Change State</h5> -->
+							<button type="button" class="close" data-dismiss="modal">
+								<span>&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							
+							<div class="row">
+							   <div class="col-12">
+							    <label><b>Product Features<span class="required-field">*</span></b></label>
+                                <select class="default-placeholder select2-hidden-accessible" id="p13" multiple='multiple' ng-model="QuickProduct['P_13']"
+                                    ng-options="item as item.name for item in featurelov track by item.id"> 
+                                        <option value="">---SELECT---</option>
+                                </select>
+							   </div>
+							</div>
+							
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" ng-click="closeFeaturesModal();">Close</button>
+							<button type="button" class="btn btn-primary" ng-click="updateFeaturesModal();">Update</button>
+							{{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
+						</div>
+					</div>
+				</div>
+			</div>
         </div>
 
     </main>
@@ -3196,7 +3361,7 @@
     <script src="{{ url('/assets-web') }}/vendors/jquery.min.js"></script>
     <script src="{{ url('/assets-web') }}/vendors/jquery-ui/jquery-ui.min.js"></script>
     <script src="{{ url('/assets-web') }}/vendors/bootstrap/bootstrap.bundle.js"></script>
-    <script src="{{ url('/assets-web') }}/vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
+    {{-- <script src="{{ url('/assets-web') }}/vendors/bootstrap-select/js/bootstrap-select.min.js"></script> --}}
     <script src="{{ url('/assets-web') }}/vendors/slick/slick.min.js"></script>
     <script src="{{ url('/assets-web') }}/vendors/waypoints/jquery.waypoints.min.js"></script>
     <script src="{{ url('/assets-web') }}/vendors/counter/countUp.js"></script>
@@ -3223,11 +3388,19 @@
 <!-- jquery file upload plugin  -->
 <script src="{{ url('/public') }}/third_party/file-upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="{{ url('/public') }}/third_party/file-upload/js/jquery.fileupload.js"></script>
-<script src="{{ url('/assets-admin') }}/customjs/script_adminquickaddproduct.js?v={{time()}}"></script>
+<script src="{{ url('/assets-admin') }}/customjs/script_adminquickaddproduct.js?v={{ time() }}"></script>
 
+<script src="{{ url('/assets-admin') }}/third_party/admin/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="{{ url('/assets-admin') }}/third_party/admin/select2/js/select2.full.min.js"></script>
+<script src="{{ url('/assets-admin') }}/js/admin/plugins-init/select2-init.js"></script>
 <!-- Summernote -->
 <script src="{{ url('/assets-admin') }}/third_party/admin/summernote/js/summernote.min.js"></script>
 <!-- Summernote init -->
 <script src="{{ url('/assets-admin') }}/js/admin/plugins-init/summernote-init.js"></script>
+<script>
+    function form1() {
+        $("#uploadattl").click();
+    }
+</script>
 
 </html>
