@@ -113,6 +113,7 @@ class CategoryModel extends Model
     public function getSubCategoryLov(){
     
     	$result = DB::table('jb_sub_category_tbl as a')->select('a.*')
+		->where('a.STATUS','active')
     	->orderBy('a.SUB_CATEGORY_ID','desc')
     	->get();
     

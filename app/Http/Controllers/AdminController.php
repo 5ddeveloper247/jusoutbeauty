@@ -1,49 +1,165 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\AddSocialIconsModel;
-use App\Models\CategoryModel;
-use App\Models\IngredientModel;
-use App\Models\ShadesModel;
+use DateTime;
+use App\Models\User;
+use App\Models\Feature;
+use App\Models\TypeName;
+use App\Models\UserModel;
 use App\Models\BlogsModel;
+use App\Models\Handpicked;
+use App\Models\OrderModel;
+use App\Models\Recomended;
+use App\Models\GivingModel;
+use App\Models\RoutineType;
+use App\Models\ShadesModel;
 use App\Models\ProductModel;
-use App\Models\ProductIngredientModel;
-use App\Models\ProductShadeModel;
+use App\Models\ReviewsModel;
+use App\Models\RoutineSteps;
+use App\Models\TicketsModel;
+use Illuminate\Http\Request;
+use App\Models\CategoryModel;
+use App\Models\QuestionModel;
+use App\Models\IngredientModel;
+use App\Models\EmailConfigModel;
+use App\Models\OrderDetailModel;
 use App\Models\ProductUsesModel;
 use App\Models\ShadeFinderModel;
-use App\Models\OrderModel;
-use App\Models\OrderDetailModel;
-use App\Models\OrderShippingModel;
-use App\Models\OrderPaymentModel;
-use App\Models\OrderShipmentModel;
-use App\Models\BundleProductModel;
-use App\Models\BundleProductLineModel;
-use App\Models\ReviewsModel;
-use App\Models\QuestionModel;
-use App\Models\SubscriptionModel;
-use App\Models\UserdashboardModel;
-use App\Models\TicketsModel;
-use App\Models\FooterSubscriptionModel;
-use App\Models\ShadeFinderSelfieModel;
-use App\Models\OrderShippingTrackingModel;
 use App\Models\EmailForwardModel;
-use App\Models\EmailConfigModel;
-use App\Models\Feature;
-use App\Models\GivingModel;
-use App\Models\Handpicked;
-use App\Models\Recomended;
-use App\Models\RoutineType;
-use App\Models\UserModel;
-use App\Models\TypeName;
-use App\Models\RoutineSteps;
+use App\Models\OrderPaymentModel;
 use App\Models\ProductSelfiModel;
+use App\Models\ProductShadeModel;
+use App\Models\SubscriptionModel;
+use App\Models\BundleProductModel;
+use App\Models\OrderShipmentModel;
+use App\Models\OrderShippingModel;
+use App\Models\UserdashboardModel;
+use Illuminate\Support\Facades\DB;
+use App\Models\AddSocialIconsModel;
+use App\Models\BundleProductLineModel;
+use App\Models\ProductIngredientModel;
+use App\Models\ShadeFinderSelfieModel;
 
-use DateTime;
+use App\Models\FooterSubscriptionModel;
+use App\Models\OrderShippingTrackingModel;
 
 class AdminController extends Controller
 {
+	public function productQuickAdd(){
+		$ProductModel = new ProductModel();
+
+		$productID = isset($_REQUEST['productID']) ? $_REQUEST['productID'] : "";
+
+		$data['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		
+		$data['page'] = 'Quick Add Product';
+		return view('admin.quick-addproduct')->with($data);
+	}
+	/* quickAddProduct start */ 
+	public function quickAddProduct(){
+
+    	$data['page'] = 'Quick Add Product';
+		return view('admin.quick-addproduct')->with($data);
+	}
+	public function getQuickAddAdminProduct(){
+
+		$details = $_REQUEST ['details'];
+		$userId = $details ['userId'];
+		$productID = $details ['productId'];
+
+		$ProductModel = new ProductModel();
+		$features = new Feature();
+
+		$arrRes['features']= $features->getactivefeaturesdata();
+		// $arrRes['activeFeatures']= $ProductModel->getQuickfeaturesdata();
+		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		// dd($arrRes['productDetails']);
+		echo json_encode ( $arrRes );
+
+	}
+	public function updateFeatures(){
+		$ProductModel = new ProductModel();
+
+		$details = $_REQUEST ['details'];
+		$data = $details['featuresArr'];
+		$productId = $details['productId'];
+
+		$featuresArray = implode(',', array_column($data, 'id'));
+
+		DB::table('jb_product_tbl')->where('PRODUCT_ID',$productId)->update([
+			'FEATURE_ID' => $featuresArray
+		]);
+
+		$arrRes['getSelectedFeatures'] = $ProductModel->getQuickfeaturesdata($featuresArray);
+		// dd($arrRes['getSelectedFeatures']);
+		$arrRes ['msg'] = 'Features updated successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+	}
+	public function updateAdminQuickProductBasicInfo(){
+		$details = $_REQUEST ['details'];
+
+		$data = $details['record'];
+	
+		$basic = [];
+
+		$basic['NAME'] = $data['P_1'];
+		$basic['SUB_TITLE'] = $data['P_2'];
+		$basic['UNIT_PRICE'] = $data['P_3'];
+		$basic['UNIT'] = $data['P_4'];
+		$basic['SHORT_DESCRIPTION'] = $data['P_5'];
+		$basic['QUANTITY'] = $data['P_6'];
+
+		DB::table('jb_product_tbl')->where('PRODUCT_ID',$data['PRODUCT_ID'])->update($basic);
+
+		
+		$arrRes ['msg'] = 'Data updated successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+
+	}
+	/* quickAddProduct end */ 
+	public function saveAdminQuickProductBasicInfo(){
+		$details = $_REQUEST ['details'];
+		$userId = $details ['userId'];
+
+		$result = DB::table ( 'jb_product_tbl' )
+				->insertGetId (
+					array ( 'USER_ID' => $userId,
+							'NAME' => 'Product Name',
+							'SUB_TITLE' => 'Sub Title',
+							'SHORT_DESCRIPTION' => 'Nunc interdum, turpis id aliquam luctus,leo quam condimentum orci, ac pellentesque leo dui accumsan magna.Ut vel arcu congue, quis cursus arcu cursus at.turpis lacus pretium eros, vitae sagittis lorem metus non ante.Pellentesque ut diam eget ex scelerisque finibus hendrerit ac urna.Vestibulum pulvinar vestibulum interdum. Cras feugiat pharetrasem quis luctus. Donec feugiat pellentesque facilisis.',
+							'UNIT' => '200',
+							'UNIT_PRICE' => '4000',
+							'QUANTITY' => '200',
+							// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
+							// 'TAGS' => $data ['P_5'],
+							// 'BARCODE' => $data ['P_6'],
+							// 'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
+							 'CATEGORY_ID' => '5',
+							// 'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
+							// 'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
+							// 'SLUG' => $data ['P_10'],
+							
+							// 'DESCRIPTION_TITLE' => $data ['P_12'],
+							// 'DESCRIPTION' => base64_encode($data['P_13']),
+							'STATUS' => 'inactive',
+							// 'FEATURE_ID' => isset($feature_id) ? rtrim($feature_id,',') : '',
+							'DATE' => date ( 'Y-m-d H:i:s' ),
+							'CREATED_BY' => $userId,
+							'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+							// 'UPDATED_BY' => $userId,
+							// 'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+					)
+				);
+	
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Product Created Successfully';
+				$arrRes ['id'] = $result;
+				echo json_encode ( $arrRes );
+
+	}
+
 	/* Selfie code */  
 	public function ChangeAdminProductSnapSelfieStatus(){
 		$ProductSelfiModel = new ProductSelfiModel();
@@ -141,8 +257,20 @@ class AdminController extends Controller
    	
    	public function dashboard() {
    	
-//    		$User = new UserModel();
-//    		$userData = $User->getUserData();
+		$User=new User();
+		$data['getTotalUsers']= $User->getTotalUsers();
+		$data['getTotalTickets']= $User->getTotalTickets();
+		$data['getTotalProducts']= $User->getTotalProducts();
+		$data['getTotalPayments']= $User->getTotalPayments();
+		$data['getTotalBundles']= $User->getTotalBundles();
+		$data['getTotalBlogs']= $User->getTotalBlogs();
+		$data['getTotalOrders']= $User->getTotalOrders();
+		$data['getShippedOrders']= $User->getTotalShippedOrders();
+		$data['getTotalInTransitOrders']= $User->getTotalInTransitOrders();
+		$data['getTotalSubscriptions']= $User->getTotalSubscriptions();
+		$data['getTotalReviews']= $User->getTotalReviews();
+		$data['getTotalGivings']= $User->getTotalGivings();
+		$data['mostSaledItems']= $User->mostSaleItems();
    		$data['page'] = 'Dashboard';
    		return view('admin.dashboard')->with($data);
    	}
@@ -449,6 +577,7 @@ class AdminController extends Controller
 		 $details = $_REQUEST ['details'];
 		 $data = $details ['routinetype'];
 		 $userId = $details ['userId'];
+		 $typeid = $details['typeid'];
 
          if(!isset($data['P_7']['id'])){
 			$arrRes ['done'] = false;
@@ -524,6 +653,7 @@ class AdminController extends Controller
 								'NAME_ID' => $data['P_7']['id'],
 								'STEP_NO' =>  $data['P_13'],
 								'PRODUCT_ID' => $data['P_11']['id'],
+								'TYPE_ID'=>  $typeid,
 								'DESCRIPTION' => $data['P_12'],
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
@@ -645,18 +775,22 @@ class AdminController extends Controller
 	   public function checksteps(Request $request){
           
 		         $details= $_REQUEST['details'];
+				 $type_id= $details['typeid'];
+
                  $name_id= $details['routinetypeid'];
 
-			     if($details['routinetypeid'] == ''){       
+			     if($details['routinetypeid'] == '' && $type_id == ''){       
 				 
 				 $arrRes ['done'] = false;
-				 $arrRes ['msg'] = 'Please Select routine type is required.';
+				 $arrRes ['msg'] = 'Please Select routine and routine type is required.';
 				 echo json_encode ( $arrRes );
 				 die ();
 
 			     }
 
-			     $steps= RoutineSteps::where('NAME_ID', $name_id)->get();
+				 
+
+			     $steps= RoutineSteps::where('NAME_ID', $name_id)->where('TYPE_ID', $type_id)->get();
 
 			     if($steps){
 				     $count=$steps->count();
@@ -873,6 +1007,12 @@ class AdminController extends Controller
 		
 
 		$arrRes ['list'] = $RoutineType->getRoutineTypeDataAdmin();
+
+		$TypeName=new TypeName();
+
+		$arrRes ['routinetypes']=$TypeName->getAllRoutineTypes();
+		
+		// $arr['routinetypessteps']=$TypeName->getallroutinetypelov();
 	
 		// $arrRes ['listSubCat'] = $Category->getSubCategoryData();
 		// $arrRes ['listSubSubCat'] = $Category->getSubSubCategoryData();
@@ -3125,7 +3265,6 @@ class AdminController extends Controller
 		$Product = new ProductModel();
 	
 		$details = $_REQUEST ['details'];
-		
 		$imageId = $details ['imageId'];
 		$flag = $details ['flag'];
 		$productId = $details ['productId'];
@@ -3147,6 +3286,7 @@ class AdminController extends Controller
 	
 			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 				array ( 'PRIMARY_FLAG' => '1',
+						'SECONDARY_FLAG' => '0',
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
@@ -3165,6 +3305,7 @@ class AdminController extends Controller
 	
 			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 					array ( 'SECONDARY_FLAG' => '1',
+							'PRIMARY_FLAG' => '0',
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
@@ -6927,7 +7068,7 @@ class AdminController extends Controller
 		$userId = $details ['userId'];
 
 
-		$result = DB::table('jb_product_tbl')->where('CATEGORY_ID', $categoryId)->pluck('NAME');
+		$result = DB::table('jb_product_tbl')->where('IS_DELETED',0 )->where('CATEGORY_ID', $categoryId)->pluck('NAME');
 		
 		if(count($result) > 0){
 			$arrRes ['done'] = false;
@@ -7477,8 +7618,8 @@ class AdminController extends Controller
 	public function getAllAdminWebsiteUserslov() {
 		$UserModel = new UserModel();
 	
-		$details = $_REQUEST ['details'];
-		$userId = $details ['userId'];
+		// $details = $_REQUEST ['details'];
+		// $userId = $details ['userId'];
 	
 		$arrRes ['list'] = $UserModel->getAllWebsiteUserData();
 			
@@ -7695,9 +7836,20 @@ class AdminController extends Controller
 		$TypeName =new TypeName();
 
 		$results['getAllRoutineType']=$TypeName->getAllRoutineTypes();
+		$results['routinetypenamelov']=$TypeName->getallroutinetypelov();
 
 		echo json_encode ( $results );
 
 	}
+
+	public function getMostSaledItems(){
+
+			$OrderDetailModel = new OrderDetailModel();
+			$result [ 'mostSaleItems' ] = $OrderDetailModel->mostSaleItems();
+
+			echo json_encode($result);
+	}
+
+	
 	
 }

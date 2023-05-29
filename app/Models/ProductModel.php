@@ -14,6 +14,85 @@ class ProductModel extends Model
 {
     use HasFactory;
     
+	public function getQuickAddProductDataWrtProductID($productID){
+		$result = DB::table('jb_product_tbl as a')->select('a.*')
+		// ->join('jb_product_images_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
+		->where('a.PRODUCT_ID',$productID)
+		->orderBy('a.PRODUCT_ID','desc')
+
+    	->get();
+    
+    	$i=0;
+    	foreach ($result as $row){
+			$arrRes['P_1'] = $row->NAME;
+    		$arrRes['P_2'] = $row->SUB_TITLE;
+    		$arrRes['P_3'] = number_format($row->UNIT_PRICE,2);
+
+    		$arrRes['P_4'] = $row->UNIT;
+			$arrRes['P_5'] = $row->SHORT_DESCRIPTION;
+    		$arrRes['P_6'] = $row->QUANTITY;
+			$arrRes['P_13'] = explode(',',$row->FEATURE_ID);
+    		$arrRes['QUICK_ADD_FEATURES'] = $this->getQuickfeaturesdata($row->FEATURE_ID);
+
+    		$arrRes['PRODUCT_ID'] = $row->PRODUCT_ID;
+    		$arrRes['USER_ID'] = $row->USER_ID;
+    		$arrRes['SLUG'] = $row->SLUG;
+    		$arrRes['DOWN_PATH'] = $this->getProductImagesWrtProductID($row->PRODUCT_ID);
+    		
+    		$arrRes['MINIMUM_PURCHASE_QUANTITY'] = $row->MINIMUM_PURCHASE_QUANTITY;
+    		$arrRes['TAGS'] = $row->TAGS;
+    		$arrRes['BARCODE'] = $row->BARCODE;
+    		$arrRes['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
+    		$arrRes['CATEGORY_ID'] = $row->CATEGORY_ID;
+    		// $arrRes['CATEGORY_NAME'] = $row->categoryName;
+    		$arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+    		// $arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+    		$arrRes['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
+    		
+    		$arrRes['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
+    		$descText = strip_tags(base64_decode($row->DESCRIPTION));
+    		$arrRes['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
+    		$arrRes['STATUS'] = $row->STATUS;
+    		$arrRes['DATE'] = $row->DATE;
+    		$arrRes['CREATED_BY'] = $row->CREATED_BY;
+    		$arrRes['CREATED_ON'] = $row->CREATED_ON;
+    		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
+    		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
+    		$i++;
+    	}
+    
+    	return isset($arrRes) ? $arrRes : null;
+	}
+		public function getProductImagesWrtProductID($PRODUCT_ID){
+			$result = DB::table('jb_product_images_tbl as a')->select('a.DOWN_PATH','a.IMAGE_ID','a.PRIMARY_FLAG','a.SECONDARY_FLAG')
+			->where('a.PRODUCT_ID',$PRODUCT_ID)
+			->orderByDesc('a.IMAGE_ID')
+			->get();
+			return isset($result) ? $result : null;
+		}
+
+		public function getQuickfeaturesdata($FEATURES_ID){
+
+			$featuresArrExplode = explode(',',$FEATURES_ID);
+			
+			$result=DB::table('jb_product_features_tbl as a')
+					->select('a.*')
+					->whereIn('a.FEATURE_ID',$featuresArrExplode)
+					->where('a.STATUS','active')
+					->orderBy('a.UPDATED_ON','desc')
+					->get();
+					
+			$i=0;
+			foreach ($result as $row){
+				$arrRes[$i]['id'] = $row->FEATURE_ID;//$i+1;
+				$arrRes[$i]['FEATURE_NAME'] = $row->FEATURE_NAME;
+				$arrRes[$i]['IMAGE_DOWN_PATH'] = $row->IMAGE_DOWN_PATH;
+				$i++;
+			}
+		
+			return isset($arrRes) ? $arrRes : null;
+	
+		}
     public function getProductsLov(){
     
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
