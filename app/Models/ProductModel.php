@@ -14,6 +14,20 @@ class ProductModel extends Model
 {
     use HasFactory;
     
+	public function getVideodata($productID){
+		$result = DB::table('jb_product_video_tbl as a')->select('a.DOWN_PATH','a.VIDEO_TITLE','a.VIDEO_DESCRIPTION','a.VIDEO_ID')
+				->where('a.PRODUCT_ID',$productID)
+				->orderBy('VIDEO_ID', 'DESC')->first();
+
+		$arrRes['ID'] = isset($result->VIDEO_ID) != null ? $result->VIDEO_ID : '';
+		$arrRes['V_4'] = isset($result->DOWN_PATH) != null ? $result->DOWN_PATH : '';
+		$arrRes['V_1'] = isset($result->VIDEO_TITLE) != null ? $result->VIDEO_TITLE : '';
+		$arrRes['V_2'] = isset($result->VIDEO_DESCRIPTION) != null ? strip_tags(base64_decode($result->VIDEO_DESCRIPTION)) : '';
+
+		return isset($arrRes) ? $arrRes : null;
+	}
+
+	
 	public function getQuickAddProductDataWrtProductID($productID){
 		$result = DB::table('jb_product_tbl as a')->select('a.*')
 		// ->join('jb_product_images_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
@@ -32,7 +46,18 @@ class ProductModel extends Model
 			$arrRes['P_5'] = $row->SHORT_DESCRIPTION;
     		$arrRes['P_6'] = $row->QUANTITY;
 			$arrRes['P_13'] = explode(',',$row->FEATURE_ID);
-    		$arrRes['QUICK_ADD_FEATURES'] = $this->getQuickfeaturesdata($row->FEATURE_ID);
+
+			$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
+    		$arrRes['P_15'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
+    		
+			$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
+    		$arrRes['P_16'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
+    		
+			$arrRes['P_17'] = $row->DESCRIPTION_TITLE;
+    		
+    		$arrRes['P_18'] = strip_tags(base64_decode($row->DESCRIPTION));
+
+			$arrRes['QUICK_ADD_FEATURES'] = $this->getQuickfeaturesdata($row->FEATURE_ID);
 
     		$arrRes['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes['USER_ID'] = $row->USER_ID;

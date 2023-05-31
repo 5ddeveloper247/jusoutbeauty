@@ -211,6 +211,12 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/updateAdminQuickProductBasicInfo', [AdminController::class, 'updateAdminQuickProductBasicInfo']);
 	Route::post('/getQuickAddAdminProduct', [AdminController::class, 'getQuickAddAdminProduct']);
 	Route::post('/updateFeatures', [AdminController::class, 'updateFeatures']);
+	Route::post('/updateVideoInfo', [AdminController::class, 'updateVideoInfo']);
+	Route::post('/UpdateSecondSection', [AdminController::class, 'UpdateSecondSection']);
+	Route::post('/saveAdminQuickProductIngredient', [AdminController::class, 'saveAdminQuickProductIngredient']);
+	Route::post('/deleteIngredientQuickAdd', [AdminController::class, 'deleteIngredientQuickAdd']);
+	Route::post('/saveAdminQuickProductUses', [AdminController::class, 'saveAdminQuickProductUses']);
+
 	//for quick add product end
 	Route::post('/getAllAdminProductSnapSelfielov', [AdminController::class, 'getAllAdminProductSnapSelfielov']);
 	Route::post('/ChangeAdminProductSnapSelfieStatus', [AdminController::class, 'ChangeAdminProductSnapSelfieStatus']);

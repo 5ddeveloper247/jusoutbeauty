@@ -58,9 +58,18 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <style>
-       span.select2.select2-container.select2-container--default{
+        .close-icon{
+            position: absolute;
+            right: 8px;
+            top: 3px;
+        }
+        .gap-2{
+            gap: 4px
+        }
+        span.select2.select2-container.select2-container--default {
             width: 100% !important
         }
+
         .cursor-pointer {
             cursor: pointer;
 
@@ -74,7 +83,7 @@
 
         div.show-image {
             position: relative;
-            float: left;
+
 
         }
 
@@ -105,10 +114,12 @@
             top: .5rem;
             left: 66%;
         }
+
         div.show-image .primary {
             top: .5rem;
             left: 04%;
         }
+
         div.show-image .secondary {
             top: .5rem;
             left: 04%;
@@ -118,10 +129,12 @@
             position: absolute;
             display: none;
         }
+
         div.show-image .primary {
             position: absolute;
             display: none;
         }
+
         div.show-image .secondary {
             position: absolute;
             display: none;
@@ -130,9 +143,11 @@
         div.show-image:hover .markprimary {
             display: block;
         }
+
         div.show-image:hover .primary {
             display: block;
         }
+
         div.show-image:hover .secondary {
             display: block;
         }
@@ -552,7 +567,7 @@
                                         style="display: none;">
 
                                 </form>
-                                <div class="col-sm-6 col-6 px-1 mb-2" >
+                                <div class="col-sm-6 col-6 px-1 mb-2">
 
                                     <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
                                         onclick="form1();" alt="Image"
@@ -570,10 +585,14 @@
 
                                         <img src="@{{ row.DOWN_PATH }}" alt="Image"
                                             class="prod_img_detail img-w35 img-product-gall">
-                                        <span class="badge badge-warning primary" ng-if="row.PRIMARY_FLAG == '1'">Primary</span>
-                                        <span class="badge badge-warning secondary" ng-if="row.SECONDARY_FLAG == '1'">Secondary</span>
-                                        <button class="btn btn-danger btn-sm delete" ng-click="deleteProductImage(@{{ row.IMAGE_ID }})">DELETE</button>
-                                        <button class="btn btn-info btn-sm markprimary" ng-click="markProdImagePriSec(@{{ row.IMAGE_ID }})">Mark Image</button>
+                                        <span class="badge badge-warning primary"
+                                            ng-if="row.PRIMARY_FLAG == '1'">Primary</span>
+                                        <span class="badge badge-warning secondary"
+                                            ng-if="row.SECONDARY_FLAG == '1'">Secondary</span>
+                                        <button class="btn btn-danger btn-sm delete"
+                                            ng-click="deleteProductImage(@{{ row.IMAGE_ID }})">DELETE</button>
+                                        <button class="btn btn-info btn-sm markprimary"
+                                            ng-click="markProdImagePriSec(@{{ row.IMAGE_ID }})">Mark Image</button>
                                     </div>
 
                                 </div>
@@ -683,7 +702,8 @@
 
             <section class="pb-11 pb-lg-6">
                 <div class="container container-custom container-xxl mt-8">
-                    <h3 class="text-center my-4">Features <i class="fas fa-plus-circle cursor-pointer" ng-click="addFeaturesModal()"></i></h3>
+                    <h3 class="text-center my-4">Features <i class="fas fa-plus-circle cursor-pointer"
+                            ng-click="addFeaturesModal()"></i></h3>
                     <div class=" features_slider"
                         data-slick-options='{"slidesToShow": 5,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":false,"responsive":[
                         {"breakpoint": 1400,"settings": {"slidesToShow": 5}},
@@ -692,231 +712,7 @@
                         {"breakpoint": 768,"settings": {"slidesToShow": 1}},
                         {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
 
-
-                        {{-- <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://www.jusoutbeauty.com/site/public/uploads/email/feature/1683283249-26.png"
-                                                        srcset="https://www.jusoutbeauty.com/site/public/uploads/email/feature/1683283249-26.png"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Contains Recycled materials</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div> --}}
-
-                        {{-- <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1683198974-20.jpg"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1683198974-20.jpg"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Skin</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1683198474-18.jpg"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1683198474-18.jpg"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Velit expedita dolor</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1680853597-15.PNG"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1680853597-15.PNG"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">No Outer Box</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1680853527-4.PNG"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1680853527-4.PNG"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Recyclable</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1680853029-3.PNG"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1680853029-3.PNG"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Nighttime Use</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1680852894-2.PNG"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1680852894-2.PNG"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Daytime Use</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1680852636-13.PNG"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1680852636-13.PNG"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Vegan</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="box px-1" data-animate="fadeInUp">
-                            <div class="ag-courses_item">
-                                <a href="#!" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        <li class="product-hero__icons__item d-flex aic">
-                                            <div class="product-hero__icons__image relative">
-                                                <div class="img fit-contain is-loaded pos-center">
-
-                                                    <div class="skeleton"></div>
-                                                    <img width="70" height="70"
-                                                        src="https://jusoutbeauty.com/site/public/uploads/email/feature/1680852558-12.PNG"
-                                                        srcset="https://jusoutbeauty.com/site/public/uploads/email/feature/1680852558-12.PNG"
-                                                        alt="Clean" title="Clean" data-fit="contain"
-                                                        class="img__el">
-                                                </div>
-                                            </div>
-                                            <span class="product-hero__icons__text">Cruelty-free</span>
-                                        </li>
-                                    </div>
-                                </a>
-                            </div>
-                        </div> --}}
+                        <p class="text-center">No Features Added...</p>
                     </div>
                 </div>
             </section>
@@ -954,22 +750,46 @@
                                                 class="accordion accordion-01 border-md-0 border p-md-0">
                                                 <div class="card-body p-0">
                                                     <div class="row " style="">
+                                                        <div class="col-12 text-right"
+                                                            ng-show="SecondSectionEdit == '0'">
+                                                            <i class="fa fa-pencil-square-o cursor-pointer"
+                                                                aria-hidden="true" ng-click="EditSecondSection()"></i>
+                                                        </div>
+
                                                         <h5 class="col-12 mb-2 font-weight-500 fs-24 pb-8 text-center"
-                                                            style="margin: 0 auto;">For Women </h5>
+                                                            id="p17" style="margin: 0 auto;"
+                                                            ng-show="SecondSectionEdit == '0'">For Women </h5>
                                                         <div class="col-md-6 mb-6 mb-md-0">
-                                                            <img src="https://jusoutbeauty.com/site/public/uploads/product/images/292.jpg"
+                                                            <img id="p15"
+                                                                src="https://jusoutbeauty.com/site/public/uploads/product/images/292.jpg"
                                                                 alt="Image"
                                                                 class="prod_img_detail_acc fadeInLeft animated img1-section2 img-w35">
-                                                            <img src="https://jusoutbeauty.com/site/public/uploads/product/images/293.jpg"
+                                                            <img id="p16"
+                                                                src="https://jusoutbeauty.com/site/public/uploads/product/images/293.jpg"
                                                                 alt="Image"
                                                                 class="prod_img_detail_acc_sec fadeInLeft animated img2-section2 img-w20">
 
                                                         </div>
                                                         <div class="col-md-6 pro-details"
-                                                            style="height: 32rem;overflow-y:auto">
+                                                            ng-show="SecondSectionEdit != '0'">
+                                                            <button class="btn btn-primary mb-2 float-right mx-2"
+                                                                ng-click="CloseSecondSection()">Cancel</button>
+                                                            <button class="btn btn-primary mb-2 float-right"
+                                                                ng-click="UpdateSecondSection()">Update</button>
+
+                                                            <input type="text" class="form-control mb-1"
+                                                                ng-model="QuickProduct['P_17']">
+                                                            <div class="summernote" id="SecondSectionSummerNote">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pro-details"
+                                                            style="height: 32rem;overflow-y:auto"
+                                                            ng-show="SecondSectionEdit == '0'">
                                                             <h5 class="mb-2 font-weight-500 fs-20">
                                                             </h5>
-                                                            <p><span style="text-align: justify;">It is a long
+                                                            <p id="p18"><span style="text-align: justify;">It is
+                                                                    a long
                                                                     established fact that a reader will be distracted by
                                                                     the readable content of a page when looking at its
                                                                     layout.&nbsp;</span><span
@@ -1086,7 +906,7 @@
                                                     <br>
                                                     <hr>
 
-                                                    <div class="row pt-10 align-items-center subsc_ec">
+                                                    {{-- <div class="row pt-10 align-items-center subsc_ec">
 
                                                         <div class="col-md-6 ">
                                                             <h3 class="mb-2 font-weight-500 fs-35">Subscription</h3>
@@ -1112,20 +932,42 @@
                                                         </div>
                                                     </div>
                                                     <br>
-                                                    <hr>
+                                                    <hr> --}}
                                                     <section class="pt-10 pt-lg-8 py-8">
                                                         <div class="">
                                                             <div class="row no-gutters align-items-center">
+                                                                <div class="col-md-7"></div>
+                                                                <div class="col-md-5">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary btn-block text-capitalize float-right w-50"
+                                                                        ng-show="VideoEditView == '0'"
+                                                                        ng-click="showVideoInfo()">Edit</button>
+                                                                    <button type="button"
+                                                                        class="btn btn-primary text-capitalize w-25 float-right"
+                                                                        ng-click="updateVideoInfo()"
+                                                                        ng-show="VideoEditView != '0'">Update</button>
+                                                                    <button type="button"
+                                                                        class="btn btn-primary text-capitalize w-25 float-right mx-2"
+                                                                        ng-click="cancelVideoInfo()"
+                                                                        ng-show="VideoEditView != '0'">Cancel</button>
+                                                                </div>
                                                                 <div class="col-md-8 mb-8 mb-md-0">
                                                                     <div class="fix">
-                                                                        <div class=" hover-zoom-in">
-                                                                            <video
-                                                                                src="https://jusoutbeauty.com/site/public/uploads/product/videos/34.mp4"
-                                                                                alt="Video background"
+                                                                        <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
+                                                                            ng-show="video.V_4 == ''"
+                                                                            onclick="form2();"
+                                                                            class="prod_img_detail img-w35 img-product-gall cursor-pointer"
+                                                                            style="border:5px dotted grey">
+
+                                                                        <div class=" hover-zoom-in"
+                                                                            ng-show="video.V_4 != ''">
+                                                                            <button class="btn btn-primary mb-2"
+                                                                                onclick="form2();">Edit</button>
+                                                                            <video src="@{{ video.V_4 }}"
                                                                                 class="card-img"></video>
                                                                             <div
                                                                                 class="card-img-overlay d-flex flex-column align-items-center justify-content-center p-4">
-                                                                                <a href="https://jusoutbeauty.com/site/public/uploads/product/videos/34.mp4"
+                                                                                <a href="@{{ video.V_3 }}"
                                                                                     data-gtf-mfp="true"
                                                                                     data-mfp-options='{"type":"iframe","preloader":false}'
                                                                                     class="mb-3 mb-sm-7 w-45px h-45px w-sm-65 h-sm-65 d-flex justify-content-center align-items-center rounded-circle fs-sm-20 border border-white text-white bg-hover-primary border-hover-primary"><i
@@ -1136,13 +978,41 @@
                                                                                     video</p>
                                                                             </div>
                                                                         </div>
+                                                                        <form class="" id="uploadattch2"
+                                                                            method="POST"
+                                                                            action="uploadProductVideoAttachment"
+                                                                            enctype="multipart/form-data">
+                                                                            <input type="hidden" name="_method"
+                                                                                value="POST">
+                                                                            {{ csrf_field() }}
+                                                                            <input type="hidden" id="userId"
+                                                                                name="userId"
+                                                                                value="<?php echo session('userId'); ?>">
+                                                                            <input type="hidden" id="sourceId"
+                                                                                name="sourceId"
+                                                                                value="@{{ QuickProduct.PRODUCT_ID }}">
+                                                                            <input type="hidden" id="videoId"
+                                                                                name="videoId"
+                                                                                value="@{{ video.ID }}">
+                                                                            <input type="hidden" id="sourceCode"
+                                                                                name="sourceCode"
+                                                                                value="PRODUCT_VIDEO">
+                                                                            <input type="file" id="uploadatt2"
+                                                                                name="uploadattl" class="file-input"
+                                                                                style="display: none;">
+                                                                        </form>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4 pl-xl-7 pl-7"
+                                                                    id="videoSectionSummerNote1"
+                                                                    ng-show="VideoEditView == '0'"
                                                                     style="height:40rem;overflow-y:auto">
-                                                                    <h3 class="fs-35 mb-5">
+                                                                    <h3 class="fs-35 mb-5" id="video_heading">
                                                                         Mascara </h3>
-                                                                    <p><span style="text-align: justify;">It is a long
+
+                                                                    <p id="video_desc"><span
+                                                                            style="text-align: justify;">It is a long
                                                                             established fact that a reader will be
                                                                             distracted by the readable content of a page
                                                                             when looking at its
@@ -1288,6 +1158,15 @@
                                                                             when looking at its layout.&nbsp;</span>
                                                                     </p>
                                                                 </div>
+                                                                <div class="col-md-4 pl-xl-7 pl-7"
+                                                                    id="videoSectionSummerNote2"
+                                                                    ng-show="VideoEditView != '0'">
+                                                                    <input type="text" class="form-control my-2"
+                                                                        ng-model="video['V_1']">
+                                                                    <div class="summernote" id="VideoSummerView">
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </section>
@@ -1297,40 +1176,26 @@
                                                         <div class="">
                                                             <h5 class="text-center mb-3">Ingredients</h5>
                                                             <h3 class="text-center mb-9">Backed by Science to Optimize
-                                                                Skin Wellness</h3>
+                                                                Skin Wellness <i class="fas fa-plus-circle cursor-pointer" ng-click="addSpotForModal()"></i></h3>
                                                             <ul
                                                                 class="nav nav-pills justify-content-center mb-lg-9 mb-6">
-                                                                <li class="nav-item px-5"><a
-                                                                        class="pointer nav-link cursor-pointer ingredientTabBtn active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
-                                                                        id="spotlightTabBtn">Spotlight Ingredients</a>
-                                                                </li>
-                                                                <li class="nav-item px-5"><a
+                                                                <li class="nav-item px-5 d-flex align-items-center gap-2"><a
                                                                         class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
+                                                                        id="spotlightTabBtn">Spotlight Ingredients</a> 
+                                                                </li>
+                                                                <li class="nav-item px-5 d-flex align-items-center gap-2"><a
+                                                                        class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400 active"
                                                                         id="formulatedTabBtn">Formulated
                                                                         Ingredients</a>
                                                                 </li>
                                                             </ul>
                                                             <div class="p-0 m-0" id="pills-tabContent">
-                                                                <div class="tabbspotlight" id="tabbspotlight">
+                                                                <div class="tabbspotlight" id="tabbspotlight"
+                                                                    style="display: none;">
                                                                     <section class="pb-11 pb-lg-0" id="">
                                                                         <div
                                                                             class="container container-custom container-xxl">
-                                                                            <div class="row">
-                                                                                <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                    style="background-color:#57813a96">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Polyethylene Terephthalate</p>
-                                                                                    <p>
-                                                                                        Used in cosmetics to create
-                                                                                        shimmering and
-                                                                                        glittering effects. It is often
-                                                                                        found in products that have a
-                                                                                        sparkly ...</p>
-
-                                                                                </div>
+                                                                            <div class="row" id="spotlight_data">
                                                                                 <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
                                                                                     style="background-color:#57813a96">
                                                                                     <img class="spot-section-img"
@@ -1345,6 +1210,21 @@
                                                                                         hydration and a smooth
                                                                                         appearance.
                                                                                     </p>
+
+                                                                                </div>
+                                                                                <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
+                                                                                    style="background-color:#57813a96">
+                                                                                    <img class="spot-section-img"
+                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    <p
+                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                        Polyethylene Terephthalate</p>
+                                                                                    <p>
+                                                                                        Used in cosmetics to create
+                                                                                        shimmering and
+                                                                                        glittering effects. It is often
+                                                                                        found in products that have a
+                                                                                        sparkly ...</p>
 
                                                                                 </div>
                                                                                 <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
@@ -1384,8 +1264,9 @@
                                                                                     <a href="javascript:;"
                                                                                         data-toggle="tooltip"
                                                                                         data-placement="left"
-                                                                                        title="Click to see more Ingredients"
-                                                                                        class="preview btn btn-primary">
+                                                                                        title=""
+                                                                                        class="preview btn btn-primary"
+                                                                                        data-original-title="Click to see more Ingredients">
                                                                                         <span data-toggle="modal"
                                                                                             data-target="#ingred_pop">List
                                                                                             of Full Ingredients </span>
@@ -1397,11 +1278,11 @@
                                                                     </section>
                                                                 </div>
                                                                 <div class="tabbformulated" id="tabbformulated"
-                                                                    style="display: none;">
+                                                                    style="">
                                                                     <section class="pb-11 pb-lg-0" id="">
                                                                         <div
                                                                             class="container container-custom container-xxl">
-                                                                            <div class="row">
+                                                                            <div class="row" id="formulated_data">
 
                                                                                 <div
                                                                                     class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
@@ -1409,11 +1290,12 @@
                                                                                         src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
                                                                                     <p
                                                                                         class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Mica - CI 77019</p>
-                                                                                    A natural mineral that adds a
-                                                                                    luminous and reflective quality to
-                                                                                    cosmetics, giving them a radiant and
-                                                                                    shimmery...
+                                                                                        Talc</p>
+
+                                                                                    Is a naturally occurring mineral
+                                                                                    that is used
+                                                                                    as a filler in cosmetics. It helps
+                                                                                    to improve the texture, absorb e...
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
@@ -1433,19 +1315,6 @@
                                                                                         src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
                                                                                     <p
                                                                                         class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Polytetrafluoroethylene/PTFE</p>
-                                                                                    &nbsp;In cosmetics,
-                                                                                    it is used to enhance the slip and
-                                                                                    smoothness of the product, making it
-                                                                                    easier
-                                                                                    to apply and blend. I...
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                         Sodium Dehydroacetate</p>
 
                                                                                     A preservative that helps to prevent
@@ -1454,14 +1323,30 @@
                                                                                     the shelf life of the product.
 
                                                                                 </div>
+                                                                                <div
+                                                                                    class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
+                                                                                    <img class="spot-section-img"
+                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    <p
+                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                        Iron Oxides - CI
+                                                                                        77491/77492/77499</p>
+
+                                                                                    Mineral pigments that provide
+                                                                                    various shades
+                                                                                    of brown, red, and black colors in
+                                                                                    cosmetics.
+
+                                                                                </div>
 
                                                                                 <div
                                                                                     class="col-sm-12 ing_btn_prod_detail pt-4 text-center">
                                                                                     <a href="javascript:;"
                                                                                         data-toggle="tooltip"
                                                                                         data-placement="left"
-                                                                                        title="Click to see more Ingredients"
-                                                                                        class="preview btn btn-primary">
+                                                                                        title=""
+                                                                                        class="preview btn btn-primary"
+                                                                                        data-original-title="Click to see more Ingredients">
                                                                                         <span data-toggle="modal"
                                                                                             data-target="#ingred_pop">List
                                                                                             of Full Ingredients </span>
@@ -1493,12 +1378,12 @@
 
                                                                                         <p class="col-lg-12">
 
-                                                                                            Mica - CI 77019, Zinc
-                                                                                            Stearate,
-                                                                                            Polytetrafluoroethylene/PTFE,
-                                                                                            Sodium Dehydroacetate,
-                                                                                            Polyethylene Terephthalate,
-                                                                                            Glycerin, Caprylic/Capric
+                                                                                            Talc, Zinc Stearate, Sodium
+                                                                                            Dehydroacetate, Iron Oxides
+                                                                                            - CI 77491/77492/77499,
+                                                                                            Glycerin, Polyethylene
+                                                                                            Terephthalate,
+                                                                                            Caprylic/Capric
                                                                                             Triglyceride, Phenoxyethanol
                                                                                         </p>
 
@@ -1519,8 +1404,9 @@
                                                             <div class="container container-xl">
                                                                 <h2 class="text-center mb-9" style="color: #fff;">
                                                                     How To
-                                                                    Use: AM and PM</h2>
-                                                                <div class="row">
+                                                                    Use: AM and PM <i
+                                                                    class="fas fa-plus-circle cursor-pointer" ng-click="addNewUses();"></i></h2>
+                                                                <div class="row" id="steps_users">
                                                                     <div class="col-md-4 mb-6 mb-md-0 ">
                                                                         <div class="card border-0">
                                                                             <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527807-106.jpg"
@@ -2105,8 +1991,7 @@
                                                     <i class="fas fa-star" style="color:gray;"></i>
                                                 </li>
                                             </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail"
-                                                data-id="122">
+                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="122">
                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                     <a href="javascript:;">Nude 10 Shade Matte Eyeshadow Palette</a>
                                                 </h3>
@@ -2176,8 +2061,7 @@
                                                     <i class="fas fa-star" style="color:gray;"></i>
                                                 </li>
                                             </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail"
-                                                data-id="121">
+                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="121">
                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                     <a href="javascript:;">Whitening Cream</a>
                                                 </h3>
@@ -3295,37 +3179,152 @@
                 </div>
             </div>
             <div class="modal fade" id="confirmProdImageModal">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-					<!-- 	<h5 class="modal-title">Change State</h5> -->
-							<button type="button" class="close" data-dismiss="modal">
-								<span>&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							
-							<div class="row">
-							   <div class="col-12">
-							     <label><b>Selected Image mark as primary or secondary!!!</b></label>
-							   </div>
-							</div>
-							
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger light" ng-click="closeProdImageModal();">Close</button>
-							<button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(1);">Mark Primary</button>
-							<button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- 	<h5 class="modal-title">Change State</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Selected Image mark as primary or secondary!!!</b></label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                ng-click="closeProdImageModal();">Close</button>
+                            <button type="button" class="btn btn-warning"
+                                ng-click="markProductDetailImageFlag(1);">Mark Primary</button>
+                            <button type="button" class="btn btn-warning"
+                                ng-click="markProductDetailImageFlag(2);">Mark Secondary</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="modal fade" id="addFeaturesModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- 	<h5 class="modal-title">Change State</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Product Features<span class="required-field">*</span></b></label>
+                                    <select class="default-placeholder select2-hidden-accessible" id="p13"
+                                        multiple='multiple' ng-model="QuickProduct['P_13']"
+                                        ng-options="item as item.name for item in featurelov track by item.id">
+                                        <option value="">---SELECT---</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                ng-click="closeFeaturesModal();">Close</button>
+                            <button type="button" class="btn btn-primary"
+                                ng-click="updateFeaturesModal();">Update</button>
+                            {{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="addFeaturesModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- 	<h5 class="modal-title">Change State</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Product Features<span class="required-field">*</span></b></label>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                ng-click="closeFeaturesModal();">Close</button>
+                            <button type="button" class="btn btn-primary"
+                                ng-click="updateFeaturesModal();">Update</button>
+                            {{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="addSpotForModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- 	<h5 class="modal-title">Change State</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+
+                                        <label class="col-form-label" for="ing_category"><b>Ingredient Category</b> <span class="text-danger">*</span> </label>
+                                        <select class="form-control" ng-model="ingredient['I_1']" ng-change="getIngredientsWrtCategory();">
+                                            <option value="">---SELECT---</option>
+                                            <option value="Formulated">Formulated</option>
+                                            <option value="Spotlight">Spotlight</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+
+                                        <label class="col-form-label" for="ingredient"><b>Ingredient</b> <span class="text-danger">*</span> </label> 
+                                        <select class="form-control" id="i2" ng-model="ingredient['I_2']"
+                                                ng-options="item as item.name for item in ingredientsLov track by item.id">
+                                            <option value="">---SELECT---</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                ng-click="closeFeaturesModal();">Close</button>
+                                <button class="btn btn-rounded btn-warning cmbm-6vw mt-2" ng-click="saveProductIngredient();">Add</button>
+                            {{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="usesStepsModal">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-					<!-- 	<h5 class="modal-title">Change State</h5> -->
+							<h5 class="modal-title">Add Step</h5>
 							<button type="button" class="close" data-dismiss="modal">
 								<span>&times;</span>
 							</button>
@@ -3333,20 +3332,61 @@
 						<div class="modal-body">
 							
 							<div class="row">
-							   <div class="col-12">
-							    <label><b>Product Features<span class="required-field">*</span></b></label>
-                                <select class="default-placeholder select2-hidden-accessible" id="p13" multiple='multiple' ng-model="QuickProduct['P_13']"
-                                    ng-options="item as item.name for item in featurelov track by item.id"> 
-                                        <option value="">---SELECT---</option>
-                                </select>
+							   <div class="col-6">
+							     <label><b>Sequence Number<span class="required-field">*</span></b></label>
+							     <input type="number" class="form-control" id="u1" ng-model="uses['U_1']">
 							   </div>
 							</div>
-							
+							<div class="row mt-4">
+							   <div class="col-12">
+							     <label><b>Title<span class="required-field">*</span></b></label>
+							     <input type="text" class="form-control" id="u2" ng-model="uses['U_2']">
+							   </div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-sm-12">
+									<label><b>Short Description<span class="required-field">*</span></b></label>
+									<textarea class="form-control" id="u4" rows="4" ng-model="uses['U_4']" placeholder="Enter Short Description..."></textarea>
+								</div>
+							</div>
+							<div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
+								<div class="row register-new-product-picture-para">
+									<div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form4();" style="">
+										<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
+										<p>360 X 450</p>
+									</div>
+									<div class="col-sm-7">
+										<div class="row" id="ps_att">
+											<div class="col-3 image-overlay margin-r1" id="img_file" ng-show="uses.U_3 != ''">
+												<img src="@{{uses.U_3}}" alt="" class="image-box">
+												<div class="overlay">
+													<div class="text">
+														<img class="fa-trash-alt" src="{{url('/assets-admin')}}/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductUsesImage(@{{uses.ID}})" title="Delete Image">
+														<div class="arrow-icon-move-box">
+															<img class="arrow-center" src="{{url('/assets-admin')}}/images/admin/feather-move.svg" alt="">
+															<p>Move Position</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<form class="" id="uploadattch4" method="POST" action="uploadProductUsesImage" enctype="multipart/form-data">
+										<input type="hidden" name="_method" value="POST">
+           								{{ csrf_field() }}
+           								<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
+										<input type="hidden" id="sourceId" name="sourceId" value="@{{QuickProduct.PRODUCT_ID}}">
+										<input type="hidden" id="usesId" name="usesId" value="@{{uses.ID}}">
+										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_USES_IMG"> 
+										<input type="file" id="uploadatt4" name="uploadattl" class="file-input" style="display: none;">
+									</form>
+
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-danger light" ng-click="closeFeaturesModal();">Close</button>
-							<button type="button" class="btn btn-primary" ng-click="updateFeaturesModal();">Update</button>
-							{{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
+							<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-warning" ng-click="saveProductUses();">Save changes</button>
 						</div>
 					</div>
 				</div>
@@ -3400,6 +3440,30 @@
 <script>
     function form1() {
         $("#uploadattl").click();
+    }
+
+    function form2() {
+        $("#uploadatt2").click();
+    }
+    $(document).on("click", "#spotlightTabBtn", function() {
+
+        $(".ingredientTabBtn").removeClass('active');
+        $("#spotlightTabBtn").addClass('active');
+        $("#tabbspotlight").show();
+        $("#tabbformulated").hide();
+
+    });
+    $(document).on("click", "#formulatedTabBtn", function() {
+
+        $(".ingredientTabBtn").removeClass('active');
+        $("#formulatedTabBtn").addClass('active');
+        $("#tabbspotlight").hide();
+        $("#tabbformulated").show();
+
+    });
+
+    function form4(){
+        $("#uploadatt4").click();
     }
 </script>
 

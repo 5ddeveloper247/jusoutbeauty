@@ -45,6 +45,56 @@ use App\Models\OrderShippingTrackingModel;
 
 class AdminController extends Controller
 {
+
+	public function deleteIngredientQuickAdd(){
+		$details = $_REQUEST ['details'];
+		$ingredientId = $details ['ingredientId'];
+
+		DB::table('jb_product_ingredient_tbl')->where('PRODUCT_INGREDIENT_ID',$ingredientId)->delete();
+
+		$arrRes ['msg'] = 'Ingredient Deleted Successfully!';
+		$arrRes ['id'] = $ingredientId;
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+		
+	}
+	public function UpdateSecondSection(){
+		$details = $_REQUEST ['details'];
+		$productID = $details ['productId'];
+		$quickSection = $details ['quickSection'];
+	
+		DB::table('jb_product_tbl')->where('PRODUCT_ID',$productID)->update([
+			'DESCRIPTION_TITLE' =>  $quickSection['P_17'],
+			'DESCRIPTION' => base64_encode($quickSection['P_18']),
+			
+		]);
+
+		$arrRes ['msg'] = 'Second Section Updated Successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+
+
+	}
+	public function updateVideoInfo(){
+
+
+		$details = $_REQUEST ['details'];
+		$videoDetails = $details['videoDetails'];
+		$videoId = $videoDetails ['ID'];
+		$videoHeading = $videoDetails ['V_1'];
+		$videoNote = $videoDetails ['V_2'];
+
+		$basic = [];
+		$basic['VIDEO_TITLE'] = $videoHeading;
+		$basic['VIDEO_DESCRIPTION'] = base64_encode($videoNote);
+
+		DB::table('jb_product_video_tbl')->where('VIDEO_ID',$videoId)->update($basic);
+
+		$arrRes ['msg'] = 'Video Title/Description updated successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+
+	}
 	public function productQuickAdd(){
 		$ProductModel = new ProductModel();
 
@@ -69,10 +119,14 @@ class AdminController extends Controller
 
 		$ProductModel = new ProductModel();
 		$features = new Feature();
+		$Ingredient = new ProductIngredientModel();
 
-		$arrRes['features']= $features->getactivefeaturesdata();
+		$arrRes['features'] = $features->getactivefeaturesdata();
+		$arrRes['videoPro'] = $ProductModel->getVideodata($productID);
+		$arrRes ['ingredients'] = $Ingredient->getAllProductIngredientByProduct($productID);
 		// $arrRes['activeFeatures']= $ProductModel->getQuickfeaturesdata();
 		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		// dd($arrRes['productDetails']);
 		// dd($arrRes['productDetails']);
 		echo json_encode ( $arrRes );
 
@@ -141,8 +195,8 @@ class AdminController extends Controller
 							// 'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
 							// 'SLUG' => $data ['P_10'],
 							
-							// 'DESCRIPTION_TITLE' => $data ['P_12'],
-							// 'DESCRIPTION' => base64_encode($data['P_13']),
+							'DESCRIPTION_TITLE' => 'Second section',
+							'DESCRIPTION' => base64_encode('leo quam condimentum orci, ac pellentesque leo dui accumsan magna.Ut vel arcu congue, quis cursus arcu cursus at.turpis lacus pretium eros, vitae sagittis lorem metus non ante.Pellentesque ut diam eget ex scelerisque finibus hendrerit ac urna.Vestibulum pulvinar vestibulum interdum.'),
 							'STATUS' => 'inactive',
 							// 'FEATURE_ID' => isset($feature_id) ? rtrim($feature_id,',') : '',
 							'DATE' => date ( 'Y-m-d H:i:s' ),
@@ -152,7 +206,15 @@ class AdminController extends Controller
 							// 'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
 				);
-	
+
+				DB::table ( 'jb_product_video_tbl' )->insert([
+					'USER_ID' => $userId,
+					'PRODUCT_ID' => $result,
+					'VIDEO_TITLE' => 'Video Title',
+					'VIDEO_DESCRIPTION' => base64_encode('Video Description'),
+
+				]);
+				
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Product Created Successfully';
 				$arrRes ['id'] = $result;
@@ -3564,7 +3626,7 @@ class AdminController extends Controller
 		$data = $details ['ingredient'];
 		$prod = $details ['product'];
 		$userId = $details ['userId'];
-	
+		// dd($data);
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
@@ -3633,6 +3695,157 @@ class AdminController extends Controller
 			}
 		}
 	}
+
+	public function saveAdminQuickProductIngredient(Request $request) {
+		$Ingredient = new ProductIngredientModel();
+	
+		$details = $_REQUEST ['details'];
+		$data = $details ['ingredient'];
+		$prod = $details ['product'];
+		$userId = $details ['userId'];
+		// dd($data);
+		$arrRes = array ();
+		$arrRes ['done'] = false;
+		$arrRes ['msg'] = '';
+		$currentDate = date('Y-m-d');
+	
+		if (isset ( $data ) && ! empty ( $data )) {
+	
+			if ($data['I_1'] == '') {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Choose Ingredient Category first.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			if (!isset($data['I_2']['id'])) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Choose Ingredient first.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			
+			$existCheck = $Ingredient->checkIngredientExistingCheckWrtproductId(isset($data['I_2']['id']) ? $data['I_2']['id'] : '',$prod['PRODUCT_ID']);
+			
+			if($existCheck == true){
+				
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Ingredient already added in product.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+				
+			$result = DB::table ( 'jb_product_ingredient_tbl' )->insertGetId (
+					array ( 'PRODUCT_ID' => $prod['PRODUCT_ID'],
+							'INGREDIENT_CATEGORY' => $data['I_1'],
+							'INGREDIENT_ID' => isset($data['I_2']['id']) ? $data['I_2']['id'] : '',
+							'DATE' => date ( 'Y-m-d H:i:s' ),
+							'CREATED_BY' => $userId,
+							'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+							'UPDATED_BY' => $userId,
+							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+					)
+				);
+			$arrRes ['done'] = true;
+			$arrRes ['msg'] = 'Ingredient Added Successfully';
+			$arrRes ['ingredients'] = $Ingredient->getAllProductIngredientByProduct($prod['PRODUCT_ID']);
+			echo json_encode ( $arrRes );
+			die ();
+				
+			
+		}
+	}
+
+	public function saveAdminQuickProductUses(Request $request) {
+		$ProductUses = new ProductUsesModel();
+	
+		$details = $_REQUEST ['details'];
+		// dd($details);
+		$data = $details ['uses'];
+		$prod = $details ['product'];
+		$userId = $details ['userId'];
+	
+		$arrRes = array ();
+		$arrRes ['done'] = false;
+		$arrRes ['msg'] = '';
+		$currentDate = date('Y-m-d');
+	
+		if (isset ( $data ) && ! empty ( $data )) {
+	
+			if ($data['U_1'] == '') {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Sequence Number is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			if ($data['U_2'] == '') {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			if (strlen($data['U_2']) > 100) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be less then 100 characters.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			if ($data['U_4'] == '') {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Description is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			if (strlen($data['U_4']) > 500) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Description must be less then 500 characters.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+				
+			if ($data ['ID'] == '') {
+	
+				$result = DB::table ( 'jb_product_uses_tbl' )->insertGetId (
+						array ( 'USER_ID' => $userId,
+								'PRODUCT_ID' => $prod,
+								'SEQUENCE_NUM' => $data['U_1'],
+								'USES_TITLE' => $data['U_2'],
+								'USES_DESCRIPTION' => $data['U_4'],
+								
+								'CREATED_BY' => $userId,
+								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+								'UPDATED_BY' => $userId,
+								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+						)
+						);
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Product Uses Added Successfully';
+				$arrRes ['ID'] = $result;
+				$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($prod);
+				echo json_encode ( $arrRes );
+				die ();
+	
+			} else {
+	
+				$result = DB::table ( 'jb_product_uses_tbl' ) ->where ( 'PRODUCT_USES_ID', $data ['ID'] ) ->update (
+						array ( 'SEQUENCE_NUM' => $data['U_1'],
+								'USES_TITLE' => $data['U_2'],
+								'USES_DESCRIPTION' => $data['U_4'],
+								'UPDATED_BY' => $userId,
+								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+							)
+						);
+	
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Product Uses Updated Successfully';
+				$arrRes ['ID'] = $data ['ID'];
+				$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($prod);
+				echo json_encode ( $arrRes );
+				die ();
+			}
+		}
+	}
+
+
 	public function deleteProductingredient(Request $request) {
 		$Ingredient = new ProductIngredientModel();
 	
