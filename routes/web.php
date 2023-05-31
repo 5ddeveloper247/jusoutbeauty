@@ -118,6 +118,7 @@ Route::group(['middleware' => ['UserAuth']], function(){
 	Route::get('/userOrders', [HomeController::class, 'userOrders']);
 	Route::get('/userTickets', [HomeController::class, 'userTickets']);
 	Route::get('/userSubscriptions', [HomeController::class, 'userSubscriptions']);
+	
 
 	
 	Route::post('/getAllWishlistLov', [HomeController::class, 'getAllWishlistLov']);
@@ -205,6 +206,13 @@ Route::get('/adminlogout', [AdminController::class, 'logout']);
 Route::get('/showAllRoutineTypes',[AdminController::class,'getAllRoutineTypes']);
 
 Route::group(['middleware' => ['AdminAuth']], function(){
+
+	//for admin User Page
+	Route::get('/adminUsers',[AdminController::class,'adminUsers']);
+	Route::post('/getAllAdminUserslov', [AdminController::class, 'getAllAdminUserslov']);
+	Route::post('/saveAdminUser',[AdminController::class, 'saveAdminUser']);
+	Route::post('/deleteSpecificAdmin',[AdminController::class,'deleteSpecificAdmin']);
+	Route::post('/changeStatusAdmin',[AdminController::class,'changeStatusAdmin']);
 
 	//for quick add product start
 	Route::get('/quick-add-product', [AdminController::class, 'quickAddProduct']);

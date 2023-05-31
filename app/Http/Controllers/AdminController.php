@@ -321,6 +321,7 @@ class AdminController extends Controller
    	
 		$User=new User();
 		$data['getTotalUsers']= $User->getTotalUsers();
+		$data['getAdminUsers'] = $User->getAdminUsers();
 		$data['getTotalTickets']= $User->getTotalTickets();
 		$data['getTotalProducts']= $User->getTotalProducts();
 		$data['getTotalPayments']= $User->getTotalPayments();
@@ -333,6 +334,7 @@ class AdminController extends Controller
 		$data['getTotalReviews']= $User->getTotalReviews();
 		$data['getTotalGivings']= $User->getTotalGivings();
 		$data['mostSaledItems']= $User->mostSaleItems();
+		$data['lineChartData']= $User->getLineChartDetails();
    		$data['page'] = 'Dashboard';
    		return view('admin.dashboard')->with($data);
    	}
@@ -8063,6 +8065,137 @@ class AdminController extends Controller
 			echo json_encode($result);
 	}
 
+	public function adminUsers(){
+		$User = new User();
+		$data['page'] = 'Admin Users';
+		return view('admin.admin-users')->with($data);
+	}
+
+	public function getAllAdminUserslov(Request $request){
+		
+		$User = new User();
+
+		$arrRes['allAdminUsers']= $User->getallAdminUsers();
+
+		echo json_encode($arrRes);
+	}
+
+	public function saveAdminUser( Request $request){
+
+		$details = $_REQUEST ['details'];
+
+		//validating the Input Fields
+		if ($details['user']['Name'] == '') {
+					
+			$arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Name is required.';
+			echo json_encode ( $arrRes );
+			die ();
+		}
+
+		if ($details['user']['Email'] == '') {
+					
+			$arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Email is required.';
+			echo json_encode ( $arrRes );
+			die ();
+		}
+
+		if ($details['user']['Password'] == '') {
+					
+			$arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Password is required.';
+			echo json_encode ( $arrRes );
+			die ();
+		}
+
+		if ($details['user']['ConfirmPassword'] == '') {
+					
+			$arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Confirm Password is required.';
+			echo json_encode ( $arrRes );
+			die ();
+		}
+
+		if ($details['user']['ConfirmPassword'] != $details['user']['Password']) {
+					
+			$arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Passwords do not match';
+			echo json_encode ( $arrRes );
+			die ();
+		}
+
+		//Inserting the Record 
+		$result = DB::table ( 'fnd_user_tbl' )
+				->insertGetId (
+					array ( 
+							'USER_NAME' => $details['user']['Name'],
+							'EMAIL' => $details['user']['Email'],
+							'ENCRYPTED_PASSWORD' => $details['user']['Password'],
+							'USER_TYPE' => 'admin',
+							'USER_STATUS' => 'active',
+							'CREATED_ON' => date ( 'Y-m-d H:i:s' )
+					)
+				);
+	
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Admin User Created Successfully';
+				$arrRes ['id'] = $result;
+				echo json_encode ( $arrRes );
+	}
+
+	public function deleteSpecificAdmin(Request $request){
+
+		$details = $_REQUEST ['details'];
+		$recordId = $details ['recordId'];
+		// $userId = $details ['userId'];
+	
+		$result_fnd_user_tbl_tbl = DB::table('fnd_user_tbl as a')->where('a.USER_ID', $recordId )->get();
+		
+		if(sizeof($result_fnd_user_tbl_tbl) != null){
+			DB::table('fnd_user_tbl')->where('USER_ID', $recordId )->delete();
+			$arrRes ['done'] = true;
+			$arrRes ['msg'] = 'Admin deleted successfully...';
+	
+			echo json_encode ( $arrRes );
+		}else{
+			$arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Admin failed to delete';
+	
+			echo json_encode ( $arrRes );
+		}
+
+	}
+
+	public function changeStatusAdmin(Request $request){
+
+		$User=new User();
+		$details = $_REQUEST ['details'];
+		$recordId = $details ['recordId'];
+		$userId = $details ['userId'];
+
+		$AdminDetail = $User->getSpecificAdminStatus($recordId);
+	
+		if($AdminDetail->USER_STATUS != 'active'){
+			$status = 'active';
+			$arrRes ['msg'] = 'Admin active successfully...';
+		}else{
+			$status = 'inactive';
+			$arrRes ['msg'] = 'Admin Inactive successfully...';
+		}
+	
+		$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $recordId ) ->update (
+				array ( 'USER_STATUS' => $status,
+						'UPDATED_BY' => $userId,
+						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+				)
+				);
+	
+		$arrRes ['done'] = true;
+	
+		echo json_encode ( $arrRes );
+
+	}
 	
 	
 }
