@@ -12,13 +12,11 @@
 		});
 	}
 	var lineChart = function(){
+		 
 		var options = {
           series: [{
-          name: 'series1',
-          data: [31, 40, 28, 51, 42, 60, 40]
-        }, {
-          name: 'series2',
-          data: [11, 32, 45, 32, 34, 70, 41]
+          name: 'previous6month',
+          data: linechartorders
         }],
           chart: {
           height: 300,
@@ -38,19 +36,9 @@
 			width:4,
           curve: 'smooth'
         },
-       xaxis: {
-			show: false,
-			lines: {
-				show: false,
-			},
-			labels: {
-				show: false,
-			},
-			axisBorder: {
-			  show: false,
-			},
-			
-		},
+		xaxis: {
+			categories: [...linechartmonths],
+		  },
 		fill:{
 			opacity:0.05,
 			type:'solid'

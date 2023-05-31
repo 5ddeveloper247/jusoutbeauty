@@ -3,12 +3,16 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
+use DateTime;
+use GuzzleHttp\Psr7\Request;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Date;
+use PHPUnit\Framework\Constraint\Count;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use PHPUnit\Framework\Constraint\Count;
 
 class User extends Authenticatable
 {
@@ -50,6 +54,17 @@ class User extends Authenticatable
                       ->where('USER_TYPE','user')
                       ->count();
         return isset($totalUsers) ? $totalUsers : null;
+    }
+
+    public function getAdminUsers(){
+
+        $AdminUsers = DB::table('fnd_user_tbl')
+                           ->where('USER_TYPE','admin')
+                           ->select('USER_NAME')
+                           ->get();
+        
+        return isset($AdminUsers) ? $AdminUsers : null;
+
     }
 
     public function getTotalOrders(){
@@ -152,15 +167,50 @@ class User extends Authenticatable
 
     public function getTotalSubscriptions(){
 
-        $totalSubscriptions = DB:: table('jb_subscription_tbl')
-                              ->where('IS_DELETED','1')
+        $totalSubscriptions = DB:: table('jb_user_subscription_tbl')
+                              ->where('SUBSCRIPTION_STATUS','active')
                               ->count();
         return isset($totalSubscriptions ) ? $totalSubscriptions :null;
     }
 
     public function getTotalGivings(){
 
-        $totalGivings = DB:: table('jb_giving_tbl')->count();
+        $totalGivings = DB:: table('jb_giving_tbl')
+                        ->where('PAYMENT_STATUS', 'PAID')
+                        ->sum('AMOUNT');
+
+        $totalCostInDollars=round($totalGivings / 100);
+
+        if ($totalCostInDollars < 900) {
+            // 0 - 900
+            $n_format = number_format($totalCostInDollars, 1);
+            $suffix = '';
+        } else if ($totalCostInDollars < 900000) {
+            // 0.9k-850k
+            $n_format = number_format($totalCostInDollars / 1000, 1);
+            $suffix = 'K';
+        } else if ($totalCostInDollars < 900000000) {
+            // 0.9m-850m
+            $n_format = number_format($totalCostInDollars / 1000000, 1);
+            $suffix = 'M';
+        } else if ($totalCostInDollars < 900000000000) {
+            // 0.9b-850b
+            $n_format = number_format($totalCostInDollars / 1000000000, 1);
+            $suffix = 'B';
+        } else {
+            // 0.9t+
+            $n_format = number_format($totalCostInDollars / 1000000000000, 1);
+            $suffix = 'T';
+        }
+
+        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+        // Intentionally does not affect partials, eg "1.50" -> "1.50"
+
+        $dotzero = '.' . str_repeat( '0', 1 );
+        $n_format = str_replace( $dotzero, '', $n_format );
+        $totalCostInDollars=$n_format . $suffix;
+        $totalGivings=$totalCostInDollars;
+
         return isset($totalGivings) ? $totalGivings :null;
     }
 
@@ -291,7 +341,52 @@ class User extends Authenticatable
         ->first();
 
         return isset( $result ) ?  $result :null;
+    }
+
+    public function getLineChartDetails()
+    {    
+        $arrRes['month'] = [];
+        $arrRes['total_orders'] = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $monthInterval = $i; // The number of months ago you want to query for
+            $currentDate = now();
+            $targetDate = $currentDate->subMonths($monthInterval);
+
+            $result = DB::table('jb_order_detail_tbl')
+            ->select(DB::raw("DATE_FORMAT((DATE_SUB(curdate(), INTERVAL $monthInterval MONTH)), '%b-%y') AS month"))
+            ->selectRaw('COUNT(*) AS total_orders')
+            ->whereRaw('DATE_FORMAT(CREATED_ON, "%m %Y") = ?', [$targetDate->format('m Y')])
+            ->get('total_orders','month')[0]; 
+            array_push($arrRes['month'],(string)$result->month);
+            array_push($arrRes['total_orders'],(int)$result->total_orders); 
+
+        }
+        // dd($arrRes);
+        return isset( $arrRes) ?  $arrRes :null;
+
+    }
+
+    public function getAllAdminUsers(){
         
+        $result = DB::table('fnd_user_tbl')
+				  ->where('USER_TYPE','admin')
+                  ->select('USER_ID','EMAIL','USER_NAME','USER_TYPE','ENCRYPTED_PASSWORD','USER_STATUS')
+				  ->get();
+        
+        return isset( $result) ?  $result :null;
+    }
+
+    public function getSpecificAdminStatus($id){
+
+        $user_id = $id;
+        $result = DB::table('fnd_user_tbl')
+				  ->where('USER_TYPE','admin')
+                  ->where('USER_ID','=', $user_id)
+                  ->select('USER_ID','USER_STATUS')
+				  ->first();
+        
+        return isset( $result) ?  $result :null;
+
     }
 
 }

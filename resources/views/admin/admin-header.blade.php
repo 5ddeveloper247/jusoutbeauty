@@ -756,6 +756,7 @@
                         <ul aria-expanded="false">
                             <li><a href="{{session('site')}}/admin-profile">Admin Profile</a></li>
                             <li><a href="{{session('site')}}/website-users">Website Users</a></li>
+							<li><a href="{{session('site')}}/admin-users">Admin Users</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
