@@ -15,7 +15,8 @@ class ProductUsesModel extends Model
     
     	$result = DB::table('jb_product_uses_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $productId)
-    	->orderBy('a.SEQUENCE_NUM', 'desc')
+    	->orderBy('a.SEQUENCE_NUM', 'asc')
+		->limit('3')
     	->get();
     
     	$i=0;
@@ -27,7 +28,7 @@ class ProductUsesModel extends Model
     		$arrRes[$i]['SEQUENCE_NUM'] = $row->SEQUENCE_NUM;
     		$arrRes[$i]['USES_TITLE'] = $row->USES_TITLE;
     		$arrRes[$i]['USES_DESCRIPTION'] = $row->USES_DESCRIPTION;
-    		$arrRes[$i]['DOWN_PATH'] = $row->DOWN_PATH;
+    		$arrRes[$i]['DOWN_PATH'] = isset($row->DOWN_PATH) != null ? $row->DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
     
     		
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
@@ -52,7 +53,7 @@ class ProductUsesModel extends Model
     		$arrRes['ID'] = $row->PRODUCT_USES_ID;
     		$arrRes['U_1'] = $row->SEQUENCE_NUM;
     		$arrRes['U_2'] = $row->USES_TITLE;
-    		$arrRes['U_3'] = $row->DOWN_PATH;
+    		$arrRes['U_3'] = isset($row->DOWN_PATH) != null ? $row->DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
     		$arrRes['U_4'] = $row->USES_DESCRIPTION;
     
     	}

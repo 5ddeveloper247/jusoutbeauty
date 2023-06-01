@@ -13,7 +13,22 @@ use DateTime;
 class ProductModel extends Model
 {
     use HasFactory;
-    
+
+
+    public function getAllProductClinicalNoteByProduct($productID){
+		$result = DB::table('jb_product_tbl as a')->select('a.CLINICAL_NOTE_DESCRIPTION','a.PRODUCT_ID','b.DOWN_PATH')
+		->join('jb_product_images_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
+		->where('b.SOURCE_CODE','CLINICAL_NOTE')
+		->where('a.PRODUCT_ID',$productID)
+    	->first();
+		
+		// $arrRes['ID'] = isset($result->PRODUCT_ID) != null ? $result->PRODUCT_ID : '';
+		$arrRes['P_19'] = isset($result->CLINICAL_NOTE_DESCRIPTION) != null ? strip_tags(base64_decode($result->CLINICAL_NOTE_DESCRIPTION)) : '';
+		$arrRes['P_20'] = isset($result->DOWN_PATH) != null ? $result->DOWN_PATH: url('assets-web')."/images/product_placeholder.png";
+
+		return isset($arrRes) ? $arrRes : null;
+
+	}
 	public function getVideodata($productID){
 		$result = DB::table('jb_product_video_tbl as a')->select('a.DOWN_PATH','a.VIDEO_TITLE','a.VIDEO_DESCRIPTION','a.VIDEO_ID')
 				->where('a.PRODUCT_ID',$productID)
@@ -31,6 +46,7 @@ class ProductModel extends Model
 	public function getQuickAddProductDataWrtProductID($productID){
 		$result = DB::table('jb_product_tbl as a')->select('a.*')
 		// ->join('jb_product_images_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
+		// ->where('b.SOURCE_CODE','CLINICAL_NOTE')
 		->where('a.PRODUCT_ID',$productID)
 		->orderBy('a.PRODUCT_ID','desc')
 
@@ -54,11 +70,15 @@ class ProductModel extends Model
     		$arrRes['P_16'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
     		
 			$arrRes['P_17'] = $row->DESCRIPTION_TITLE;
-    		
     		$arrRes['P_18'] = strip_tags(base64_decode($row->DESCRIPTION));
+    		$arrRes['P_19'] = strip_tags(base64_decode($row->CLINICAL_NOTE_DESCRIPTION));
 
+			$getClinicalNote = $this->getAllProductClinicalNoteByProduct($row->PRODUCT_ID);
+			$arrRes['P_20'] = $getClinicalNote['P_20'];
+			$arrRes['P_31'] = $row->CATEGORY_ID;
+			
 			$arrRes['QUICK_ADD_FEATURES'] = $this->getQuickfeaturesdata($row->FEATURE_ID);
-
+			
     		$arrRes['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes['USER_ID'] = $row->USER_ID;
     		$arrRes['SLUG'] = $row->SLUG;

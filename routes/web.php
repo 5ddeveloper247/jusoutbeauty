@@ -215,6 +215,9 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/changeStatusAdmin',[AdminController::class,'changeStatusAdmin']);
 
 	//for quick add product start
+	Route::post('/updateClinicalInfo', [AdminController::class, 'updateClinicalInfo']);
+	Route::post('/UpdateCategories',[AdminController::class,'updateCategory']);
+	Route::post('/getAllProductsOfCategory',[AdminController::class,'getAllProductsOfCategory']);
 	Route::get('/quick-add-product', [AdminController::class, 'quickAddProduct']);
 	Route::post('/updateAdminQuickProductBasicInfo', [AdminController::class, 'updateAdminQuickProductBasicInfo']);
 	Route::post('/getQuickAddAdminProduct', [AdminController::class, 'getQuickAddAdminProduct']);

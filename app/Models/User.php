@@ -347,7 +347,7 @@ class User extends Authenticatable
     {    
         $arrRes['month'] = [];
         $arrRes['total_orders'] = [];
-        for ($i = 6; $i >= 0; $i--) {
+        for ($i = 6; $i > 0; $i--) {
             $monthInterval = $i; // The number of months ago you want to query for
             $currentDate = now();
             $targetDate = $currentDate->subMonths($monthInterval);

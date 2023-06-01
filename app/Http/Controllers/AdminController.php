@@ -46,6 +46,57 @@ use App\Models\OrderShippingTrackingModel;
 class AdminController extends Controller
 {
 
+	public function updateCategory(Request $request){
+		$result = $_REQUEST['details'];
+		// $id = $result['userID'];
+		$product_ID = $result['productId'];
+		
+		DB::table('jb_product_tbl')->where('PRODUCT_ID',$product_ID)->update([
+			'CATEGORY_ID' =>  $result['category']['id'],
+		]);
+
+		$arrRes ['msg'] = 'Category ID Updated Successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+
+	}
+
+	public function getAllProductsOfCategory(){
+
+		$Category = new CategoryModel();
+		$Product= new ProductModel();
+   
+		$details = $_REQUEST ['details'];
+		$category = $details ['categoryid'];
+
+	   $product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category)->orderby('PRODUCT_ID', 'desc')
+	   ->where('STATUS','active')->get();
+		
+	   if(count($product_lov) > 0){
+
+	   $i=0;
+	   foreach ($product_lov as $row){
+		   $arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
+		   $arrRes['product'][$i]['name'] = $row->NAME;
+		   
+		   $i++;
+	   }
+	  
+	   echo json_encode ( $arrRes );
+
+	}
+		
+		// $result = $_REQUEST['details'];
+		// $categoryId = $result['categoryid'];
+		// $products = [];
+
+		// $Product = new ProductModel();
+
+		// $arrRes ['getAllProductsOfCategory'] = $Product->getProductsOfCategory($categoryId);
+
+		// echo json_encode( $arrRes );
+	}
+
 	public function deleteIngredientQuickAdd(){
 		$details = $_REQUEST ['details'];
 		$ingredientId = $details ['ingredientId'];
@@ -120,12 +171,19 @@ class AdminController extends Controller
 		$ProductModel = new ProductModel();
 		$features = new Feature();
 		$Ingredient = new ProductIngredientModel();
+		$ProductUses = new ProductUsesModel();
+		$Shades = new ShadesModel();
+		$Category = new CategoryModel();
 
+		$arrRes ['list1'] = $Category->getCategoryLov();
 		$arrRes['features'] = $features->getactivefeaturesdata();
 		$arrRes['videoPro'] = $ProductModel->getVideodata($productID);
 		$arrRes ['ingredients'] = $Ingredient->getAllProductIngredientByProduct($productID);
+		$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($productID);
+		$arrRes ['list2'] = $Shades->getShadesLov();
 		// $arrRes['activeFeatures']= $ProductModel->getQuickfeaturesdata();
 		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		// $arrRes ['clinicalNote'] = $ProductModel->getAllProductClinicalNoteByProduct($productID);
 		// dd($arrRes['productDetails']);
 		// dd($arrRes['productDetails']);
 		echo json_encode ( $arrRes );
@@ -197,6 +255,7 @@ class AdminController extends Controller
 							
 							'DESCRIPTION_TITLE' => 'Second section',
 							'DESCRIPTION' => base64_encode('leo quam condimentum orci, ac pellentesque leo dui accumsan magna.Ut vel arcu congue, quis cursus arcu cursus at.turpis lacus pretium eros, vitae sagittis lorem metus non ante.Pellentesque ut diam eget ex scelerisque finibus hendrerit ac urna.Vestibulum pulvinar vestibulum interdum.'),
+							'CLINICAL_NOTE_DESCRIPTION' => base64_encode('leo quam condimentum orci, ac pellentesque leo dui accumsan magna.Ut vel arcu congue, quis cursus arcu cursus at.turpis lacus pretium eros, vitae sagittis lorem metus non ante.Pellentesque ut diam eget ex scelerisque finibus hendrerit ac urna.Vestibulum pulvinar vestibulum interdum.'),
 							'STATUS' => 'inactive',
 							// 'FEATURE_ID' => isset($feature_id) ? rtrim($feature_id,',') : '',
 							'DATE' => date ( 'Y-m-d H:i:s' ),
@@ -3765,6 +3824,7 @@ class AdminController extends Controller
 		$data = $details ['uses'];
 		$prod = $details ['product'];
 		$userId = $details ['userId'];
+		// dd($details);
 	
 		$arrRes = array ();
 		$arrRes ['done'] = false;
@@ -3845,6 +3905,24 @@ class AdminController extends Controller
 				die ();
 			}
 		}
+	}
+
+	public function updateClinicalInfo(){
+		$Product = new ProductModel();
+
+		$details = $_REQUEST ['details'];
+		$productId = $details['productId'];
+		$clinicInfo = $details['updateClinicalInfo'];
+
+		DB::table ( 'jb_product_tbl' )->where ( 'PRODUCT_ID', $productId )->update([
+			'CLINICAL_NOTE_DESCRIPTION' => base64_encode($clinicInfo),
+		]);
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Clinical Note deleted successfully...';
+		$arrRes ['clinicalNote'] = $Product->getAllProductClinicalNoteByProduct($productId);
+		
+		echo json_encode ( $arrRes );
 	}
 
 
@@ -4183,6 +4261,7 @@ class AdminController extends Controller
 		$productId = $details ['productId'];
 		$productUsesId = $details ['productUsesId'];
 		$userId = $details ['userId'];
+		// dd($details);
 	
 		$attDetail = $ProductUses->getSpecificProductUsesImage($productUsesId);
 	

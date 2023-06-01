@@ -63,6 +63,13 @@
             right: 8px;
             top: 3px;
         }
+
+        .edit-icon{
+            position: absolute;
+            right: 26px;
+            top: 3px;
+            color: white;
+        }
         .gap-2{
             gap: 4px
         }
@@ -550,6 +557,18 @@
 
             <section class=" sec_inc_1">
                 <div class="container container-custom container-xxl mt-5 mt-md-0 mt-xl-5 mt-xxl-5">
+                    <div class="row">
+                        <div class="col-4 mt-1 mb-1">
+                            <div class="form-group">
+                                <label class="col-form-label" for="tags"><b>Product Category</b> <span class="text-danger">*</span></label> 
+                                <select class="form-control" id="p31" ng-model="QuickProduct['P_31']"
+                                    ng-change="getSubCategoriesWrtCategory();"
+                                    ng-options="item as item.name for item in categoryLov track by item.id">
+                                    <option value="">---SELECT---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row no-gutters">
                         <div class="col-md-6 col-xl-8 mb-8 mb-md-0 pr-xl-0 pr-md-3">
                             <div class="row no-gutters mx-n1">
@@ -713,6 +732,22 @@
                         {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
 
                         <p class="text-center">No Features Added...</p>
+                    </div>
+                </div>
+            </section>
+            <section class="pb-11 pb-lg-6">
+                <div class="container container-custom container-xxl mt-8">
+                    <h3 class="text-center my-4">Shades <i class="fas fa-plus-circle cursor-pointer"
+                            ng-click="addShadesModal()"></i></h3>
+                    <div class="features_slider"
+                        data-slick-options='{"slidesToShow": 5,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":false,"responsive":[
+                        {"breakpoint": 1400,"settings": {"slidesToShow": 5}},
+                        {"breakpoint": 1200,"settings": {"slidesToShow": 3}},
+                        {"breakpoint": 992,"settings": {"slidesToShow": 2}},
+                        {"breakpoint": 768,"settings": {"slidesToShow": 1}},
+                        {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+
+                        <p class="text-center">No Shades Added...</p>
                     </div>
                 </div>
             </section>
@@ -1470,17 +1505,31 @@
                                                     <section class="pt-10 pt-lg-8 py-8">
                                                         <div class="">
                                                             <div class="row no-gutters align-items-center">
-                                                                <div class="col-md-6 mb-8 mb-md-0 hover-zoom-in">
-
-                                                                    <img class="clinical-note"
-                                                                        src="https://jusoutbeauty.com/site/public/uploads/product/images/298.jpg"
-                                                                        alt="Clinical Note">
-
+                                                                <div class="col-12 text-right" ng-show="clinicalNoteSection == '0'">
+                                                                    <i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true" ng-click="EditclinicalNoteSection()"></i>
                                                                 </div>
+                                                                <div class="col-sm-6 col-6 px-1 mb-2">
+
+                                                                    <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg" ng-show="QuickProduct.P_20 == ''"
+                                                                        onclick="form5();" alt="Image"
+                                                                        class="prod_img_detail img-w35 img-product-gall cursor-pointer" ng-show="QuickProduct.P_20 != ''"
+                                                                        style="border:5px dotted grey">
+                                                                    <button type="button" class="btn btn-primary btn-block text-capitalize w-25 mb-3" onclick="form5();">Edit</button>
+
+                                                                    <img class="prod_img_detail img-w35 img-product-gall cursor-pointer" src="@{{ QuickProduct.P_20 }}" alt="">
+                                                                </div>
+                                                                <form class="" id="uploadattch5" method="POST" action="uploadProductImageAttachment" enctype="multipart/form-data">
+                                                                    <input type="hidden" name="_method" value="POST">
+                                                                       {{ csrf_field() }}
+                                                                    <input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
+                                                                    <input type="hidden" id="sourceId" name="sourceId" value="@{{QuickProduct.PRODUCT_ID}}">
+                                                                    <input type="hidden" id="sourceCode" name="sourceCode" value="CLINICAL_NOTE"> 
+                                                                    <input type="file" id="uploadatt5" name="uploadattl" class="file-input" style="display: none;">
+                                                                </form>
                                                                 <div class="col-md-6 px-6 px-md-0 pl-xl-7"
-                                                                    style="height:30rem;overflow-y:auto">
+                                                                    style="height:30rem;overflow-y:auto" ng-show="clinicalNoteSection == '0'">
                                                                     <h3 class="fs-42 mb-5">Clinical Note</h3>
-                                                                    <p><span style="text-align: justify;">It is a long
+                                                                    <p id="p19" ><span style="text-align: justify;">It is a long
                                                                             established fact that a reader will be
                                                                             distracted by the readable content of a page
                                                                             when looking at its
@@ -1605,6 +1654,20 @@
                                                                             distracted by the readable content of a page
                                                                             when looking at its layout.&nbsp;</span></p>
                                                                 </div>
+                                                                <div class="col-md-6 px-6 px-md-0 pl-xl-7" ng-show="clinicalNoteSection != '0'">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary text-capitalize w-25 float-right"
+                                                                        ng-click="updateClinicalInfo()"
+                                                                        >Update</button>
+                                                                    <button type="button"
+                                                                        class="btn btn-primary text-capitalize w-25 float-right mx-2"
+                                                                        ng-click="cancelClinicalNoteSection()"
+                                                                       >Cancel</button>
+                                                                    <h3 class="fs-42 mb-5">Clinical Note</h3>
+                                                                    <div class="summernote" id="clinicalNoteSectionView">
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </section>
@@ -1630,18 +1693,22 @@
                                 class="pointer nav-link active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recommendations-tab" data-toggle="pill" href="#pills-recommendations"
                                 role="tab" aria-controls="pills-recommendations" aria-selected="true">Complete
-                                Your JusOGlow</a>
+                                Your JusOGlow<span style="padding:10px;"><i class="fas fa-plus-circle cursor-pointer" style="font-size:1.875rem;"
+                                    ng-click="addJusOFlowModal()"></i></span></a>
+
                         </li>
                         <li class="nav-item px-5"><a
                                 class="pointer nav-link  text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recently-viewed-tab" data-toggle="pill" href="#pills-hand-picked"
                                 role="tab" aria-controls="pills-recently-viewed" aria-selected="true">
-                                Your Daily HandPicked</a></li>
-                        <li class="nav-item px-5"><a
+                                Your Daily HandPicked<span style="padding:10px;"><i class="fas fa-plus-circle cursor-pointer" style="font-size:1.875rem;"
+                                    ng-click="addDailyHandPickedModal()"></i></span></a>
+                        </li>
+                        {{-- <li class="nav-item px-5"><a
                                 class="pointer nav-link  text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recently-viewed-tab" data-toggle="pill" href="#pills-recently-viewed"
                                 role="tab" aria-controls="pills-recently-viewed" aria-selected="true">Recently
-                                Viewed</a></li>
+                                Viewed</a></li> --}}
                         <!--Border Active primary-->
                     </ul>
                     <div class="tab-content p-0 m-0 shadow-none" id="pills-tabContent">
@@ -3359,7 +3426,7 @@
 										<div class="row" id="ps_att">
 											<div class="col-3 image-overlay margin-r1" id="img_file" ng-show="uses.U_3 != ''">
 												<img src="@{{uses.U_3}}" alt="" class="image-box">
-												<div class="overlay">
+												{{-- <div class="overlay">
 													<div class="text">
 														<img class="fa-trash-alt" src="{{url('/assets-admin')}}/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductUsesImage(@{{uses.ID}})" title="Delete Image">
 														<div class="arrow-icon-move-box">
@@ -3367,7 +3434,7 @@
 															<p>Move Position</p>
 														</div>
 													</div>
-												</div>
+												</div> --}}
 											</div>
 										</div>
 									</div>
@@ -3391,6 +3458,134 @@
 					</div>
 				</div>
 			</div>
+
+            <div class="modal fade" id="shadesModal">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Shades</h5>
+							<button type="button" class="close" data-dismiss="modal">
+								<span>&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							
+							<div class="row">
+							   <div class="col-12">
+							     <label><b>Shades<span class="required-field">*</span></b></label>
+							     <select class="form-control" id="s1" ng-model="shade['S_1']"
+										ng-options="item as item.name for item in shadesLov track by item.id">
+									<option value="">---SELECT---</option>
+								</select>
+							   </div>
+							   <div class="col-12">
+							     	<label><b>Inv. Quantity<span class="required-field">*</span></b></label>
+							    	<input type="text" class="form-control" id="s2" ng-model="shade['S_2']">
+							   </div>
+								
+								
+							</div>
+							<div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
+								<div class="row register-new-product-picture-para">
+									<div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form3();" style="">
+										<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
+										<p>270 X 370</p>
+									</div>
+									<div class="col-sm-12">
+										<div class="row" id="ps_att">
+											
+										</div>
+									</div>
+									<form class="" id="uploadattch3" method="POST" action="uploadProductShadeImage" enctype="multipart/form-data">
+										<input type="hidden" name="_method" value="POST">
+           								{{ csrf_field() }}
+           								<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
+										<input type="hidden" id="sourceId" name="sourceId" value="@{{shade.ID}}">
+										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_SHADE_IMG"> 
+										<input type="file" id="uploadatt3" name="uploadattl" class="file-input" style="display: none;">
+									</form>
+
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-warning" ng-click="saveProductShade();">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+            <div class="modal fade" id="addJusOFlowModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- 	<h5 class="modal-title">Change State</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>JusOFlowModal<span class="required-field">*</span></b></label>
+                                    <select class="default-placeholder select2-hidden-accessible" id="p46"
+                                        multiple='multiple' ng-model="QuickProduct['P_46']"
+                                        ng-options="item as item.name for item in recommended track by item.id">
+                                        <option value="">---SELECT---</option>
+                                    </select>
+                                    {{-- <label><b>Complete your Jus o Glow<span class="required-field">*</span></b></label>
+                                    <select class="default-placeholder select2-hidden-accessible" id="p56" multiple='multiple' ng-model="product['P_56']"
+                                           ng-options="item as item.name for item in recommended track by item.id"> 
+                                             <option value="">---SELECT---</option>
+                                    </select> --}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                ng-click="closeFeaturesModal();">Close</button>
+                            <button type="button" class="btn btn-primary"
+                                ng-click="updateFeaturesModal();">Save</button>
+                            {{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="addDailyHandPickedModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- 	<h5 class="modal-title">Change State</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Your Daily HandPicked<span class="required-field">*</span></b></label>
+                                    <select class="default-placeholder select2-hidden-accessible" id="p56" multiple='multiple' ng-model="product['P_56']"
+                                           ng-options="item as item.name for item in recommended track by item.id"> 
+                                             <option value="">---SELECT---</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                ng-click="closeFeaturesModal();">Close</button>
+                            <button type="button" class="btn btn-primary"
+                                ng-click="updateFeaturesModal();">Save</button>
+                            {{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>
@@ -3464,6 +3659,9 @@
 
     function form4(){
         $("#uploadatt4").click();
+    }
+    function form5(){
+        $("#uploadatt5").click();
     }
 </script>
 

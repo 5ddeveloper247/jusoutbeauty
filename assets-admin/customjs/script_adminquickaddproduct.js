@@ -5,6 +5,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.basicEditView = 0;
     $scope.VideoEditView = 0;
     $scope.SecondSectionEdit = 0; 
+    $scope.clinicalNoteSection = 0;
 
     $scope.QuickProduct = {};
     $scope.QuickProduct.ID = productId;
@@ -21,6 +22,16 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.QuickProduct.P_16 = "";
     $scope.QuickProduct.P_17 = "";
     $scope.QuickProduct.P_18 = "";
+    $scope.QuickProduct.P_19 = "";
+    $scope.QuickProduct.P_20 = "";
+    $scope.QuickProduct.P_31 = "";
+    $scope.QuickProduct.P_31.id = "";
+    $scope.QuickProduct.P_46 = "";
+    $scope.QuickProduct.P_55 = '';
+    $scope.QuickProduct.P_56 = '';
+
+
+    $scope.recommended = {};
 
 
     $scope.ingredient={};
@@ -48,7 +59,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     $scope.featurelov={};
     $scope.featurelov.S_1="";
-    
+
+    $scope.shade={};
+    $scope.shade.ID = "";
+    $scope.shade.S_1 = "";
+    $scope.shade.S_2 = "";
+
     $scope.getQuickAddAdminProduct = function () {
         var data = {};
         data.userId = userId;
@@ -69,8 +85,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             $scope.displayImagesLov = images;
             $scope.featurelov = data.features;
             $scope.QuickProduct = data.productDetails;
+            $scope.shadesLov = data.list2;
             $scope.video = data.videoPro;
-            
+            var displayCollectionProdUses = data.productuses;
+            $scope.categoryLov = data.list1;
+
+            $category_value=data.productDetails['CATEGORY_ID'];
+            $scope.QuickProduct.P_31.id = $category_value;
             // $scope.video.V_3 = data.videoPro['V_3'];
             // $scope.video.V_2 = data.videoPro['V_2'];
             // $scope.video.V_1 = data.videoPro['V_1'];
@@ -169,54 +190,89 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $("#p18").html($scope.QuickProduct.P_18);
                 $("#video_heading").html($scope.video.V_1).trigger('change');
                 $("#video_desc").html($scope.video.V_2).trigger('change');
+                $('#clinicalNoteSectionView').summernote('code',$scope.QuickProduct.P_19);
+				$('#p19').html($scope.QuickProduct.P_19).trigger('change');
+                $("#p31").val($scope.QuickProduct.P_31).trigger('change');
                 // $("#p13").val($scope.QuickProduct.P_13).trigger('change');
                 
             }, 500);
-            var html = '';
-            var html1 = '';
+
+            var html3 = '';
+            var html4 = '';
             var displayCollectionProdIngredients = data.ingredients;
 
                 $('#spotlight_data').html('');
                 $('#formulated_data').html('');
 
-                for (let i = 0; i < displayCollectionProdIngredients.length; i++) {
+                if(displayCollectionProdIngredients != null && displayCollectionProdIngredients != ''){
+                    for (let i = 0; i < displayCollectionProdIngredients.length; i++) {
+                        
+                        if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Formulated'){
+                        
+                            html3 += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
+                                        style="background-color:#57813a96">
+                                        <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                        <img class="spot-section-img"
+                                            src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                        <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                            `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
+                                        <p>
+                                        `+displayCollectionProdIngredients[i]['INGREDIENT_DESCRIPTION']+`
+                                        </p>
+
+                                    </div>`;
+
+                        
+                        }else if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Spotlight'){
+
+                            html4 += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
+                                        style="background-color:#57813a96">
+                                        <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                        <img class="spot-section-img"
+                                            src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                        <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                            `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
+                                        <p>
+                                        `+displayCollectionProdIngredients[i]['INGREDIENT_DESCRIPTION']+`
+                                        </p>
+
+                                    </div>`;
+                        }
                     
-                    if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Formulated'){
-                       console.log('formulated');
-                        html += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
-                                    style="background-color:#57813a96">
-                                    <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
-                                    <img class="spot-section-img"
-                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                    <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                        `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
-                                    <p>
-                                    `+displayCollectionProdIngredients[i]['INGREDIENT_DESCRIPTION']+`
-                                    </p>
-
-                                </div>`;
-
-                       
-                    }else if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Spotlight'){
-                        console.log('spot');
-
-                        html1 += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
-                                    style="background-color:#57813a96">
-                                    <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
-                                    <img class="spot-section-img"
-                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                    <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                        `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
-                                    <p>
-                                    `+displayCollectionProdIngredients[i]['INGREDIENT_DESCRIPTION']+`
-                                    </p>
-
-                                </div>`;
                     }
-                   
                 }
-                $('#formulated_data').html($compile(angular.element(html))($scope));
-                $('#spotlight_data').html($compile(angular.element(html1))($scope));
+                $('#formulated_data').html($compile(angular.element(html3))($scope));
+                $('#spotlight_data').html($compile(angular.element(html4))($scope));
+                var html2 ="";
+
+                if(displayCollectionProdUses != null && displayCollectionProdUses != ''){
+                    for (let i = 0; i < displayCollectionProdUses.length; i++) {
+                    
+                        html2 += `<div class="col-md-4 mb-6 mb-md-0 ">
+                                <div class="card border-0">
+                                <span class="edit-icon cursor-pointer" ng-click="editProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
+                                <span class="close-icon cursor-pointer" ng-click="deleteProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                    <img src="`+ displayCollectionProdUses[i]['DOWN_PATH'] +`"
+                                        alt="Image"
+                                        class="card-img h_to_use_img">
+                                    <div
+                                        class="card-body pt-6 px-0 pb-0 text-center">
+                                        <a href="#"
+                                            class="fs-18 font-weight-500 lh-1444">`+ displayCollectionProdUses[i]['USES_TITLE'] +`</a>
+                                        <p class="mb-6">
+                                        `+ displayCollectionProdUses[i]['USES_DESCRIPTION'] +`</p>
+                                    </div>
+                                </div>
+                            </div>`;
+    
+                    }
+                }else{
+                    html2 += `<div class="col-md-12 text-center ">
+                                <p class="text-light">No Steps Added....</p>
+                            </div>`;
+                }
+               
+                $('#steps_users').html($compile(angular.element(html2))($scope));
         })
             .error(function (data, status, headers, config) {
             });
@@ -408,6 +464,10 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     $scope.addSpotForModal = function(){
         $("#addSpotForModal").modal('show');
+    }
+
+    $scope.addShadesModal = function(){
+        $("#shadesModal").modal('show');
     }
 
     $scope.getIngredientsWrtCategory = function(id){
@@ -811,6 +871,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     
                     html += `<div class="col-md-4 mb-6 mb-md-0 ">
                             <div class="card border-0">
+                            <span class="edit-icon cursor-pointer" ng-click="editProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
+                            <span class="close-icon cursor-pointer" ng-click="deleteProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+
                                 <img src="`+ displayCollectionProdUses[i]['DOWN_PATH'] +`"
                                     alt="Image"
                                     class="card-img h_to_use_img">
@@ -825,7 +888,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                         </div>`;
 
                 }
-                $('#steps_users').html(html);
+                $('#steps_users').html($compile(angular.element(html))($scope));
 				
 				// if ($.fn.DataTable.isDataTable("#productUsesTable")) {
 				// 	$('#productUsesTable').DataTable().clear().destroy();
@@ -844,6 +907,137 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		.error(function(data, status, headers, config) {
 		});
 	}
+    $scope.editProductUses = function(id){
+		
+		var data = {};
+	    data.productUsesId = id;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/editProductUses",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			if(data.details != '' && data.details != null){
+				
+				$scope.uses = data.details;
+				$("#usesStepsModal").modal('show');
+				setTimeout(function(){
+					$("#u1").val($scope.uses.U_1).trigger('change');
+				}, 500);
+			}
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+    $scope.deleteProductUses = function(id){
+		
+		var data = {};
+	    data.productId = $scope.QuickProduct.PRODUCT_ID;
+	    data.productUsesId = id;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/deleteProductUses",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			var displayCollectionProdUses = data.productuses;
+				toastr.success(data.msg, '', {timeOut: 3000})
+				var html = '';
+				$scope.uses.ID = data.ID;
+
+                if(displayCollectionProdUses != null && displayCollectionProdUses != ''){
+                    for (let i = 0; i < displayCollectionProdUses.length; i++) {
+                    
+                        html += `<div class="col-md-4 mb-6 mb-md-0 ">
+                                <div class="card border-0">
+                                <span class="edit-icon cursor-pointer" ng-click="editProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
+                                <span class="close-icon cursor-pointer" ng-click="deleteProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+    
+                                    <img src="`+ displayCollectionProdUses[i]['DOWN_PATH'] +`"
+                                        alt="Image"
+                                        class="card-img h_to_use_img">
+                                    <div
+                                        class="card-body pt-6 px-0 pb-0 text-center">
+                                        <a href="#"
+                                            class="fs-18 font-weight-500 lh-1444">`+ displayCollectionProdUses[i]['USES_TITLE'] +`</a>
+                                        <p class="mb-6">
+                                        `+ displayCollectionProdUses[i]['USES_DESCRIPTION'] +`</p>
+                                    </div>
+                                </div>
+                            </div>`;
+    
+                    }
+                }else{
+                    html += `<div class="col-md-12 text-center ">
+                                <p class="text-light">No Steps Added....</p>
+                            </div>`;
+                }
+               
+                $('#steps_users').html($compile(angular.element(html))($scope));
+			
+			
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+    //Clinical Note
+
+    $scope.EditclinicalNoteSection = function(){
+        
+        $scope.clinicalNoteSection = 1;
+    }
+    $scope.cancelClinicalNoteSection = function(){
+        
+        $scope.clinicalNoteSection = 0;
+    }
+
+    $scope.updateClinicalInfo = function(){
+        
+        var data = {};
+	    data.productId = $scope.QuickProduct.PRODUCT_ID;
+        $scope.QuickProduct.P_18 = $('#clinicalNoteSectionView').summernote('code');
+        data.updateClinicalInfo = $scope.QuickProduct.P_18;
+	    
+    	var temp = $.param({details: data});
+        $http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/updateClinicalInfo",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+
+            toastr.success(data.msg, '', {timeOut: 3000})
+
+            $scope.QuickProduct.P_19 = data.clinicalNote['P_19'];
+            setTimeout(function(){
+                $('#clinicalNoteSectionView').summernote('code',$scope.QuickProduct.P_19);
+				$('#p19').html($scope.QuickProduct.P_19).trigger('change');
+			}, 500);
+            
+            $scope.clinicalNoteSection = 0;
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+    }
 
     $('#uploadattch').fileupload({
 		
@@ -929,63 +1123,63 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
            }
     });
 
-$('#uploadattch2').fileupload({
-		
- 		add: function (e, data) {
- 		    
- 			// if($scope.product.ID == ""){
- 				
- 			// 	toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
- 			// 	return false;
- 			
- 			// }else{
- 				$.LoadingOverlay("show"); 
- 				var jqXHR = data.submit();
- 			// }
- 	    },
- 		beforeSend: function() {
+    $('#uploadattch2').fileupload({
 
- 		},
- 	    uploadProgress: function(event, position, total, percentComplete) {
+    add: function (e, data) {
+        
+        // if($scope.product.ID == ""){
+            
+        // 	toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
+        // 	return false;
+        
+        // }else{
+            $.LoadingOverlay("show"); 
+            var jqXHR = data.submit();
+        // }
+    },
+    beforeSend: function() {
 
- 	    },
- 	    success: function() {
+    },
+    uploadProgress: function(event, position, total, percentComplete) {
 
- 	    },
- 	    complete: function(xhr) {
+    },
+    success: function() {
 
- 	    	setTimeout(function(){
-				$.LoadingOverlay("hide");
-			}, 500);
- 	    	
- 	    	xhr.responseText = jQuery.parseJSON(xhr.responseText);
- 	      	
- 	    	if(xhr.responseText[0] == 01){
- 	        	
- 	      		toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
+    },
+    complete: function(xhr) {
 
- 	      	}else if(xhr.responseText[0] == 02){
- 	        	
- 	      		toastr.error("Error : Unable To upload", '', {timeOut: 3000});
+        setTimeout(function(){
+            $.LoadingOverlay("hide");
+        }, 500);
+        
+        xhr.responseText = jQuery.parseJSON(xhr.responseText);
+        
+        if(xhr.responseText[0] == 01){
+            
+            toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
- 	      	}else if(xhr.responseText[0] == 03){
- 	        
- 	      		toastr.error("Error : Save Basic Info first, then upload Images...", '', {timeOut: 3000});
+        }else if(xhr.responseText[0] == 02){
+            
+            toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
- 	      	}else{
+        }else if(xhr.responseText[0] == 03){
+        
+            toastr.error("Error : Save Basic Info first, then upload Images...", '', {timeOut: 3000});
 
- 		  		toastr.success("Video Upload Successfully", '', {timeOut: 3000});
- 		  		$scope.$apply(function () {
+        }else{
 
- 		  			$scope.video.ID = xhr.responseText[1];
- 		  			$scope.video.V_4 = xhr.responseText[2];
-                    location.reload();
+            toastr.success("Video Upload Successfully", '', {timeOut: 3000});
+            $scope.$apply(function () {
 
- 		  		});
- 		  		
- 	      	}
- 	   	}
- 	});
+                $scope.video.ID = xhr.responseText[1];
+                $scope.video.V_4 = xhr.responseText[2];
+                location.reload();
+
+            });
+            
+        }
+    }
+    });
 
 
      $('#uploadattch4').fileupload({
@@ -1043,11 +1237,11 @@ $('#uploadattch2').fileupload({
               }else{
 
                   toastr.success("Image Upload Successfully", '', {timeOut: 3000});
-                  
+
                   $scope.$apply(function () {
 
                       $scope.uses.ID = xhr.responseText[1];
-                      $scope.uses.U_3 = xhr.responseText[2];
+                       $scope.uses.U_3 = xhr.responseText[2];
 
                   });
                   
@@ -1055,10 +1249,179 @@ $('#uploadattch2').fileupload({
            }
     });
 
+    $('#uploadattch5').fileupload({
+		
+        add: function (e, data) {
+            
+            if($scope.QuickProduct.PRODUCT_ID == ""){
+                
+                toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
+                return false;
+            
+            }else{
+                $.LoadingOverlay("show"); 
+                var jqXHR = data.submit();
+            }
+        },
+        beforeSend: function() {
+
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+
+        },
+        success: function() {
+
+        },
+        complete: function(xhr) {
+
+            setTimeout(function(){
+               $.LoadingOverlay("hide");
+           }, 500);
+            
+            xhr.responseText = jQuery.parseJSON(xhr.responseText);
+              
+            if(xhr.responseText[0] == 01){
+                
+                  toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
+
+              }else if(xhr.responseText[0] == 02){
+                
+                  toastr.error("Error : Unable To upload", '', {timeOut: 3000});
+
+              }else if(xhr.responseText[0] == 03){
+            
+                  toastr.error("Error : Save Basic Info first, then upload Images...", '', {timeOut: 3000});
+
+              }else if(xhr.responseText[0] == 04){
+            
+                  toastr.error("Error : Image dimensions must be 270 X 370", '', {timeOut: 3000});
+
+              }else{
+
+                  toastr.success("Image Upload Successfully", '', {timeOut: 3000});
+                
+                //   var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
+                //                '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
+                //                '<div class="overlay">'+
+                //                    '<div class="text">'+
+                //                        '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteClinicalNoteImage('+xhr.responseText[1]+')" title="Delete Image">'+
+                //                        '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimaryClinicalNoteImage('+xhr.responseText[1]+')" title="Mark Primary">'+	
+                //                        '<div class="arrow-icon-move-box">'+
+                //                            '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
+                //                            '<p>Move Position</p>'+
+                //                        '</div>'+
+                //                    '</div>'+
+                //                '</div>'+
+                //            '</div>';
+                  
+                //   $("#cn_att").append($compile(angular.element(html))($scope));
+                $scope.$apply(function () {
+
+                    $scope.QuickProduct.P_20 = xhr.responseText[2];
+
+                });
+
+              }
+           }
+    });
+
+//atif
+    $scope.showAllProductsOfCategory= function () {
+
+        var data = {};
+        data.categoryid =  $scope.QuickProduct.P_31.id ;
+
+        var temp = $.param({details: data});
+
+        $http({
+            data: temp+"&"+$scope.tokenHash,
+            url : site+"/getAllProductsOfCategory",
+            method: "POST",
+            async: false,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+        }).success(function(data, status, headers, config) {
+                
+            // $scope.QuickProduct.P_46 = $scope.allProductsOfParticularCategory
+            $scope.recommended=data.product;
+
+            setTimeout(function(){
+                // $("#p46").val($scope.product.P_46).trigger('change');
+                // $("#p47").val($scope.product.P_47).trigger('change');
+
+            }, 500);
+
+        })
+        .error(function(data, status, headers, config) {
+        });
+        
+    };
+
+    $scope.addJusOFlowModal = function () {
+        $scope.showAllProductsOfCategory();
+        $("#addJusOFlowModal").modal('show');
+    }
+
+    $scope.closeJusOFlowModal = function () {
+        $("#addJusOFlowModal").modal('hide');
+    }
+
+    $scope.addDailyHandPickedModal = function () {
+        console.log("sdfsdf");
+        // $scope.showAllProductsOfCategory();
+        $("#addDailyHandPickedModal").modal('show');
+    }
+
+    $scope.closeDailyHandPickedModal = function () {
+        $("#addDailyHandPickedModal").modal('hide');
+    }
 
 
+    $scope.getSubCategoriesWrtCategory = function(){
+		
+		if($scope.QuickProduct.P_31 != null){
+			var data = {};
+		    data.category = $scope.QuickProduct.P_31;
+            data.productId = $scope.QuickProduct.PRODUCT_ID;
+		    data.userId = userId;            
+		    
+	    	var temp = $.param({details: data});
+		   
+			$scope.recommended={};
+			// $scope.handpickedlov={};
+	    	
+			$http({
+				data: temp+"&"+$scope.tokenHash,
+				url : site+"/UpdateCategories",
+				method: "POST",
+				async: false,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+			}).success(function(data, status, headers, config) {
+
+                console.log(data);
+					
+				// $scope.subCategoryLov = data.subCategory;
+	        	
+				$scope.recommended=data.product;
+
+				setTimeout(function(){
+					$("#p46").val($scope.product.P_46).trigger('change');
+					$("#p47").val($scope.product.P_47).trigger('change');
+
+				}, 500);
 
 
+				// $('#p46').val($scope.handpickedlo['id']).trigger('change');
+				// $('#p47').val($scope.recommended['id']).trigger('change');
+				
+			})
+			.error(function(data, status, headers, config) {
+			});
+		}else{
+			$scope.subCategoryLov = {};
+		}
+	}
 
 
 
