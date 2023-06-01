@@ -26,7 +26,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.QuickProduct.P_20 = "";
     $scope.QuickProduct.P_31 = "";
     $scope.QuickProduct.P_31.id = "";
+    
     $scope.QuickProduct.P_46 = "";
+    $scope.QuickProduct.P_46.id = "";
     $scope.QuickProduct.P_55 = '';
     $scope.QuickProduct.P_56 = '';
 
@@ -64,6 +66,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.shade.ID = "";
     $scope.shade.S_1 = "";
     $scope.shade.S_2 = "";
+    $scope.shade.S_3 = "";
 
     $scope.getQuickAddAdminProduct = function () {
         var data = {};
@@ -87,6 +90,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             $scope.QuickProduct = data.productDetails;
             $scope.shadesLov = data.list2;
             $scope.video = data.videoPro;
+            var recommandedProducts = data.recommandedProducts;
             var displayCollectionProdUses = data.productuses;
             $scope.categoryLov = data.list1;
 
@@ -137,6 +141,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 }	
                 $(".features_slider").html(html);
             }
+        
             if ($('.features_slider').hasClass('slick-initialized')) {
 				    $('.features_slider').slick('destroy');
 				}   
@@ -174,6 +179,85 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 					});
 				$.LoadingOverlay("hide");
 			}, 500);
+
+                var getSelectedShades = data.shades;
+
+                var htmlshade = '';
+                if ($('.shades_slider').hasClass('slick-initialized')) {
+                    $('.shades_slider').slick('destroy');
+                } 
+                $(".shades_slider").html('');
+                
+                if(getSelectedShades != null && getSelectedShades != ''){
+                    for (let i = 0; i < getSelectedShades.length; i++) {
+    
+                        htmlshade += `<div class="box px-1">
+                                <div class="ag-courses_item">
+                                <span class="shade-edit-icon cursor-pointer" ng-click="editProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
+                                <span class="shade-close-icon cursor-pointer" ng-click="deleteProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                    <a href="#!" class="ag-courses-item_link">
+                                        <div class="ag-courses-item_bg"></div>
+    
+                                        <div class="ag-courses-item_title">
+                                            <li class="product-hero__icons__item d-flex aic">
+                                                <div class="product-hero__icons__image relative">
+                                                    <div class="img fit-contain is-loaded pos-center">
+    
+                                                        <div class="skeleton"></div>
+                                                        <img width="70" height="70"
+                                                            src="`+getSelectedShades[i]['SHADE_IMAGE']+`"
+                                                            srcset="`+getSelectedShades[i]['SHADE_IMAGE']+`"
+                                                            alt="Clean" title="Clean" data-fit="contain"
+                                                            class="img__el">
+                                                    </div>
+                                                </div>
+                                                <span class="product-hero__icons__text">`+getSelectedShades[i]['SHADE_NAME']+`</span>
+                                            </li>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>`;
+                            
+                    }	
+                    $(".shades_slider").html($compile(angular.element(htmlshade))($scope));
+                }
+                if ($('.shades_slider').hasClass('slick-initialized')) {
+                        $('.shades_slider').slick('destroy');
+                    }   
+                setTimeout(function(){
+                    $('.shades_slider').slick({
+                        slidesToShow: 4,
+                        autoplaySpeed: 1500,
+                        "infinite":true,
+                        "autoplay":true,
+                        "dots":false,
+                        "arrows":false,
+                        prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                        nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                        "responsive":[
+                                    
+                                    {"breakpoint": 1400,
+                                        "settings": {"slidesToShow": 6}},
+    
+                                    {"breakpoint": 1366,
+                                    "settings": {"slidesToShow": 4}},
+    
+                                    {"breakpoint": 1200,
+                                        "settings": {"slidesToShow": 4}},
+    
+                                    {"breakpoint": 992,
+                                        "settings": {"slidesToShow": 2}},
+    
+                                    {"breakpoint": 768,
+                                        "settings": {"slidesToShow": 1}},
+    
+                                    {"breakpoint": 576,
+                                        "settings": {"slidesToShow": 1}}
+                                    ]
+                        
+                        });
+                    $.LoadingOverlay("hide");
+                }, 500);
            
             // console.log($scope.QuickProduct, 'asd');
             setTimeout(function () {
@@ -273,12 +357,335 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 }
                
                 $('#steps_users').html($compile(angular.element(html2))($scope));
+
+               var rechtml = '';
+
+                if(recommandedProducts != null && recommandedProducts != ''){
+                    for (let i = 0; i < recommandedProducts.length; i++) {
+    
+                        rechtml += `<div class="box px-1">
+                                <div class="card border-0 product px-2">
+                                <div class="position-relative">
+                                        <a href="javascript:;" class="d-block overflow-hidden ">
+                                            <img src="`+recommandedProducts[i]['primaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
+                                            <img src="`+recommandedProducts[i]['secondaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
+                                        </a>
+                                </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                        <ul class="list-inline fs-12 d-flex mb-1">
+                                            <li class="list-inline-item text-primary mr-0">
+                                                <i class="fas fa-star"
+                                                    style="`+recommandedProducts[i]['averageRating']+` >= '1' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                            </li>
+                                            <li class="list-inline-item text-primary mr-0">
+                                                <i class="fas fa-star"
+                                                    style="`+recommandedProducts[i]['averageRating']+` >= '2' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                            </li>
+                                            <li class="list-inline-item text-primary mr-0">
+                                                <i class="fas fa-star"
+                                                    style="`+recommandedProducts[i]['averageRating']+` >= '3' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                            </li>
+                                            <li class="list-inline-item text-primary mr-0">
+                                                <i class="fas fa-star"
+                                                    style="`+recommandedProducts[i]['averageRating']+` >= '4' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                            </li>
+                                            <li class="list-inline-item text-primary mr-0">
+                                                <i class="fas fa-star"
+                                                    style="`+recommandedProducts[i]['averageRating']+` == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                            </li>
+                                        </ul>
+                                        <div class="d-flex align-items-center mb-2 productdetail"
+                                            data-id="`+recommandedProducts[i]['PRODUCT_ID']+`">
+                                            <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
+                                                <a href="javascript:;">`+recommandedProducts[i]['NAME']+`</a>
+                                            </h3>
+                                            <p class="fs-15 text-primary mb-0 ml-auto">
+                                                <span
+                                                    class="text-line-through text-body mr-1"></span>$`+recommandedProducts[i]['UNIT_PRICE']+`
+                                            </p>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                            </div>`;
+                            
+                    }	
+                    $(".completeYourGlow_slider").html(rechtml);
+                }
+                if ($('.completeYourGlow_slider').hasClass('slick-initialized')) {
+                    $('.completeYourGlow_slider').slick('destroy');
+                }   
+            setTimeout(function(){
+                $('.completeYourGlow_slider').slick({
+                    slidesToShow: 4,
+                    autoplaySpeed: 1500,
+                    "infinite":true,
+                    "autoplay":true,
+                    "dots":false,
+                    "arrows":false,
+                    prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                    nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                    "responsive":[
+                                
+                                {"breakpoint": 1400,
+                                    "settings": {"slidesToShow": 6}},
+
+                                {"breakpoint": 1366,
+                                "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 1200,
+                                    "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 992,
+                                    "settings": {"slidesToShow": 2}},
+
+                                {"breakpoint": 768,
+                                    "settings": {"slidesToShow": 1}},
+
+                                {"breakpoint": 576,
+                                    "settings": {"slidesToShow": 1}}
+                                ]
+                    
+                    });
+                $.LoadingOverlay("hide");
+            }, 500);
         })
             .error(function (data, status, headers, config) {
             });
     }
 
-   
+    $scope.editProductShade = function(id){
+		
+		var data = {};
+	    data.shadeId = id;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/editProductShade",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			if(data.details != '' && data.details != null){
+				
+				$scope.shade = data.details;
+				$("#shadesModal").modal('show');
+				setTimeout(function(){
+					$("#s1").val($scope.shade.S_1).trigger('change');
+					
+				}, 500);
+			}
+			
+			$scope.makeProductShadeImageHtml(data.images);
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+    $scope.makeProductShadeImageHtml = function(images){
+		
+		$("#pss_att").html('');
+		
+		if(images != '' && images != null){
+			
+			for(var i=0; i<images.length; i++){
+				
+				var html = '<div class="col-3 image-overlay margin-r1" id="img_file_'+images[i]["ID"]+'">'+
+								'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+
+								'<div class="overlay">'+
+									'<div class="text" title="'+images[i]['titleText']+'">'+
+										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductShadeImage('+images[i]["ID"]+')" title="Delete Image">';
+										
+										
+									html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdShadeImage('+images[i]["ID"]+')" title="Mark Image">';	
+										
+										
+									html += '<div class="arrow-icon-move-box">'+
+											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
+											'<p>Move Position</p>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>';
+					
+					$("#pss_att").append($compile(angular.element(html))($scope));
+			}
+		}
+	}
+
+    $scope.deleteProductShadeImage = function(id){
+		
+		var data = {};
+		data.imageId = id;
+	    data.productId = $scope.QuickProduct.PRODUCT_ID;
+	    data.productShadeId = $scope.shade.ID;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/deleteProductShadeImage",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			toastr.success(data.msg, '', {timeOut: 3000})
+			
+			$scope.makeProductShadeImageHtml(data.images);
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+    $scope.tempId = '';
+	$scope.markProdShadeImage = function(id){
+		$scope.tempId = id;
+		$("#shadesModal").modal('hide');
+		$("#confirmProdShadeModal").modal('show');
+	}
+    $scope.markProductShadeImageFlag = function(flag){
+		
+		var data = {};
+		data.flag = flag;
+	    data.imageId = $scope.tempId;
+	    data.productId = $scope.QuickProduct.PRODUCT_ID;
+	    data.shadeId = $scope.shade.ID;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/markProductShadeImage",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			toastr.success(data.msg, '', {timeOut: 3000})
+			
+			$("#shadesModal").modal('show');
+			$("#confirmProdShadeModal").modal('hide');
+			
+			$scope.makeProductShadeImageHtml(data.images);
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+    $scope.deleteProductShade = function(id){
+		
+		var data = {};
+	    data.productId = $scope.QuickProduct.PRODUCT_ID;
+	    data.productShadeId = id;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/deleteProductShade",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			toastr.success(data.msg, '', {timeOut: 3000})
+			
+            var getSelectedShades = data.shades;
+
+            var htmlshade = '';
+            if ($('.shades_slider').hasClass('slick-initialized')) {
+                $('.shades_slider').slick('destroy');
+            } 
+            $(".shades_slider").html('');
+            
+            if(getSelectedShades != null && getSelectedShades != ''){
+                for (let i = 0; i < getSelectedShades.length; i++) {
+
+                    htmlshade += `<div class="box px-1">
+                            <div class="ag-courses_item">
+                            <span class="shade-edit-icon cursor-pointer" ng-click="editProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
+                            <span class="shade-close-icon cursor-pointer" ng-click="deleteProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                <a href="#!" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        <li class="product-hero__icons__item d-flex aic">
+                                            <div class="product-hero__icons__image relative">
+                                                <div class="img fit-contain is-loaded pos-center">
+
+                                                    <div class="skeleton"></div>
+                                                    <img width="70" height="70"
+                                                        src="`+getSelectedShades[i]['SHADE_IMAGE']+`"
+                                                        srcset="`+getSelectedShades[i]['SHADE_IMAGE']+`"
+                                                        alt="Clean" title="Clean" data-fit="contain"
+                                                        class="img__el">
+                                                </div>
+                                            </div>
+                                            <span class="product-hero__icons__text">`+getSelectedShades[i]['SHADE_NAME']+`</span>
+                                        </li>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>`;
+                        
+                }	
+                $(".shades_slider").html($compile(angular.element(htmlshade))($scope));
+            }
+            if ($('.shades_slider').hasClass('slick-initialized')) {
+                    $('.shades_slider').slick('destroy');
+                }   
+            setTimeout(function(){
+                $('.shades_slider').slick({
+                    slidesToShow: 4,
+                    autoplaySpeed: 1500,
+                    "infinite":true,
+                    "autoplay":true,
+                    "dots":false,
+                    "arrows":false,
+                    prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                    nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                    "responsive":[
+                                
+                                {"breakpoint": 1400,
+                                    "settings": {"slidesToShow": 6}},
+
+                                {"breakpoint": 1366,
+                                "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 1200,
+                                    "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 992,
+                                    "settings": {"slidesToShow": 2}},
+
+                                {"breakpoint": 768,
+                                    "settings": {"slidesToShow": 1}},
+
+                                {"breakpoint": 576,
+                                    "settings": {"slidesToShow": 1}}
+                                ]
+                    
+                    });
+                $.LoadingOverlay("hide");
+            }, 500);
+			
+			
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
 
     $scope.getQuickAddAdminProduct();
     $scope.editBasicInfo = function () {
@@ -470,6 +877,133 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         $("#shadesModal").modal('show');
     }
 
+    $scope.saveProductShade = function(){
+		
+		if($scope.QuickProduct.PRODUCT_ID == ''){
+			toastr.error("Save Product Info first, then proceed...", '', {timeOut: 3000})
+			return;
+		}
+		
+		var data = {};
+	    data.product = $scope.QuickProduct.PRODUCT_ID;
+	    data.shade = $scope.shade;
+	    data.userId = userId;
+	    
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash, 
+			url : site+"/saveAdminQuickProductShade",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			if(data.done == true || data.done == 'true'){
+				
+				toastr.success(data.msg, '', {timeOut: 3000})
+				var getSelectedShades = data.shades;
+
+				$scope.shade.ID = data.ID;
+				
+
+                var html = '';
+                if ($('.shades_slider').hasClass('slick-initialized')) {
+                    $('.shades_slider').slick('destroy');
+                } 
+                $(".shades_slider").html('').trigger('change');
+                
+                if(getSelectedShades != null && getSelectedShades != ''){
+                    for (let i = 0; i < getSelectedShades.length; i++) {
+    
+                        html += `<div class="box px-1">
+                                <div class="ag-courses_item">
+                                <span class="shade-edit-icon cursor-pointer" ng-click="editProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
+                                <span class="shade-close-icon cursor-pointer" ng-click="deleteProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                    <a href="#!" class="ag-courses-item_link">
+                                        <div class="ag-courses-item_bg"></div>
+    
+                                        <div class="ag-courses-item_title">
+                                            <li class="product-hero__icons__item d-flex aic">
+                                                <div class="product-hero__icons__image relative">
+                                                    <div class="img fit-contain is-loaded pos-center">
+    
+                                                        <div class="skeleton"></div>
+                                                        <img width="70" height="70"
+                                                            src="`+getSelectedShades[i]['SHADE_IMAGE']+`"
+                                                            srcset="`+getSelectedShades[i]['SHADE_IMAGE']+`"
+                                                            alt="Clean" title="Clean" data-fit="contain"
+                                                            class="img__el">
+                                                    </div>
+                                                </div>
+                                                <span class="product-hero__icons__text">`+getSelectedShades[i]['SHADE_NAME']+`</span>
+                                            </li>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>`;
+                            
+                    }	
+                    $(".shades_slider").html($compile(angular.element(html))($scope));
+                }
+                // if ($('.shades_slider').hasClass('slick-initialized')) {
+                //         $('.shades_slider').slick('destroy');
+                //     }   
+                setTimeout(function(){
+                    $('.shades_slider').slick({
+                        slidesToShow: 4,
+                        autoplaySpeed: 1500,
+                        "infinite":false,
+                        "autoplay":true,
+                        "dots":false,
+                        "arrows":false,
+                        prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                        nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                        "responsive":[
+                                    
+                                    {"breakpoint": 1400,
+                                        "settings": {"slidesToShow": 6}},
+    
+                                    {"breakpoint": 1366,
+                                    "settings": {"slidesToShow": 4}},
+    
+                                    {"breakpoint": 1200,
+                                        "settings": {"slidesToShow": 4}},
+    
+                                    {"breakpoint": 992,
+                                        "settings": {"slidesToShow": 2}},
+    
+                                    {"breakpoint": 768,
+                                        "settings": {"slidesToShow": 1}},
+    
+                                    {"breakpoint": 576,
+                                        "settings": {"slidesToShow": 1}}
+                                    ]
+                        
+                        });
+                    $.LoadingOverlay("hide");
+                }, 500);
+                
+                // $("#shadesModal").modal('hide');
+				// if ($.fn.DataTable.isDataTable("#productShadesTable")) {
+				// 	$('#productShadesTable').DataTable().clear().destroy();
+				// }
+				
+				// $scope.displayCollectionProdShades = data.shades;
+			
+				// setTimeout(function(){
+				// 	$("#productShadesTable").DataTable();
+				// }, 500);
+				
+			}else{
+				toastr.error(data.msg, '', {timeOut: 3000})
+			}
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
     $scope.getIngredientsWrtCategory = function(id){
 		
 		
@@ -498,7 +1032,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     $scope.saveProductIngredient = function(){
 		
-		// if($scope.product.ID == ''){
+		// if($scope.QuickProduct.PRODUCT_ID == ''){
 		// 	toastr.error("Save Product Info first, then proceed...", '', {timeOut: 3000})
 		// 	return;
 		// }
@@ -1043,7 +1577,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		
         add: function (e, data) {
             
-            // if($scope.product.ID == ""){
+            // if($scope.QuickProduct.PRODUCT_ID == ""){
                 
             //     toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
             //     return false;
@@ -1127,7 +1661,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     add: function (e, data) {
         
-        // if($scope.product.ID == ""){
+        // if($scope.QuickProduct.PRODUCT_ID == ""){
             
         // 	toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
         // 	return false;
@@ -1181,7 +1715,77 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     }
     });
 
+    $('#uploadattch3').fileupload({
+		
+        add: function (e, data) {
+            
+            if($scope.QuickProduct.PRODUCT_ID == ""){
+                
+                toastr.error('Save Product Basic Info first, then upload Images...', '', {timeOut: 3000})
+                return false;
+            
+            }else if($scope.shade.ID == ""){
+                
+                toastr.error('Save Shade Info first, then upload Images...', '', {timeOut: 3000})
+                return false;
+            
+            }else{
+                $.LoadingOverlay("show"); 
+                var jqXHR = data.submit();
+            }
+        },
+        beforeSend: function() {
 
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+
+        },
+        success: function() {
+
+        },
+        complete: function(xhr) {
+
+            setTimeout(function(){
+               $.LoadingOverlay("hide");
+           }, 500);
+            
+            xhr.responseText = jQuery.parseJSON(xhr.responseText);
+              
+            if(xhr.responseText[0] == 01){
+                
+                  toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
+
+              }else if(xhr.responseText[0] == 02){
+                
+                  toastr.error("Error : Unable To upload", '', {timeOut: 3000});
+
+              }else if(xhr.responseText[0] == 03){
+            
+                  toastr.error("Error : Save Shade Info first, then upload Images...", '', {timeOut: 3000});
+
+              }else if(xhr.responseText[0] == 04){
+            
+                  toastr.error("Error : Image dimension must be minimum 270 X 370", '', {timeOut: 3000});
+
+              }else{
+
+                  toastr.success("Image Upload Successfully", '', {timeOut: 3000});
+                  
+                  var html = '<div class="col-3 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
+                               '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
+                           '</div>';
+                   
+                   $("#pss_att").append($compile(angular.element(html))($scope));
+                    location.reload();
+                //    $scope.$apply(function () {
+
+                //     $scope.shade.ID = xhr.responseText[1];
+                //     $scope.shade.S_3 = xhr.responseText[2];
+
+                // });
+              }
+           }
+    });
      $('#uploadattch4').fileupload({
 		
         add: function (e, data) {
@@ -1330,6 +1934,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
         var data = {};
         data.categoryid =  $scope.QuickProduct.P_31.id ;
+        data.productId =  $scope.QuickProduct.PRODUCT_ID ;
 
         var temp = $.param({details: data});
 
@@ -1341,15 +1946,15 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
         }).success(function(data, status, headers, config) {
-                
-            // $scope.QuickProduct.P_46 = $scope.allProductsOfParticularCategory
-            $scope.recommended=data.product;
-
+                console.log(data.selectRecomended_lov);
+                $scope.recommended = data.product;
+                $scope.QuickProduct.P_46 = data.selectRecomended_lov;
             setTimeout(function(){
-                // $("#p46").val($scope.product.P_46).trigger('change');
-                // $("#p47").val($scope.product.P_47).trigger('change');
+                $("#p46").val($scope.QuickProduct.P_46).trigger('change');
+               
 
             }, 500);
+            // $scope.QuickProduct.P_46.id =data.selectRecomended_lov;
 
         })
         .error(function(data, status, headers, config) {
@@ -1405,11 +2010,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 	        	
 				$scope.recommended=data.product;
 
-				setTimeout(function(){
-					$("#p46").val($scope.product.P_46).trigger('change');
-					$("#p47").val($scope.product.P_47).trigger('change');
+				// setTimeout(function(){
+				// 	$("#p46").val($scope.product.P_46).trigger('change');
+				// 	$("#p47").val($scope.product.P_47).trigger('change');
 
-				}, 500);
+				// }, 500);
 
 
 				// $('#p46').val($scope.handpickedlo['id']).trigger('change');
@@ -1423,6 +2028,78 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		}
 	}
 
+    $scope.saveJusOFlowProduct = function(){
+
+        // if ($('#basicInfo_description').summernote('isEmpty')) {
+        //     $scope.product.P_13 = '';
+        // }else{
+        //     $scope.product.P_13 = $('#basicInfo_description').summernote('code');
+        // }
+        
+        var data = {};
+        data.recomended = $scope.QuickProduct.P_46;
+        data.productId = $scope.QuickProduct.PRODUCT_ID;
+        data.userId = userId;
+        
+        var temp = $.param({details: data});
+        
+        $http({
+            data: temp+"&"+$scope.tokenHash, 
+            url : site+"/saveAdminProductsaveJusOFlow",
+            method: "POST",
+            async: false,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+        }).success(function(data, status, headers, config) {
+                
+            if(data.done == true || data.done == 'true'){
+                
+                toastr.success(data.msg, '', {timeOut: 3000})
+                $scope.product.ID = data.ID;
+                
+            }else{
+                toastr.error(data.msg, '', {timeOut: 3000})
+            }
+        })
+        .error(function(data, status, headers, config) {
+        });
+    }
+    $scope.saveDailyhandPickProduct = function(){
+
+        // if ($('#basicInfo_description').summernote('isEmpty')) {
+        //     $scope.product.P_13 = '';
+        // }else{
+        //     $scope.product.P_13 = $('#basicInfo_description').summernote('code');
+        // }
+        
+        var data = {};
+        data.recomended = $scope.QuickProduct.P_46;
+        data.productId = $scope.QuickProduct.PRODUCT_ID;
+        data.userId = userId;
+        
+        var temp = $.param({details: data});
+        
+        $http({
+            data: temp+"&"+$scope.tokenHash, 
+            url : site+"/saveAdminProductsaveJusOFlow",
+            method: "POST",
+            async: false,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+        }).success(function(data, status, headers, config) {
+                
+            if(data.done == true || data.done == 'true'){
+                
+                toastr.success(data.msg, '', {timeOut: 3000})
+                $scope.product.ID = data.ID;
+                
+            }else{
+                toastr.error(data.msg, '', {timeOut: 3000})
+            }
+        })
+        .error(function(data, status, headers, config) {
+        });
+    }
 
 
 

@@ -1752,13 +1752,13 @@
                                                         class="icon fal fa-star wish_<?= $recommand['PRODUCT_ID'] ?> <?= $recommand['wishlistFlag'] == '1' ? 'activeWish' : '' ?>"></i>
                                                 </a>
                                                 <!-- <a href="#" data-toggle="tooltip" data-placement="left"
-               title="Quick view"
-               class="preview d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle">
-               <span data-toggle="modal"
-               data-target="#product-recommendations-1"> <i
-                class="fal fa-eye"></i>
-              </span>
-              </a> -->
+                                title="Quick view"
+                                class="preview d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle">
+                                <span data-toggle="modal"
+                                data-target="#product-recommendations-1"> <i
+                                    class="fal fa-eye"></i>
+                                </span>
+                                </a> -->
                                             </div>
                                         </div>
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">

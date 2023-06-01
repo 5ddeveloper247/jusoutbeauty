@@ -1240,7 +1240,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<p>270 X 370</p>
 									</div>
 									<div class="col-sm-12">
-										<div class="row" id="ps_att">
+										<div class="row" id="pss_att">
 											
 										</div>
 									</div>

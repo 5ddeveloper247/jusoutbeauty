@@ -26,6 +26,8 @@ class ProductShadeModel extends Model
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['SHADE_ID'] = $row->SHADE_ID;
     		$arrRes[$i]['SHADE_NAME'] = $row->shadeName;
+			$shadeImage = $this->shadeImageWrtProductId($row->PRODUCT_SHADE_ID);
+    		$arrRes[$i]['SHADE_IMAGE'] = isset($shadeImage['DOWN_PATH']) != null ? $shadeImage['DOWN_PATH'] : url('assets-web')."/images/product_placeholder.png";
     		
     		$arrRes[$i]['DATE'] = $row->DATE;
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
@@ -38,6 +40,18 @@ class ProductShadeModel extends Model
     
     	return isset($arrRes) ? $arrRes : null;
     }
+
+	public function shadeImageWrtProductId($shade_id){
+
+		$result = DB::table('jb_product_shade_images_tbl as a')->select('a.DOWN_PATH')
+    	->where('a.PRODUCT_SHADE_ID', $shade_id)
+    	->where('a.PRIMARY_FLAG', 1)
+    	->first();
+
+		$arrRes['DOWN_PATH'] = isset($result->DOWN_PATH) != null ? $result->DOWN_PATH: url('assets-web')."/images/product_placeholder.png";
+		return isset($arrRes) ? $arrRes : null;
+
+	}
     
     public function getSpecificProductShade($id){
     

@@ -46,6 +46,127 @@ use App\Models\OrderShippingTrackingModel;
 class AdminController extends Controller
 {
 
+	public function saveAdminProductsaveJusOFlow(Request $request){
+
+		$details = $_REQUEST ['details'];
+		$productId = $details ['productId'];
+		$recomendedArray = $details ['recomended'];
+		$userId = $details ['userId'];
+
+		DB::table ('jb_product_recommend_tbl' )->where('PRODUCT_ID',$productId)->delete();
+
+		foreach ($recomendedArray as $recomended) {
+			DB::table ('jb_product_recommend_tbl' )->insertGetId (
+				array ( 'USER_ID' => $userId,
+						'RECOMEDEDPRODUCT_ID' => $recomended['id'],
+						'PRODUCT_ID' => $productId,
+						'DATE' => date ( 'Y-m-d H:i:s' ),
+						'CREATED_BY' => $userId,
+						'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+						'UPDATED_BY' => $userId,
+						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
+		}
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Complete your JusOGlow Updated Successfully';
+		echo json_encode ( $arrRes );
+	}
+
+	public function saveAdminQuickProductShade(Request $request) {
+		$ProductShade = new ProductShadeModel();
+	
+		$details = $_REQUEST ['details'];
+		$data = $details ['shade'];
+		$prod = $details ['product'];
+		$userId = $details ['userId'];
+	// dd($details);
+		$arrRes = array ();
+		$arrRes ['done'] = false;
+		$arrRes ['msg'] = '';
+		$currentDate = date('Y-m-d');
+	
+		if (isset ( $data ) && ! empty ( $data )) {
+	
+			if (!isset($data['S_1']['id'])) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Choose Shade first.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			
+			if($data['S_2'] == ''){
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Inv. Quantity is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			if($data['S_2'] <= 0){
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Inv. Quantity must be greater then Zero.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			
+			
+			
+			if ($data ['ID'] == '') {
+				
+				$existCheck = $ProductShade->checkShadeExistCheckWrtProductId(isset($data['S_1']['id']) ? $data['S_1']['id'] : '',$prod);
+				
+				if ($existCheck == true) {
+					$arrRes ['done'] = false;
+					$arrRes ['msg'] = 'Shade already added in product.';
+					echo json_encode ( $arrRes );
+					die ();
+				}
+				
+				$result = DB::table ( 'jb_product_shades_tbl' )->insertGetId (
+						array ( 'PRODUCT_ID' => $prod,
+								'SHADE_ID' => isset($data['S_1']['id']) ? $data['S_1']['id'] : '',
+								'QUANTITY' => isset($data['S_2']) ? $data['S_2'] : '',
+								'DATE' => date ( 'Y-m-d H:i:s' ),
+								'CREATED_BY' => $userId,
+								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+								'UPDATED_BY' => $userId,
+								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+						)
+					);
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Shade Added Successfully';
+				$arrRes ['ID'] = $result;
+				$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($prod);
+				echo json_encode ( $arrRes );
+				die ();
+				
+			} else {
+	
+				$existCheck = $ProductShade->checkShadeExistCheckWrtProductId(isset($data['S_1']['id']) ? $data['S_1']['id'] : '',$prod,$data ['ID']);
+				
+				if ($existCheck == true) {
+					$arrRes ['done'] = false;
+					$arrRes ['msg'] = 'Shade already added in product.';
+					echo json_encode ( $arrRes );
+					die ();
+				}
+				
+				$result = DB::table ( 'jb_product_shades_tbl' ) ->where ( 'PRODUCT_SHADE_ID', $data ['ID'] ) ->update (
+						array ( 'SHADE_ID' => isset($data['S_1']['id']) ? $data['S_1']['id'] : '',
+								'QUANTITY' => isset($data['S_2']) ? $data['S_2'] : '',
+								
+								'UPDATED_BY' => $userId,
+								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+						)
+						);
+	
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Shade Updated Successfully';
+				$arrRes ['ID'] = $data ['ID'];
+				$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($prod);
+				echo json_encode ( $arrRes );
+				die ();
+			}
+		}
+	}
+
 	public function updateCategory(Request $request){
 		$result = $_REQUEST['details'];
 		// $id = $result['userID'];
@@ -63,13 +184,11 @@ class AdminController extends Controller
 
 	public function getAllProductsOfCategory(){
 
-		$Category = new CategoryModel();
-		$Product= new ProductModel();
-   
 		$details = $_REQUEST ['details'];
 		$category = $details ['categoryid'];
-
-	   $product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category)->orderby('PRODUCT_ID', 'desc')
+		$productId = $details ['productId'];
+		$ProductModel = new ProductModel();
+	  	 $product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category)->orderby('PRODUCT_ID', 'desc')
 	   ->where('STATUS','active')->get();
 		
 	   if(count($product_lov) > 0){
@@ -81,6 +200,8 @@ class AdminController extends Controller
 		   
 		   $i++;
 	   }
+
+	   $arrRes['selectRecomended_lov'] =  $ProductModel->getRecomendedProductsWrtProductID($productId);
 	  
 	   echo json_encode ( $arrRes );
 
@@ -174,6 +295,8 @@ class AdminController extends Controller
 		$ProductUses = new ProductUsesModel();
 		$Shades = new ShadesModel();
 		$Category = new CategoryModel();
+		$ProductShade = new ProductShadeModel();
+		$recomended= new Recomended();
 
 		$arrRes ['list1'] = $Category->getCategoryLov();
 		$arrRes['features'] = $features->getactivefeaturesdata();
@@ -182,6 +305,9 @@ class AdminController extends Controller
 		$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($productID);
 		$arrRes ['list2'] = $Shades->getShadesLov();
 		// $arrRes['activeFeatures']= $ProductModel->getQuickfeaturesdata();
+		$arrRes ['recommandedProducts'] = $recomended->getrecomendedproducts($productID);
+		
+		$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($productID);
 		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
 		// $arrRes ['clinicalNote'] = $ProductModel->getAllProductClinicalNoteByProduct($productID);
 		// dd($arrRes['productDetails']);

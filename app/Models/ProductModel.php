@@ -13,7 +13,17 @@ use DateTime;
 class ProductModel extends Model
 {
     use HasFactory;
+	public function getRecomendedProductsWrtProductID($productId){
+		$result =DB::table('jb_product_recommend_tbl')->where('PRODUCT_ID',$productId)->get();
 
+            $i=0;
+             foreach($result as $s){
+                $arrRes[$i] = $s->RECOMEDEDPRODUCT_ID;
+                $i++;
+             }
+			 
+             return isset($arrRes) ? $arrRes : null;
+	}
 
     public function getAllProductClinicalNoteByProduct($productID){
 		$result = DB::table('jb_product_tbl as a')->select('a.CLINICAL_NOTE_DESCRIPTION','a.PRODUCT_ID','b.DOWN_PATH')

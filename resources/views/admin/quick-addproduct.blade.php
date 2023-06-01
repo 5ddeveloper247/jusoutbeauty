@@ -70,6 +70,20 @@
             top: 3px;
             color: white;
         }
+        .shade-close-icon{
+            position: absolute;
+            right: 28px;
+            top: 3px;
+            z-index: 3;
+        }
+
+        .shade-edit-icon{
+            position: absolute;
+            right: 45px;
+            top: 3px;
+            color: white;
+            z-index: 3;
+        }
         .gap-2{
             gap: 4px
         }
@@ -739,13 +753,8 @@
                 <div class="container container-custom container-xxl mt-8">
                     <h3 class="text-center my-4">Shades <i class="fas fa-plus-circle cursor-pointer"
                             ng-click="addShadesModal()"></i></h3>
-                    <div class="features_slider"
-                        data-slick-options='{"slidesToShow": 5,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":false,"responsive":[
-                        {"breakpoint": 1400,"settings": {"slidesToShow": 5}},
-                        {"breakpoint": 1200,"settings": {"slidesToShow": 3}},
-                        {"breakpoint": 992,"settings": {"slidesToShow": 2}},
-                        {"breakpoint": 768,"settings": {"slidesToShow": 1}},
-                        {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+                    <div class="shades_slider"
+                       >
 
                         <p class="text-center">No Shades Added...</p>
                     </div>
@@ -1714,610 +1723,11 @@
                     <div class="tab-content p-0 m-0 shadow-none" id="pills-tabContent">
                         <div class="tab-pane fade show active" style="margin-bottom: 20px" id="pills-recommendations"
                             role="tabpanel" aria-labelledby="pills-recommendations-tab">
-                            <div class="slick-slider "
-                                data-slick-options='{"slidesToShow": 4, "autoplay":false,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-
-
-
-                                <div class="box px-1" data-animate="fadeInUp">
-                                    <div class="card border-0 product px-2">
-                                        <div class="position-relative">
-                                            <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                                data-id="108">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/274.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/270.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 image-hover">
-                                            </a>
-                                            <div
-                                                class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-                                                <div></div>
-                                                <div class="content-change-vertical d-flex flex-column ml-auto">
-                                                    <a href="javascript:;" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to wish list"
-                                                        class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
-                                                        data-productId="108" data-type='single'>
-                                                        <i class="icon fal fa-star wish_108 "></i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                            <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                                <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
-                                                    data-type="single" data-id="108" data-quantity='1'>+ Quick
-                                                    Add</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pt-4 px-0 pb-0">
-                                            <ul class="list-inline fs-12 d-flex mb-1">
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="108">
-                                                <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                    <a href="javascript:;">Nail Polish</a>
-                                                </h3>
-                                                <p class="fs-15 text-primary mb-0 ml-auto">
-                                                    <span class="text-line-through text-body mr-1"></span>$3.00
-                                                </p>
-                                            </div>
-                                            <ul
-                                                class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            </ul>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="box px-1" data-animate="fadeInUp">
-                                    <div class="card border-0 product px-2">
-                                        <div class="position-relative">
-                                            <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                                data-id="111">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/297.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/295.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 image-hover">
-                                            </a>
-                                            <div
-                                                class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-                                                <div></div>
-                                                <div class="content-change-vertical d-flex flex-column ml-auto">
-                                                    <a href="javascript:;" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to wish list"
-                                                        class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
-                                                        data-productId="111" data-type='single'>
-                                                        <i class="icon fal fa-star wish_111 "></i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                            <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                                <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
-                                                    data-type="single" data-id="111" data-quantity='1'>+ Quick
-                                                    Add</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pt-4 px-0 pb-0">
-                                            <ul class="list-inline fs-12 d-flex mb-1">
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="111">
-                                                <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                    <a href="javascript:;">Mascara</a>
-                                                </h3>
-                                                <p class="fs-15 text-primary mb-0 ml-auto">
-                                                    <span class="text-line-through text-body mr-1"></span>$1,000.00
-                                                </p>
-                                            </div>
-                                            <ul
-                                                class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                                <li class="list-inline-item" title="Dark505">
-                                                    <a href="javascript:;" class="d-block swatches-item"
-                                                        style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/16.jpg'); background-repeat:no-repeat;background-position: center;">
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item" title="reord123">
-                                                    <a href="javascript:;" class="d-block swatches-item"
-                                                        style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/50.jpg'); background-repeat:no-repeat;background-position: center;">
-                                                    </a>
-                                                </li>
-                                            </ul>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="box px-1" data-animate="fadeInUp">
-                                    <div class="card border-0 product px-2">
-                                        <div class="position-relative">
-                                            <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                                data-id="119">
-                                                <img src="https://www.jusoutbeauty.com/site/public/uploads/product/images/319.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://www.jusoutbeauty.com/site/public/uploads/product/images/320.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 image-hover">
-                                            </a>
-                                            <div
-                                                class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-                                                <div></div>
-                                                <div class="content-change-vertical d-flex flex-column ml-auto">
-                                                    <a href="javascript:;" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to wish list"
-                                                        class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
-                                                        data-productId="119" data-type='single'>
-                                                        <i class="icon fal fa-star wish_119 "></i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                            <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                                <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
-                                                    data-type="single" data-id="119" data-quantity='1'>+ Quick
-                                                    Add</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pt-4 px-0 pb-0">
-                                            <ul class="list-inline fs-12 d-flex mb-1">
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="119">
-                                                <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                    <a href="javascript:;">Laborum id nesciunt</a>
-                                                </h3>
-                                                <p class="fs-15 text-primary mb-0 ml-auto">
-                                                    <span class="text-line-through text-body mr-1"></span>$83.00
-                                                </p>
-                                            </div>
-                                            <ul
-                                                class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            </ul>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="box px-1" data-animate="fadeInUp">
-                                    <div class="card border-0 product px-2">
-                                        <div class="position-relative">
-                                            <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                                data-id="120">
-                                                <img src="https://jusoutbeauty.com/site/assets-web/images/product_placeholder.png"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/assets-web/images/product_placeholder.png"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 image-hover">
-                                            </a>
-                                            <div
-                                                class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-                                                <div></div>
-                                                <div class="content-change-vertical d-flex flex-column ml-auto">
-                                                    <a href="javascript:;" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to wish list"
-                                                        class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
-                                                        data-productId="120" data-type='single'>
-                                                        <i class="icon fal fa-star wish_120 "></i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                            <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                                <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
-                                                    data-type="single" data-id="120" data-quantity='1'>+ Quick
-                                                    Add</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pt-4 px-0 pb-0">
-                                            <ul class="list-inline fs-12 d-flex mb-1">
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="120">
-                                                <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                    <a href="javascript:;">Eye Liner</a>
-                                                </h3>
-                                                <p class="fs-15 text-primary mb-0 ml-auto">
-                                                    <span class="text-line-through text-body mr-1"></span>$0.00
-                                                </p>
-                                            </div>
-                                            <ul
-                                                class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            </ul>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="box px-1" data-animate="fadeInUp">
-                                    <div class="card border-0 product px-2">
-                                        <div class="position-relative">
-                                            <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                                data-id="122">
-                                                <img src="https://jusoutbeauty.com/site/assets-web/images/product_placeholder.png"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/assets-web/images/product_placeholder.png"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 image-hover">
-                                            </a>
-                                            <div
-                                                class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-                                                <div></div>
-                                                <div class="content-change-vertical d-flex flex-column ml-auto">
-                                                    <a href="javascript:;" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to wish list"
-                                                        class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
-                                                        data-productId="122" data-type='single'>
-                                                        <i class="icon fal fa-star wish_122 "></i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                            <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                                <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
-                                                    data-type="single" data-id="122" data-quantity='1'>+ Quick
-                                                    Add</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pt-4 px-0 pb-0">
-                                            <ul class="list-inline fs-12 d-flex mb-1">
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="122">
-                                                <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                    <a href="javascript:;">Nude 10 Shade Matte Eyeshadow Palette</a>
-                                                </h3>
-                                                <p class="fs-15 text-primary mb-0 ml-auto">
-                                                    <span class="text-line-through text-body mr-1"></span>$12.99
-                                                </p>
-                                            </div>
-                                            <ul
-                                                class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            </ul>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="box px-1" data-animate="fadeInUp">
-                                    <div class="card border-0 product px-2">
-                                        <div class="position-relative">
-                                            <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                                data-id="121">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/321.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/322.jpg"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 image-hover">
-                                            </a>
-                                            <div
-                                                class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-                                                <div></div>
-                                                <div class="content-change-vertical d-flex flex-column ml-auto">
-                                                    <a href="javascript:;" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to wish list"
-                                                        class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
-                                                        data-productId="121" data-type='single'>
-                                                        <i class="icon fal fa-star wish_121 "></i>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                            <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                                <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
-                                                    data-type="single" data-id="121" data-quantity='1'>+ Quick
-                                                    Add</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pt-4 px-0 pb-0">
-                                            <ul class="list-inline fs-12 d-flex mb-1">
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                                <li class="list-inline-item text-primary mr-0">
-                                                    <i class="fas fa-star" style="color:gray;"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="121">
-                                                <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                    <a href="javascript:;">Whitening Cream</a>
-                                                </h3>
-                                                <p class="fs-15 text-primary mb-0 ml-auto">
-                                                    <span class="text-line-through text-body mr-1"></span>$300.00
-                                                </p>
-                                            </div>
-                                            <ul
-                                                class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                                <li class="list-inline-item" title="V-Deep705">
-                                                    <a href="javascript:;" class="d-block swatches-item"
-                                                        style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/23.jpg'); background-repeat:no-repeat;background-position: center;">
-                                                    </a>
-                                                </li>
-                                            </ul>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div class="completeYourGlow_slider">
 
 
                             </div>
-                            <div class="modal fade quick-view" id="product-recommendations-1" tabindex="-1"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content p-0">
-                                        <div class="modal-body p-0">
-                                            <button type="button"
-                                                class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
-                                                data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true" class="fs-20"><i
-                                                        class="fal fa-times"></i></span>
-                                            </button>
-                                            <div class="row no-gutters">
-                                                <div class="col-sm-6">
-                                                    <div style="background-image: url('images/product.jpg');"
-                                                        class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-                                                        <a href="store.html"
-                                                            class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-                                                            Sweaters</a>
-                                                        <div class="d-flex align-items-center">
-                                                            <h2 class="fs-30 mb-1">
-                                                                <a href="product-detail.html">Hoodie with pouch
-                                                                    pocket</a>
-                                                            </h2>
-                                                        </div>
-                                                        <p class="mb-6 fs-20 text-primary lh-14">$79.00</p>
-                                                        <div class="d-flex align-items-center flex-wrap">
-                                                            <ul
-                                                                class="list-inline d-flex justify-content-sm-end justify-content-center mb-0 rating-result">
-                                                                <li class="list-inline-item"><span
-                                                                        class="text-primary fs-12 lh-2"><i
-                                                                            class="fas fa-star"></i></span>
-                                                                </li>
-                                                                <li class="list-inline-item"><span
-                                                                        class="text-primary fs-12 lh-2"><i
-                                                                            class="fas fa-star"></i></span>
-                                                                </li>
-                                                                <li class="list-inline-item"><span
-                                                                        class="text-primary fs-12 lh-2"><i
-                                                                            class="fas fa-star"></i></span>
-                                                                </li>
-                                                                <li class="list-inline-item"><span
-                                                                        class="text-primary fs-12 lh-2"><i
-                                                                            class="fas fa-star"></i></span>
-                                                                </li>
-                                                                <li class="list-inline-item"><span
-                                                                        class="text-primary fs-12 lh-2"><i
-                                                                            class="fas fa-star"></i></span>
-                                                                </li>
-                                                            </ul>
-                                                            <p
-                                                                class="text-primary mb-0 fs-14 lh-1 overflow-hidden pl-3">
-                                                                <span class="pr-2">5.0</span><span
-                                                                    class="mr-2 border-right border-light-dark"></span><a
-                                                                    href="#">See 3 Reviews</a>
-                                                            </p>
-                                                        </div>
-                                                        <p class="mt-2 mb-6">Posuere in netus a eu varius adipiscing
-                                                            suspendisse elementum vitae tempor suspendisse ullamcorper
-                                                            aenean taciti morbi potenti.</p>
-                                                        <form>
-                                                            <div
-                                                                class="form-group shop-swatch-color shop-swatch-color-02 mb-6">
-                                                                <label class="mb-2"><span
-                                                                        class="font-weight-500 text-primary mr-2">Color:</span>
-                                                                    <span class="var text-capitalize"></span></label>
-                                                                <ul
-                                                                    class="list-inline d-flex justify-content-start mb-0">
-                                                                    <li class="list-inline-item"><a href="#"
-                                                                            class="d-block swatches-item"
-                                                                            data-var="green-revitalizing"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="top" title="Korma"
-                                                                            style="background-color: #903711;"> </a>
-                                                                    </li>
-                                                                    <li class="list-inline-item"><a href="#"
-                                                                            class="d-block swatches-item"
-                                                                            data-var="black"
-                                                                            style="background-color: #000;"> </a></li>
-                                                                    <li class="list-inline-item"><a href="#"
-                                                                            class="d-block swatches-item"
-                                                                            data-var="green-revitalizing"
-                                                                            data-toggle="tooltip"
-                                                                            data-placement="top" title="Alto"
-                                                                            style="background-color: #D8D8D8;"> </a>
-                                                                    </li>
-                                                                </ul>
-                                                                <input type="hidden" name="swatches-color"
-                                                                    class="swatches-select" value="min">
-                                                            </div>
-                                                            <div class="form-group shop-swatch swatch-size mb-7">
-                                                                <label class="mb-2"><span
-                                                                        class="font-weight-500 text-primary mr-2">Select
-                                                                        a
-                                                                        Size:</span>
-                                                                    <span class="var text-uppercase">S</span></label>
-                                                                <ul class="list-inline d-flex">
-                                                                    <li class="list-inline-item mr-2 selected"><a
-                                                                            href="#"
-                                                                            class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                            data-var="xs">XS</a></li>
-                                                                    <li class="list-inline-item mr-2"><a
-                                                                            href="#"
-                                                                            class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                            data-var="s">S</a></li>
-                                                                    <li class="list-inline-item mr-2"><a
-                                                                            href="#"
-                                                                            class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                            data-var="M">M</a></li>
-                                                                    <li class="list-inline-item mr-2"><a
-                                                                            href="#"
-                                                                            class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                            data-var="L">L</a></li>
-                                                                    <li class="list-inline-item mr-2"><a
-                                                                            href="#"
-                                                                            class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                            data-var="XL">XL</a></li>
-                                                                    <li class="list-inline-item mr-2"><a
-                                                                            href="#"
-                                                                            class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                            data-var="XXL">XXL</a></li>
-                                                                </ul>
-                                                                <input type="hidden" name="swatches-size"
-                                                                    class="swatches-select" value="xs">
-                                                            </div>
-                                                            <div class="row align-items-end no-gutters mx-n2">
-                                                                <div class="col-sm-3 form-group px-2 mb-6 mb-sm-0">
-                                                                    <label
-                                                                        class="text-primary fs-16 font-weight-bold mb-3">Quantity:
-                                                                    </label>
-                                                                    <div class="input-group position-relative w-100">
-                                                                        <a href="#"
-                                                                            class="down position-absolute pos-fixed-left-center pl-2 z-index-2"><i
-                                                                                class="far fa-minus"></i></a> <input
-                                                                            name="number" type="number"
-                                                                            class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary"
-                                                                            value="1" required> <a
-                                                                            href="#"
-                                                                            class="up position-absolute pos-fixed-right-center pr-2 z-index-2"><i
-                                                                                class="far fa-plus"></i> </a>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-9 mb-6 mb-sm-0 px-2">
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary btn-block text-capitalize">add
-                                                                        to
-                                                                        cart</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
+                           
                         </div>
 
                         <div class="tab-pane fade" style="margin-bottom: 20px" id="pills-recently-viewed"
@@ -3492,7 +2902,7 @@
 										<p>270 X 370</p>
 									</div>
 									<div class="col-sm-12">
-										<div class="row" id="ps_att">
+										<div class="row" id="pss_att">
 											
 										</div>
 									</div>
@@ -3545,9 +2955,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger light"
-                                ng-click="closeFeaturesModal();">Close</button>
+                                ng-click="closeJusOFlowModal();">Close</button>
                             <button type="button" class="btn btn-primary"
-                                ng-click="updateFeaturesModal();">Save</button>
+                                ng-click="saveJusOFlowProduct();">Save</button>
                             {{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
                         </div>
                     </div>
@@ -3586,7 +2996,39 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="confirmProdShadeModal">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+				<!-- 							<h5 class="modal-title">Shades</h5> -->
+							<button type="button" class="close" data-dismiss="modal">
+								<span>&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							
+							<div class="row">
+							   <div class="col-12">
+							     <label><b>Selected Image mark as primary or secondary!!!</b></label>
+							   </div>
+							</div>
+							
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" ng-click="closeProdShadeModal();">Close</button>
+							<button type="button" class="btn btn-warning" ng-click="markProductShadeImageFlag(1);">Mark Primary</button>
+							<button type="button" class="btn btn-warning" ng-click="markProductShadeImageFlag(2);">Mark Secondary</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
         </div>
+
+
+        
 
     </main>
 
@@ -3662,6 +3104,9 @@
     }
     function form5(){
         $("#uploadatt5").click();
+    }
+    function form3(){
+        $("#uploadatt3").click();
     }
 </script>
 

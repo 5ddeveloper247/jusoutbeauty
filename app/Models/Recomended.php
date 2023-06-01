@@ -19,6 +19,35 @@ class Recomended extends Model
         'PRODUCT_ID',
     ];
 
+    public function deleteRecomendedProducts($product,$product_id,$userId){
+
+        /* First Deleting Recommended Products */
+        foreach ($product as $p){
+            $product=DB::table('jb_product_recommend_tbl')->where('PRODUCT_ID',$product_id)->delete();
+        }
+        //   $status=true;
+        //   $message="success";
+        //   return response()->json(['status' => $status,'message'=>$message]); 
+
+            $i=0;
+            foreach ($product as $p){
+              $result = DB::table ('jb_product_recommend_tbl' )->insertGetId (
+                  array ( 'USER_ID' => $userId,
+                          'RECOMEDEDPRODUCT_ID' => isset($p['id']) ? $p['id'] : $p[$i],
+                          'PRODUCT_ID' => $product_id,
+                          'DATE' => date ( 'Y-m-d H:i:s' ),
+                          'CREATED_BY' => $userId,
+                          'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+                          'UPDATED_BY' => $userId,
+                          'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
+                          $i++;
+               }   
+            $status=true;
+            $message="success";
+            return response()->json(['status' => $status,'message'=>$message]);
+    }
+
+
      public function deleteRecomended($product,$product_id){
          
          DB::beginTransaction();
