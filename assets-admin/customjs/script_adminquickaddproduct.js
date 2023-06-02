@@ -34,6 +34,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
 
     $scope.recommended = {};
+    $scope.handPick = {};
 
 
     $scope.ingredient={};
@@ -359,53 +360,28 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $('#steps_users').html($compile(angular.element(html2))($scope));
 
                var rechtml = '';
-
+               if ($('.completeYourGlow_slider').hasClass('slick-initialized')) {
+                $('.completeYourGlow_slider').slick('destroy');
+            }   
                 if(recommandedProducts != null && recommandedProducts != ''){
                     for (let i = 0; i < recommandedProducts.length; i++) {
     
                         rechtml += `<div class="box px-1">
                                 <div class="card border-0 product px-2">
-                                <div class="position-relative">
+                                    <div class="position-relative">
                                         <a href="javascript:;" class="d-block overflow-hidden ">
                                             <img src="`+recommandedProducts[i]['primaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
                                             <img src="`+recommandedProducts[i]['secondaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
                                         </a>
-                                </div>
+                                    </div>
                                     <div class="card-body pt-4 px-0 pb-0">
-                                        <ul class="list-inline fs-12 d-flex mb-1">
-                                            <li class="list-inline-item text-primary mr-0">
-                                                <i class="fas fa-star"
-                                                    style="`+recommandedProducts[i]['averageRating']+` >= '1' ? 'color:black;' : 'color:gray;' ?>"></i>
-                                            </li>
-                                            <li class="list-inline-item text-primary mr-0">
-                                                <i class="fas fa-star"
-                                                    style="`+recommandedProducts[i]['averageRating']+` >= '2' ? 'color:black;' : 'color:gray;' ?>"></i>
-                                            </li>
-                                            <li class="list-inline-item text-primary mr-0">
-                                                <i class="fas fa-star"
-                                                    style="`+recommandedProducts[i]['averageRating']+` >= '3' ? 'color:black;' : 'color:gray;' ?>"></i>
-                                            </li>
-                                            <li class="list-inline-item text-primary mr-0">
-                                                <i class="fas fa-star"
-                                                    style="`+recommandedProducts[i]['averageRating']+` >= '4' ? 'color:black;' : 'color:gray;' ?>"></i>
-                                            </li>
-                                            <li class="list-inline-item text-primary mr-0">
-                                                <i class="fas fa-star"
-                                                    style="`+recommandedProducts[i]['averageRating']+` == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="d-flex align-items-center mb-2 productdetail"
-                                            data-id="`+recommandedProducts[i]['PRODUCT_ID']+`">
+                                        <div class="d-flex align-items-center mb-2 " >
                                             <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                <a href="javascript:;">`+recommandedProducts[i]['NAME']+`</a>
+                                                <a href="javascript:;" tabindex="0">`+recommandedProducts[i]['NAME']+`</a>
                                             </h3>
                                             <p class="fs-15 text-primary mb-0 ml-auto">
-                                                <span
-                                                    class="text-line-through text-body mr-1"></span>$`+recommandedProducts[i]['UNIT_PRICE']+`
-                                            </p>
+                                                <span class="text-line-through text-body mr-1"></span>$`+recommandedProducts[i]['UNIT_PRICE']+`</p>
                                         </div>
-                                        
-
                                     </div>
                                 </div>
                             </div>`;
@@ -413,11 +389,78 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     }	
                     $(".completeYourGlow_slider").html(rechtml);
                 }
-                if ($('.completeYourGlow_slider').hasClass('slick-initialized')) {
-                    $('.completeYourGlow_slider').slick('destroy');
-                }   
+               
             setTimeout(function(){
                 $('.completeYourGlow_slider').slick({
+                    slidesToShow: 4,
+                    autoplaySpeed: 1500,
+                    "infinite":true,
+                    "autoplay":true,
+                    "dots":false,
+                    "arrows":false,
+                    prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                    nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                    "responsive":[
+                                
+                                {"breakpoint": 1400,
+                                    "settings": {"slidesToShow": 6}},
+
+                                {"breakpoint": 1366,
+                                "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 1200,
+                                    "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 992,
+                                    "settings": {"slidesToShow": 2}},
+
+                                {"breakpoint": 768,
+                                    "settings": {"slidesToShow": 1}},
+
+                                {"breakpoint": 576,
+                                    "settings": {"slidesToShow": 1}}
+                                ]
+                    
+                    });
+                $.LoadingOverlay("hide");
+            }, 500);
+            var handpickProducts = data.handpickProducts;
+                console.log( handpickProducts);
+                $('#addDailyHandPickedModal').modal('hide');
+                if ($('.Handpicked_slider').hasClass('slick-initialized')) {
+                    $('.Handpicked_slider').slick('destroy');
+                }   
+                var rechtml = '';
+                if(handpickProducts != null && handpickProducts != ''){
+                    for (let i = 0; i < handpickProducts.length; i++) {
+    
+                        rechtml += `<div class="box px-1">
+                                <div class="card border-0 product px-2">
+                                    <div class="position-relative">
+                                            <a href="javascript:;" class="d-block overflow-hidden ">
+                                                <img src="`+handpickProducts[i]['primaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
+                                                <img src="`+handpickProducts[i]['secondaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
+                                            </a>
+                                    </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                        <div class="d-flex align-items-center mb-2 " >
+                                            <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
+                                                <a href="javascript:;" tabindex="0">`+handpickProducts[i]['NAME']+`</a>
+                                            </h3>
+                                            <p class="fs-15 text-primary mb-0 ml-auto">
+                                                <span class="text-line-through text-body mr-1"></span>$`+handpickProducts[i]['UNIT_PRICE']+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>`;
+                            
+                    }	
+                    $(".Handpicked_slider").html(rechtml);
+                }
+               
+            setTimeout(function(){
+                $('.Handpicked_slider').slick({
                     slidesToShow: 4,
                     autoplaySpeed: 1500,
                     "infinite":true,
@@ -713,6 +756,15 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         var data = {};
         data.userId = userId;
         data.record = $scope.QuickProduct;
+        console.log($scope.QuickProduct.P_5);
+        if($scope.QuickProduct.P_1 == '' || $scope.QuickProduct.P_2 == '' 
+            || $scope.QuickProduct.P_3 == '' || $scope.QuickProduct.P_4 == '' 
+            || $scope.QuickProduct.P_5 == '' || $scope.QuickProduct.P_6 == ''){
+
+            toastr.error('Fields can`t be empty', '', {timeOut: 3000})
+            return
+        }
+
         
         var temp = $.param({ details: data });
 
@@ -727,7 +779,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
             if (data.done == true || data.done == 'true') {
                 
-                console.log($scope.QuickProduct.P_1,'1213');
+                // console.log($scope.QuickProduct.P_1,'1213');
                 setTimeout(function () {
                     $("#p7").html($scope.QuickProduct.P_1).trigger('change');
                     $("#p8").html($scope.QuickProduct.P_2).trigger('change');
@@ -1060,7 +1112,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				// if ($.fn.DataTable.isDataTable("#productIngredientsTable")) {
 				// 	$('#productIngredientsTable').DataTable().clear().destroy();
 				// }
-				console.log(data.ingredients);
+				// console.log(data.ingredients);
                 var html = '';
                 var html1 = '';
 				var displayCollectionProdIngredients = data.ingredients;
@@ -1071,7 +1123,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 for (let i = 0; i < displayCollectionProdIngredients.length; i++) {
                     
                     if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Formulated'){
-                       console.log('formulated');
+                    //    console.log('formulated');
                         html += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
                                     style="background-color:#57813a96">
                                     <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -1087,7 +1139,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                        
                     }else if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Spotlight'){
-                        console.log('spot');
+                        // console.log('spot');
 
                         html1 += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
                                     style="background-color:#57813a96">
@@ -1171,6 +1223,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         var data = {};
 		data.quickSection = $scope.QuickProduct;
         $scope.QuickProduct.P_18 = $('#SecondSectionSummerNote').summernote('code');
+
+        if($scope.QuickProduct.P_18 == '' || $scope.QuickProduct.P_17 == ''){
+            toastr.error('Fields can`t be empty', '', {timeOut: 3000})
+            return
+        }
+
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
@@ -1241,6 +1299,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.updateVideoInfo = function(){
         // alert($scope.video.ID);
         $scope.video.V_2 = $('#VideoSummerView').summernote('code');
+       
+        if($scope.video.V_2 == '' || $scope.video.V_1 == ''){
+            toastr.error('Fields can`t be empty', '', {timeOut: 3000})
+            return
+        }
+        
+
         var data = {};
         data.videoDetails = $scope.video;
 
@@ -1542,10 +1607,16 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     }
 
     $scope.updateClinicalInfo = function(){
+
         
         var data = {};
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
         $scope.QuickProduct.P_18 = $('#clinicalNoteSectionView').summernote('code');
+        
+        if($scope.QuickProduct.P_18 == ''){
+            toastr.error('Field can`t be empty', '', {timeOut: 3000})
+            return
+        }
         data.updateClinicalInfo = $scope.QuickProduct.P_18;
 	    
     	var temp = $.param({details: data});
@@ -1946,11 +2017,14 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
         }).success(function(data, status, headers, config) {
-                console.log(data.selectRecomended_lov);
+                // console.log(data.selectRecomended_lov);
                 $scope.recommended = data.product;
+                $scope.handPick = data.product
                 $scope.QuickProduct.P_46 = data.selectRecomended_lov;
+                $scope.QuickProduct.P_56 = data.selectHandPick_lov;
             setTimeout(function(){
                 $("#p46").val($scope.QuickProduct.P_46).trigger('change');
+                $("#p56").val($scope.QuickProduct.P_56).trigger('change');
                
 
             }, 500);
@@ -1972,18 +2046,23 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     }
 
     $scope.addDailyHandPickedModal = function () {
-        console.log("sdfsdf");
-        // $scope.showAllProductsOfCategory();
+        
+        $scope.showAllProductsOfCategory();
         $("#addDailyHandPickedModal").modal('show');
     }
 
     $scope.closeDailyHandPickedModal = function () {
         $("#addDailyHandPickedModal").modal('hide');
     }
+    
+    // $scope.updateDailyHandPickedModal = function(){
+    //     alert('123');
+    // }
 
 
-    $scope.getSubCategoriesWrtCategory = function(){
-		
+    $scope.getSubCategoriesWrtCategory = function(e){
+		// e.preventDefault();
+        
 		if($scope.QuickProduct.P_31 != null){
 			var data = {};
 		    data.category = $scope.QuickProduct.P_31;
@@ -2004,7 +2083,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
 			}).success(function(data, status, headers, config) {
 
-                console.log(data);
+                // console.log(data);
 					
 				// $scope.subCategoryLov = data.subCategory;
 	        	
@@ -2037,6 +2116,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         // }
         
         var data = {};
+        if($scope.QuickProduct.P_46 == ''){
+            toastr.error('Please Select atleast one', '', {timeOut: 3000})
+            return
+        }
+        
         data.recomended = $scope.QuickProduct.P_46;
         data.productId = $scope.QuickProduct.PRODUCT_ID;
         data.userId = userId;
@@ -2055,7 +2139,74 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             if(data.done == true || data.done == 'true'){
                 
                 toastr.success(data.msg, '', {timeOut: 3000})
-                $scope.product.ID = data.ID;
+                // $scope.product.ID = data.ID;
+                var recommandedProducts = data.recommandedProducts;
+                $('#addJusOFlowModal').modal('hide');
+                if ($('.completeYourGlow_slider').hasClass('slick-initialized')) {
+                    $('.completeYourGlow_slider').slick('destroy');
+                }  
+                var rechtml = '';
+                if(recommandedProducts != null && recommandedProducts != ''){
+                    for (let i = 0; i < recommandedProducts.length; i++) {
+    
+                        rechtml += `<div class="box px-1">
+                                <div class="card border-0 product px-2">
+                                    <div class="position-relative">
+                                            <a href="javascript:;" class="d-block overflow-hidden ">
+                                                <img src="`+recommandedProducts[i]['primaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
+                                                <img src="`+recommandedProducts[i]['secondaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
+                                            </a>
+                                    </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                        <div class="d-flex align-items-center mb-2 " >
+                                            <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
+                                                <a href="javascript:;" tabindex="0">`+recommandedProducts[i]['NAME']+`</a>
+                                            </h3>
+                                            <p class="fs-15 text-primary mb-0 ml-auto">
+                                                <span class="text-line-through text-body mr-1"></span>$`+recommandedProducts[i]['UNIT_PRICE']+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                            
+                    }	
+                    $(".completeYourGlow_slider").html(rechtml);
+                }
+                
+            setTimeout(function(){
+                $('.completeYourGlow_slider').slick({
+                    slidesToShow: 4,
+                    autoplaySpeed: 1500,
+                    "infinite":true,
+                    "autoplay":true,
+                    "dots":false,
+                    "arrows":false,
+                    prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                    nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                    "responsive":[
+                                
+                                {"breakpoint": 1400,
+                                    "settings": {"slidesToShow": 6}},
+
+                                {"breakpoint": 1366,
+                                "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 1200,
+                                    "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 992,
+                                    "settings": {"slidesToShow": 2}},
+
+                                {"breakpoint": 768,
+                                    "settings": {"slidesToShow": 1}},
+
+                                {"breakpoint": 576,
+                                    "settings": {"slidesToShow": 1}}
+                                ]
+                    
+                    });
+                $.LoadingOverlay("hide");
+            }, 500);
                 
             }else{
                 toastr.error(data.msg, '', {timeOut: 3000})
@@ -2071,9 +2222,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         // }else{
         //     $scope.product.P_13 = $('#basicInfo_description').summernote('code');
         // }
-        
+        if($scope.QuickProduct.P_56 == ''){
+            toastr.error('Please Select atleast one', '', {timeOut: 3000})
+            return
+        }
         var data = {};
-        data.recomended = $scope.QuickProduct.P_46;
+        data.handPick = $scope.QuickProduct.P_56;
+
         data.productId = $scope.QuickProduct.PRODUCT_ID;
         data.userId = userId;
         
@@ -2081,7 +2236,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         
         $http({
             data: temp+"&"+$scope.tokenHash, 
-            url : site+"/saveAdminProductsaveJusOFlow",
+            url : site+"/saveDailyhandPickProduct",
             method: "POST",
             async: false,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -2091,7 +2246,76 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             if(data.done == true || data.done == 'true'){
                 
                 toastr.success(data.msg, '', {timeOut: 3000})
-                $scope.product.ID = data.ID;
+
+                var handpickProducts = data.handpickProducts;
+                
+                $('#addDailyHandPickedModal').modal('hide');
+                if ($('.Handpicked_slider').hasClass('slick-initialized')) {
+                    $('.Handpicked_slider').slick('destroy');
+                }  
+                var rechtml = '';
+                if(handpickProducts != null && handpickProducts != ''){
+                    for (let i = 0; i < handpickProducts.length; i++) {
+    
+                        rechtml += `<div class="box px-1">
+                                <div class="card border-0 product px-2">
+                                    <div class="position-relative">
+                                            <a href="javascript:;" class="d-block overflow-hidden ">
+                                                <img src="`+handpickProducts[i]['primaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
+                                                <img src="`+handpickProducts[i]['secondaryImage']+`" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
+                                            </a>
+                                    </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                        <div class="d-flex align-items-center mb-2 " >
+                                            <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
+                                                <a href="javascript:;" tabindex="0">`+handpickProducts[i]['NAME']+`</a>
+                                            </h3>
+                                            <p class="fs-15 text-primary mb-0 ml-auto">
+                                                <span class="text-line-through text-body mr-1"></span>$`+handpickProducts[i]['UNIT_PRICE']+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>`;
+                            
+                    }	
+                    $(".Handpicked_slider").html(rechtml);
+                }
+               
+            setTimeout(function(){
+                $('.Handpicked_slider').slick({
+                    slidesToShow: 4,
+                    autoplaySpeed: 1500,
+                    "infinite":true,
+                    "autoplay":true,
+                    "dots":false,
+                    "arrows":false,
+                    prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                    nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                    "responsive":[
+                                
+                                {"breakpoint": 1400,
+                                    "settings": {"slidesToShow": 6}},
+
+                                {"breakpoint": 1366,
+                                "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 1200,
+                                    "settings": {"slidesToShow": 4}},
+
+                                {"breakpoint": 992,
+                                    "settings": {"slidesToShow": 2}},
+
+                                {"breakpoint": 768,
+                                    "settings": {"slidesToShow": 1}},
+
+                                {"breakpoint": 576,
+                                    "settings": {"slidesToShow": 1}}
+                                ]
+                    
+                    });
+                $.LoadingOverlay("hide");
+            }, 500);
                 
             }else{
                 toastr.error(data.msg, '', {timeOut: 3000})

@@ -24,21 +24,42 @@ class ProductModel extends Model
 			 
              return isset($arrRes) ? $arrRes : null;
 	}
+		public function gethandPickProductsWrtProductID($product_id){
+			
+			$result =DB::table('jb_product_handpicked_tbl')->where('PRODUCT_ID',$product_id)->get();
+
+			$i=0;
+			foreach($result as $s){
+				$arrRes[$i] = $s->HANDPICKEDPRODUCT_ID;
+				$i++;
+			}
+			return isset($arrRes) ? $arrRes : null;
+
+		}
 
     public function getAllProductClinicalNoteByProduct($productID){
-		$result = DB::table('jb_product_tbl as a')->select('a.CLINICAL_NOTE_DESCRIPTION','a.PRODUCT_ID','b.DOWN_PATH')
-		->join('jb_product_images_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
-		->where('b.SOURCE_CODE','CLINICAL_NOTE')
+		$result = DB::table('jb_product_tbl as a')->select('a.CLINICAL_NOTE_DESCRIPTION')
+		// ->join(' as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
+		// ->where('b.SOURCE_CODE','CLINICAL_NOTE')
 		->where('a.PRODUCT_ID',$productID)
     	->first();
 		
 		// $arrRes['ID'] = isset($result->PRODUCT_ID) != null ? $result->PRODUCT_ID : '';
-		$arrRes['P_19'] = isset($result->CLINICAL_NOTE_DESCRIPTION) != null ? strip_tags(base64_decode($result->CLINICAL_NOTE_DESCRIPTION)) : '';
-		$arrRes['P_20'] = isset($result->DOWN_PATH) != null ? $result->DOWN_PATH: url('assets-web')."/images/product_placeholder.png";
+		$clinicalData = strip_tags(base64_decode($result->CLINICAL_NOTE_DESCRIPTION));
+		$arrRes['P_19'] = isset($clinicalData) != null ?  $clinicalData: '';
+		$arrRes['P_20'] = $this->getClinicalNoteImage($productID);
 
 		return isset($arrRes) ? $arrRes : null;
 
 	}
+	public function getClinicalNoteImage($productID){
+		$result = DB::table('jb_product_images_tbl as a')->select('a.DOWN_PATH')
+		->where('a.PRODUCT_ID',$productID)
+    	->first();
+
+		return isset($result->DOWN_PATH) != null ? $result->DOWN_PATH: url('assets-web')."/images/product_placeholder.png";
+	}
+
 	public function getVideodata($productID){
 		$result = DB::table('jb_product_video_tbl as a')->select('a.DOWN_PATH','a.VIDEO_TITLE','a.VIDEO_DESCRIPTION','a.VIDEO_ID')
 				->where('a.PRODUCT_ID',$productID)
