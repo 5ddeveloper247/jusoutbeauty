@@ -6,6 +6,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.VideoEditView = 0;
     $scope.SecondSectionEdit = 0; 
     $scope.clinicalNoteSection = 0;
+    $scope.selectedValue = '';
 
     $scope.QuickProduct = {};
     $scope.QuickProduct.ID = productId;
@@ -26,6 +27,10 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.QuickProduct.P_20 = "";
     $scope.QuickProduct.P_31 = "";
     $scope.QuickProduct.P_31.id = "";
+    $scope.QuickProduct.P_32 = "";
+    $scope.QuickProduct.P_32.id = "";
+    $scope.QuickProduct.P_33 = "";
+    $scope.QuickProduct.P_33.id = "";
     
     $scope.QuickProduct.P_46 = "";
     $scope.QuickProduct.P_46.id = "";
@@ -95,8 +100,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             var displayCollectionProdUses = data.productuses;
             $scope.categoryLov = data.list1;
 
-            $category_value=data.productDetails['CATEGORY_ID'];
-            $scope.QuickProduct.P_31.id = $category_value;
+            $category_value=data.productDetails['P_31'];
+            $subcategory_value=data.productDetails['p_32'];
+
+            $scope.QuickProduct.P_31 = $category_value;
+            $scope.selectedValue = $category_value;
+            $scope.QuickProduct.P_32 = $subcategory_value;
             // $scope.video.V_3 = data.videoPro['V_3'];
             // $scope.video.V_2 = data.videoPro['V_2'];
             // $scope.video.V_1 = data.videoPro['V_1'];
@@ -278,10 +287,15 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $('#clinicalNoteSectionView').summernote('code',$scope.QuickProduct.P_19);
 				$('#p19').html($scope.QuickProduct.P_19).trigger('change');
                 $("#p31").val($scope.QuickProduct.P_31).trigger('change');
+                // $("#p32").val($scope.QuickProduct.P_32).trigger('change');
                 // $("#p13").val($scope.QuickProduct.P_13).trigger('change');
                 
             }, 500);
+            $scope.QuickProduct.P_32 = $subcategory_value;
+            setTimeout(function () {
+                $("#p32").val($scope.QuickProduct.P_32).trigger('change');
 
+            }, 500);
             var html3 = '';
             var html4 = '';
             var displayCollectionProdIngredients = data.ingredients;
@@ -1975,26 +1989,26 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                   toastr.success("Image Upload Successfully", '', {timeOut: 3000});
                 
-                //   var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
-                //                '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
-                //                '<div class="overlay">'+
-                //                    '<div class="text">'+
-                //                        '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteClinicalNoteImage('+xhr.responseText[1]+')" title="Delete Image">'+
-                //                        '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimaryClinicalNoteImage('+xhr.responseText[1]+')" title="Mark Primary">'+	
-                //                        '<div class="arrow-icon-move-box">'+
-                //                            '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-                //                            '<p>Move Position</p>'+
-                //                        '</div>'+
-                //                    '</div>'+
-                //                '</div>'+
-                //            '</div>';
+                  var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
+                               '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
+                               '<div class="overlay">'+
+                                   '<div class="text">'+
+                                       '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteClinicalNoteImage('+xhr.responseText[1]+')" title="Delete Image">'+
+                                       '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimaryClinicalNoteImage('+xhr.responseText[1]+')" title="Mark Primary">'+	
+                                       '<div class="arrow-icon-move-box">'+
+                                           '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
+                                           '<p>Move Position</p>'+
+                                       '</div>'+
+                                   '</div>'+
+                               '</div>'+
+                           '</div>';
                   
-                //   $("#cn_att").append($compile(angular.element(html))($scope));
-                $scope.$apply(function () {
+                  $("#cn_att").append($compile(angular.element(html))($scope));
+                // $scope.$apply(function () {
 
-                    $scope.QuickProduct.P_20 = xhr.responseText[2];
+                //     $scope.QuickProduct.P_20 = xhr.responseText[2];
 
-                });
+                // });
 
               }
            }
@@ -2088,10 +2102,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				// $scope.subCategoryLov = data.subCategory;
 	        	
 				$scope.recommended=data.product;
+                $scope.subCategoryLov = data.subCategory;
 
 				// setTimeout(function(){
-				// 	$("#p46").val($scope.product.P_46).trigger('change');
-				// 	$("#p47").val($scope.product.P_47).trigger('change');
+				// 	// $("#p46").val($scope.product.P_46).trigger('change');
+				// 	// $("#p47").val($scope.product.P_47).trigger('change');
+                //     $("#p32").val($scope.QuickProduct.P_32).trigger('change');
 
 				// }, 500);
 
@@ -2106,7 +2122,36 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			$scope.subCategoryLov = {};
 		}
 	}
+   
+    $scope.getSubSubCategoriesWrtSubCategory = function(){
+		
+		if($scope.QuickProduct.P_32 != null){
+			var data = {};
+		    data.subcategory = $scope.QuickProduct.P_32;
+            data.productId = $scope.QuickProduct.PRODUCT_ID;
+		    data.userId = userId;
+		    
+	    	var temp = $.param({details: data});
+	    	
+			$http({
+				data: temp+"&"+$scope.tokenHash,
+				url : site+"/getSubSubCategoriesWrtSubCategoryQuickAdd",
+				method: "POST",
+				async: false,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
+			}).success(function(data, status, headers, config) {
+					
+				$scope.subSubCategoryLov = data.subSubCategory;
+				
+			})
+			.error(function(data, status, headers, config) {
+			});
+		}else{
+			$scope.subSubCategoryLov = {};
+		}
+	}
+    
     $scope.saveJusOFlowProduct = function(){
 
         // if ($('#basicInfo_description').summernote('isEmpty')) {

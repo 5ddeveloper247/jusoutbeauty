@@ -107,6 +107,7 @@ class ProductModel extends Model
 			$getClinicalNote = $this->getAllProductClinicalNoteByProduct($row->PRODUCT_ID);
 			$arrRes['P_20'] = $getClinicalNote['P_20'];
 			$arrRes['P_31'] = $row->CATEGORY_ID;
+			$arrRes['P_32'] = $row->SUB_CATEGORY_ID;
 			
 			$arrRes['QUICK_ADD_FEATURES'] = $this->getQuickfeaturesdata($row->FEATURE_ID);
 			
@@ -119,9 +120,9 @@ class ProductModel extends Model
     		$arrRes['TAGS'] = $row->TAGS;
     		$arrRes['BARCODE'] = $row->BARCODE;
     		$arrRes['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
-    		$arrRes['CATEGORY_ID'] = $row->CATEGORY_ID;
+    		// $arrRes['P_31'] = $row->CATEGORY_ID;
     		// $arrRes['CATEGORY_NAME'] = $row->categoryName;
-    		$arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+    		// $arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		// $arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
     		

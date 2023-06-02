@@ -207,16 +207,21 @@ class AdminController extends Controller
 
 	public function updateCategory(Request $request){
 		$result = $_REQUEST['details'];
+		$Categorymodel = new CategoryModel();
 		// $id = $result['userID'];
+		$category = $result ['category'];
 		$product_ID = $result['productId'];
-		
+	
 		DB::table('jb_product_tbl')->where('PRODUCT_ID',$product_ID)->update([
 			'CATEGORY_ID' =>  $result['category']['id'],
 		]);
 
 		$arrRes ['msg'] = 'Category ID Updated Successfully!';
 		$arrRes ['done'] = true;
+		$arrRes ['subCategory'] = $Categorymodel->getSubCategoryLovWrtCategory($category['id']);
 		echo json_encode ( $arrRes );
+		
+		
 
 	}
 
@@ -3027,7 +3032,7 @@ class AdminController extends Controller
 		 $Category = new CategoryModel();
 		 $Product= new ProductModel();
 	
-		 $details = $_REQUEST ['details'];
+		 $details = $_REQUEST ['details']; $Category = new CategoryModel();
 		 $category = $details ['category'];
 		 $userId = $details ['userId'];
 
@@ -3106,32 +3111,34 @@ class AdminController extends Controller
 
 		}
 
-	public function getSubSubCategoriesWrtSubCategory(Request $request) {
+	public function getSubSubCategoriesWrtSubCategoryQuickAdd(Request $request) {
 		 $Category = new CategoryModel();
 		 $Product = new ProductModel();
 	
 		 $details = $_REQUEST ['details'];
 		 $subcategory = $details ['subcategory'];
+		 $product_ID = $details['productId'];
 		 $userId = $details ['userId'];
-	
-		 if(!isset($subcategory['id'])){
-			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'First choose sub category...';
-			echo json_encode ( $arrRes );
-			die();
-		 } 
-		 $product_lov = DB::table('jb_product_tbl')->where('SUB_CATEGORY_ID',$subcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
-		// $arrRes['product']=$product_lov;
-		$i=0;
-		foreach ($product_lov as $row){
-    		$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
-    		$arrRes['product'][$i]['name'] = $row->NAME;
+		
+		
+		 DB::table('jb_product_tbl')->where('PRODUCT_ID',$product_ID)->update([
+			'SUB_CATEGORY_ID' =>  $subcategory['id'],
+		]);
+
+		
+		//  $product_lov = DB::table('jb_product_tbl')->where('SUB_CATEGORY_ID',$subcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
+		// // $arrRes['product']=$product_lov;
+		// $i=0;
+		// foreach ($product_lov as $row){
+    	// 	$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
+    	// 	$arrRes['product'][$i]['name'] = $row->NAME;
     		
-    		$i++;
-    	}
+    	// 	$i++;
+    	// }
 	
 		 $arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory($subcategory['id']);
-
+		 $arrRes ['msg'] = 'Sub Category ID Updated Successfully!';
+		 $arrRes ['done'] = true;
 		 echo json_encode ( $arrRes );
 	}
 	public function getIngredientsWrtCategory(Request $request) {
