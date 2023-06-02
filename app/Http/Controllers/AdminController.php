@@ -52,13 +52,47 @@ class AdminController extends Controller
 		$productId = $details ['productId'];
 		$recomendedArray = $details ['recomended'];
 		$userId = $details ['userId'];
+		$recomendedModel = new Recomended();
 
 		DB::table ('jb_product_recommend_tbl' )->where('PRODUCT_ID',$productId)->delete();
+		if(count($recomendedArray) != ''){
+			foreach ($recomendedArray as $recomended) {
+				DB::table ('jb_product_recommend_tbl' )->insert (
+					array ( 'USER_ID' => $userId,
+							'RECOMEDEDPRODUCT_ID' => $recomended['id'],
+							'PRODUCT_ID' => $productId,
+							'DATE' => date ( 'Y-m-d H:i:s' ),
+							'CREATED_BY' => $userId,
+							'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+							'UPDATED_BY' => $userId,
+							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
+			}
+		}
+		
 
-		foreach ($recomendedArray as $recomended) {
-			DB::table ('jb_product_recommend_tbl' )->insertGetId (
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Complete your JusOGlow Updated Successfully';
+
+		$arrRes ['recommandedProducts'] = $recomendedModel->getrecomendedproducts($productId);
+
+		echo json_encode ( $arrRes );
+	}
+
+	public function saveDailyhandPickProduct(Request $request){
+
+		$details = $_REQUEST ['details'];
+		// dd($details);
+		$productId = $details ['productId'];
+		$handPickArray = $details ['handPick'];
+		$userId = $details ['userId'];
+		
+		$handpicked= new Handpicked();
+		DB::table ('jb_product_handpicked_tbl' )->where('PRODUCT_ID',$productId)->delete();
+
+		foreach ($handPickArray as $handpick) {
+			DB::table ('jb_product_handpicked_tbl' )->insert (
 				array ( 'USER_ID' => $userId,
-						'RECOMEDEDPRODUCT_ID' => $recomended['id'],
+						'HANDPICKEDPRODUCT_ID' => $handpick['id'],
 						'PRODUCT_ID' => $productId,
 						'DATE' => date ( 'Y-m-d H:i:s' ),
 						'CREATED_BY' => $userId,
@@ -66,8 +100,12 @@ class AdminController extends Controller
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
 		}
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Complete your JusOGlow Updated Successfully';
+
+		$arrRes ['handpickProducts'] = $handpicked->gethanpickedproducts($productId);
+
 		echo json_encode ( $arrRes );
 	}
 
@@ -202,6 +240,7 @@ class AdminController extends Controller
 	   }
 
 	   $arrRes['selectRecomended_lov'] =  $ProductModel->getRecomendedProductsWrtProductID($productId);
+	   $arrRes['selectHandPick_lov'] =  $ProductModel->gethandPickProductsWrtProductID($productId);
 	  
 	   echo json_encode ( $arrRes );
 
@@ -297,6 +336,7 @@ class AdminController extends Controller
 		$Category = new CategoryModel();
 		$ProductShade = new ProductShadeModel();
 		$recomended= new Recomended();
+		$handpicked= new Handpicked();
 
 		$arrRes ['list1'] = $Category->getCategoryLov();
 		$arrRes['features'] = $features->getactivefeaturesdata();
@@ -306,7 +346,7 @@ class AdminController extends Controller
 		$arrRes ['list2'] = $Shades->getShadesLov();
 		// $arrRes['activeFeatures']= $ProductModel->getQuickfeaturesdata();
 		$arrRes ['recommandedProducts'] = $recomended->getrecomendedproducts($productID);
-		
+		$arrRes ['handpickProducts'] = $handpicked->gethanpickedproducts($productID);
 		$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($productID);
 		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
 		// $arrRes ['clinicalNote'] = $ProductModel->getAllProductClinicalNoteByProduct($productID);
@@ -4039,14 +4079,16 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$productId = $details['productId'];
 		$clinicInfo = $details['updateClinicalInfo'];
+		// dd($details);
 
 		DB::table ( 'jb_product_tbl' )->where ( 'PRODUCT_ID', $productId )->update([
 			'CLINICAL_NOTE_DESCRIPTION' => base64_encode($clinicInfo),
 		]);
 
 		$arrRes ['done'] = true;
-		$arrRes ['msg'] = 'Clinical Note deleted successfully...';
+		$arrRes ['msg'] = 'Clinical Note updated successfully...';
 		$arrRes ['clinicalNote'] = $Product->getAllProductClinicalNoteByProduct($productId);
+		// dd($arrRes ['clinicalNote']);
 		
 		echo json_encode ( $arrRes );
 	}
