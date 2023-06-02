@@ -68,7 +68,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusAdmin(@{{row.USER_ID}});" ng-show="row.STATUS != 'active'">Active</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusAdmin(@{{row.USER_ID}});" ng-show="row.STATUS == 'active'">InActive</a>
-															<a class="dropdown-item" href="javascript:;" ng-click="continouRecord(@{{row.USER_ID}});">Edit</a>
+															<a class="dropdown-item" href="javascript:;" ng-click="editAdmin(@{{row.USER_ID}});">Edit</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="deleteAdmin(@{{row.USER_ID}});">Delete</a>
 														</div>
 													</div>
@@ -86,7 +86,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             </div>
             
             
-            <!-- ==================== ADD PRODUCT HTML ================= -->
+            <!-- ==================== ADD ADMIN ================= -->
 
 			<div class="container-fluid pt-0" ng-show="editView == '1'">
 				<div class="page-titles pt-0 mb-0">

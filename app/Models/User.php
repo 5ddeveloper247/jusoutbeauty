@@ -371,6 +371,7 @@ class User extends Authenticatable
         $result = DB::table('fnd_user_tbl')
 				  ->where('USER_TYPE','admin')
                   ->select('USER_ID','EMAIL','USER_NAME','USER_TYPE','ENCRYPTED_PASSWORD','USER_STATUS')
+                  ->latest('CREATED_ON','UPDATED_ON')
 				  ->get();
         
         return isset( $result) ?  $result :null;
@@ -387,6 +388,17 @@ class User extends Authenticatable
         
         return isset( $result) ?  $result :null;
 
+    }
+
+    public function getAdminUserDetails($id){
+
+        $user_id = $id;
+
+        $result = DB::table('fnd_user_tbl')
+        ->where('USER_ID','=', $user_id)
+        ->first();
+
+        return isset( $result) ?  $result :null;
     }
 
 }

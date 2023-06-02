@@ -211,6 +211,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/adminUsers',[AdminController::class,'adminUsers']);
 	Route::post('/getAllAdminUserslov', [AdminController::class, 'getAllAdminUserslov']);
 	Route::post('/saveAdminUser',[AdminController::class, 'saveAdminUser']);
+	Route::post('/editAdminUser',[AdminController::class, 'editAdminUser']);
 	Route::post('/deleteSpecificAdmin',[AdminController::class,'deleteSpecificAdmin']);
 	Route::post('/changeStatusAdmin',[AdminController::class,'changeStatusAdmin']);
 

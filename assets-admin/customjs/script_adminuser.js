@@ -129,12 +129,51 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.getAllAdminUserslov();
 		$scope.editView = 0;
 	}
+
+	$scope.editAdmin = function(id) {
+
+		var data = {};
+	    data.userId = id;
+	    
+    	var temp = $.param({details: data});
+
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/editAdminUser",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+
+			//Setting the value 
+			$scope.user.ID = data.USER_ID;
+			$scope.user.Name = data.USER_NAME;
+			$scope.user.Email = data.EMAIL;
+			$scope.user.Password = data.ENCRYPTED_PASSWORD;
+    		$scope.user.ConfirmPassword = data.ENCRYPTED_PASSWORD;
+
+			setTimeout(function(){
+                $("#name").val($scope.user.Name).trigger('change');
+				$("#email").val($scope.user.Email).trigger('change');
+				$("#password").val($scope.user.Password).trigger('change');
+				$("#confirmpassword").val($scope.user.ConfirmPassword).trigger('change');
+			},500);
+
+			$scope.editView = 1;
+				
+		   
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
 	
     $scope.saveAdminUser = function(){
 		
 		var data = {};
 	    data.user = $scope.user;
-	    // data.userId = userId;
+	    data.updateduserId = $scope.user.ID;
 	    
     	var temp = $.param({details: data});
     	
@@ -151,6 +190,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				
 				toastr.success(data.msg, '', {timeOut: 3000})
                 $scope.user.ID = data.ID;
+				//set Value to Null
+				$scope.user.Name = "";
+				$scope.user.Email = "";
+				$scope.user.Password = "";
+    			$scope.user.ConfirmPassword = "";
 				
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})

@@ -8287,7 +8287,9 @@ class AdminController extends Controller
 
 	public function saveAdminUser( Request $request){
 
+
 		$details = $_REQUEST ['details'];
+		$updateduserId = $details['updateduserId'];
 
 		//validating the Input Fields
 		if ($details['user']['Name'] == '') {
@@ -8330,9 +8332,26 @@ class AdminController extends Controller
 			die ();
 		}
 
+		//Updating the Record
+		if($updateduserId != null){
+
+			$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $updateduserId ) ->update (
+				array ( 'USER_NAME' =>  $details['user']['Name'],
+						'EMAIL' => $details['user']['Email'],
+						'ENCRYPTED_PASSWORD' =>$details['user']['Password'],
+						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+			));
+			$arrRes ['done'] = true;
+			$arrRes ['msg'] = 'Admin User Updated Successfully';
+			$arrRes ['id'] = $result;
+			echo json_encode ( $arrRes );
+			die();
+
+		}else{
+
 		//Inserting the Record 
 		$result = DB::table ( 'fnd_user_tbl' )
-				->insertGetId (
+				->insert (
 					array ( 
 							'USER_NAME' => $details['user']['Name'],
 							'EMAIL' => $details['user']['Email'],
@@ -8347,6 +8366,7 @@ class AdminController extends Controller
 				$arrRes ['msg'] = 'Admin User Created Successfully';
 				$arrRes ['id'] = $result;
 				echo json_encode ( $arrRes );
+		}
 	}
 
 	public function deleteSpecificAdmin(Request $request){
@@ -8401,6 +8421,40 @@ class AdminController extends Controller
 		echo json_encode ( $arrRes );
 
 	}
+
+	public function editAdminUser(Request $request){
+		
+		$User=new User();
+		$userId = $_REQUEST ['details'];
+
+		$AdminDetail = $User->getAdminUserDetails($userId);
+	
+		echo json_encode ( $AdminDetail );
+
+	}
+
+	// public function saveEditAdminUser(Request $request){
+
+	// 	$User=new User();
+	// 	$details = $_REQUEST ['details'];
+
+	// 	$userId = $_REQUEST ['details'];
+	// 	$name = $details['name'];
+	// 	$email = $details['name'];
+	// 	$password = $details['name'];
+
+	// 	$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $userId ) ->update (
+	// 			array ( 'USER_NAME' => $name,
+	// 					'EMAIL' => $email,
+	// 					'ENCRYPTED_PASSWORD' => $password,
+	// 					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+	// 			)
+	// 			);
+	
+	// 	$arrRes ['done'] = true;
+	
+	// 	echo json_encode ( $result );
+	// }
 	
 	
 }
