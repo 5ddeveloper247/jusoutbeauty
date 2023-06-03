@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
         // maxHeight: null,
         // focus: !1,
         // fontsize: fontsizes
-        fontSizes: ['8', '9', '10', '11', '12', '14', '18'],
+        // fontSizes: ['8', '9', '10', '11', '12', '14', '18'],
         // fontNames: [
         //     'Jost'
         //         ],
