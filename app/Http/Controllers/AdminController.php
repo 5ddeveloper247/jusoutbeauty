@@ -46,6 +46,35 @@ use App\Models\OrderShippingTrackingModel;
 class AdminController extends Controller
 {
 
+	public function updateProductOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+		
+		$products = DB::table ('jb_product_tbl' )->get();
+
+		$checkSeq = 0;
+
+		foreach ($products as $product) {
+			foreach ($request as $order) {
+				
+				if ($order['id'] == $product->PRODUCT_ID) {
+					
+					DB::table ('jb_product_tbl' )->where('PRODUCT_ID',$product->PRODUCT_ID)->limit(1)->update([
+						'SEQ_NUM' => $order['position'],
+					]);
+					++$checkSeq;
+				}
+				
+			}
+		}
+		
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Products Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+			
+	}
+
 	public function saveAdminProductsaveJusOFlow(Request $request){
 
 		$details = $_REQUEST ['details'];
@@ -343,6 +372,7 @@ class AdminController extends Controller
 		$recomended= new Recomended();
 		$handpicked= new Handpicked();
 
+
 		$arrRes ['list1'] = $Category->getCategoryLov();
 		$arrRes['features'] = $features->getactivefeaturesdata();
 		$arrRes['videoPro'] = $ProductModel->getVideodata($productID);
@@ -354,6 +384,8 @@ class AdminController extends Controller
 		$arrRes ['handpickProducts'] = $handpicked->gethanpickedproducts($productID);
 		$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($productID);
 		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
+		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory(isset($arrRes['productDetails']['P_31']) ? $arrRes['productDetails']['P_31'] : '');
+		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory(isset($arrRes['productDetails']['P_32']) ? $arrRes['productDetails']['P_32'] : '');
 		// $arrRes ['clinicalNote'] = $ProductModel->getAllProductClinicalNoteByProduct($productID);
 		// dd($arrRes['productDetails']);
 		// dd($arrRes['productDetails']);
@@ -3024,7 +3056,7 @@ class AdminController extends Controller
 		$arrRes ['list'] = $Product->getAllProductsData();
 		$arrRes ['list1'] = $Category->getCategoryLov();
 		$arrRes ['list2'] = $Shades->getShadesLov();
-	
+		
 		echo json_encode ( $arrRes );
 	}
 	public function getSubCategoriesWrtCategory(Request $request) {
@@ -3125,22 +3157,33 @@ class AdminController extends Controller
 			'SUB_CATEGORY_ID' =>  $subcategory['id'],
 		]);
 
-		
-		//  $product_lov = DB::table('jb_product_tbl')->where('SUB_CATEGORY_ID',$subcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
-		// // $arrRes['product']=$product_lov;
-		// $i=0;
-		// foreach ($product_lov as $row){
-    	// 	$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
-    	// 	$arrRes['product'][$i]['name'] = $row->NAME;
-    		
-    	// 	$i++;
-    	// }
-	
 		 $arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory($subcategory['id']);
 		 $arrRes ['msg'] = 'Sub Category ID Updated Successfully!';
 		 $arrRes ['done'] = true;
 		 echo json_encode ( $arrRes );
 	}
+	public function updateSubSubCategoriesWrtSubCategoryQuickAdd(Request $request) {
+		$Category = new CategoryModel();
+		$Product = new ProductModel();
+   
+		$details = $_REQUEST ['details'];
+		$subsubcategory = $details ['subsubcategory'];
+		$product_ID = $details['productId'];
+		$userId = $details ['userId'];
+	   
+	   
+		DB::table('jb_product_tbl')->where('PRODUCT_ID',$product_ID)->update([
+		   'SUB_SUB_CATEGORY_ID' =>  $subsubcategory['id'],
+	   ]);
+
+		// $arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory($subcategory['id']);
+		$arrRes ['msg'] = 'Sub Sub Category ID Updated Successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+   }
+
+	
+
 	public function getIngredientsWrtCategory(Request $request) {
 		$Ingredient = new IngredientModel();
 	
@@ -4006,12 +4049,12 @@ class AdminController extends Controller
 	
 		if (isset ( $data ) && ! empty ( $data )) {
 	
-			if ($data['U_1'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Sequence Number is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data['U_1'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Sequence Number is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if ($data['U_2'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';

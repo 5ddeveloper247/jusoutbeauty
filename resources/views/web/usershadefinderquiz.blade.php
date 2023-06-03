@@ -117,8 +117,8 @@ var site = '<?php echo session('site');?>';
 																		<p class="text-center mb-0 text-white hoverimages-text p-2 rose">@{{row.TITLE}}</p>
 																		
 																		<a href="javascript:;" ng-repeat="image in row.images" class="card shadee border-0 hover-change-content insta-secc insta-section-image submit-btn">
-																			{{-- <img src="@{{image.downPath}}" alt="alt" class="card-img" width="445" height="411"> --}}
-																			<img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img" width="445" height="411">
+																			<img src="@{{image.downPath}}" alt="alt" class="card-img" width="445" height="411">
+																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img" width="445" height="411"> --}}
 																		</a> 
 																	
 																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION}}</p>

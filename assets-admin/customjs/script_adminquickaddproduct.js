@@ -7,6 +7,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.SecondSectionEdit = 0; 
     $scope.clinicalNoteSection = 0;
     $scope.selectedValue = '';
+    $scope.refreshFlag = 0;
+    $scope.refreshFlag1 = 0;
+    $scope.refreshFlag2 = 0;
 
     $scope.QuickProduct = {};
     $scope.QuickProduct.ID = productId;
@@ -26,11 +29,8 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.QuickProduct.P_19 = "";
     $scope.QuickProduct.P_20 = "";
     $scope.QuickProduct.P_31 = "";
-    $scope.QuickProduct.P_31.id = "";
     $scope.QuickProduct.P_32 = "";
-    $scope.QuickProduct.P_32.id = "";
     $scope.QuickProduct.P_33 = "";
-    $scope.QuickProduct.P_33.id = "";
     
     $scope.QuickProduct.P_46 = "";
     $scope.QuickProduct.P_46.id = "";
@@ -98,14 +98,18 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             $scope.video = data.videoPro;
             var recommandedProducts = data.recommandedProducts;
             var displayCollectionProdUses = data.productuses;
+             $scope.subCategoryLov = data.subCategory;
+             $scope.subSubCategoryLov = data.subSubCategory;
             $scope.categoryLov = data.list1;
 
             $category_value=data.productDetails['P_31'];
-            $subcategory_value=data.productDetails['p_32'];
+            $subcategory_value=data.productDetails['P_32'];
 
             $scope.QuickProduct.P_31 = $category_value;
-            $scope.selectedValue = $category_value;
+           
             $scope.QuickProduct.P_32 = $subcategory_value;
+            $scope.QuickProduct.P_33 = data.productDetails['P_33'];
+
             // $scope.video.V_3 = data.videoPro['V_3'];
             // $scope.video.V_2 = data.videoPro['V_2'];
             // $scope.video.V_1 = data.videoPro['V_1'];
@@ -287,15 +291,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $('#clinicalNoteSectionView').summernote('code',$scope.QuickProduct.P_19);
 				$('#p19').html($scope.QuickProduct.P_19).trigger('change');
                 $("#p31").val($scope.QuickProduct.P_31).trigger('change');
-                // $("#p32").val($scope.QuickProduct.P_32).trigger('change');
-                // $("#p13").val($scope.QuickProduct.P_13).trigger('change');
+                $("#p32").val($scope.QuickProduct.P_32).trigger('change');
+                $("#p33").val($scope.QuickProduct.P_33).trigger('change');
                 
             }, 500);
-            $scope.QuickProduct.P_32 = $subcategory_value;
-            setTimeout(function () {
-                $("#p32").val($scope.QuickProduct.P_32).trigger('change');
-
-            }, 500);
+           
+           ;
             var html3 = '';
             var html4 = '';
             var displayCollectionProdIngredients = data.ingredients;
@@ -312,7 +313,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                         style="background-color:#57813a96">
                                         <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                         <img class="spot-section-img"
-                                            src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                            src="`+displayCollectionProdIngredients[i]['DOWN_PATH']+`">
                                         <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                             `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
                                         <p>
@@ -328,7 +329,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                         style="background-color:#57813a96">
                                         <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                         <img class="spot-section-img"
-                                            src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                            src="`+displayCollectionProdIngredients[i]['DOWN_PATH']+`">
                                         <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                             `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
                                         <p>
@@ -1142,7 +1143,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     style="background-color:#57813a96">
                                     <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                     <img class="spot-section-img"
-                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                        src="`+displayCollectionProdIngredients[i]['DOWN_PATH']+`">
                                     <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                         `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
                                     <p>
@@ -1159,7 +1160,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     style="background-color:#57813a96">
                                     <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                     <img class="spot-section-img"
-                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                        src="`+displayCollectionProdIngredients[i]['DOWN_PATH']+`">
                                     <p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                         `+displayCollectionProdIngredients[i]['INGREDIENT_NAME']+`</p>
                                     <p>
@@ -1502,7 +1503,8 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                 }
                 $('#steps_users').html($compile(angular.element(html))($scope));
-				
+
+				$("#usesStepsModal").modal("hide");
 				// if ($.fn.DataTable.isDataTable("#productUsesTable")) {
 				// 	$('#productUsesTable').DataTable().clear().destroy();
 				// }
@@ -1792,7 +1794,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                 $scope.video.ID = xhr.responseText[1];
                 $scope.video.V_4 = xhr.responseText[2];
-                location.reload();
+
+                setTimeout(function(){
+                    $('#video_product').attr('src',$scope.video.V_4);
+                }, 500);
+                // location.reload();
 
             });
             
@@ -2004,11 +2010,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                            '</div>';
                   
                   $("#cn_att").append($compile(angular.element(html))($scope));
-                // $scope.$apply(function () {
+                $scope.$apply(function () {
 
-                //     $scope.QuickProduct.P_20 = xhr.responseText[2];
+                    $scope.QuickProduct.P_20 = xhr.responseText[2];
 
-                // });
+                });
 
               }
            }
@@ -2075,6 +2081,10 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
 
     $scope.getSubCategoriesWrtCategory = function(e){
+        if($scope.refreshFlag2 == 0){// Function will not call on first page loads
+            $scope.refreshFlag2 = 1;
+            return;
+        }
 		// e.preventDefault();
         
 		if($scope.QuickProduct.P_31 != null){
@@ -2124,6 +2134,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 	}
    
     $scope.getSubSubCategoriesWrtSubCategory = function(){
+
+        if($scope.refreshFlag == 0){// Function will not call on first page loads
+            $scope.refreshFlag = 1;
+            return;
+        }
 		
 		if($scope.QuickProduct.P_32 != null){
 			var data = {};
@@ -2150,6 +2165,37 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		}else{
 			$scope.subSubCategoryLov = {};
 		}
+	}
+
+    $scope.updateSubSubCategoriesWrtSubCategoryQuickAdd = function(){
+            if($scope.refreshFlag1 == 0){// Function will not call on first page loads
+                $scope.refreshFlag1 = 1;
+                return;
+            }
+		
+			var data = {};
+		    data.subsubcategory = $scope.QuickProduct.P_33;
+            data.productId = $scope.QuickProduct.PRODUCT_ID;
+		    data.userId = userId;
+		    
+	    	var temp = $.param({details: data});
+	    	
+			$http({
+				data: temp+"&"+$scope.tokenHash,
+				url : site+"/updateSubSubCategoriesWrtSubCategoryQuickAdd",
+				method: "POST",
+				async: false,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+			}).success(function(data, status, headers, config) {
+					
+                toastr.success(data.msg, '', {timeOut: 3000});
+				
+				
+			})
+			.error(function(data, status, headers, config) {
+			});
+		
 	}
     
     $scope.saveJusOFlowProduct = function(){

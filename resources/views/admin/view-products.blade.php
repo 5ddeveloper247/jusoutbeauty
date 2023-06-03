@@ -22,7 +22,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                 	</div>
 					<div class="col-3">
 						<a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" href="javascript:void(0)" ng-click="quickAddProduct();">Quick Add Product</a>
-						</div>
+					</div>
                    	<div class="col-3">
                        <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3 float-left" href="javascript:void(0)" ng-click="addNew();">Add new Product</a>
                    	</div>
@@ -50,9 +50,11 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr ng-repeat="row in displayCollection">
-                                                <td>@{{row.seqNo}}</td>
+                                        <tbody id="tablecontents">
+											
+                                            <tr class="row1" data-id="@{{row.PRODUCT_ID}}" ng-repeat="row in displayCollection">
+												
+                                                <td>@{{row.PRODUCT_ID}}</td>
                                                 <td>@{{row.NAME}}</td>
                                                 <td>$@{{row.UNIT_PRICE}}</td>
                                                 <td>@{{row.CATEGORY_NAME}}</td>
@@ -84,10 +86,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusProduct(@{{row.PRODUCT_ID}});" ng-show="row.STATUS != 'active'">Active</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusProduct(@{{row.PRODUCT_ID}});" ng-show="row.STATUS == 'active'">InActive</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="continouRecord(@{{row.PRODUCT_ID}});">Edit</a>
+															<a class="dropdown-item" href="javascript:;" ng-click="quickEditProduct(@{{row.PRODUCT_ID}});">Quick Edit</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="deleteProduct(@{{row.PRODUCT_ID}});">Delete</a>
 														</div>
 													</div>
-												</td>												
+												</td>	
+												
                                             </tr>
                                             
                                             
@@ -1415,8 +1419,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 		{{ csrf_field() }}
 		<input type="hidden" class="productID" id="productID" name="productID" value="">
 	</form>
+
+	
     @include('admin.admin-footer')
-    
+	
+	<script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="{{ url('/assets-admin') }}/customjs/script_adminproduct.js?v={{time()}}"></script>
     
     <script>

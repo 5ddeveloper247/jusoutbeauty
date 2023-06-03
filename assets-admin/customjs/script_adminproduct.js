@@ -117,8 +117,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			$scope.displayCollection = data.list;
 		
 			setTimeout(function(){
-				$('#productsTable').DataTable( {
-					order: [],
+				var featured_category_display_order_table = $('#productsTable').DataTable( {
+					 order: [
+						[0, "asc"]],
+
+					// rowReorder: {
+					// 	selector: 'tr',
+					// 	update: true
+					//   },
+					  
 		            aLengthMenu: [
 		                          [10, 25, 50, 100, 200, -1],
 		                          [10, 25, 50, 100, 200, "All"]
@@ -126,13 +133,74 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		        } );
 			}, 500);
 			
-			
+			$( "#tablecontents" ).sortable({
+				items: "tr",
+				cursor: 'move',
+				opacity: 0.6,
+				update: function() {
+					$scope.$apply(function () {
+						$scope.sendOrderToServer();
+					});
+					
+				}
+			  });
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
+
+
 	$scope.getAllAdminProductlov();
 		
+
+	$scope.sendOrderToServer = function(){
+		var order = [];
+		
+		// var token = $('meta[name="csrf-token"]').attr('content');
+		$('tr.row1').each(function(index,element) {
+		  order.push({
+			id: $(this).attr('data-id'),
+			position: index+1
+		  });
+		});
+
+		var data = {};
+	    data.order = order;
+	    var temp = $.param({details: data});
+		console.log(data);
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+'/updateProductOrder',
+			// dataType: "json",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+			toastr.success(data.msg, '', {timeOut: 3000})
+			
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+		// $.ajax({
+		//   type: "POST", 
+		//   dataType: "json", 
+		//   url: "{{ url('updateProductOrder') }}",
+		// 	  data: {
+		// 	order: order,
+		// 	_token: token
+		//   },
+		//   success: function(response) {
+		// 	  if (response.status == "success") {
+		// 		console.log(response);
+		// 	  } else {
+		// 		console.log(response);
+		// 	  }
+		//   }
+		// });
+	  }
+	
 	$scope.reset = function(){
 		$scope.product={};
 		$scope.product.ID = "";
@@ -254,7 +322,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}).success(function(data, status, headers, config) {
 				
 			if(data.done == true || data.done == 'true'){
-				console.log(data.id);
+				
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$('#productID').val(data.id);
 
@@ -270,6 +338,17 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		})
 		.error(function(data, status, headers, config) {
 		});
+	}
+
+	$scope.quickEditProduct = function(id){
+
+		$('#productID').val(id);
+
+		setTimeout(function(){
+			$('#quickProductdetilsForm').submit();
+		}, 500);
+
+		
 	}
 	$scope.addNew = function(){
 		

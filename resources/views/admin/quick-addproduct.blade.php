@@ -570,10 +570,19 @@
         <div class="" id="details-header" ng-controller="projectinfo1">
             <section class=" sec_inc_1">
                 <div class="container container-custom container-xxl ">
-                    <div class="row">
-                        <div class="col-12 text-center py-4" style="color: white !important;
+                    <div class="row ">
+                        
+                        <div class="col-12  " style="color: white !important;
                         background-color: #a72160 !important;">
-                          <h3 class="text-light m-0">Add Product Form</h3>
+                            <a href="{{ url('/view-products') }}" class="d-flex gap-2">
+                                <h5><i class="fa fa-arrow-left text-light" aria-hidden="true"></i></h5>
+                                <h5 class="text-light m-0">Back To Listing</h5>
+                            </a>
+                          
+                        </div>
+                        <div class="col-12 text-center p-2" style="color: white !important;
+                        background-color: #a72160 !important;">
+                            <h3 class="text-light m-0">Add/Edit Product Form</h3>
                         </div>
                     </div>
                 </div>
@@ -595,7 +604,8 @@
                         <div class="col-4 mt-1 mb-1">
                             <div class="form-group">
                                 <label class="col-form-label" for="tags"><b>Product Sub Category</b> <span class="text-danger">*</span></label> 
-                                <select class="form-control" id="p32" ng-model="product['P_32']"
+                                <select class="form-control" id="p32" ng-model="QuickProduct['P_32']"
+
                                     ng-change="getSubSubCategoriesWrtSubCategory();"
                                     ng-options="item as item.name for item in subCategoryLov track by item.id">
                                     <option value="">---SELECT---</option>
@@ -605,7 +615,8 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="col-form-label" for="sub_sub_category"><b>Product Sub Sub Category</b> <span class="text-danger">*</span> </label>
-                                <select class="form-control" id="p33" ng-model="product['P_33']"
+                                <select class="form-control" id="p33" ng-model="QuickProduct['P_33']"
+                                    ng-change="updateSubSubCategoriesWrtSubCategoryQuickAdd();"
                                     ng-options="item as item.name for item in subSubCategoryLov track by item.id">
                                     <option value="">---SELECT---</option>
                                 </select>
@@ -1034,11 +1045,11 @@
                                                                             class="prod_img_detail img-w35 img-product-gall cursor-pointer"
                                                                             style="border:5px dotted grey">
 
-                                                                        <div class=" hover-zoom-in"
+                                                                        <div class=" "
                                                                             ng-show="video.V_4 != ''">
-                                                                            <button class="btn btn-primary mb-2"
-                                                                                onclick="form2();">Edit</button>
-                                                                            <video src="@{{ video.V_4 }}"
+                                                                            
+                                                                                <i class="fa fa-pencil-square-o cursor-pointer float-right" aria-hidden="true" onclick="form2();"></i>
+                                                                            <video id="video_product" src="@{{ video.V_4 }}"
                                                                                 class="card-img"></video>
                                                                             <div
                                                                                 class="card-img-overlay d-flex flex-column align-items-center justify-content-center p-4">
@@ -2412,10 +2423,10 @@
 						<div class="modal-body">
 							
 							<div class="row">
-							   <div class="col-6">
+							   {{-- <div class="col-6">
 							     <label><b>Sequence Number<span class="required-field">*</span></b></label>
 							     <input type="number" class="form-control" id="u1" ng-model="uses['U_1']">
-							   </div>
+							   </div> --}}
 							</div>
 							<div class="row mt-4">
 							   <div class="col-12">
@@ -2463,6 +2474,8 @@
 
 								</div>
 							</div>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save basic info then upload image</span></small><br>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
@@ -2520,6 +2533,7 @@
 
 								</div>
 							</div>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save basic info then upload image</span></small><br>
                             <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
 
 						</div>

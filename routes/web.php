@@ -232,6 +232,8 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/saveAdminProductsaveJusOFlow',[AdminController::class,'saveAdminProductsaveJusOFlow']);
 	Route::post('/saveDailyhandPickProduct',[AdminController::class,'saveDailyhandPickProduct']);
 	Route::post('/getSubSubCategoriesWrtSubCategoryQuickAdd',[AdminController::class,'getSubSubCategoriesWrtSubCategoryQuickAdd']);
+	Route::post('/updateSubSubCategoriesWrtSubCategoryQuickAdd',[AdminController::class,'updateSubSubCategoriesWrtSubCategoryQuickAdd']);
+	Route::post('/updateProductOrder',[AdminController::class,'updateProductOrder']);
 
 	//for quick add product end
 	Route::post('/getAllAdminProductSnapSelfielov', [AdminController::class, 'getAllAdminProductSnapSelfielov']);

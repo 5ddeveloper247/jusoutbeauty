@@ -23,6 +23,7 @@
 	
 	<!-- DropeZone -->
 	<link href="{{ url('/assets-admin') }}/third_party/admin/dropzone/dist/dropzone.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/rowreorder/1.3.3/css/rowReorder.dataTables.min.css" rel="stylesheet">
 	
 	<!-- Multi Select -->
     <link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/select2/css/select2.min.css">
