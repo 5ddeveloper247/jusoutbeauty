@@ -1,22 +1,29 @@
 var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
-	
 	$scope.user={};
-    // $scope.allAdminUsers = "";
+    $scope.allAdminUsers = "";
 	$scope.user.ID = "";
-	$scope.user.Name = "";
-	$scope.user.Email = "";
+	$scope.user.FirstName = "";
+	$scope.user.LastName = "";
+	$scope.user.UserRole = "";
+	$scope.user.PhoneNumber = "";
+	$scope.user.EmailAddress = "";
 	$scope.user.Password = "";
     $scope.user.ConfirmPassword = "";
+	$scope.user.Enable = "";
 	$scope.allNavLinks = "";
+	$scope.user.NavLinksRegistered = "";
     $scope.editView = 0;
 
-	
+    $scope.allNavLinks = '';
+    $scope.tokenHash = $("#csrf").val();
 
-	$scope.tokenHash = $("#csrf").val();
-	
-    $scope.getAllAdminUserslov = function(){
+	$scope.saveAdminUserPermission = function(){
+
+	}
+
+	$scope.getAllAdminUserslov = function(){
 		
 		var data = {};
 	    data.userId = userId;
@@ -36,8 +43,6 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			}
 			
 			$scope.allAdminUsers = data.allAdminUsers;
-			$scope.allNavLinks = data.allNavLinks;
-            console.log($scope.allAdminUsers);
 		
 			setTimeout(function(){
 				$('#AdminTable').DataTable( {
@@ -54,17 +59,41 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	$scope.getAllAdminUserslov();
-		
+
+    $scope.getAllNavLinksLov = function(){
+    	
+		var data = {};
+	    data.userId = userId;
+	    var temp = $.param({details: data});
+
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+'/getAllNavLinksLov',
+			method: "GET",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+			
+			$scope.allNavLinks = data.allNavLinks;			
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+    $scope.getAllAdminUserslov();
+	$scope.getAllNavLinksLov();
+
 	$scope.reset = function(){
 		
-        $scope.user={};
-        $scope.allAdminUsers = "";
-	    $scope.user.ID = "";
-	    $scope.user.Name = "";
-	    $scope.user.Email = "";
-	    $scope.user.Password = "";
-        $scope.user.ConfirmPassword = "";
+		$scope.user={};
+		$scope.allAdminUsers = "";
+		$scope.user.ID = "";
+		$scope.user.Name = "";
+		$scope.user.EmailAddress = "";
+		$scope.user.Password = "";
+		$scope.user.ConfirmPassword = "";
 		
 		$("#name").val('').trigger('change');
 		$("#email").val('').trigger('change');
@@ -73,48 +102,19 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		
 	}
 
-	$scope.quickAddProduct = function(){
-		var data = {};
-	    data.userId = userId;
-	    
-    	var temp = $.param({details: data});
-    	
-		$http({
-			data: temp+"&"+$scope.tokenHash, 
-			url : site+"/saveAdminQuickProductBasicInfo",
-			method: "POST",
-			async: false,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-
-		}).success(function(data, status, headers, config) {
-				
-			if(data.done == true || data.done == 'true'){
-				console.log(data.id);
-				toastr.success(data.msg, '', {timeOut: 3000})
-				$('#productID').val(data.id);
-
-				setTimeout(function(){
-					$('#quickProductdetilsForm').submit();
-				}, 500);
-
-				
-				
-			}else{
-				toastr.error(data.msg, '', {timeOut: 3000})
-			}
-		})
-		.error(function(data, status, headers, config) {
-		});
-	}
 	$scope.addNew = function(){
 		
         $scope.user={};
         $scope.allAdminUsers = "";
-	    $scope.user.ID = "";
-	    $scope.user.Name = "";
-	    $scope.user.Email = "";
-	    $scope.user.Password = "";
-        $scope.user.ConfirmPassword = "";
+		$scope.user.ID = "";
+		$scope.user.FirstName = "";
+		$scope.user.LastName = "";
+		$scope.user.UserRole = "";
+		$scope.user.PhoneNumber = "";
+		$scope.user.EmailAddress = "";
+		$scope.user.Password = "";
+		$scope.user.ConfirmPassword = "";
+		$scope.user.Enable = "";
 		
 		if ($.fn.DataTable.isDataTable("#AdminTable")) {
 			$('#AdminTable').DataTable().clear().destroy();
@@ -123,6 +123,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		setTimeout(function(){
 			$("#AdminTable").DataTable();
 		}, 500);
+
+		$(".menu_check").prop('checked',false);
+		
+		$('#menu_1').prop("checked", true);
+		$('#menu_1').prop("disabled", true);
 		
 		$scope.editView = 1;
 		
@@ -136,6 +141,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 		var data = {};
 	    data.userId = id;
+		$scope.user.FirstName = "";
+		$scope.user.LastName = "";
+		$scope.user.UserRole = "";
+		$scope.user.PhoneNumber = "";
+		$scope.user.EmailAddress = "";
 	    
     	var temp = $.param({details: data});
 
@@ -148,24 +158,42 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 		}).success(function(data, status, headers, config) {
 
+			// console.log(data);
 			//Setting the value 
-			$scope.user.ID = data.USER_ID;
-			$scope.user.Name = data.USER_NAME;
-			$scope.user.Email = data.EMAIL;
-			$scope.user.Password = data.ENCRYPTED_PASSWORD;
-    		$scope.user.ConfirmPassword = data.ENCRYPTED_PASSWORD;
+			$status = data['AdminDetail'].USER_STATUS == 'active' ? true : false ;
+			$scope.user.ID = data['AdminDetail'].USER_ID;
+			$scope.user.FirstName = data['AdminDetail'].FIRST_NAME;
+			$scope.user.LastName = data['AdminDetail'].LAST_NAME;
+			$scope.user.UserRole = data['AdminDetail'].USER_ROLE;
+			$scope.user.PhoneNumber = data['AdminDetail'].PHONE_NUMBER;
+			$scope.user.EmailAddress = data['AdminDetail'].EMAIL;
+			$scope.user.Password = data['AdminDetail'].ENCRYPTED_PASSWORD;
+    		$scope.user.ConfirmPassword = data['AdminDetail'].ENCRYPTED_PASSWORD;
+			$scope.user.NavLinksRegistered = data['AdminDetail'].RegisteredLinks;
+			$scope.user.Enable = $status;
+
+			var navLinksRegistered = data['getAdminControlOptions'];
+
+			$(".menu_check").prop('checked',false);
+
+			$('#menu_1').prop("checked", true);
+			$('#menu_1').prop("disabled", true);
+
+			for(var i=0; i<navLinksRegistered.length ; i++){
+
+				$("#menu_"+navLinksRegistered[i]['MENU_ID']).prop('checked',true);
+			}
 
 			setTimeout(function(){
-                $("#name").val($scope.user.Name).trigger('change');
-				$("#email").val($scope.user.Email).trigger('change');
+                $("#firstname").val($scope.user.FirstName).trigger('change');
+				$("#secondname").val($scope.user.LastName).trigger('change');
+				$("#userrole").val($scope.user.UserRole).trigger('change');
+				$("#email").val($scope.user.EmailAddress).trigger('change');
 				$("#password").val($scope.user.Password).trigger('change');
 				$("#confirmpassword").val($scope.user.ConfirmPassword).trigger('change');
 			},500);
 
 			$scope.editView = 1;
-				
-		   
-			
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -178,7 +206,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	    data.updateduserId = $scope.user.ID;
 	    
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash, 
 			url : site+"/saveAdminUser",
@@ -187,189 +215,36 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
 				
 				toastr.success(data.msg, '', {timeOut: 3000})
-                $scope.user.ID = data.ID;
+                $scope.user.ID = data.id;
 				//set Value to Null
-				$scope.user.Name = "";
-				$scope.user.Email = "";
+				$scope.user.FirstName = "";
+				$scope.user.LastName = "";
+				$scope.user.UserRole = "";
+				$scope.user.PhoneNumber = "";
+				$scope.user.EmailAddress = "";
 				$scope.user.Password = "";
-    			$scope.user.ConfirmPassword = "";
+				$scope.user.ConfirmPassword = "";
+				$scope.user.Enable = "";
+
+				$scope.getAllAdminUserslov();
+
+				// $scope.editView = 0;
 				
 			}else{
+				
+				
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
 		})
 		.error(function(data, status, headers, config) {
+			
 		});
 	}
 
-	$scope.changeStatusAdmin = function(id){
-		
-		var data = {};
-	    data.recordId = id;
-	    data.userId = userId;
-
-    	var temp = $.param({details: data});
-    	
-		$http({
-			data: temp+"&"+$scope.tokenHash,
-			url : site+"/changeStatusAdmin",
-			method: "POST",
-			async: false,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-
-		}).success(function(data, status, headers, config) {
-				
-			toastr.success(data.msg, '', {timeOut: 3000});
-			$scope.getAllAdminUserslov();
-			
-		})
-		.error(function(data, status, headers, config) {
-		});
-	}
-	
-	$scope.tempProId = '';
-	$scope.markProdImagePriSec = function(id){
-		
-		$scope.tempProId = id;
-		// $("#shadesModal").modal('hide');
-		$("#confirmProdImageModal").modal('show');
-	}
-	$scope.closeProdImageModal = function(id){
-		$scope.tempProId = '';
-		// $("#shadesModal").modal('show');
-		$("#confirmProdImageModal").modal('hide');
-	}
-	
-	$scope.deleteProductShade = function(id){
-		
-		var data = {};
-	    data.productId = $scope.product.ID;
-	    data.productShadeId = id;
-	    data.userId = userId;
-    	var temp = $.param({details: data});
-    	
-		$http({
-			data: temp+"&"+$scope.tokenHash,
-			url : site+"/deleteProductShade",
-			method: "POST",
-			async: false,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-
-		}).success(function(data, status, headers, config) {
-				
-			toastr.success(data.msg, '', {timeOut: 3000})
-			
-			if ($.fn.DataTable.isDataTable("#productShadesTable")) {
-				$('#productShadesTable').DataTable().clear().destroy();
-			}
-				
-			$scope.displayCollectionProdShades = data.shades;
-			
-			setTimeout(function(){
-				$("#productShadesTable").DataTable();
-			}, 500);
-			
-			
-			
-		})
-		.error(function(data, status, headers, config) {
-		});
-	}
-	$scope.addNewUses = function(){
-		
-		$scope.uses={};
-		$scope.uses.ID = "";
-		$scope.uses.U_1 = "";
-		$scope.uses.U_2 = "";
-		$scope.uses.U_3 = "";
-		$scope.uses.U_4 = "";
-		$("#u1").val($scope.uses.U_1).trigger('change');
-		
-		$("#usesStepsModal").modal("show");
-	}
-	
-	$scope.saveProductUses = function(){
-		
-		if($scope.product.ID == ''){
-			toastr.error("Save Product Info first, then proceed...", '', {timeOut: 3000})
-			return;
-		}
-		
-		var data = {};
-	    data.product = $scope.product;
-	    data.uses = $scope.uses;
-	    data.userId = userId;
-	    
-    	var temp = $.param({details: data});
-    	
-		$http({
-			data: temp+"&"+$scope.tokenHash, 
-			url : site+"/saveAdminProductUses",
-			method: "POST",
-			async: false,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-
-		}).success(function(data, status, headers, config) {
-				
-			if(data.done == true || data.done == 'true'){
-				
-				toastr.success(data.msg, '', {timeOut: 3000})
-				
-				$scope.uses.ID = data.ID;
-				
-				if ($.fn.DataTable.isDataTable("#productUsesTable")) {
-					$('#productUsesTable').DataTable().clear().destroy();
-				}
-				
-				$scope.displayCollectionProdUses = data.productuses;
-			
-				setTimeout(function(){
-					$("#productUsesTable").DataTable();
-				}, 500);
-				
-			}else{
-				toastr.error(data.msg, '', {timeOut: 3000})
-			}
-		})
-		.error(function(data, status, headers, config) {
-		});
-	}
-	$scope.editProductUses = function(id){
-		
-		var data = {};
-	    data.productUsesId = id;
-	    data.userId = userId;
-    	var temp = $.param({details: data});
-    	
-		$http({
-			data: temp+"&"+$scope.tokenHash,
-			url : site+"/editProductUses",
-			method: "POST",
-			async: false,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-
-		}).success(function(data, status, headers, config) {
-				
-			if(data.details != '' && data.details != null){
-				
-				$scope.uses = data.details;
-				$("#usesStepsModal").modal('show');
-				setTimeout(function(){
-					$("#u1").val($scope.uses.U_1).trigger('change');
-				}, 500);
-			}
-			
-		})
-		.error(function(data, status, headers, config) {
-		});
-	}
-	
-	$scope.alertDeleteMsg = '';
-	
 	$scope.deleteAdmin = function(id){
 		
 		var data = {};
@@ -403,14 +278,79 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
-	$scope.closealertDeleteModal = function(id){
+
+	$scope.changeStatusAdmin = function(id){
 		
-		$("#alertDel").modal('hide');
-		$scope.alertDeleteMsg = '';
-		
+		var data = {};
+	    data.recordId = id;
+	    data.userId = userId;
+
+    	var temp = $.param({details: data});
+    	
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/changeStatusAdmin",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+				
+			toastr.success(data.msg, '', {timeOut: 3000})
+			$scope.getAllAdminUserslov();
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
 	}
-	
+
+	$scope.saveAdminUserMenuControls=function(){
+
+		if($scope.user.ID != ''){
+			var menu_ids = new Array();
+			i=0;
+			$('div[id*=menu_list_]').each(function(){
+				if($(this).find("[id*=menu_]").is(":checked")==true){
+					menu_ids[i] =  $(this).find("[id*=menu_]").val();
+					i++;
+	 			}
+	 		});
+			
+			if(menu_ids.length <= 0){
+				toastr.error('Error : First Choose Menu Controls ', '', {timeOut: 3000});
+				return ;
+			}
+
+			//Now, get the index values
+			var data = {};
+			data.userId = $scope.user.ID;
+			data.selected_options = menu_ids;
+			var temp = $.param({details: data});
+			
+			$http({
+				data: temp+"&"+$scope.tokenHash,
+				url : site+"/menuControlOptions",
+				method: "POST",
+				async: false,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+			}).success(function(data, status, headers, config) {
+					
+				toastr.success(data.msg, '', {timeOut: 3000})
+				$scope.getAllAdminUserslov();
+				$scope.editView = 0;
+				
+			})
+		.error(function(data, status, headers, config) {
+		});
+	}else{
+		toastr.error("Save User Details First", '', {timeOut: 3000})
+	}
+
+
+	}
+
+
 })
 
 .config(function ($httpProvider, $provide) {

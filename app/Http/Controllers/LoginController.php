@@ -39,6 +39,7 @@ class LoginController extends Controller
 				$r->session()->put('lastName', $result->LAST_NAME);
 				$r->session()->put('userType', $result->USER_TYPE);
 				$r->session()->put('email', $result->EMAIL);
+				$r->session()->put('userSubType', $result->USER_SUBTYPE);
 				
 				return redirect('dashboard');
 			
@@ -214,6 +215,7 @@ class LoginController extends Controller
 					$r->session()->put('lastName', $result->LAST_NAME);
 					$r->session()->put('userType', $result->USER_TYPE);
 					$r->session()->put('email', $result->EMAIL);
+					$r->session()->put('userSubType', $result->USER_SUBTYPE);
 					return redirect('home');
 						
 				}else{

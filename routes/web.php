@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CloverController;
+use App\Http\Middleware\AdminAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\CloverController;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+
 */
 
 // Route::get('/', function () {
@@ -87,6 +88,9 @@ Route::get('/shopping-cart', [HomeController::class, 'shoppingCart']);
 Route::get('/shipping-step', [HomeController::class, 'shippingStep']);
 
 Route::post('/storeListing', [HomeController::class, 'storeListing']);
+Route::get('/getAllNavLinksLov',[AdminController::class,'getAllNavLinksLov']);
+
+
 Route::get('/storeListing', function () {
 	return redirect('/home');
 });
@@ -214,6 +218,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/editAdminUser',[AdminController::class, 'editAdminUser']);
 	Route::post('/deleteSpecificAdmin',[AdminController::class,'deleteSpecificAdmin']);
 	Route::post('/changeStatusAdmin',[AdminController::class,'changeStatusAdmin']);
+	Route::post('/menuControlOptions',[AdminController::class,'menuControlOptions']);
 
 	//for quick add product start
 	Route::post('/updateClinicalInfo', [AdminController::class, 'updateClinicalInfo']);

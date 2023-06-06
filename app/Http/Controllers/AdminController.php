@@ -36,10 +36,11 @@ use App\Models\OrderShippingModel;
 use App\Models\UserdashboardModel;
 use Illuminate\Support\Facades\DB;
 use App\Models\AddSocialIconsModel;
+use App\Models\UserMenuControlModel;
 use App\Models\BundleProductLineModel;
 use App\Models\ProductIngredientModel;
-use App\Models\ShadeFinderSelfieModel;
 
+use App\Models\ShadeFinderSelfieModel;
 use App\Models\FooterSubscriptionModel;
 use App\Models\OrderShippingTrackingModel;
 
@@ -312,13 +313,15 @@ class AdminController extends Controller
 		$productID = isset($_REQUEST['productID']) ? $_REQUEST['productID'] : "";
 
 		$data['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
-		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data['page'] = 'Quick Add Product';
+		
 		return view('admin.quick-addproduct')->with($data);
 	}
 	/* quickAddProduct start */ 
 	public function quickAddProduct(){
 
+		$data['adminMenu'] = $this->getAdminUserMenu();
     	$data['page'] = 'Quick Add Product';
 		return view('admin.quick-addproduct')->with($data);
 	}
@@ -539,11 +542,11 @@ class AdminController extends Controller
 	   	$request->session()->forget('firstName');
 	   	$request->session()->forget('lastName');
 	   	$request->session()->forget('email');
+		$request->session()->forget('userSubType');
 	   	return redirect('admin');
    	}
    	
    	public function dashboard() {
-   	
 		$User=new User();
 		$data['getTotalUsers']= $User->getTotalUsers();
 		$data['getAdminUsers'] = $User->getAdminUsers();
@@ -561,12 +564,43 @@ class AdminController extends Controller
 		$data['mostSaledItems']= $User->mostSaleItems();
 		$data['lineChartData']= $User->getLineChartDetails();
    		$data['page'] = 'Dashboard';
+		$data['adminMenu'] = $this->getAdminUserMenu();
+
+		// $UserMenuControl = new UserMenuControlModel();
+		// print_r('<pre>');
+        // print_r($data['adminMenu']);
+        // exit();
    		return view('admin.dashboard')->with($data);
    	}
+
+	public function getAdminUserMenu(){
+		$UserMenuControl = new UserMenuControlModel();
+
+		$user_id = session('userId');
+		if(session('userSubType') == 'admin'){
+
+			$Menus = $UserMenuControl->getAllMenuWrtAdmin();
+
+		}else if(session('userSubType') == 'subadmin' ){
+
+			$Menus = $UserMenuControl->getMenuLinksWRTUserId($user_id);
+
+		}
+
+		return $Menus ;
+	}
+
 	public function viewAllSelfi() {
 
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data['page'] = 'Snap Product Selfi';
-		return view('admin.view-productselfi')->with($data);
+		$result=$this->checkUserControlAccess(session('userId'),"/view-all-selfi");
+		if( $result != true) {
+			return view('admin.view-productselfi')->with($data);
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view('admin.view-productselfi')->with($data);
 	}
        /* Selfie  get and delete admin side start*/
 	   public function deletSelectedSelfie(Request $request){
@@ -654,8 +688,17 @@ class AdminController extends Controller
 
    	public function partners() {
    		
+		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'Partners';
-       	return view('admin.partners')->with($data);
+	
+		$result=$this->checkUserControlAccess(session('userId'),"/partners");
+		if( $result != true) {
+			return view('admin.partners')->with($data);
+		}else{
+			return redirect('/dashboard');
+		}
+
+       	// return view('admin.partners')->with($data);
    	}
 
 //    	public function adminUsers() {
@@ -665,38 +708,81 @@ class AdminController extends Controller
 //    	}
    	public function adminProfile() {
    		 
+		$data['adminMenu'] = $this->getAdminUserMenu();
    		$data['page'] = 'Admin Profile';
-   		return view('admin.admin-profile')->with($data);
+		$result=$this->checkUserControlAccess(session('userId'),"/admin-profile");
+		if( $result != true) {
+			return view('admin.admin-profile')->with($data);
+		}else{
+			return redirect('/dashboard');
+		}
+   		// return view('admin.admin-profile')->with($data);
    	}
 
    	public function addAdminUser() {
    		
+		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'add Admin User';
-       	return view('admin.add-admin-user')->with($data);
+		$result=$this->checkUserControlAccess(session('userId'),"/add-admin-user");
+		if( $result != true) {
+			return view ( 'admin.add-admin-user' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+       	// return view('admin.add-admin-user')->with($data);
    	}
 
    	public function websiteUsers() {
    		
+		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'Website Users';
-       	return view('admin.website-users')->with($data);
+		$result=$this->checkUserControlAccess(session('userId'),"/website-users");
+		   if( $result != true) {
+			  return view ( 'admin.website-users' )->with ( $data );
+		   }else{
+			return redirect('/dashboard');
+		   }
+       	// return view('admin.website-users')->with($data);
    	}
 
    	public function addWebsiteUser() {
    		
+		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'Add Website User';
-       	return view('admin.add-website-user')->with($data);
+		$result=$this->checkUserControlAccess(session('userId'),"/add-website-user");
+		   if( $result != true) {
+			   view ( 'admin.add-website-user')->with ( $data );
+		   }else{
+			return redirect('/dashboard');
+		   }
+       	// return view('admin.add-website-user')->with($data);
    	}
 
    	public function viewCategories() {
    		
+		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'View Categories';
-       	return view('admin.view-categories')->with($data);
+		$result=$this->checkUserControlAccess(session('userId'),"/view-categories");
+
+		if( $result != true) {
+			return view('admin.view-categories')->with($data);
+		}else{
+			return redirect('/dashboard');
+		}
+       	// return view('admin.view-categories')->with($data);
    	}
 
    	public function viewProducts() {
    	
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Products';
-		return view ( 'admin.view-products' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/view-products");
+
+		if( $result != true) {
+			return view ( 'admin.view-products')->with( $data );
+		}else{
+			return redirect('/dashboard');
+		}
 	}
 
 	public function getAllAdminProductSnapSelfielov() {
@@ -710,26 +796,57 @@ class AdminController extends Controller
 	
 	public function viewBundles() {
 	
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Bundles';
-		return view ( 'admin.view-productbundles' )->with ( $data );
+
+		$result=$this->checkUserControlAccess(session('userId'),"/view-bundles");
+		   if( $result != true) {
+			return view ( 'admin.view-productbundles' )->with ( $data );
+		   }else{
+			return  redirect('/dashboard');
+		   }
+
+		// return view ( 'admin.view-productbundles' )->with ( $data );
 	}
 
       public function addProduct() {
    	
-		 $data ['page'] = 'Add Product';
-		return view ( 'admin.add-product' )->with ( $data );
+		$data['adminMenu'] = $this->getAdminUserMenu();
+		$data ['page'] = 'Add Product';
+
+		   $result=$this->checkUserControlAccess(session('userId'),"/add-product");
+		   if( $result != true) {
+			return view ( 'admin.add-product' )->with ( $data );
+		   }else{
+			return redirect('/dashboard');
+		   }
+		// return view ( 'admin.add-product' )->with ( $data );
 	 }
 
 	   //===============Routine ========================>
 
 	   public function add_routine(){
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Routine';
-		return view('admin.Routines.addroutine')->with( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/addroutine");
+		if( $result != true) {
+			return view('admin.Routines.addroutine')->with( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view('admin.Routines.addroutine')->with( $data );
 	   }
           
 	   public function routine_type(){
+			$data['adminMenu'] = $this->getAdminUserMenu();
 		    $data ['page'] = 'Add Routine';
-		    return view('admin.Routines.routine_type_new')->with( $data );
+			$result=$this->checkUserControlAccess(session('userId'),"/routine_type");
+			if( $result != true) {
+				return view('admin.Routines.routine_type_new')->with( $data );
+			}else{
+				return redirect('/dashboard');
+			}
+		    // return view('admin.Routines.routine_type_new')->with( $data );
 	   }
 
 
@@ -1350,20 +1467,35 @@ class AdminController extends Controller
 
     	public function viewAllIngredients() {
    		
-		     $data ['page'] = 'View All Ingredients';
-		       return view ( 'admin.view-all-ingredients' )->with ( $data );
+			$data['adminMenu'] = $this->getAdminUserMenu();
+		    $data ['page'] = 'View All Ingredients';
+			$result=$this->checkUserControlAccess(session('userId'),"/view-ingredients");
+			if( $result != true) {
+				return view ( 'admin.view-all-ingredients' )->with ( $data );
+			}else{
+				return redirect('/dashboard');
+			}
+		    // return view ( 'admin.view-all-ingredients' )->with ( $data );
 	 }
 
 	 public function viewAllFeatures() {
    		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View All Features';
-		  return view ( 'admin.view-all-Features' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/view-features");
+		if( $result != true) {
+			return view ( 'admin.view-all-Features' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.view-all-Features' )->with ( $data );
 }
 
 
 	
 	public function addNewIngredient($id='') {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add New Ingredient';
 		$data ['ingredientId'] = $id;
 		return view ( 'admin.add-new-ingredient' )->with ( $data );
@@ -1371,269 +1503,426 @@ class AdminController extends Controller
 	
 	public function viewAllShades() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View All Shades';
-		return view ( 'admin.view-all-shades' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/view-all-shades");
+		if( $result != true) {
+			return view ( 'admin.view-all-shades' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
 	}
 	public function viewAllBlogs() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View All Shades';
 		return view ( 'admin.view-all-bloges' )->with ( $data );
 	}
 	
 	public function addShade() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Shade';
 		return view ( 'admin.add-shade' )->with ( $data );
 	}
 	
 	public function blogs() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Blogs';
 		return view ( 'admin.blogs' )->with ( $data );
 	}
 	
 	public function addBlog() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Blog';
-		return view ( 'admin.add-blog' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/add-blog");
+		if( $result != true) {
+			return view ( 'admin.add-blog' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.add-blog' )->with ( $data );
 	}
 	
 	public function editBlog() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit Blogs';
 		return view ( 'admin.edit-blog' )->with ( $data );
 	}
 	
 	public function shadeFinderQuiz() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shade Finder Quiz';
 		return view ( 'admin.shade-finder-quiz' )->with ( $data );
 	}
 	public function shadeFinderQuizYes() {
 	
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shade Finder Quiz';
-		return view ( 'admin.shade-finder-quiz-yes' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/shade-finder-quiz-yes");
+		if( $result != true) {
+			return view ( 'admin.shade-finder-quiz-yes' )->with( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.shade-finder-quiz-yes' )->with ( $data );
 	}
 	public function shadeFinderQuizNo() {
 	
 		$data ['page'] = 'Shade Finder Quiz';
-		return view ( 'admin.shade-finder-quiz-no' )->with ( $data );
+		$data['adminMenu'] = $this->getAdminUserMenu();
+		$result=$this->checkUserControlAccess(session('userId'),"/shade-finder-quiz-no");
+		if( $result != true) {
+			return view ( 'admin.shade-finder-quiz-no' )->with ( $data );
+		}else{
+			redirect('/dashboard');
+		}
+		// return view ( 'admin.shade-finder-quiz-no' )->with ( $data );
 	}
 	
 	public function addShadeFinderQuiz() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Shade Finder Quiz';
 		return view ( 'admin.add-shade-finder-quiz' )->with ( $data );
 	}
 	
 	public function orders() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Orders';
-		return view ( 'admin.orders' )->with ( $data );
+		
+		$result=$this->checkUserControlAccess(session('userId'),"/orders");
+		if( $result != true) {
+			return view ( 'admin.orders' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.orders' )->with ( $data );
 	}
 	public function shippedorders() {
 	
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shipped Orders';
-		return view ( 'admin.shippedorders' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/shippedorders");
+		if( $result != true) {
+			return view ( 'admin.shippedorders' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.shippedorders' )->with ( $data );
 	}
 	
 	
 	public function orderDetail() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Order Detail';
 		return view ( 'admin.order-detail' )->with ( $data );
 	}
 	
 	public function apis() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Apis';
 		return view ( 'admin.apis' )->with ( $data );
 	}
 	
 	public function addApi() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Api';
 		return view ( 'admin.add-api' )->with ( $data );
 	}
 	
 	public function editApi() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit Api';
 		return view ( 'admin.edit-api' )->with ( $data );
 	}
 	
 	public function viewApi() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Api';
 		return view ( 'admin.view-api' )->with ( $data );
 	}
 	
 	public function smsApis() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Sms Apis';
 		return view ( 'admin.sms-apis' )->with ( $data );
 	}
 	
 	public function addSmsApi() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Sms Api';
 		return view ( 'admin.add-sms-Api' )->with ( $data );
 	}
 	
 	public function editSmsApi() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit Sms Api';
 		return view ( 'admin.edit-sms-Api' )->with ( $data );
 	}
 	
 	public function smsTemplates() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Sms Templates';
 		return view ( 'admin.sms-templates' )->with ( $data );
 	}
 	
 	public function addSmsTemplate() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add SmsTemplate';
 		return view ( 'admin.add-sms-template' )->with ( $data );
 	}
 	
 	public function editSmsTemplate() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit SmsTemplate';
 		return view ( 'admin.edit-sms-template' )->with ( $data );
 	}
 	
 	public function header() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Header';
 		return view ( 'admin.header' )->with ( $data );
 	}
 	
 	public function footer() {
 			
-		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Footer';
-		return view ( 'admin.footer' )->with ( $data );
-	
-
+		$result=$this->checkUserControlAccess(session('userId'),"/footer");
+		if( $result != true) {
+			return view ( 'admin.footer' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.footer' )->with ( $data );
 	}
 	
 	public function homePage() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Home Page';
-		return view ( 'admin.home-page' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/home-page");
+		if( $result != true) {
+			return view ( 'admin.home-page' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.home-page' )->with ( $data );
 	}
 	
 	public function payments() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Payments';
-		return view ( 'admin.payments' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/payments");
+		if( $result != true) {
+			return view ( 'admin.payments' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.payments' )->with ( $data );
 	}
 	
 	public function viewPayment() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Payment';
 		return view ( 'admin.view-payment' )->with ( $data );
 	}
 	
 	public function givings() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Givings';
-		return view ( 'admin.givings' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/givings");
+		if( $result != true) {
+			return view ( 'admin.givings' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.givings' )->with ( $data );
 	}
 	
 	public function Delivery() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Delivery';
 		return view ( 'admin.delivery' )->with ( $data );
 	}
 	
 	public function vieDelivery() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Delivery';
 		return view ( 'admin.view-delivery' )->with ( $data );
 	}
 	
 	public function Questions() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Questions';
-		return view ( 'admin.questions' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/questions");
+		if( $result != true) {
+			return view ( 'admin.questions' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.questions' )->with ( $data );
 	}
 	
 	public function viewReview() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Review';
+		
 		return view ( 'admin.view-review' )->with ( $data );
 	}
 	
 	public function Reviews() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Reviews';
-		return view ( 'admin.reviews' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/reviews");
+		if( $result != true) {
+			return view ( 'admin.reviews' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.reviews' )->with ( $data );
 	}
 	
 	public function shadeFinder() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shade Finder';
 		return view ( 'admin.shade-finder' )->with ( $data );
 	}
 	
 	public function viewShadeFinder() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Shade Finder';
 		return view ( 'admin.view-shade-finder' )->with ( $data );
 	}
 	
 	public function emailsSettings() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Emails Settings';
-		return view ( 'admin.emails-settings' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/emails-settings");
+		if( $result != true) {
+			return view ( 'admin.emails-settings' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.emails-settings' )->with ( $data );
 	}
 	
 	public function emailsSent() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Emails Sent';
-		return view ( 'admin.emails-sent' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/emails-sent");
+		if( $result != true) {
+			return view ( 'admin.emails-sent' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.emails-sent' )->with ( $data );
 	}
 	
 	public function allsub() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'All Sub';
-		return view ( 'admin.allsub' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/allsub");
+		if( $result != true) {
+			return view ( 'admin.allsub' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.allsub' )->with ( $data );
 	}
 	
 	public function editAllsub() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit All Sub';
 		return view ( 'admin.edit-allsub' )->with ( $data );
 	}
 	
 	public function addAllsub() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add All Sub';
 		return view ( 'admin.add-allsub' )->with ( $data );
 	}
 	
 	public function userSubscriptions() {
 		
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'User Subscriptions';
-		return view ( 'admin.user-subscriptions' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/user-subscriptions");
+		if( $result != true) {
+			return view ( 'admin.user-subscriptions' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.user-subscriptions' )->with ( $data );
 	}
 	public function adminUserTickets() {
 	
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Tickets';
-		return view ( 'admin.view-tickets' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/user-Tickets");
+		if( $result != true) {
+			return  view ( 'admin.view-tickets' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return  view ( 'admin.view-tickets' )->with ( $data );
 	}
 	public function newsLatters() {
 	
+		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'News Latters';
-		return view ( 'admin.view-newslatters' )->with ( $data );
+		$result=$this->checkUserControlAccess(session('userId'),"/newslatters");
+		if( $result != true) {
+			return view ( 'admin.view-newslatters' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.view-newslatters' )->with ( $data );
 	}
 	public function snapSelfie() {
 	
-		$data ['page'] = 'Snap Selfi';
-		return view ( 'admin.view-snapSelfie' )->with ( $data );
+		$data['adminMenu'] = $this->getAdminUserMenu();
+		$data ['page'] = 'Snap Selfi';	
+		$result=$this->checkUserControlAccess(session('userId'),"/snapSelfie");
+		if( $result != true) {
+			return view ( 'admin.view-snapSelfie' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.view-snapSelfie' )->with ( $data );
 	}
 	
 	/*==================== admin categories code start ==========================*/
@@ -8315,6 +8604,13 @@ class AdminController extends Controller
 	public function adminUsers(){
 		$User = new User();
 		$data['page'] = 'Admin Users';
+		$data['adminMenu'] = $this->getAdminUserMenu();
+		// $result=$this->checkUserControlAccess(session('userId'),"/admin-users");
+		// if( $result != true) {
+		// 	return view('admin.admin-users')->with($data);
+		// }else{
+		// 	redirect('/dashboard');
+		// }
 		return view('admin.admin-users')->with($data);
 	}
 
@@ -8322,126 +8618,195 @@ class AdminController extends Controller
 		
 		$User = new User();
 
-		$arrRes['allAdminUsers']= $User->getallAdminUsers();
+		$arrRes['allAdminUsers'] = $User->getallAdminUsers();
 
 		echo json_encode($arrRes);
 	}
 
 	public function saveAdminUser( Request $request){
 
+			$details = $_REQUEST ['details'];
+			$userid = $details['updateduserId'];
+			$UserMenuControl = new UserMenuControlModel();
 
-		$details = $_REQUEST ['details'];
+			//validating the Input Fields
+			
+			$checkduplicatephone = $UserMenuControl->checkPhoneNumberExists($details['user']['PhoneNumber'],$userid);
+			$checkduplicateemail = $UserMenuControl->checkEmailAddressExists($details['user']['EmailAddress'],$userid);
+
+			if($checkduplicatephone == false){
+
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Phone Number must be unique';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if($checkduplicateemail == false){
+
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Email Address must be unique';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+	
+
+			if ($details['user']['FirstName'] == '') {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'First Name is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['LastName'] == '') {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Last Name is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['UserRole'] == '') {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'User Role is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['PhoneNumber'] == '') {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Phone Number is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['EmailAddress'] == '') {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Email Address is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['Password'] == '') {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Password is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if (strlen($details['user']['Password']) < 8) {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Password must be equal and greater then 8 characters';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['ConfirmPassword'] == '') {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Confirm Password is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['ConfirmPassword'] != $details['user']['Password']) {
+						
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Passwords do not match.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+		// $arrRes = $UserMenuControl->saveAdminUser($details);
+
+		$details = $_REQUEST['details'];
 		$updateduserId = $details['updateduserId'];
-
-		//validating the Input Fields
-		if ($details['user']['Name'] == '') {
-					
-			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'Name is required.';
-			echo json_encode ( $arrRes );
-			die ();
-		}
-
-		if ($details['user']['Email'] == '') {
-					
-			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'Email is required.';
-			echo json_encode ( $arrRes );
-			die ();
-		}
-
-		if ($details['user']['Password'] == '') {
-					
-			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'Password is required.';
-			echo json_encode ( $arrRes );
-			die ();
-		}
-
-		if ($details['user']['ConfirmPassword'] == '') {
-					
-			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'Confirm Password is required.';
-			echo json_encode ( $arrRes );
-			die ();
-		}
-
-		if ($details['user']['ConfirmPassword'] != $details['user']['Password']) {
-					
-			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'Passwords do not match';
-			echo json_encode ( $arrRes );
-			die ();
-		}
 
 		//Updating the Record
 		if($updateduserId != null){
 
 			$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $updateduserId ) ->update (
-				array ( 'USER_NAME' =>  $details['user']['Name'],
-						'EMAIL' => $details['user']['Email'],
-						'ENCRYPTED_PASSWORD' =>$details['user']['Password'],
-						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-			));
+				array (  'FIRST_NAME' => $details['user']['FirstName'] ,
+                         'LAST_NAME' => $details['user']['LastName'] ,
+                         'USER_ROLE' => $details['user']['UserRole'],
+                         'PHONE_NUMBER' => $details['user']['PhoneNumber'],
+                         'EMAIL' => $details['user']['EmailAddress'],
+                         'ENCRYPTED_PASSWORD' => $details['user']['Password'],
+                         'USER_ROLE'=> $details['user']['UserRole']
+			           ));
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Admin User Updated Successfully';
-			$arrRes ['id'] = $result;
-			echo json_encode ( $arrRes );
+			$arrRes ['id'] = $updateduserId;
+			echo json_encode($arrRes) ;
 			die();
 
 		}else{
 
+        $arrRes = array();
+        $UserName = $details['user']['FirstName'] . $details['user']['LastName'] . rand(10,10000) ;
+        $enable = '';
+
+        if($details['user']['Enable'] == true) {
+            $enable = 'active';
+        }else{
+            $enable = 'inactive';
+        }
+
+        $record = array ( 
+            'FIRST_NAME' => $details['user']['FirstName'] ,
+            'LAST_NAME' => $details['user']['LastName'] ,
+            'USER_ROLE' => $details['user']['UserRole'],
+            'PHONE_NUMBER' => $details['user']['PhoneNumber'],
+            'EMAIL' => $details['user']['EmailAddress'],
+            'USER_NAME' => $UserName,
+            'ENCRYPTED_PASSWORD' => $details['user']['Password'],
+            'USER_TYPE' => 'admin',
+            'USER_SUBTYPE' => 'subadmin',
+            'USER_ROLE'=> $details['user']['UserRole'],
+            'USER_STATUS' => $enable ,
+            'CREATED_ON' => date ( 'Y-m-d H:i:s' )
+        );
+
 		//Inserting the Record 
-		$result = DB::table ( 'fnd_user_tbl' )
-				->insert (
-					array ( 
-							'USER_NAME' => $details['user']['Name'],
-							'EMAIL' => $details['user']['Email'],
-							'ENCRYPTED_PASSWORD' => $details['user']['Password'],
-							'USER_TYPE' => 'admin',
-							'USER_STATUS' => 'active',
-							'CREATED_ON' => date ( 'Y-m-d H:i:s' )
-					)
-				);
-	
-				$arrRes ['done'] = true;
-				$arrRes ['msg'] = 'Admin User Created Successfully';
-				$arrRes ['id'] = $result;
-				echo json_encode ( $arrRes );
-		}
+	    $result = DB::table ( 'fnd_user_tbl' )->insertGetId( $record );
+        $arrRes ['id'] = $result;
+		$arrRes['done'] = true;
+		$arrRes['msg'] = 'Admin User Created Successfully';
+
+		echo json_encode($arrRes);
+
+	}
 	}
 
 	public function deleteSpecificAdmin(Request $request){
 
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
-		// $userId = $details ['userId'];
-	
-		$result_fnd_user_tbl_tbl = DB::table('fnd_user_tbl as a')->where('a.USER_ID', $recordId )->get();
-		
-		if(sizeof($result_fnd_user_tbl_tbl) != null){
-			DB::table('fnd_user_tbl')->where('USER_ID', $recordId )->delete();
-			$arrRes ['done'] = true;
-			$arrRes ['msg'] = 'Admin deleted successfully...';
-	
-			echo json_encode ( $arrRes );
-		}else{
-			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'Admin failed to delete';
-	
-			echo json_encode ( $arrRes );
-		}
+
+		$UserMenuControl = new UserMenuControlModel();
+		$status = $UserMenuControl->deleteSpecificAdmin($recordId);
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Admin deleted successfully...';
+
+		echo json_encode($arrRes);
 
 	}
 
 	public function changeStatusAdmin(Request $request){
 
-		$User=new User();
+		$UserMenuControl = new UserMenuControlModel();
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
 
-		$AdminDetail = $User->getSpecificAdminStatus($recordId);
+		$AdminDetail = $UserMenuControl->getSpecificAdminStatus($recordId);
 	
 		if($AdminDetail->USER_STATUS != 'active'){
 			$status = 'active';
@@ -8466,12 +8831,14 @@ class AdminController extends Controller
 
 	public function editAdminUser(Request $request){
 		
-		$User=new User();
+		$UserMenuControl = new UserMenuControlModel();
 		$userId = $_REQUEST ['details'];
 
-		$AdminDetail = $User->getAdminUserDetails($userId);
+		$arrRes['AdminDetail'] = $UserMenuControl->getAdminUserDetails($userId);
+
+		$arrRes['getAdminControlOptions'] = $UserMenuControl->getAdminControlOptions($userId);
 	
-		echo json_encode ( $AdminDetail );
+		echo json_encode ($arrRes);
 
 	}
 
@@ -8497,6 +8864,65 @@ class AdminController extends Controller
 	
 	// 	echo json_encode ( $result );
 	// }
+
+	public function getAllNavLinksLov(Request $request){
+
+		$UserMenuControl = new UserMenuControlModel();
+		
+		$arrRes['allNavLinks'] = $UserMenuControl->getAllNavLinks();
+
+		echo json_encode($arrRes);
+	}
+
+	public function menuControlOptions(){
+
+		$details = $_REQUEST['details'];
+		$optionsSelected = $details['selected_options'];
+		$userId = $details['userId'];
+
+		$UserMenuControl =new UserMenuControlModel();
+
+		//Delete if the user exists in fnd_user_control_tbl
+		$status = $UserMenuControl->deleteControlledUser($userId);
+
+		//Granting Access to User		
+		// print_r('<pre>');
+
+		// print_r($optionsSelected);
+		// exit();
+		$grantAccessPermission = $UserMenuControl->grantUserControl($optionsSelected);
+
+		for($i=0 ;$i<count($grantAccessPermission); $i++){
+
+			$result = DB::table('fnd_user_menu_control_tbl')
+					->insert (
+					array (  
+						 'USER_ID' => $userId,
+						 'MENU_ID' => $grantAccessPermission[$i]->MENU_ID,
+						 'SEQUENCE_NUMBER' => $grantAccessPermission[$i]->SEQUENCE_NUMBER ,
+                         'MENU_NAME' => $grantAccessPermission[$i]->MENU_NAME ,
+                         'MENU_DESCRIPTION' => $grantAccessPermission[$i]->MENU_DESCRIPTION,
+                         'MENU_TYPE' => $grantAccessPermission[$i]->MENU_TYPE,
+                         'SYSTEM_CALL' => $grantAccessPermission[$i]->SYSTEM_CALL,
+                         'MENU_ICON' => $grantAccessPermission[$i]->MENU_ICON,
+                         'ENABLE_FLAG'=> $grantAccessPermission[$i]->ENABLE_FLAG,
+						 'CREATED_ON'=> date ( 'Y-m-d H:i:s' )
+			           ));
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Menu Control Assigned successfully...';
+		
+		echo json_encode ( $arrRes );
+	}
+
+	public function checkUserControlAccess($user_id,$path){
+
+		$UserMenuControl = new UserdashboardModel();
+		$res=$UserMenuControl->checkUserAccessStatus($user_id,$path);
+		return $res;
+							
+	}
 	
 	
 }
