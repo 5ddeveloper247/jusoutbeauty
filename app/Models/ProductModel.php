@@ -107,6 +107,8 @@ class ProductModel extends Model
 			$getClinicalNote = $this->getAllProductClinicalNoteByProduct($row->PRODUCT_ID);
 			$arrRes['P_20'] = $getClinicalNote['P_20'];
 			$arrRes['P_31'] = $row->CATEGORY_ID;
+			$arrRes['P_32'] = $row->SUB_CATEGORY_ID;
+			$arrRes['P_33'] = $row->SUB_SUB_CATEGORY_ID;
 			
 			$arrRes['QUICK_ADD_FEATURES'] = $this->getQuickfeaturesdata($row->FEATURE_ID);
 			
@@ -119,9 +121,9 @@ class ProductModel extends Model
     		$arrRes['TAGS'] = $row->TAGS;
     		$arrRes['BARCODE'] = $row->BARCODE;
     		$arrRes['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
-    		$arrRes['CATEGORY_ID'] = $row->CATEGORY_ID;
+    		// $arrRes['P_31'] = $row->CATEGORY_ID;
     		// $arrRes['CATEGORY_NAME'] = $row->categoryName;
-    		$arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+    		// $arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		// $arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
     		
@@ -142,6 +144,7 @@ class ProductModel extends Model
 		public function getProductImagesWrtProductID($PRODUCT_ID){
 			$result = DB::table('jb_product_images_tbl as a')->select('a.DOWN_PATH','a.IMAGE_ID','a.PRIMARY_FLAG','a.SECONDARY_FLAG')
 			->where('a.PRODUCT_ID',$PRODUCT_ID)
+			->where('a.SOURCE_CODE','PRODUCT_IMG')
 			->orderByDesc('a.IMAGE_ID')
 			->get();
 			return isset($result) ? $result : null;
@@ -231,12 +234,13 @@ class ProductModel extends Model
     	// ->join ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
 //     	->join ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
 		->where('a.IS_DELETED',0)
-    	->orderBy('a.UPDATED_ON','desc')
+    	->orderBy('a.SEQ_NUM','asc')
     	->get();
-    
+		
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->PRODUCT_ID;//$i+1;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;//$i+1;
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['SLUG'] = $row->SLUG;

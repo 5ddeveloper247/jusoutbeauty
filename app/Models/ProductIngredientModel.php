@@ -31,7 +31,8 @@ class ProductIngredientModel extends Model
 			$descText = strip_tags(base64_decode($row->ingredientDescription));
     		$arrRes[$i]['INGREDIENT_DESCRIPTION'] = strlen ( $descText ) > 120?substr ( $descText, 0, 120 )."..." :$descText;
     		// $arrRes[$i]['INGREDIENT_DESCRIPTION'] = strip_tags(base64_decode($row->ingredientDescription));
-    		
+			$imgIng = $this->getIngImage($row->INGREDIENT_ID);
+    		$arrRes[$i]['DOWN_PATH'] = isset($imgIng->DOWN_PATH) != null ? $imgIng->DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
     		$arrRes[$i]['DATE'] = $row->DATE;
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
@@ -43,7 +44,13 @@ class ProductIngredientModel extends Model
     
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+    public function getIngImage($INGREDIENT_ID){
+		$result = DB::table('jb_ingredient_attachment_tbl as a')->select('a.DOWN_PATH')
+    	->where('a.INGREDIENT_ID', $INGREDIENT_ID)
+    	->first();
+    	return isset($result) ? $result : null;
+
+	}
     public function getAllProductIngredientWrtType($productId, $category){
     	$Ingredient = new IngredientModel();
     	

@@ -566,8 +566,27 @@
 
 <body class="home">
 
-    <main id="content" ng-app="project1">
+    <main id="content pt-4" ng-app="project1">
         <div class="" id="details-header" ng-controller="projectinfo1">
+            <section class=" sec_inc_1">
+                <div class="container container-custom container-xxl ">
+                    <div class="row ">
+                        
+                        <div class="col-12  " style="color: white !important;
+                        background-color: #a72160 !important;">
+                            <a href="{{ url('/view-products') }}" class="d-flex gap-2">
+                                <h5><i class="fa fa-arrow-left text-light" aria-hidden="true"></i></h5>
+                                <h5 class="text-light m-0">Back To Listing</h5>
+                            </a>
+                          
+                        </div>
+                        <div class="col-12 text-center p-2" style="color: white !important;
+                        background-color: #a72160 !important;">
+                            <h3 class="text-light m-0">Add/Edit Product Form</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section class=" sec_inc_1">
                 <div class="container container-custom container-xxl mt-5 mt-md-0 mt-xl-5 mt-xxl-5">
@@ -578,6 +597,27 @@
                                 <select class="form-control" id="p31" ng-model="QuickProduct['P_31']"
                                     ng-change="getSubCategoriesWrtCategory();"
                                     ng-options="item as item.name for item in categoryLov track by item.id">
+                                    <option value="">---SELECT---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4 mt-1 mb-1">
+                            <div class="form-group">
+                                <label class="col-form-label" for="tags"><b>Product Sub Category</b> <span class="text-danger">*</span></label> 
+                                <select class="form-control" id="p32" ng-model="QuickProduct['P_32']"
+
+                                    ng-change="getSubSubCategoriesWrtSubCategory();"
+                                    ng-options="item as item.name for item in subCategoryLov track by item.id">
+                                    <option value="">---SELECT---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-form-label" for="sub_sub_category"><b>Product Sub Sub Category</b> <span class="text-danger">*</span> </label>
+                                <select class="form-control" id="p33" ng-model="QuickProduct['P_33']"
+                                    ng-change="updateSubSubCategoriesWrtSubCategoryQuickAdd();"
+                                    ng-options="item as item.name for item in subSubCategoryLov track by item.id">
                                     <option value="">---SELECT---</option>
                                 </select>
                             </div>
@@ -601,7 +641,7 @@
 
                                 </form>
                                 <div class="col-sm-6 col-6 px-1 mb-2">
-
+                                    <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
                                     <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
                                         onclick="form1();" alt="Image"
                                         class="prod_img_detail img-w35 img-product-gall cursor-pointer"
@@ -613,7 +653,7 @@
 
 
                                 <div class="col-md-6 px-1 pb-1" ng-repeat="row in displayImagesLov">
-
+                                    <small class="text-danger invisible ">*Note: Image dimensions must be minimum 270 X 370</small>
                                     <div class="show-image">
 
                                         <img src="@{{ row.DOWN_PATH }}" alt="Image"
@@ -735,8 +775,8 @@
 
             <section class="pb-11 pb-lg-6">
                 <div class="container container-custom container-xxl mt-8">
-                    <h3 class="text-center my-4">Features <i class="fas fa-plus-circle cursor-pointer"
-                            ng-click="addFeaturesModal()"></i></h3>
+                    <h3 class="text-center my-4">Features <i class="fa fa-pencil-square-o cursor-pointer"
+                            aria-hidden="true" ng-click="addFeaturesModal()"></i></h3>
                     <div class=" features_slider"
                         data-slick-options='{"slidesToShow": 5,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":false,"responsive":[
                         {"breakpoint": 1400,"settings": {"slidesToShow": 5}},
@@ -751,8 +791,8 @@
             </section>
             <section class="pb-11 pb-lg-6">
                 <div class="container container-custom container-xxl mt-8">
-                    <h3 class="text-center my-4">Shades <i class="fas fa-plus-circle cursor-pointer"
-                            ng-click="addShadesModal()"></i></h3>
+                    <h3 class="text-center my-4">Shades <i class="fa fa-pencil-square-o cursor-pointer"
+                            aria-hidden="true"  ng-click="addShadesModal()"></i></h3>
                     <div class="shades_slider"
                        >
 
@@ -982,10 +1022,10 @@
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col-md-7"></div>
                                                                 <div class="col-md-5">
-                                                                    <button type="button"
-                                                                        class="btn btn-primary btn-block text-capitalize float-right w-50"
-                                                                        ng-show="VideoEditView == '0'"
-                                                                        ng-click="showVideoInfo()">Edit</button>
+                                                                   
+                                                                        <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                aria-hidden="true" ng-show="VideoEditView == '0'"
+                                                                ng-click="showVideoInfo()"></i>
                                                                     <button type="button"
                                                                         class="btn btn-primary text-capitalize w-25 float-right"
                                                                         ng-click="updateVideoInfo()"
@@ -996,6 +1036,8 @@
                                                                         ng-show="VideoEditView != '0'">Cancel</button>
                                                                 </div>
                                                                 <div class="col-md-8 mb-8 mb-md-0">
+                                                                    <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
+
                                                                     <div class="fix">
                                                                         <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
                                                                             ng-show="video.V_4 == ''"
@@ -1003,11 +1045,11 @@
                                                                             class="prod_img_detail img-w35 img-product-gall cursor-pointer"
                                                                             style="border:5px dotted grey">
 
-                                                                        <div class=" hover-zoom-in"
+                                                                        <div class=" "
                                                                             ng-show="video.V_4 != ''">
-                                                                            <button class="btn btn-primary mb-2"
-                                                                                onclick="form2();">Edit</button>
-                                                                            <video src="@{{ video.V_4 }}"
+                                                                            
+                                                                                <i class="fa fa-pencil-square-o cursor-pointer float-right" aria-hidden="true" onclick="form2();"></i>
+                                                                            <video id="video_product" src="@{{ video.V_4 }}"
                                                                                 class="card-img"></video>
                                                                             <div
                                                                                 class="card-img-overlay d-flex flex-column align-items-center justify-content-center p-4">
@@ -1220,7 +1262,8 @@
                                                         <div class="">
                                                             <h5 class="text-center mb-3">Ingredients</h5>
                                                             <h3 class="text-center mb-9">Backed by Science to Optimize
-                                                                Skin Wellness <i class="fas fa-plus-circle cursor-pointer" ng-click="addSpotForModal()"></i></h3>
+                                                                Skin Wellness <i class="fa fa-pencil-square-o cursor-pointer"
+                                                                aria-hidden="true" ng-click="addSpotForModal()"></i></h3>
                                                             <ul
                                                                 class="nav nav-pills justify-content-center mb-lg-9 mb-6">
                                                                 <li class="nav-item px-5 d-flex align-items-center gap-2"><a
@@ -1448,8 +1491,8 @@
                                                             <div class="container container-xl">
                                                                 <h2 class="text-center mb-9" style="color: #fff;">
                                                                     How To
-                                                                    Use: AM and PM <i
-                                                                    class="fas fa-plus-circle cursor-pointer" ng-click="addNewUses();"></i></h2>
+                                                                    Use: AM and PM <i class="fa fa-pencil-square-o cursor-pointer"
+                                                                    aria-hidden="true" ng-click="addNewUses();"></i></h2>
                                                                 <div class="row" id="steps_users">
                                                                     <div class="col-md-4 mb-6 mb-md-0 ">
                                                                         <div class="card border-0">
@@ -1518,13 +1561,15 @@
                                                                     <i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true" ng-click="EditclinicalNoteSection()"></i>
                                                                 </div>
                                                                 <div class="col-sm-6 col-6 px-1 mb-2">
+                                                                    <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
 
                                                                     <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg" ng-show="QuickProduct.P_20 == ''"
                                                                         onclick="form5();" alt="Image"
-                                                                        class="prod_img_detail img-w35 img-product-gall cursor-pointer" ng-show="QuickProduct.P_20 != ''"
+                                                                        class="prod_img_detail img-w35 img-product-gall cursor-pointer" 
                                                                         style="border:5px dotted grey">
-                                                                    <button type="button" class="btn btn-primary btn-block text-capitalize w-25 mb-3" onclick="form5();">Edit</button>
-
+                                                                    {{-- <button type="button" class="btn btn-primary btn-block text-capitalize w-25 mb-3" >Edit</button> --}}
+                                                                    <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                    aria-hidden="true" onclick="form5();"></i>
                                                                     <img class="prod_img_detail img-w35 img-product-gall cursor-pointer" src="@{{ QuickProduct.P_20 }}" alt="">
                                                                 </div>
                                                                 <form class="" id="uploadattch5" method="POST" action="uploadProductImageAttachment" enctype="multipart/form-data">
@@ -1702,7 +1747,7 @@
                                 class="pointer nav-link active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recommendations-tab" data-toggle="pill" href="#pills-recommendations"
                                 role="tab" aria-controls="pills-recommendations" aria-selected="true">Complete
-                                Your JusOGlow<span style="padding:10px;"><i class="fas fa-plus-circle cursor-pointer" style="font-size:1.875rem;"
+                                Your JusOGlow<span style="padding:10px;"><i class="fa fa-pencil-square-o cursor-pointer" style="font-size:1.875rem;"
                                     ng-click="addJusOFlowModal()"></i></span></a>
 
                         </li>
@@ -1710,7 +1755,7 @@
                                 class="pointer nav-link  text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recently-viewed-tab" data-toggle="pill" href="#pills-hand-picked"
                                 role="tab" aria-controls="pills-recently-viewed" aria-selected="true">
-                                Your Daily HandPicked<span style="padding:10px;"><i class="fas fa-plus-circle cursor-pointer" style="font-size:1.875rem;"
+                                Your Daily HandPicked<span style="padding:10px;"><i class="fa fa-pencil-square-o cursor-pointer" style="font-size:1.875rem;"
                                     ng-click="addDailyHandPickedModal()"></i></span></a>
                         </li>
                         {{-- <li class="nav-item px-5"><a
@@ -2378,10 +2423,10 @@
 						<div class="modal-body">
 							
 							<div class="row">
-							   <div class="col-6">
+							   {{-- <div class="col-6">
 							     <label><b>Sequence Number<span class="required-field">*</span></b></label>
 							     <input type="number" class="form-control" id="u1" ng-model="uses['U_1']">
-							   </div>
+							   </div> --}}
 							</div>
 							<div class="row mt-4">
 							   <div class="col-12">
@@ -2429,6 +2474,8 @@
 
 								</div>
 							</div>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save basic info then upload image</span></small><br>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
@@ -2486,6 +2533,9 @@
 
 								</div>
 							</div>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save basic info then upload image</span></small><br>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
