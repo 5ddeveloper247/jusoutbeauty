@@ -399,6 +399,50 @@ class UserdashboardModel extends Model
     
     	return isset($check) ? $check : false;
     }
+
+	public function checkUserAccessStatus($user_id,$path){
+
+		$status = '';
+
+		if($user_id == 1) {
+			$status = true;
+		}
+		// This is check where the path is acccess for main Links
+		$result['MainMenu']  = 	DB::table('fnd_user_menu_control_tbl')
+								->where('USER_ID',$user_id)
+								->where('SYSTEM_CALL',$path)
+								->where('MENU_TYPE','main')
+								->get();
+		
+		if(count($result['MainMenu']) > 0) {
+			$status = true;
+		}
+
+		// Pick the Menu ID against the user
+		$result['MainMenuID'] = DB::table('fnd_user_menu_control_tbl')
+								->where('USER_ID',$user_id)
+								->where('MENU_TYPE','sub')
+								->select('MENU_ID')
+								->get();
+
+		
+		for($i =0 ;$i<count($result['MainMenuID']);$i++){
+
+			// This is check where the path is acccess for sub Links
+			$result['SubMenu'] = DB::table('fnd_user_submenu_tbl')
+								->where('MENU_ID',$result['MainMenuID'][$i]->MENU_ID)
+								->where('SYSTEM_CALL',$path)
+								->get();
+
+			if(count($result['SubMenu']) > 0) {
+					$status = true;
+			}
+
+		}
+
+		return $status == "" ? true : false;
+		
+	}
     
     
 }

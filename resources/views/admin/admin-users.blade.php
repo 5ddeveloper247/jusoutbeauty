@@ -66,10 +66,10 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
-															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusAdmin(@{{row.USER_ID}});" ng-show="row.STATUS != 'active'">Active</a>
-															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusAdmin(@{{row.USER_ID}});" ng-show="row.STATUS == 'active'">InActive</a>
+															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusAdmin(@{{row.USER_ID}});" ng-show="row.USER_STATUS != 'active'">Active</a>
+															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusAdmin(@{{row.USER_ID}});" ng-show="row.USER_STATUS == 'active'">Inactive</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="editAdmin(@{{row.USER_ID}});">Edit</a>
-															<a class="dropdown-item" href="javascript:;" ng-click="deleteAdmin(@{{row.USER_ID}});">Delete</a>
+															<a class="dropdown-item" href="javascript:;" ng-click="deleteAdmin(@{{row.USER_ID}});" ng-if="row.USER_ID!=1">Delete</a>
 														</div>
 													</div>
 												</td>												
@@ -116,28 +116,58 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<div class="pt-4">
 											<div class="form-validation">
 												<form class="form-valide" action="#" method="post">
+
 													<div class="row">
 														<div class="col-sm-6">
 															<div class="form-group">
 	
-																<label class="col-form-label" for="name"><b>Name</b>  <span class="text-danger">*</span>  </label> 
-																<input type="text" class="form-control" id="name" ng-model="user['Name']" placeholder="Enter Your Name">
+																<label class="col-form-label" for="firstname"><b>First Name</b>  <span class="text-danger">*</span>  </label> 
+																<input type="text" class="form-control" id="firstname" ng-model="user['FirstName']" placeholder="Enter Your First Name">
 	
 															</div>
 														</div>
 														<div class="col-sm-6">
 															<div class="form-group">
 	
-																<label class="col-form-label" for="sub_title"><b>Email Address</b> </label> 
-																<input type="text" class="form-control" id="email" ng-model="user['Email']" placeholder="Enter Your Email">
+																<label class="col-form-label" for="lastname"><b>Last Name</b> </label> 
+																<input type="text" class="form-control" id="lastname" ng-model="user['LastName']" placeholder="Enter Your Last Name">
 	
 															</div>
 														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-sm-6">
+															<div class="form-group">
 	
+																<label class="col-form-label" for="userrole"><b>User Role</b>  <span class="text-danger">*</span>  </label> 
+																<input type="text" class="form-control" id="userrole" ng-model="user['UserRole']" placeholder="Enter Your User Role">
+	
+															</div>
+														</div>
+														<div class="col-sm-6">
+															<div class="form-group">
+	
+																<label class="col-form-label" for="phonenumber"><b>Phone Number</b> </label> 
+																<input type="text" class="form-control" id="phonenumber" ng-model="user['PhoneNumber']" placeholder="Enter Your Phone Number">
+	
+															</div>
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-6">
+															<div class="form-group">
+	
+																<label class="col-form-label" for="name"><b>Email</b>  <span class="text-danger">*</span>  </label> 
+																<input type="text" class="form-control" id="email" ng-model="user['EmailAddress']" placeholder="Enter Your Email Address">
+	
+															</div>
+														</div>
 													</div>
 	
 													<div class="row">
-														<div class="col-sm-6">
+														<div class="col">
 															<div class="form-group">
 	
 																<label class="col-form-label" for="unit"><b>Password</b> </label>
@@ -154,6 +184,16 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															</div>
 														</div>
 													</div>
+
+													<div class="row">
+														<div class="col">
+															<div class="form-group">
+																<input type="checkbox" id="enable" name="enable"  ng-model="user['Enable']" class="m-1">
+																<label for="enable"><b> Enable </b> </label><br>
+															</div>
+														</div>
+													</div>
+
 												</form>
 											</div>
 										</div>
@@ -163,6 +203,51 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								<div class="row">
                 	               	<div class="col-12 pt-4">
 				                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" ng-click="saveAdminUser();">Save</a>
+				                   	</div>
+		                		</div>
+							</div>
+	
+	
+						</div>
+	
+	
+					</div>
+				</div>
+
+				<!-- row -->
+				<div class="row" ng-if="user.ID!=1" >
+					<div class="col-xl-12 col-xxl-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Sub User Menu Control</h4>
+							</div>
+							<div class="card-body">
+								<!-- Tab panes -->
+								<div class="tab-content tabcontent-border">
+									<div class="tab-pane fade show active" id="basic_info" role="tabpanel">
+										<div class="pt-4">
+											<!-- Setting Permissions To User -->
+											<div class="form-validation">
+												<form class="form-valide" action="#" method="post">
+
+													<div class="row">
+														<div class="col-4" ng-repeat="row in allNavLinks" id="menu_list_@{{row.MENU_ID}}" >
+															<div class="form-group">
+																<input type="checkbox" id="menu_@{{row.MENU_ID}}" class="m-1 menu_check" value=@{{row.MENU_ID}}>
+																<label for="menu_@{{row.MENU_ID}}"><b> @{{row.MENU_NAME}} </b> </label><br>
+															</div>
+														</div>
+													</div>
+
+												</form>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<div class="row">
+                	               	<div class="col-12 pt-4">
+				                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" ng-click="saveAdminUserMenuControls();">Save</a>
 				                   	</div>
 		                		</div>
 							</div>
@@ -233,5 +318,6 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             Content body end
         ***********************************-->
     
-    <script src="{{ url('/assets-admin') }}/customjs/script_adminuser.js?v={{time()}}"></script>
+    
+	<script src="{{ url('/assets-admin') }}/customjs/script_adminusercontrol.js?v={{time()}}"></script>
     

@@ -765,12 +765,48 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
-                    <li><a class="ai-icon" href="{{session('site')}}/dashboard" aria-expanded="false">
+					@if($adminMenu != '' )
+					@foreach ($adminMenu as $menu)
+
+						@if($menu['MENU_TYPE'] == 'main')
+						
+						<li>
+							<a class="ai-icon" href="{{ url('').$menu['SYSTEM_CALL'] }}" aria-expanded="false">
+								<i class='{{ $menu['MENU_ICON']}}'></i>
+								<span class="nav-text">{{ $menu['MENU_NAME']}}</span>
+							</a>
+						</li>
+
+						@elseif($menu['MENU_TYPE'] == 'sub')
+
+						<li>
+							<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+								<i class='{{ $menu['MENU_ICON']}}' ></i>
+								<span class="nav-text">{{ $menu['MENU_NAME']}}</span>
+							</a>
+							<ul aria-expanded="false">
+
+								@foreach ($menu['SUB_MENU'] as $sub)
+
+									<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
+
+								@endforeach
+							</ul>
+                    	</li>
+
+						@endif
+
+						@endforeach
+					@endif
+					
+				
+					
+                    <!--<li><a class="ai-icon" href="{{session('site')}}/dashboard" aria-expanded="false">
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
                         
-                    </li>
+                    </li>-->
                     
                     <!-- <li>
                         <a class="ai-icon" href="{{session('site')}}/partners" aria-expanded="false">
@@ -778,7 +814,7 @@
 							<span class="nav-text">Partners</span>
 					    </a>
 					</li> -->
-					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+					{{--<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-user"></i>
 							<span class="nav-text">Users</span>
 						</a>
@@ -969,7 +1005,7 @@
 							<i class="fa fa-ticket"></i>
 							<span class="nav-text">News Latters</span>
 						</a>
-                    </li>
+                    </li>--}}
                     
                 </ul>
 				

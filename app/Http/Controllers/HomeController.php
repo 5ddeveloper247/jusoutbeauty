@@ -115,6 +115,7 @@ class HomeController extends Controller
 		$request->session()->forget('lastName');
 		$request->session()->forget('email');
 		$request->session()->forget('userType');
+		$request->session()->forget('userSubType');
 		return redirect('login');
 	}
 	public function whoWeAre() {

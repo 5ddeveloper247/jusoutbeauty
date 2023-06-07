@@ -377,19 +377,6 @@ class User extends Authenticatable
         return isset( $result) ?  $result :null;
     }
 
-    public function getSpecificAdminStatus($id){
-
-        $user_id = $id;
-        $result = DB::table('fnd_user_tbl')
-				  ->where('USER_TYPE','admin')
-                  ->where('USER_ID','=', $user_id)
-                  ->select('USER_ID','USER_STATUS')
-				  ->first();
-        
-        return isset( $result) ?  $result :null;
-
-    }
-
     public function getAdminUserDetails($id){
 
         $user_id = $id;
@@ -399,6 +386,15 @@ class User extends Authenticatable
         ->first();
 
         return isset( $result) ?  $result :null;
+    }
+
+    public function getAllNavLinks(){
+
+       $result = DB :: table('fnd_user_menu_tbl')
+                ->select('MENU_NAME','MENU_ID')
+                ->get(); 
+
+        return isset($result) ? $result :null;
     }
 
 }
