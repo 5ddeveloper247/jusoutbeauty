@@ -8,16 +8,15 @@ jQuery(document).ready(function() {
         // focus: !1,
         // fontsize: fontsizes
         // fontSizes: ['8', '9', '10', '11', '12', '14', '18'],
-        // fontNames: [
-        //     'Jost'
-        //         ],
+        fontNames: ['Jost','Cavolini', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Merriweather'],
+  fontNamesIgnoreCheck: ['Cavolini'],
         // styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
         toolbar: [
             // [groupName, [list of button]]
             ['style', ['style']],
             ['font', ['strikethrough', 'superscript', 'subscript','bold', 'italic', 'clear']],
             ['fontsize', ['fontsize']],
-            // ['fontname', ['fontname']],
+            ['fontname', ['fontname']],
             // ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],

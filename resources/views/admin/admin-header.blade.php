@@ -32,9 +32,37 @@
     <link href="{{ url('/assets-admin') }}/css/admin/style.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/customcss/admin/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('/public') }}/third_party/toastr/css/toastr.min.css" />
+	<link href="https://fonts.cdnfonts.com/css/cavolini" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	
 	<style>
+		/* body{
+			font-family: 'Cavolini','Jost' sans-serif !important;
+		}
+		@font-face {
+    font-family: 'Cavolini';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Cavolini'), url('https://fonts.cdnfonts.com/s/37065/CAVOLINI.woff') format('woff');
+}
+@font-face {
+    font-family: 'Cavolini';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Cavolini'), url('https://fonts.cdnfonts.com/s/37065/CAVOLINIITALIC.woff') format('woff');
+}
+@font-face {
+    font-family: 'Cavolini';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Cavolini'), url('https://fonts.cdnfonts.com/s/37065/CAVOLINIBOLD.woff') format('woff');
+}
+@font-face {
+    font-family: 'Cavolini';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Cavolini'), url('https://fonts.cdnfonts.com/s/37065/CAVOLINIBOLDITALIC.woff') format('woff');
+} */
 		.brand-title-custom {
 			width: 11rem;
 			   height: 4rem;

@@ -118,14 +118,21 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		
 			setTimeout(function(){
 				var featured_category_display_order_table = $('#productsTable').DataTable( {
+					search: {
+						return: true,
+					},
 					 order: [
-						[0, "asc"]],
-
-					// rowReorder: {
-					// 	selector: 'tr',
-					// 	update: true
-					//   },
-					  
+						[1, "asc"]],
+						rowReorder: {selector: 'span.reorder'},
+						columnDefs: [
+							{ orderable: true, className: 'reorder', targets: 0 },
+							{ orderable: false, targets: '_all' }
+						],
+					
+					// aLengthMenu: [
+					// 	[ -1],
+					// 	[ "All"]
+					// ]
 		            aLengthMenu: [
 		                          [10, 25, 50, 100, 200, -1],
 		                          [10, 25, 50, 100, 200, "All"]
@@ -138,6 +145,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				cursor: 'move',
 				opacity: 0.6,
 				update: function() {
+					
 					$scope.$apply(function () {
 						$scope.sendOrderToServer();
 					});
@@ -151,18 +159,28 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 
 	$scope.getAllAdminProductlov();
-		
+	
 
 	$scope.sendOrderToServer = function(){
+		
 		var order = [];
 		
 		// var token = $('meta[name="csrf-token"]').attr('content');
+		var page_length = parseInt($('select[name="productsTable_length"]').val());
+		var current_page = parseInt($('.paginate_button.current').text());
+
+		var postion_for = (current_page*page_length)-page_length;
+		
+		//  console.log(page_length,current_page);
 		$('tr.row1').each(function(index,element) {
 		  order.push({
 			id: $(this).attr('data-id'),
-			position: index+1
+			position_new: postion_for+(index+1),
+			position: $(this).attr('data-seq')
+			// position:index+1
 		  });
 		});
+		// console.log(order);return;
 
 		var data = {};
 	    data.order = order;
@@ -178,7 +196,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 		}).success(function(data, status, headers, config) {
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+			$scope.getAllAdminProductlov();
 			
 		})
 		.error(function(data, status, headers, config) {

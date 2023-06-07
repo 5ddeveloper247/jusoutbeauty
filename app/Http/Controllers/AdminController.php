@@ -49,23 +49,13 @@ class AdminController extends Controller
 	public function updateProductOrder(){
 		$details = $_REQUEST ['details'];
 		$request = $details['order'];
-		
-		$products = DB::table ('jb_product_tbl' )->get();
 
-		$checkSeq = 0;
-
-		foreach ($products as $product) {
-			foreach ($request as $order) {
-				
-				if ($order['id'] == $product->PRODUCT_ID) {
-					
-					DB::table ('jb_product_tbl' )->where('PRODUCT_ID',$product->PRODUCT_ID)->limit(1)->update([
-						'SEQ_NUM' => $order['position'],
-					]);
-					++$checkSeq;
-				}
-				
-			}
+		foreach ($request as $product) {
+			DB::table ('jb_product_tbl' )
+				->where('PRODUCT_ID',$product['id'])
+				->update([
+					'SEQ_NUM' => $product['position_new'],
+				]);
 		}
 		
 		$arrRes ['done'] = true;
