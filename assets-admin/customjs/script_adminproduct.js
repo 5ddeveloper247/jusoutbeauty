@@ -121,13 +121,13 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 					search: {
 						return: true,
 					},
-					 order: [
-						[1, "asc"]],
+					stateSave: true,
+					order: [],
 						rowReorder: {selector: 'span.reorder'},
 						columnDefs: [
 							{ orderable: true, className: 'reorder', targets: 0 },
 							{ orderable: false, targets: '_all' }
-						],
+					],
 					
 					// aLengthMenu: [
 					// 	[ -1],

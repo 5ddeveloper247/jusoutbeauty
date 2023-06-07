@@ -41,11 +41,11 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-												<th>SEQ</th>
+												{{-- <th>SEQ</th> --}}
                                                 <th>Product Name</th>
                                                 <th>Price</th>
                                                 <th>Category</th>
-                                                <th>Sub Category.</th>
+                                                <th>Sub Category</th>
                                                 <th>Stock Status</th>
                                                 <th>Product Status</th>
                                                 <th>Action</th>
@@ -55,7 +55,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											
                                             <tr class="row1" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.PRODUCT_ID}}" ng-repeat="row in displayCollection">
                                                 <td>@{{row.PRODUCT_ID}}</td>
-                                                <td>@{{row.SEQ_NUM}}</td>
+                                                {{-- <td>@{{row.SEQ_NUM}}</td> --}}
                                                 <td>@{{row.NAME}}</td>
                                                 <td>$@{{row.UNIT_PRICE}}</td>
                                                 <td>@{{row.CATEGORY_NAME}}</td>
