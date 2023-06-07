@@ -58,12 +58,69 @@ class AdminController extends Controller
 					'SEQ_NUM' => $product['position_new'],
 				]);
 		}
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Products Position Updated Successfully';
 
 		echo json_encode ( $arrRes );
-			
+
+	}
+
+    public function updateCategoryOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+
+		foreach ($request as $category) {
+			DB::table ('jb_category_tbl' )
+				->where('CATEGORY_ID',$category['id'])
+				->update([
+					'SEQ_NUM' => $category['position_new'],
+				]);
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Category Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+
+	}
+
+    public function updateSubCategoryOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+
+		foreach ($request as $subCategory) {
+			DB::table ('jb_sub_category_tbl' )
+				->where('SUB_CATEGORY_ID',$subCategory['id'])
+				->update([
+					'SEQ_NUM' => $subCategory['position_new'],
+				]);
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Sub Category Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+
+	}
+
+    public function updateSubSubCategoryOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+
+		foreach ($request as $subSubCategory) {
+			DB::table ('jb_sub_sub_category_tbl' )
+				->where('SUB_SUB_CATEGORY_ID',$subSubCategory['id'])
+				->update([
+					'SEQ_NUM' => $subSubCategory['position_new'],
+				]);
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Sub Sub Category Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+
 	}
 
 	public function saveAdminProductsaveJusOFlow(Request $request){
@@ -88,7 +145,7 @@ class AdminController extends Controller
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
 			}
 		}
-		
+
 
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Complete your JusOGlow Updated Successfully';
@@ -105,7 +162,7 @@ class AdminController extends Controller
 		$productId = $details ['productId'];
 		$handPickArray = $details ['handPick'];
 		$userId = $details ['userId'];
-		
+
 		$handpicked= new Handpicked();
 		DB::table ('jb_product_handpicked_tbl' )->where('PRODUCT_ID',$productId)->delete();
 
@@ -131,7 +188,7 @@ class AdminController extends Controller
 
 	public function saveAdminQuickProductShade(Request $request) {
 		$ProductShade = new ProductShadeModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['shade'];
 		$prod = $details ['product'];
@@ -141,16 +198,16 @@ class AdminController extends Controller
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if (!isset($data['S_1']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Shade first.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if($data['S_2'] == ''){
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Inv. Quantity is required.';
@@ -163,20 +220,20 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-			
-			
+
+
+
 			if ($data ['ID'] == '') {
-				
+
 				$existCheck = $ProductShade->checkShadeExistCheckWrtProductId(isset($data['S_1']['id']) ? $data['S_1']['id'] : '',$prod);
-				
+
 				if ($existCheck == true) {
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Shade already added in product.';
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_product_shades_tbl' )->insertGetId (
 						array ( 'PRODUCT_ID' => $prod,
 								'SHADE_ID' => isset($data['S_1']['id']) ? $data['S_1']['id'] : '',
@@ -194,27 +251,27 @@ class AdminController extends Controller
 				$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($prod);
 				echo json_encode ( $arrRes );
 				die ();
-				
+
 			} else {
-	
+
 				$existCheck = $ProductShade->checkShadeExistCheckWrtProductId(isset($data['S_1']['id']) ? $data['S_1']['id'] : '',$prod,$data ['ID']);
-				
+
 				if ($existCheck == true) {
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Shade already added in product.';
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_product_shades_tbl' ) ->where ( 'PRODUCT_SHADE_ID', $data ['ID'] ) ->update (
 						array ( 'SHADE_ID' => isset($data['S_1']['id']) ? $data['S_1']['id'] : '',
 								'QUANTITY' => isset($data['S_2']) ? $data['S_2'] : '',
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Shade Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -231,7 +288,7 @@ class AdminController extends Controller
 		// $id = $result['userID'];
 		$category = $result ['category'];
 		$product_ID = $result['productId'];
-	
+
 		DB::table('jb_product_tbl')->where('PRODUCT_ID',$product_ID)->update([
 			'CATEGORY_ID' =>  $result['category']['id'],
 		]);
@@ -240,8 +297,8 @@ class AdminController extends Controller
 		$arrRes ['done'] = true;
 		$arrRes ['subCategory'] = $Categorymodel->getSubCategoryLovWrtCategory($category['id']);
 		echo json_encode ( $arrRes );
-		
-		
+
+
 
 	}
 
@@ -253,24 +310,24 @@ class AdminController extends Controller
 		$ProductModel = new ProductModel();
 	  	 $product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category)->orderby('PRODUCT_ID', 'desc')
 	   ->where('STATUS','active')->get();
-		
+
 	   if(count($product_lov) > 0){
 
 	   $i=0;
 	   foreach ($product_lov as $row){
 		   $arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
 		   $arrRes['product'][$i]['name'] = $row->NAME;
-		   
+
 		   $i++;
 	   }
 
 	   $arrRes['selectRecomended_lov'] =  $ProductModel->getRecomendedProductsWrtProductID($productId);
 	   $arrRes['selectHandPick_lov'] =  $ProductModel->gethandPickProductsWrtProductID($productId);
-	  
+
 	   echo json_encode ( $arrRes );
 
 	}
-		
+
 		// $result = $_REQUEST['details'];
 		// $categoryId = $result['categoryid'];
 		// $products = [];
@@ -292,17 +349,17 @@ class AdminController extends Controller
 		$arrRes ['id'] = $ingredientId;
 		$arrRes ['done'] = true;
 		echo json_encode ( $arrRes );
-		
+
 	}
 	public function UpdateSecondSection(){
 		$details = $_REQUEST ['details'];
 		$productID = $details ['productId'];
 		$quickSection = $details ['quickSection'];
-	
+
 		DB::table('jb_product_tbl')->where('PRODUCT_ID',$productID)->update([
 			'DESCRIPTION_TITLE' =>  $quickSection['P_17'],
 			'DESCRIPTION' => base64_encode($quickSection['P_18']),
-			
+
 		]);
 
 		$arrRes ['msg'] = 'Second Section Updated Successfully!';
@@ -339,10 +396,10 @@ class AdminController extends Controller
 		$data['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data['page'] = 'Quick Add Product';
-		
+
 		return view('admin.quick-addproduct')->with($data);
 	}
-	/* quickAddProduct start */ 
+	/* quickAddProduct start */
 	public function quickAddProduct(){
 
 		$data['adminMenu'] = $this->getAdminUserMenu();
@@ -408,7 +465,7 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 
 		$data = $details['record'];
-	
+
 		$basic = [];
 
 		$basic['NAME'] = $data['P_1'];
@@ -420,13 +477,13 @@ class AdminController extends Controller
 
 		DB::table('jb_product_tbl')->where('PRODUCT_ID',$data['PRODUCT_ID'])->update($basic);
 
-		
+
 		$arrRes ['msg'] = 'Data updated successfully!';
 		$arrRes ['done'] = true;
 		echo json_encode ( $arrRes );
 
 	}
-	/* quickAddProduct end */ 
+	/* quickAddProduct end */
 	public function saveAdminQuickProductBasicInfo(){
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
@@ -448,7 +505,7 @@ class AdminController extends Controller
 							// 'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 							// 'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
 							// 'SLUG' => $data ['P_10'],
-							
+
 							'DESCRIPTION_TITLE' => 'Second section',
 							'DESCRIPTION' => base64_encode('leo quam condimentum orci, ac pellentesque leo dui accumsan magna.Ut vel arcu congue, quis cursus arcu cursus at.turpis lacus pretium eros, vitae sagittis lorem metus non ante.Pellentesque ut diam eget ex scelerisque finibus hendrerit ac urna.Vestibulum pulvinar vestibulum interdum.'),
 							'CLINICAL_NOTE_DESCRIPTION' => base64_encode('leo quam condimentum orci, ac pellentesque leo dui accumsan magna.Ut vel arcu congue, quis cursus arcu cursus at.turpis lacus pretium eros, vitae sagittis lorem metus non ante.Pellentesque ut diam eget ex scelerisque finibus hendrerit ac urna.Vestibulum pulvinar vestibulum interdum.'),
@@ -469,7 +526,7 @@ class AdminController extends Controller
 					'VIDEO_DESCRIPTION' => base64_encode('Video Description'),
 
 				]);
-				
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Product Created Successfully';
 				$arrRes ['id'] = $result;
@@ -477,7 +534,7 @@ class AdminController extends Controller
 
 	}
 
-	/* Selfie code */  
+	/* Selfie code */
 	public function ChangeAdminProductSnapSelfieStatus(){
 		$ProductSelfiModel = new ProductSelfiModel();
 
@@ -493,33 +550,33 @@ class AdminController extends Controller
 			$status = '0';
 			$arrRes ['msg'] = 'Selfie Inactive successfully...';
 		}
-		
+
 		$result = DB::table ( 'jb_product_selfi_tbl' ) ->where ( 'SELFIE_ID', $productSelfiID ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-		
+
 		$arrRes ['done'] = true;
-		
+
 		echo json_encode ( $arrRes );
 	}
 
 
 
-		/* Selfie code end */  
+		/* Selfie code end */
 
 	public function addSocialIcons(Request $request) {
 		$detail=$_REQUEST['details'];
 				$data=$detail['social'];
-				
-		$social=[];	
+
+		$social=[];
 		$social['FACEBOOK_ICON_LINK']=$data['S_1'];
-		$social['FACEBOOK_ICON_ENABLE']=$data['S_2'] == 'true' ? '1' : '0';		
+		$social['FACEBOOK_ICON_ENABLE']=$data['S_2'] == 'true' ? '1' : '0';
 		$social['INSTAGRAM_ICON_LINK']=$data['S_3'];
-		$social['INSTAGRAM_ICON_ENABLE']=$data['S_4'] == 'true' ? '1' : '0';		
+		$social['INSTAGRAM_ICON_ENABLE']=$data['S_4'] == 'true' ? '1' : '0';
 		$social['TWITTER_ICON_LINK']=$data['S_5'];
-		$social['TWITTER_ICON_ENABLE']=$data['S_6'] == 'true' ? '1' : '0';	
+		$social['TWITTER_ICON_ENABLE']=$data['S_6'] == 'true' ? '1' : '0';
 		$social['LINKEDIN_ICON_LINK']=$data['S_7'];
 		$social['LINKEDIN_ICON_ENABLE']=$data['S_8'] == 'true' ? '1' : '0';
 		$social['YOUTUBE_ICON_LINK']=$data['S_9'];
@@ -531,14 +588,14 @@ class AdminController extends Controller
 			$social['CONTROL_ID']=1;
 			DB::table('jb_footer_control_tbl')->insert($social);
 			$arrRes ['msg'] = 'Data Added successfully!';
-			
+
 		}else{
-		
+
 			DB::table('jb_footer_control_tbl')->where('CONTROL_ID',1)->update($social);
 			$arrRes ['msg'] = 'Data updated successfully!';
-			
+
 		}
-		
+
 		return response()->json($arrRes, 200);
 
    	}
@@ -550,19 +607,19 @@ class AdminController extends Controller
 
 
 	public function index() {
-		
+
     	$data['page'] = 'login';
        	return view('admin.login')->with($data);
    	}
    	public function login(Request $request){
-   
+
    		if($request->session()->has('userId')){
    			return redirect('dashboard');
    		}else{
    			return view('admin.login');
    		}
    	}
-   	
+
    	public function logout(Request $request) {
 	   	$request->session()->forget('userId');
 	   	$request->session()->forget('userName');
@@ -572,7 +629,7 @@ class AdminController extends Controller
 		$request->session()->forget('userSubType');
 	   	return redirect('admin');
    	}
-   	
+
    	public function dashboard() {
 		$User=new User();
 		$data['getTotalUsers']= $User->getTotalUsers();
@@ -631,12 +688,12 @@ class AdminController extends Controller
 	}
        /* Selfie  get and delete admin side start*/
 	   public function deletSelectedSelfie(Request $request){
-		
+
 		// $ProductSelfiModel = new ProductSelfiModel();
-		 
+
 		$details = $_REQUEST ['details'];
 		$id = $details['productSelectedSelfiID'];
-		
+
 		// $selfieDetail = $ProductSelfiModel->getSpecificSelfiAttachments($id);
 
 		$result = DB::table('jb_product_selfi_images_tbl as a')
@@ -647,38 +704,38 @@ class AdminController extends Controller
 			foreach ($result as $value){
 				unlink($value->PATH);
 			}
-			
+
 		}
 		DB::table('jb_product_selfi_images_tbl')->where('IMAGE_ID', $id)->delete();
-		
-		  
+
+
 		$arrRes['done']=true;
 		$arrRes['id'] = $id;
 		$arrRes['message']="Selfie deleted Successfully";
 		return isset($arrRes) ? $arrRes : null;
 
      }
-	   
+
 	 public function deletespecificselfie(Request $request){
-		
+
 		$ProductSelfiModel = new ProductSelfiModel();
-		 
+
 		$details = $_REQUEST ['details'];
 		$id = $details['productSelfiID'];
-		
+
 		$selfieDetail = $ProductSelfiModel->getSpecificSelfiAttachments($id);
-		
+
 		DB::table('jb_product_selfi_images_tbl')->where('SELFIE_ID', $id)->delete();
 		DB::table('jb_product_selfi_tbl')->where('SELFIE_ID', $id)->delete();
-		
+
 		if(isset($selfieDetail) && !empty($selfieDetail)){
 			foreach ($selfieDetail as $value){
 				unlink($value['path']);
 			}
 		}
-		
-		
-		  
+
+
+
 		$arrRes['done']=true;
 		$arrRes['message']="Selfie deleted Successfully";
 		return isset($arrRes) ? $arrRes : null;
@@ -686,7 +743,7 @@ class AdminController extends Controller
      }
 
 	public function get_selfies(Request $request){
-		 
+
 		 $details = $_REQUEST ['details'];
 		 $id= $details['productSelfiID'];
 
@@ -694,7 +751,7 @@ class AdminController extends Controller
 		 ->where('a.SELFIE_ID', $id)
 		 ->orderBy('a.SELFIE_ID','desc')
 		 ->get();
-		   
+
 		//  dd($result);
          $i=0;
 		 if($result != null){
@@ -705,7 +762,7 @@ class AdminController extends Controller
 		   $i++;
 		 }
 	 }
-	 
+
 		return isset($arrRes) ? $arrRes : null;
 
 	}
@@ -714,10 +771,10 @@ class AdminController extends Controller
 
 
    	public function partners() {
-   		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'Partners';
-	
+
 		$result=$this->checkUserControlAccess(session('userId'),"/partners");
 		if( $result != true) {
 			return view('admin.partners')->with($data);
@@ -729,12 +786,12 @@ class AdminController extends Controller
    	}
 
 //    	public function adminUsers() {
-   		
+
 //        	$data['page'] = 'Admin Users';
 //        	return view('admin.admin-users')->with($data);
 //    	}
    	public function adminProfile() {
-   		 
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
    		$data['page'] = 'Admin Profile';
 		$result=$this->checkUserControlAccess(session('userId'),"/admin-profile");
@@ -747,7 +804,7 @@ class AdminController extends Controller
    	}
 
    	public function addAdminUser() {
-   		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'add Admin User';
 		$result=$this->checkUserControlAccess(session('userId'),"/add-admin-user");
@@ -760,7 +817,7 @@ class AdminController extends Controller
    	}
 
    	public function websiteUsers() {
-   		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'Website Users';
 		$result=$this->checkUserControlAccess(session('userId'),"/website-users");
@@ -773,7 +830,7 @@ class AdminController extends Controller
    	}
 
    	public function addWebsiteUser() {
-   		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'Add Website User';
 		$result=$this->checkUserControlAccess(session('userId'),"/add-website-user");
@@ -786,7 +843,7 @@ class AdminController extends Controller
    	}
 
    	public function viewCategories() {
-   		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
        	$data['page'] = 'View Categories';
 		$result=$this->checkUserControlAccess(session('userId'),"/view-categories");
@@ -800,7 +857,7 @@ class AdminController extends Controller
    	}
 
    	public function viewProducts() {
-   	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Products';
 		$result=$this->checkUserControlAccess(session('userId'),"/view-products");
@@ -816,13 +873,13 @@ class AdminController extends Controller
 		$ProductSelfiModel = new ProductSelfiModel();
 
 		$arrRes ['productselfi'] = $ProductSelfiModel->getAllAdminSelfie();
-		   
+
 		// dd($arrRes);
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function viewBundles() {
-	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Bundles';
 
@@ -837,7 +894,7 @@ class AdminController extends Controller
 	}
 
       public function addProduct() {
-   	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Product';
 
@@ -863,7 +920,7 @@ class AdminController extends Controller
 		}
 		// return view('admin.Routines.addroutine')->with( $data );
 	   }
-          
+
 	   public function routine_type(){
 			$data['adminMenu'] = $this->getAdminUserMenu();
 		    $data ['page'] = 'Add Routine';
@@ -878,7 +935,7 @@ class AdminController extends Controller
 
 
 	   public function getTypeNameLov(Request $request){
-    	 
+
 		$details = $_REQUEST ['details'];
 		$typeid= $details['typeid'];
 
@@ -887,14 +944,14 @@ class AdminController extends Controller
 		->where('a.TYPE_ID', $typeid)
 		->orderBy('a.NAME_ID','desc')
 		->get();
-		 
+
 		$i=0;
 		foreach ($result as $row){
 		   $arrRes[$i]['id'] = $row->CATEGORY_ID;
 		   $arrRes[$i]['name'] = $row->CATEGORY_NAME;
 		   $i++;
 		}
-	 
+
 		return isset($arrRes) ? $arrRes : null;
 	 }
 
@@ -902,7 +959,7 @@ class AdminController extends Controller
 
 		$details = $_REQUEST ['details'];
 		$routineid = $details ['routineid'];
-       
+
 		$typename= TypeName::where('TYPE_ID',$routineid)->first();
 
 		if($typename){
@@ -936,7 +993,7 @@ class AdminController extends Controller
 
 	 public function remove_routine_type_name(Request $request){
 
-		      
+
 		 $details = $_REQUEST ['details'];
 		 $typenameid = $details ['typenameid'];
 
@@ -945,7 +1002,7 @@ class AdminController extends Controller
 
 	    //  $typeid=$typename->TYPE_ID;
 		$typeid=$typenameid;
-          
+
 		 $step = RoutineSteps::where('NAME_ID', $typenameid)->delete();
 
 		 $typename= TypeName::where('NAME_ID',$typenameid)->delete();
@@ -954,7 +1011,7 @@ class AdminController extends Controller
 		 $typename= new TypeName();
 
 		 $arrRes['typenamelov']= $typename->getTypeNameLov($typeid);
-		 
+
 		 $arrRes['typedata']=$typename->getallnamedata($typeid);
 
 	     $stepsarray=$steps->getstepsbasedonroutine($typeid);
@@ -971,7 +1028,7 @@ class AdminController extends Controller
 
 
 	 public function removesteps(Request $request){
-              
+
 		     $details = $_REQUEST ['details'];
 		     $stepid = $details ['stepid'];
 		     $step = RoutineSteps::where('STEP_ID', $stepid)->first();
@@ -989,7 +1046,7 @@ class AdminController extends Controller
 		  }
 
 		  $step = RoutineSteps::where('STEP_ID', $stepid)->delete();
-          
+
 		  $typename= TypeName::where('NAME_ID',$name_id)->first();
 		  $typeid=$typename->TYPE_ID;
 
@@ -1004,9 +1061,9 @@ class AdminController extends Controller
 				die ();
 
 	 }
-	 
+
 	 public function addstep_routine(Request $request){
-		 
+
 		 $details = $_REQUEST ['details'];
 		 $data = $details ['routinetype'];
 		 $userId = $details ['userId'];
@@ -1032,22 +1089,22 @@ class AdminController extends Controller
 		 }
 		 $typeid= $data['P_7']['id'];
 
-	
+
 		 $arrRes = array ();
 		 $arrRes ['done'] = false;
 		 $arrRes ['msg'] = '';
 
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			 if ($data['P_12'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description  is required.';
 				echo json_encode ( $arrRes );
 				die ();
-			 } 
+			 }
 
 			 if($data['P_7']['id'] == ''){
 				$arrRes ['done'] = false;
@@ -1063,7 +1120,7 @@ class AdminController extends Controller
 
 			 }
 			 // if ($data ['P_2'] == '') {
-					
+
 			 // 	$arrRes ['done'] = false;
 			 // 	$arrRes ['msg'] = 'Quantity is required.';
 			 // 	echo json_encode ( $arrRes );
@@ -1073,7 +1130,7 @@ class AdminController extends Controller
 			 $ROUTINETYPE = new RoutineType();
 			 $routinetypename= new TypeName();
 			 $steps=new RoutineSteps();
-           
+
 			 $result = DB::table('jb_type_name_tbl as a')->select('a.*')
     	     ->where('a.NAME_ID',$data['P_7']['id'])
     	     ->first();
@@ -1081,8 +1138,8 @@ class AdminController extends Controller
 		     $recordId=$result->TYPE_ID;
 
 				$result = DB::table ( 'jb_routine_steps_tbl' )->insertGetId (
-						array ( 
-								'USER_ID' => $userId, 
+						array (
+								'USER_ID' => $userId,
 								'NAME_ID' => $data['P_7']['id'],
 								'STEP_NO' =>  $data['P_13'],
 								'PRODUCT_ID' => $data['P_11']['id'],
@@ -1103,27 +1160,27 @@ class AdminController extends Controller
 				 // $arrRes ['ID'] = $result;
 				 // $arrRes ['redirect_url'] = url('routine_type_new');
 				 echo json_encode ( $arrRes );
-				 die ();	
-			} 
+				 die ();
+			}
 		}
 
 
 	   public function add_routine_type_name(Request $request){
-                 
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['routinetype'];
 		$userId = $details ['userId'];
 		$typeid= $details['typeid'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['C_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Name is required.';
 				echo json_encode ( $arrRes );
@@ -1147,21 +1204,21 @@ class AdminController extends Controller
 				die ();
 			}
 			// if ($data ['P_2'] == '') {
-					
+
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Quantity is required.';
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
 		    	$typename= new TypeName();
-	
+
 			if ($data ['ID'] == '') {
 
 
 
-	
+
 				$result = DB::table ( 'jb_type_name_tbl' )->insertGetId (
-						array ( 
+						array (
 								'TYPE_ID' => $typeid,
 								'TYPE_NAME' => $data['C_1'],
 								'STATUS' => 'active',
@@ -1180,18 +1237,18 @@ class AdminController extends Controller
 				// $arrRes ['redirect_url'] = url('routine_type_new');
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			 } else {
-	
+
 				$result = DB::table ( 'jb_type_name_tbl' ) ->where ( 'NAME_ID', $data ['ID'] ) ->update (
-						array ( 
+						array (
 							    'TYPE_ID' => $typeid,
 								'TYPE_NAME' => $data['C_1'],
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes['typenamelov']= $typename->getTypeNameLov($typeid);
 				$arrRes['typedata']=$typename->getallnamedata($typeid);
@@ -1206,14 +1263,14 @@ class AdminController extends Controller
 	 }
 
 	   public function checksteps(Request $request){
-          
+
 		         $details= $_REQUEST['details'];
 				 $type_id= $details['typeid'];
 
                  $name_id= $details['routinetypeid'];
 
-			     if($details['routinetypeid'] == '' && $type_id == ''){       
-				 
+			     if($details['routinetypeid'] == '' && $type_id == ''){
+
 				 $arrRes ['done'] = false;
 				 $arrRes ['msg'] = 'Please Select routine and routine type is required.';
 				 echo json_encode ( $arrRes );
@@ -1221,7 +1278,7 @@ class AdminController extends Controller
 
 			     }
 
-				 
+
 
 			     $steps= RoutineSteps::where('NAME_ID', $name_id)->where('TYPE_ID', $type_id)->get();
 
@@ -1235,52 +1292,52 @@ class AdminController extends Controller
 
 	     }
 	   public function routine_type_add(Request $request){
-                                 
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['Routinename'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Name is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			// if ($data ['P_2'] == '') {
-					
+
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Quantity is required.';
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
 			if ($data ['P_3'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Please Select Routine Category is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['P_4'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 
 			$typename= new TypeName();
 
 			if ($data['ID'] == '') {
-				
+
 				$routine= RoutineType::where('NAME','=',$data['P_1'])->get();
 				if($routine->count() > 0){
 					$arrRes ['done'] = false;
@@ -1288,9 +1345,9 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+
 				$result = DB::table ( 'jb_routine_type_tbl' )->insertGetId (
-						array ( 
+						array (
 								'NAME' => $data['P_1'],
 								'IDENTIFY' => $data['P_3'],
 								'DESCRIPTION' => $data['P_4'],
@@ -1301,7 +1358,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Routine Name Created Successfully';
 				$arrRes ['ID'] = $result;
@@ -1310,11 +1367,11 @@ class AdminController extends Controller
 				$arrRes ['redirect_url'] = url('routine_type_new');
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'TYPE_ID', $data ['ID'] ) ->update (
-						array ( 
+						array (
 							'NAME' => $data ['P_1'],
 							'IDENTIFY' => $data['P_3'],
 							'DESCRIPTION' => $data['P_4'],
@@ -1322,7 +1379,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Routine Name Updated Successfully';
 				$arrRes['typenamelov']= $typename->getTypeNameLov($data ['ID']);
@@ -1337,13 +1394,13 @@ class AdminController extends Controller
 
 	   public function changeStatusRoutineType(Request $request) {
 		$RoutineType = new RoutineType();
-		
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$catDetail = $RoutineType->getSpecificRotineTypeData($recordId);
-		
+
 		if(isset($catDetail['STATUS']) && $catDetail['STATUS'] != 'active'){
 
 			$status = 'active';
@@ -1352,28 +1409,28 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Routine Name Inactive successfully...';
 		}
-		
+
 		$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'TYPE_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-		
+
 		$arrRes ['done'] = true;
-		
+
 		echo json_encode ( $arrRes );
-	
+
 	}
 	public function routine_type_name_edit(){
 
 		$ROUTINETYPE = new RoutineType();
 		$routinetypename= new TypeName();
-  
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-  
+
 		$arrRes['typename']= $routinetypename->getspecifictypename($recordId);
 
 		 echo json_encode ( $arrRes );
@@ -1384,11 +1441,11 @@ class AdminController extends Controller
 		  $ROUTINETYPE = new RoutineType();
 		  $routinetypename= new TypeName();
 		  $steps=new RoutineSteps();
-	
+
 		  $details = $_REQUEST ['details'];
 		  $recordId = $details ['recordId'];
 		  $userId = $details ['userId'];
-	
+
 		  $arrRes ['details'] = $ROUTINETYPE->getSpecificRotineTypeData($recordId);
 		  $arrRes ['images'] = $ROUTINETYPE->getSpecificRoutineTypeAttachments($recordId);
 		  $arrRes['typenamelov']= $routinetypename->getTypeNameLov($recordId);
@@ -1403,14 +1460,14 @@ class AdminController extends Controller
 			  $typename[]=$data['name'];
 		   }
               $k=0;
-			  
+
 		   foreach($typeid as $v=>$id_type){
 		    foreach($typename as $b=>$name)
 			if($v== $b){
 			  $steps2=$steps->getsteps($id_type,$name);
-               
+
 			   if($steps2){
-				$arr[$k]= $steps2 ; 
+				$arr[$k]= $steps2 ;
 				$k++;
 			 }
 			}
@@ -1426,74 +1483,74 @@ class AdminController extends Controller
 			}
 		}
 
-			$arrRes['steps'] =	$steps_array;	
-		 }			
+			$arrRes['steps'] =	$steps_array;
+		 }
 
 		   echo json_encode ( $arrRes );
 	}
 	public function getAllAdminroutinetype() {
-		
+
 		$RoutineType = new RoutineType();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-		
+
 
 		$arrRes ['list'] = $RoutineType->getRoutineTypeDataAdmin();
 
 		$TypeName=new TypeName();
 
 		$arrRes ['routinetypes']=$TypeName->getAllRoutineTypes();
-		
+
 		// $arr['routinetypessteps']=$TypeName->getallroutinetypelov();
-	
+
 		// $arrRes ['listSubCat'] = $Category->getSubCategoryData();
 		// $arrRes ['listSubSubCat'] = $Category->getSubSubCategoryData();
-		
+
 		// $arrRes ['list1'] = $Category->getCategoryLov();
 		// $arrRes ['list2'] = $Category->getSubCategoryLov();
-	
+
 		echo json_encode ( $arrRes );
 	}
 
 	public function deleteRoutineTypeRecord(Request $request) {
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$categoryId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$existCheckSubCategory = $CategoryModel->checkSubCategoryExistWrtCategory($categoryId);
-		
+
 		if($existCheckSubCategory == true){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Sub Categories exist against this category, kindly remove sub categories then proceed.';
 			echo json_encode ( $arrRes );
 			die();
 		}
-		
+
 		$existCheckProduct = $ProductModel->checkProductExistWrtCategoryId($categoryId, '1');
-		
+
 		if($existCheckProduct == true){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Products exist against this category, kindly remove products then proceed.';
 			echo json_encode ( $arrRes );
 			die();
 		}
-		
+
 		$delete = DB::table ( 'jb_category_tbl' )->where ( 'CATEGORY_ID', $categoryId )->delete ();
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Category deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 
 	   //===============Routine End ===========================>
 
     	public function viewAllIngredients() {
-   		
+
 			$data['adminMenu'] = $this->getAdminUserMenu();
 		    $data ['page'] = 'View All Ingredients';
 			$result=$this->checkUserControlAccess(session('userId'),"/view-ingredients");
@@ -1506,7 +1563,7 @@ class AdminController extends Controller
 	 }
 
 	 public function viewAllFeatures() {
-   		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View All Features';
 		$result=$this->checkUserControlAccess(session('userId'),"/view-features");
@@ -1519,17 +1576,17 @@ class AdminController extends Controller
 }
 
 
-	
+
 	public function addNewIngredient($id='') {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add New Ingredient';
 		$data ['ingredientId'] = $id;
 		return view ( 'admin.add-new-ingredient' )->with ( $data );
 	}
-	
+
 	public function viewAllShades() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View All Shades';
 		$result=$this->checkUserControlAccess(session('userId'),"/view-all-shades");
@@ -1540,28 +1597,28 @@ class AdminController extends Controller
 		}
 	}
 	public function viewAllBlogs() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View All Shades';
 		return view ( 'admin.view-all-bloges' )->with ( $data );
 	}
-	
+
 	public function addShade() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Shade';
 		return view ( 'admin.add-shade' )->with ( $data );
 	}
-	
+
 	public function blogs() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Blogs';
 		return view ( 'admin.blogs' )->with ( $data );
 	}
-	
+
 	public function addBlog() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Blog';
 		$result=$this->checkUserControlAccess(session('userId'),"/add-blog");
@@ -1572,22 +1629,22 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.add-blog' )->with ( $data );
 	}
-	
+
 	public function editBlog() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit Blogs';
 		return view ( 'admin.edit-blog' )->with ( $data );
 	}
-	
+
 	public function shadeFinderQuiz() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shade Finder Quiz';
 		return view ( 'admin.shade-finder-quiz' )->with ( $data );
 	}
 	public function shadeFinderQuizYes() {
-	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shade Finder Quiz';
 		$result=$this->checkUserControlAccess(session('userId'),"/shade-finder-quiz-yes");
@@ -1599,7 +1656,7 @@ class AdminController extends Controller
 		// return view ( 'admin.shade-finder-quiz-yes' )->with ( $data );
 	}
 	public function shadeFinderQuizNo() {
-	
+
 		$data ['page'] = 'Shade Finder Quiz';
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$result=$this->checkUserControlAccess(session('userId'),"/shade-finder-quiz-no");
@@ -1610,19 +1667,19 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.shade-finder-quiz-no' )->with ( $data );
 	}
-	
+
 	public function addShadeFinderQuiz() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Shade Finder Quiz';
 		return view ( 'admin.add-shade-finder-quiz' )->with ( $data );
 	}
-	
+
 	public function orders() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Orders';
-		
+
 		$result=$this->checkUserControlAccess(session('userId'),"/orders");
 		if( $result != true) {
 			return view ( 'admin.orders' )->with ( $data );
@@ -1632,7 +1689,7 @@ class AdminController extends Controller
 		// return view ( 'admin.orders' )->with ( $data );
 	}
 	public function shippedorders() {
-	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shipped Orders';
 		$result=$this->checkUserControlAccess(session('userId'),"/shippedorders");
@@ -1643,94 +1700,94 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.shippedorders' )->with ( $data );
 	}
-	
-	
+
+
 	public function orderDetail() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Order Detail';
 		return view ( 'admin.order-detail' )->with ( $data );
 	}
-	
+
 	public function apis() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Apis';
 		return view ( 'admin.apis' )->with ( $data );
 	}
-	
+
 	public function addApi() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Api';
 		return view ( 'admin.add-api' )->with ( $data );
 	}
-	
+
 	public function editApi() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit Api';
 		return view ( 'admin.edit-api' )->with ( $data );
 	}
-	
+
 	public function viewApi() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Api';
 		return view ( 'admin.view-api' )->with ( $data );
 	}
-	
+
 	public function smsApis() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Sms Apis';
 		return view ( 'admin.sms-apis' )->with ( $data );
 	}
-	
+
 	public function addSmsApi() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add Sms Api';
 		return view ( 'admin.add-sms-Api' )->with ( $data );
 	}
-	
+
 	public function editSmsApi() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit Sms Api';
 		return view ( 'admin.edit-sms-Api' )->with ( $data );
 	}
-	
+
 	public function smsTemplates() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Sms Templates';
 		return view ( 'admin.sms-templates' )->with ( $data );
 	}
-	
+
 	public function addSmsTemplate() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add SmsTemplate';
 		return view ( 'admin.add-sms-template' )->with ( $data );
 	}
-	
+
 	public function editSmsTemplate() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit SmsTemplate';
 		return view ( 'admin.edit-sms-template' )->with ( $data );
 	}
-	
+
 	public function header() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Header';
 		return view ( 'admin.header' )->with ( $data );
 	}
-	
+
 	public function footer() {
-			
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Footer';
 		$result=$this->checkUserControlAccess(session('userId'),"/footer");
@@ -1741,9 +1798,9 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.footer' )->with ( $data );
 	}
-	
+
 	public function homePage() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Home Page';
 		$result=$this->checkUserControlAccess(session('userId'),"/home-page");
@@ -1754,9 +1811,9 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.home-page' )->with ( $data );
 	}
-	
+
 	public function payments() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Payments';
 		$result=$this->checkUserControlAccess(session('userId'),"/payments");
@@ -1767,16 +1824,16 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.payments' )->with ( $data );
 	}
-	
+
 	public function viewPayment() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Payment';
 		return view ( 'admin.view-payment' )->with ( $data );
 	}
-	
+
 	public function givings() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Givings';
 		$result=$this->checkUserControlAccess(session('userId'),"/givings");
@@ -1787,23 +1844,23 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.givings' )->with ( $data );
 	}
-	
+
 	public function Delivery() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Delivery';
 		return view ( 'admin.delivery' )->with ( $data );
 	}
-	
+
 	public function vieDelivery() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Delivery';
 		return view ( 'admin.view-delivery' )->with ( $data );
 	}
-	
+
 	public function Questions() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Questions';
 		$result=$this->checkUserControlAccess(session('userId'),"/questions");
@@ -1814,17 +1871,17 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.questions' )->with ( $data );
 	}
-	
+
 	public function viewReview() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Review';
-		
+
 		return view ( 'admin.view-review' )->with ( $data );
 	}
-	
+
 	public function Reviews() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Reviews';
 		$result=$this->checkUserControlAccess(session('userId'),"/reviews");
@@ -1835,23 +1892,23 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.reviews' )->with ( $data );
 	}
-	
+
 	public function shadeFinder() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Shade Finder';
 		return view ( 'admin.shade-finder' )->with ( $data );
 	}
-	
+
 	public function viewShadeFinder() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'View Shade Finder';
 		return view ( 'admin.view-shade-finder' )->with ( $data );
 	}
-	
+
 	public function emailsSettings() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Emails Settings';
 		$result=$this->checkUserControlAccess(session('userId'),"/emails-settings");
@@ -1862,9 +1919,9 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.emails-settings' )->with ( $data );
 	}
-	
+
 	public function emailsSent() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Emails Sent';
 		$result=$this->checkUserControlAccess(session('userId'),"/emails-sent");
@@ -1875,9 +1932,9 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.emails-sent' )->with ( $data );
 	}
-	
+
 	public function allsub() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'All Sub';
 		$result=$this->checkUserControlAccess(session('userId'),"/allsub");
@@ -1888,23 +1945,23 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.allsub' )->with ( $data );
 	}
-	
+
 	public function editAllsub() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Edit All Sub';
 		return view ( 'admin.edit-allsub' )->with ( $data );
 	}
-	
+
 	public function addAllsub() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Add All Sub';
 		return view ( 'admin.add-allsub' )->with ( $data );
 	}
-	
+
 	public function userSubscriptions() {
-		
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'User Subscriptions';
 		$result=$this->checkUserControlAccess(session('userId'),"/user-subscriptions");
@@ -1916,7 +1973,7 @@ class AdminController extends Controller
 		// return view ( 'admin.user-subscriptions' )->with ( $data );
 	}
 	public function adminUserTickets() {
-	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Tickets';
 		$result=$this->checkUserControlAccess(session('userId'),"/user-Tickets");
@@ -1928,7 +1985,7 @@ class AdminController extends Controller
 		// return  view ( 'admin.view-tickets' )->with ( $data );
 	}
 	public function newsLatters() {
-	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'News Latters';
 		$result=$this->checkUserControlAccess(session('userId'),"/newslatters");
@@ -1940,9 +1997,9 @@ class AdminController extends Controller
 		// return view ( 'admin.view-newslatters' )->with ( $data );
 	}
 	public function snapSelfie() {
-	
+
 		$data['adminMenu'] = $this->getAdminUserMenu();
-		$data ['page'] = 'Snap Selfi';	
+		$data ['page'] = 'Snap Selfi';
 		$result=$this->checkUserControlAccess(session('userId'),"/snapSelfie");
 		if( $result != true) {
 			return view ( 'admin.view-snapSelfie' )->with ( $data );
@@ -1951,47 +2008,47 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.view-snapSelfie' )->with ( $data );
 	}
-	
+
 	/*==================== admin categories code start ==========================*/
-	
+
 	public function getAllAdminCategorylov() {
 		$Category = new CategoryModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-		
+
 		$arrRes ['listCat'] = $Category->getCategoryData();
 		$arrRes ['listSubCat'] = $Category->getSubCategoryData();
 		$arrRes ['listSubSubCat'] = $Category->getSubSubCategoryData();
-		
+
 		$arrRes ['list1'] = $Category->getCategoryLov();
 		$arrRes ['list2'] = $Category->getSubCategoryLov();
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminCategory(Request $request) {
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['category'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data ['C_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Name is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 
-			
+
 			if ($data ['ID'] == '') {
 
 				$result = DB::table ( 'jb_category_tbl' ) ->where ( 'CATEGORY_NAME',  $data ['C_1'])->first();
@@ -2002,9 +2059,12 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+
+                $getLastSeq = DB::table ( 'jb_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+                // dd($getLastSeq);
 				$result = DB::table ( 'jb_category_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
+                                'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'CATEGORY_NAME' => $data['C_1'],
 								'STATUS' => 'inactive',
 								'CREATED_BY' => $userId,
@@ -2013,21 +2073,21 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 				);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Category Created Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
 
 				$result_if_ext = DB::table('jb_category_tbl')
 								->where('CATEGORY_ID', '!=' , $data ['ID'])
 								->where('CATEGORY_NAME',  $data ['C_1'])
 								->get();
-								
-				
+
+
 				if(count($result_if_ext) != 0){
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Name Must Be Unique.';
@@ -2042,7 +2102,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 				);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Category Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -2051,38 +2111,38 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function editAdminCategory(){
 		$Category = new CategoryModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $Category->getSpecificCategoryData($recordId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function changeStatusCategory(Request $request) {
 		$Category = new CategoryModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-		
+
 		$result = DB::table('jb_category_tbl')->where( 'STATUS', 'active')->count();
 
-		
+
 		$catDetail = $Category->getSpecificCategoryData($recordId);
-		
+
 		if(isset($catDetail['STATUS']) && $catDetail['STATUS'] != 'active'){
 
 			if($result >= 4){
 
 				$arrRes ['msg'] = 'Can`t Activate More than Four(4) Categoriges At a Time...';
 				$arrRes ['done'] = false;
-			
+
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -2093,49 +2153,49 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Category Inactive successfully...';
 		}
-		
+
 		$result = DB::table ( 'jb_category_tbl' ) ->where ( 'CATEGORY_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-		
+
 		$arrRes ['done'] = true;
-		
+
 		echo json_encode ( $arrRes );
-	
+
 	}
-	
-	
+
+
 	public function saveAdminSubCategory(Request $request) {
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['subCategory'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if (!isset($data ['C_1']['id'])) {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Category first.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['C_2'] == '') {
-			
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Name is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
 
 
@@ -2147,9 +2207,12 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+
+                $getLastSeq = DB::table ( 'jb_sub_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
 				$result = DB::table ( 'jb_sub_category_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
+                                'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
 								'NAME' => $data['C_2'],
 								'STATUS' => 'active',
@@ -2159,27 +2222,27 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Sub Category Created Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-				
+
 				$result_if_ext = DB::table('jb_sub_category_tbl')
 								->where('CATEGORY_ID', '!=' , $data ['ID'])
 								->where('NAME', $data ['C_2'])
 								->count();
-				
+
 				if($result_if_ext != 0){
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Name Must Be Unique.';
 					echo json_encode ( $arrRes );
 					die ();
-				}				
-	
+				}
+
 				$result = DB::table ( 'jb_sub_category_tbl' ) ->where ( 'SUB_CATEGORY_ID', $data ['ID'] ) ->update (
 					array ( 'CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
 							'NAME' => $data['C_2'],
@@ -2187,7 +2250,7 @@ class AdminController extends Controller
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
 				);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Sub Category Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -2198,25 +2261,25 @@ class AdminController extends Controller
 	}
 	public function editAdminSubCategory(){
 		$Category = new CategoryModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $Category->getSpecificSubCategoryData($recordId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function changeStatusSubCategory(Request $request) {
 		$Category = new CategoryModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$catDetail = $Category->getSpecificSubCategoryData($recordId);
-	
+
 		if(isset($catDetail['STATUS']) && $catDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Sub Category active successfully...';
@@ -2224,48 +2287,48 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Sub Category Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_sub_category_tbl' ) ->where ( 'SUB_CATEGORY_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
-	
+
 	}
-	
+
 	public function saveAdminSubSubCategory(Request $request) {
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['subSubCategory'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if (!isset($data ['C_1']['id'])) {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Sub Category first.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['C_2'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Name is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
 
 				$result = DB::table ( 'jb_sub_sub_category_tbl' ) ->where ( 'NAME',  $data ['C_2'])->first();
@@ -2276,9 +2339,10 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+                $getLastSeq = DB::table ( 'jb_sub_sub_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 				$result = DB::table ( 'jb_sub_sub_category_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
+                                'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'SUB_CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
 								'NAME' => $data['C_2'],
 								'STATUS' => 'active',
@@ -2288,27 +2352,27 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Sub Sub Category Created Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
 
 				$result_if_ext = DB::table('jb_sub_sub_category_tbl')
 								->where('SUB_SUB_CATEGORY_ID', '!=' , $data ['ID'])
 								->where('NAME', $data ['C_2'])
 								->count();
-				
+
 				if($result_if_ext != 0){
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Name Must Be Unique.';
 					echo json_encode ( $arrRes );
 					die ();
-				}	
-	
+				}
+
 				$result = DB::table ( 'jb_sub_sub_category_tbl' ) ->where ( 'SUB_SUB_CATEGORY_ID', $data ['ID'] ) ->update (
 						array ( 'SUB_CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
 								'NAME' => $data['C_2'],
@@ -2316,7 +2380,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Sub Sub Category Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -2327,25 +2391,25 @@ class AdminController extends Controller
 	}
 	public function editAdminSubSubCategory(){
 		$Category = new CategoryModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $Category->getSpecificSubSubCategoryData($recordId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function changeStatusSubSubCategory(Request $request) {
 		$Category = new CategoryModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$catDetail = $Category->getSpecificSubSubCategoryData($recordId);
-	
+
 		if(isset($catDetail['STATUS']) && $catDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Sub Sub Category active successfully...';
@@ -2353,16 +2417,16 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Sub Sub Category Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_sub_sub_category_tbl' ) ->where ( 'SUB_SUB_CATEGORY_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
 	}
 	/*===================== admin categories code end ==========================*/
@@ -2371,11 +2435,11 @@ class AdminController extends Controller
 
 	public function getAllAdminFeatureslov(Request $request) {
 		$Feature = new Feature();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$ingredientId = $details ['ingredientId'];
-		
+
 
 		$arrRes ['list'] = $Feature->getFeaturesData();
 		    // $arrRes ['details'] = $ingredientDetails;
@@ -2386,42 +2450,42 @@ class AdminController extends Controller
 	}
 
 	public function saveAdminFeature(Request $request) {
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['feature'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data['P_1']) > 100) {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title must be less than 100 charactere.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['P_4'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_product_features_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'FEATURE_NAME' => $data ['P_1'],
@@ -2433,7 +2497,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Feature Created Successfully';
 				$arrRes ['ID'] = $result;
@@ -2441,7 +2505,7 @@ class AdminController extends Controller
 
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
 
 				$result = DB::table ( 'jb_product_features_tbl' ) ->where ( 'FEATURE_ID', $data ['ID'] ) ->update (
@@ -2451,7 +2515,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Feature Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -2465,27 +2529,27 @@ class AdminController extends Controller
 
 	public function editAdminFeature(Request $request) {
 		$Ingredient = new Feature();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$ingredientId = $details ['recordId'];
-	
+
 		$arrRes ['details'] = $Ingredient->getSpecificFeaturetData($ingredientId);
 		$arrRes ['images'] = $Ingredient->getFeatureAttachments($ingredientId);
 		echo json_encode ( $arrRes );
-	
+
 	 }
-              
-	  
+
+
 	 public function deleteFeature(Request $request) {
-		
+
 			$Feature = new Feature();
-			
+
 			//  $ProductModel = ProductModel::where('FEATURE_ID');
-			
+
 			$details = $_REQUEST ['details'];
 			$recordId = $details ['recordId'];
-			
+
 			// $userId = $details ['userId'];
 
 			$ProductModel = DB::table('jb_product_tbl as a')
@@ -2493,7 +2557,7 @@ class AdminController extends Controller
 			->whereNotNull('a.FEATURE_ID')
 			->get();
 
-			
+
 			foreach ($ProductModel as $value) {
 				$productlov = explode(",",$value->FEATURE_ID);
 
@@ -2505,7 +2569,7 @@ class AdminController extends Controller
 				}
 
 				$featuresArrayAfterUnset = implode(",",$productlov);
-				
+
 				DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $value->PRODUCT_ID ) ->update (
 					array ( 'FEATURE_ID' => $featuresArrayAfterUnset,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
@@ -2513,9 +2577,9 @@ class AdminController extends Controller
 				);
 
 				DB::table ( 'jb_product_features_tbl' )->where ( 'FEATURE_ID', $recordId )->delete ();
-				
+
 			}
-			
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Feature deleted successfully...';
 				echo json_encode ( $arrRes );
@@ -2533,18 +2597,18 @@ class AdminController extends Controller
 			//      echo json_encode ( $arrRes );
 			//      die();
 			//  }
-		
+
 	}
 
 	public function changeStatusFeature(Request $request) {
 		    $Feature = new Feature();
-	
+
 	        	$details = $_REQUEST ['details'];
 	            	$recordId = $details ['recordId'];
 		                 $userId = $details ['userId'];
-	
+
 	 	$ingDetail = $Feature->getSpecificFeaturetData($recordId);
-	
+
 		if(isset($ingDetail['STATUS']) && $ingDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Feature active successfully...';
@@ -2552,33 +2616,33 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Feature Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_product_features_tbl' ) ->where ( 'FEATURE_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
+
+
 	/*===================== admin Ingredient code start ==========================*/
-	
+
 	public function getAllAdminIngredientlov(Request $request) {
 		$Ingredient = new IngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$ingredientId = $details ['ingredientId'];
-		
+
 		if ($ingredientId != '') {
-	
+
 			$ingredientDetails = $Ingredient->getSpecificIngredientData($ingredientId);
-	
+
 		} else {
 			$ingredientDetails = '';
 		}
@@ -2589,52 +2653,52 @@ class AdminController extends Controller
 // 		print_r($arrRes ['list']);
 // 		exit();
 		echo json_encode ( $arrRes );
-	
+
 	}
 	public function saveAdminIngredient(Request $request) {
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['ingredient'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			// if ($data ['P_2'] == '') {
-					
+
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Quantity is required.';
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
 			if ($data ['P_3'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Category is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['P_4'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_ingredient_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
@@ -2648,16 +2712,16 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Ingredient Created Successfully';
 				$arrRes ['ID'] = $result;
 				$arrRes ['redirect_url'] = url('view-ingredients');
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_ingredient_tbl' ) ->where ( 'INGREDIENT_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data ['P_1'],
 								'QUANTITY' => $data['P_2'],
@@ -2667,7 +2731,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Ingredient Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -2677,29 +2741,29 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
-	
+
+
 	public function editAdminIngredient(Request $request) {
 		$Ingredient = new IngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$ingredientId = $details ['recordId'];
-	
+
 		$arrRes ['details'] = $Ingredient->getSpecificIngredientData($ingredientId);
 		$arrRes ['images'] = $Ingredient->getIngredientAttachments($ingredientId);
 		echo json_encode ( $arrRes );
-	
+
 	}
 	public function changeStatusIngredient(Request $request) {
 		$Ingredient = new IngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$ingDetail = $Ingredient->getSpecificIngredientData($recordId);
-	
+
 		if(isset($ingDetail['STATUS']) && $ingDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Ingredient active successfully...';
@@ -2707,26 +2771,26 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Ingredient Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_ingredient_tbl' ) ->where ( 'INGREDIENT_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteIngredient(Request $request) {
 		$Ingredient = new IngredientModel();
 		$ProductIngredientModel = new ProductIngredientModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		// $existCheck = $ProductIngredientModel->checkIngredientExistWrtIngredientId($recordId);
 		$result = DB::table('jb_product_ingredient_tbl as a')->select('a.*')
     	->where('a.INGREDIENT_ID', $recordId)
@@ -2749,7 +2813,7 @@ class AdminController extends Controller
 		DB::table ( 'jb_ingredient_tbl' )->where ( 'INGREDIENT_ID', $recordId )->delete ();
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Ingredient deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 		// if($existCheck == true){
 
@@ -2759,97 +2823,97 @@ class AdminController extends Controller
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
-		
-		
+
+
+
 		// $delete = DB::table ( 'jb_ingredient_tbl' )->where ( 'INGREDIENT_ID', $recordId )->delete ();
 		// $delete = DB::table ( 'jb_ingredient_attachment_tbl' )->where ( 'INGREDIENT_ID', $recordId )->delete ();
-		
+
 		// if(isset($attDetail) && !empty($attDetail)){
 		// 	foreach ($attDetail as $value){
 		// 		unlink($value['path']);
 		// 	}
 		// }
-		
+
 		// $arrRes ['done'] = true;
 		// $arrRes ['msg'] = 'Ingredient deleted successfully...';
-	
+
 		// echo json_encode ( $arrRes );
 	}
 	public function deleteIngredientAttachment(Request $request) {
 		$Ingredient = new IngredientModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$ingredientId = $details ['ingredientId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $Ingredient->getSpecificIngredientAttachments($recordId);
-		
+
 		$delete = DB::table ( 'jb_ingredient_attachment_tbl' )->where ( 'ATTACHMENT_ID', $recordId )->delete ();
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != ''){
 			unlink($attDetail['path']);
 		}
-		
+
 		$arrRes ['images'] = $Ingredient->getIngredientAttachments($ingredientId);
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Ingredient image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function markPrimaryIngredientAttachment(Request $request) {
 		$Ingredient = new IngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$ingredientId = $details ['ingredientId'];
 		$userId = $details ['userId'];
-	
+
 		DB::table ( 'jb_ingredient_attachment_tbl' ) ->where ( 'INGREDIENT_ID', $ingredientId ) ->update (
 				array ( 'PRIMARY_FLAG' => '0')
 			);
-		
+
 		$result = DB::table ( 'jb_ingredient_attachment_tbl' ) ->where ( 'ATTACHMENT_ID', $recordId ) ->update (
 				array ( 'PRIMARY_FLAG' => '1',
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		$arrRes ['images'] = $Ingredient->getIngredientAttachments($ingredientId);
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Ingredient image marked primary successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
+
+
 	/*===================== admin Ingredient code end ==========================*/
 
 
 	/*===================== admin Shades code start ==========================*/
-	
+
 	public function getAllAdminBloglov(Request $request) {
 		$Blogs = new BlogsModel();
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $Blogs ->getBlogsData();
 		$arrRes ['ourBlog'] = $Blogs ->getSpecificOurBlogsData(1);
-		
+
 		echo json_encode ( $arrRes );
 	}
 
 	// add Blogs
-	
+
 	public function saveSingleAdminBlog(Request $request) {
 		$details = $_REQUEST ['details'];
 		$data = $details ['blogs'];
 
 		if (isset ( $data ) && ! empty ( $data )) {
 			if ($data['S_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
 				echo json_encode ( $arrRes );
@@ -2867,7 +2931,7 @@ class AdminController extends Controller
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-			
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Blog Updated Successfully';
 			echo json_encode ( $arrRes );
@@ -2877,35 +2941,35 @@ class AdminController extends Controller
 
 	}
 	public function saveAdminBlogs(Request $request) {
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['blogs'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['P_2'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_blogs_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
@@ -2918,15 +2982,15 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Blogs Created Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_blogs_tbl' ) ->where ( 'BLOG_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data ['P_1'],
 								'DESCRIPTION' => base64_encode($data['P_2']),
@@ -2934,7 +2998,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Blogs Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -2943,59 +3007,59 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function editAdminBlog(Request $request) {
 		$Blogs = new BlogsModel();
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$blogId = $details ['recordId'];
-		
+
 		$arrRes ['details'] = $Blogs->getSpecificBlogsData($blogId);
 		echo json_encode ( $arrRes );
-	
+
 	}
-	
-	
+
+
 	public function getAllAdminShadeslov(Request $request) {
 		$Shades = new ShadesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $Shades->getShadesData();
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function saveAdminShades(Request $request) {
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['shades'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['P_2'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_shades_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
@@ -3008,15 +3072,15 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Shades Created Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_shades_tbl' ) ->where ( 'SHADE_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data ['P_1'],
 								'DESCRIPTION' => base64_encode($data['P_2']),
@@ -3024,7 +3088,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Shades Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -3036,25 +3100,25 @@ class AdminController extends Controller
 
 	public function editAdminShade(Request $request) {
 		$Shades = new ShadesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$shadeId = $details ['recordId'];
-	
+
 		$arrRes ['details'] = $Shades->getSpecificShadesData($shadeId);
 		$arrRes ['images'] = $Shades->getShadeAttachments($shadeId);
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function changeStatusShade(Request $request) {
 		$Shades = new ShadesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$shadeDetail = $Shades->getSpecificShadesData($recordId);
-	
+
 		if(isset($shadeDetail['STATUS']) && $shadeDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Shade active successfully...';
@@ -3062,27 +3126,27 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Shade Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_shades_tbl' ) ->where ( 'SHADE_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function changeStatusBlogs(Request $request) {
 		$Shades = new BlogsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$shadeDetail = $Shades->getSpecificBlogsData($recordId);
-	
+
 		if(isset($shadeDetail['STATUS']) && $shadeDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Blog active successfully...';
@@ -3090,23 +3154,23 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Blog Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_blogs_tbl' ) ->where ( 'BLOG_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function updateSpecificUserSubscriptionStatusAdmin(Request $request){
 		$SubscriptionModel = new SubscriptionModel();
-   	
+
    		$details = $_REQUEST ['details'];
-		
+
 
    		$userId = $details ['userId'];
    		$subsId = $details ['subsId'];
@@ -3117,7 +3181,7 @@ class AdminController extends Controller
 		}else{
 			$flag_active = 'active';
 		}
-			
+
 		   $result = DB::table ( 'jb_user_subscription_tbl' ) ->where ( 'USER_SUBSCRIPTION_ID', $subsId ) ->update (
 			array ( 'SUBSCRIPTION_STATUS' => $flag_active,
 					'UPDATED_BY' => $userId,
@@ -3125,170 +3189,170 @@ class AdminController extends Controller
 			)
 		);
 			$arrRes ['done'] = true;
-			
+
 			echo json_encode ( $arrRes );
-			
+
 	}
-	
+
 	public function markPrimaryShadeAttachment(Request $request) {
 		$Shades = new ShadesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$shadeId = $details ['shadeId'];
 		$userId = $details ['userId'];
-	
+
 		DB::table ( 'jb_shades_attachment_tbl' ) ->where ( 'SHADE_ID', $shadeId ) ->update (
 				array ( 'PRIMARY_FLAG' => '0')
 				);
-	
+
 		$result = DB::table ( 'jb_shades_attachment_tbl' ) ->where ( 'ATTACHMENT_ID', $recordId ) ->update (
 				array ( 'PRIMARY_FLAG' => '1',
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		$arrRes ['images'] = $Shades->getShadeAttachments($shadeId);
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Shade image marked primary successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteShadeAttachment(Request $request) {
 		$Shades = new ShadesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$shadeId = $details ['shadeId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $Shades->getSpecificShadeAttachments($recordId);
-		
+
 		$delete = DB::table ( 'jb_shades_attachment_tbl' )->where ( 'ATTACHMENT_ID', $recordId )->delete ();
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != ''){
 			unlink($attDetail['path']);
 		}
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Shade image deleted successfully...';
 		$arrRes ['images'] = $Shades->getShadeAttachments($shadeId);
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteBlogAttachment(Request $request) {
 		$BlogsModel = new BlogsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $BlogsModel->getSpecificBlogsData($recordId);
-	
+
 		$result = DB::table ( 'jb_blogs_tbl' ) ->where ( 'BLOG_ID', $recordId ) ->update (
 						array ( 'IMAGE_PATH' => '',
 								'IMAGE_DOWN_PATH' => '',
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != ''){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Blog image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deletePicBlogDetail(Request $request) {
 		$BlogsModel = new BlogsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $BlogsModel->getSpecificBlogsData($recordId);
-	
+
 		$result = DB::table ( 'jb_blogs_tbl' ) ->where ( 'BLOG_ID', $recordId ) ->update (
 				array ( 'IMAGE_DETAIL_PATH' => '',
 						'IMAGE_DETAIL_DOWN_PATH' => '',
-	
+
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		if(isset($attDetail['detailPath']) && $attDetail['detailPath'] != ''){
 			unlink($attDetail['detailPath']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Blog detail image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deletePicOurBlog(Request $request) {
 		$BlogsModel = new BlogsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $BlogsModel->getSpecificOurBlogsData($recordId);
-	
+
 		$result = DB::table ( 'jb_our_blog_tbl' ) ->where ( 'ID', $recordId ) ->update (
 				array ( 'IMAGE_PATH' => '',
 						'IMAGE_DOWN_PATH' => '',
-	
+
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != ''){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Our Blog image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteBlog(Request $request) {
 		$Shades = new BlogsModel();
-		
+
 		$details = $_REQUEST ['details'];
-		$recordId = $details ['recordId'];		
+		$recordId = $details ['recordId'];
 		$delete = DB::table ( 'jb_blogs_tbl' )->where ( 'BLOG_ID', $recordId )->delete ();
 		$delete = DB::table ( 'jb_blogs_tbl' )->where ( 'BLOG_ID', $recordId )->delete ();
-	
+
 		if(isset($attDetail) && !empty($attDetail)){
 			foreach($attDetail as $value){
 				unlink($value['path']);
 			}
 		}
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Ingredient deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteShade(Request $request) {
 		$Shades = new ShadesModel();
 		$ProductShadeModel = new ProductShadeModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		// $existCheck = $ProductShadeModel->checkShadeExistWrtShadeId($recordId);
-		
+
 		DB::table ( 'jb_shades_tbl' ) ->where ( 'SHADE_ID', $recordId ) ->update (
 			array(
 				'IS_DELETED' => 1,
@@ -3301,28 +3365,28 @@ class AdminController extends Controller
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
+
 		// $attDetail = $Shades->getShadeAttachments($recordId);
-		
+
 		// $delete = DB::table ( 'jb_shades_tbl' )->where ( 'SHADE_ID', $recordId )->delete ();
 		// $delete = DB::table ( 'jb_shades_attachment_tbl' )->where ( 'SHADE_ID', $recordId )->delete ();
-	
+
 		// if(isset($attDetail) && !empty($attDetail)){
 		// 	foreach($attDetail as $value){
 		// 		unlink($value['path']);
 		// 	}
 		// }
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Ingredient deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	/*===================== admin Shades code end ==========================*/
-	
+
 	/*===================== admin Product code start ==========================*/
-	
+
 	public function getAllAdminProductlov(Request $request) {
 		$Category = new CategoryModel();
 		$Product = new ProductModel();
@@ -3330,24 +3394,24 @@ class AdminController extends Controller
 		$features=new Feature();
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes['features']= $features->getactivefeaturesdata();
 		$arrRes ['list'] = $Product->getAllProductsData();
 		$arrRes ['list1'] = $Category->getCategoryLov();
 		$arrRes ['list2'] = $Shades->getShadesLov();
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function getSubCategoriesWrtCategory(Request $request) {
-		 
+
 		 $Category = new CategoryModel();
 		 $Product= new ProductModel();
-	
+
 		 $details = $_REQUEST ['details']; $Category = new CategoryModel();
 		 $category = $details ['category'];
 		 $userId = $details ['userId'];
 
-		
+
 		if(!isset($category['id'])){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'First choose category...';
@@ -3355,40 +3419,40 @@ class AdminController extends Controller
 			die();
 		}
 		$product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category['id'])->orderby('PRODUCT_ID', 'desc')->get();
-       
+
 		// $arrRes['product']=$product_lov;
 		$i=0;
 		foreach ($product_lov as $row){
     		$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
     		$arrRes['product'][$i]['name'] = $row->NAME;
-    		
+
     		$i++;
     	}
 		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory($category['id']);
 
 
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function getSubCategoriesWrtCategory1(Request $request) {
 		$Category = new CategoryModel();
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$category = $details ['category'];
 
 		// dd($category);
 		$userId = $details ['userId'];
-	
+
 		if(!isset($category['id'])){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'First choose category...';
 			echo json_encode ( $arrRes );
 			die();
 		}
-	
+
 		$arrRes ['subCategory'] = $Category->getSubCategoryBundleLovWrtCategory($category['id']);
-	
+
 		echo json_encode ( $arrRes );
 	}
         public function getproductswrtsubcategory(Request $request){
@@ -3399,13 +3463,13 @@ class AdminController extends Controller
 			$details = $_REQUEST ['details'];
 			$subsubcategory = $details ['subcategory'];
 			$userId = $details ['userId'];
-	   
+
 			if(!isset($subsubcategory['id'])){
 			   $arrRes ['done'] = false;
 			   $arrRes ['msg'] = 'First choose sub category...';
 			   echo json_encode ( $arrRes );
 			   die();
-			} 
+			}
 
 			$product_lov = DB::table('jb_product_tbl')->where('SUB_SUB_CATEGORY_ID',$subsubcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
 			// $arrRes['product']=$product_lov;
@@ -3413,11 +3477,11 @@ class AdminController extends Controller
 			foreach ($product_lov as $row){
 				$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
 				$arrRes['product'][$i]['name'] = $row->NAME;
-				
+
 				$i++;
 			}
-		
-	
+
+
 			 echo json_encode ( $arrRes );
 
 		}
@@ -3425,13 +3489,13 @@ class AdminController extends Controller
 	public function getSubSubCategoriesWrtSubCategoryQuickAdd(Request $request) {
 		 $Category = new CategoryModel();
 		 $Product = new ProductModel();
-	
+
 		 $details = $_REQUEST ['details'];
 		 $subcategory = $details ['subcategory'];
 		 $product_ID = $details['productId'];
 		 $userId = $details ['userId'];
-		
-		
+
+
 		 DB::table('jb_product_tbl')->where('PRODUCT_ID',$product_ID)->update([
 			'SUB_CATEGORY_ID' =>  $subcategory['id'],
 		]);
@@ -3444,13 +3508,13 @@ class AdminController extends Controller
 	public function updateSubSubCategoriesWrtSubCategoryQuickAdd(Request $request) {
 		$Category = new CategoryModel();
 		$Product = new ProductModel();
-   
+
 		$details = $_REQUEST ['details'];
 		$subsubcategory = $details ['subsubcategory'];
 		$product_ID = $details['productId'];
 		$userId = $details ['userId'];
-	   
-	   
+
+
 		DB::table('jb_product_tbl')->where('PRODUCT_ID',$product_ID)->update([
 		   'SUB_SUB_CATEGORY_ID' =>  $subsubcategory['id'],
 	   ]);
@@ -3461,41 +3525,41 @@ class AdminController extends Controller
 		echo json_encode ( $arrRes );
    }
 
-	
+
 
 	public function getIngredientsWrtCategory(Request $request) {
 		$Ingredient = new IngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$category = $details ['category'];
 		$userId = $details ['userId'];
-	
+
 		if(!isset($category) && $category == ''){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'First choose category...';
 			echo json_encode ( $arrRes );
 			die();
 		}
-	
+
 		$arrRes ['ingredients'] = $Ingredient->getIngredientslovWrtCategory($category);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminProductBasicInfo(Request $request) {
 		$Product = new ProductModel();
 		$details = $_REQUEST ['details'];
 		$data = $details ['product'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 
 
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Name is required.';
@@ -3520,14 +3584,14 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if ($data ['P_4'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Minimum Purchase Qty is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if ($data ['P_5'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Tags is required.';
@@ -3552,7 +3616,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			// if (!isset($data ['P_9']['id'])) {
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Please choose Sub Category.';
@@ -3596,16 +3660,16 @@ class AdminController extends Controller
 				for($k=0; $k< $total; $k++){
 					$feature_id.=$data['P_45'][$k]['id'].',';
 			 }
-		 }      
-                    
+		 }
+
 		 $handpicked= new Handpicked;
 		$recommend= new Recomended;
 
-		
-		 
-				
+
+
+
 			if ($data ['ID'] == '') {
-	
+
 				$duplicate = $Product->checkDuplicateSlug($data['P_10']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -3613,7 +3677,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_product_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'NAME' => $data['P_1'],
@@ -3639,13 +3703,13 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Product Created Successfully';
 				$arrRes ['ID'] = $result;
 
                    	/*  Recommended products start */
-					
+
 
 		if(isset($data['P_46']) && $data['P_46'] != ''){
 
@@ -3666,11 +3730,11 @@ class AdminController extends Controller
 		  }
 	  }
 					  /*  Recommended products end */
- 
+
 			  /*  Hadnpicked products start */
- 
+
 		 if(isset($data['P_47']) && $data['P_47'] != ''){
- 
+
 		 $delete= $handpicked->deleteHandpicked($data['P_47'],$result);
 		 if($delete->original['status'] == false){
 			     $arrRes ['done'] = false;
@@ -3685,15 +3749,15 @@ class AdminController extends Controller
 				 echo json_encode ( $arrRes );
 				 die ();
 	   }
- 
+
 		 }
 					  /*  Hadnpicked products end */
 
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-				
+
 				$duplicate = $Product->checkDuplicateSlug($data['P_10'], $data ['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -3701,7 +3765,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $data ['ID'] ) ->update (
 						array ( 'NAME' => $data['P_1'],
 								'SUB_TITLE' => $data['P_2'],
@@ -3714,7 +3778,7 @@ class AdminController extends Controller
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
 								'SLUG' => $data ['P_10'],
-								'FEATURE_ID' =>  isset($feature_id) ? rtrim($feature_id,',') : '', 
+								'FEATURE_ID' =>  isset($feature_id) ? rtrim($feature_id,',') : '',
 								'SHORT_DESCRIPTION' => $data ['P_11'],
 								'DESCRIPTION_TITLE' => $data ['P_12'],
 								'DESCRIPTION' => base64_encode($data['P_13']),
@@ -3722,15 +3786,15 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Product Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
-              
+
 				 	/*  Recommended products start */
 
 		if( isset($data['P_46']) && $data['P_46'] != ''){
-             
+
 
 			$delete=$recommend->deleteRecomended($data['P_46'],$data ['ID']);
 	  if($delete->original['status'] == false){
@@ -3749,11 +3813,11 @@ class AdminController extends Controller
 		  }
 	  }
 					  /*  Recommended products end */
- 
+
 			  /*  Hadnpicked products start */
- 
+
 		 if(isset($data['P_47']) && $data['P_47'] != ''){
- 
+
 		 $delete= $handpicked->deleteHandpicked($data['P_47'],$data ['ID']);
 		 if($delete->original['status'] == false){
 			$arrRes ['done'] = false;
@@ -3768,7 +3832,7 @@ class AdminController extends Controller
 				 echo json_encode ( $arrRes );
 				 die ();
 	   }
- 
+
 		 }
 					  /*  Hadnpicked products end */
 
@@ -3779,18 +3843,18 @@ class AdminController extends Controller
 		}
 	}
 	public function editAdminProduct(Request $request) {
-	
+
 		$Category = new CategoryModel();
 		$Product = new ProductModel();
 		$ProductIngredient = new ProductIngredientModel();
 		$ProductShade = new ProductShadeModel();
 		$ProductUses = new ProductUsesModel();
-		
-		
+
+
 		$details = $_REQUEST ['details'];
 		$productId = $details ['productId'];
-		$userId = $details ['userId'];		
-	
+		$userId = $details ['userId'];
+
 		$arrRes ['details'] = $Product->getSpecificProductData($productId);
 		$arrRes ['images'] = $Product->getSpecificProductImagesByCode($productId, 'PRODUCT_IMG');
 		$arrRes ['clinicalNoteImages'] = $Product->getSpecificProductImagesByCode($productId, 'CLINICAL_NOTE');
@@ -3803,22 +3867,22 @@ class AdminController extends Controller
 
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminProductVideoDetails(Request $request) {
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$prod = $details ['product'];
 		$data = $details ['video'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['V_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -3837,31 +3901,31 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-	
+
+
 			if ($data ['ID'] == '') {
-	
+
 					$result = DB::table ( 'jb_product_video_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'PRODUCT_ID' => $prod['ID'],
 								'VIDEO_TITLE' => $data['V_1'],
 								'VIDEO_DESCRIPTION' => $data['V_2'] != '' ? base64_encode($data['V_2']) : '',
-							
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Saved Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_product_video_tbl' ) ->where ( 'VIDEO_ID', $data ['ID'] ) ->update (
 						array ( 'VIDEO_TITLE' => $data['V_1'],
 								'VIDEO_DESCRIPTION' => $data['V_2'] != '' ? base64_encode($data['V_2']) : '',
@@ -3869,7 +3933,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -3878,16 +3942,16 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function markPrimaryProdImage(Request $request) {
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$imageId = $details ['imageId'];
 		$flag = $details ['flag'];
 		$productId = $details ['productId'];
 		$userId = $details ['userId'];
-		
+
 
 		if($flag == 1){
 
@@ -3898,10 +3962,10 @@ class AdminController extends Controller
 					array ( 'PRIMARY_FLAG' => '0')
 				);
 			// dd($checkprimaryflag);
-			// DB::table ( 'jb_product_images_tbl' ) 
-			// ->where ( 'SOURCE_CODE', 'PRODUCT_IMG' ) 
+			// DB::table ( 'jb_product_images_tbl' )
+			// ->where ( 'SOURCE_CODE', 'PRODUCT_IMG' )
 			// ->update (array ( 'PRIMARY_FLAG' => '0'));
-	
+
 			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 				array ( 'PRIMARY_FLAG' => '1',
 						'SECONDARY_FLAG' => '0',
@@ -3914,13 +3978,13 @@ class AdminController extends Controller
 
 		}else{
 
-			DB::table ( 'jb_product_images_tbl' ) 
+			DB::table ( 'jb_product_images_tbl' )
 			->where ( 'PRODUCT_ID', $productId )
 			->where ( 'SOURCE_CODE', 'PRODUCT_IMG' )
 			->update (
 				array ( 'SECONDARY_FLAG' => '0')
 				);
-	
+
 			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 					array ( 'SECONDARY_FLAG' => '1',
 							'PRIMARY_FLAG' => '0',
@@ -3930,98 +3994,98 @@ class AdminController extends Controller
 					);
 			$arrRes ['msg'] = 'Product image marked Secondary successfully...';
 		}
-		
-	
+
+
 		$arrRes ['images'] = $Product->getSpecificProductImagesByCode($productId, 'PRODUCT_IMG');
 		$arrRes ['done'] = true;
-		
-	
+
+
 		echo json_encode ( $arrRes );
 	}
 	public function markPrimaryClinicalNoteImage(Request $request) {
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$imageId = $details ['imageId'];
 		$productId = $details ['productId'];
 		$userId = $details ['userId'];
-	
+
 		DB::table ( 'jb_product_images_tbl' ) ->where ( 'PRODUCT_ID', $productId )->where ( 'SOURCE_CODE', 'CLINICAL_NOTE' ) ->update (
 				array ( 'PRIMARY_FLAG' => '0')
 				);
-	
+
 		$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 				array ( 'PRIMARY_FLAG' => '1',
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		$arrRes ['images'] = $Product->getSpecificProductImagesByCode($productId, 'CLINICAL_NOTE');
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Image marked primary successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteProductImage(Request $request) {
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$imageId = $details ['imageId'];
 		$productId = $details ['productId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $Product->getSpecificImage($imageId);
-	
+
 		$delete = DB::table ( 'jb_product_images_tbl' )->where ( 'IMAGE_ID', $imageId )->delete ();
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != ''){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['images'] = $Product->getSpecificProductImagesByCode($productId, 'PRODUCT_IMG');
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Product image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteClinicalNoteImage(Request $request) {
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$imageId = $details ['imageId'];
 		$productId = $details ['productId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $Product->getSpecificImage($imageId);
-	
+
 		$delete = DB::table ( 'jb_product_images_tbl' )->where ( 'IMAGE_ID', $imageId )->delete ();
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != ''){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['images'] = $Product->getSpecificProductImagesByCode($productId, 'CLINICAL_NOTE');
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminProductPricingVat(Request $request) {
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['product'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_14'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Unit Price is required.';
@@ -4035,7 +4099,7 @@ class AdminController extends Controller
 				die ();
 			}
 			if ($data['P_15'] != '' && $data['P_16'] != '') {
-				
+
 				if ($data['P_15'] > $data['P_16']) {
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Discount end date must be greater then Discount start date.';
@@ -4054,7 +4118,7 @@ class AdminController extends Controller
 				$arrRes ['msg'] = 'Discount must be greater then zero.';
 				echo json_encode ( $arrRes );
 				die ();
-			}	
+			}
 			if ($data['P_18'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Discount type is required.';
@@ -4099,7 +4163,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if ($data['P_24'] != '' && $data['P_24'] < 0) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Tax must be greater then or equal to zero.';
@@ -4140,12 +4204,12 @@ class AdminController extends Controller
 					die ();
 				}
 			}
-			
+
 			if ($data ['ID'] == '') {
-	
-				
+
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $data ['ID'] ) ->update (
 						array ( 'UNIT_PRICE' => $data['P_14'],
 								'DISCOUNT_START_DATE' => $data['P_15'],
@@ -4161,12 +4225,12 @@ class AdminController extends Controller
 								'TAX_TYPE' => $data['P_25'],
 								'VAT' => $data['P_26'],
 								'VAT_TYPE' => $data['P_27'],
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Pricing Added Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -4177,7 +4241,7 @@ class AdminController extends Controller
 	}
 	public function saveAdminProductIngredient(Request $request) {
 		$Ingredient = new ProductIngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['ingredient'];
 		$prod = $details ['product'];
@@ -4187,9 +4251,9 @@ class AdminController extends Controller
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['I_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Ingredient Category first.';
@@ -4202,19 +4266,19 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			$existCheck = $Ingredient->checkIngredientExistingCheckWrtproductId(isset($data['I_2']['id']) ? $data['I_2']['id'] : '',$prod['ID']);
-			
+
 			if($existCheck == true){
-				
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Ingredient already added in product.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if ($data ['ID'] == '') {
-				
+
 				$result = DB::table ( 'jb_product_ingredient_tbl' )->insertGetId (
 						array ( 'PRODUCT_ID' => $prod['ID'],
 								'INGREDIENT_CATEGORY' => $data['I_1'],
@@ -4231,18 +4295,18 @@ class AdminController extends Controller
 				$arrRes ['ingredients'] = $Ingredient->getAllProductIngredientByProduct($prod['ID']);
 				echo json_encode ( $arrRes );
 				die ();
-				
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_product_ingredient_tbl' ) ->where ( 'PRODUCT_INGREDIENT_ID', $data ['ID'] ) ->update (
 						array ( 'INGREDIENT_CATEGORY' => $data['I_1'],
 								'INGREDIENT_ID' => isset($data['I_2']['id']) ? $data['I_2']['id'] : '',
-	
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Ingredient Updated Successfully';
 				$arrRes ['ingredients'] = $Ingredient->getAllProductIngredientByProduct($prod['ID']);
@@ -4254,7 +4318,7 @@ class AdminController extends Controller
 
 	public function saveAdminQuickProductIngredient(Request $request) {
 		$Ingredient = new ProductIngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['ingredient'];
 		$prod = $details ['product'];
@@ -4264,9 +4328,9 @@ class AdminController extends Controller
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['I_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Ingredient Category first.';
@@ -4279,17 +4343,17 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			$existCheck = $Ingredient->checkIngredientExistingCheckWrtproductId(isset($data['I_2']['id']) ? $data['I_2']['id'] : '',$prod['PRODUCT_ID']);
-			
+
 			if($existCheck == true){
-				
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Ingredient already added in product.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			$result = DB::table ( 'jb_product_ingredient_tbl' )->insertGetId (
 					array ( 'PRODUCT_ID' => $prod['PRODUCT_ID'],
 							'INGREDIENT_CATEGORY' => $data['I_1'],
@@ -4306,28 +4370,28 @@ class AdminController extends Controller
 			$arrRes ['ingredients'] = $Ingredient->getAllProductIngredientByProduct($prod['PRODUCT_ID']);
 			echo json_encode ( $arrRes );
 			die ();
-				
-			
+
+
 		}
 	}
 
 	public function saveAdminQuickProductUses(Request $request) {
 		$ProductUses = new ProductUsesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		// dd($details);
 		$data = $details ['uses'];
 		$prod = $details ['product'];
 		$userId = $details ['userId'];
 		// dd($details);
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			// if ($data['U_1'] == '') {
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Sequence Number is required.';
@@ -4358,16 +4422,16 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_product_uses_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'PRODUCT_ID' => $prod,
 								'SEQUENCE_NUM' => $data['U_1'],
 								'USES_TITLE' => $data['U_2'],
 								'USES_DESCRIPTION' => $data['U_4'],
-								
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -4380,9 +4444,9 @@ class AdminController extends Controller
 				$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($prod);
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_product_uses_tbl' ) ->where ( 'PRODUCT_USES_ID', $data ['ID'] ) ->update (
 						array ( 'SEQUENCE_NUM' => $data['U_1'],
 								'USES_TITLE' => $data['U_2'],
@@ -4391,7 +4455,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 							)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Product Uses Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -4418,50 +4482,50 @@ class AdminController extends Controller
 		$arrRes ['msg'] = 'Clinical Note updated successfully...';
 		$arrRes ['clinicalNote'] = $Product->getAllProductClinicalNoteByProduct($productId);
 		// dd($arrRes ['clinicalNote']);
-		
+
 		echo json_encode ( $arrRes );
 	}
 
 
 	public function deleteProductingredient(Request $request) {
 		$Ingredient = new ProductIngredientModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$ingredientId = $details ['ingredientId'];
 		$productId = $details['productId'];
 		$userId = $details ['userId'];
-	
+
 		$delete = DB::table ( 'jb_product_ingredient_tbl' )->where ( 'PRODUCT_INGREDIENT_ID', $ingredientId )->delete ();
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Ingredient deleted successfully...';
 		$arrRes ['ingredients'] = $Ingredient->getAllProductIngredientByProduct($productId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminProductShade(Request $request) {
 		$ProductShade = new ProductShadeModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['shade'];
 		$prod = $details ['product'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if (!isset($data['S_1']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Shade first.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if($data['S_2'] == ''){
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Inv. Quantity is required.';
@@ -4474,20 +4538,20 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-			
-			
+
+
+
 			if ($data ['ID'] == '') {
-				
+
 				$existCheck = $ProductShade->checkShadeExistCheckWrtProductId(isset($data['S_1']['id']) ? $data['S_1']['id'] : '',$prod['ID']);
-				
+
 				if ($existCheck == true) {
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Shade already added in product.';
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_product_shades_tbl' )->insertGetId (
 						array ( 'PRODUCT_ID' => $prod['ID'],
 								'SHADE_ID' => isset($data['S_1']['id']) ? $data['S_1']['id'] : '',
@@ -4505,27 +4569,27 @@ class AdminController extends Controller
 				$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($prod['ID']);
 				echo json_encode ( $arrRes );
 				die ();
-				
+
 			} else {
-	
+
 				$existCheck = $ProductShade->checkShadeExistCheckWrtProductId(isset($data['S_1']['id']) ? $data['S_1']['id'] : '',$prod['ID'],$data ['ID']);
-				
+
 				if ($existCheck == true) {
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Shade already added in product.';
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_product_shades_tbl' ) ->where ( 'PRODUCT_SHADE_ID', $data ['ID'] ) ->update (
 						array ( 'SHADE_ID' => isset($data['S_1']['id']) ? $data['S_1']['id'] : '',
 								'QUANTITY' => isset($data['S_2']) ? $data['S_2'] : '',
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Shade Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -4536,135 +4600,135 @@ class AdminController extends Controller
 		}
 	}
 	public function editProductShade(Request $request) {
-		
+
 		$ProductShade = new ProductShadeModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$productShadeId = $details ['shadeId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $ProductShade->getSpecificProductShade($productShadeId);
 		$arrRes ['images'] = $ProductShade->getProductShadeImages($productShadeId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function markProductShadeImage(Request $request) {
 		$ProductShade = new ProductShadeModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$imageId = $details ['imageId'];
 		$productId = $details ['productId'];
 		$productShadeId = $details ['shadeId'];
 		$flag = $details ['flag'];
 		$userId = $details ['userId'];
-		
+
 		if($flag == '1'){
-			
+
 			DB::table ( 'jb_product_shade_images_tbl' ) ->where ( 'PRODUCT_SHADE_ID', $productShadeId ) ->update (
 					array ( 'PRIMARY_FLAG' => '0')
 				);
-			
+
 			$result = DB::table ( 'jb_product_shade_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 					array ( 'PRIMARY_FLAG' => '1',
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
 				);
-			
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Image marked primary successfully...';
-		
+
 		} else if($flag == '2'){
-			
+
 			DB::table ( 'jb_product_shade_images_tbl' ) ->where ( 'PRODUCT_SHADE_ID', $productShadeId ) ->update (
 					array ( 'SECONDARY_FLAG' => '0')
 					);
-				
+
 			$result = DB::table ( 'jb_product_shade_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
 					array ( 'SECONDARY_FLAG' => '1',
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
 					);
-				
-			
+
+
 			$arrRes ['msg'] = 'Image marked Secondary successfully...';
-			
+
 		}
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['images'] = $ProductShade->getProductShadeImages($productShadeId);
-		
-	
+
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteProductShadeImage(Request $request) {
 		$ProductShade = new ProductShadeModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$imageId = $details ['imageId'];
 		$productId = $details ['productId'];
 		$productShadeId = $details ['productShadeId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $ProductShade->getSpecificProductShadeImage($imageId);
-	
+
 		$delete = DB::table ( 'jb_product_shade_images_tbl' )->where ( 'IMAGE_ID', $imageId )->delete ();
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != '' ){
-			
+
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Product Shade Image deleted successfully...';
 		$arrRes ['images'] = $ProductShade->getProductShadeImages($productShadeId);
-		
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteProductShade(Request $request) {
 		$ProductShade = new ProductShadeModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$productId = $details ['productId'];
 		$productShadeId = $details ['productShadeId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $ProductShade->getProductShadeImages($productShadeId);
-	
+
 		$delete = DB::table ( 'jb_product_shades_tbl' )->where ( 'PRODUCT_SHADE_ID', $productShadeId )->delete ();
 		$delete = DB::table ( 'jb_product_shade_images_tbl' )->where ( 'PRODUCT_SHADE_ID', $productShadeId )->delete ();
-	
+
 		if(isset($attDetail) && !empty($attDetail) ){
 			foreach($attDetail as $value){
 				unlink($value['path']);
 			}
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Product Shade deleted successfully...';
 		$arrRes ['shades'] = $ProductShade->getAllProductShadesByProduct($productId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminProductUses(Request $request) {
 		$ProductUses = new ProductUsesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['uses'];
 		$prod = $details ['product'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['U_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Sequence Number is required.';
@@ -4695,16 +4759,16 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_product_uses_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'PRODUCT_ID' => $prod['ID'],
 								'SEQUENCE_NUM' => $data['U_1'],
 								'USES_TITLE' => $data['U_2'],
 								'USES_DESCRIPTION' => $data['U_4'],
-								
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -4717,9 +4781,9 @@ class AdminController extends Controller
 				$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($prod['ID']);
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_product_uses_tbl' ) ->where ( 'PRODUCT_USES_ID', $data ['ID'] ) ->update (
 						array ( 'SEQUENCE_NUM' => $data['U_1'],
 								'USES_TITLE' => $data['U_2'],
@@ -4728,7 +4792,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 							)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Product Uses Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -4738,87 +4802,87 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function editProductUses(Request $request) {
-	
+
 		$ProductUses = new ProductUsesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$productUsesId = $details ['productUsesId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $ProductUses->getSpecificProductUses($productUsesId);
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteProductUses(Request $request) {
 		$ProductUses = new ProductUsesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$productId = $details ['productId'];
 		$productUsesId = $details ['productUsesId'];
 		$userId = $details ['userId'];
 		// dd($details);
-	
+
 		$attDetail = $ProductUses->getSpecificProductUsesImage($productUsesId);
-	
+
 		$delete = DB::table ( 'jb_product_uses_tbl' )->where ( 'PRODUCT_USES_ID', $productUsesId )->delete ();
-		
+
 		if(isset($attDetail['path']) && $attDetail['path'] != '' ){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Product Uses deleted successfully...';
 		$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($productId);
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteProductUsesImage(Request $request) {
 		$ProductUses = new ProductUsesModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$productId = $details ['productId'];
 		$productUsesId = $details ['productUsesId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $ProductUses->getSpecificProductUsesImage($productUsesId);
-	
+
 		$result = DB::table ( 'jb_product_uses_tbl' ) ->where ( 'PRODUCT_USES_ID', $productUsesId ) ->update (
 							array ( 'PATH' => '',
 									'DOWN_PATH' => '',
 									'FILE_TYPE' => '',
 									'FILE_NAME' => '',
-									'FULL_NAME' => ''									
+									'FULL_NAME' => ''
 							)
 						);
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != '' ){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Product Uses Image deleted successfully...';
 		$arrRes ['productuses'] = $ProductUses->getAllProductUsesByProduct($productId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
+
+
 	public function saveAdminProductOtherInfo(Request $request) {
 		$Product = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['product'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_34'] != '' && $data['P_34'] < 0) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Shipping Days must be greater then zero.';
@@ -4845,12 +4909,12 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-				
+
+
 			if ($data ['ID'] == '') {
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $data ['ID'] ) ->update (
 						array ( 'FREE_SHIPPING_FLAG' => $data ['P_28'] == 'true' ? '1' : '0',
 								'PRODUCT_QUANTITY_MULTIPLY_FLAG' => $data ['P_29'] == 'true' ? '1' : '0',
@@ -4858,26 +4922,26 @@ class AdminController extends Controller
 								'SHOW_STOCK_QUANTITY_FLAG' => $data ['P_31'] == 'true' ? '1' : '0',
 								'SHOW_STOCK_TEXT_FLAG' => $data ['P_32'] == 'true' ? '1' : '0',
 								'HIDE_STOCK_FLAG' => $data ['P_33'] == 'true' ? '1' : '0',
-								
+
 								'SHIPPING_DAYS' => $data ['P_34'] != '' ? $data ['P_34'] : '0',
 								'TODAY_DEAL_FLAG' => $data ['P_35'] == 'true' ? '1' : '0',
-								
+
 								'ADD_TO_FLASH' => $data ['P_36'],
 								'OTHER_DISCOUNT' => $data ['P_37'] != '' ? $data ['P_37'] : '0',
 								'OTHER_DISCOUNT_TYPE' => $data ['P_38'],
-								
+
 								'CASH_ON_DELIVER_FLAG' => $data ['P_39'] == 'true' ? '1' : '0',
 								'FEATURED_FLAG' => $data ['P_40'] == 'true' ? '1' : '0',
 								'TODAY_DEAL_FLAG2' => $data ['P_41'] == 'true' ? '1' : '0',
 								'LOW_QUANTITY_WARNING' => $data ['P_42'] != '' ? $data ['P_42'] : '0',
-	
+
 								'CLINICAL_NOTE_DESCRIPTION' => $data['P_43'] != '' ? base64_encode($data['P_43']) : '',
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Other Information Added Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -4886,42 +4950,42 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	/*===================== admin Product code end ==========================*/
-	
+
 	/*===================== admin Shade Finder code start ==========================*/
-	
+
 	public function getAllAdminShadeFinderlov(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
 		$Product = new ProductModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$optionId = $details ['optionId'];
-		
+
 		$arrRes ['list1'] = $Product->getProductsLov();
 		$arrRes ['optionDetail'] = $ShadeFinder->getSpecificShadeFinderOptionData($optionId);
 		$level1Detail = $ShadeFinder->getSpecificShadeFinderLevel1Data($optionId);
 		$arrRes ['level1Detail'] = $level1Detail;
-		
+
 		if(isset($level1Detail['ID'])){
 			$arrRes ['level1TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel1TypesByLevel1Id($level1Detail['ID']);
 		}else{
 			$arrRes ['level1TypeListing'] = '';
 		}
-		
+
 		$level2Detail = $ShadeFinder->getSpecificShadeFinderLevel2Data($optionId);
 		$arrRes ['level2Detail'] = $level2Detail;
-		
+
 		if(isset($level2Detail['ID'])){
 			$arrRes ['level2TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel2TypesByLevel2Id($level2Detail['ID']);
 		}else{
 			$arrRes ['level2TypeListing'] = '';
 		}
-		
+
 		$level3Detail = $ShadeFinder->getSpecificShadeFinderLevel3Data($optionId);
 		$arrRes ['level3Detail'] = $level3Detail;
-		
+
 		if(isset($level3Detail['ID'])){
 			$arrRes ['level3TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel3TypesByLevel3Id($level3Detail['ID']);
 		}else{
@@ -4929,21 +4993,21 @@ class AdminController extends Controller
 		}
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminShadeFinderOptionInfo(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['option'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -4968,11 +5032,11 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
-				
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_shade_finder_options_tbl' ) ->where ( 'OPTION_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['P_1'],
 								'CAPTION' => $data['P_2'],
@@ -4980,7 +5044,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Option Detail Updated Successfully';
 // 				$arrRes ['ID'] = $data ['ID'];
@@ -4992,19 +5056,19 @@ class AdminController extends Controller
 	}
 	public function saveAdminShadeFinderLevel1Info(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$option = $details ['option'];
 		$data = $details ['level1'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['L_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title Question is required.';
@@ -5017,16 +5081,16 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if (strlen($data['L_2']) > 500) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description must be less then 500 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
-				
+
 				$result = DB::table ( 'jb_shade_finder_level_one_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'OPTION_ID' => $option['ID'],
@@ -5034,7 +5098,7 @@ class AdminController extends Controller
 								'DESCRITION' => $data['L_2'],
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'STATUS' => 'active',
-								
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -5046,9 +5110,9 @@ class AdminController extends Controller
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-				
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_one_tbl' ) ->where ( 'LEVEL_ONE_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['L_1'],
 								'DESCRITION' => $data['L_2'],
@@ -5056,7 +5120,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Level One Info Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -5065,27 +5129,27 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function saveAdminShadeFinderLevel1TypeInfo(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$option = $details ['option'];
 		$level1 = $details ['level1'];
 		$data = $details ['level1Type'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-			
+
 			$primaryProdIds = '';
 			if( isset($data['LT_2'][0]) && !empty($data['LT_2'])){
 				$productIds  = $data['LT_2'];
-				
+
 				foreach ($productIds  as $value){
 					if($primaryProdIds == ''){
 						$primaryProdIds = $value['id'];
@@ -5094,11 +5158,11 @@ class AdminController extends Controller
 					}
 				}
 			}
-			
+
 			$recommandedProdIds = '';
 			if( isset($data['LT_3'][0]) && !empty($data['LT_3'])){
 				$productIds1  = $data['LT_3'];
-			
+
 				foreach ($productIds1  as $value){
 					if($recommandedProdIds == ''){
 						$recommandedProdIds = $value['id'];
@@ -5107,7 +5171,7 @@ class AdminController extends Controller
 					}
 				}
 			}
-			
+
 			if ($data['LT_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -5120,7 +5184,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if($option['P_1'] == 'Yes'){
 				if($primaryProdIds == ''){
 					$arrRes ['done'] = false;
@@ -5135,9 +5199,9 @@ class AdminController extends Controller
 					die ();
 				}
 			}
-			
+
 			if ($data ['ID'] == '') {
-				
+
 				$duplicate = $ShadeFinder->checkDuplicatelevelTypeWrtlevelID($data['LT_1'],$level1['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -5145,7 +5209,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_shade_finder_level_one_type_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'LEVEL_ONE_ID' => $level1['ID'],
@@ -5155,7 +5219,7 @@ class AdminController extends Controller
 								'RECOMMANDED_PRODUCT_IDS' => $recommandedProdIds,
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'STATUS' => 'active',
-	
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -5168,9 +5232,9 @@ class AdminController extends Controller
 				$arrRes ['level1TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel1TypesByLevel1Id($level1['ID']);
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$duplicate = $ShadeFinder->checkDuplicatelevelTypeWrtlevelID($data['LT_1'],$level1['ID'], $data ['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -5178,7 +5242,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_shade_finder_level_one_type_tbl' ) ->where ( 'LEVEL_ONE_TYPE_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['LT_1'],
 								'DESCRIPTION' => base64_encode($data['LT_4']),
@@ -5188,7 +5252,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Level One Type Info Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -5198,41 +5262,41 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function editAdminShadeFinderLevel1Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$level1TypeId = $details ['recordId'];
-	
+
 		$arrRes ['details'] = $ShadeFinder->getSpecificShadeFinderLevel1TypeDetails($level1TypeId);
 		$arrRes ['images'] = $ShadeFinder->getSpecificShadeFinderLevel1TypeImages($level1TypeId);
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteShadeFinderLevel1Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$level1ID = $details ['level1ID'];
 		$userId = $details ['userId'];
-	
+
 		$check = $ShadeFinder->checklevel1TypeUsed($recordId);
 		if($check == ''){
-			
+
 			$attDetail = $ShadeFinder->getSpecificShadeFinderLevel1TypeImages($recordId);
-			
+
 			$delete = DB::table ( 'jb_shade_finder_level_one_type_tbl' )->where ( 'LEVEL_ONE_TYPE_ID', $recordId )->delete ();
 			$delete = DB::table ( 'jb_shade_finder_images_tbl' )->where ( 'LEVEL_ONE_TYPE_ID', $recordId )->delete ();
-			
+
 			if(isset($attDetail) && !empty($attDetail)){
 				foreach ($attDetail as $value){
 					unlink($value['path']);
 				}
 			}
-			
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Type deleted successfully...';
 			$arrRes ['level1TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel1TypesByLevel1Id($level1ID);
@@ -5240,49 +5304,49 @@ class AdminController extends Controller
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Type is already used in level three, kindly remove this from level 3 then proceed.';
 		}
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteLevel1TypeImage(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$imageId = $details ['imageId'];
 		$level1TypeId = $details ['level1TypeId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $ShadeFinder->getSpecificLevel1TypeImage($imageId);
-	
+
 		$delete = DB::table ( 'jb_shade_finder_images_tbl' )->where ( 'IMAGE_ID', $imageId )->delete ();
-		
+
 		if(isset($attDetail['path']) && $attDetail['path'] != '' ){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Type Image deleted successfully...';
 		$arrRes ['images'] = $ShadeFinder->getSpecificShadeFinderLevel1TypeImages($level1TypeId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
-	
+
+
+
 	public function saveAdminShadeFinderLevel2Info(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$option = $details ['option'];
 		$data = $details ['level2'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['L_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title Question is required.';
@@ -5295,16 +5359,16 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			if (strlen($data['L_2']) > 500) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description must be less then 500 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_two_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'OPTION_ID' => $option['ID'],
@@ -5312,7 +5376,7 @@ class AdminController extends Controller
 								'DESCRIPTION' => $data['L_2'],
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'STATUS' => 'active',
-	
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -5324,9 +5388,9 @@ class AdminController extends Controller
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_two_tbl' ) ->where ( 'LEVEL_TWO_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['L_1'],
 								'DESCRIPTION' => $data['L_2'],
@@ -5334,7 +5398,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Level Two Info Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -5343,38 +5407,38 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function getLevel1TypeLovForLevel2Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$level1Id = $details ['level1Id'];
 		$userId = $details ['userId'];
-	
-		
+
+
 		$arrRes ['level1TypeLov'] = $ShadeFinder->getShadeFinderLevel1TypesLov($level1Id);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminShadeFinderLevel2TypeInfo(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$option = $details ['option'];
 		$level2 = $details ['level2'];
 		$data = $details ['level2Type'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-				
-			
-				
+
+
+
 			if ($data['LT_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -5393,11 +5457,11 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
-			
-				
+
+
+
 			if ($data ['ID'] == '') {
-	
+
 				$duplicate = $ShadeFinder->checkDuplicatelevel2TypeWrtlevel2ID($data['LT_1'],$level2['ID'],$data['LT_2']['id']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -5405,7 +5469,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_two_type_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'LEVEL_TWO_ID' => $level2['ID'],
@@ -5414,7 +5478,7 @@ class AdminController extends Controller
 								'DESCRIPTION' => base64_encode($data['LT_3']),
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'STATUS' => 'active',
-	
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -5427,9 +5491,9 @@ class AdminController extends Controller
 				$arrRes ['level2TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel2TypesByLevel2Id($level2['ID']);
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$duplicate = $ShadeFinder->checkDuplicatelevel2TypeWrtlevel2ID($data['LT_1'],$level2['ID'],$data['LT_2']['id'],$data['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -5437,7 +5501,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_two_type_tbl' ) ->where ( 'LEVEL_TWO_TYPE_ID', $data ['ID'] ) ->update (
 						array ( 'LEVEL_TWO_ID' => $level2['ID'],
 								'TITLE' => $data['LT_1'],
@@ -5447,7 +5511,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Level Two Type Info Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -5457,33 +5521,33 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function editAdminShadeFinderLevel2Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$level2TypeId = $details ['recordId'];
 		$level1Id = $details ['level1Id'];
-	
+
 		$arrRes ['level1TypeLov'] = $ShadeFinder->getShadeFinderLevel1TypesLov($level1Id);
 		$arrRes ['details'] = $ShadeFinder->getSpecificShadeFinderLevel2TypeDetails($level2TypeId);
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteShadeFinderLevel2Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$level2ID = $details ['level2ID'];
 		$userId = $details ['userId'];
-		
+
 		$check = $ShadeFinder->checklevel2TypeUsed($recordId);
 		if($check == ''){
-			
+
 			$delete = DB::table ( 'jb_shade_finder_level_two_type_tbl' )->where ( 'LEVEL_TWO_TYPE_ID', $recordId )->delete ();
-			
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Type deleted successfully...';
 			$arrRes ['level2TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel2TypesByLevel2Id($level2ID);
@@ -5491,27 +5555,27 @@ class AdminController extends Controller
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Type is already used in level three, kindly remove this from level 3 then proceed.';
 		}
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
-	
+
+
+
 	public function saveAdminShadeFinderLevel3Info(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$option = $details ['option'];
 		$data = $details ['level3'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['L_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title Question is required.';
@@ -5524,16 +5588,16 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if (strlen($data['L_2']) > 500) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description must be less then 500 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_three_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'OPTION_ID' => $option['ID'],
@@ -5541,7 +5605,7 @@ class AdminController extends Controller
 								'DESCRIPTION' => $data['L_2'],
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'STATUS' => 'active',
-	
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -5553,9 +5617,9 @@ class AdminController extends Controller
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_three_tbl' ) ->where ( 'LEVEL_THREE_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['L_1'],
 								'DESCRIPTION' => $data['L_2'],
@@ -5563,7 +5627,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Level Three Info Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -5572,40 +5636,40 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function getLevel2TypeLovForLevel3Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$level2Id = $details ['level2Id'];
 		$userId = $details ['userId'];
-	
-	
+
+
 		$arrRes ['level2TypeLov'] = $ShadeFinder->getShadeFinderLevel2TypesLov($level2Id);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminShadeFinderLevel3TypeInfo(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$option = $details ['option'];
 		$level3 = $details ['level3'];
 		$data = $details ['level3Type'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			$primaryProdIds = '';
 			if( isset($data['LT_3'][0]) && !empty($data['LT_3'])){
 				$productIds  = $data['LT_3'];
-			
+
 				foreach ($productIds  as $value){
 					if($primaryProdIds == ''){
 						$primaryProdIds = $value['id'];
@@ -5614,11 +5678,11 @@ class AdminController extends Controller
 					}
 				}
 			}
-			
+
 			$recommandedProdIds = '';
 			if( isset($data['LT_4'][0]) && !empty($data['LT_4'])){
 				$productIds1  = $data['LT_4'];
-					
+
 				foreach ($productIds1  as $value){
 					if($recommandedProdIds == ''){
 						$recommandedProdIds = $value['id'];
@@ -5627,7 +5691,7 @@ class AdminController extends Controller
 					}
 				}
 			}
-				
+
 			if ($data['LT_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -5646,8 +5710,8 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
-			
+
+
 			if($primaryProdIds == ''){
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Kindly choose Primary Product first.';
@@ -5660,10 +5724,10 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
-	
+
+
 			if ($data ['ID'] == '') {
-	
+
 				$duplicate = $ShadeFinder->checkDuplicatelevel3TypeWrtlevel3ID($data['LT_1'],$level3['ID'],$data['LT_2']['id']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -5671,7 +5735,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_three_type_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'LEVEL_THREE_ID' => $level3['ID'],
@@ -5682,7 +5746,7 @@ class AdminController extends Controller
 								'DESCRIPTION' => base64_encode($data['LT_5']),
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'STATUS' => 'active',
-	
+
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -5695,9 +5759,9 @@ class AdminController extends Controller
 				$arrRes ['level3TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel3TypesByLevel3Id($level3['ID']);
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$duplicate = $ShadeFinder->checkDuplicatelevel3TypeWrtlevel3ID($data['LT_1'],$level3['ID'],$data['LT_2']['id'],$data['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -5705,7 +5769,7 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-	
+
 				$result = DB::table ( 'jb_shade_finder_level_three_type_tbl' ) ->where ( 'LEVEL_THREE_TYPE_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['LT_1'],
 								'LEVEL_TWO_TYPE_ID' => isset($data['LT_2']['id']) ? $data['LT_2']['id'] : '',
@@ -5716,7 +5780,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Level Three Type Info Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -5728,48 +5792,48 @@ class AdminController extends Controller
 	}
 	public function editAdminShadeFinderLevel3Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$level3TypeId = $details ['recordId'];
 		$level2Id = $details ['level2Id'];
-	
+
 		$arrRes ['level2TypeLov'] = $ShadeFinder->getShadeFinderLevel2TypesLov($level2Id);
 		$arrRes ['details'] = $ShadeFinder->getSpecificShadeFinderLevel3TypeDetails($level3TypeId);
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteShadeFinderLevel3Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$level3ID = $details ['level3ID'];
 		$userId = $details ['userId'];
-	
+
 		$delete = DB::table ( 'jb_shade_finder_level_three_type_tbl' )->where ( 'LEVEL_THREE_TYPE_ID', $recordId )->delete ();
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Type deleted successfully...';
 		$arrRes ['level3TypeListing'] = $ShadeFinder->getSpecificShadeFinderLevel3TypesByLevel3Id($level3ID);
-	
+
 		echo json_encode ( $arrRes );
 	}
 	/*===================== admin Shade Finder code end ==========================*/
-	
+
 	/*==================== admin Orders code start ==========================*/
-	
+
 	public function getAllAdminOrderslov() {
 		$OrderModel = new OrderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-		
+
 		$arrRes ['list'] = $OrderModel->getAllPlacedOrderData();
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function getSpecificOrderDetails() {
 		$OrderModel = new OrderModel();
 		$OrderDetailModel = new OrderDetailModel();
@@ -5777,35 +5841,35 @@ class AdminController extends Controller
 		$OrderPaymentModel = new OrderPaymentModel();
 		$OrderShipmentModel = new OrderShipmentModel();
 		$OrderShipmentTrackingModel = new OrderShippingTrackingModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$orderId = $details ['orderId'];
-	
+
 		$arrRes ['order'] = $OrderModel->fetchSpecificOrderDetails($orderId);
 		$arrRes ['details'] = $OrderDetailModel->getAllSpecificOrderData($orderId);
 		$arrRes ['shipping'] = $OrderShippingModel->getAllSpecificOrderShippingData($orderId);
 		$arrRes ['payment'] = $OrderPaymentModel->getAllSpecificOrderPaymentData($orderId);
 		$arrRes ['shipment'] = $OrderShipmentModel->getAllSpecificOrderShipmentData($orderId);
 		$arrRes ['tracking'] = $OrderShipmentTrackingModel->getAllTrackingByOrder($orderId);
-		
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function orderStatusShipmentConfirm(Request $request) {
 		$OrderModel = new OrderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$orderId = $details ['orderId'];
-	
+
 		$result = DB::table ( 'jb_order_tbl' ) ->where ( 'ORDER_ID', $orderId ) ->update (
 						array ( 'ORDER_STATUS' => 'shipped',
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-		
+
 		$trackingId = DB::table ( 'jb_order_shippment_tracking_tbl' )->insertGetId (
 				array ( 'ORDER_ID' => $orderId,
 						'STATUS' => 'shipped',
@@ -5816,38 +5880,38 @@ class AdminController extends Controller
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-		
+
 		$arrRes['done'] = true;
 		$arrRes['msg'] = 'Order shipped succesfully.';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function getAllAdminShippedOrderslov() {
 		$OrderModel = new OrderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $OrderModel->getAllShippedOrderData();
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function addOrderShipmentDetail(Request $request) {
 		$OrderShipmentModel = new OrderShipmentModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['shipment'];
 		$orderId = $details ['orderId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
 		$currentDate = date('Y-m-d');
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['S_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Shipping Company Name first.';
@@ -5872,9 +5936,9 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_order_shippment_detail_tbl' )->insertGetId (
 						array ( 'ORDER_ID' => $orderId,
 								'SHIPPING_COMPANY_NAME' => $data['S_1'],
@@ -5888,7 +5952,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-				
+
 				$trackingId = DB::table ( 'jb_order_shippment_tracking_tbl' )->insertGetId (
 						array ( 'ORDER_ID' => $orderId,
 								'STATUS' => $data['S_2'],
@@ -5904,20 +5968,20 @@ class AdminController extends Controller
 				$arrRes ['shipment'] = $OrderShipmentModel->getAllSpecificOrderShipmentData($orderId);
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_order_shippment_detail_tbl' ) ->where ( 'SHIPPING_ID', $data ['ID'] ) ->update (
 						array ( 'SHIPPING_COMPANY_NAME' => $data['S_1'],
 								'TRACKING_NUMBER' => $data['S_3'],
 								'EXPECTED_DELIVERY_DATE' => $data['S_4'],
 								'STATUS' => $data['S_2'],
-	
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-			
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Shipment Details Updated Successfully';
 				$arrRes ['shipment'] = $OrderShipmentModel->getAllSpecificOrderShipmentData($orderId);
@@ -5926,16 +5990,16 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function shipmentStatusUpdate(Request $request) {
 		$OrderShipmentModel = new OrderShipmentModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$orderId = $details ['orderId'];
 		$shippingId = $details ['shippingId'];
 		$flag = $details ['flag'];
-	
+
 		if($flag == '1'){
 			$status = 'Picked Up';
 		}else if($flag == 2){
@@ -5943,14 +6007,14 @@ class AdminController extends Controller
 		}else if($flag == 3){
 			$status = 'Delivered';
 		}
-	
+
 		$result = DB::table ( 'jb_order_shippment_detail_tbl' ) ->where ( 'SHIPPING_ID', $shippingId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-		
+
 		$trackingId = DB::table ( 'jb_order_shippment_tracking_tbl' )->insertGetId (
 				array ( 'ORDER_ID' => $orderId,
 						'STATUS' => $status,
@@ -5961,7 +6025,7 @@ class AdminController extends Controller
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-		
+
 		if($flag == 3){
 			$result = DB::table ( 'jb_order_tbl' ) ->where ( 'ORDER_ID', $orderId ) ->update (
 					array ( 'ORDER_STATUS' => 'delivered',
@@ -5970,79 +6034,79 @@ class AdminController extends Controller
 					)
 					);
 		}
-	
+
 		$arrRes['done'] = true;
 		$arrRes['msg'] = 'Order shipping status updated successfully.';
 		$arrRes['shipment'] = $OrderShipmentModel->getAllSpecificOrderShipmentData($orderId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function searchShipmentOrders(Request $request) {
 		$OrderModel = new OrderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$search = $details ['search'];
-	
-		$customerName = isset($search['S_1']) ? $search['S_1'] : ''; 
+
+		$customerName = isset($search['S_1']) ? $search['S_1'] : '';
 		$orderStatus = isset($search['S_2']) ? $search['S_2'] : '';
 		$shippmentStatus = isset($search['S_3']) ? $search['S_3'] : '';
 		$startDate = isset($search['S_4']) ? $search['S_4'] : '';
 		$endDate = isset($search['S_5']) ? $search['S_5'] : '';
-		
+
 		if($customerName == '' && $orderStatus == '' && $shippmentStatus == '' && $startDate == '' && $endDate == ''){
-			
+
 			$arrRes['done'] = false;
 			$arrRes['msg'] = 'Choose atleast one filter.';
-		
+
 		}else{
-			
+
 			$arrRes['done'] = true;
 			$arrRes['msg'] = '';
 			// 1 for placed order listing & 2 for shipped/delivered order listing
 			$arrRes['order'] = $OrderModel->getAllSearchOrderData(2,$customerName,$orderStatus,$shippmentStatus,$startDate,$endDate);
-			
+
 		}
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	/*==================== admin Orders code end ==========================*/
-	
+
 	/*===================== admin Product Bundle code start ==========================*/
-	
+
 	public function getAllAdminProductBundlelov(Request $request) {
 		$Category = new CategoryModel();
 		$Bundle = new BundleProductModel();
 		$Product = new ProductModel();
 		$Shades = new ShadesModel();
-	
-	
+
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $Bundle->getAllBundleProductsData();
 		$arrRes ['list1'] = $Category->getCategoryBundleLov();
 		$arrRes ['list2'] = $Product->getProductsLov();
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminBundleProductBasicInfo(Request $request) {
 		$Product = new BundleProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['bundle'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['P_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Name is required.';
@@ -6067,7 +6131,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			if ($data ['P_4'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Minimum Purchase Qty is required.';
@@ -6080,7 +6144,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			if ($data ['P_5'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Tags is required.';
@@ -6105,7 +6169,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			if (!isset($data ['P_9']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Please choose Sub Category.';
@@ -6160,10 +6224,10 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-	
+
+
 			if ($data ['ID'] == '') {
-	
+
 // 				$duplicate = $Product->checkDuplicateSlug($data['P_10']);
 // 				if ($duplicate != '') {
 // 					$arrRes ['done'] = false;
@@ -6171,7 +6235,7 @@ class AdminController extends Controller
 // 					echo json_encode ( $arrRes );
 // 					die ();
 // 				}
-	
+
 				$result = DB::table ( 'jb_bundle_product_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'NAME' => $data['P_1'],
@@ -6190,7 +6254,7 @@ class AdminController extends Controller
 								'SHORT_DESCRIPTION' => $data ['P_14'],
 								'DISCOUNTED_AMOUNT' => $data ['P_15'],
 								'QUANTITY' => $data ['P_16'],
-								
+
 								'STATUS' => 'inactive',
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
@@ -6199,15 +6263,15 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Bundle Header Info Added Successfully.';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 // 				$duplicate = $Product->checkDuplicateSlug($data['P_10'], $data ['ID']);
 // 				if ($duplicate != '') {
 // 					$arrRes ['done'] = false;
@@ -6215,7 +6279,7 @@ class AdminController extends Controller
 // 					echo json_encode ( $arrRes );
 // 					die ();
 // 				}
-	
+
 				$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $data ['ID'] ) ->update (
 						array ( 'NAME' => $data['P_1'],
 								'SUB_TITLE' => $data['P_2'],
@@ -6233,12 +6297,12 @@ class AdminController extends Controller
 								'SHORT_DESCRIPTION' => $data ['P_14'],
 								'DISCOUNTED_AMOUNT' => $data ['P_15'],
 								'QUANTITY' => $data ['P_16'],
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Bundle Header Info Updated Successfully.';
 				$arrRes ['ID'] = $data ['ID'];
@@ -6251,28 +6315,28 @@ class AdminController extends Controller
 		$Category = new CategoryModel();
 		$Bundle = new BundleProductModel();
 		$BundleLine = new BundleProductLineModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$bundleId = $details ['bundleId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $Bundle->getSpecificBundleProductData($bundleId);
 		$arrRes ['bundleLines'] = $BundleLine->getAllBundleProductLines($bundleId);
 		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory($arrRes ['details']['P_8']);
 		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory($arrRes ['details']['P_9']);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteBundleProductImage(Request $request) {
 		$Bundle = new BundleProductModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$bundleId = $details ['bundleId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $Bundle->getSpecificBundleProductData($bundleId);
-	
+
 		$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $bundleId ) ->update (
 						array ( 'IMAGE_DOWN_PATH' => '',
 								'IMAGE_PATH' => '',
@@ -6280,50 +6344,50 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 		if(isset($attDetail['path']) && $attDetail['path'] != ''){
 			unlink($attDetail['path']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Bundle image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminBundleProductLine(Request $request) {
 		$Product = new ProductModel();
 		$Bundle = new BundleProductModel();
 		$BundleLine = new BundleProductLineModel();
-		
-	
+
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['product'];
 		$bundleId = $details ['bundleId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if (!isset($data['P_1']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Product first.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 			$productDetails = $Product->getSpecificProductUnitPrice($data['P_1']['id']);
 // 			print_r('<pre>');
 // 			print_r($productDetails);
 // 			exit();
 			$productPrice = isset($productDetails['unitPrice']) ? $productDetails['unitPrice'] : '0';
-			
+
 			if ($data ['ID'] == '') {
-	
+
 				$duplicate = $BundleLine->checkDuplicateProductWrtBundleId($data['P_1']['id'], $bundleId);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -6331,14 +6395,14 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
-				
-				
+
+
+
 				$result = DB::table ( 'jb_bundle_product_line_tbl' )->insertGetId (
 						array ( 'BUNDLE_ID' => $bundleId,
 								'PRODUCT_ID' => isset($data['P_1']['id']) ? $data['P_1']['id'] : '',
 								'PRODUCT_PRICE'=> $productPrice,
-								
+
 								'STATUS' => 'active',
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
@@ -6347,24 +6411,24 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Bundle Line Info Added Successfully.';
 				$arrRes ['ID'] = $result;
 				$arrRes ['bundleLines'] = $BundleLine->getAllBundleProductLines($bundleId);
-				
+
 				$bundleDetails = $Bundle->getSpecificBundleProductData($bundleId);
 				$totalBundleAmount = $bundleDetails['P_13'];
-				
+
 				$bundleAmount = $totalBundleAmount + $productPrice;
-				
+
 				$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $bundleId ) ->update ( array ( 'TOTAL_AMOUNT' => $bundleAmount ) );
-				
+
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$duplicate = $BundleLine->checkDuplicateProductWrtBundleId($data['P_1']['id'], $bundleId, $data['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
@@ -6372,64 +6436,64 @@ class AdminController extends Controller
 					echo json_encode ( $arrRes );
 					die ();
 				}
-				
+
 				$result = DB::table ( 'jb_bundle_product_line_tbl' ) ->where ( 'BUNDLE_LINE_ID', $data ['ID'] ) ->update (
 						array ( 'PRODUCT_ID' => isset($data['P_1']['id']) ? $data['P_1']['id'] : '',
 								'PRODUCT_PRICE'=> $productPrice,
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Bundle Line Info Updated Successfully.';
 				$arrRes ['ID'] = $data ['ID'];
 				$arrRes ['lines'] = $BundleLine->getAllBundleProductLines($bundleId);
-				
+
 				$bundleDetails = $Bundle->getSpecificBundleProductData($bundleId);
 				$totalBundleAmount = $bundleDetails['P_13'];
-				
+
 				$bundleAmount = $totalBundleAmount + $productPrice;
-				
+
 				$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $bundleId ) ->update ( array ( 'TOTAL_AMOUNT' => $bundleAmount ) );
-				
+
 				echo json_encode ( $arrRes );
 				die ();
 			}
 		}
 	}
-	
+
 	public function deleteBundleProductLine(Request $request) {
 		$Bundle = new BundleProductModel();
 		$BundleLine = new BundleProductLineModel();
 		$SubscriptionModel = new SubscriptionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$bundleId = $details ['bundleId'];
 		$bundleLineId = $details ['bundleLineId'];
 		$userId = $details ['userId'];
-	
+
 		// $existCheckSubscription = $SubscriptionModel->checkSubscribedBundleExistWrtBundleId($bundleId);
-		
+
 		// if($existCheckSubscription == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Subscription exist against this Bundle, system will not able to delete this product, Thanks.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
-		
+
+
 		$detail = $Bundle->getSpecificBundleProductData($bundleId);
-	
+
 		$delete = DB::table ( 'jb_bundle_product_line_tbl' )->where ( 'BUNDLE_LINE_ID', $bundleLineId )->delete ();
-	
+
 		$linesTotalPrice = $BundleLine->getBundleLineAmountsSum($bundleId);
-	
+
 		$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $bundleId ) ->update ( array ( 'TOTAL_AMOUNT' => $linesTotalPrice ) );
-		
+
 		$checkSingleBundleProducts = $BundleLine->getAllBundleProductLines($bundleId);
-			
+
 		if($checkSingleBundleProducts == null){
 
 			$status = 'inactive';
@@ -6444,22 +6508,22 @@ class AdminController extends Controller
 
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Bundle Line deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	/*===================== admin Product Bundle code end ==========================*/
-	
+
 	/*===================== admin Reviews code start ==========================*/
-	
+
 	public function getAllAdminReviewslov() {
 		$ReviewsModel = new ReviewsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['reviews'] = $ReviewsModel->getAllReviewsForAdmin();
-		
+
 		echo json_encode ( $arrRes );
 	}
 
@@ -6478,13 +6542,13 @@ class AdminController extends Controller
 
 	public function updateReviewStatus() {
 		$ReviewsModel = new ReviewsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$details = $ReviewsModel->getSpecificReviewDetailAdmin($recordId);
-		
+
 		if(isset($details['STATUS_FLAG']) && $details['STATUS_FLAG'] == '0'){
 			$status = 'published';
 			$arrRes ['msg'] = 'Review posted successfully...';
@@ -6494,27 +6558,27 @@ class AdminController extends Controller
 			$result = DB::table ( 'jb_reviews_tbl' )->where ( 'REVIEW_ID', $recordId )->update
 				( array (
 					'ON_SITE_ENABLE' => '0',
-					'UPDATED_ON' => date ( 'Y-m-d H:i:s' ) 
+					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					) );
 		}
-		
+
 		$result = DB::table ( 'jb_reviews_tbl' )->where ( 'REVIEW_ID', $recordId )->update ( array ( 'STATUS' => $status ) );
-		
-		
+
+
 		$arrRes ['done'] = true;
 		$arrRes ['reviews'] = $ReviewsModel->getAllReviewsForAdmin();
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function updateReviewOnSiteStatus() {
 		$ReviewsModel = new ReviewsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$details = $ReviewsModel->getSpecificReviewDetailAdmin($recordId);
-	
+
 		if(isset($details['ON_SITE_ENABLE']) && $details['ON_SITE_ENABLE'] == '0'){
 			$status = '1';
 			$arrRes ['msg'] = 'Review enabled successfully...';
@@ -6522,40 +6586,40 @@ class AdminController extends Controller
 			$status = '0';
 			$arrRes ['msg'] = 'Review disabled from site...';
 		}
-	
-		$result = DB::table ( 'jb_reviews_tbl' )->where ( 'REVIEW_ID', $recordId )->update ( array ( 
+
+		$result = DB::table ( 'jb_reviews_tbl' )->where ( 'REVIEW_ID', $recordId )->update ( array (
 			'ON_SITE_ENABLE' => $status,
-			'UPDATED_ON' => date ( 'Y-m-d H:i:s' ) 
+			'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 			) );
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['reviews'] = $ReviewsModel->getAllReviewsForAdmin();
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function getSpecificReviewDetails() {
 		$ReviewsModel = new ReviewsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $ReviewsModel->getSpecificReviewDetailAdmin($recordId);
-	
+
 		echo json_encode ( $arrRes );
 	}
 	/*===================== admin Reviews code End ==========================*/
-	
+
 	/*===================== admin Questions code start ==========================*/
-	
+
 	public function getAllAdminQuestionslov() {
 		$QuestionModel = new QuestionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['questions'] = $QuestionModel->getAllPublishedQuestionsForAdmin();
-	
+
 		echo json_encode ( $arrRes );
 	}
 
@@ -6574,13 +6638,13 @@ class AdminController extends Controller
 
 	public function updateQuestionStatus() {
 		$QuestionModel = new QuestionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$details = $QuestionModel->getSpecificQuestionDetails($recordId);
-	
+
 		if(isset($details['STATUS_FLAG']) && $details['STATUS_FLAG'] == '0'){
 			$status = 'published';
 			$arrRes ['msg'] = 'Question posted successfully...';
@@ -6588,217 +6652,217 @@ class AdminController extends Controller
 			$status = 'inapproval';
 			$arrRes ['msg'] = 'Question hide from site...';
 		}
-	
-		$result = DB::table ( 'jb_questions_tbl' )->where ( 'QUESTION_ID', $recordId )->update ( array ( 
+
+		$result = DB::table ( 'jb_questions_tbl' )->where ( 'QUESTION_ID', $recordId )->update ( array (
 			'STATUS' => $status,
-			'UPDATED_ON' => date ( 'Y-m-d H:i:s' ) 
+			'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 			) );
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['questions'] = $QuestionModel->getAllPublishedQuestionsForAdmin();
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveQuestionAnswer() {
 		$QuestionModel = new QuestionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['record'];
 		$userId = $details ['userId'];
-	
+
 		if($data['answer'] == ''){
-			
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = "Can't post empty answer...";
 			echo json_encode ( $arrRes );
 			die();
 		}
-		
-		
-		$result = DB::table ( 'jb_questions_tbl' )->where ( 'QUESTION_ID', $data['questionId'] )->update ( 
+
+
+		$result = DB::table ( 'jb_questions_tbl' )->where ( 'QUESTION_ID', $data['questionId'] )->update (
 				array ( 'ANSWER' => $data['answer'],
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' ),
 						'UPDATED_BY' => $userId
 				) );
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = "Answer posted successfully.";
 		$arrRes ['questions'] = $QuestionModel->getAllPublishedQuestionsForAdmin();
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
+
+
 	/*===================== admin Subscriptions code start ==========================*/
-	
+
 	public function getAllAdminSubscriptionlov() {
 		$SubscriptionModel = new SubscriptionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $SubscriptionModel->getAllSubscriptionsForAdmin();
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminSubscription(Request $request) {
 		$SubscriptionModel = new SubscriptionModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['subscription'];
 		$userId = $details ['userId'];
 		$currentdate = date('Y-m-d');
-		
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data ['S_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['S_1']) > 100) {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title must be less then 100 charactres long.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 // 			if ($data ['S_2'] == '') {
-			
+
 // 				$arrRes ['done'] = false;
 // 				$arrRes ['msg'] = 'Price is required.';
 // 				echo json_encode ( $arrRes );
 // 				die ();
 // 			}
 // 			if ($data ['S_2'] <= 0) {
-					
+
 // 				$arrRes ['done'] = false;
 // 				$arrRes ['msg'] = 'Price must be greater then zero.';
 // 				echo json_encode ( $arrRes );
 // 				die ();
 // 			}
 			if ($data ['S_3'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Effective Start Date is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
+
 // 			if ($data ['S_3'] < $currentdate) {
-					
+
 // 				$arrRes ['done'] = false;
 // 				$arrRes ['msg'] = 'Effective Start Date must be equal to or greater then Current Date.';
 // 				echo json_encode ( $arrRes );
 // 				die ();
 // 			}
 			if ($data ['S_4'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Effective End Date is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 // 			if ($data ['S_4'] < $currentdate) {
-					
+
 // 				$arrRes ['done'] = false;
 // 				$arrRes ['msg'] = 'Effective End Date must be equal to or greater then Current Date.';
 // 				echo json_encode ( $arrRes );
 // 				die ();
 // 			}
 			if ($data ['S_4'] < $data ['S_3']) {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Effective End Date must be greater then Effective Start Date.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['S_5'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subscription Note 1 is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['S_5']) > 200) {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subscription Note 1 must be less then 200 charactres long.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['S_6'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subscription Note 2 is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['S_6']) > 200) {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subscription Note 2 must be less then 200 charactres long.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['S_7'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Duration (Months) is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['S_8'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Discount is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['S_8'] <= 0) {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Discount must be greater then zero.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 // 			if ($data ['S_9'] == '') {
-					
+
 // 				$arrRes ['done'] = false;
 // 				$arrRes ['msg'] = 'Validity Days is required.';
 // 				echo json_encode ( $arrRes );
 // 				die ();
 // 			}
 // 			if ($data ['S_9'] <= 0) {
-					
+
 // 				$arrRes ['done'] = false;
 // 				$arrRes ['msg'] = 'Validity Days must be greater then zero.';
 // 				echo json_encode ( $arrRes );
 // 				die ();
 // 			}
 			if ($data ['S_10'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Detail is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-			
+
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_subscription_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
-								
+
 								'TITLE' => $data['S_1'],
 // 								'PRICE' => $data['S_2'],
 								'EFF_START_DATE' => $data['S_3'],
@@ -6810,7 +6874,7 @@ class AdminController extends Controller
 // 								'VALIDITY_DAYS' => $data['S_9'],
 								'DESCRIPTION' => $data['S_10'],
 								'STATUS' => 'active',
-								
+
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -6818,16 +6882,16 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Subscription Created Successfully';
 				$arrRes ['ID'] = $result;
 				$arrRes ['list'] = $SubscriptionModel->getAllSubscriptionsForAdmin();
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_subscription_tbl' ) ->where ( 'SUBSCRIPTION_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['S_1'],
 // 								'PRICE' => $data['S_2'],
@@ -6843,7 +6907,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Subscription Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -6855,13 +6919,13 @@ class AdminController extends Controller
 	}
 	public function editAdminSubscription() {
 		$SubscriptionModel = new SubscriptionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $SubscriptionModel->getSpecificSubscriptionData($recordId);
-	
+
 		echo json_encode ( $arrRes );
 	}
 
@@ -6882,16 +6946,16 @@ class AdminController extends Controller
 
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function changeStatusSubscription(Request $request) {
 		$SubscriptionModel = new SubscriptionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$subDetail = $SubscriptionModel->getSpecificSubscriptionStatus($recordId);
-	
+
 		if(isset($subDetail['STATUS']) && $subDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Subscription active successfully...';
@@ -6899,34 +6963,34 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Subscription Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_subscription_tbl' ) ->where ( 'SUBSCRIPTION_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['list'] = $SubscriptionModel->getAllSubscriptionsForAdmin();
-	
+
 		echo json_encode ( $arrRes );
-	
+
 	}
-	
-	
+
+
 	/*===================== admin Subscriptions code end ==========================*/
-	
+
 	/*===================== admin home user page crud code start =========================*/
-	
+
 	public function getAllAdminHomeUserlov() {
 		$UserdashboardModel = new UserdashboardModel();
 		$ProductModel = new ProductModel();
 		$CategoryModel = new CategoryModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['banners'] = $UserdashboardModel->getAllUserBanners();
 		$arrRes ['bestExc'] = $UserdashboardModel->getAllUserBestExcData();
 		$arrRes ['products'] = $ProductModel->getActiveProductsLov();
@@ -6934,24 +6998,24 @@ class AdminController extends Controller
 		$arrRes ['trending'] = $UserdashboardModel->getAllUserHomeProductSectionData('trending');
 		$arrRes ['foryou'] = $UserdashboardModel->getAllUserHomeProductSectionData('foryou');
 		$arrRes ['offers'] = $UserdashboardModel->getAllUserHomeOfferSectionData();
-		
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminHomeUserPageBanner(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['banner'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data['B_1'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -6994,11 +7058,11 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-				
+
 			$detail = $UserdashboardModel->getSpecificUserBannerById($data ['ID']);
-	
+
 			if (empty($detail)) {
-				
+
 				$result = DB::table ( 'jb_user_home_banner_tbl' )->insertGetId (
 						array ( 'BANNER_ID' => $data ['ID'],
 								'USER_ID' => $userId,
@@ -7008,7 +7072,7 @@ class AdminController extends Controller
 								'DESCRIPTION' => $data ['B_4'],
 								'IMAGE_DOWNPATH' => $data ['B_5'],
 								'IMAGE_PATH' => $data ['B_6'],
-								
+
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -7016,15 +7080,15 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Banner Created Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-				
+
 				$result = DB::table ( 'jb_user_home_banner_tbl' ) ->where ( 'BANNER_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['B_1'],
 								'BUTTON_TEXT' => $data['B_2'],
@@ -7036,7 +7100,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 					);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Banner Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -7045,25 +7109,25 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function saveAdminHomeUserBestExc(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['bestexc'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			$detail = $UserdashboardModel->getSpecificUserBestExcById($data ['ID']);
-	
+
 			if (empty($detail)) {
-	
+
 				$result = DB::table ( 'jb_user_home_bestexclusive_tbl' )->insertGetId (
 						array ( 'BESTEXC_ID' => $data ['ID'],
 								'USER_ID' => $userId,
@@ -7072,7 +7136,7 @@ class AdminController extends Controller
 								'PRODUCT_ID' => $data ['B_3'],
 								'IMAGE_DOWNPATH' => $data ['B_4'],
 								'IMAGE_PATH' => $data ['B_5'],
-	
+
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -7080,15 +7144,15 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Details Saved Successfully';
 				$arrRes ['ID'] = $result;
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_user_home_bestexclusive_tbl' ) ->where ( 'BESTEXC_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['B_1'],
 								'HEADING' => $data['B_2'],
@@ -7099,7 +7163,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Details Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -7108,44 +7172,44 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function deleteHomeBannerImage(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$bannerId = $details ['bannerId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $UserdashboardModel->getSpecificUserBannerById($bannerId);
-	
+
 		$result = DB::table ( 'jb_user_home_banner_tbl' ) ->where ( 'BANNER_ID', $bannerId ) ->update (
-				array ( 
+				array (
 						'IMAGE_DOWNPATH' => '',
 						'IMAGE_PATH' => '',
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-		
+
 		if(isset($attDetail['IMAGE_PATH']) && $attDetail['IMAGE_PATH'] != ''){
 			unlink($attDetail['IMAGE_PATH']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Banner image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteHomeBestExcImage(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$bestexcId = $details ['bestexcId'];
 		$userId = $details ['userId'];
-	
+
 		$attDetail = $UserdashboardModel->getSpecificUserBestExcById($bestexcId);
-	
+
 		$result = DB::table ( 'jb_user_home_bestexclusive_tbl' ) ->where ( 'BESTEXC_ID', $bestexcId ) ->update (
 				array (
 						'IMAGE_DOWNPATH' => '',
@@ -7154,51 +7218,51 @@ class AdminController extends Controller
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 			);
-	
+
 		if(isset($attDetail['IMAGE_PATH']) && $attDetail['IMAGE_PATH'] != ''){
 			unlink($attDetail['IMAGE_PATH']);
 		}
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Image deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function getproductlovfromcategory(Request $request) {
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
 		$BundleProductModel = new BundleProductModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$categoryId = $details ['categoryId'];
 		$userId = $details ['userId'];
-	
+
 		$subCatIds = $CategoryModel->getAllSubCategoryIdsWrtCategoryId($categoryId);
-			
+
 		$subSubCatIds = $CategoryModel->getAllSubSubCategoryIdsWrtSubCategoryId($subCatIds);
-		
+
 		$arrRes ['productLov'] = $ProductModel->getProductsLovWrtCatSubCatSubSubCatIds($categoryId,$subCatIds,$subSubCatIds);
-		
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
+
+
 	public function saveTrendingProductDetails(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['trending'];
 		$userId = $details ['userId'];
 		$code = $details ['code'];
-		
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if(!isset($data['T_1']['id'])){
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose product category first.';
@@ -7211,16 +7275,16 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			if ($data['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_user_home_product_section_tbl' )->insertGetId (
 						array (	'USER_ID' => $userId,
 								'BATCH_CODE' => $code,
 								'CATEGORY_ID' => isset($data['T_1']['id']) ? $data['T_1']['id'] : '',
 								'PRODUCT_ID' => isset($data['T_2']['id']) ? $data['T_2']['id'] : '',
 								'STATUS' => 'active',
-								
+
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -7228,16 +7292,16 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Details Saved Successfully';
 				$arrRes ['ID'] = $result;
 				$arrRes ['list'] = $UserdashboardModel->getAllUserHomeProductSectionData($code);
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_user_home_product_section_tbl' ) ->where ( 'SECTION_ID', $data ['ID'] ) ->update (
 						array ( 'CATEGORY_ID' => isset($data['T_1']['id']) ? $data['T_1']['id'] : '',
 								'PRODUCT_ID' => isset($data['T_2']['id']) ? $data['T_2']['id'] : '',
@@ -7245,7 +7309,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Details Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -7255,38 +7319,38 @@ class AdminController extends Controller
 			}
 		}
 	}
-	
+
 	public function deleteSectionRecord(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$sectionId = $details ['sectionId'];
 		$userId = $details ['userId'];
-	
+
 		$delete = DB::table ( 'jb_user_home_product_section_tbl' )->where ( 'SECTION_ID', $sectionId )->delete ();
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Record deleted successfully...';
 		$arrRes ['trending'] = $UserdashboardModel->getAllUserHomeProductSectionData('trending');
 		$arrRes ['foryou'] = $UserdashboardModel->getAllUserHomeProductSectionData('foryou');
-		
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveTodayofferDetails(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['offer'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if($data['T_1'] == ''){
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -7338,10 +7402,10 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-			
+
+
 			if ($data['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_user_home_offer_section_tbl' )->insertGetId (
 						array (	'USER_ID' => $userId,
 								'OFFER_TITLE' => $data['T_1'],
@@ -7351,7 +7415,7 @@ class AdminController extends Controller
 								'OFFER_END_DATE' => $endDate,
 								'DESCRIPTION' => $data['T_5'],
 								'STATUS' => 'active',
-	
+
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -7359,16 +7423,16 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Details Saved Successfully';
 				$arrRes ['ID'] = $result;
 				$arrRes ['list'] = $UserdashboardModel->getAllUserHomeOfferSectionData();
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_user_home_offer_section_tbl' ) ->where ( 'OFFER_ID', $data ['ID'] ) ->update (
 						array ( 'OFFER_TITLE' => $data['T_1'],
 								'CATEGORY_ID' => isset($data['T_2']['id']) ? $data['T_2']['id'] : '',
@@ -7380,7 +7444,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Details Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -7394,95 +7458,95 @@ class AdminController extends Controller
 		$UserdashboardModel = new UserdashboardModel();
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$offerId = $details ['offerId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['details'] = $UserdashboardModel->getSpecificTodayOfferRecordById($offerId);
-		
+
 		$categoryId = isset($arrRes ['details']['T_2']) ? $arrRes ['details']['T_2'] : '';
-		
+
 		$subCatIds = $CategoryModel->getAllSubCategoryIdsWrtCategoryId($categoryId);
-			
+
 		$subSubCatIds = $CategoryModel->getAllSubSubCategoryIdsWrtSubCategoryId($subCatIds);
-		
+
 		$arrRes ['productLov'] = $ProductModel->getProductsLovWrtCatSubCatSubSubCatIds($categoryId,$subCatIds,$subSubCatIds);
-		
-		
+
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteOfferRecord(Request $request) {
 		$UserdashboardModel = new UserdashboardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$offerId = $details ['offerId'];
 		$userId = $details ['userId'];
-	
+
 		$delete = DB::table ( 'jb_user_home_offer_section_tbl' )->where ( 'OFFER_ID', $offerId )->delete ();
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Record deleted successfully...';
 		$arrRes ['list'] = $UserdashboardModel->getAllUserHomeOfferSectionData();
-	
+
 		echo json_encode ( $arrRes );
 	}
 	/*===================== admin home user page crud code end =========================*/
-	
-	
+
+
 	public function getAllAdminUserSubscriptionslov() {
 		$SubscriptionModel = new SubscriptionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $SubscriptionModel->getAllAdminUserSubscriptionsForAdmin($userId);
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function getSpecificAdminUserSubscriptionDetail() {
 		$SubscriptionModel = new SubscriptionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$subsId = $details ['subsId'];
-	
+
 		$arrRes ['detail'] = $SubscriptionModel->getSpecificUserSubscriptionDetails($subsId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function getAllAdminUserTicketslov() {
 		$TicketsModel = new TicketsModel();
 		$OrderModel = new OrderModel();
-		
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $TicketsModel->getAllTicketsForAdmin();
 		$arrRes ['orders'] = $OrderModel->getOrdersLov($userId);
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveAdminTicketDetails(Request $request) {
 		$TicketsModel = new TicketsModel();
 		$OrderModel = new OrderModel();
-		 
+
 		$details = $_REQUEST ['details'];
 		$data = $details ['ticket'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-	
+
 			if ($data ['T_1'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Ticket Type first.';
 				echo json_encode ( $arrRes );
@@ -7494,13 +7558,13 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			// if ($data ['T_1'] == 'order' && $data ['T_2'] != '') {
-					
+
 			// 	$temp = explode('#', $data ['T_2']);
-					
+
 			// 	$orderDetail = $OrderModel->validateOrderById(isset($temp[1])?$temp[1]:'');
-					
+
 			// 	if(empty($orderDetail)){
 			// 		$arrRes ['done'] = false;
 			// 		$arrRes ['msg'] = 'Document Number is not valid.';
@@ -7509,28 +7573,28 @@ class AdminController extends Controller
 			// 	}
 			// }
 			if ($data ['T_3'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Username is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['T_3']) > 100) {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Username must be less then 100 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['T_4'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Email is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['T_4']) > 100) {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Email must be less then 100 characters.';
 				echo json_encode ( $arrRes );
@@ -7545,52 +7609,52 @@ class AdminController extends Controller
 				}
 			}
 			if ($data ['T_5'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Phone number is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['T_5']) != 11) {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Phone number must be less then equal to 11 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['T_8'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Priority first.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['T_6'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subject is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['T_6']) > 200) {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subject must be less then 200 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['T_7'] == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Details is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
-	
-	
+
+
+
 			if ($data ['ID'] == '') {
-	
+
 				$result = DB::table ( 'jb_user_tickets_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TICKET_NUMBER' => 'TKT#'.date('YmdHis'),
@@ -7609,16 +7673,16 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Ticket Created Successfully';
 				$arrRes ['ID'] = $result;
 				$arrRes ['list'] = $TicketsModel->getAllTicketsForAdmin();
 				echo json_encode ( $arrRes );
 				die ();
-	
+
 			} else {
-	
+
 				$result = DB::table ( 'jb_user_tickets_tbl' ) ->where ( 'TICKET_ID', $data ['ID'] ) ->update (
 						array ( 'TICKET_TYPE' => $data['T_1'],
 								'DOCUMENT_NUMBER' => isset($data['T_2']['name']) ? $data['T_2']['name'] : '',
@@ -7632,7 +7696,7 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-	
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Ticket Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -7644,14 +7708,14 @@ class AdminController extends Controller
 	}
 	public function changeAdminTicketStatus(Request $request) {
 		$TicketsModel = new TicketsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$ticketId = $details ['ticketId'];
 		$flag = $details ['flag'];
-	
-		 
-	
+
+
+
 		if(isset($flag) && $flag == '1'){
 			$status = 'open';
 			$arrRes ['msg'] = 'Ticket open successfully...';
@@ -7659,31 +7723,31 @@ class AdminController extends Controller
 			$status = 'close';
 			$arrRes ['msg'] = 'Ticket close successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_user_tickets_tbl' ) ->where ( 'TICKET_ID', $ticketId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['list'] = $TicketsModel->getAllTicketsForAdmin();
-	
+
 		echo json_encode ( $arrRes );
-	
+
 	}
 	public function getSpecificAdminTicketDetails() {
 		$TicketsModel = new TicketsModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$ticketId = $details ['ticketId'];
-	
+
 		$arrRes ['details'] = $TicketsModel->getSpecificTicketDetail($ticketId);
 		$arrRes ['replies'] = $TicketsModel->getSpecificTicketReplies($ticketId);
 		$arrRes ['images'] = $TicketsModel->getTicketAttachments($ticketId);
-		
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteTicketDetails(){
@@ -7701,27 +7765,27 @@ class AdminController extends Controller
 	public function saveAdminTicketReplyDetail(Request $request) {
 		$TicketsModel = new TicketsModel();
 		$OrderModel = new OrderModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$ticketId = $details ['ticketId'];
 		$ticketReply = $details ['ticketReply'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
-	
-	
+
+
 		if (isset ( $ticketId ) && $ticketId != '') {
-	
+
 			if ($ticketReply == '') {
-	
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = "Can't post empty reply.";
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			$result = DB::table ( 'jb_user_ticket_reply_tbl' )->insertGetId (
 					array ( 'TICKET_ID' => $ticketId,
 							'REPLY_DESCRIPTION' => $ticketReply,
@@ -7732,14 +7796,14 @@ class AdminController extends Controller
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					     ));
-	
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Ticket Reply added successfully.';
 			$arrRes ['ID'] = $result;
 			$arrRes ['replies'] = $TicketsModel->getSpecificTicketReplies($ticketId);
 			echo json_encode ( $arrRes );
 			die ();
-		 
+
 		 }else{
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = "Something went wrong...";
@@ -7747,37 +7811,37 @@ class AdminController extends Controller
 			die ();
 		}
 	}
-	
+
 	public function getAllAdminPaymentslov() {
 		$OrderPaymentModel = new OrderPaymentModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['payments'] = $OrderPaymentModel->getAllOrderPaymentData();
-			
+
 		echo json_encode ( $arrRes );
 	}
 	public function getSpecificAdminPaymentDetail() {
 		$OrderPaymentModel = new OrderPaymentModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$paymentId = $details ['paymentId'];
-	
+
 		$arrRes ['details'] = $OrderPaymentModel->getSpecficOrderPaymentData($paymentId);
-			
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function getAllAdminGivings() {
 		$givingsModel = new GivingModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['givings'] = $givingsModel->getAllAdminGivingsData();
-			
+
 		echo json_encode ( $arrRes );
 	}
 	public function getSpecificAdminGivingDetail() {
@@ -7786,32 +7850,32 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$givingId = $details ['givingId'];
-	
+
 		$arrRes ['details'] = $givingsModel->getSpecificAdminGivingDetailData($givingId);
-			
+
 		echo json_encode ( $arrRes );
 	}
 	public function getAllAdminNewslatterlov() {
 		$FooterSubscriptionModel = new FooterSubscriptionModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-		
+
 		$arrRes ['list'] = $FooterSubscriptionModel->getAllSubscriptionForAdmin();
-			
+
 		echo json_encode ( $arrRes );
 	}
 	public function getAllAdminSnapSelfielov() {
 		$ShadeFinderSelfieModel = new ShadeFinderSelfieModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $ShadeFinderSelfieModel->getAllShadeFinderSelfieForAdmin();
-			
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteSelfieDetails(){
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
@@ -7827,15 +7891,15 @@ class AdminController extends Controller
 
 	public function getAllAdminEmaillov() {
 		$EmailForwardModel = new EmailForwardModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $EmailForwardModel->getAllEmailsData();
-			
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteAdminSentEmail(){
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
@@ -7848,19 +7912,19 @@ class AdminController extends Controller
 
 		echo json_encode ( $arrRes );
 	}
-	
-	
+
+
 	public function deleteCategoryRecord(Request $request) {
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$categoryId = $details ['recordId'];
 		$userId = $details ['userId'];
 
 
 		$result = DB::table('jb_product_tbl')->where('IS_DELETED',0 )->where('CATEGORY_ID', $categoryId)->pluck('NAME');
-		
+
 		if(count($result) > 0){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'This Category is added in Products';
@@ -7870,16 +7934,16 @@ class AdminController extends Controller
 			die();
 
 		}
-		
+
 		$subCatArray = $CategoryModel->getAllSubCategoryIdsWrtCategoryIdCaseDelete($categoryId);
 		$subSubCatArray = $CategoryModel->getAllSubSubCategoryIdsWrtCategoryIdCaseDelete($subCatArray != null ? $subCatArray : array());
-		
+
 		if(isset($subSubCatArray) && count($subSubCatArray) > 0){
 			foreach ($subSubCatArray as $subSubCatArrayList) {
 				DB::table ( 'jb_sub_sub_category_tbl' )->where('SUB_SUB_CATEGORY_ID', $subSubCatArrayList)->delete();
 			}
 		}
-		
+
 		if(isset($subCatArray) && count($subCatArray) > 0){
 			foreach ($subCatArray as $subCatArrayList) {
 				DB::table('jb_sub_category_tbl')->where('SUB_CATEGORY_ID', $subCatArrayList)->delete();
@@ -7889,71 +7953,71 @@ class AdminController extends Controller
 		DB::table ( 'jb_category_tbl' )->where( 'CATEGORY_ID', $categoryId )->delete();
 
 		//  $existCheckSubCategory = $CategoryModel->checkSubCategoryExistWrtCategory($categoryId);
-		
-		
+
+
 		// if($existCheckSubCategory == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Sub Categories exist against this category, kindly remove sub categories then proceed.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
+
 		// $existCheckProduct = $ProductModel->checkProductExistWrtCategoryId($categoryId, '1');
-		
+
 		// if($existCheckProduct == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Products exist against this category, kindly remove products then proceed.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
+
 		// $delete = DB::table ( 'jb_category_tbl' )->where ( 'CATEGORY_ID', $categoryId )->delete ();
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Category deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function deleteSubCategoryRecord(Request $request) {
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$categoryId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$existCheckSubCategory = $CategoryModel->checkSubSubCategoryExistWrtCategory($categoryId);
-	
+
 		if($existCheckSubCategory == true){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Sub Sub Categories exist against this sub category, kindly remove sub sub categories then proceed.';
 			echo json_encode ( $arrRes );
 			die();
 		}
-	
+
 		$existCheckProduct = $ProductModel->checkProductExistWrtCategoryId($categoryId, '2');
-	
+
 		if($existCheckProduct == true){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Products exist against this sub category, kindly remove products then proceed.';
 			echo json_encode ( $arrRes );
 			die();
 		}
-	
+
 		$delete = DB::table ( 'jb_sub_category_tbl' )->where ( 'SUB_CATEGORY_ID', $categoryId )->delete ();
-	
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Sub Category deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
 	public function deleteSubSubCategoryRecord(Request $request) {
 		$CategoryModel = new CategoryModel();
 		$ProductModel = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
-		
+
 
 		$categoryId = $details ['recordId'];
 		$userId = $details ['userId'];
@@ -7968,11 +8032,11 @@ class AdminController extends Controller
 			);
 
 			DB::table('jb_sub_sub_category_tbl')->where( 'SUB_SUB_CATEGORY_ID', $categoryId )->delete();
-	
-			
+
+
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Sub Sub Category deleted successfully...';
-	
+
 			echo json_encode ( $arrRes );
 			die();
 
@@ -7984,7 +8048,7 @@ class AdminController extends Controller
 
 			// dd($result);
 
-			
+
 
 			DB::table ( 'jb_product_tbl' )->where( 'SUB_CATEGORY_ID', $categoryId )->update(
 				array(
@@ -7999,7 +8063,7 @@ class AdminController extends Controller
 
 			$arrRes ['done'] = true;
 			$arrRes ['msg'] = 'Sub Category deleted successfully...';
-	
+
 			echo json_encode ( $arrRes );
 			die();
 
@@ -8008,36 +8072,36 @@ class AdminController extends Controller
 
 // 		$result = DB::table ( 'jb_product_tbl' )->where( 'SUB_SUB_CATEGORY_ID', $categoryId )->get();
 // 		dd($result);
-		
-		
+
+
 		// $existCheckProduct = $ProductModel->checkProductExistWrtCategoryId($categoryId, '3');
 
 
-	
+
 		// if($existCheckProduct == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Products exist against this sub sub category, kindly remove products then proceed.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-	
-		// $delete = 
-	
+
+		// $delete =
+
 		// $arrRes ['done'] = true;
 		// $arrRes ['msg'] = 'Sub Sub Category deleted successfully...';
-	
+
 		// echo json_encode ( $arrRes );
 	}
-	
+
 	public function changeStatusProduct(Request $request) {
 		$ProductModel = new ProductModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$productDetail = $ProductModel->getSpecificProductStatus($recordId);
-	
+
 		if(isset($productDetail['STATUS']) && $productDetail['STATUS'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Product active successfully...';
@@ -8045,34 +8109,34 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Product Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
-	
+
 	}
-	
+
 	public function deleteSpecificProduct(Request $request) {
 		// $ProductModel = new ProductModel();
 		// $OrderModel = new OrderModel();
 		// $SubscriptionModel = new SubscriptionModel();
 		// $UserdashboardModel = new UserdashboardModel();
 		// $BundleProductLineModel = new BundleProductLineModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$productId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		// $existCheckBundle = $BundleProductLineModel->checkProductBundleWrtProductId($productId);
 		$result_jb_bundle_product_line_tbl = DB::table('jb_bundle_product_line_tbl as a')->select('a.*') ->where('a.PRODUCT_ID', $productId) ->get();
-		
+
 		if(sizeof($result_jb_bundle_product_line_tbl) != null){
 			DB::table('jb_bundle_product_line_tbl')->where('PRODUCT_ID', $productId) ->delete();
 		}
@@ -8083,7 +8147,7 @@ class AdminController extends Controller
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
+
 		//$existCheckOrder = $OrderModel->checkOrderProductExistWrtProductId($productId);
 
 		// if($existCheckOrder == true){
@@ -8092,18 +8156,18 @@ class AdminController extends Controller
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
+
 		// $existCheckSubscription = $SubscriptionModel->checkSubscribedProductExistWrtProductId($productId);
-		
+
 		// if($existCheckSubscription == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Subscription exist against this product, system will not able to delete this product, Thanks.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
+
 		//  $existCheckTrendForyou = $UserdashboardModel->checkTrendingForyouExistWrtProductId($productId);
-		
+
 		// if($existCheckTrendForyou == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = "This product is link with Trending / For You section, kindly unlink product then proceed, Thanks.";
@@ -8124,34 +8188,34 @@ class AdminController extends Controller
 
 
 		// $existCheckTodayOffer = $UserdashboardModel->checkTodayOfferExistWrtProductId($productId);
-		
+
 		// if($existCheckTodayOffer == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'This product is link with  Today Offer section, kindly unlink product then proceed, Thanks.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-		
+
 		// $existCheckOnlineExc = $UserdashboardModel->checkOnlineExcExistWrtProductId($productId);
-		
+
 		// if($existCheckOnlineExc == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'This product is link with  Best Seller / Online Exclusive section, kindly unlink product then proceed, Thanks.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-			
+
 		$result_jb_user_home_bestexclusive_tbl = DB::table('jb_user_home_bestexclusive_tbl as a')->select('a.*')
 												->where('a.PRODUCT_ID', $productId)
 												->get();
 
 		if(sizeof($result_jb_user_home_bestexclusive_tbl) != null){
-			
+
 			DB::table('jb_user_home_bestexclusive_tbl')->where('PRODUCT_ID', $productId)->delete();
 		}
 
 		// $productAtt = $ProductModel->getSpecificProductImages($productId);
-		
+
 		DB::table ( 'jb_product_tbl' )->where ( 'PRODUCT_ID', $productId )->update (
 			array ( 'IS_DELETED' => 1,
 					'STATUS' => 'inactive',
@@ -8160,13 +8224,13 @@ class AdminController extends Controller
 		);
 		DB::table ( 'jb_user_wishlist_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
 		// $productImageDelete = DB::table ( 'jb_product_images_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
-		
+
 		// if(isset($productAtt) && !empty($productAtt)){
 		// 	foreach ($productAtt as $value){
 		// 		unlink($value['path']);
 		// 	}
 		// }
-		
+
 		// $productVideoDelete = DB::table ( 'jb_product_video_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
 		// $productUsesDelete = DB::table ( 'jb_product_video_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
 		// $productIngredientDelete = DB::table ( 'jb_product_ingredient_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
@@ -8174,23 +8238,23 @@ class AdminController extends Controller
 		// $productShopingCartDelete = DB::table ( 'jb_shopping_cart_detail_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
 		// $productReviewsDelete = DB::table ( 'jb_reviews_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
 		// $productQuestionDelete = DB::table ( 'jb_questions_tbl' )->where ( 'PRODUCT_ID', $productId )->delete ();
-		
-	
+
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Product deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
-	
+
+
 	public function changeStatusBundle(Request $request) {
 		$BundleProductModel = new BundleProductModel();
 		$BundleLine = new BundleProductLineModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$bundleDetail = $BundleProductModel->getSpecificBundleStatus($recordId);
 		$checkSingleBundleProducts = $BundleLine->getAllBundleProductLines($recordId);
 
@@ -8228,11 +8292,11 @@ class AdminController extends Controller
 				);
 				$arrRes ['done'] = true;
 		}
-	
+
 		echo json_encode ( $arrRes );
-		
+
 	}
-	
+
 	public function deleteSpecificBundle(Request $request) {
 		// $ProductModel = new ProductModel();
 		// $OrderModel = new OrderModel();
@@ -8240,119 +8304,119 @@ class AdminController extends Controller
 		// $UserdashboardModel = new UserdashboardModel();
 		// $BundleProductModel = new BundleProductModel();
 		// $BundleProductLineModel = new BundleProductLineModel();
-	
+
 		$details = $_REQUEST ['details'];
-		
+
 		$bundleId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
-		
-	
+
+
+
 		// $existCheckOrder = $OrderModel->checkOrderBundleExistWrtBundleId($bundleId);
-	
+
 		// if($existCheckOrder == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Order exist against this bundle, system will not able to delete this bundle, Thanks.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-	
+
 		// $existCheckSubscription = $SubscriptionModel->checkSubscribedBundleExistWrtBundleId($bundleId);
-	
+
 		// if($existCheckSubscription == true){
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Subscription exist against this bundle, system will not able to delete this bundle, Thanks.';
 		// 	echo json_encode ( $arrRes );
 		// 	die();
 		// }
-	
-		
-		
+
+
+
 		// $bundleDetail = $BundleProductModel->getSpecificBundleProductData($bundleId);
-	
-		// $productDelete = 
+
+		// $productDelete =
 		DB::table ( 'jb_bundle_product_tbl' )->where ( 'BUNDLE_ID', $bundleId )->update (
 			array(
 				'IS_DELETED' => 1,
 				'STATUS' => 'inactive'
-			
+
 			)
 		);
 		// $productVideoDelete = DB::table ( 'jb_bundle_product_line_tbl' )->where ( 'BUNDLE_ID', $bundleId )->delete ();
-		
+
 		// if(isset($bundleDetail['path']) && !empty($bundleDetail['path'])){
 		// 	unlink($bundleDetail['path']);
 		// }
-	
-	
+
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Bundle deleted successfully...';
-	
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function getAllAdminEmailConfiglov() {
 		$EmailConfigModel = new EmailConfigModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $EmailConfigModel->getAllEmailConfigData();
-			
+
 		echo json_encode ( $arrRes );
 	}
 	public function editEmailConfigDetails() {
 		$EmailConfigModel = new EmailConfigModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$emailConfigId = $details ['recordId'];
-	
+
 		$arrRes ['detail'] = $EmailConfigModel->getSpecificEmailConfigDetail($emailConfigId);
-			
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function saveEmailConfigDetails() {
 		$EmailConfigModel = new EmailConfigModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$data = $details ['email'];
-	
-		
+
+
 		if (isset ( $data ) && ! empty ( $data )) {
-		
+
 			if ($data ['A_1'] == '') {
-		
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['A_1']) > 100) {
-			
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title must be less then 100 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['A_2'] == '') {
-			
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subject is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if (strlen($data ['A_2']) > 100) {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Subject must be less then 100 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
 			if ($data ['A_3'] == '') {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'From Email is required.';
 				echo json_encode ( $arrRes );
@@ -8367,30 +8431,30 @@ class AdminController extends Controller
 				}
 			}
 			if (strlen($data ['A_3']) > 100) {
-					
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'From Email must be less then 100 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			
-		
-		
+
+
+
 			if ($data ['ID'] == '') {
-	
+
 			} else {
-		
+
 				$result = DB::table ( 'sys_email_config_tbl' ) ->where ( 'EMAIL_CONFIG_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data['A_1'],
 								'SUBJECT' => $data['A_2'],
 								'FROM_EMAIL' => $data['A_3'],
 								'MESSAGE' => base64_encode($data['A_4']),
-								
+
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
-		
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Email Settings Updated Successfully';
 				$arrRes ['ID'] = $data ['ID'];
@@ -8400,32 +8464,32 @@ class AdminController extends Controller
 		}else{
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Something went wrong';
-				
+
 			echo json_encode ( $arrRes );
 		}
-		
+
 	}
-	
+
 	public function getAllAdminWebsiteUserslov() {
 		$UserModel = new UserModel();
-	
+
 		// $details = $_REQUEST ['details'];
 		// $userId = $details ['userId'];
-	
+
 		$arrRes ['list'] = $UserModel->getAllWebsiteUserData();
-			
+
 		echo json_encode ( $arrRes );
 	}
-	
+
 	public function changeStatusWebsiteUser(Request $request) {
 		$UserModel = new UserModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$userDetail = $UserModel->getSpecificUserDetail($recordId);
-	
+
 		if(isset($userDetail['status']) && $userDetail['status'] != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'User Active successfully...';
@@ -8433,28 +8497,28 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'User Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $recordId ) ->update (
 				array ( 'USER_STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
-	
+
 	}
-	
+
 	public function getAllAdminProfilelov() {
 		$UserModel = new UserModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['detail'] = $UserModel->getSpecificUserDetail($userId);
-			
+
 		echo json_encode ( $arrRes );
 	}
 
@@ -8463,20 +8527,20 @@ class AdminController extends Controller
 
 		$details = $_REQUEST ['details'];
    		$orderLineId = $details ['orderLineId'];
-		
+
 		$arrRes ['shadename'] = $OrderDetailModel->getOrderLineProductShadesNameDetail($orderLineId);
-		
+
 		echo json_encode ( $arrRes );
-		
+
 	}
-	
+
 	public function updateAdminProfile(Request $r){
 		$UserModel=new UserModel();
-	
+
 		$detail=$_REQUEST['details'];
 		$userId=$detail['userId'];
 		$data=$detail['user'];
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
 			if ($data['A_1'] == '') {
 				$arrRes ['done'] = false;
@@ -8504,9 +8568,9 @@ class AdminController extends Controller
 					die ();
 				}
 			}
-	
+
 			$userdetails = $UserModel->getspecificUserByEmail1($data ['A_3'],$userId);
-			
+
 			if(!empty($userdetails)){
 				$arrRes['done'] = false;
 				$arrRes['msg'] = 'Email Address already registered';
@@ -8526,33 +8590,33 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $data ['ID'] ) ->update (
 					array ( 'FIRST_NAME' => $data ['A_1'],
 							'LAST_NAME' => $data ['A_2'],
 							'EMAIL' => $data ['A_3'],
 							'PHONE_NUMBER' => $data ['A_4'],
-	
+
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
 					);
-	
+
 			$arrRes['done'] = true;
 			$arrRes['msg'] = 'Admin profile updated successfully...';
 			echo json_encode ( $arrRes );
 			die ();
-	
+
 		}
 	}
-	
+
 	public function updateAdminPassword(Request $r){
 		$UserModel=new UserModel();
-	
+
 		$detail=$_REQUEST['details'];
 		$userId=$detail['userId'];
 		$data=$detail['password'];
-	
+
 		if (isset ( $data ) && ! empty ( $data )) {
 			if ($data['C_1'] == '') {
 				$arrRes ['done'] = false;
@@ -8560,9 +8624,9 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 			$userdetails = $UserModel->getspecificUserPasswordByUserId($userId);
-	
+
 			if($userdetails['ENCRYPTED_PASSWORD'] != $data['C_1']){
 				$arrRes['done'] = false;
 				$arrRes['msg'] = 'Current Password is incorrect.';
@@ -8593,37 +8657,37 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
-	
+
+
 			$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $userId ) ->update (
 					array ( 'ENCRYPTED_PASSWORD' => $data ['C_2'],
-	
+
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
 					);
-	
+
 			$arrRes['done'] = true;
 			$arrRes['msg'] = 'Admin Password is updated...';
 			echo json_encode ( $arrRes );
 			die ();
-	
+
 		}
 	}
 	public function getSpecificWebsiteUserDetails() {
 		$UserModel = new UserModel();
-	
+
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-	
+
 		$arrRes ['detail'] = $UserModel->getSpecificUserDetail($recordId);
-			
+
 		echo json_encode ( $arrRes );
 	}
 
 	public function getAllRoutineTypes(){
-	
+
 		$TypeName =new TypeName();
 
 		$results['getAllRoutineType']=$TypeName->getAllRoutineTypes();
@@ -8655,7 +8719,7 @@ class AdminController extends Controller
 	}
 
 	public function getAllAdminUserslov(Request $request){
-		
+
 		$User = new User();
 
 		$arrRes['allAdminUsers'] = $User->getallAdminUsers();
@@ -8670,7 +8734,7 @@ class AdminController extends Controller
 			$UserMenuControl = new UserMenuControlModel();
 
 			//validating the Input Fields
-			
+
 			$checkduplicatephone = $UserMenuControl->checkPhoneNumberExists($details['user']['PhoneNumber'],$userid);
 			$checkduplicateemail = $UserMenuControl->checkEmailAddressExists($details['user']['EmailAddress'],$userid);
 
@@ -8689,10 +8753,10 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 
 			if ($details['user']['FirstName'] == '') {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'First Name is required.';
 				echo json_encode ( $arrRes );
@@ -8700,7 +8764,7 @@ class AdminController extends Controller
 			}
 
 			if ($details['user']['LastName'] == '') {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Last Name is required.';
 				echo json_encode ( $arrRes );
@@ -8708,7 +8772,7 @@ class AdminController extends Controller
 			}
 
 			if ($details['user']['UserRole'] == '') {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'User Role is required.';
 				echo json_encode ( $arrRes );
@@ -8716,7 +8780,7 @@ class AdminController extends Controller
 			}
 
 			if ($details['user']['PhoneNumber'] == '') {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Phone Number is required.';
 				echo json_encode ( $arrRes );
@@ -8724,7 +8788,7 @@ class AdminController extends Controller
 			}
 
 			if ($details['user']['EmailAddress'] == '') {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Email Address is required.';
 				echo json_encode ( $arrRes );
@@ -8732,7 +8796,7 @@ class AdminController extends Controller
 			}
 
 			if ($details['user']['Password'] == '') {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Password is required.';
 				echo json_encode ( $arrRes );
@@ -8740,7 +8804,7 @@ class AdminController extends Controller
 			}
 
 			if (strlen($details['user']['Password']) < 8) {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Password must be equal and greater then 8 characters';
 				echo json_encode ( $arrRes );
@@ -8748,7 +8812,7 @@ class AdminController extends Controller
 			}
 
 			if ($details['user']['ConfirmPassword'] == '') {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Confirm Password is required.';
 				echo json_encode ( $arrRes );
@@ -8756,7 +8820,7 @@ class AdminController extends Controller
 			}
 
 			if ($details['user']['ConfirmPassword'] != $details['user']['Password']) {
-						
+
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Passwords do not match.';
 				echo json_encode ( $arrRes );
@@ -8799,7 +8863,7 @@ class AdminController extends Controller
             $enable = 'inactive';
         }
 
-        $record = array ( 
+        $record = array (
             'FIRST_NAME' => $details['user']['FirstName'] ,
             'LAST_NAME' => $details['user']['LastName'] ,
             'USER_ROLE' => $details['user']['UserRole'],
@@ -8814,7 +8878,7 @@ class AdminController extends Controller
             'CREATED_ON' => date ( 'Y-m-d H:i:s' )
         );
 
-		//Inserting the Record 
+		//Inserting the Record
 	    $result = DB::table ( 'fnd_user_tbl' )->insertGetId( $record );
         $arrRes ['id'] = $result;
 		$arrRes['done'] = true;
@@ -8847,7 +8911,7 @@ class AdminController extends Controller
 		$userId = $details ['userId'];
 
 		$AdminDetail = $UserMenuControl->getSpecificAdminStatus($recordId);
-	
+
 		if($AdminDetail->USER_STATUS != 'active'){
 			$status = 'active';
 			$arrRes ['msg'] = 'Admin active successfully...';
@@ -8855,29 +8919,29 @@ class AdminController extends Controller
 			$status = 'inactive';
 			$arrRes ['msg'] = 'Admin Inactive successfully...';
 		}
-	
+
 		$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $recordId ) ->update (
 				array ( 'USER_STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 				)
 				);
-	
+
 		$arrRes ['done'] = true;
-	
+
 		echo json_encode ( $arrRes );
 
 	}
 
 	public function editAdminUser(Request $request){
-		
+
 		$UserMenuControl = new UserMenuControlModel();
 		$userId = $_REQUEST ['details'];
 
 		$arrRes['AdminDetail'] = $UserMenuControl->getAdminUserDetails($userId);
 
 		$arrRes['getAdminControlOptions'] = $UserMenuControl->getAdminControlOptions($userId);
-	
+
 		echo json_encode ($arrRes);
 
 	}
@@ -8899,16 +8963,16 @@ class AdminController extends Controller
 	// 					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 	// 			)
 	// 			);
-	
+
 	// 	$arrRes ['done'] = true;
-	
+
 	// 	echo json_encode ( $result );
 	// }
 
 	public function getAllNavLinksLov(Request $request){
 
 		$UserMenuControl = new UserMenuControlModel();
-		
+
 		$arrRes['allNavLinks'] = $UserMenuControl->getAllNavLinks();
 
 		echo json_encode($arrRes);
@@ -8925,7 +8989,7 @@ class AdminController extends Controller
 		//Delete if the user exists in fnd_user_control_tbl
 		$status = $UserMenuControl->deleteControlledUser($userId);
 
-		//Granting Access to User		
+		//Granting Access to User
 		// print_r('<pre>');
 
 		// print_r($optionsSelected);
@@ -8936,7 +9000,7 @@ class AdminController extends Controller
 
 			$result = DB::table('fnd_user_menu_control_tbl')
 					->insert (
-					array (  
+					array (
 						 'USER_ID' => $userId,
 						 'MENU_ID' => $grantAccessPermission[$i]->MENU_ID,
 						 'SEQUENCE_NUMBER' => $grantAccessPermission[$i]->SEQUENCE_NUMBER ,
@@ -8952,7 +9016,7 @@ class AdminController extends Controller
 
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Menu Control Assigned successfully...';
-		
+
 		echo json_encode ( $arrRes );
 	}
 
@@ -8961,8 +9025,8 @@ class AdminController extends Controller
 		$UserMenuControl = new UserdashboardModel();
 		$res=$UserMenuControl->checkUserAccessStatus($user_id,$path);
 		return $res;
-							
+
 	}
-	
-	
+
+
 }

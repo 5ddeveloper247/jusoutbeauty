@@ -7,10 +7,10 @@ var site = '<?php echo session('site');?>';
         <!--**********************************
             Content body start
         ***********************************-->
-   	     
+
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid pt-0">
-                
+
                 <!-- row -->
 
 
@@ -28,7 +28,7 @@ var site = '<?php echo session('site');?>';
 					</div>
 				</div>
 				<div class="row">
-                    
+
 					<div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -52,8 +52,8 @@ var site = '<?php echo session('site');?>';
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr ng-repeat="row in displayCollectionCategory">
+                                        <tbody id="tableContents">
+                                            <tr ng-repeat="row in displayCollectionCategory" class="row1" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.CATEGORY_ID}}">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.NAME}}</td>
                                                 <!-- <td>Category</td> -->
@@ -79,10 +79,10 @@ var site = '<?php echo session('site');?>';
 															<a class="dropdown-item" href="javascript:;" ng-click="deleteCategoryModel(@{{row.CATEGORY_ID}});">Delete</a>
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
-                                            
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -91,7 +91,7 @@ var site = '<?php echo session('site');?>';
                     </div>
 				</div>
             </div>
-            
+
             <div class="container-fluid pt-0">
                	<div class="row">
 					<div class="col-12">
@@ -99,7 +99,7 @@ var site = '<?php echo session('site');?>';
 					</div>
 				</div>
 				<div class="row">
-                    
+
 					<div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -110,7 +110,7 @@ var site = '<?php echo session('site');?>';
                                     <table id="subCategoryTable" class="display min-w850">
                                         <thead>
                                             <tr>
-                                               
+
                                                 <th>ID</th>
                                                 <th>Product Sub Category</th>
                                                 <th>Product Category</th>
@@ -118,9 +118,9 @@ var site = '<?php echo session('site');?>';
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            
-                                            <tr ng-repeat="row in displayCollectionSubCategory">
+                                        <tbody id="subCategoryTableContents">
+
+                                            <tr ng-repeat="row in displayCollectionSubCategory" class="row2" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.SUB_CATEGORY_ID}}">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.NAME}}</td>
 												<td>@{{ row.CATEGORY_NAME}}</td>
@@ -148,7 +148,7 @@ var site = '<?php echo session('site');?>';
 													</div>
 												</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -164,7 +164,7 @@ var site = '<?php echo session('site');?>';
 					</div>
 				</div>
 				<div class="row">
-                    
+
 					<div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -182,9 +182,9 @@ var site = '<?php echo session('site');?>';
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            
-                                            <tr ng-repeat="row in displayCollectionSubSubCategory">
+                                        <tbody id="subSubCategoryTableContents">
+
+                                            <tr ng-repeat="row in displayCollectionSubSubCategory" class="row3" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.SUB_SUB_CATEGORY_ID}}">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.NAME}}</td>
 												<td>@{{row.SUB_CATEGORY_NAME}}</td>
@@ -212,7 +212,7 @@ var site = '<?php echo session('site');?>';
 													</div>
 												</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -221,7 +221,7 @@ var site = '<?php echo session('site');?>';
                     </div>
 				</div>
             </div>
-            
+
 			<div class="modal fade" id="subSubCategoryModal">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
@@ -289,7 +289,7 @@ var site = '<?php echo session('site');?>';
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="modal fade" id="categoryModal">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
@@ -300,7 +300,7 @@ var site = '<?php echo session('site');?>';
 							</button>
 						</div>
 						<div class="modal-body">
-							
+
 							<div class="row">
 							   <div class="col-12">
 							     <label><b>Enter Category Name<span class="required-field">*</span></b></label>
@@ -315,7 +315,7 @@ var site = '<?php echo session('site');?>';
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="modal fade" id="alertDel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content align-center-verticle">
@@ -336,7 +336,7 @@ var site = '<?php echo session('site');?>';
 			<div class="modal fade" id="alertDelSubSubCate">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
                         </div>
@@ -352,7 +352,7 @@ var site = '<?php echo session('site');?>';
 			<div class="modal fade" id="alertDelCate">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
                         </div>
@@ -368,7 +368,7 @@ var site = '<?php echo session('site');?>';
 			<div class="modal fade" id="alertDelSubCate">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
                         </div>
@@ -384,7 +384,7 @@ var site = '<?php echo session('site');?>';
 			<div class="modal fade" id="alertDelWithproductName">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">This Category Has Products </h4>
 						   <p style="text-align: center;"> <a style="color: #8743DF;" href="" ng-click= "clickToSee()">Click Here</a> to See Product Name</p>
@@ -397,10 +397,10 @@ var site = '<?php echo session('site');?>';
 								<tr ng-repeat="row in displayCollectionProductsName track by $index">
 								   <td style="padding: 10px;">@{{ row }}</td>
 								</tr>
-								
-								
+
+
 							 </table>
-							
+
 						   </div>
                         </div>
 						<div class="modal-footer">
@@ -411,9 +411,9 @@ var site = '<?php echo session('site');?>';
 					</div>
 				</div>
 			</div>
-			
+
         </div>
-		
+
 		<!--**********************************
             Content body end
         ***********************************-->
@@ -422,20 +422,22 @@ var site = '<?php echo session('site');?>';
     <!--**********************************
             Footer start
         ***********************************-->
-        
+
 	@include('admin.admin-footer');
-	
+
+	<script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="{{ url('/assets-admin') }}/customjs/script_admincategory.js?v={{time()}}"></script>
-	
+
 	<script type="text/javascript">
     	function addSubCategory(){
           	$('#exampleModalCenter').modal("show");
-            
+
        	}
        	function addCategory(){
           	$('#exampleModalCenter2').modal("show");
        	}
 
 //        	var table = $('#categoryTable').DataTable();
-     
+
     </script>

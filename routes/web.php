@@ -114,7 +114,7 @@ Route::get('/customer-help', [HomeController::class, 'informationPage']);
 Route::post('/getQuickViewProductDetails', [HomeController::class, 'getQuickViewProductDetails']);
 
 Route::group(['middleware' => ['UserAuth']], function(){
-	
+
 	Route::get('/wishlist', [HomeController::class, 'wishlist']);
 	Route::get('/userDashboard', [HomeController::class, 'userDashboard']);
 	Route::get('/userProfile', [HomeController::class, 'userProfile']);
@@ -122,13 +122,13 @@ Route::group(['middleware' => ['UserAuth']], function(){
 	Route::get('/userOrders', [HomeController::class, 'userOrders']);
 	Route::get('/userTickets', [HomeController::class, 'userTickets']);
 	Route::get('/userSubscriptions', [HomeController::class, 'userSubscriptions']);
-	
 
-	
+
+
 	Route::post('/getAllWishlistLov', [HomeController::class, 'getAllWishlistLov']);
-	
+
 	Route::post('/deleteWishlistRecord', [HomeController::class, 'deleteWishlistRecord']);
-	
+
 	Route::post('/getAllUserProfileLov', [HomeController::class, 'getAllUserProfileLov']);
 	Route::post('/updateUserProfile', [HomeController::class, 'updateUserProfile']);
 	Route::post('/updateUserPassword', [HomeController::class, 'updateUserPassword']);
@@ -137,7 +137,7 @@ Route::group(['middleware' => ['UserAuth']], function(){
 	Route::post('/getSpecificUserShadeNameDetails', [HomeController::class, 'getSpecificUserShadeNameDetails']);
 	Route::post('/getSpecificUserShadeNameDetailsUserCheckout', [HomeController::class, 'getSpecificUserShadeNameDetailsUserCheckout']);
 	Route::post('/getProductShadesRightSideBar', [HomeController::class, 'getProductShadesRightSideBar']);
-	
+
 	Route::post('/searchShipmentUserOrders', [HomeController::class, 'searchShipmentUserOrders']);
 	Route::post('/getAllUserTicketslov', [HomeController::class, 'getAllUserTicketslov']);
 	Route::post('/saveTicketDetails', [HomeController::class, 'saveTicketDetails']);
@@ -146,7 +146,7 @@ Route::group(['middleware' => ['UserAuth']], function(){
 	Route::post('/getAllUserSubscriptionslov', [HomeController::class, 'getAllUserSubscriptionslov']);
 	Route::post('/getSpecificUserSubscriptionDetail', [HomeController::class, 'getSpecificUserSubscriptionDetail']);
 	Route::post('/updateSpecificUserSubscriptionStatus', [HomeController::class, 'updateSpecificUserSubscriptionStatus']);
-	
+
 	Route::post('/changeTicketStatus', [HomeController::class, 'changeTicketStatus']);
 	Route::get('/success-message', [HomeController::class, 'successPage']);
 	Route::get('/success-message-sub', [HomeController::class, 'successPageSub']);
@@ -198,7 +198,7 @@ Route::post('/deleteTicketAttachment', [HomeController::class, 'deleteTicketAtta
 Route::post('/uploadTicketAttachment', [AttachmentController::class, 'uploadTicketAttachment']);
 
 
- 
+
 //admin routs
 
 Route::post('/get-Admin-Footer-Details', [AdminController::class, 'displaySocialData']);
@@ -240,6 +240,10 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/updateSubSubCategoriesWrtSubCategoryQuickAdd',[AdminController::class,'updateSubSubCategoriesWrtSubCategoryQuickAdd']);
 	Route::post('/updateProductOrder',[AdminController::class,'updateProductOrder']);
 
+    Route::post('/updateCategoryOrder',[AdminController::class,'updateCategoryOrder']);
+    Route::post('/updateSubCategoryOrder',[AdminController::class,'updateSubCategoryOrder']);
+    Route::post('/updateSubSubCategoryOrder',[AdminController::class,'updateSubSubCategoryOrder']);
+
 	//for quick add product end
 	Route::post('/getAllAdminProductSnapSelfielov', [AdminController::class, 'getAllAdminProductSnapSelfielov']);
 	Route::post('/ChangeAdminProductSnapSelfieStatus', [AdminController::class, 'ChangeAdminProductSnapSelfieStatus']);
@@ -280,9 +284,9 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/shippedorders', [AdminController::class, 'shippedorders']);
 	Route::get('/newsLatters', [AdminController::class, 'newsLatters']);
 	Route::get('/snapSelfie', [AdminController::class, 'snapSelfie']);
-	
-	
-	
+
+
+
 	Route::get('/order-detail', [AdminController::class, 'orderDetail']);
 	Route::get('/apis', [AdminController::class, 'apis']);
 	Route::get('/add-api', [AdminController::class, 'addApi']);
@@ -313,23 +317,23 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/add-allsub', [AdminController::class, 'addAllsub']);
 	Route::get('/user-subscriptions', [AdminController::class, 'userSubscriptions']);
 	Route::get('/view-bundles', [AdminController::class, 'viewBundles']);
-	
+
 	Route::get('/user-Tickets', [AdminController::class, 'adminUserTickets']);
-	
+
 	// =============== admin ajax routes =================
 	Route::post('/getAllAdminCategorylov', [AdminController::class, 'getAllAdminCategorylov']);
 	Route::post('/saveAdminCategory', [AdminController::class, 'saveAdminCategory']);
 	Route::post('/editAdminCategory', [AdminController::class, 'editAdminCategory']);
 	Route::post('/changeStatusCategory', [AdminController::class, 'changeStatusCategory']);
-	
+
 	Route::post('/saveAdminSubCategory', [AdminController::class, 'saveAdminSubCategory']);
 	Route::post('/editAdminSubCategory', [AdminController::class, 'editAdminSubCategory']);
 	Route::post('/changeStatusSubCategory', [AdminController::class, 'changeStatusSubCategory']);
-	
+
 	Route::post('/saveAdminSubSubCategory', [AdminController::class, 'saveAdminSubSubCategory']);
 	Route::post('/editAdminSubSubCategory', [AdminController::class, 'editAdminSubSubCategory']);
 	Route::post('/changeStatusSubSubCategory', [AdminController::class, 'changeStatusSubSubCategory']);
-	
+
 	Route::post('/getAllAdminIngredientlov', [AdminController::class, 'getAllAdminIngredientlov']);
 	Route::post('/getAllAdminFeatureslov', [AdminController::class, 'getAllAdminFeatureslov']);
 
@@ -352,8 +356,8 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/uploadFeatureAttachment', [AttachmentController::class, 'uploadFeatureAttachment']);
 	Route::post('/uploadRoutineAttachment', [AttachmentController::class, 'uploadRoutineAttachment']);
 
-	
-	// Blogs Section 
+
+	// Blogs Section
 	Route::post('/getAllAdminBloglov', [AdminController::class, 'getAllAdminBloglov']);
 	Route::post('/saveAdminBlogs', [AdminController::class, 'saveAdminBlogs']);
 	Route::post('/editAdminBlog', [AdminController::class, 'editAdminBlog']);
@@ -367,7 +371,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	//Rooutines Routes
 	Route::post('/add_routine_type_name', [AdminController::class, 'add_routine_type_name']);
 	Route::post('/routine_type_name_edit', [AdminController::class, 'routine_type_name_edit']);
-	
+
 	Route::post('/addstep_routine', [AdminController::class, 'addstep_routine']);
 	Route::post('/checksteps', [AdminController::class, 'checksteps']);
 	Route::post('/getsteps', [AdminController::class, 'getsteps']);
@@ -393,25 +397,25 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/deleteRoutineTypeRecord', [AdminController::class, 'deleteRoutineTypeRecord']);
 	Route::post('/changeStatusRoutineType', [AdminController::class, 'changeStatusRoutineType']);
 
-	
+
 	// Route::post('/r', [AdminController::class, 'deleteRoutineTypeRecord']);
 
-	
+
 	Route::post('/getAllAdminShadeslov', [AdminController::class, 'getAllAdminShadeslov']);
 	Route::post('/saveAdminShades', [AdminController::class, 'saveAdminShades']);
 	Route::post('/editAdminShade', [AdminController::class, 'editAdminShade']);
 	Route::post('/changeStatusBlogs', [AdminController::class, 'changeStatusBlogs']);
 	Route::post('/saveSingleAdminBlog', [AdminController::class, 'saveSingleAdminBlog']);
 	Route::post('/deleteBlogAttachment', [AdminController::class, 'deleteBlogAttachment']);
-	
-	
+
+
 	Route::post('/changeStatusShade', [AdminController::class, 'changeStatusShade']);
 	Route::post('/markPrimaryShadeAttachment', [AdminController::class, 'markPrimaryShadeAttachment']);
 	Route::post('/deleteShadeAttachment', [AdminController::class, 'deleteShadeAttachment']);
 	Route::post('/deleteShade', [AdminController::class, 'deleteShade']);
 	Route::post('/uploadShadesAttachment', [AttachmentController::class, 'uploadShadesAttachment']);
-	
-	
+
+
 	Route::post('/getAllAdminProductlov', [AdminController::class, 'getAllAdminProductlov']);
 	Route::post('/getSubCategoriesWrtCategory', [AdminController::class, 'getSubCategoriesWrtCategory']);
 	Route::post('/getSubCategoriesWrtCategory1', [AdminController::class, 'getSubCategoriesWrtCategory1']);
@@ -441,7 +445,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/saveAdminProductOtherInfo', [AdminController::class, 'saveAdminProductOtherInfo']);
 	Route::post('/deleteClinicalNoteImage', [AdminController::class, 'deleteClinicalNoteImage']);
 	Route::post('/markPrimaryClinicalNoteImage', [AdminController::class, 'markPrimaryClinicalNoteImage']);
-	
+
 	Route::post('/getAllAdminShadeFinderlov', [AdminController::class, 'getAllAdminShadeFinderlov']);
 	Route::post('/saveAdminShadeFinderOptionInfo', [AdminController::class, 'saveAdminShadeFinderOptionInfo']);
 	Route::post('/saveAdminShadeFinderLevel1Info', [AdminController::class, 'saveAdminShadeFinderLevel1Info']);
@@ -459,7 +463,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/saveAdminShadeFinderLevel3TypeInfo', [AdminController::class, 'saveAdminShadeFinderLevel3TypeInfo']);
 	Route::post('/editAdminShadeFinderLevel3Type', [AdminController::class, 'editAdminShadeFinderLevel3Type']);
 	Route::post('/deleteShadeFinderLevel3Type', [AdminController::class, 'deleteShadeFinderLevel3Type']);
-	
+
 	Route::post('/getAllAdminOrderslov', [AdminController::class, 'getAllAdminOrderslov']);
 	Route::post('/getSpecificOrderDetails', [AdminController::class, 'getSpecificOrderDetails']);
 	Route::post('/orderStatusShipmentConfirm', [AdminController::class, 'orderStatusShipmentConfirm']);
@@ -467,35 +471,35 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/addOrderShipmentDetail', [AdminController::class, 'addOrderShipmentDetail']);
 	Route::post('/shipmentStatusUpdate', [AdminController::class, 'shipmentStatusUpdate']);
 	Route::post('/searchShipmentOrders', [AdminController::class, 'searchShipmentOrders']);
-	
-	
+
+
 	Route::post('/getAllAdminProductBundlelov', [AdminController::class, 'getAllAdminProductBundlelov']);
 	Route::post('/saveAdminBundleProductBasicInfo', [AdminController::class, 'saveAdminBundleProductBasicInfo']);
 	Route::post('/editAdminBundleProduct', [AdminController::class, 'editAdminBundleProduct']);
 	Route::post('/deleteBundleProductImage', [AdminController::class, 'deleteBundleProductImage']);
 	Route::post('/saveAdminBundleProductLine', [AdminController::class, 'saveAdminBundleProductLine']);
 	Route::post('/deleteBundleProductLine', [AdminController::class, 'deleteBundleProductLine']);
-	
-	
+
+
 	Route::post('/getAllAdminReviewslov', [AdminController::class, 'getAllAdminReviewslov']);
 	Route::post('/deleteReviewDetails', [AdminController::class, 'deleteReviewDetails']);
 	Route::post('/updateReviewStatus', [AdminController::class, 'updateReviewStatus']);
 	Route::post('/updateReviewOnSiteStatus', [AdminController::class, 'updateReviewOnSiteStatus']);
 	Route::post('/getSpecificReviewDetails', [AdminController::class, 'getSpecificReviewDetails']);
-	
+
 	Route::post('/getAllAdminQuestionslov', [AdminController::class, 'getAllAdminQuestionslov']);
 	Route::post('/updateQuestionStatus', [AdminController::class, 'updateQuestionStatus']);
 	Route::post('/saveQuestionAnswer', [AdminController::class, 'saveQuestionAnswer']);
 	Route::post('/deleteQuestionReply', [AdminController::class, 'deleteQuestionReply']);
-	
-	
+
+
 	Route::post('/getAllAdminSubscriptionlov', [AdminController::class, 'getAllAdminSubscriptionlov']);
 	Route::post('/saveAdminSubscription', [AdminController::class, 'saveAdminSubscription']);
 	Route::post('/editAdminSubscription', [AdminController::class, 'editAdminSubscription']);
 	Route::post('/deleteAdminSubscription', [AdminController::class, 'deleteAdminSubscription']);
 	Route::post('/changeStatusSubscription', [AdminController::class, 'changeStatusSubscription']);
-	
-	
+
+
 	Route::post('/getAllAdminHomeUserlov', [AdminController::class, 'getAllAdminHomeUserlov']);
 	Route::post('/saveAdminHomeUserPageBanner', [AdminController::class, 'saveAdminHomeUserPageBanner']);
 	Route::post('/saveAdminHomeUserBestExc', [AdminController::class, 'saveAdminHomeUserBestExc']);
@@ -507,19 +511,19 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/saveTodayofferDetails', [AdminController::class, 'saveTodayofferDetails']);
 	Route::post('/editOfferRecord', [AdminController::class, 'editOfferRecord']);
 	Route::post('/deleteOfferRecord', [AdminController::class, 'deleteOfferRecord']);
-	
-	
+
+
 	Route::post('/getAllAdminUserSubscriptionslov', [AdminController::class, 'getAllAdminUserSubscriptionslov']);
 	Route::post('/getSpecificAdminUserSubscriptionDetail', [AdminController::class, 'getSpecificAdminUserSubscriptionDetail']);
-	
+
 	Route::post('/getAllAdminUserTicketslov', [AdminController::class, 'getAllAdminUserTicketslov']);
 	Route::post('/saveAdminTicketDetails', [AdminController::class, 'saveAdminTicketDetails']);
 	Route::post('/changeAdminTicketStatus', [AdminController::class, 'changeAdminTicketStatus']);
 	Route::post('/getSpecificAdminTicketDetails', [AdminController::class, 'getSpecificAdminTicketDetails']);
 	Route::post('/deleteTicketDetails', [AdminController::class, 'deleteTicketDetails']);
 	Route::post('/saveAdminTicketReplyDetail', [AdminController::class, 'saveAdminTicketReplyDetail']);
-	
-	
+
+
 	Route::post('/getAllAdminPaymentslov', [AdminController::class, 'getAllAdminPaymentslov']);
 	Route::post('/getSpecificAdminPaymentDetail', [AdminController::class, 'getSpecificAdminPaymentDetail']);
 	Route::post('/getAllAdminNewslatterlov', [AdminController::class, 'getAllAdminNewslatterlov']);
@@ -527,7 +531,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/deleteSelfieDetails', [AdminController::class, 'deleteSelfieDetails']);
 	Route::post('/getAllAdminEmaillov', [AdminController::class, 'getAllAdminEmaillov']);
 	Route::post('/deleteAdminSentEmail', [AdminController::class, 'deleteAdminSentEmail']);
-	
+
 	Route::post('/deleteCategoryRecord', [AdminController::class, 'deleteCategoryRecord']);
 	Route::post('/deleteSubCategoryRecord', [AdminController::class, 'deleteSubCategoryRecord']);
 	Route::post('/deleteSubSubCategoryRecord', [AdminController::class, 'deleteSubSubCategoryRecord']);
@@ -544,34 +548,34 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/updateAdminProfile', [AdminController::class, 'updateAdminProfile']);
 	Route::post('/updateAdminPassword', [AdminController::class, 'updateAdminPassword']);
 	Route::post('/getSpecificWebsiteUserDetails', [AdminController::class, 'getSpecificWebsiteUserDetails']);
-	
+
 	Route::post('/getSpecificUserShadeNameDetailsAdmin', [AdminController::class, 'getSpecificUserShadeNameDetailsAdmin']);
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	Route::post('/uploadProductImageAttachment', [AttachmentController::class, 'uploadProductImageAttachment']);
 	Route::post('/uploadProductVideoAttachment', [AttachmentController::class, 'uploadProductVideoAttachment']);
 	Route::post('/uploadProductShadeImage', [AttachmentController::class, 'uploadProductShadeImage']);
 	Route::post('/uploadProductUsesImage', [AttachmentController::class, 'uploadProductUsesImage']);
 	Route::post('/uploadshadeFinderTypeImage', [AttachmentController::class, 'uploadshadeFinderTypeImage']);
-	
+
 	Route::post('/uploadBundleProductImage', [AttachmentController::class, 'uploadBundleProductImage']);
 	Route::post('/uploadBannerImage', [AttachmentController::class, 'uploadBannerImage']);
 	Route::post('/uploadBestSellerImage', [AttachmentController::class, 'uploadBestSellerImage']);
@@ -581,9 +585,9 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 
 	Route::get('/getTotalUsers',[AdminController::class,'getTotalUsers']);
 
-	
+
 });
-	
+
 
 	Route::get('/payment/clover', [CloverController::class, 'getclovercode']);
 	Route::post('/makePayment', [CloverController::class, 'makePayment']);
@@ -591,7 +595,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 
 
 Route::get('runCommand', function () {
-	
+
 // 	echo 'hello';
 // 	\Artisan::call('cache:clear');//route:cache
 //  $exitCode =Artisan ::call('key:generate');
