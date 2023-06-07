@@ -18,13 +18,14 @@ class BundleProductModel extends Model
     	$result = DB::table('jb_bundle_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName')
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
 		->where('a.IS_DELETED',0)
-    	->orderBy('a.UPDATED_ON','desc')
+    	->orderBy('a.SEQ_NUM','asc')
     	->get();
     
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->BUNDLE_ID;//$i+1;
     		$arrRes[$i]['BUNDLE_ID'] = $row->BUNDLE_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['NAME'] = $row->NAME;

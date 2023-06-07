@@ -239,6 +239,10 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/getSubSubCategoriesWrtSubCategoryQuickAdd',[AdminController::class,'getSubSubCategoriesWrtSubCategoryQuickAdd']);
 	Route::post('/updateSubSubCategoriesWrtSubCategoryQuickAdd',[AdminController::class,'updateSubSubCategoriesWrtSubCategoryQuickAdd']);
 	Route::post('/updateProductOrder',[AdminController::class,'updateProductOrder']);
+	Route::post('/updateBundleOrder',[AdminController::class,'updateBundleOrder']);
+	Route::post('/updateShadeOrder',[AdminController::class,'updateShadeOrder']);
+	Route::post('/updateIngredientOrder',[AdminController::class,'updateIngredientOrder']);
+	Route::post('/updateFeaturesOrder',[AdminController::class,'updateFeaturesOrder']);
 
 	//for quick add product end
 	Route::post('/getAllAdminProductSnapSelfielov', [AdminController::class, 'getAllAdminProductSnapSelfielov']);

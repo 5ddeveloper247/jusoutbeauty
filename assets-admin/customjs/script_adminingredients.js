@@ -45,7 +45,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		
 			setTimeout(function(){
 				$("#ingredientTable").DataTable({
+					search: {
+						return: true,
+					},
+					stateSave: true,
 					order: [],
+					rowReorder: {selector: 'span.reorder'},
+					columnDefs: [
+						{ orderable: true, className: 'reorder', targets: 0 },
+						{ orderable: false, targets: '_all' }
+					],
 		            aLengthMenu: [
 		                          [10, 25, 50, 100, 200, -1],
 		                          [10, 25, 50, 100, 200, "All"]
@@ -57,6 +66,18 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 //				$scope.editFlag = 1;
 //				$scope.continouRecord(data.details);
 //			}
+			$( "#tablecontents" ).sortable({
+				items: "tr",
+				cursor: 'move',
+				opacity: 0.6,
+				update: function() {
+					
+					$scope.$apply(function () {
+						$scope.sendOrderToServer();
+					});
+					
+				}
+			});
 			
 		})
 		.error(function(data, status, headers, config) {
@@ -64,7 +85,50 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	}
 	$scope.getAllAdminIngredientlov();
 		
-	
+	$scope.sendOrderToServer = function(){
+		
+		var order = [];
+		
+		// var token = $('meta[name="csrf-token"]').attr('content');
+		var page_length = parseInt($('select[name="ingredientTable_length"]').val());
+		var current_page = parseInt($('.paginate_button.current').text());
+
+		var postion_for = (current_page*page_length)-page_length;
+		
+		//  console.log(page_length,current_page);
+		$('tr.row1').each(function(index,element) {
+		  order.push({
+			id: $(this).attr('data-id'),
+			position_new: postion_for+(index+1),
+			position: $(this).attr('data-seq')
+			// position:index+1
+		  });
+		});
+		//  console.log(order);return;
+
+		var data = {};
+	    data.order = order;
+	    var temp = $.param({details: data});
+		console.log(data);
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+'/updateIngredientOrder',
+			// dataType: "json",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+			toastr.success(data.msg, '', {timeOut: 3000})
+			$scope.getAllAdminIngredientlov();
+			
+		})
+		.error(function(data, status, headers, config) {
+		});
+
+	  }
+
+
 	$scope.reset = function(){
 		$scope.ingredient={};
 		$scope.ingredient.ID = "";

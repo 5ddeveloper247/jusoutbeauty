@@ -156,18 +156,19 @@ class UserdashboardModel extends Model
     	$ProductShade = new ProductShadeModel();
     	$userId = session('userId');
     	
-    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY')
+    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
 		->where('jpt.STATUS','active')
     	->where('a.BATCH_CODE', $code)
-    	->orderBy('a.SECTION_ID','desc')
+    	->orderBy('jpt.SEQ_NUM','asc')
     	->get();
     
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['SECTION_ID'] = $row->SECTION_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['BATCH_CODE'] = $row->BATCH_CODE;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;

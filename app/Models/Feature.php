@@ -40,13 +40,14 @@ class Feature extends Model
     public function getFeaturesData(){
     	 
     	$result = DB::table('jb_product_features_tbl as a')->select('a.*')
-    	->orderBy('a.UPDATED_ON','desc')
+    	->orderBy('a.SEQ_NUM','asc')
     	->get();
     	 
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->FEATURE_ID;//$i+1;
     		$arrRes[$i]['FEATURE_ID'] = $row->FEATURE_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
             $arrRes[$i]['TITLE'] = $row->FEATURE_NAME;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->FEATURE_DESCRIPTION);
@@ -107,6 +108,7 @@ class Feature extends Model
 			 
 			$arrRes[$i]['ID'] = $row->FEATURE_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['TITLE'] = $row->FEATURE_NAME;
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->FEATURE_DESCRIPTION);
 			$arrRes[$i]['IMAGE_DOWN_PATH'] = $row->IMAGE_DOWN_PATH;
@@ -120,8 +122,10 @@ class Feature extends Model
 			$i++;
 		 }
 		}
-          
-		return isset($arrRes) ? $arrRes : null;
+		$arrSort = collect($arrRes)->sortBy('SEQ_NUM')->toArray();
+		
+        // dd($arrSort);
+		return isset($arrSort) ? $arrSort : null;
 
 	}
 

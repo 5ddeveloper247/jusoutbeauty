@@ -496,7 +496,7 @@ class HomeController extends Controller
 
 			$data ['features'] = $features->getspecificproductdata($sourceId);
 			$data ['productDetails'] = $Products->getSpecificProductDetails($sourceId);
-			// dd($data ['productDetails']);
+			// dd($data ['features']);
 
 // 			print_r('<pre>');
 // 			print_r($data);
