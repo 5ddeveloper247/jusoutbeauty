@@ -746,8 +746,8 @@ class ProductModel extends Model
     		$orderByCol = "a.PRODUCT_ID";
     		$orderBy = "desc";
     	}else{
-    		$orderByCol = "a.PRODUCT_ID";
-    		$orderBy = "desc";
+    		$orderByCol = "a.SEQ_NUM";
+    		$orderBy = "asc";
     	}
 
     	if(count($subSubCategoryIds) > 0){
@@ -789,6 +789,7 @@ class ProductModel extends Model
 				$arrRes[$i]['seqNo'] = $i+1;
 				$arrRes[$i]['subCateStatus'] = $row->subCateStatus;
 				$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
+				$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
 				$arrRes[$i]['subSubCateStatus'] = $row->subSubCateStatus;
 				$arrRes[$i]['USER_ID'] = $row->USER_ID;
 				$arrRes[$i]['SLUG'] = $row->SLUG;
@@ -1261,8 +1262,10 @@ class ProductModel extends Model
 
     	$where = array_merge($where, array(['a.STATUS','=','active']));
     	$where = array_merge($where, array(['jct.STATUS','=','active']));
-    	$where = array_merge($where, array(['jsct.STATUS','=','active']));
-    	$where = array_merge($where, array(['jssct.STATUS','=','active']));
+
+    	// $where = array_merge($where, array(['jsct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jssct.STATUS','=','active']));
+
 
     	if($shadeId != ''){
     		$where = array_merge($where, array(['jpst.SHADE_ID','=',$shadeId]));
@@ -1283,8 +1286,8 @@ class ProductModel extends Model
     		$orderByCol = "a.PRODUCT_ID";
     		$orderBy = "desc";
     	}else{
-    		$orderByCol = "a.PRODUCT_ID";
-    		$orderBy = "desc";
+    		$orderByCol = "a.SEQ_NUM";
+    		$orderBy = "asc";
     	}
 
     	if(count($subSubCategoryIds) > 0){
@@ -1314,6 +1317,7 @@ class ProductModel extends Model
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['NAME'] = $row->NAME;

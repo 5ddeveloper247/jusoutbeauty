@@ -33,14 +33,15 @@ class ShadesModel extends Model
     
     	$result = DB::table('jb_shades_tbl as a')->select('a.*')
 		->where('IS_DELETED',0)
-    	->orderBy('a.UPDATED_ON','desc')
-    	->orderBy('a.CREATED_ON','desc')
+    	->orderBy('a.SEQ_NUM','asc')
+    	// ->orderBy('a.CREATED_ON','desc')
     	->get();
     
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->SHADE_ID;//$i+1;
     		$arrRes[$i]['SHADE_ID'] = $row->SHADE_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['TITLE'] = $row->TITLE;
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);

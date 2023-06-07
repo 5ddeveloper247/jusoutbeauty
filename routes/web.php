@@ -239,6 +239,10 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/getSubSubCategoriesWrtSubCategoryQuickAdd',[AdminController::class,'getSubSubCategoriesWrtSubCategoryQuickAdd']);
 	Route::post('/updateSubSubCategoriesWrtSubCategoryQuickAdd',[AdminController::class,'updateSubSubCategoriesWrtSubCategoryQuickAdd']);
 	Route::post('/updateProductOrder',[AdminController::class,'updateProductOrder']);
+	Route::post('/updateBundleOrder',[AdminController::class,'updateBundleOrder']);
+	Route::post('/updateShadeOrder',[AdminController::class,'updateShadeOrder']);
+	Route::post('/updateIngredientOrder',[AdminController::class,'updateIngredientOrder']);
+	Route::post('/updateFeaturesOrder',[AdminController::class,'updateFeaturesOrder']);
 
     Route::post('/updateCategoryOrder',[AdminController::class,'updateCategoryOrder']);
     Route::post('/updateSubCategoryOrder',[AdminController::class,'updateSubCategoryOrder']);

@@ -122,6 +122,81 @@ class AdminController extends Controller
 		echo json_encode ( $arrRes );
 
 	}
+	public function updateBundleOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+
+		foreach ($request as $product) {
+			DB::table ('jb_bundle_product_tbl' )
+				->where('BUNDLE_ID',$product['id'])
+				->update([
+					'SEQ_NUM' => $product['position_new'],
+				]);
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Bundle Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+
+	}
+
+	public function updateShadeOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+
+		foreach ($request as $product) {
+			DB::table ('jb_shades_tbl' )
+				->where('SHADE_ID',$product['id'])
+				->update([
+					'SEQ_NUM' => $product['position_new'],
+				]);
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Shades Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+
+	}
+
+	public function updateIngredientOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+
+		foreach ($request as $product) {
+			DB::table ('jb_ingredient_tbl' )
+				->where('INGREDIENT_ID',$product['id'])
+				->update([
+					'SEQ_NUM' => $product['position_new'],
+				]);
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Ingredient Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+
+	}
+
+	public function updateFeaturesOrder(){
+		$details = $_REQUEST ['details'];
+		$request = $details['order'];
+
+		foreach ($request as $product) {
+			DB::table ('jb_product_features_tbl' )
+				->where('FEATURE_ID',$product['id'])
+				->update([
+					'SEQ_NUM' => $product['position_new'],
+				]);
+		}
+
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Features Position Updated Successfully';
+
+		echo json_encode ( $arrRes );
+
+	}
 
 	public function saveAdminProductsaveJusOFlow(Request $request){
 
@@ -488,6 +563,8 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 
+		$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
 		$result = DB::table ( 'jb_product_tbl' )
 				->insertGetId (
 					array ( 'USER_ID' => $userId,
@@ -497,6 +574,7 @@ class AdminController extends Controller
 							'UNIT' => '200',
 							'UNIT_PRICE' => '4000',
 							'QUANTITY' => '200',
+							'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 							// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
 							// 'TAGS' => $data ['P_5'],
 							// 'BARCODE' => $data ['P_6'],
@@ -2486,11 +2564,16 @@ class AdminController extends Controller
 
 			if ($data ['ID'] == '') {
 
+
+				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
+
 				$result = DB::table ( 'jb_product_features_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'FEATURE_NAME' => $data ['P_1'],
 								'FEATURE_DESCRIPTION' => base64_encode($data['P_4']),
 								'STATUS' => 'active',
+								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -2699,10 +2782,14 @@ class AdminController extends Controller
 
 			if ($data ['ID'] == '') {
 
+				$getLastSeq = DB::table ( 'jb_ingredient_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
+
 				$result = DB::table ( 'jb_ingredient_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
 								'QUANTITY' => $data['P_2'],
+								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'CATEGORY' => $data['P_3'],
 								'DESCRIPTION' => base64_encode($data['P_4']),
 								'STATUS' => 'active',
@@ -3060,10 +3147,14 @@ class AdminController extends Controller
 
 			if ($data ['ID'] == '') {
 
+
+				$getLastSeq = DB::table ( 'jb_shades_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
 				$result = DB::table ( 'jb_shades_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
 								'DESCRIPTION' => base64_encode($data['P_2']),
+								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'STATUS' => 'active',
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
@@ -3678,12 +3769,16 @@ class AdminController extends Controller
 					die ();
 				}
 
+				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
+
 				$result = DB::table ( 'jb_product_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'NAME' => $data['P_1'],
 								'SUB_TITLE' => $data['P_2'],
 								'UNIT' => $data ['P_3'],
 								'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
+								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'TAGS' => $data ['P_5'],
 								'BARCODE' => $data ['P_6'],
 								'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
@@ -6236,9 +6331,13 @@ class AdminController extends Controller
 // 					die ();
 // 				}
 
+				$getLastSeq = DB::table ( 'jb_bundle_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
+
 				$result = DB::table ( 'jb_bundle_product_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'NAME' => $data['P_1'],
+								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'SUB_TITLE' => $data['P_2'],
 								'UNIT' => $data ['P_3'],
 								'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],

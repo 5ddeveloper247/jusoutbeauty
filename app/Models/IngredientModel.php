@@ -31,14 +31,15 @@ class IngredientModel extends Model
     public function getIngredientsData(){
     	 
     	$result = DB::table('jb_ingredient_tbl as a')->select('a.*')
-    	->orderBy('a.UPDATED_ON','desc')
-    	->orderBy('a.CREATED_ON','desc')
+    	->orderBy('a.SEQ_NUM','asc')
+    	// ->orderBy('a.CREATED_ON','desc')
     	->get();
     	 
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->INGREDIENT_ID;//$i+1;
     		$arrRes[$i]['INGREDIENT_ID'] = $row->INGREDIENT_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['TITLE'] = $row->TITLE;
     		$arrRes[$i]['CATEGORY'] = $row->CATEGORY;
