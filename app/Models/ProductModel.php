@@ -21,11 +21,11 @@ class ProductModel extends Model
                 $arrRes[$i] = $s->RECOMEDEDPRODUCT_ID;
                 $i++;
              }
-			 
+
              return isset($arrRes) ? $arrRes : null;
 	}
 		public function gethandPickProductsWrtProductID($product_id){
-			
+
 			$result =DB::table('jb_product_handpicked_tbl')->where('PRODUCT_ID',$product_id)->get();
 
 			$i=0;
@@ -43,7 +43,7 @@ class ProductModel extends Model
 		// ->where('b.SOURCE_CODE','CLINICAL_NOTE')
 		->where('a.PRODUCT_ID',$productID)
     	->first();
-		
+
 		// $arrRes['ID'] = isset($result->PRODUCT_ID) != null ? $result->PRODUCT_ID : '';
 		$clinicalData = strip_tags(base64_decode($result->CLINICAL_NOTE_DESCRIPTION));
 		$arrRes['P_19'] = isset($clinicalData) != null ?  $clinicalData: '';
@@ -73,7 +73,7 @@ class ProductModel extends Model
 		return isset($arrRes) ? $arrRes : null;
 	}
 
-	
+
 	public function getQuickAddProductDataWrtProductID($productID){
 		$result = DB::table('jb_product_tbl as a')->select('a.*')
 		// ->join('jb_product_images_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
@@ -82,7 +82,7 @@ class ProductModel extends Model
 		->orderBy('a.PRODUCT_ID','desc')
 
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
 			$arrRes['P_1'] = $row->NAME;
@@ -96,10 +96,10 @@ class ProductModel extends Model
 
 			$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes['P_15'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-    		
+
 			$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		$arrRes['P_16'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-    		
+
 			$arrRes['P_17'] = $row->DESCRIPTION_TITLE;
     		$arrRes['P_18'] = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes['P_19'] = strip_tags(base64_decode($row->CLINICAL_NOTE_DESCRIPTION));
@@ -109,14 +109,14 @@ class ProductModel extends Model
 			$arrRes['P_31'] = $row->CATEGORY_ID;
 			$arrRes['P_32'] = $row->SUB_CATEGORY_ID;
 			$arrRes['P_33'] = $row->SUB_SUB_CATEGORY_ID;
-			
+
 			$arrRes['QUICK_ADD_FEATURES'] = $this->getQuickfeaturesdata($row->FEATURE_ID);
-			
+
     		$arrRes['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes['USER_ID'] = $row->USER_ID;
     		$arrRes['SLUG'] = $row->SLUG;
     		$arrRes['DOWN_PATH'] = $this->getProductImagesWrtProductID($row->PRODUCT_ID);
-    		
+
     		$arrRes['MINIMUM_PURCHASE_QUANTITY'] = $row->MINIMUM_PURCHASE_QUANTITY;
     		$arrRes['TAGS'] = $row->TAGS;
     		$arrRes['BARCODE'] = $row->BARCODE;
@@ -126,7 +126,7 @@ class ProductModel extends Model
     		// $arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		// $arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    		
+
     		$arrRes['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -138,7 +138,7 @@ class ProductModel extends Model
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
 	}
 		public function getProductImagesWrtProductID($PRODUCT_ID){
@@ -153,14 +153,14 @@ class ProductModel extends Model
 		public function getQuickfeaturesdata($FEATURES_ID){
 
 			$featuresArrExplode = explode(',',$FEATURES_ID);
-			
+
 			$result=DB::table('jb_product_features_tbl as a')
 					->select('a.*')
 					->whereIn('a.FEATURE_ID',$featuresArrExplode)
 					->where('a.STATUS','active')
 					->orderBy('a.UPDATED_ON','desc')
 					->get();
-					
+
 			$i=0;
 			foreach ($result as $row){
 				$arrRes[$i]['id'] = $row->FEATURE_ID;//$i+1;
@@ -168,40 +168,40 @@ class ProductModel extends Model
 				$arrRes[$i]['IMAGE_DOWN_PATH'] = $row->IMAGE_DOWN_PATH;
 				$i++;
 			}
-		
+
 			return isset($arrRes) ? $arrRes : null;
-	
+
 		}
     public function getProductsLov(){
-    
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
     	->orderBy('a.PRODUCT_ID','desc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['id'] = $row->PRODUCT_ID;
     		$arrRes[$i]['name'] = $row->NAME;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getActiveProductsLov(){
-    
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
     	->where('a.STATUS','active')
 		->where('a.IS_DELETED', 0)
     	->orderBy('a.PRODUCT_ID','desc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['id'] = $row->PRODUCT_ID;
     		$arrRes[$i]['name'] = $row->NAME;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getProductsLovWrtCatSubCatSubSubCatIds($catId='', $subCatIds=array(), $subSubCatIds=array()){
@@ -221,13 +221,13 @@ class ProductModel extends Model
     		$arrRes[$i]['name'] = $row->NAME;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
-	
+
     public function getAllProductsData(){
-    
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName')
     	// $result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
@@ -236,7 +236,7 @@ class ProductModel extends Model
 		->where('a.IS_DELETED',0)
     	->orderBy('a.SEQ_NUM','asc')
     	->get();
-		
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->PRODUCT_ID;//$i+1;
@@ -257,7 +257,7 @@ class ProductModel extends Model
     		// $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    		
+
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -268,10 +268,10 @@ class ProductModel extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function checkDuplicateSlug($slug, $id=''){
@@ -289,15 +289,15 @@ class ProductModel extends Model
     	foreach ($result as $row){
     		$productId = $row->PRODUCT_ID;
     	}
-    
+
     	return isset($productId) ? $productId : '';
     }
     public function getSpecificProductData($id){
-    
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID',$id)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->PRODUCT_ID;
@@ -314,7 +314,7 @@ class ProductModel extends Model
     		$arrRes['P_11'] = $row->SHORT_DESCRIPTION != null ? $row->SHORT_DESCRIPTION : '';
     		$arrRes['P_12'] = $row->DESCRIPTION_TITLE != null ? $row->DESCRIPTION_TITLE : '';
     		$arrRes['P_13'] = $row->DESCRIPTION != null ? base64_decode($row->DESCRIPTION) : '';
-    		
+
     		$arrRes['P_14'] = $row->UNIT_PRICE != null ? $row->UNIT_PRICE : '';
     		$arrRes['P_15'] = $row->DISCOUNT_START_DATE != '0000-00-00' ? $row->DISCOUNT_START_DATE : '';
     		$arrRes['P_16'] = $row->DISCOUNT_END_DATE != '0000-00-00' ? $row->DISCOUNT_END_DATE : '';
@@ -329,7 +329,7 @@ class ProductModel extends Model
     		$arrRes['P_25'] = $row->TAX_TYPE != null ? $row->TAX_TYPE : '';
     		$arrRes['P_26'] = $row->VAT != null ? $row->VAT : '';
     		$arrRes['P_27'] = $row->VAT_TYPE != null ? $row->VAT_TYPE : '';
-    		
+
     		$arrRes['P_28'] = $row->FREE_SHIPPING_FLAG == '1' ? true : false;
     		$arrRes['P_29'] = $row->PRODUCT_QUANTITY_MULTIPLY_FLAG == '1' ? true : false;
     		$arrRes['P_30'] = $row->FLAT_RATE_FLAG == '1' ? true : false;
@@ -338,16 +338,16 @@ class ProductModel extends Model
     		$arrRes['P_33'] = $row->HIDE_STOCK_FLAG == '1' ? true : false;
     		$arrRes['P_34'] = $row->SHIPPING_DAYS;
     		$arrRes['P_35'] = $row->TODAY_DEAL_FLAG == '1' ? true : false;
-    		
+
     		$arrRes['P_36'] = $row->ADD_TO_FLASH;
     		$arrRes['P_37'] = $row->OTHER_DISCOUNT;
     		$arrRes['P_38'] = $row->OTHER_DISCOUNT_TYPE;
-    		
+
     		$arrRes['P_39'] = $row->CASH_ON_DELIVER_FLAG == '1' ? true : false;
     		$arrRes['P_40'] = $row->FEATURED_FLAG == '1' ? true : false;
     		$arrRes['P_41'] = $row->TODAY_DEAL_FLAG2 == '1' ? true : false;
     		$arrRes['P_42'] = $row->LOW_QUANTITY_WARNING;
-    		
+
     		$arrRes['P_43'] = base64_decode($row->CLINICAL_NOTE_DESCRIPTION);
     		$arrRes['P_44'] = $row->SUB_SUB_CATEGORY_ID;
 
@@ -356,7 +356,7 @@ class ProductModel extends Model
 			$recommend= new Recomended;
 			$arrRes['P_46'] = $recommend->getspecificrecomendedlov($id);
 			$arrRes['P_47'] = $handpicked->getspecifichandpickedlov($id);
-    		
+
              //        		$arrRes['USER_ID'] = $row->USER_ID;
              //     		$arrRes['STATUS'] = $row->STATUS;
              //     		$arrRes['DATE'] = $row->DATE;
@@ -365,16 +365,16 @@ class ProductModel extends Model
              //     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
              //     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getSpecificProductImages($id){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['ID'] = $row->IMAGE_ID;
@@ -392,19 +392,19 @@ class ProductModel extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificProductImagesByCode($id, $code){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->where('a.SOURCE_CODE', $code)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['ID'] = $row->IMAGE_ID;
@@ -422,18 +422,18 @@ class ProductModel extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificImage($id){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.IMAGE_ID', $id)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->IMAGE_ID;
@@ -451,19 +451,19 @@ class ProductModel extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getSpecificProductVideo($id){
-    
+
     	$result = DB::table('jb_product_video_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->VIDEO_ID;
@@ -471,22 +471,22 @@ class ProductModel extends Model
     		$arrRes['V_2'] = base64_decode($row->VIDEO_DESCRIPTION);
     		$arrRes['V_3'] = $row->DOWN_PATH;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
-    
+
+
     public function getAllProductsDataForShadeQuiz($ids){
     	$WishlistModel = new WishlistModel();
     	$userId = session('userId');
-    	
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     	->whereIn('a.PRODUCT_ID',$ids)
     	->orderBy('a.PRODUCT_ID','desc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
@@ -507,40 +507,40 @@ class ProductModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    
+
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
-    		
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : '';
-    		
+
 			$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-			
+
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-    		
+
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificProductPrimaryImage($id){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->where('a.SOURCE_CODE', 'PRODUCT_IMG')
     	->where('a.PRIMARY_FLAG', '1')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->IMAGE_ID;
@@ -558,22 +558,22 @@ class ProductModel extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
-    
+
+
     public function getProductsCategoryWiseForSite(){
     	$Bundle = new BundleProductModel();
-    	
+
     	$result = DB::table('jb_category_tbl as a')->select('a.*')
     	->where('a.STATUS','active')
-    	->orderBy('a.CATEGORY_ID','asc')
+    	->orderBy('a.SEQ_NUM','asc')
     	->get();
-    	 
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
@@ -581,56 +581,56 @@ class ProductModel extends Model
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['NAME'] = $row->CATEGORY_NAME;
     		$arrRes[$i]['subCategories'] = $this->getSubCategoryWrtCategoryId($row->CATEGORY_ID);
-    		
+
     		if($row->CATEGORY_NAME == 'Bundles' || $row->CATEGORY_NAME == 'Bundle'){
     			$arrRes[$i]['recommandedProducts'] = $Bundle->getAllRecommandedBundleProductsWrtCategoryIdForSite($row->CATEGORY_ID);
     		}else{
     			$arrRes[$i]['recommandedProducts'] = $this->getAllRecommandedProductsWrtCategoryIdForSite($row->CATEGORY_ID);
     		}
-    		
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getSubCategoryWrtCategoryId($categoryId){
-    
+
     	$result = DB::table('jb_sub_category_tbl as jsct')->select('jsct.*')
     	->where('jsct.CATEGORY_ID', $categoryId)
     	->where('jsct.STATUS','active')
-    	->orderBy('jsct.SUB_CATEGORY_ID','asc')
+    	->orderBy('jsct.SEQ_NUM','asc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['NAME'] = $row->NAME;
-    		
+
     		$subCatProductImage = $this->getSpecificProductImageSubCategoryWise($row->SUB_CATEGORY_ID);
-    		
+
     		if(isset($subCatProductImage['downPath']) && $subCatProductImage['downPath'] != ''){
     			$arrRes[$i]['prodImg'] = $subCatProductImage['downPath'];
     		}else{
     			$arrRes[$i]['prodImg'] = url('/assets-web')."/images/skin-makeup.jpg";
     		}
-    		
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificProductImageSubCategoryWise($id){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->leftJoin ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->where('jpt.SUB_CATEGORY_ID', $id)
     	->where('a.PRIMARY_FLAG', '1')
     	->where('jpt.STATUS', 'active')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->IMAGE_ID;
@@ -648,14 +648,14 @@ class ProductModel extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getAllRecommandedProductsWrtCategoryIdForSite($categoryId){
-    
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
@@ -668,7 +668,7 @@ class ProductModel extends Model
     	->orderBy('a.PRODUCT_ID','desc')
     	->limit('3')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
@@ -688,54 +688,54 @@ class ProductModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    
+
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
-    
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-    
+
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getAllProductDetailsWrtCatSubCatIdForShopListing($catId, $flag, $subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
     	$WishlistModel = new WishlistModel();
     	$ProductShade = new ProductShadeModel();
-    	
+
     	DB::enableQueryLog();
     	$userId = session('userId');
-    	
+
     	if($flag == 'SUB_CATEGORY'){
     		$where =array(['a.SUB_CATEGORY_ID','=',$catId]);
     	}else{
     		$where =array(['a.CATEGORY_ID','=',$catId]);
     	}
-    	
+
     	$where = array_merge($where, array(['a.STATUS','=','active']));
     	$where = array_merge($where, array(['jct.STATUS','=','active']));
     	// $where = array_merge($where, array(['jsct.STATUS','=','active']));
     	// $where = array_merge($where, array(['jssct.STATUS','=','active']));
-    	
+
     	if($shadeId != ''){
     		$where = array_merge($where, array(['jpst.SHADE_ID','=',$shadeId]));
     	}
-    	
+
     	if($minRange != '' && $maxRange != ''){
     		$where = array_merge($where, array(['a.UNIT_PRICE','>=',$minRange]));
     		$where = array_merge($where, array(['a.UNIT_PRICE','<=',$maxRange]));
     	}
-    	
+
     	if($sortingType == 1){
     		$orderByCol = "a.UNIT_PRICE";
     		$orderBy = "desc";
@@ -746,12 +746,12 @@ class ProductModel extends Model
     		$orderByCol = "a.PRODUCT_ID";
     		$orderBy = "desc";
     	}else{
-    		$orderByCol = "a.PRODUCT_ID";
-    		$orderBy = "desc";
+    		$orderByCol = "a.SEQ_NUM";
+    		$orderBy = "asc";
     	}
-    	
+
     	if(count($subSubCategoryIds) > 0){
-    		
+
     		$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     		->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     		->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
@@ -764,7 +764,7 @@ class ProductModel extends Model
     		->whereIn('a.SUB_SUB_CATEGORY_ID',$subSubCategoryIds)
     		->orderBy("$orderByCol", "$orderBy")
     		->groupBy('a.PRODUCT_ID')->get();
-    		
+
     	}else{
     		$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName','jsct.STATUS as subCateStatus','jssct.STATUS as subSubCateStatus' )
     		->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
@@ -777,18 +777,19 @@ class ProductModel extends Model
 			->where('a.IS_DELETED',0)
     		->orderBy("$orderByCol", "$orderBy")->groupBy('a.PRODUCT_ID')->get();
     	}
-    	
+
      	//  $query = DB::getQueryLog(); dd($query);
 
-		
+
 
     	$i=0;
     	foreach ($result as $row){
-			
+
 			//  if(($row->subCateStatus == null ||  $row->subCateStatus == 'active') && ($row->subSubCateStatus == null ||  $row->subSubCateStatus == 'active')){
 				$arrRes[$i]['seqNo'] = $i+1;
 				$arrRes[$i]['subCateStatus'] = $row->subCateStatus;
 				$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
+				$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
 				$arrRes[$i]['subSubCateStatus'] = $row->subSubCateStatus;
 				$arrRes[$i]['USER_ID'] = $row->USER_ID;
 				$arrRes[$i]['SLUG'] = $row->SLUG;
@@ -806,56 +807,56 @@ class ProductModel extends Model
 				$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
 				$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
 				$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-	
+
 				$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
-				
+
 				if(!empty($productShades)){
-					
+
 					$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
 					$arrRes[$i]['INV_QUANTITY'] = '';
 				}else{
 					$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
 					$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
 				}
-		
+
 				$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
 				$descText = strip_tags(base64_decode($row->DESCRIPTION));
 				$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
 				$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
 				$arrRes[$i]['STATUS'] = $row->STATUS;
 				$arrRes[$i]['DATE'] = $row->DATE;
-		
+
 				$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
 				$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-				
+
 				$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
 				$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-				
-				
+
+
 				$arrRes[$i]['images'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "PRODUCT_IMG");
-				
+
 				$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-				
+
 				$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
 				$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
 				$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
 				$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-		
+
 				$i++;
 			//  }
-    		
+
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificProductSecondaryImage($id){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->where('a.SOURCE_CODE', 'PRODUCT_IMG')
     	->where('a.SECONDARY_FLAG', '1')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->IMAGE_ID;
@@ -873,25 +874,25 @@ class ProductModel extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getAllProductDetailsWrtSubCatIdForNutritionShopListing($catId, $flag){
     	DB::enableQueryLog();
-    	 
+
     	if($flag == 'SUB_CATEGORY'){
     		$where =array(['a.SUB_CATEGORY_ID','=',$catId]);
     	}else{
     		$where =array(['a.CATEGORY_ID','=',$catId]);
     	}
-    	
+
     	$where = array_merge($where, array(['jct.STATUS','=','active']));
     	$where = array_merge($where, array(['jsct.STATUS','=','active']));
 //     	$where = array_merge($where, array(['jssct.STATUS','=','active']));
-    	
+
     	$result = DB::table('jb_product_tbl as a')->where('a.IS_DELETED', 0)->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
@@ -899,7 +900,7 @@ class ProductModel extends Model
     	->leftJoin ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
     	->where($where)
     	->orderBy('a.PRODUCT_ID','asc')->groupBy('a.PRODUCT_ID')->get();
-    	 
+
 //     	    	$query = DB::getQueryLog(); dd($query);
     	$i=0;$k=1;
     	foreach ($result as $row){
@@ -920,14 +921,14 @@ class ProductModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    
+
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
-    		
+
     		if($k == 1){
     			$arrRes[$i]['styleBgColor'] = 'background-color: #C0DAB8 !important;';
     		}else if($k == 2){
@@ -939,36 +940,36 @@ class ProductModel extends Model
     			$k = 1;
     		}
     		$k++;
-    
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
     		$arrRes[$i]['images'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "PRODUCT_IMG");
-    
+
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
-    
+
+
     public function getSpecificProductDetails($productId){
     	$ProductShade = new ProductShadeModel();
     	DB::enableQueryLog();
-    	
+
     	$where =array(['a.PRODUCT_ID','=',$productId]);
-    	 
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     	->leftJoin ( 'jb_product_shades_tbl as jpst', 'a.PRODUCT_ID', '=', 'jpst.PRODUCT_ID' )
     	->where($where)
     	->orderBy('a.PRODUCT_ID','asc')->groupBy('a.PRODUCT_ID')->get();
-    	 
+
     	//     	    	$query = DB::getQueryLog(); dd($query);
     	$i=0;$k=1;
     	foreach ($result as $row){
@@ -989,18 +990,18 @@ class ProductModel extends Model
     		$arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    	
+
     		$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
-    		
+
     		if(!empty($productShades)){
-    			
+
     			$arrRes['INV_QUANTITY_FLAG'] = 'shade';
     			$arrRes['INV_QUANTITY'] = '';
     		}else{
     			$arrRes['INV_QUANTITY_FLAG'] = 'inv';
     			$arrRes['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
     		}
-    
+
     		$arrRes['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -1012,70 +1013,70 @@ class ProductModel extends Model
     		$arrRes['TAX'] = $row->TAX;
     		$arrRes['TAX_TYPE'] = $row->TAX_TYPE;
     		$arrRes['CLINICAL_NOTE'] = base64_decode($row->CLINICAL_NOTE_DESCRIPTION);
-    
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
     		$arrRes['images'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "PRODUCT_IMG");
     		$arrRes['clinicalImage'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "CLINICAL_NOTE");
-    
+
     		$arrRes['videoDetails'] = $this->getSpecificProductVideo($row->PRODUCT_ID);
-    		
+
     		$arrRes['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificProductUnitPrice($productId){
     	DB::enableQueryLog();
-    
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*') ->where('a.PRODUCT_ID', $productId)->get();
-    
+
     	//     	    	$query = DB::getQueryLog(); dd($query);
     	$i=0;$k=1;
     	foreach ($result as $row){
     		$arrRes['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
     		$arrRes['unitPrice'] = $row->UNIT_PRICE != null ? $row->UNIT_PRICE : '0';
-    		
+
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificProductStatus($productId){
     	DB::enableQueryLog();
-    
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*') ->where('a.PRODUCT_ID', $productId)->get();
-    
+
     	//     	    	$query = DB::getQueryLog(); dd($query);
     	$i=0;$k=1;
     	foreach ($result as $row){
     		$arrRes['STATUS'] = $row->STATUS;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
-    
-    
+
+
+
     public function getRecommandedProductDetailsForSite($limit=4){
     	$ProductShadeModel = new ProductShadeModel();
     	$WishlistModel = new WishlistModel();
     	$ReviewsModel = new ReviewsModel();
     	DB::enableQueryLog();
-    
+
     	$userId = session('userId');
-    	
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     	->where('a.RECOMMANDED_FLAG', '1')
     	->where('a.STATUS', 'active')
     	->orderBy('a.CREATED_BY','asc')->groupBy('a.PRODUCT_ID')->limit($limit)->get();
-    
+
     	//     	    	$query = DB::getQueryLog(); dd($query);
     	$i=0;$k=1;
     	foreach ($result as $row){
@@ -1096,7 +1097,7 @@ class ProductModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    
+
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -1108,40 +1109,40 @@ class ProductModel extends Model
     		$arrRes[$i]['TAX'] = $row->TAX;
     		$arrRes[$i]['TAX_TYPE'] = $row->TAX_TYPE;
     		$arrRes[$i]['CLINICAL_NOTE'] = base64_decode($row->CLINICAL_NOTE_DESCRIPTION);
-    
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-    	
+
     		$arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-    		
+
     		$reviews = $ReviewsModel->getAllPublishedReviewsByProductId($row->PRODUCT_ID,'');
     		$totalReviews=0;$allRatingSum=0;
     		if(isset($reviews) && !empty($reviews)){
     			$totalReviews = count($reviews);
     			foreach($reviews as $value){
-    				
+
     				$allRatingSum = $allRatingSum+$value['STAR_RATING'];
     			}
     		}
-    		
+
     		if($totalReviews > 0){
     			$averageRating = $allRatingSum/$totalReviews;
     			$averageRating = round($averageRating);
     		}else{
     			$averageRating = 0;
     		}
-    		
+
     		$arrRes[$i]['averageRating'] = $averageRating;
-    		
+
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getRecentlyViewedProductDetailsForSite($limit=4){
@@ -1149,15 +1150,15 @@ class ProductModel extends Model
     	$WishlistModel = new WishlistModel();
     	$ReviewsModel = new ReviewsModel();
     	DB::enableQueryLog();
-    
+
     	$userId = session('userId');
-    	
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     	->where('a.STATUS', 'active')
     	->orderBy('a.CREATED_BY','asc')->groupBy('a.PRODUCT_ID')->limit($limit)->get();
-    
+
     	//     	    	$query = DB::getQueryLog(); dd($query);
     	$i=0;$k=1;
     	foreach ($result as $row){
@@ -1178,7 +1179,7 @@ class ProductModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    
+
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -1190,48 +1191,48 @@ class ProductModel extends Model
     		$arrRes[$i]['TAX'] = $row->TAX;
     		$arrRes[$i]['TAX_TYPE'] = $row->TAX_TYPE;
     		$arrRes[$i]['CLINICAL_NOTE'] = base64_decode($row->CLINICAL_NOTE_DESCRIPTION);
-    
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-    		 
+
 			$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-			
+
     		$arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-    		
+
     		$reviews = $ReviewsModel->getAllPublishedReviewsByProductId($row->PRODUCT_ID,'');
     		$totalReviews=0;$allRatingSum=0;
     		if(isset($reviews) && !empty($reviews)){
     			$totalReviews = count($reviews);
     			foreach($reviews as $value){
-    		
+
     				$allRatingSum = $allRatingSum+$value['STAR_RATING'];
     			}
     		}
-    		
+
     		if($totalReviews > 0){
     			$averageRating = $allRatingSum/$totalReviews;
     			$averageRating = round($averageRating);
     		}else{
     			$averageRating = 0;
     		}
-    		
+
     		$arrRes[$i]['averageRating'] = $averageRating;
-    		
+
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function checkProductExistWrtCategoryId($categoryId,$flag='1'){
-    
+
     	if($flag == '1'){
     		$result = DB::table('jb_product_tbl as a')->select('a.*') ->where('a.CATEGORY_ID', $categoryId) ->get();
     	} else if($flag == '2'){
@@ -1239,40 +1240,42 @@ class ProductModel extends Model
     	}else if($flag == '3'){
     		$result = DB::table('jb_product_tbl as a')->select('a.*') ->where('a.SUB_SUB_CATEGORY_ID', $categoryId) ->get();
     	}
-    	
+
     	$i=0;
     	foreach ($result as $row){
     		$check = true;
     	}
-    
+
     	return isset($check) ? $check : false;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     public function getAllProductDetailsForAllShopListing($subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
     	$WishlistModel = new WishlistModel();
     	DB::enableQueryLog();
     	$userId = session('userId');
-    	
+
 		$where =array(['a.CATEGORY_ID','!=', '8']); // for nutrition check
-    	 
+
     	$where = array_merge($where, array(['a.STATUS','=','active']));
     	$where = array_merge($where, array(['jct.STATUS','=','active']));
-    	$where = array_merge($where, array(['jsct.STATUS','=','active']));
-    	$where = array_merge($where, array(['jssct.STATUS','=','active']));
-    	 
+
+    	// $where = array_merge($where, array(['jsct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jssct.STATUS','=','active']));
+
+
     	if($shadeId != ''){
     		$where = array_merge($where, array(['jpst.SHADE_ID','=',$shadeId]));
     	}
-    	 
+
     	if($minRange != '' && $maxRange != ''){
     		$where = array_merge($where, array(['a.UNIT_PRICE','>=',$minRange]));
     		$where = array_merge($where, array(['a.UNIT_PRICE','<=',$maxRange]));
     	}
-    	 
+
     	if($sortingType == 1){
     		$orderByCol = "a.UNIT_PRICE";
     		$orderBy = "desc";
@@ -1283,12 +1286,12 @@ class ProductModel extends Model
     		$orderByCol = "a.PRODUCT_ID";
     		$orderBy = "desc";
     	}else{
-    		$orderByCol = "a.PRODUCT_ID";
-    		$orderBy = "desc";
+    		$orderByCol = "a.SEQ_NUM";
+    		$orderBy = "asc";
     	}
-    	 
+
     	if(count($subSubCategoryIds) > 0){
-    
+
     		$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     		->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     		->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
@@ -1298,7 +1301,7 @@ class ProductModel extends Model
     		->whereIn('a.SUB_SUB_CATEGORY_ID',$subSubCategoryIds)
     		->orderBy("$orderByCol", "$orderBy")
     		->groupBy('a.PRODUCT_ID')->get();
-    
+
     	}else{
     		$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     		->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
@@ -1308,12 +1311,13 @@ class ProductModel extends Model
     		->where($where)
     		->orderBy("$orderByCol", "$orderBy")->groupBy('a.PRODUCT_ID')->get();
     	}
-    	 
+
     	//     	$query = DB::getQueryLog(); dd($query);
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['NAME'] = $row->NAME;
@@ -1330,14 +1334,14 @@ class ProductModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-    
+
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
-    
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
@@ -1345,18 +1349,18 @@ class ProductModel extends Model
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
     		$arrRes[$i]['images'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "PRODUCT_IMG");
-			
-			
+
+
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-    
+
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 }

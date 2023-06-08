@@ -43,8 +43,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr ng-repeat="row in displayCollection">
+                                        <tbody id="tablecontents">
+                                            <tr class="row1" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.SHADE_ID}}" ng-repeat="row in displayCollection">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.TITLE}}</td>
                                                 <td>@{{row.DESCRIPTION_TEXT}}</td>
@@ -215,7 +215,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
     </div>
     @include('admin.admin-footer');
-    
+	<script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.3.3/js/dataTables.rowReorder.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
     <script src="{{ url('/assets-admin') }}/customjs/script_adminshades.js?v={{time()}}"></script>
     
     <script>
