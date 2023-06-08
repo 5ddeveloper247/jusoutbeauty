@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request; 	
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\UserModel;
 use App\Models\EmailForwardModel;
@@ -10,16 +10,16 @@ use App\Models\EmailConfigModel;
 class LoginController extends Controller
 {
 	public function adminlogin(Request $r){
-		
+
 		$r->validate([
 				'email'=>'required|email',
 				'password'=>'required'
-		
+
 		]);
-		
+
 		$email = $r->input('email');
 		$password = $r->input('password');
-		
+
 		$result = DB::table('fnd_user_tbl as a')->select('a.*')
 						->where([
 								['EMAIL', "$email"],
@@ -28,11 +28,11 @@ class LoginController extends Controller
 						->orderBy('USER_ID','desc')
 						->limit('1')
 						->first();
-		
+
 		if(isset($result->EMAIL) && $email == $result->EMAIL){
-		
+
 			if($password == $result->ENCRYPTED_PASSWORD){
-				
+
 				$r->session()->put('userId', $result->USER_ID);
 				$r->session()->put('userName', $result->USER_NAME);
 				$r->session()->put('firstName', $result->FIRST_NAME);
@@ -40,11 +40,21 @@ class LoginController extends Controller
 				$r->session()->put('userType', $result->USER_TYPE);
 				$r->session()->put('email', $result->EMAIL);
 				$r->session()->put('userSubType', $result->USER_SUBTYPE);
-				
+
+                // $r->session()->put([
+                //     'userId' => $result->USER_ID,
+                //     'userName'=> $result->USER_NAME,
+                //     'firstName'=> $result->FIRST_NAME,
+                //     'lastName'=> $result->LAST_NAME,
+                //     'userType'=> $result->USER_TYPE,
+                //     'email'=> $result->EMAIL,
+                //     'userSubType'=> $result->USER_SUBTYPE
+                // ]);
+
 				return redirect('dashboard');
-			
+
 			}else{
-				
+
 				$r->session()->flash('error', 'Please enter valid Password');
 				return redirect('admin-login');
 			}
@@ -57,17 +67,17 @@ class LoginController extends Controller
 	public function userResetPass(Request $request){
 		$EmailForwardModel = new EmailForwardModel();
 		$EmailConfigModel = new EmailConfigModel;
-		
+
 		$detail = $_REQUEST['details'];
 		$data = $detail['res'];
-		
+
 		$result = DB::table('fnd_user_tbl as a')->select('a.*')
 		->where([
 				['EMAIL', $data['R_3']],
 				])
 				->limit('1')
 				->first();
-			
+
 		if(!$result){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Enter Valid Email!';
@@ -84,9 +94,9 @@ class LoginController extends Controller
 		$qry = DB::table('fnd_user_tbl')->where('EMAIL',$result->EMAIL)->update($d);
 
 		// To send HTML mail, the Content-type header must be set
-		
+
 		$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('OTP');
-	
+
 		$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
 							<p>Hello '.$result->EMAIL.',</p><br>
@@ -94,8 +104,8 @@ class LoginController extends Controller
 							'.$emailConfigDetails['message'].'
 						</td>
 	        		</tr>';
-		
-		
+
+
 		$email_details['to_id'] = '';
 		$email_details['to_email'] = $result->EMAIL;
 		$email_details['from_id'] = 1;
@@ -104,21 +114,21 @@ class LoginController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
 		$email_details['module_code'] = "RESET_PASS_OTP";
-		
+
 		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['user_id_otp'] = $user_id_otp;
 		$arrRes ['msg'] = 'OTP Sent Successfully. Please check your E-mail!';
 		echo json_encode ( $arrRes );
-		
+
 	}
 
 	public function UserValidatePass(Request $request){
 
 		$detail = $_REQUEST['details'];
 		$data = $detail['vpass'];
-		
+
 		$user_id = $data['C_1'];
 		$pass = $data['C_2'];
 		$c_pass = $data['C_3'];
@@ -147,7 +157,7 @@ class LoginController extends Controller
 		$detail = $_REQUEST['details'];
 
 		$data = $detail['otp'];
-		
+
 		$otp_1 = $data['V_1'];
 		$otp_2 = $data['V_2'];
 		$otp_3 = $data['V_3'];
@@ -155,9 +165,9 @@ class LoginController extends Controller
 		$otp_5 = $data['V_5'];
 		$otp_6 = $data['V_6'];
 		$user_id = $data['V_7'];
-		
+
 		$combine_otp = $data['V_1'].$data['V_2'].$data['V_3'].$data['V_4'].$data['V_5'].$data['V_6'];
-		
+
 		$result = DB::table('fnd_user_tbl as a')->select('a.*')
 		->where([
 				['USER_ID', "$user_id"],
@@ -166,7 +176,7 @@ class LoginController extends Controller
 				->limit('1')
 				->first();
 
-		
+
 		if($result->ONE_TIME_PASSWORD != $combine_otp){
 			$arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Enter Valid OTP!';
@@ -175,27 +185,27 @@ class LoginController extends Controller
 		}
 
 		$user_id_otp = $result->USER_ID;
-		
+
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'OTP Matched!';
 		$arrRes ['user_id_otp'] = $user_id_otp;
 
 		echo json_encode ( $arrRes );
 		die ();
-				
+
 	}
-		
+
 	public function userlogin(Request $r){
-	
+
 		$r->validate([
 				'email'=>'required|email',
 				'password'=>'required'
-	
+
 		]);
-	
+
 		$email = $r->input('email');
 		$password = $r->input('password');
-	
+
 		$result = DB::table('fnd_user_tbl as a')->select('a.*')
 		->where([
 				['EMAIL', "$email"],
@@ -204,22 +214,32 @@ class LoginController extends Controller
 				->orderBy('USER_ID','desc')
 				->limit('1')
 				->first();
-	
+
 		if(isset($result->EMAIL) && $email == $result->EMAIL){
-			
+
 			if($result->USER_STATUS == 'active'){
 				if($password == $result->ENCRYPTED_PASSWORD){
-					$r->session()->put('userId', $result->USER_ID);
-					$r->session()->put('userName', $result->USER_NAME);
-					$r->session()->put('firstName', $result->FIRST_NAME);
-					$r->session()->put('lastName', $result->LAST_NAME);
-					$r->session()->put('userType', $result->USER_TYPE);
-					$r->session()->put('email', $result->EMAIL);
-					$r->session()->put('userSubType', $result->USER_SUBTYPE);
+					// $r->session()->put('userId', $result->USER_ID);
+					// $r->session()->put('userName', $result->USER_NAME);
+					// $r->session()->put('firstName', $result->FIRST_NAME);
+					// $r->session()->put('lastName', $result->LAST_NAME);
+					// $r->session()->put('userType', $result->USER_TYPE);
+					// $r->session()->put('email', $result->EMAIL);
+					// $r->session()->put('userSubType', $result->USER_SUBTYPE);
+                    $r->session()->put([
+                        'userId' => $result->USER_ID,
+                        'userName'=> $result->USER_NAME,
+                        'firstName'=> $result->FIRST_NAME,
+                        'lastName'=> $result->LAST_NAME,
+                        'userType'=> $result->USER_TYPE,
+                        'email'=> $result->EMAIL,
+                        'userSubType'=> $result->USER_SUBTYPE
+
+                    ]);
 					return redirect('home');
-						
+
 				}else{
-				
+
 					$r->session()->flash('error', 'Please enter valid Password');
 					return redirect('user-login');
 				}
@@ -227,7 +247,7 @@ class LoginController extends Controller
 				$r->session()->flash('error', 'User is not active, kindly contact admin. Thanks');
 				return redirect('user-login');
 			}
-			
+
 		}else{
 				$r->session()->flash('error', 'Please enter valid Email Address');
 				return redirect('user-login');
@@ -268,7 +288,7 @@ class LoginController extends Controller
     				die ();
     			}
     		}
-    
+
     		$userdetails = $UserModel->getspecificUserByEmail($data ['A_3']);
     		if(!empty($userdetails)){
     			$arrRes['done'] = false;
@@ -296,49 +316,49 @@ class LoginController extends Controller
 				$arrRes ['msg'] = 'Password is required.';
 				echo json_encode ( $arrRes );
 				die ();
-			}			
+			}
 			if ($data['A_6'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Password is required.';
 				echo json_encode ( $arrRes );
 				die ();
-			}			
+			}
 			if ($data['A_5'] != $data['A_6'] ) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Confirm Password is incorrect.';
 				echo json_encode ( $arrRes );
 				die ();
-			}			
+			}
 			if ($data['A_7'] =='0' ) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'first agree to terms and conditions';
 				echo json_encode ( $arrRes );
 				die ();
-			}			
+			}
 				$username=$data['A_1']."_".$data['A_2'].rand(100,999);
 				$d=array();
-				$d['EMAIL']=$data['A_3'];		
-				$d['PHONE_NUMBER']=$data['A_4'];		
-				$d['USER_NAME']=$username;		
-				$d['FIRST_NAME']=$data['A_1'];		
-				$d['LAST_NAME']=$data['A_2'];		
-				$d['ENCRYPTED_PASSWORD']=$data['A_5'];		
-				$d['USER_STATUS']='active';		
-				$d['USER_TYPE']='user';		
-				// $d['DESCRIPTION']=$data['A_7'];		
+				$d['EMAIL']=$data['A_3'];
+				$d['PHONE_NUMBER']=$data['A_4'];
+				$d['USER_NAME']=$username;
+				$d['FIRST_NAME']=$data['A_1'];
+				$d['LAST_NAME']=$data['A_2'];
+				$d['ENCRYPTED_PASSWORD']=$data['A_5'];
+				$d['USER_STATUS']='active';
+				$d['USER_TYPE']='user';
+				// $d['DESCRIPTION']=$data['A_7'];
 				$lastId=DB::table('fnd_user_tbl')->insertGetId($d);
-				
+
 				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('REGISTER');
 				$email = $data['A_3'];
-				
+
 				$htmlbody=	'<tr>
 								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
 									<p>Hello '.$email.',</p><br>
 									'.$emailConfigDetails['message'].'
 								</td>
 			        		</tr>';
-				
-				
+
+
 				$email_details['to_id'] = $lastId;
 				$email_details['to_email'] = $data['A_3'];
 				$email_details['from_id'] = 1;
@@ -347,14 +367,14 @@ class LoginController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "REGISTRATION";
-				
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-				
+
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Account created successfully, kindly login with your email and password.';
 				echo json_encode ( $arrRes );
 				die ();
-				
+
 // 				return response()->json(['message' => $lastId], 200);
 
 	}
