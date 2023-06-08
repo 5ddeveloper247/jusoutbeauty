@@ -8838,14 +8838,7 @@ class AdminController extends Controller
 
 		$User = new User();
 
-		if(session('userId') === 1) {
-
-			$arrRes['allAdminUsers'] = $User->getallAdminUsers();
-
-		}else{
-
-			$arrRes['allAdminUsers'] = $User->getAllAdminUsersWRTSubUsers(session('userId'));
-		}
+		$arrRes['allAdminUsers'] = $User->getAllAdminUsersWRTSubUsers(session('userId'));
 
 		echo json_encode($arrRes);
 	}
