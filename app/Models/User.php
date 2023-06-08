@@ -366,31 +366,19 @@ class User extends Authenticatable
 
     }
 
-    public function getAllAdminUsers(){
-        
-        $result = DB::table('fnd_user_tbl')
-				  ->where('USER_TYPE','admin')
-                  ->select('USER_ID','EMAIL','USER_NAME','USER_TYPE','ENCRYPTED_PASSWORD','USER_STATUS','FIRST_NAME','LAST_NAME')
-                  ->latest('CREATED_ON','UPDATED_ON')
-				  ->get();
+   
+
+    public function getAllAdminUsersWRTSubUsers($id){
+
+             $result = DB::table('fnd_user_tbl')
+				        ->where('USER_TYPE','admin')
+                        ->select('USER_ID','EMAIL','USER_NAME','USER_TYPE','ENCRYPTED_PASSWORD','USER_STATUS','FIRST_NAME','LAST_NAME')
+                        ->latest('CREATED_ON','UPDATED_ON')
+				        ->get();
         
         return isset( $result) ?  $result :null;
+
     }
-
-    // public function getAllAdminUsersWRTSubUsers($id){
-
-    //     $result = DB::table('fnd_user_tbl')
-    //     ->where('USER_SUBTYPE','subadmin')
-    //     ->select('USER_ID','EMAIL','USER_NAME','USER_TYPE','ENCRYPTED_PASSWORD','USER_STATUS','FIRST_NAME','LAST_NAME')
-    //     ->where('USER_ID','!=',$id)
-    //     ->latest('CREATED_ON','UPDATED_ON')
-    //     ->get();
-
-    //     // dd($result);
-
-    //     return isset( $result) ?  $result :null;
-
-    // }
 
     public function getAdminUserDetails($id){
 
