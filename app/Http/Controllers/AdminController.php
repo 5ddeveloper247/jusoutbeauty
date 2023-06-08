@@ -733,8 +733,12 @@ class AdminController extends Controller
 //        	$data['page'] = 'Admin Users';
 //        	return view('admin.admin-users')->with($data);
 //    	}
+
+
+
    	public function adminProfile() {
    		 
+		$data['getLoggedUser'] = $this->getLoggedUser(session('userId'));
 		$data['adminMenu'] = $this->getAdminUserMenu();
    		$data['page'] = 'Admin Profile';
 		$result=$this->checkUserControlAccess(session('userId'),"/admin-profile");
@@ -745,6 +749,17 @@ class AdminController extends Controller
 		}
    		// return view('admin.admin-profile')->with($data);
    	}
+
+	public function getLoggedUser($id){
+
+		$result = DB::table('fnd_user_tbl')
+				->where('USER_ID',$id)
+				->get()
+				->toArray()[0];
+
+		return isset($result) ? $result : null;
+	}
+	
 
    	public function addAdminUser() {
    		
@@ -8447,7 +8462,10 @@ class AdminController extends Controller
 	
 	}
 	
-	public function getAllAdminProfilelov() {
+	public function getAllAdminProfilelov(Request $request) {
+
+		$f = $_REQUEST['details'];
+		
 		$UserModel = new UserModel();
 	
 		$details = $_REQUEST ['details'];
@@ -8658,7 +8676,14 @@ class AdminController extends Controller
 		
 		$User = new User();
 
-		$arrRes['allAdminUsers'] = $User->getallAdminUsers();
+		if(session('userId') === 1) {
+
+			$arrRes['allAdminUsers'] = $User->getallAdminUsers();
+
+		}else{
+
+			$arrRes['allAdminUsers'] = $User->getAllAdminUsersWRTSubUsers(session('userId'));
+		}
 
 		echo json_encode($arrRes);
 	}
@@ -8686,6 +8711,22 @@ class AdminController extends Controller
 
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Email Address must be unique';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			// Email validation
+			if (!filter_var($details['user']['EmailAddress'], FILTER_VALIDATE_EMAIL)) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Invalid Email Format';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			// Phone number validation
+			if (!preg_match('/^\d{10}$/',$details['user']['PhoneNumber'])) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Invalid PhoneNumber Format';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -8768,6 +8809,14 @@ class AdminController extends Controller
 		$details = $_REQUEST['details'];
 		$updateduserId = $details['updateduserId'];
 
+		$enable = '';
+
+        if($details['user']['Enable'] == "true") {
+            $enable = 'active';
+        }else{
+            $enable = 'inactive';
+        }
+		
 		//Updating the Record
 		if($updateduserId != null){
 
@@ -8778,7 +8827,8 @@ class AdminController extends Controller
                          'PHONE_NUMBER' => $details['user']['PhoneNumber'],
                          'EMAIL' => $details['user']['EmailAddress'],
                          'ENCRYPTED_PASSWORD' => $details['user']['Password'],
-                         'USER_ROLE'=> $details['user']['UserRole']
+                         'USER_ROLE'=> $details['user']['UserRole'],
+						 'USER_STATUS' => $enable ,
 			           ));
 
 			$arrRes ['done'] = true;

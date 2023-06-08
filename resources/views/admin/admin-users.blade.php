@@ -48,7 +48,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                         <tbody>
                                             
                                             <tr ng-repeat="row in allAdminUsers">
-                                                <td>@{{row.USER_NAME}}</td>
+                                                <td>@{{row.FIRST_NAME}} @{{row.LAST_NAME}}</td>
                                                 <td>@{{row.EMAIL}}</td>
 												<td>
 													<span class="badge light badge-danger" ng-if="row.USER_STATUS == 'inactive'">
@@ -122,15 +122,15 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="form-group">
 	
 																<label class="col-form-label" for="firstname"><b>First Name</b>  <span class="text-danger">*</span>  </label> 
-																<input type="text" class="form-control" id="firstname" ng-model="user['FirstName']" placeholder="Enter Your First Name">
+																<input type="text" class="form-control" id="firstname" ng-model="user['FirstName']" placeholder="Enter First Name">
 	
 															</div>
 														</div>
 														<div class="col-sm-6">
 															<div class="form-group">
 	
-																<label class="col-form-label" for="lastname"><b>Last Name</b> </label> 
-																<input type="text" class="form-control" id="lastname" ng-model="user['LastName']" placeholder="Enter Your Last Name">
+																<label class="col-form-label" for="lastname"><b>Last Name</b>  <span class="text-danger">*</span>  </label> 
+																<input type="text" class="form-control" id="lastname" ng-model="user['LastName']" placeholder="Enter Last Name">
 	
 															</div>
 														</div>
@@ -141,15 +141,15 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="form-group">
 	
 																<label class="col-form-label" for="userrole"><b>User Role</b>  <span class="text-danger">*</span>  </label> 
-																<input type="text" class="form-control" id="userrole" ng-model="user['UserRole']" placeholder="Enter Your User Role">
+																<input type="text" class="form-control" id="userrole" ng-model="user['UserRole']" placeholder="Enter User Role"  autocomplete="off">
 	
 															</div>
 														</div>
 														<div class="col-sm-6">
 															<div class="form-group">
 	
-																<label class="col-form-label" for="phonenumber"><b>Phone Number</b> </label> 
-																<input type="text" class="form-control" id="phonenumber" ng-model="user['PhoneNumber']" placeholder="Enter Your Phone Number">
+																<label class="col-form-label" for="phonenumber"><b>Phone Number</b>  <span class="text-danger">*</span>  </label> 
+																<input type="number" class="form-control" id="phonenumber" ng-model="user['PhoneNumber']" placeholder="Enter Phone Number">
 	
 															</div>
 														</div>
@@ -160,7 +160,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="form-group">
 	
 																<label class="col-form-label" for="name"><b>Email</b>  <span class="text-danger">*</span>  </label> 
-																<input type="text" class="form-control" id="email" ng-model="user['EmailAddress']" placeholder="Enter Your Email Address">
+																<input type="email" class="form-control" id="email" ng-model="user['EmailAddress']" placeholder="Enter Email Address"  autocomplete="off">
 	
 															</div>
 														</div>
@@ -170,8 +170,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														<div class="col">
 															<div class="form-group">
 	
-																<label class="col-form-label" for="unit"><b>Password</b> </label>
-																<input type="password" class="form-control" id="password" ng-model="user['Password']" placeholder="Enter Your Password">
+																<label class="col-form-label" for="unit"><b>Password</b> <span class="text-danger">*</span>   </label>
+																<input type="password" class="form-control" id="password" ng-model="user['Password']" placeholder="Enter Password">
 	
 															</div>
 														</div>
@@ -179,7 +179,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="form-group">
 	
 																<label class="col-form-label" for="brand"><b>Confirm Password</b> <span class="text-danger">*</span> </label>
-																<input type="password" class="form-control" id="confirmpassword" ng-model="user['ConfirmPassword']" placeholder="Confirm Your Password">
+																<input type="password" class="form-control" id="confirmpassword" ng-model="user['ConfirmPassword']" placeholder="Confirm Password">
 	
 															</div>
 														</div>

@@ -43,6 +43,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			}
 			
 			$scope.allAdminUsers = data.allAdminUsers;
+			// console.log($scope.allAdminUsers);
 		
 			setTimeout(function(){
 				$('#AdminTable').DataTable( {
@@ -221,14 +222,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				toastr.success(data.msg, '', {timeOut: 3000})
                 $scope.user.ID = data.id;
 				//set Value to Null
-				$scope.user.FirstName = "";
-				$scope.user.LastName = "";
-				$scope.user.UserRole = "";
-				$scope.user.PhoneNumber = "";
-				$scope.user.EmailAddress = "";
-				$scope.user.Password = "";
-				$scope.user.ConfirmPassword = "";
-				$scope.user.Enable = "";
+				// $scope.user.FirstName = "";
+				// $scope.user.LastName = "";
+				// $scope.user.UserRole = "";
+				// $scope.user.PhoneNumber = "";
+				// $scope.user.EmailAddress = "";
+				// $scope.user.Password = "";
+				// $scope.user.ConfirmPassword = "";
+				// $scope.user.Enable = "";
 
 				$scope.getAllAdminUserslov();
 

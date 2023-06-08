@@ -239,10 +239,11 @@ class UserMenuControlModel extends Authenticatable
         
         $result = DB::table('fnd_user_submenu_tbl')
                   ->where('MENU_ID',$menu_id)
-                  ->select('MENU_NAME','MENU_DESCRIPTION','SYSTEM_CALL','MENU_ICON')
+                  ->select('SUB_MENU_ID','MENU_NAME','MENU_DESCRIPTION','SYSTEM_CALL','MENU_ICON')
                   ->get();
         
         for($i=0 ;$i<count($result);$i++){
+                $arrRes[$i]['SUB_MENU_ID'] = $result[$i]->SUB_MENU_ID;
                 $arrRes[$i]['MENU_NAME'] = $result[$i]->MENU_NAME;
                 $arrRes[$i]['MENU_DESCRIPTION'] = $result[$i]->MENU_DESCRIPTION;
                 $arrRes[$i]['SYSTEM_CALL'] = $result[$i]->SYSTEM_CALL;

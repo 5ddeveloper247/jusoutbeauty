@@ -733,7 +733,7 @@
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
 									<div class="header-info">
 										<span class="text-black"><strong>{{session('firstName')}} {{session('lastName')}}</strong></span>
-										<p class="fs-12 mb-0">Super Admin</p>
+										<p class="fs-12 mb-0">{{session('userSubType') == 'admin' ? 'Super Admin' : 'Admin'}}</p>
 									</div>
                                     <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" width="20" alt=""/>
                                 </a>
@@ -765,7 +765,7 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
-					@if($adminMenu != '' )
+				@if($adminMenu != '' )
 					@foreach ($adminMenu as $menu)
 
 						@if($menu['MENU_TYPE'] == 'main')
@@ -787,9 +787,11 @@
 							<ul aria-expanded="false">
 
 								@foreach ($menu['SUB_MENU'] as $sub)
-
-									<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
-
+									@if(session('userSubType') == 'admin')
+										<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
+									@elseif(session('userSubType') == 'subadmin' && $sub['SUB_MENU_ID'] != 3 )
+										<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>	
+									@endif
 								@endforeach
 							</ul>
                     	</li>
@@ -797,8 +799,14 @@
 						@endif
 
 						@endforeach
-					@endif
+					@elseif($adminMenu == '' )
 					
+						<li><a class="ai-icon" href="{{session('site')}}/dashboard" aria-expanded="false">
+							<i class="flaticon-381-networking"></i>
+							<span class="nav-text">Dashboard</span>
+						</a>
+
+					@endif
 				
 					
                     <!--<li><a class="ai-icon" href="{{session('site')}}/dashboard" aria-expanded="false">

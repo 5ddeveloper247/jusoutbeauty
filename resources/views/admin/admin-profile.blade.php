@@ -82,7 +82,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="col-form-label" for="currentPassword"><b>Current Password</b> <span class="text-danger">*</span> </label> 
-													<input type="text" class="form-control" id="currentPassword" ng-model="password['C_1']" placeholder="Current Password">
+													<input type="password" class="form-control" id="currentPassword" ng-model="password['C_1']" placeholder="Current Password">
 												</div>
 											</div>
 										</div>
@@ -90,13 +90,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="col-form-label" for="newPassword"><b>New Password<span class="text-danger">*</span></b> </label> 
-													<input type="text" class="form-control" id="newPassword" ng-model="password['C_2']" placeholder="New Password">
+													<input type="password" class="form-control" id="newPassword" ng-model="password['C_2']" placeholder="New Password">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="col-form-label" for="confirmNewPassword"><b>Confirm New Password<span class="text-danger">*</span></b> </label>
-													<input type="text" class="form-control" id="confirmNewPassword" ng-model="password['C_3']" placeholder="Confirm New Password">
+													<input type="password" class="form-control" id="confirmNewPassword" ng-model="password['C_3']" placeholder="Confirm New Password">
 												</div>
 											</div>
 											
