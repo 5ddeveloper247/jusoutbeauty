@@ -155,7 +155,7 @@ class BundleProductModel extends Model
     	 
     	$where = array_merge($where, array(['a.STATUS','=','active']));
     	$where = array_merge($where, array(['jct.STATUS','=','active']));
-    	$where = array_merge($where, array(['jsct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jsct.STATUS','=','active']));
 //     	$where = array_merge($where, array(['jssct.STATUS','=','active']));
     	
 //     	if($shadeId != ''){
@@ -177,8 +177,8 @@ class BundleProductModel extends Model
     		$orderByCol = "a.BUNDLE_ID";
     		$orderBy = "desc";
     	}else{
-    		$orderByCol = "a.BUNDLE_ID";
-    		$orderBy = "desc";
+    		$orderByCol = "a.SEQ_NUM";
+    		$orderBy = "asc";
     	}
     	
     	if(count($subSubCategoryIds) > 0){

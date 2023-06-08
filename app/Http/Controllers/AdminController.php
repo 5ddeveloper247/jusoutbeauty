@@ -3691,12 +3691,12 @@ class AdminController extends Controller
 				die ();
 			}
 
-			if ($data ['P_4'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Minimum Purchase Qty is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data ['P_4'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Minimum Purchase Qty is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 
 			if ($data ['P_5'] == '') {
 				$arrRes ['done'] = false;
@@ -3710,12 +3710,12 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['P_6']) > 100) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Barcode must be less then 100 characters.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if (strlen($data['P_6']) > 100) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Barcode must be less then 100 characters.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if (!isset($data ['P_8']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Please choose Category.';
@@ -3792,11 +3792,11 @@ class AdminController extends Controller
 								'NAME' => $data['P_1'],
 								'SUB_TITLE' => $data['P_2'],
 								'UNIT' => $data ['P_3'],
-								'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
+								// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
 								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
 								'TAGS' => $data ['P_5'],
-								'BARCODE' => $data ['P_6'],
-								'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
+								// 'BARCODE' => $data ['P_6'],
+								// 'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
@@ -4839,12 +4839,12 @@ class AdminController extends Controller
 
 		if (isset ( $data ) && ! empty ( $data )) {
 
-			if ($data['U_1'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Sequence Number is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data['U_1'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Sequence Number is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if ($data['U_2'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title is required.';
@@ -6242,18 +6242,18 @@ class AdminController extends Controller
 				die ();
 			}
 
-			if ($data ['P_4'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Minimum Purchase Qty is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-			if ($data ['P_4'] < 0) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Minimum Purchase Qty must be greater then zero.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data ['P_4'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Minimum Purchase Qty is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
+			// if ($data ['P_4'] < 0) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Minimum Purchase Qty must be greater then zero.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 
 			if ($data ['P_5'] == '') {
 				$arrRes ['done'] = false;
@@ -6267,12 +6267,12 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['P_6']) > 100) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Barcode must be less then 100 characters.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if (strlen($data['P_6']) > 100) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Barcode must be less then 100 characters.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if (!isset($data ['P_8']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Please choose Category.';
@@ -6280,18 +6280,18 @@ class AdminController extends Controller
 				die ();
 			}
 
-			if (!isset($data ['P_9']['id'])) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Please choose Sub Category.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-			if (!isset($data ['P_11']['id'])) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Please choose Sub Sub Category.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if (!isset($data ['P_9']['id'])) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Please choose Sub Category.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
+			// if (!isset($data ['P_11']['id'])) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Please choose Sub Sub Category.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if ($data['P_10'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Slug is required.';

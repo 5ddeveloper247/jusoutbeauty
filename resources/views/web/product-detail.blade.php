@@ -425,7 +425,7 @@
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
                         <div class="primary-summary-inner">
-                            <h2 class="fs-30 mb-0"><?= $productDetails['NAME'] ?></h2>
+                            <h3 class=" mb-0"><?= $productDetails['NAME'] ?></h2>
                             <p
                                 class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
@@ -667,7 +667,7 @@
                                             class="accordion accordion-01 border-md-0 border p-md-0">
                                             <div class="card-body p-0">
                                                 <div class="row " style="">
-                                                    <h5 class="col-12 mb-2 font-weight-500 fs-24 pb-8 text-center"
+                                                    <h3 class="col-12 mb-2 pb-8 text-center"
                                                         style="margin: 0 auto;"><?= $productDetails['SUB_TITLE'] ?>
                                                     </h5>
                                                     <div class="col-md-6 mb-6 mb-md-0">
@@ -694,7 +694,7 @@
                                                 <div class="row pt-10 align-items-center subsc_ec">
 
                                                     <div class="col-md-6 ">
-                                                        <h3 class="mb-2 font-weight-500 fs-35">Subscription</h3>
+                                                        <h3 class="mb-2">Subscription</h3>
                                                         <p class="mb-6">Indulge in the convenience and exclusive
                                                             benefits offered with our subscription service. Simply
                                                             select how frequently you'd like to recieve your products,
@@ -915,8 +915,8 @@
                                                 <section style="background-color: #f38c7b;">
                                                     <div class="pb-10 pb-lg-8 py-8">
                                                         <div class="container container-xl">
-                                                            <h2 class="text-center mb-9" style="color: #fff;">How To
-                                                                Use: AM and PM</h2>
+                                                            <h3 class="text-center mb-9" style="color: #fff;">How To
+                                                                Use: AM and PM</h3>
                                                             <div class="row">
                                                                 <?php $i=1 ?>
                                                                 <?php if(isset($productUses) && !empty($productUses)){?>
@@ -970,7 +970,7 @@
                                                             </div>
                                                             <div class="col-md-6 px-6 px-md-0 pl-xl-7"
                                                                 style="height:30rem;overflow-y:auto">
-                                                                <h3 class="fs-42 mb-5">Clinical Note</h3>
+                                                                <h3 class=" mb-5">Clinical Note</h3>
                                                                 <p><?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>
@@ -992,7 +992,7 @@
 
         <section class="py-6 py-lg-10 insta_sec_home">
             <div class="container container-custom container-xl">
-                <h2 class="mb-3 text-center">Snap a selfi</h2>
+                <h3 class="mb-3 text-center">Snap a selfi</h3>
                 <p class="text-center mb-3 mx-auto">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a tempore?
                     Obcaecati voluptatem pariatur ab dolor laborum, a incidunt quisquam illo accusantium alias hic
@@ -1482,7 +1482,7 @@
                         <section class=" pb-lg-13">
                             <div class="">
                                 <div class="comment-product mw-900 mx-auto">
-                                    <h2 class="text-center mb-4">Reviews</h2>
+                                    <h3 class="text-center mb-4">Reviews</h3>
 
                                     <div class="">
                                         <div class="row border-bottom mb-2"
@@ -1631,7 +1631,7 @@
                         <section class="pb-lg-13">
                             <div class="">
                                 <div class="comment-product mw-900 mx-auto">
-                                    <h2 class="text-center mb-4">Questions</h2>
+                                    <h3 class="text-center mb-4">Questions</h3>
 
                                     <div class="media mbl-class border-bottom pb-7 mb-7 flex-sm-column-mbl"
                                         ng-repeat="row in displayCollectionQuestions">

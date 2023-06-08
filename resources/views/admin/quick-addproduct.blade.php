@@ -674,7 +674,7 @@
                         </div>
                         <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3" ng-show="basicEditView == '0'">
                             <div class="primary-summary-inner">
-                                <h2 class="fs-30 mb-0" id="p7">{{ $productDetails['P_1'] }}</h2>
+                                <h3 class=" mb-0" id="p7">{{ $productDetails['P_1'] }}</h3>
                                 <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4"
                                     id="p8">
                                     {{ $productDetails['P_2'] }}</p>
@@ -840,9 +840,8 @@
                                                                 aria-hidden="true" ng-click="EditSecondSection()"></i>
                                                         </div>
 
-                                                        <h5 class="col-12 mb-2 font-weight-500 fs-24 pb-8 text-center"
-                                                            id="p17" style="margin: 0 auto;"
-                                                            ng-show="SecondSectionEdit == '0'">For Women </h5>
+                                                        <h3 class="col-12 text-center my-4"
+                                                            id="p17" ng-show="SecondSectionEdit == '0'">For Women </h3>
                                                         <div class="col-md-6 mb-6 mb-md-0">
                                                             <img id="p15"
                                                                 src="https://jusoutbeauty.com/site/public/uploads/product/images/292.jpg"
@@ -1489,10 +1488,10 @@
                                                     <section style="background-color: #f38c7b;">
                                                         <div class="pb-10 pb-lg-8 py-8">
                                                             <div class="container container-xl">
-                                                                <h2 class="text-center mb-9" style="color: #fff;">
+                                                                <h3 class="text-center mb-9" style="color: #fff;">
                                                                     How To
                                                                     Use: AM and PM <i class="fa fa-pencil-square-o cursor-pointer"
-                                                                    aria-hidden="true" ng-click="addNewUses();"></i></h2>
+                                                                    aria-hidden="true" ng-click="addNewUses();"></i></h3>
                                                                 <div class="row" id="steps_users">
                                                                     <div class="col-md-4 mb-6 mb-md-0 ">
                                                                         <div class="card border-0">
@@ -1582,7 +1581,7 @@
                                                                 </form>
                                                                 <div class="col-md-6 px-6 px-md-0 pl-xl-7"
                                                                     style="height:30rem;overflow-y:auto" ng-show="clinicalNoteSection == '0'">
-                                                                    <h3 class="fs-42 mb-5">Clinical Note</h3>
+                                                                    <h3 class="mb-5">Clinical Note</h3>
                                                                     <p id="p19" ><span style="text-align: justify;">It is a long
                                                                             established fact that a reader will be
                                                                             distracted by the readable content of a page
