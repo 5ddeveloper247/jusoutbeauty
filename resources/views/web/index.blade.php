@@ -10,6 +10,10 @@
     var instagram_feed = '';
 </script>
 <style>
+    /* h2{
+        font-size: 36px;
+        text-transform: capitalize;
+    } */
     .popup-dialog {
         max-width: 1300px;
     }
@@ -184,7 +188,7 @@
  }
  img.inc_image_blog_1_home {
   width: 100% !important;
-  
+
   margin-left: 8px !important;
  }
  .col-lg-8.col-6.fort_box_home1.cont_box{
@@ -226,7 +230,7 @@
  a.card.border-0.banner-03.hover-zoom-in{
   height: 800px !important;
  }
-            
+
 } */
     .quick_view_product_image {
         width: 250px;
@@ -551,7 +555,7 @@
 	                                                        class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
 	                                                        id="qckad" data-type="single" data-id="{{ $trend['PRODUCT_ID'] }}" data-quantity='1'>+ Quick Add</a>
 	                                              	@elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] <= '0')
-                                                    	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" 
+                                                    	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
                                                     		id="qckad" disabled>+ Out of Stock</a>
                                                     @endif
                                                 </div>
@@ -591,7 +595,7 @@
             <div class="container container-xl">
                 <div class="d-flex">
                     <div class="ml-auto d-flex flex-column align-items-center" style="margin: 0 auto !important;">
-                        <h3 class="fs-24 fs-md-36 mb-7 text-center part_head">Pay less, stay
+                        <h2 class="mb-7 text-center part_head text-capitalize">Pay less, stay
                             in fashion!</h3>
 
                         <a href="{{session('site')}}/store" class="btn btn-primary">All Products</a>
@@ -604,7 +608,7 @@
         <section class="py-10 py-lg-13 overflow-hidden testimonial-sec-home">
             <div class="row">
                 <div class="col-xl-12">
-                    <h2 class="text-center fs-24 fs-md-42 mb-1 text-capitalize">Our Reviews
+                    <h2 class="text-center mb-1 ">Our Reviews
                     </h2>
                     <br>
                     <div class="slick-slider custom-slider-03"
@@ -664,7 +668,7 @@
 
 
         <section id="section-next" class="py-10 py-lg-13" style="background-color: #57813a ;">
-            <h2 class="text-center fs-24 fs-md-42 mb-1 text-capitalize text-white">Created For You</h2>
+            <h2 class="text-center mb-1  text-white">Created For You</h2>
             <br>
             <div class="container container-custom">
 
@@ -719,7 +723,7 @@
 	                                           		class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
 	                                             	id="qckad" data-type="single" data-id="{{ $for['PRODUCT_ID'] }}" data-quantity='1'>+ Quick Add</a>
 	                                      	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] <= '0')
-                                            	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" 
+                                            	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
                                               		id="qckad" disabled>+ Out of Stock</a>
                                           	@endif
                                             <!-- <a href="javascript:;"
@@ -752,7 +756,7 @@
 
                 </div>
                 <div class="text-center pt-2">
-                    <a href="{{session('site')}}/store" class="btn btn-outline-primary" 
+                    <a href="{{session('site')}}/store" class="btn btn-outline-primary"
                         data-type="SUB_CATEGORY"> Shop More </a>
                 </div>
             </div>
@@ -767,7 +771,7 @@
                                 class="w-100 img-home-pay">
                         </div>
                         <div class="col-md-5 my-auto" data-animate="fadeInRight">
-                            <h2 class="fs-24 fs-md-42 mb-1 text-capitalize">
+                            <h2 class="mb-1">
                                 Today Offer <br>
                             </h2>
                             <h4 class="fs-18 mb-3">{{ $todayOffer['title'] }}</h4>
@@ -814,12 +818,12 @@
             style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover;">
 
             <div class="container container-custom container-xl">
-                <h2 class="fs-24 fs-md-36 mb-0 text-center lh-13 text-center-mbl" data-animate="fadeInUp">Are You
+                <h2 class="mb-0 text-center lh-13 text-center-mbl" data-animate="fadeInUp">Are You
                     Ready For The Matchup</h2>
                 <div class="row no-gutters align-items-center mx-n7">
 
                     <div class="col-md-5 px-7" data-animate="fadeInRight">
-                        <h2 class="fs-24 fs-md-42 mb-1 text-capitalize">
+                        <h2 class="mb-1">
                             Find Your Shade <br>
                         </h2>
 
@@ -891,7 +895,7 @@
 
         <section class="py-12 py-lg-12" style="background-color: #006f7a;">
             <div class="container container-custom container-xl">
-                <h2 class="text-center mb-8 lh-128 fs-24 fs-sm-37 text-white">Our Blog
+                <h2 class="text-center mb-8 lh-128 text-white">Our Blog
                 </h2>
                 <div class="row">
 
@@ -994,7 +998,7 @@
 						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
@@ -1009,34 +1013,21 @@
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg"
 							alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
 									<button class="btn btn-outline-primary">shop now</button>
 								</div>
 							</div>
-		
+
 						</a>
 					</div>
 					<div class="box px-1" data-animate="fadeInUp">
 						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
-									<i class="fab fa-instagram"></i>
-								</span>
-								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
-									<button class="btn btn-outline-primary">shop now</button>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="box px-1" data-animate="fadeInUp">
-						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
-							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
-							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
@@ -1049,7 +1040,7 @@
 						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
@@ -1062,7 +1053,7 @@
 						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
@@ -1075,7 +1066,7 @@
 						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
@@ -1088,7 +1079,7 @@
 						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
@@ -1101,9 +1092,22 @@
 						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
 							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 									<i class="fab fa-instagram"></i>
-		
+								</span>
+								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
+									<button class="btn btn-outline-primary">shop now</button>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="box px-1" data-animate="fadeInUp">
+						<a href="" class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
+							<img src="{{ url('/assets-web') }}/images/makeup.jpg" alt="Instagram" class="card-img">
+							<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
+								<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
+									<i class="fab fa-instagram"></i>
+
 								</span>
 								<div style="display: block; position: absolute; bottom: 23%; left: 83px;">
 									<button class="btn btn-outline-primary">shop now</button>
@@ -1150,7 +1154,7 @@
                             </div>
                             <div class="col-sm-6 col-md-6 primary-summary " style="padding: 15px;">
                                 <div class="d-flex align-items-center">
-                                    <h2 class="fs-24 mb-0">@{{ QuickView_name }}</h2>
+                                    <h2 class="mb-0">@{{ QuickView_name }}</h2>
                                 </div>
                                 <div class="primary-summary-inner" >
                                     <p
@@ -1341,7 +1345,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" 
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered popup-dialog" role="document" style="">
                 <div class="modal-content modalcontent-popup">

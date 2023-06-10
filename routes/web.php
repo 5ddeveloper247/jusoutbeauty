@@ -244,6 +244,8 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/updateIngredientOrder',[AdminController::class,'updateIngredientOrder']);
 	Route::post('/updateFeaturesOrder',[AdminController::class,'updateFeaturesOrder']);
 
+    Route::post('/updateSubscriptionInfo', [AdminController::class, 'updateSubscriptionInfo']);
+
     Route::post('/updateCategoryOrder',[AdminController::class,'updateCategoryOrder']);
     Route::post('/updateSubCategoryOrder',[AdminController::class,'updateSubCategoryOrder']);
     Route::post('/updateSubSubCategoryOrder',[AdminController::class,'updateSubSubCategoryOrder']);
@@ -555,7 +557,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 
 	Route::post('/getSpecificUserShadeNameDetailsAdmin', [AdminController::class, 'getSpecificUserShadeNameDetailsAdmin']);
 
-
+    Route::post('/uploadProductSubscriptionImage',[AttachmentController::class, 'uploadProductSubscriptionImage']);
 
 
 

@@ -32,15 +32,15 @@ var site = '<?php echo session('site');?>';
 		}
 	}
 </style>
-<main id="content" ng-app="project1"> 
+<main id="content" ng-app="project1">
 <div class="container container-customshadefinder container-xxl mb-2" ng-controller="projectinfo1" id="details-header">
-	
+
 	<div class="row justify-content-center mt-5 mt-md-5 mt-xl-10">
 		<div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-12 text-center p-0 mt-5 mb-2 quiz-fomewhole" >
 			<div class="backto-previousstep second-step-previous" ng-click="backToPrevious();" ng-show="viewFlag == 'Y2' || viewFlag == 'Y3' || viewFlag == 'Y4'">
 				<span><i class="fa fa-arrow-left"></i></span><br> <span>Back</span>
 			</div>
-			
+
 			<div class="start-fromscratch back-to-shadefinderpage">
 				<a href="{{session('site')}}/user-shade-finder"> <span class="">X</span><br>
 					<span>Start From Scratch</span>
@@ -88,9 +88,9 @@ var site = '<?php echo session('site');?>';
 							<section class="pb-11 pb-lg-0">
 								<div class="container container-custom border-bottom pb-2 pb-lg-1 pl-0 pr-0">
 									<div class="collapse-tabs">
-										
+
 										<ul class="nav nav-pills d-md-flex border-bottom" id="pills-tab">
-											
+
 											<li class="nav-item quiz_nav_links" >
 												<a class="nav-link cursor-pointer yeslevelonetabs active show font-weight-600 px-0 pb-3 mr-md-6 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
 												id="yes_level_one_all" ng-click="levelOneTabsSwitch('all');">All 100-498</a>
@@ -99,31 +99,31 @@ var site = '<?php echo session('site');?>';
 												<a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-0 pb-3 mr-md-6 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
 												id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
 											</li>
-											
+
 										</ul>
-										
+
 										<div class="bg-white-md shadow-none pt-md-6 pt-lg-1 px-0 mt-4">
-										
+
 											<div id="">
 												<div class="yestabs" id="yes_tab_all">
 													<div class="card shadee border-0 bg-transparent">
-														
+
 														<section class="py-6 py-lg-0 insta_section firsttabb">
 															<div class="container container-custom-slider container-xl">
 
 																<div class="slick-slider1 shadefinder">
-																	
+
 																	<div class="px-1 div-boxx shade" ng-repeat="row in displayCollectionLevelOneTypes" ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}});">
 																		<p class="text-center mb-0 text-white hoverimages-text p-2 rose">@{{row.TITLE}}</p>
-																		
+
 																		<a href="javascript:;" ng-repeat="image in row.images" class="card shadee border-0 hover-change-content insta-secc insta-section-image submit-btn">
 																			<img src="@{{image.downPath}}" alt="alt" class="card-img" width="445" height="411">
 																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img" width="445" height="411"> --}}
-																		</a> 
-																	
+																		</a>
+
 																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION}}</p>
 																	</div>
-																
+
 																</div>
 															</div>
 														</section>
@@ -134,7 +134,7 @@ var site = '<?php echo session('site');?>';
 
 												<!-- <div class="tab-pane tab-pane-parent yestabs" ng-repeat="row in displayCollectionLevelOneTypes" id="yes_tab_@{{row.LEVEL_ONE_TYPE_ID}}" style="display: none;">
 													<div class="card shadee border-0 bg-transparent">
-														
+
 
 														<section class="py-6 py-lg-0 insta_section" >
 															<div class="container">
@@ -146,8 +146,8 @@ var site = '<?php echo session('site');?>';
 																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.TITLE}}</p>
 																		<a href="javascript:;" class="card shadee border-0 hover-change-content insta-secc insta-section-image next-ifno" ng-repeat="img in row.images">
 																			<img src="@{{img.downPath}}" alt="Instagram" class="card-img afternosliderhide">
-																		</a> 
-																		
+																		</a>
+
 																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION}}</p>
 																	</div>
 																</div>
@@ -159,11 +159,11 @@ var site = '<?php echo session('site');?>';
 													</div>
 
 												</div> -->
-												
-												
+
+
 												<div class="row yestabs" ng-repeat="row in displayCollectionLevelOneTypes" id="yes_tab_@{{row.LEVEL_ONE_TYPE_ID}}" style="display: none; max-width: 84%; margin-left: 8%;">
 													<div class="col-12 col-md-8 offset-md-2 card shadee border-0 bg-transparent p-0">
-														
+
 														<section class="py-6 py-lg-0 insta_section" id="last-tab" style="">
 															<div class="container p-0">
 
@@ -171,22 +171,22 @@ var site = '<?php echo session('site');?>';
 
 																	<div class="px-1 div-boxx shade single-tabss shade-type" ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}});">
 																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.TITLE}}</p>
-																		
+
 																		<a href="javascript:;" ng-repeat="img in row.images" class="card shadee border-0 hover-change-content insta-secc insta_section_shade_finder insta-section-image submit-btn">
 																			{{-- <img src="@{{img.downPath}}" alt="alt" class="card-img objectfit-cover"> --}}
 																			<img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img objectfit-cover">
-																		</a> 
-																		
+																		</a>
+
 																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION}}</p>
 																	</div>
 																</div>
-																
+
 															</div>
 														</section>
 													</div>
 												</div>
-												
-												
+
+
 											</div>
 										</div>
 									</div>
@@ -194,7 +194,7 @@ var site = '<?php echo session('site');?>';
 							</section>
 						</div>
 					</fieldset>
-					
+
 					<fieldset class="nofirst-step" ng-show="viewFlag == 'Y3'">
 						<div class="form-card-shade-find">
 							<div class="row">
@@ -248,7 +248,7 @@ var site = '<?php echo session('site');?>';
 							</div>
 							<div class="col-md-6">
 								<div class="text-center align-items-center">
-									<h4>Liquid Foundation Iconic Edition</h4>
+									<h2>Liquid Foundation Iconic Edition</h2>
 									<p>Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
@@ -258,7 +258,7 @@ var site = '<?php echo session('site');?>';
 											data-animate="fadeInUp">
 											<div class="card shadee border-0 product-right-side productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{row.CATEGORY_NAME}}">
 												<div class="position-relative hover-zoom-in">
-													<a href="javascript:;" class="d-block overflow-hidden"> 
+													<a href="javascript:;" class="d-block overflow-hidden">
 													<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top img-h30">
 
 													</a>
@@ -295,11 +295,11 @@ var site = '<?php echo session('site');?>';
 
 					<section class="pt-10 pt-lg-8 pb-8">
 						<div class="container container-xl">
-							<h3 class="text-center pb-3">OTHER PRODUCTS TO COMPLETE THE LOOK</h3>
+							<h2 class="text-center pb-3">Other Products To Complete The Look</h2>
 
-							<div class="slick-slider2 shadefinder" 
+							<div class="slick-slider2 shadefinder"
 							data-slick-options='{"slidesToShow": 1,"dots":true,"autoplay":true,"arrows":false,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
-								
+
 								<div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts"><!-- data-animate="fadeInUp" -->
 									<div class="card shadee border-0">
 										<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 mb-2">
@@ -308,7 +308,7 @@ var site = '<?php echo session('site');?>';
 										<div class="position-relative hover-zoom-in">
 
 											<a href="javascript:;" class="d-block overflow-hidden">
-												<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-active"> 
+												<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-active">
 												<img src="@{{row.secondaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-hover">
 											</a>
 											<div
@@ -322,15 +322,15 @@ var site = '<?php echo session('site');?>';
 														<i class="fas fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}" ></i>
 													</a>
 													{{-- <a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Quick view" ng-click="quickViewProductDetails(@{{row.PRODUCT_ID}})" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-														// <span data-toggle="modal" data-target="#productQuickView"> 
+														// <span data-toggle="modal" data-target="#productQuickView">
 														<i class="icon fal fa-eye"></i>
-														// </span> 
+														// </span>
 													</a> --}}
 
 												</div>
 											</div>
 											<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-												<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addtocart addto-cart" 
+												<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addtocart addto-cart"
 													id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-quantity='1'>+ Quick Add</a>
 											</div>
 										</div>
@@ -353,25 +353,25 @@ var site = '<?php echo session('site');?>';
 													<p class="text-primary mb-0 card-title text-right lh-14375">@{{row.UNIT}}</p>
 												</div>
 											</div>
-											
-											
+
+
 
 										</div>
 									</div>
 								</div>
-								
-								
+
+
 							</div>
 
 						</div>
-					</section> 
+					</section>
 
 					<!-- <section class="pt-10 pt-lg-8 pb-8">
 						<div class="container container-xl">
 							<h3 class="text-center pb-3">OTHER PRODUCTS TO COMPLETE THE LOOK</h3>
 
 							<div class="slick-slider2 shadefinder" data-slick-options='{}'>
-								
+
 								<div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts">
 									<div class="card shadee border-0">
 										<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 mb-2">
@@ -380,7 +380,7 @@ var site = '<?php echo session('site');?>';
 										<div class="position-relative hover-zoom-in">
 
 											<a href="javascript:;" class="d-block overflow-hidden">
-												<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-active"> 
+												<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-active">
 												<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-hover">
 											</a>
 											<div class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
@@ -413,13 +413,13 @@ var site = '<?php echo session('site');?>';
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 
 						</div>
 					</section> -->
 
-					
+
 				</div>
 			</div>
 		</div>
@@ -462,7 +462,7 @@ var site = '<?php echo session('site');?>';
 							<div class="d-flex align-items-center">
 								<h2 class="fs-24 mb-0">@{{ QuickView_name }}</h2>
 							</div>
-							<div class="primary-summary-inner" style="max-height: 31rem;overflow: scroll;"> 
+							<div class="primary-summary-inner" style="max-height: 31rem;overflow: scroll;">
 								<p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="category_name != ''">
 									@{{ category_name }}, @{{ subCategory_name }}</p>
 								<p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="bundleProductNames != ''">
@@ -511,48 +511,48 @@ var site = '<?php echo session('site');?>';
 											   title="@{{ row.SHADE_NAME }}">
 												   <a href="javascript:;" class="d-block swatches-item" style="background-image: url('@{{ row.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;"> </a>
 											   </li>
-											   
+
 											  </ul>
-										
+
 											<input type="hidden" id="shadeId" value="">
 										   <input type="hidden" id="prodShadeId" value="">
 										   <input type="hidden" id="shadeName" value="">
 										   <input type="hidden" id="productId" value="">
 										   <input type="hidden" id="shadeExistChk" value="@{{(displayCollectionProductShadesQuickView.length == 0 || displayCollectionProductShadesQuickView.length == undefined) ? 'false' : 'true'}}">
-										   
-											
+
+
 										</div>
 										<a href="javascript:;" class="btn btn-primary" ng-click="confirmProductShade();">Continue</a>
 									</div>
 								</div>
-								
+
 								<div class="chooseShade-container" style="margin-bottom: 30px;" ng-if="displayCollectionBundleProductShadesQuickView != ''">
 								   <div id="shadeBundlechooser_container_@{{row.BUNDLE_LINE_ID}}" ng-repeat="row in displayCollectionBundleProductShadesQuickView">
 									   <button class="accordion_inc_prod_detail shadeAccord-btn" data-id="@{{row.BUNDLE_LINE_ID}}">@{{row.seqNo}}. Choose Shade Product @{{row.productName}}</button><!-- chooseShadeBtn -->
 									   <div class="panel_inc_prod_detail" id="chooseShade_container_@{{row.BUNDLE_LINE_ID}}">
 										   <div class="form-group shop-swatch-color shop-swatch-color-02 mb-6 widget-color">
-											   
+
 											   <img src="" alt="Product Image" class="var text-capitalize quick_view_product_image bundleLineShadeImg" id="bundleLineShadeImg_@{{row.BUNDLE_LINE_ID}}" style="display:none;">
 											   <br>
-											   
+
 											   <label class="mb-2">
-												   <span class="font-weight-500 text-primary mr-2">Color:</span> 
+												   <span class="font-weight-500 text-primary mr-2">Color:</span>
 												   <span class="var text-capitalize" id="shadeName1_@{{row.BUNDLE_LINE_ID}}"></span>
 											   </label>
 											   <ul class="list-inline d-flex justify-content-start mb-0">
-												   <li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades" 
-												   ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"  
+												   <li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades"
+												   ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
 												   title="@{{list.SHADE_NAME}}">
 													   <a href="javascript:;" class="d-block swatches-item shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}" style="background-image: url('@{{list.shadeprimaryImage}}'); background-repeat:no-repeat;background-position: center;"> </a>
 												   </li>
-												   
+
 											   </ul>
-											   
+
 											   <input type="hidden" id="shadeId_@{{row.BUNDLE_LINE_ID}}" value="">
 											   <input type="hidden" id="prodShadeId_@{{row.BUNDLE_LINE_ID}}" value="">
 											   <input type="hidden" id="shadeName_@{{row.BUNDLE_LINE_ID}}" value="">
 											   <input type="hidden" id="productId_@{{row.BUNDLE_LINE_ID}}" value="">
-											   <input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">											
+											   <input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">
 										   </div>
 										   <a href="javascript:;" class="btn btn-primary" ng-click="confirmBundleProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
 									   </div>
@@ -602,7 +602,7 @@ var site = '<?php echo session('site');?>';
 								<div class="row align-items-end no-gutters mx-n2 mb-1">
 									<div class="col-sm-3 form-group px-2 mb-0">
 										<label class="text-primary fs-16 font-weight-bold mb-1" for="number">Quantity: </label>
-										
+
 										<div class="input-group position-relative w-100">
 										   <a href="javascript:;"
 											   class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
@@ -618,7 +618,7 @@ var site = '<?php echo session('site');?>';
 											   <i class="far fa-plus"></i>
 										   </a>
 									   </div>
-										
+
 									</div>
 									<div class="col-sm-8 mb-0 px-2">
 										<button type="button"
@@ -656,10 +656,10 @@ function close_topbar(){
 	// $("#details-header").addClass('mt-10');
 }
 // $(document).ready(function(){
-    
-    
-   
-    
+
+
+
+
 // var current_fs, next_fs, previous_fs; //fieldsets
 // var opacity;
 // var current = 1;
@@ -671,7 +671,7 @@ function close_topbar(){
 // setProgressBar(current);
 
 // $(".next").click(function(){
-   
+
 //     var yes =  $("#ifyes").attr('data-checked');
 //      var no =  $("#ifno").attr('data-checked');
 //      //alert(yes);
@@ -679,31 +679,31 @@ function close_topbar(){
 //     {
 //         current_fs = $(this).parent();
 //         next_fs = $(this).parent().nextAll().eq(0);
-         
- 
+
+
 //     } else if(no === "1")
 //     {
 //         current_fs = $(this).parent();
 //         next_fs = $(this).parent().nextAll().eq(1);
-         
- 
+
+
 //     }else{
 //     current_fs = $(this).parent();
 //     next_fs = $(this).parent().next();
-   
+
 //     }
-    
-  
+
+
 //      //alert(yes);
-   
-    
-    
-    
+
+
+
+
 //     //Add Class Active
 //     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-    
+
 //     //show the next fieldset
-//     next_fs.show(); 
+//     next_fs.show();
 //     //hide the current fieldset with style
 //     current_fs.animate({opacity: 0}, {
 //         step: function(now) {
@@ -715,14 +715,14 @@ function close_topbar(){
 //                 'position': 'relative'
 //             });
 //             next_fs.css({'opacity': opacity});
-//         }, 
+//         },
 //         duration: 500
 //     });
 //     setProgressBar(++current);
 // });
 
 // $(".previous").click(function(){
-    
+
 //     var yes =  $("#ifyes").attr('data-checked');
 //     var no =  $("#ifno").attr('data-checked');
 //      //alert(yes);
@@ -730,22 +730,22 @@ function close_topbar(){
 //     {
 //         current_fs = $(this).parent();
 //         previous_fs = $(this).parent().prevAll().eq(0);
-        
+
 //     }
 //     else if(no === "1")
 //     {
 //         current_fs = $(this).parent();
 //         previous_fs = $(this).parent().prevAll().eq(1);
-        
+
 //     }else{
 //     current_fs = $(this).parent();
 //     previous_fs = $(this).parent().prev();
 //     }
-    
-    
+
+
 //     //Remove class active
 //     $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-    
+
 //     //show the previous fieldset
 //     previous_fs.show();
 
@@ -760,7 +760,7 @@ function close_topbar(){
 //                 'position': 'relative'
 //             });
 //             previous_fs.css({'opacity': opacity});
-//         }, 
+//         },
 //         duration: 500
 //     });
 //     setProgressBar(--current);
@@ -770,20 +770,20 @@ function close_topbar(){
 //     var percent = parseFloat(100 / steps) * curStep;
 //     percent = percent.toFixed();
 //     $(".progress-bar-shade-find")
-//       .css("width",percent+"%")   
+//       .css("width",percent+"%")
 // }
 
 // $(".submit").click(function(){
 //     return false;
 // })
-    
+
 // });
 
 // $("#ifyes").click(function(){
-    
+
 //   var yes =  $("#ifyes").data('checked');
 //    $("#ifyes").attr("data-checked", "1");
-   
+
 //   $("#ifyes h2").css("background-color", "#F89880");
 //   $("#ifyes h2").css("color", "#fff");
 //    $("#ifno h2").css("background-color", "#FFF5EE");
@@ -792,7 +792,7 @@ function close_topbar(){
 
 // });
 // $("#ifno").click(function(){
-    
+
 //     $("#ifyes").attr("data-checked", "0");
 //     var no =  $("#ifno").data('checked');
 //    $("#ifno").attr("data-checked", "1");
@@ -800,11 +800,11 @@ function close_topbar(){
 //   $("#ifno h2").css("color", "#fff");
 //    $("#ifyes h2").css("background-color", "#FFF5EE");
 //   $("#ifyes h2").css("color", "#F89880");
-  
+
 // });
 // $("#ifmedium").click(function(){
-    
-  
+
+
 //   $("#ifmedium h2").css("background-color", "#F89880");
 //   $("#ifmedium h2").css("color", "#fff");
 //    $("#ifsheer h2").css("background-color", "#FFF5EE");
@@ -815,8 +815,8 @@ function close_topbar(){
 //   $("#ifpreference h2").css("color", "#F89880");
 // });
 // $("#ifsheer").click(function(){
-    
-  
+
+
 //   $("#ifsheer h2").css("background-color", "#F89880");
 //   $("#ifsheer h2").css("color", "#fff");
 //    $("#ifmedium h2").css("background-color", "#FFF5EE");
@@ -827,8 +827,8 @@ function close_topbar(){
 //   $("#iffull h2").css("color", "#F89880");
 // });
 // $("#iffull").click(function(){
-    
-  
+
+
 //   $("#iffull h2").css("background-color", "#F89880");
 //   $("#iffull h2").css("color", "#fff");
 //    $("#ifpreference h2").css("background-color", "#FFF5EE");
@@ -839,8 +839,8 @@ function close_topbar(){
 //   $("#ifsheer h2").css("color", "#F89880");
 // });
 // $("#ifpreference").click(function(){
-    
-  
+
+
 //   $("#ifpreference h2").css("background-color", "#F89880");
 //   $("#ifpreference h2").css("color", "#fff");
 //    $("#iffull h2").css("background-color", "#FFF5EE");
@@ -851,8 +851,8 @@ function close_topbar(){
 //   $("#ifsheer h2").css("color", "#F89880");
 // });
 // $("#ifnext-medium").click(function(){
-    
-  
+
+
 //   $("#ifnext-medium h2").css("background-color", "#F89880");
 //   $("#ifnext-medium h2").css("color", "#fff");
 //    $("#ifnext-full h2").css("background-color", "#FFF5EE");
@@ -861,8 +861,8 @@ function close_topbar(){
 //   $("#ifnext-sheer h2").css("color", "#F89880");
 // });
 // $("#ifnext-full").click(function(){
-    
-  
+
+
 //   $("#ifnext-full h2").css("background-color", "#F89880");
 //   $("#ifnext-full h2").css("color", "#fff");
 //    $("#ifnext-medium h2").css("background-color", "#FFF5EE");
@@ -871,8 +871,8 @@ function close_topbar(){
 //   $("#ifnext-sheer h2").css("color", "#F89880");
 // });
 // $("#ifnext-sheer").click(function(){
-    
-  
+
+
 //   $("#ifnext-sheer h2").css("background-color", "#F89880");
 //   $("#ifnext-sheer h2").css("color", "#fff");
 //    $("#ifnext-medium h2").css("background-color", "#FFF5EE");
@@ -987,31 +987,31 @@ $("#yes_level_one_all").click(function(){
 //  $(".next-ifno").click(function(){
 //   $(".noslider-section").css("display", "none");
 //   $(".nofirst-step").css("display", "block");
- 
+
 
 // });
 // $(".next-ifnoafterslider").click(function(){
 //   $(".nofirst-step").css("display", "none");
 //   $(".nosecond-step").css("display", "block");
- 
+
 
 // });
 // $(".previous-ifnoafterslider").click(function(){
 //   $(".nofirst-step").css("display", "none");
 //   $(".noslider-section").css("display", "block");
- 
+
 
 // });
 // $(".previous-ifnobeforesubmitscreen").click(function(){
 //   $(".nosecond-step").css("display", "none");
 //   $(".nofirst-step").css("display", "block");
- 
+
 
 // });
 // $("#hide-recomendsection").click(function(){
 //   $(".after-nooption").css("display", "block");
- 
- 
+
+
 
 // });
 
@@ -1093,7 +1093,7 @@ $("#yes_level_one_all").click(function(){
 // $("#ifyes").click(function(){
 //   $(".first-step").css("display", "none");
 //   $(".second-step").css("display", "block");
- 
+
 //   $("#previous-foryes").css("display", "block");
 
 // });
@@ -1121,7 +1121,7 @@ $("#yes_level_one_all").click(function(){
 
 // $("#previous-foryes").click(function(){
 //   $(".first-step").css("display", "block");
-  
+
 //   $(".second-step").css("display", "none");
 //   $(this).css("display", "none");
 //   $("#previous-forno").css("display", "none");
@@ -1129,35 +1129,35 @@ $("#yes_level_one_all").click(function(){
 // $("#previous-forno").click(function(){
 //   $(".noslider-section").css("display", "none");
 //   $(".first-step").css("display", "block");
- 
+
 //   $(this).css("display", "none");
 //   $("#previous-foryes").css("display", "none");
 // });
 // $("#previous-fornoafterslider").click(function(){
 //   $(".noslider-section").css("display", "block");
 //   $(".nofirst-step").css("display", "none");
- 
+
 //   $(this).css("display", "none");
 //   $("#previous-forno").css("display", "block");
-  
+
 // });
 // $("#previous-fornolaststep").click(function(){
 //   $(".nosecond-step").css("display", "none");
 //   $(".nofirst-step").css("display", "block");
- 
+
 //   $(this).css("display", "none");
 //   $("#previous-fornoafterslider").css("display", "block");
-  
+
 // });
 
 
 // // $(".submit-btn").click(function(){
 // //   $(".nosecond-step").css("display", "none");
 // //   $(".nofirst-step").css("display", "block");
- 
+
 // //   $(this).css("display", "none");
 // //   $("#previous-fornoafterslider").css("display", "block");
-  
+
 // // });
 
 // $("#ifyes").click(function(){
@@ -1202,7 +1202,7 @@ $("#yes_level_one_all").click(function(){
 					{"breakpoint": 768,"settings": {"slidesToShow": 3}},
 					{"breakpoint": 576,"settings": {"slidesToShow": 2}
 					}]
-			
+
 			});
 	});
   </script>

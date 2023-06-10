@@ -199,7 +199,7 @@
         transform: scale(1.2);
         transition: all .3s linear;
         border: 1px solid #000;
-        
+
     }
     a.d-block.item.shade_chooser.shade-active>img{
         height: 26px;
@@ -241,17 +241,17 @@
         width: 5px;
     }
 
-    
+
     ::-webkit-scrollbar-track {
         background: #f1f1f1;
     }
 
-    
+
     ::-webkit-scrollbar-thumb {
         background: #d5d5d5;
     }
 
- 
+
     ::-webkit-scrollbar-thumb:hover {
         background: #909090;
     } */
@@ -386,11 +386,11 @@
         cursor: pointer;
     }
 
-    
+
 </style>
 <main id="content" ng-app="project1">
     <div class="" id="details-header" ng-controller="projectinfo1">
-        <?php 
+        <?php
 		if(isset($productDetails) && !empty($productDetails)){
 		$images = isset($productDetails['images']) ? $productDetails['images'] : '';
 		?>
@@ -425,7 +425,7 @@
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
                         <div class="primary-summary-inner">
-                            <h2 class="fs-30 mb-0"><?= $productDetails['NAME'] ?></h2>
+                            <h2 class="mb-0"><?= $productDetails['NAME'] ?></h2>
                             <p
                                 class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
@@ -453,7 +453,7 @@
                                         <label class="mb-2">
                                             <span class="font-weight-500 text-primary mr-2">Color:</span>
                                             <span class="var text-capitalize">@{{ selectedShadeName }}</span>
-                                           
+
                                         </label>
                                         <ul class="list-inline d-flex justify-content-start mb-0">
                                             <li class="list-inline-item"
@@ -476,7 +476,7 @@
                                                         <img class="item" src="@{{ row.shadeprimaryImage }}" alt="alt">
                                                     </a>
                                                 </li>
-    
+
                                             </ul> --}}
                                         {{-- <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
 
@@ -522,7 +522,7 @@
                                         <!-- data-toggle="modal" data-target="#learnmore_pop" -->
                                     </a>
 
-                                    
+
                                 </div>
                                 <select class="form-control w-100 cursor-pointer" id="subsOption" ng-model="subs_id"
                                     ng-change="fetchSubscriptionDetail();">
@@ -553,30 +553,30 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-8 mb-6 px-2">
-                                    	
+
                                     	<?php if($productDetails['INV_QUANTITY_FLAG'] == 'shade'){?>
-                                    	
+
                                     		<button type="button"
 	                                            class="btn btn-primary btn-block text-capitalize addto-cart"
 	                                            data-type="single"
 	                                            data-id="<?= isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : '' ?>"
 	                                            data-quantity='1' data-subs='1'>Add to cart</button>
-                                    	
+
                                     	<?php }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] > '0'){?>
-                                    	
+
                                     		<button type="button"
 	                                            class="btn btn-primary btn-block text-capitalize addto-cart"
 	                                            data-type="single"
 	                                            data-id="<?= isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : '' ?>"
 	                                            data-quantity='1' data-subs='1'>Add to cart</button>
-                                    	
+
                                     	<?php }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] <= '0'){?>
-                                    	
+
                                     		<button type="button"
 	                                            class="btn btn-primary btn-block text-capitalize" disabled>Out of Stock</button>
-                                    	
+
                                     	<?php }?>
-                                        
+
                                     </div>
                                 </div>
                             </form>
@@ -595,7 +595,7 @@
         <?php if(isset($features) && !empty($features)){?>
         <section class="pb-11 pb-lg-6">
             <div class="container container-custom container-xxl mt-8">
-                <h3 class="text-center my-4">Features</h3>
+                <h2 class="text-center my-4">Features</h2>
                 <div class="slick-slider "
                     data-slick-options='{"slidesToShow": 5,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":false,"responsive":[
                         {"breakpoint": 1400,"settings": {"slidesToShow": 5}},
@@ -616,7 +616,7 @@
                                         <div class="product-hero__icons__image relative">
                                             <div class="img fit-contain is-loaded pos-center">
 
-                                                <div class="skeleton"></div> 
+                                                <div class="skeleton"></div>
                                                 <img width="70" height="70"
                                                     src="{{ $row['IMAGE_DOWN_PATH'] }}"
                                                     srcset="{{ $row['IMAGE_DOWN_PATH'] }}" alt="Clean"
@@ -667,9 +667,9 @@
                                             class="accordion accordion-01 border-md-0 border p-md-0">
                                             <div class="card-body p-0">
                                                 <div class="row " style="">
-                                                    <h5 class="col-12 mb-2 font-weight-500 fs-24 pb-8 text-center"
+                                                    <h2 class="col-12 mb-2 pb-8 text-center"
                                                         style="margin: 0 auto;"><?= $productDetails['SUB_TITLE'] ?>
-                                                    </h5>
+                                                    </h2>
                                                     <div class="col-md-6 mb-6 mb-md-0">
                                                         <?php if(isset($images[0]['downPath'])){?>
                                                         <img src="<?= $images[0]['downPath'] ?>" alt="Image"
@@ -683,8 +683,8 @@
                                                     </div>
                                                     <div class="col-md-6 pro-details"
                                                         style="height: 32rem;overflow-y:auto">
-                                                        <h5 class="mb-2 font-weight-500 fs-20">
-                                                            <?= $productDetails['DESCRIPTION_TITLE'] ?></h5>
+                                                        <h2 class="mb-2 text-capitalize">
+                                                            <?= $productDetails['DESCRIPTION_TITLE'] ?></h2>
                                                         <p><?= $productDetails['DESCRIPTION'] ?></p>
                                                     </div>
                                                 </div>
@@ -694,7 +694,7 @@
                                                 <div class="row pt-10 align-items-center subsc_ec">
 
                                                     <div class="col-md-6 ">
-                                                        <h3 class="mb-2 font-weight-500 fs-35">Subscription</h3>
+                                                        <h2 class="mb-2">Subscription</h2>
                                                         <p class="mb-6">Indulge in the convenience and exclusive
                                                             benefits offered with our subscription service. Simply
                                                             select how frequently you'd like to recieve your products,
@@ -721,7 +721,7 @@
                                                             <div class="col-md-8 mb-8 mb-md-0">
                                                                 <div class="fix">
                                                                     <div class=" hover-zoom-in">
-                                                                        <?php 
+                                                                        <?php
                                                                             if(isset($productDetails['videoDetails']['V_3'])){?>
                                                                         <video
                                                                             src="<?= isset($productDetails['videoDetails']['V_3']) ? $productDetails['videoDetails']['V_3'] : '' ?>"
@@ -749,9 +749,9 @@
                                                             </div>
                                                             <div class="col-md-4 pl-xl-7 pl-7"
                                                                 style="height:40rem;overflow-y:auto">
-                                                                <h3 class="fs-35 mb-5">
+                                                                <h2 class="mb-5 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
-                                                                </h3>
+                                                                </h2>
                                                                 <p><?= isset($productDetails['videoDetails']['V_2']) ? $productDetails['videoDetails']['V_2'] : '' ?>
                                                                 </p>
                                                             </div>
@@ -762,9 +762,9 @@
                                                 <hr>
                                                 <section class="pb-10 pb-lg-0 mob_tab_sec">
                                                     <div class="">
-                                                        <h5 class="text-center mb-3">Ingredients</h5>
-                                                        <h3 class="text-center mb-9">Backed by Science to Optimize
-                                                            Skin Wellness</h3>
+                                                        <h2 class="text-center mb-3">Ingredients</h2>
+                                                        <h2 class="text-center mb-9">Backed by Science to Optimize
+                                                            Skin Wellness</h2>
                                                         <ul class="nav nav-pills justify-content-center mb-lg-9 mb-6">
                                                             <li class="nav-item px-5"><a
                                                                     class="pointer nav-link cursor-pointer ingredientTabBtn active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
@@ -911,7 +911,7 @@
                                                     </div>
                                                 </section>
                                                 <br>
-                                               
+
                                                 <section style="background-color: #f38c7b;">
                                                     <div class="pb-10 pb-lg-8 py-8">
                                                         <div class="container container-xl">
@@ -936,7 +936,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <?php ++$i ?> 
+                                                                <?php ++$i ?>
                                                                 <?php }?>
                                                                 <?php }else{?>
                                                                 <div class="col-12">
@@ -949,7 +949,7 @@
                                                         </div>
                                                     </div>
                                                 </section>
-                                                
+
                                                 <section class="pt-10 pt-lg-8 py-8">
                                                     <div class="">
                                                         <div class="row no-gutters align-items-center">
@@ -970,7 +970,7 @@
                                                             </div>
                                                             <div class="col-md-6 px-6 px-md-0 pl-xl-7"
                                                                 style="height:30rem;overflow-y:auto">
-                                                                <h3 class="fs-42 mb-5">Clinical Note</h3>
+                                                                <h2 class="mb-5">Clinical Note</h2>
                                                                 <p><?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>
@@ -992,7 +992,7 @@
 
         <section class="py-6 py-lg-10 insta_sec_home">
             <div class="container container-custom container-xl">
-                <h2 class="mb-3 text-center">Snap a selfi</h2>
+                <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
                 <p class="text-center mb-3 mx-auto">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a tempore?
                     Obcaecati voluptatem pariatur ab dolor laborum, a incidunt quisquam illo accusantium alias hic
@@ -1013,19 +1013,19 @@
                     {"breakpoint": 992,"settings": {"slidesToShow": 2}},
                     {"breakpoint": 768,"settings": {"slidesToShow": 1}},
                     {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-                    
-                    
+
+
                     <?php foreach($productselfi as $productSelfiByProductID){
                         $selfiimages = $productSelfiByProductID['SElFIBYID'];
                     ?>
                         <?php if(isset($selfiimages) && !empty($selfiimages)){?>
                         <?php foreach($selfiimages as $selfiimage){ ?>
-                        
-                            <?php 
-                                $img_ext = strtolower($selfiimage['FILE_TYPE']);   
+
+                            <?php
+                                $img_ext = strtolower($selfiimage['FILE_TYPE']);
                             ?>
 
-                            
+
                             <?php if($img_ext == 'jpg' || $img_ext == 'png' || $img_ext == 'webp' || $img_ext == 'jpeg'){?>
                                 <div class="box px-1" data-animate="fadeInUp">
                                     <a href=""
@@ -1042,29 +1042,29 @@
                                         <video width="400" controls>
                                             <source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>" type="video/mp4">
                                             <source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>" type="video/ogg">
-                                            
+
                                         </video>
                                         <div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-                                            <span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+                                            <span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
                                                 <i class="fa fa-play"></i>
                                             </span>
-                                            
+
                                         </div>
                                     </a>
                                 </div>
-                            
+
                             <?php } ?>
                         <?php } ?>
                         <?php } ?>
                         <?php }?>
                     </div>
-               
+
                     <?php }else{?>
                         <p class="text-center">No Selfi Added....</p>
                     <?php }?>
-                
+
             </div>
-           
+
             <div class="modal fade selfi-view" id="productselfi" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content p-0">
@@ -1082,7 +1082,7 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 mb-1" style="text-align: center">
                                     <img src="" id="hung22" alt="" onclick="showfileload()" class="selfi-img" style="display:none;">
                                 </div>
-                              
+
                             </div> --}}
 
                             {{-- <form action="{{ route('saveProductSelfie') }}" method="POST" id="saveProductSelfie"> --}}
@@ -1095,7 +1095,7 @@
                             <input name="email" type="email" ng-model="selfi['email']" id="email"
                                 name="email" class="form-control mb-3" placeholder="Email">
                            </div>
-                            
+
 
                             {{-- <input name="file" onchange="loadFile(event)" type="file" class="form-control mb-3" placeholder="UPLOAD YOUR SELFIE" id="selfie_img" required="">
                                      --}}
@@ -1109,7 +1109,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="row" id="p_att">
-                                       
+
                                     </div>
                                 </div>
 
@@ -1801,11 +1801,11 @@
                                             </p>
                                         </div>
                                         <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            <?php 
+                                            <?php
 														$shades = $recommand['productShades'];
 														if(isset($shades) && !empty($shades)){
-														foreach ($shades as $shade){	
-														
+														foreach ($shades as $shade){
+
 													?>
                                             <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
                                                 <a href="javascript:;" class="d-block swatches-item"
@@ -1993,7 +1993,7 @@
                             <div class="box px-1" data-animate="fadeInUp">
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
-                                        
+
                                         <a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="<?= $recent['PRODUCT_ID'] ?>">
                                             <img src="<?= $recent['primaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
                                             <img src="<?= $recent['secondaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
@@ -2060,11 +2060,11 @@
                                             </p>
                                         </div>
                                         <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            <?php 
+                                            <?php
                                                         $shades1 = $recent['productShades'];
                                                         if(isset($shades1) && !empty($shades1)){
-                                                        foreach ($shades1 as $shade){	
-                                                    
+                                                        foreach ($shades1 as $shade){
+
                                                     ?>
                                             <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
                                                 <a href="javascript:;" class="d-block swatches-item"
@@ -2279,7 +2279,7 @@
          </div>
         </div>
        </div>
-       
+
        <div class="box px-1" data-animate="fadeInUp">
         <div class="card border-0 product px-2">
          <div class="position-relative">
@@ -2586,11 +2586,11 @@
                                             </p>
                                         </div>
                                         <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            <?php 
+                                            <?php
                                                         $shades1 = $recent['productShades'];
                                                         if(isset($shades1) && !empty($shades1)){
-                                                        foreach ($shades1 as $shade){	
-                                                    
+                                                        foreach ($shades1 as $shade){
+
                                                     ?>
                                             <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
                                                 <a href="javascript:;" class="d-block swatches-item"
@@ -2805,7 +2805,7 @@
          </div>
         </div>
        </div>
-       
+
        <div class="box px-1" data-animate="fadeInUp">
         <div class="card border-0 product px-2">
          <div class="position-relative">

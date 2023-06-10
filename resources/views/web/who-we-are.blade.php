@@ -18,7 +18,7 @@
         }
     }
 
-    
+
     @media screen and (min-width: 1650px) {
         .py-lg-18 {
     padding-top: 358px !important;
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class="mb-5">"About Us"</h3>
+                    <h2 class="mb-5">"About Us"</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                         quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Our Story</h5> --}}
-                    <h3 class="text-white mb-5">"Our Story"</h3>
+                    <h2 class="text-white mb-5">"Our Story"</h2>
                     <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                         quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class=" mb-5">"Our Mission"</h3>
+                    <h2 class=" mb-5">"Our Mission"</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                         quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
@@ -242,7 +242,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
-                    <h3 class="mb-5">"Lusty looks"</h3>
+                    <h2 class="mb-5">"Lusty looks"</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                         quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem

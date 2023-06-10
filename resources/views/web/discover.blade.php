@@ -1,12 +1,12 @@
 @include('web.web-header')
 <style>
-   
+
     @media screen and (min-width: 0px) and (max-width: 614px) {
         .giving-section2-img,
         .giving-section3-img,
         .last-section-giving {
             width: 37rem;
-            height: auto; 
+            height: auto;
         }
         .font-size-banner{
             font-size: 51px
@@ -24,7 +24,7 @@
         style="background-repeat: no-repeat; background-image: url('{{ url('assets-web') }}/images/best-banner.jpg'); background-size: cover;">
         <div class="container container-xl">
             <div class="row  no-gutters" style="justify-content: center">
-                
+
                     <div class="mw-370">
                         <h2 class="mb-2 text-center font-size-banner" data-animate= "fadeInRight" style="color: white; ">Discover</h2>
                         {{-- <p class="part_head">JusOut Beauty, all inclusive, high performance,
@@ -32,11 +32,11 @@
                             glow from within.
                         </p> --}}
                     </div>
-                
+
             </div>
         </div>
     </section>
-    
+
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
                     {{-- <h3><b>Who We Are</b></h3> --}}
-                    <h3 class="mb-5">"Who We Are"</h3>
+                    <h2 class="mb-5">"Who We Are"</h2>
                     <p>Beeswax is commonly used in skincare
                         products as it is a surfactant and
                         forms a protective barrier on the surface
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class="mb-5 text-white">Ingredient</h3>
+                    <h2 class="mb-5 text-white">Ingredient</h2>
                     <p class="text-white">Also known as nature’s first aid kit.
                         Great for helping small cuts and burns to heal.
                         It’s amazing as a toner to help soothe away razor burn,
@@ -102,7 +102,7 @@
 
     <div class="greygradientbelow">
     </div>
-   
+
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class=" mb-5">"Eco-Vibes"</h3>
+                    <h2 class=" mb-5">"Eco-Vibes"</h2>
                     <p>Coconut Oil is absolutely packed with nutrients.
                         A perfectly natural way to nourish dry, unhappy skin.
                         It infuses skin with moisture, enhancing shine,
@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
-                    <h3 class=" mb-5">"Lusty Looks"</h3>
+                    <h2 class=" mb-5">"Lusty Looks"</h2>
                     <p>The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
                         verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
                         their names, and select one that has a little brown in it.
@@ -146,7 +146,7 @@
     <section class="py-10 py-lg-13 overflow-hidden testimonial-sec-home">
         <div class="row">
             <div class="col-xl-12">
-                <h2 class="text-center fs-24 fs-md-42 mb-1 text-capitalize">Our Reviews
+                <h2 class="text-center mb-1 text-capitalize">Our Reviews
                 </h2>
                 <br>
                 <div class="slick-slider custom-slider-03"
@@ -156,10 +156,10 @@
                         {"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},
                         {"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},
                         {"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
-                    
+
                     @if(isset($reviews) && !empty($reviews))
                     @foreach($reviews as $review)
-                    
+
                     <div class="box" data-animate="fadeIn">
                         <div class="card border-0 bg-transparent">
                             <div class="card-body px-3 py-0 d-flex flex-column align-items-center text-center">
@@ -178,16 +178,16 @@
                             </div>
                         </div>
                     </div>
-                    
-                    @endforeach	
+
+                    @endforeach
                     @endif
-                    
+
                 </div>
             </div>
         </div>
     </section>
-    
- 
+
+
 
 </main>
 

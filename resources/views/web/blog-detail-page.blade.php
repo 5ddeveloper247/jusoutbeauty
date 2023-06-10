@@ -35,18 +35,18 @@
 
 </style>
 <main id="content">
- 
+
 <section class="pt-5 pb-6 mt-0 mt-md-5 mt-sm-0 mt-xl-5 mt-xxl-5">
 	<div class="container container-custom container-xl">
 		<div class="row">
-		
+
 			<div class="col-lg-6 position_inc_blog_detail ">
 			<div class="blogimg-div">
 				<?php if(isset($blogDetail['detailImage']) && $blogDetail['detailImage'] != ''){?>
 					<img src="<?php echo $blogDetail['detailImage'];?>" alt="img" style="height: 33rem;width: 100%;">
 				<?php }?>
-				<div class="mid_text_blog_detail" id="mid_text-detail"> 
-					<h2 class="fs-24 fs-sm-36 text-center mb-0">
+				<div class="mid_text_blog_detail" id="mid_text-detail">
+					<h2 class="text-capitalize text-center mb-0">
 						<?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : '';?>
 					</h2>
 					<div class="text-center pt-4">
@@ -54,12 +54,12 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			
+
+
+
 			</div>
 			<div class="col-lg-6 mob_inc_blog_detail ">
-			<h2 class="fs-24  mb-0">
+			<h2 class="text-capitalize mb-0">
 				<?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : '';?>
 			</h2>
 			<?php echo isset($blogDetail['DESCRIPTION']) ? $blogDetail['DESCRIPTION'] : '';?>
@@ -77,8 +77,8 @@
         $("#content").css('padding-top','77px');
     }
   jQuery(document).ready(function () {
-     
- 
+
+
 //   jQuery(window).scroll(function () {
 //     if (jQuery(window).scrollTop() >= 20 && jQuery(window).scrollTop() <= 750){
 //       jQuery("#mid_text-detail").css({position: 'fixed', top: '100px'});
@@ -104,7 +104,7 @@
 //           } else {
 //              header.style.position = "unset";
 //           }
-//           if (window.pageYOffset > (bottom -500)) 
+//           if (window.pageYOffset > (bottom -500))
 //       {
 //             header.style.position = "unset";
 //           }

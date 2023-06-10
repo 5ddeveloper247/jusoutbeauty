@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class="mb-5">"Beeswax"</h3>
+                    <h2 class="mb-5">"Beeswax"</h2>
                     <p>Beeswax is commonly used in skincare
                         products as it is a surfactant and
                         forms a protective barrier on the surface
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class="mb-5">"Aloe vera"</h3>
+                    <h2 class="mb-5">"Aloe vera"</h2>
                     <p>Also known as nature’s first aid kit.
                         Great for helping small cuts and burns to heal.
                         It’s amazing as a toner to help soothe away razor burn,
@@ -108,7 +108,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class=" mb-5">"Coconut Oil"</h3>
+                    <h2 class=" mb-5">"Coconut Oil"</h2>
                     <p>Coconut Oil is absolutely packed with nutrients.
                         A perfectly natural way to nourish dry, unhappy skin.
                         It infuses skin with moisture, enhancing shine,
@@ -242,7 +242,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
-                    <h3 class='mb-5 '>"Rosemary"</h3>
+                    <h2 class='mb-5 '>"Rosemary"</h2>
                     <p>Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
                         redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
                         rosemary carries will also help fight off acne and prevent breakouts.
@@ -250,6 +250,13 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="pt-10 pt-lg-10 pb-10 bottom_sec">
+            @foreach ($ingredients as $ingredient)
+                <p>{{ $ingredient->DESCRIPTION }}</p>
+                <img src="{{ $ingredient->DOWN_PATH }}" alt="">
+            @endforeach
     </section>
 
 </main>

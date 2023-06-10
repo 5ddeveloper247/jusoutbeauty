@@ -26,7 +26,7 @@
 <main id="content">
     <section class="header_user_shade_finder">
         <div class="container container-xxl mt-5">
-            <h1 class="fs-30 fs-lg-40 text-center" data-animate="fadeInUp">Let's Find Your Shade</h1>
+            <h2 class=" text-center" data-animate="fadeInUp">Let's Find Your Shade</h2>
             <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br> Modi harum quidem voluptate aliquam quod itaque velit eius vero doloribus ad.</p>
         </div>
     </section>
@@ -34,9 +34,9 @@
         style="background-image: url('{{ url('/assets-web') }}/images/shadeimg.webp');background-color: #F2F2F2">
         <div class="container container-xxl">
             <p class="text-primary fs-18 font-weight-600 mb-4 lh-1444" data-animate="fadeInUp"></p>
-        
+
             <div>
-                <h3 class="fs-32 mb-2 take-selfi-quiz">Take A Quiz</h3>
+                <h2 class="mb-2 take-selfi-quiz">Take A Quiz</h2>
                 <p class="text-black quiz-text">One of our pro makeup artists will <br>personally provide shade recommendations.
                 </p>
                 <div class="">
@@ -45,8 +45,8 @@
             </div>
             <br>
             <div>
-                <h3 class="fs-32 mb-2 take-selfi-quiz">Send Us a Selfie</h3>
-                
+                <h2 class="mb-2 take-selfi-quiz">Send Us a Selfie</h2>
+
                 <div class="">
                     <a href="#" class="btn btn-primary selfi" id="selfie-btn-shade">Snap A Selfie</a>
                 </div>
@@ -57,7 +57,7 @@
         <div class="container">
             <div class="text-center mw-500 mx-auto">
                 <img src="images/icon-home-09.png" alt="">
-                <h2 class="text-center font-weight-600 mb-3">
+                <h2 class="text-center text-capitalize mb-3">
                     Snap a Selfie
                 </h2>
                 <p>Follow these instructions to get an accurate representation of your skin on camera.

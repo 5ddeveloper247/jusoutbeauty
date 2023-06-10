@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class="mb-5">"Evo Vibes"</h3>
+                    <h2 class="mb-5">"Evo Vibes"</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
                         perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
                         accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class="mb-5 text-white">"Evo Vibes"</h3>
+                    <h2 class="mb-5 text-white">"Evo Vibes"</h2>
                     <p class='text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
                         perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
                         accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
-                    <h3 class="mb-5">"Evo Vibes"</h3>
+                    <h2 class="mb-5">"Evo Vibes"</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
                         perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
                         accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut
@@ -238,7 +238,7 @@
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
-                    <h3 class=" mb-5 ">"Red Lips"</h3>
+                    <h2 class=" mb-5 ">"Red Lips"</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
                         perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
                         accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut

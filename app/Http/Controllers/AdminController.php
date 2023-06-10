@@ -443,6 +443,51 @@ class AdminController extends Controller
 
 
 	}
+    public function updateSubscriptionInfo(){
+
+
+		$details = $_REQUEST ['details'];
+        $productId = $details['productId'];
+        $userId = $details['userId'];
+        // dd($details);
+
+		$subscriptionDetails = $details['subcriptionDetails'];
+		$subscriptionTitle = $subscriptionDetails ['S_1'];
+		$subscriptionLink = $subscriptionDetails ['S_2'];
+        $subscriptionNote= $subscriptionDetails ['S_3'];
+
+        if($subscriptionTitle == '' || $subscriptionTitle == null){
+            $arrRes ['done'] = false;
+            $arrRes ['msg'] = 'Title can not be empty.';
+            echo json_encode ( $arrRes );
+            die ();
+        }else if($subscriptionLink == '' || $subscriptionLink == null){
+            $arrRes ['done'] = false;
+            $arrRes ['msg'] = 'Link can not be empty.';
+            echo json_encode ( $arrRes );
+            die ();
+        }else if($subscriptionNote == '' || $subscriptionNote == null){
+            $arrRes ['done'] = false;
+            $arrRes ['msg'] = 'Description can not be empty.';
+            echo json_encode ( $arrRes );
+            die ();
+        }else{
+            $basic = [];
+            $basic['SUBSCRIPTION_NOTE_TITLE'] = $subscriptionTitle;
+            $basic['SUBSCRIPTION_NOTE_DESCRIPTION'] = base64_encode($subscriptionNote);
+            $basic['SUBSCRIPTION_NOTE_LINK'] = $subscriptionLink;
+
+            DB::table('jb_product_tbl')->where('PRODUCT_ID',$productId)->update($basic);
+
+            $arrRes ['msg'] = 'Subscription Title/Description updated successfully!';
+            $arrRes ['done'] = true;
+
+            echo json_encode ( $arrRes );
+        }
+
+
+
+	}
 	public function updateVideoInfo(){
 
 
@@ -486,7 +531,7 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$userId = $details ['userId'];
 		$productID = $details ['productId'];
-
+        // dd($productID);
 		$ProductModel = new ProductModel();
 		$features = new Feature();
 		$Ingredient = new ProductIngredientModel();
@@ -511,6 +556,7 @@ class AdminController extends Controller
 		$arrRes['productDetails'] = $ProductModel->getQuickAddProductDataWrtProductID($productID);
 		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory(isset($arrRes['productDetails']['P_31']) ? $arrRes['productDetails']['P_31'] : '');
 		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory(isset($arrRes['productDetails']['P_32']) ? $arrRes['productDetails']['P_32'] : '');
+        $arrRes ['subscriptionDetails'] = $ProductModel->getSubscriptionDetailsOfSingleProduct($productID);
 		// $arrRes ['clinicalNote'] = $ProductModel->getAllProductClinicalNoteByProduct($productID);
 		// dd($arrRes['productDetails']);
 		// dd($arrRes['productDetails']);
@@ -872,7 +918,7 @@ class AdminController extends Controller
 
 
    	public function adminProfile() {
-   		 
+
 		$data['getLoggedUser'] = $this->getLoggedUser(session('userId'));
 		$data['adminMenu'] = $this->getAdminUserMenu();
    		$data['page'] = 'Admin Profile';
@@ -894,7 +940,7 @@ class AdminController extends Controller
 
 		return isset($result) ? $result : null;
 	}
-	
+
 
    	public function addAdminUser() {
 
@@ -8885,7 +8931,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-	
+
 
 			if ($details['user']['FirstName'] == '') {
 
@@ -8971,7 +9017,7 @@ class AdminController extends Controller
         }else{
             $enable = 'inactive';
         }
-		
+
 		//Updating the Record
 		if($updateduserId != null){
 

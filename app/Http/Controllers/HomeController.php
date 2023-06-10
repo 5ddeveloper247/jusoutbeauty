@@ -134,6 +134,7 @@ class HomeController extends Controller
 		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
 		$data['routine'] = $this->getAllRouteByNameForWebiste();
 		$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+        $data['ingredients'] = $this->getIngredientsWithImags();
 		$data['page'] = 'Ingredients';
 		return view('web.ingredients')->with ( $data );
 	}
@@ -226,6 +227,17 @@ class HomeController extends Controller
 		return $dataArray;
 
 	}
+
+    public function getIngredientsWithImags(){
+        $data = DB::table('jb_ingredient_tbl as a')
+        ->select('a.INGREDIENT_ID', 'a.DESCRIPTION', 'att.ATTACHMENT_ID', 'att.DOWN_PATH')
+        ->join('jb_ingredient_attachment_tbl as att', 'a.INGREDIENT_ID', '=', 'att.INGREDIENT_ID')
+        ->where('a.STATUS', 'active')
+        ->get();
+
+            // dd($data);
+            return $data;
+    }
 	public function ecoVibes() {
 
 		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();

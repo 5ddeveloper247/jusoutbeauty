@@ -27,6 +27,11 @@
             form.footer-formm .fa-envelope:before {
                 padding-left: unset
             }
+
+            h2{
+                font-size: 36px;
+                text-transform: capitalize;
+            }
         }
     </style>
 
@@ -34,8 +39,8 @@
         <div class="container container-xxl container-footer">
             <div class="row align-items-center first-rw">
                 <div class="col-lg-12 mb-4 mb-lg-0 text-center footer-links-account">
-                    <h3 class="fs-25 mb-4 font-weight-500 footer-text-white" >Yu Jus Enough and Let's Be
-                        Bestie</h3>
+                    <h2 class="fs-25 mb-4 font-weight-500 footer-text-white" >Yu Jus Enough and Let's Be
+                        Bestie</h2>
                     <p class="lh-2 mb-4 fs-14 footer-text-white">Don't Mis Out-All the exclusives' events,
                         skincare tips, Special Offers straight to yur inbox</p>
                     <form class="footer-formm">
@@ -663,22 +668,22 @@
                         class="nav-link dropdown-toggle p-0" href="{{ url('become_a_partner') }}"> Partner </a></li> --}}
                 <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0 d-flex justify-content-between">
                     <a class="nav-link dropdown-toggle p-0" href="#!">
-                        Routine 
+                        Routine
                     </a>
                     <i class="fas fa-plus list-sub-cate-icon " id="menuicon_routine"
                     onclick="menutoggleRoutine();"></i>
-                
+
                 </li>
                 <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_routine"
                         style="display:none;">
-                            
-                   
-                    
+
+
+
                     @if (!empty($routineformbl))
-                        
+
                         <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 "
                             style="display: block;">ROUTINE BY NEEDS</h4>
-                            
+
                         @foreach ($routineformbl as $routinembl)
                            {{-- @dd($key,$routinembl) --}}
                             {{-- @if (count($routinembl) && isset($routinembl)) --}}
@@ -697,22 +702,22 @@
                                 </li> --}}
                                 {{-- @endif --}}
                         @endforeach
-                   
-            
+
+
                         <h4 class="dropdown-header fs-16 mb-3 mt-3 lh-1 font-weight-500 p-0 "
                             style="display: block;">ROUTINE BY AGE</h4>
-                            
+
                         @foreach ($routineformbl as $routinembl)
                             @if ($routinembl['IDENTIFY'] == 2)
                             <li class="">
                                 <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routinembl['seqNo']}}">{{ $routinembl['NAME'] }}</a>
                             </li>
                             @endif
-                        @endforeach  
-                    @endif   
-                         
+                        @endforeach
+                    @endif
+
                 </ul>
-                
+
                 <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0 d-flex justify-content-between"><a
                         class="nav-link dropdown-toggle p-0" href="{{ url('/discover') }}">
                         Discover </a>
@@ -721,7 +726,7 @@
                     </li>
                     <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_discover"
                         style="display:none;">
-                       
+
                             <li>
                                 <a class="" href="{{ url('/who-we-are') }}">
                                     Who We Are
@@ -742,7 +747,7 @@
                                     Lusty's Looks
                                 </a>
                             </li>
-                          
+
                     </ul>
                 <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
                         class="nav-link dropdown-toggle p-0" href="{{ url('/giving') }}">
@@ -865,7 +870,7 @@
 <div class="modal fade" id="show_shade_modal_sidebar">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            
+
             <div class="modal-body">
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -880,14 +885,14 @@
                                 <td class="center"></td>
                                 <td class="center"></td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger light" onclick="closeSideBarShadeModal()">Close</button>
-                
+
             </div>
         </div>
     </div>
@@ -1089,7 +1094,7 @@
         }
         $("#menuicon_" + i).toggleClass('fa-minus', 500);
         $("#menuicon_" + i).toggleClass('fa-plus', 500);
-       
+
 
 
 

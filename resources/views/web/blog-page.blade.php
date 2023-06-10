@@ -1,8 +1,8 @@
 @include('web.web-header')
 <style>
-	.blogdo{ 
+	.blogdo{
 		position: sticky;
-		top: 10px;						
+		top: 10px;
 	}
 
     .mid_text_blog{
@@ -11,7 +11,7 @@
         width: 100%;
     }
 	@media screen and (min-width: 0px) and (max-width: 575px) {
-		
+
 		.fs-sm-40{
 			font-size: 40px !important;
 		}
@@ -25,25 +25,25 @@
 <main id="content">
   	<section class="pt-5 pb-6 mt-0 mt-md-5 mt-sm-0 mt-xl-0 mt-xxl-5">
      	<div class="row">
-      
+
       		@if(isset($ourblog) && !empty($ourblog))
       		<div class="col-lg-6 position_inc_blog_detail">
 	           	<div class="blogdo">
 	           		<img src="{{$ourblog['image']}}" alt="img" style="height: 55rem;width:100%;">
-	        	
-		        	<div class="mid_text_blog" id="mid_text"> 
-						<h2 class="fs-24 fs-sm-40 text-center text-white mb-0">{{ $ourblog['NAME']}}</h2>
+
+		        	<div class="mid_text_blog" id="mid_text">
+						<h2 class="text-center text-white mb-0">{{ $ourblog['NAME']}}</h2>
 		        	</div>
 	           	</div>
 	         </div>
 	         @endif
-	         
+
 	         <div class="col-lg-6">
 	         	@if(isset($blogs) && !empty($blogs))
 	         	@foreach($blogs as $blog)
 				<a href="{{session('site')}}/blog-detail/{{$blog['BLOG_ID']}}">
 					<div class="sing_blog" style="background-image: url({{$blog['image']}}); background-size: cover; padding: 50px;">
-						<h2 class="fs-24 fs-sm-36 mb-0" style="color:#fff;">
+						<h2 class="text-capitalize mb-0" style="color:#fff;">
 							<p style="color:#fff;">{{ \Illuminate\Support\Str::limit($blog["TITLE"], 25, $end='...')}}</p>
 						</h2>
 						<p style="color:#fff;HEIGHT: 73PX;">{{$blog["DESCRIPTION_TEXT"]}}</p>
@@ -62,7 +62,7 @@
 						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 	            </div>
-	         
+
 				<div class="sing_blog" style="background-image: url({{ url('/assets-web') }}/images/blogging-1.webp); background-size: cover; padding: 50px;">
 					<h2 class="fs-24 fs-sm-36 mb-0" style="color:#fff;">
 						<a href="blog-detail-page.html" style="color:#fff;">Our 5 Signature Ingredients</a>
@@ -74,7 +74,7 @@
 						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 	            </div>
-	        
+
 				<div class="sing_blog" style="background-image: url({{ url('/assets-web') }}/images/blogging-2.webp); background-size: cover; padding: 50px;">
 					<h2 class="fs-24 fs-sm-36 mb-0" style="color:#fff;">
 						<a href="blog-detail-page.html" style="color:#fff;">Your 2022 Skin</a>
@@ -86,8 +86,8 @@
 						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 	            </div>
-	          
-	             
+
+
 				<div class="sing_blog" style="background-image: url({{ url('/assets-web') }}/images/blogging-1.webp); background-size: cover; padding: 50px;">
 					<h2 class="fs-24 fs-sm-36 mb-0" style="color:#fff;">
 						<a href="blog-detail-page.html" style="color:#fff;">Our 5 Signature Ingredients</a>
@@ -99,10 +99,10 @@
 						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 				</div> -->
-	            
-	            
+
+
 			</div>
-         
+
      	</div>
      </section>
 </main>
@@ -111,8 +111,8 @@
 
 <script>
   jQuery(document).ready(function () {
-     
- 
+
+
   jQuery(window).scroll(function () {
     if (jQuery(window).scrollTop() >= 20 && jQuery(window).scrollTop() <= 750){
       jQuery("#mid_text-detail").css({position: 'fixed', top: '100px'});
@@ -143,7 +143,7 @@ function close_topbar(){
 //           } else {
 //              header.style.position = "unset";
 //           }
-//           if (window.pageYOffset > (bottom -500)) 
+//           if (window.pageYOffset > (bottom -500))
 //       {
 //             header.style.position = "unset";
 //           }

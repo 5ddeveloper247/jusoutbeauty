@@ -70,7 +70,7 @@
             style="background-repeat: no-repeat ;background-size: cover;background-image: url('{{ url('assets-web') }}/images/960x0.jpg')">
             <div class="container container-xl">
                 <div class="row no-gutters" style="justify-content: center">
-                    
+
                         <div class="mw-370">
                             <h2 class="mb-2 text-center" data-animate= "fadeInRight" style="color: white; font-size: 100px">Giving</h2>
 
@@ -104,7 +104,7 @@
                             alt="OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.">
                     </div>
                     <div class="col-md-6 pl-xl-7">
-                        <h3 class="fs-42 mb-5">OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.</h3>
+                        <h2 class=" mb-5">OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.</h2>
                         <p>We strongly believe that by supporting the most vulnerable in society - elderly, children and
                             young women - we can help give them the opportunity to turn their dreams into reality.
 
@@ -119,7 +119,7 @@
 
         <section class="pt-10 pt-lg-13">
             <div class="container container-custom container-xl">
-                <h2 class="text-center fs-42 mb-9">WE ARE ONE, REGARDLESS OF SHADE</h2>
+                <h2 class="text-center mb-9">WE ARE ONE, REGARDLESS OF SHADE</h2>
                 <div class="row mx-xl-8">
                     <div class="col-md-4 mb-6 mb-md-0 px-xl-8">
                         <div class="card text-center border-0 align-items-center">
@@ -164,13 +164,13 @@
         <section class="py-10 py-lg-18  mt-10"
             style="background-image:url({{ url('/assets-web') }}/images/discover-banner.jpg);background-repeat:no-repeat;background-size:cover;">
             <div class="container full_sec">
-                <h3 class="fs-42 text-center mb-5 text-white">JUSOUTBEAUTY THE SWEET <br>AND CARING</h3>
+                <h2 class="text-center mb-5 text-white">JUSOUTBEAUTY THE SWEET <br>AND CARING</h2>
 
             </div>
         </section>
         <section class="py-10 pt-lg-14 pb-lg-13">
             <div class="container full_sec">
-                <h3 class="fs-42 text-center mb-5">JUSOUTBEAUTY THE SWEET AND CARING</h3>
+                <h2 class=" text-center mb-5">JUSOUTBEAUTY THE SWEET AND CARING</h3>
                 <p class="text-center mw-670 mx-auto mb-8">
                     WE ARE BEAUTY BECOMES DAILY BRAND - BIRTH FROM NECESSITY - BUILT FROM POVERTY - WE ARE THE EVERYDAY
                     BASIC - AFFORDABLE - WITHOUT - LOOSING EFFECTIVENESS

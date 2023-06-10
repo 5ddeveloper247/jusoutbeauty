@@ -571,14 +571,14 @@
             <section class=" sec_inc_1">
                 <div class="container container-custom container-xxl ">
                     <div class="row ">
-                        
+
                         <div class="col-12  " style="color: white !important;
                         background-color: #a72160 !important;">
                             <a href="{{ url('/view-products') }}" class="d-flex gap-2">
                                 <h5><i class="fa fa-arrow-left text-light" aria-hidden="true"></i></h5>
                                 <h5 class="text-light m-0">Back To Listing</h5>
                             </a>
-                          
+
                         </div>
                         <div class="col-12 text-center p-2" style="color: white !important;
                         background-color: #a72160 !important;">
@@ -593,7 +593,7 @@
                     <div class="row">
                         <div class="col-4 mt-1 mb-1">
                             <div class="form-group">
-                                <label class="col-form-label" for="tags"><b>Product Category</b> <span class="text-danger">*</span></label> 
+                                <label class="col-form-label" for="tags"><b>Product Category</b> <span class="text-danger">*</span></label>
                                 <select class="form-control" id="p31" ng-model="QuickProduct['P_31']"
                                     ng-change="getSubCategoriesWrtCategory();"
                                     ng-options="item as item.name for item in categoryLov track by item.id">
@@ -603,7 +603,7 @@
                         </div>
                         <div class="col-4 mt-1 mb-1">
                             <div class="form-group">
-                                <label class="col-form-label" for="tags"><b>Product Sub Category</b> <span class="text-danger">*</span></label> 
+                                <label class="col-form-label" for="tags"><b>Product Sub Category</b> <span class="text-danger">*</span></label>
                                 <select class="form-control" id="p32" ng-model="QuickProduct['P_32']"
 
                                     ng-change="getSubSubCategoriesWrtSubCategory();"
@@ -990,39 +990,104 @@
                                                     <br>
                                                     <hr>
 
-                                                    {{-- <div class="row pt-10 align-items-center subsc_ec">
+                                                    <div class="row pt-10 align-items-center subsc_ec">
 
-                                                        <div class="col-md-6 ">
-                                                            <h3 class="mb-2 font-weight-500 fs-35">Subscription</h3>
-                                                            <p class="mb-6">Indulge in the convenience and exclusive
+                                                        <div class="col-md-6">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                        aria-hidden="true" ng-show="subscriptionEditView == '0'"
+                                                                        ng-click="showSubscriptionInfo()">
+                                                                    </i>
+                                                                    <div class="" ng-show="subscriptionEditView != 0">
+                                                                        <button type="button"
+                                                                                class="btn btn-primary text-capitalize w-25 float-right"
+                                                                                ng-click="updateSubscriptionInfo()"
+                                                                                ng-show="subscriptionEditView != '0'">Update</button>
+                                                                        <button type="button"
+                                                                                class="btn btn-primary text-capitalize w-25 float-right mx-2"
+                                                                                ng-click="cancelSubscriptionInfo()"
+                                                                                ng-show="subscriptionEditView != '0'">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12 mt-3"
+                                                                        id="subscriptionSectionSummerNote2"
+                                                                        ng-show="subscriptionEditView != '0'">
+                                                                    <input type="text" class="form-control my-2"
+                                                                            ng-model="subscription['S_1']" placeholder="Subscription" id="">
+                                                                    <input type="text" class="form-control my-2"
+                                                                            ng-model="subscription['S_2']" placeholder="Link" id="">
+                                                                    <div class="summernote" id="SubscriptionSummerView" ></div>
+                                                                </div>
+                                                            </div>
+                                                            <h3 class="mb-2 font-weight-500 fs-35" ng-show="subscriptionEditView == '0'" id="SUB1">Subscription</h3>
+                                                            <p class="mb-6" ng-show="subscriptionEditView == '0'" id="SUB3">Indulge in the convenience and exclusive
                                                                 benefits offered with our subscription service. Simply
                                                                 select how frequently you'd like to recieve your
                                                                 products,
                                                                 and we'll ensure you never run on empty. You may adjust
-                                                                your delivery preferences at any time.</p>
-
-                                                            <a href="#" data-toggle="tooltip"
+                                                                your delivery preferences at any time.
+                                                            </p>
+                                                            <a href="" data-toggle="tooltip"
                                                                 data-placement="left"
-                                                                title="Click to see more Ingredients"
-                                                                class="preview btn btn-primary"> <span>Learn More
+                                                                title="Click to see more About Subscription"
+                                                                class="preview btn btn-primary" ng-show="subscriptionEditView == '0'" id="SUB2"> <span>Learn More
                                                                 </span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-6 mb-6 mb-md-0">
-                                                            <img src="https://jusoutbeauty.com/site/assets-web/images/image-new.jpg"
-                                                                alt="The Iconic Silhouette "
-                                                                class="fadeInRight animated subs_img">
+                                                            <form class="" id="uploadSubscriptionImage" method="POST"
+                                                            action="uploadProductSubscriptionImage" enctype="multipart/form-data"
+                                                            >
+                                                            <input type="hidden" name="_method" value="POST">
 
+                                                            {{ csrf_field() }}
+
+                                                            <input type="hidden" id="userId" name="userId" value="<?php echo session('userId'); ?>">
+                                                            <input type="hidden" id="sourceId" name="sourceId"
+                                                                value="@{{ QuickProduct.PRODUCT_ID }}">
+                                                            <input type="hidden" id="sourceCode" name="sourceCode" value="SUBSCRIPTION_IMAGE">
+                                                            <input type="file" id="uploadImage" name="uploadImage" class="file-input"
+                                                                style="display: none;">
+
+                                                        </form>
+                                                        {{-- <div class="col-sm-12 col-12 px-1 mb-2" ng-show="subscriptionImage == '0'" id="">
+                                                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
+                                                            <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
+                                                                onclick="formSubscriptionImage();" alt="Image"
+                                                                class="prod_img_detail img-w35 img-product-gall cursor-pointer"
+                                                                style="border:5px dotted grey" id="">
+                                                        </div> --}}
+                                                        <div class="col-sm-12 col-12 px-1 mb-2"  id="">
+                                                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
+                                                            <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                        aria-hidden="true"
+                                                                        onclick="formSubscriptionImage()">
+                                                                    </i>
+                                                            <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
+                                                                onclick="formSubscriptionImage();" alt="Image"
+                                                                class="prod_img_detail img-w35 img-product-gall cursor-pointer"
+                                                                style="border:5px dotted grey" id="uploadedImage">
+                                                        </div>
+                                                        {{-- <div class="col-sm-12 col-12 px-1 mb-2" ng-show="subscriptionImage != '0'" id="uploadedImage">
+                                                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
+                                                            <img src=""
+                                                                alt="Image"
+                                                                class="prod_img_detail img-w35 img-product-gall"
+                                                                style="border:5px dotted grey">
+                                                        </div> --}}
                                                         </div>
                                                     </div>
+
+                                                    </div>
                                                     <br>
-                                                    <hr> --}}
+                                                    <hr>
                                                     <section class="pt-10 pt-lg-8 py-8">
                                                         <div class="">
                                                             <div class="row no-gutters align-items-center">
                                                                 <div class="col-md-7"></div>
                                                                 <div class="col-md-5">
-                                                                   
+
                                                                         <i class="fa fa-pencil-square-o cursor-pointer float-right"
                                                                 aria-hidden="true" ng-show="VideoEditView == '0'"
                                                                 ng-click="showVideoInfo()"></i>
@@ -1047,7 +1112,7 @@
 
                                                                         <div class=" "
                                                                             ng-show="video.V_4 != ''">
-                                                                            
+
                                                                                 <i class="fa fa-pencil-square-o cursor-pointer float-right" aria-hidden="true" onclick="form2();"></i>
                                                                             <video id="video_product" src="@{{ video.V_4 }}"
                                                                                 class="card-img"></video>
@@ -1268,7 +1333,7 @@
                                                                 class="nav nav-pills justify-content-center mb-lg-9 mb-6">
                                                                 <li class="nav-item px-5 d-flex align-items-center gap-2"><a
                                                                         class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
-                                                                        id="spotlightTabBtn">Spotlight Ingredients</a> 
+                                                                        id="spotlightTabBtn">Spotlight Ingredients</a>
                                                                 </li>
                                                                 <li class="nav-item px-5 d-flex align-items-center gap-2"><a
                                                                         class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400 active"
@@ -1565,7 +1630,7 @@
 
                                                                     <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg" ng-show="QuickProduct.P_20 == ''"
                                                                         onclick="form5();" alt="Image"
-                                                                        class="prod_img_detail img-w35 img-product-gall cursor-pointer" 
+                                                                        class="prod_img_detail img-w35 img-product-gall cursor-pointer"
                                                                         style="border:5px dotted grey">
                                                                     {{-- <button type="button" class="btn btn-primary btn-block text-capitalize w-25 mb-3" >Edit</button> --}}
                                                                     <i class="fa fa-pencil-square-o cursor-pointer float-right"
@@ -1577,7 +1642,7 @@
                                                                        {{ csrf_field() }}
                                                                     <input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
                                                                     <input type="hidden" id="sourceId" name="sourceId" value="@{{QuickProduct.PRODUCT_ID}}">
-                                                                    <input type="hidden" id="sourceCode" name="sourceCode" value="CLINICAL_NOTE"> 
+                                                                    <input type="hidden" id="sourceCode" name="sourceCode" value="CLINICAL_NOTE">
                                                                     <input type="file" id="uploadatt5" name="uploadattl" class="file-input" style="display: none;">
                                                                 </form>
                                                                 <div class="col-md-6 px-6 px-md-0 pl-xl-7"
@@ -1772,7 +1837,7 @@
 
 
                             </div>
-                           
+
                         </div>
 
                         <div class="tab-pane fade" style="margin-bottom: 20px" id="pills-recently-viewed"
@@ -2347,7 +2412,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Product Features<span class="required-field">*</span></b></label>
-                                    
+
                                 </div>
                             </div>
 
@@ -2389,14 +2454,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
 
-                                        <label class="col-form-label" for="ingredient"><b>Ingredient</b> <span class="text-danger">*</span> </label> 
+                                        <label class="col-form-label" for="ingredient"><b>Ingredient</b> <span class="text-danger">*</span> </label>
                                         <select class="form-control" id="i2" ng-model="ingredient['I_2']"
                                                 ng-options="item as item.name for item in ingredientsLov track by item.id">
                                             <option value="">---SELECT---</option>
                                         </select>
                                     </div>
                                 </div>
-                               
+
 
                             </div>
 
@@ -2421,7 +2486,7 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							
+
 							<div class="row">
 							   {{-- <div class="col-6">
 							     <label><b>Sequence Number<span class="required-field">*</span></b></label>
@@ -2468,7 +2533,7 @@
            								<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 										<input type="hidden" id="sourceId" name="sourceId" value="@{{QuickProduct.PRODUCT_ID}}">
 										<input type="hidden" id="usesId" name="usesId" value="@{{uses.ID}}">
-										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_USES_IMG"> 
+										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_USES_IMG">
 										<input type="file" id="uploadatt4" name="uploadattl" class="file-input" style="display: none;">
 									</form>
 
@@ -2495,7 +2560,7 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							
+
 							<div class="row">
 							   <div class="col-12">
 							     <label><b>Shades<span class="required-field">*</span></b></label>
@@ -2508,8 +2573,8 @@
 							     	<label><b>Inv. Quantity<span class="required-field">*</span></b></label>
 							    	<input type="text" class="form-control" id="s2" ng-model="shade['S_2']">
 							   </div>
-								
-								
+
+
 							</div>
 							<div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
 								<div class="row register-new-product-picture-para">
@@ -2519,7 +2584,7 @@
 									</div>
 									<div class="col-sm-12">
 										<div class="row" id="pss_att">
-											
+
 										</div>
 									</div>
 									<form class="" id="uploadattch3" method="POST" action="uploadProductShadeImage" enctype="multipart/form-data">
@@ -2527,7 +2592,7 @@
            								{{ csrf_field() }}
            								<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 										<input type="hidden" id="sourceId" name="sourceId" value="@{{shade.ID}}">
-										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_SHADE_IMG"> 
+										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_SHADE_IMG">
 										<input type="file" id="uploadatt3" name="uploadattl" class="file-input" style="display: none;">
 									</form>
 
@@ -2565,7 +2630,7 @@
                                     </select>
                                     {{-- <label><b>Complete your Jus o Glow<span class="required-field">*</span></b></label>
                                     <select class="default-placeholder select2-hidden-accessible" id="p56" multiple='multiple' ng-model="product['P_56']"
-                                           ng-options="item as item.name for item in recommended track by item.id"> 
+                                           ng-options="item as item.name for item in recommended track by item.id">
                                              <option value="">---SELECT---</option>
                                     </select> --}}
                                 </div>
@@ -2598,7 +2663,7 @@
                                 <div class="col-12">
                                     <label><b>Your Daily HandPicked<span class="required-field">*</span></b></label>
                                     <select class="default-placeholder select2-hidden-accessible" id="p56" multiple='multiple' ng-model="QuickProduct['P_56']"
-                                           ng-options="item as item.name for item in handPick track by item.id"> 
+                                           ng-options="item as item.name for item in handPick track by item.id">
                                              <option value="">---SELECT---</option>
                                     </select>
                                 </div>
@@ -2626,13 +2691,13 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							
+
 							<div class="row">
 							   <div class="col-12">
 							     <label><b>Selected Image mark as primary or secondary!!!</b></label>
 							   </div>
 							</div>
-							
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger light" ng-click="closeProdShadeModal();">Close</button>
@@ -2647,7 +2712,7 @@
         </div>
 
 
-        
+
 
     </main>
 
@@ -2700,6 +2765,11 @@
 
     function form2() {
         $("#uploadatt2").click();
+    }
+
+    function formSubscriptionImage() {
+        // alert('working');
+        $("#uploadImage").click();
     }
     $(document).on("click", "#spotlightTabBtn", function() {
 

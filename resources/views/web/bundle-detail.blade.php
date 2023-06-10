@@ -235,7 +235,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
     .spot-section-img{
         height: 7.5em;
         border: 1px solid transparent;
-    
+
     }
     .recomendations-img{
         height: 24rem;
@@ -247,6 +247,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         width: 53% !important;
         margin-top: 298px;
         margin-left: -123px;
+    }
+    h2{
+        font-size: 36px !important;
+        text-transform: capitalize !important;
     }
 
     @media only screen and (max-width: 480px){
@@ -313,7 +317,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 </style>
 <main id="content" ng-app="project1">
 	<div ng-controller="projectinfo1">
-		<?php 
+		<?php
 		if(isset($bundleDetails) && !empty($bundleDetails)){
 // 		$images = isset($bundleDetails['images']) ? $bundleDetails['images'] : '';
 		?>
@@ -323,7 +327,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 				<div class="row no-gutters">
 					<div class="col-md-6 col-xl-8 mb-8 mb-md-0 pr-xl-0 pr-md-3">
 						<div class="row no-gutters mx-n1">
-							
+
 							<div class="col-sm-6 col-6 px-1 mb-2" ng-show="selectedShadeImg_p != ''" style="display:none;">
 								<img src="@{{selectedShadeImg_p}}" alt="Image" class="prod_img_detail img-w25 img-product-gall">
 							</div>
@@ -338,84 +342,84 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 					<div
 						class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky"
 						id="summary-sticky">
-		
+
 						<div class="primary-summary-inner">
-							<h2 class="fs-30 mb-0"><?= $bundleDetails['NAME']; ?></h2>
+							<h2 class="mb-0 text-capitalize"><?= $bundleDetails['NAME']; ?></h2>
 							<p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
 								<?php $i=0; ?>
 								<?php foreach ($bundleLines as $line){ ?>
-										<?php if($i==0){?>											
+										<?php if($i==0){?>
 											<?= $line['NAME']; ?>
 										<?php }else{ ?>
 											<?php echo ','; ?><?= $line['NAME']; ?>
 								<?php }$i++;}?>
 							</p>
-							<div class="row"> 
+							<div class="row">
 								<div class="col-lg-12">
 									<div class="row">
 										<div class="col-sm-6">
-											<p class="mb-1 fs">$<?= $bundleDetails['DISCOUNTED_AMOUNT']; ?></p>	
+											<p class="mb-1 fs">$<?= $bundleDetails['DISCOUNTED_AMOUNT']; ?></p>
 										</div>
 										<div class="col-sm-6">
 											<p class="mb-1 fs text-right"><?= $bundleDetails['UNIT']; ?></p>
 										</div>
 									</div>
-									
-									
+
+
 								</div>
 							</div>
 							<p class="mb-3"><?= $bundleDetails['SHORT_DESCRIPTION']; ?></p>
-		
+
 							<div class="chooseShade-container" style="margin-bottom: 30px;" >
-								
+
 								<div id="shadeBundlechooser_container_@{{row.BUNDLE_LINE_ID}}" ng-repeat="row in displayCollectionProductShades" >
 									<button class="accordion_inc_prod_detail shadeAccord-btn" data-id="@{{row.BUNDLE_LINE_ID}}">Choose Shade Product @{{row.productName}}</button><!-- chooseShadeBtn -->
 									<div class="panel_inc_prod_detail" id="chooseShade_container_@{{row.BUNDLE_LINE_ID}}">
 										<div class="form-group shop-swatch-color shop-swatch-color-02 mb-6 widget-color">
 											<label class="mb-2">
-												<span class="font-weight-500 text-primary mr-2">Color:</span> 
+												<span class="font-weight-500 text-primary mr-2">Color:</span>
 												<span class="var text-capitalize" id="shadeName1_@{{row.BUNDLE_LINE_ID}}"></span>
 											</label>
 											<ul class="list-inline d-flex justify-content-start mb-0">
-												<li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades" 
-												ng-click="chooseProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"  
+												<li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades"
+												ng-click="chooseProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
 												title="@{{list.SHADE_NAME}}">
 													<a href="javascript:;" class="d-block swatches-item shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}" style="background-image: url('@{{list.shadeprimaryImage}}'); background-repeat:no-repeat;background-position: center;"> </a>
 													{{-- <a href="#" class="d-block swatches-item"  style="background-color: #A0ADBC;"> </a> --}}
 												</li>
-												
+
 											</ul>
 											{{-- <ul class="list-inline d-flex justify-content-start mb-0">
-												<li class="list-inline-item" ng-repeat="list in row.productShades" 
-												ng-click="chooseProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"  
+												<li class="list-inline-item" ng-repeat="list in row.productShades"
+												ng-click="chooseProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
 												title="@{{list.SHADE_NAME}}">
 												<a href="javascript:;" class="d-block shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}" style="background-image: url('@{{list.shadeprimaryImage}}'); background-repeat:no-repeat;background-position: center;"> </a>
 												</li>
-												
+
 											</ul> --}}
 											{{-- <ul class="list-inline d-flex justify-content-start mb-0">
-												
-												<li class="list-inline-item mr-2 mt-2" ng-repeat="list in row.productShades" 
-													ng-click="chooseProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"  
+
+												<li class="list-inline-item mr-2 mt-2" ng-repeat="list in row.productShades"
+													ng-click="chooseProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
 													title="@{{list.SHADE_NAME}}">
 													<a href="javascript:;" class="d-block item shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}">
 														<img class="item" src="@{{list.shadeprimaryImage}}" alt="alt">
 													</a>
 												</li>
-												
+
 											</ul> --}}
 											<input type="hidden" id="shadeId_@{{row.BUNDLE_LINE_ID}}" value="">
 											<input type="hidden" id="prodShadeId_@{{row.BUNDLE_LINE_ID}}" value="">
 											<input type="hidden" id="shadeName_@{{row.BUNDLE_LINE_ID}}" value="">
 											<input type="hidden" id="productId_@{{row.BUNDLE_LINE_ID}}" value="">
-											<input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">											
+											<input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">
 										</div>
 										<a href="javascript:;" class="btn btn-primary" ng-click="confirmProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
 									</div>
 								</div>
-								
+
 							</div>
-							
+
 							<!-- <div style="margin-bottom: 30px;">
 								<button class="accordion_inc_prod_detail" id="chooseShadeBtn">1. Choose Shade</button>
 								<div class="panel_inc_prod_detail" id="chooseShade_container">
@@ -443,7 +447,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									</div>
 									<a href="store.html" class="btn btn-primary">Continue</a>
 								</div>
-		
+
 								<button class="accordion_inc_prod_detail" id="chooseShadeBtn2">2. Blow Gel - Choose Shade</button>
 								<div class="panel_inc_prod_detail" id="chooseShade2_container">
 									<img src="{{url('assets-web')}}/images/glamorpic.webp" style="width: 250px;"><br>
@@ -472,25 +476,25 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									<a href="javascript:;" class="btn btn-primary">Continue</a>
 								</div>
 							</div> -->
-		
+
 							<form>
-							
+
 								<input type="radio" id="single-sub" name="subscriptioncheck" value="One-Time Purchase" checked>
-								<label for="single-sub">One-Time Purchase</label><br> 
-								
-								<input type="radio" id="multiple-sub" name="subscriptioncheck" value="subscription"> 
+								<label for="single-sub">One-Time Purchase</label><br>
+
+								<input type="radio" id="multiple-sub" name="subscriptioncheck" value="subscription">
 								<label for="multiple-sub">Subscription</label><br>
-		
-		
+
+
 							</form>
 							<div class=" form-group mb-7 sub-form" style="display: none;">
 								<div class="d-flex align-items-center mb-3">
 									<label class="text-primary fs-16 font-weight-bold mb-0"
 										for="size">Subcription Option: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Click to see more" class="text-right"> 
+									<a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Click to see more" class="text-right">
 										<span ng-click="showSubscrptionDetailModal();">Learn More </span><!-- data-toggle="modal" data-target="#learnmore_pop" -->
 									</a>
-		
+
 									<div class="modal fade quick-view" id="learnmore_pop" tabindex="-1" aria-hidden="true">
 										<div class="modal-dialog" style="max-width: 631px !important;">
 											<div class="modal-content p-0">
@@ -499,12 +503,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
 													</button>
 													<div class="pop_content_prod_detail">
-		
+
 														<div class="row">
-		
+
 															<p class="col-lg-12" style="max-height: 500px;
                                                             overflow: auto;">@{{subscriptionDetails}}</p>
-		
+
 														</div>
 														<div class="row">
 
@@ -531,12 +535,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 										{{-- <div class="input-group position-relative w-100">
 											<a href="javascript:;" class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
 												<i class="far fa-minus"></i>
-											</a> 
-											
-											<input name="number" type="number" id="quantity" class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput" value="1"> 
-											
+											</a>
+
+											<input name="number" type="number" id="quantity" class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput" value="1">
+
 											<a href="javascript:;" class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
-												<i class="far fa-plus"></i> 
+												<i class="far fa-plus"></i>
 											</a>
 										</div> --}}
 										<div class="input-group position-relative w-100">
@@ -560,28 +564,28 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									</div>
 								</div>
 							</form>
-		
+
 							<p class="text-primary lh-14375 mb-0 sub-line" style="display: none;">
                                 @{{ subscriptionNote1 }}</p>
                             <p class="text-primary lh-14375 mb-0 sub-below-line" style="display: none;">
                                 @{{ subscriptionNote2 }}</p>
-						
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		
-		
+
+
 		<section class="pb-11 pb-lg-6">
 			<div class="container container-custom">
 				<div class="collapse-tabs">
 					<ul class="nav nav-pills d-md-flex d-block border-bottom"
 						id="pills-tab" role="tablist">
-						
+
 						<?php if(isset($bundleLines) && $bundleLines != null){
 							$i=0;$firstTabId=''; ?>
-				
+
 							<?php foreach ($bundleLines as $line){ ?>
 								<li class="nav-item"><a
 									class="nav-link <?php echo $i == 0 ? 'active show': '';?> font-weight-600 px-0 pb-3 mr-md-10 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
@@ -590,11 +594,11 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									aria-controls="pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" aria-selected="false"><?= $line['NAME']; ?></a></li>
 							<?php $i++;}?>
 						<?php }?>
-						
+
 					</ul>
 					<div class="tab-content bg-white-md shadow-none pt-md-7 px-0 m-0">
 						<div id="collapse-tabs-accordion-01">
-						
+
 							{{-- features --}}
 							<?php if(isset($features) && !empty($features)){?>
         <section class="pb-11 pb-lg-6">
@@ -607,25 +611,25 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                         {"breakpoint": 992,"settings": {"slidesToShow": 2}},
                         {"breakpoint": 768,"settings": {"slidesToShow": 1}},
                         {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-                        
+
                         <?php foreach ($features as $row){?>
 
                     <div class="box px-1" data-animate="fadeInUp">
                         <div class="ag-courses_item">
                             <a href="#" class="ag-courses-item_link">
                               <div class="ag-courses-item_bg"></div>
-                      
+
                               <div class="ag-courses-item_title">
                                 <li class="product-hero__icons__item d-flex aic">
                                     <div class="product-hero__icons__image relative">
                                         <div class="img fit-contain is-loaded pos-center">
-                                           
+
                                             <div class="skeleton"></div> <img
                                                 src="{{ $row['IMAGE_DOWN_PATH'] }}"
                                                 srcset="{{ $row['IMAGE_DOWN_PATH'] }}"
                                                 alt="Clean" title="Clean" data-fit="contain" class="img__el">
                                         </div>
-                                    </div> 
+                                    </div>
                                     <span class="product-hero__icons__text">{{ ucfirst(substr($row['TITLE'],0,10)) }}</span>
                                 </li>
                               </div>
@@ -639,22 +643,22 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         <?php  } ?>
 							{{-- end features --}}
 						<?php if(isset($bundleLines) && $bundleLines != null){
-								$i=0; 
+								$i=0;
 							?>
-			
+
 							<?php foreach ($bundleLines as $line){
-						
+
 								$images = isset($line['images']) ? $line['images'] : '';
 								$spotlightIngredients = isset($line['spotlightIngredients']) ? $line['spotlightIngredients'] : '';
 								$formulatedIngredients = isset($line['formulatedIngredients']) ? $line['formulatedIngredients'] : '';
 								$allIngredients = isset($line['allIngredients']) ? $line['allIngredients'] : '';
 								$productUses = isset($line['productUses']) ? $line['productUses'] : '';
 								$productSelfiid = isset($line['productSelfi_id']) ? $line['productSelfi_id'] : '';
-								
+
 								$productSelfiSliderArr = isset($line['productselfi']) ? $line['productselfi'] : '';
-								
-								?>	
-				
+
+								?>
+
 								<div class="tab-pane tab-pane-parent fade <?php echo $i == 0 ? 'show active' : '';?>" id="pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" role="tabpanel">
 									<div class="card border-0 bg-transparent">
 										<div class="card-header border-0 bg-transparent d-none px-0 py-1" id="headingDetails-01">
@@ -672,12 +676,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<h5 class="col-12 mb-2 font-weight-500 fs-24 pb-8 text-center" style="margin: 0 auto;"><?= $line['SUB_TITLE']; ?></h5>
 														<div class="col-md-6 mb-6 mb-md-0">
 															<?php if(isset($images[0]['downPath'])){?>
-																<img src="<?= $images[0]['downPath']; ?>" alt="Image" class="prod_img_detail_acc img1-section2 fadeInLeft animated img-w25"> 
+																<img src="<?= $images[0]['downPath']; ?>" alt="Image" class="prod_img_detail_acc img1-section2 fadeInLeft animated img-w25">
 															<?php }?>
 															<?php if(isset($images[1]['downPath'])){?>
 																<img src="<?= $images[1]['downPath']; ?>" alt="Image" class="prod_img_detail_acc_sec img2-section2 fadeInLeft animated img-w20">
 															<?php }?>
-															
+
 														</div>
 														<div class="col-md-6 pt-10 scroll-to-see">
 														<h5 class="mb-2 font-weight-500 fs-20"><?= $line['DESCRIPTION_TITLE']; ?></h5>
@@ -687,15 +691,15 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<br>
 													<hr>
 													<div class="row pt-10 align-items-center subsc_ec">
-			
+
 														<div class="col-md-6 ">
-															<h3 class="mb-2 font-weight-500 fs-35">Subscription</h3>
+															<h2 class="mb-2 font-weight-500">Subscription</h2>
 															<p class="mb-6">Indulge in the convenience and exclusive
 																benefits offered with our subscription service. Simply
 																select how frequently you'd like to recieve your products,
 																and we'll ensure you never run on empty. You may adjust
 																your delivery preferences at any time.</p>
-			
+
 															<a href="#" data-toggle="tooltip" data-placement="left"
 																title="Click to see more Ingredients"
 																class="preview btn btn-primary"> <span>Learn More </span>
@@ -704,7 +708,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<div class="col-md-6 mb-6 mb-md-0">
 															<img src="{{url('assets-web')}}/images/image-new.jpg" alt="The Iconic Silhouette "
 																class="fadeInRight animated subs_img">
-			
+
 														</div>
 													</div>
 													<br>
@@ -715,7 +719,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																<div class="col-md-8 mb-8 mb-md-0">
 																	<div class="fix">
 																		<div class=" hover-zoom-in">
-																			<?php 
+																			<?php
 																				if(isset($line['videoDetails']['V_3'])){?>
 																			<video
 																				src="<?= isset($line['videoDetails']['V_3']) ? $line['videoDetails']['V_3'] : '' ?>"
@@ -742,7 +746,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																	</div>
 																</div>
 																<div class="col-md-4 pl-7 scroll-to-see" style="height:40rem;overflow-y:auto">
-																	<h3 class="fs-35 mb-5"><?= isset($line['videoDetails']['V_1']) ? $line['videoDetails']['V_1'] : '' ?></h3>
+																	<h2 class="mb-5"><?= isset($line['videoDetails']['V_1']) ? $line['videoDetails']['V_1'] : '' ?></h2>
 																	<p><?= isset($line['videoDetails']['V_2']) ? $line['videoDetails']['V_2'] : '' ?></p>
 																</div>
 															</div>
@@ -752,9 +756,9 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<hr>
 													<section class="pb-10 pb-lg-0 mob_tab_sec">
 														<div class="container container-custom container-xxl">
-															<h5 class="text-center mb-3">Ingredients</h5>
-															<h3 class="text-center mb-9">Backed by Science to Optimize
-																Skin Wellness</h3>
+															<h2 class="text-center mb-3">Ingredients</h2>
+															<h2 class="text-center mb-9">Backed by Science to Optimize
+																Skin Wellness</h2>
 															<ul class="nav nav-pills justify-content-center mb-lg-9 mb-6">
 																<li class="nav-item px-5"><a
 																	class="cursor-pointer spotlightTabBtn spotlightTabBtn<?= $line['BUNDLE_LINE_ID']; ?> ingredientTabBtn ingredientTabBtn<?= $line['BUNDLE_LINE_ID']; ?> active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
@@ -774,7 +778,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																							<img class="img-h30 spot-section-img" src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web').'/images/cannabis-ingredient.webp' ?>">
 																							<p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 "><?= $row['INGREDIENT_NAME'];?></p>
 																							<?= $row['DESCRIPTION_TEXT'];?>
-					
+
 																						</div>
 																					<?php }?>
 																				<?php }else{?>
@@ -782,15 +786,15 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 	                                                                                	<p class="text-center">No record found...</p>
 	                                                                            	</div>
 	                                                                            <?php }?>
-																				
-																				
+
+
 																				<div class="col-sm-12 ing_btn_prod_detail pt-4 text-center">
 																					<a href="javascript:;" data-toggle="tooltip" data-placement="left"
-																						title="Click to see more Ingredients" class="preview btn btn-primary"> 
+																						title="Click to see more Ingredients" class="preview btn btn-primary">
 																						<span data-toggle="modal" data-target="#ingred_pop<?= $line['BUNDLE_LINE_ID']; ?>">List of Full Ingredients </span>
 																					</a>
 																				</div>
-			
+
 																			</div>
 																		</div>
 																	</section>
@@ -799,14 +803,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																	<section class="pb-11 pb-lg-0" id="">
 																		<div class="container container-custom">
 																			<div class="row">
-			
+
 																				<?php if(isset($formulatedIngredients) && !empty($formulatedIngredients) && $formulatedIngredients != ''){?>
 																					<?php foreach ($formulatedIngredients as $row){?>
 																						<div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
 																							<img class="img-h25 spot-section-img" src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web').'/images/cannabis-ingredient.webp' ?>">
 																							<p class="text-primary font-weight-500 lh-14375 mb-3 pt-4 "><?= $row['INGREDIENT_NAME'];?></p>
 																							<?= $row['DESCRIPTION_TEXT'];?>
-					
+
 																						</div>
 																					<?php }?>
 																				<?php }else{?>
@@ -814,14 +818,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 	                                                                                	<p class="text-center">No record found...</p>
 	                                                                            	</div>
 	                                                                            <?php }?>
-																				
+
 																				<div class="col-sm-12 ing_btn_prod_detail pt-4 text-center">
 																					<a href="javascript:;" data-toggle="tooltip" data-placement="left"
-																						title="Click to see more Ingredients" class="preview btn btn-primary"> 
+																						title="Click to see more Ingredients" class="preview btn btn-primary">
 																						<span data-toggle="modal" data-target="#ingred_pop<?= $line['BUNDLE_LINE_ID']; ?>">List of Full Ingredients </span>
 																					</a>
 																				</div>
-			
+
 																			</div>
 																		</div>
 																	</section>
@@ -841,13 +845,13 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																					<h3>Full List of ingredients</h3>
 																					<hr>
 																					<div class="row">
-																						
+
 																						<?php if(isset($allIngredients) && !empty($allIngredients) && $allIngredients != ''){?>
-																							
+
 																							<p class="col-lg-12">
-																							
+
 																							<?php for ($i=0; $i<count($allIngredients); $i++){?>
-																								<?php 
+																								<?php
 																									if(isset($allIngredients[$i+1]['INGREDIENT_NAME'])){
 																										echo $allIngredients[$i]['INGREDIENT_NAME'].',';
 																									}else{
@@ -858,10 +862,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																							</p>
 																						 <?php }else{?>
                                                                                         	<p class="col-lg-12 text-center">No record found...</p>
-                                                                                        	
+
                                                                                         <?php }?>
-																						
-																						
+
+
 																					</div>
 																				</div>
 																			</div>
@@ -892,13 +896,13 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																			</div>
 																			<?php $i++ ?>
 																		<?php }?>
-																		
+
 																	<?php }else{?>
 																		<div class="col-12">
-	                                                                		<p class="text-center" style="color: #fff;">No record found...</p>	
+	                                                                		<p class="text-center" style="color: #fff;">No record found...</p>
 	                                                                	</div>
 	                                                                <?php }?>
-																	
+
 																</div>
 															</div>
 														</div>
@@ -909,13 +913,13 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															<div class="row no-gutters align-items-center">
 																<div class="col-md-6 mb-8 mb-md-0 hover-zoom-in">
 																	<?php if(isset($line['clinicalImage'][0]['downPath'])){?>
-																	
+
 																		<img id="clinical-image" src="<?= $line['clinicalImage'][0]['downPath']; ?>" alt="Clinical Note">
-																	
+
 																	<?php }else{?>
-																		
+
 																		<img src="{{url('assets-web')}}/images/img-video.jpg" alt="Clinical Note">
-																
+
 																	<?php }?>
 																</div>
 																<div class="col-md-6 px-md-6 pl-xl-7 pr-xl-7 scroll-to-see" style="">
@@ -925,7 +929,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															</div>
 														</div>
 													</section>
-			
+
 												</div>
 											</div>
 											<section class="py-6 py-lg-10 insta_sec_home">
@@ -943,7 +947,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															<span>Take a Selfi</span>
 														</a>
 													</div>
-									
+
 													<div class="slick-slider slick-sliderproductselfi" id="instaFeed_html"
 														data-slick-options='{"slidesToShow": 4,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":true,"responsive":[
 														{"breakpoint": 1400,"settings": {"slidesToShow": 4}},
@@ -951,19 +955,19 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														{"breakpoint": 992,"settings": {"slidesToShow": 2}},
 														{"breakpoint": 768,"settings": {"slidesToShow": 1}},
 														{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-														
+
 														<?php if(isset($productselfi) && !empty($productselfi)){?>
 														<?php foreach($productselfi as $productSelfiByProductID){
 															$selfiimages = $productSelfiByProductID['SElFIBYID'];
 														?>
 															<?php if(isset($selfiimages) && !empty($selfiimages)){?>
 															<?php foreach($selfiimages as $selfiimage){ ?>
-															
-																<?php 
-																	$img_ext = strtolower($selfiimage['FILE_TYPE']);   
+
+																<?php
+																	$img_ext = strtolower($selfiimage['FILE_TYPE']);
 																?>
-									
-																
+
+
 																<?php if($img_ext == 'jpg' || $img_ext == 'png' ){?>
 																	<div class="box px-1" data-animate="fadeInUp">
 																		<a href=""
@@ -976,17 +980,17 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																	<div class="box px-1" data-animate="fadeInUp">
 																		<a href="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>"
 																			class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
-									
+
 																			<video width="400" controls>
 																				<source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>" type="video/mp4">
 																				<source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>" type="video/ogg">
-																				
+
 																			</video>
 																			<div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
-																				<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
+																				<span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;">
 																					<i class="fa fa-play"></i>
 																				</span>
-																				
+
 																			</div>
 																		</a>
 																	</div>
@@ -995,8 +999,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															<?php } ?>
 														<?php }?>
 														<?php }?>
-									
-									
+
+
 													</div>
 												</div>
 												<div class="modal fade selfi-view" id="productselfi" tabindex="-1" aria-hidden="true">
@@ -1016,21 +1020,21 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																	<div class="col-xl-12 col-lg-12 col-md-12 mb-1" style="text-align: center">
 																		<img src="" id="hung22" alt="" onclick="showfileload()" class="selfi-img" style="display:none;">
 																	</div>
-																  
+
 																</div> --}}
-									
+
 																{{-- <form action="{{ route('saveProductSelfie') }}" method="POST" id="saveProductSelfie"> --}}
 															   <div ng-show="selfi.ID == ''">
 																<label style=" display: block !important;text-align:left;">Enter your name</label>
 																<input type="text" id="name" name="name" ng-model="selfi['name']"
 																	class="form-control mb-3" placeholder="Name">
-									
+
 																<label style=" display: block;text-align:left;">Enter your email</label>
 																<input name="email" type="email" ng-model="selfi['email']" id="email"
 																	name="email" class="form-control mb-3" placeholder="Email">
 															   </div>
-																
-									
+
+
 																{{-- <input name="file" onchange="loadFile(event)" type="file" class="form-control mb-3" placeholder="UPLOAD YOUR SELFIE" id="selfie_img" required="">
 																		 --}}
 																<div class="row register-new-product-picture-para" ng-show="selfi.ID  != ''">
@@ -1043,10 +1047,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																	</div>
 																	<div class="col-sm-7">
 																		<div class="row" id="p_att">
-																		   
+
 																		</div>
 																	</div>
-									
+
 																	<form class="" id="uploadattch6" method="POST"
 																		action="uploadProductImageVideoSelfi" enctype="multipart/form-data">
 																		<input type="hidden" name="_method" value="POST">
@@ -1056,16 +1060,16 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																		<input type="file" id="uploadatt6" name="uploadatt6" class="file-input"
 																			style="display: none;">
 																	</form>
-									
+
 																</div>
 																<button type="submit" class="btn btn-primary btn-block savebtn"
 																	ng-click="submitProductSelfi();">Submit</button>
 																<button type="button" class="btn btn-primary btn-block loaderbtn" disabled
 																	style="display: none"><i class="ft-rotate-cw spinner"></i> Processing</button>
-									
+
 																{{-- </form> --}}
-									
-									
+
+
 															</div>
 														</div>
 													</div>
@@ -1074,13 +1078,13 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 										</div>
 									</div>
 
-									
-									
+
+
 								</div>
-						
+
 							<?php $i++;}?>
 						<?php }?>
-							
+
 						</div>
 					</div>
 				</div>
@@ -1131,7 +1135,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 			<!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
 							</div>
 						</div>
-		
+
 						<div class="col-3 question_sec">
 							<div class="row" style="">
 								<div class="side">
@@ -1190,14 +1194,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									<div>@{{ratingone}}</div>
 								</div>
 							</div>
-		
+
 							<div class="text-center mt-6 mt-md-9">
 								<a href="javascript:;" class="btn btn-outline-primary rev-btnns" id="writeQuestion_btn">Write Your Question</a>
 							</div>
 						</div>
 						<div class="col-3 d-none d-md-block d-lg-block d-xl-block d-xxl-block"></div>
 					</div>
-		
+
 				</div>
 				<div class="p-0 m-0" id="">
 					<div class="" id="pillsReviews_container">
@@ -1209,29 +1213,29 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 										<p class="text-primary font-weight-bold mb-0 mr-2 mb-2">Score:</p>
 										<div class="form-group mb-6 d-flex justify-content-start">
 											<div class="rate-input">
-												
-												<input type="radio" id="star5" name="rate" value="5"> 
-												<label for="star5" title="text" class="mb-0 mr-1 lh-1"> 
+
+												<input type="radio" id="star5" name="rate" value="5">
+												<label for="star5" title="text" class="mb-0 mr-1 lh-1">
 													<i class="icon fal fa-star"></i>
-												</label> 
-												
+												</label>
+
 												<input type="radio" id="star4" name="rate" value="4">
-												<label for="star4" title="text" class="mb-0 mr-1 lh-1"> 
+												<label for="star4" title="text" class="mb-0 mr-1 lh-1">
 													<i class="icon fal fa-star"></i>
-												</label> 
-												
+												</label>
+
 												<input type="radio" id="star3" name="rate" value="3">
 												<label for="star3" title="text" class="mb-0 mr-1 lh-1">
 													<i class="icon fal fa-star"></i>
-												</label> 
-												
+												</label>
+
 												<input type="radio" id="star2" name="rate" value="2">
-												<label for="star2" title="text" class="mb-0 mr-1 lh-1"> 
+												<label for="star2" title="text" class="mb-0 mr-1 lh-1">
 													<i class="icon fal fa-star"></i>
-												</label> 
-												
+												</label>
+
 												<input type="radio" id="star1" name="rate" value="1">
-												<label for="star1" title="text" class="mb-0 mr-1 lh-1"> 
+												<label for="star1" title="text" class="mb-0 mr-1 lh-1">
 													<i class="icon fal fa-star"></i>
 												</label>
 											</div>
@@ -1248,105 +1252,105 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 												<textarea class="form-control" placeholder="Your Review" rows="5" ng-model="review['R_3']"></textarea>
 											</div>
 										</div>
-		
+
 									</div>
-		
+
 									<div class="row">
 										<div class="col-sm-6">
 											<label>What are your top skin concerns? (Optional)</label>
 											<div class="form-group mb-6">
-		
-												<input type="radio" id="skin1" name="skin" value="Acne & Blemish"> 
+
+												<input type="radio" id="skin1" name="skin" value="Acne & Blemish">
 												<label for="skin1">Acne & Blemish</label><br>
-												
-												<input type="radio" id="skin2" name="skin" value="Acne & Blemish"> 
+
+												<input type="radio" id="skin2" name="skin" value="Acne & Blemish">
 												<label for="skin2"> Acne & Blemish</label><br>
-												
-												<input type="radio" id="skin3" name="skin" value="Acne & Blemish"> 
+
+												<input type="radio" id="skin3" name="skin" value="Acne & Blemish">
 												<label for="skin3"> Acne & Blemish</label><br>
-												
+
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<label>What are your top skin concerns? (Optional)</label>
 											<div class="form-group mb-6">
-		
-												<input type="radio" id="climate1" name="climate" value="Dry"> 
-												<label for="climate1">Dry</label><br> 
-												
-												<input type="radio" id="climate2" name="climate" value="Cold"> 
-												<label for="climate2">Cold</label><br> 
-												
-												<input type="radio" id="climate3" name="climate" value="Humid"> 
+
+												<input type="radio" id="climate1" name="climate" value="Dry">
+												<label for="climate1">Dry</label><br>
+
+												<input type="radio" id="climate2" name="climate" value="Cold">
+												<label for="climate2">Cold</label><br>
+
+												<input type="radio" id="climate3" name="climate" value="Humid">
 												<label for="climate3">Humid</label><br>
-												
-												<input type="radio" id="climate4" name="climate" value="Hot"> 
+
+												<input type="radio" id="climate4" name="climate" value="Hot">
 												<label for="climate4">Hot</label><br>
 											</div>
 										</div>
 									</div>
-		
+
 									<div class="row">
 										<div class="col-sm-6">
 											<label>Age Range (Optional)</label>
 											<div class="form-group mb-6">
-		
-												<input type="radio" id="age1" name="age" value="17 or Under"> 
-												<label for="age1">17 or Under</label><br> 
-												
-												<input type="radio" id="age2" name="age" value="18 to 24"> 
-												<label for="age2">18 to 24</label><br> 
-												
-												<input type="radio" id="age3" name="age" value="25 to 34"> 
+
+												<input type="radio" id="age1" name="age" value="17 or Under">
+												<label for="age1">17 or Under</label><br>
+
+												<input type="radio" id="age2" name="age" value="18 to 24">
+												<label for="age2">18 to 24</label><br>
+
+												<input type="radio" id="age3" name="age" value="25 to 34">
 												<label for="age3">25 to 34</label><br>
-												
-												<input type="radio" id="age4" name="age" value="35 to 44"> 
-												<label for="age4">35 to 44</label><br> 
-												
-												<input type="radio" id="age5" name="age" value="45 to 54"> 
-												<label for="age5">45 to 54</label><br> 
-												
-												<input type="radio" id="age6" name="age" value="35 to 45"> 
+
+												<input type="radio" id="age4" name="age" value="35 to 44">
+												<label for="age4">35 to 44</label><br>
+
+												<input type="radio" id="age5" name="age" value="45 to 54">
+												<label for="age5">45 to 54</label><br>
+
+												<input type="radio" id="age6" name="age" value="35 to 45">
 												<label for="age6">55 to 59</label><br>
-												
-												<input type="radio" id="age7" name="age" value="35 to 45"> 
+
+												<input type="radio" id="age7" name="age" value="35 to 45">
 												<label for="age7">60 to Above</label><br>
-											
+
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<label>How likely are you to recommend Murad? (1-Lowest,
 												10-Highest)</label>
 											<div class="form-group mb-6">
-		
-												<input type="radio" id="murad1" name="murad" value="1"> 
-												<label for="murad1">1</label><br> 
-												
-												<input type="radio" id="murad2" name="murad" value="2"> 
-												<label for="murad2"> 2</label><br> 
-												
-												<input type="radio" id="murad3" name="murad" value="3"> 
-												<label for="murad3">3</label><br> 
-												
-												<input type="radio" id="murad4" name="murad" value="4"> 
-												<label for="murad4"> 4</label><br> 
-												
-												<input type="radio" id="murad5" name="murad" value="5"> 
-												<label for="murad5"> 5</label><br> 
-												
-												<input type="radio" id="murad6" name="murad" value="6"> 
-												<label for="murad6"> 6</label><br> 
-												
-												<input type="radio" id="murad7" name="murad" value="7"> 
-												<label for="murad7"> 7</label><br> 
-												
-												<input type="radio" id="murad8" name="murad" value="8"> 
-												<label for="murad8"> 8</label><br> 
-												
-												<input type="radio" id="murad9" name="murad" value="9"> 
-												<label for="murad9"> 9</label><br> 
-												
-												<input type="radio" id="murad10" name="murad" value="10"> 
+
+												<input type="radio" id="murad1" name="murad" value="1">
+												<label for="murad1">1</label><br>
+
+												<input type="radio" id="murad2" name="murad" value="2">
+												<label for="murad2"> 2</label><br>
+
+												<input type="radio" id="murad3" name="murad" value="3">
+												<label for="murad3">3</label><br>
+
+												<input type="radio" id="murad4" name="murad" value="4">
+												<label for="murad4"> 4</label><br>
+
+												<input type="radio" id="murad5" name="murad" value="5">
+												<label for="murad5"> 5</label><br>
+
+												<input type="radio" id="murad6" name="murad" value="6">
+												<label for="murad6"> 6</label><br>
+
+												<input type="radio" id="murad7" name="murad" value="7">
+												<label for="murad7"> 7</label><br>
+
+												<input type="radio" id="murad8" name="murad" value="8">
+												<label for="murad8"> 8</label><br>
+
+												<input type="radio" id="murad9" name="murad" value="9">
+												<label for="murad9"> 9</label><br>
+
+												<input type="radio" id="murad10" name="murad" value="10">
 												<label for="murad10"> 10</label><br>
 											</div>
 										</div>
@@ -1355,32 +1359,32 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 										<div class="col-sm-6">
 											<label>How would you describe your skin type? (Optional)</label>
 											<div class="form-group mb-6">
-		
-												<input type="radio" id="skintype1" name="skintype" value="Balanced"> 
-												<label for="skintype1">Balanced </label><br> 
-												
-												<input type="radio" id="skintype2" name="skintype" value="Dry"> 
-												<label for="skintype2"> Dry</label><br> 
-												
-												<input type="radio" id="skintype3" name="skintype" value="Oily"> 
-												<label for="skintype3">Oily</label><br> 
-												
-												<input type="radio" id="skintype4" name="skintype" value="combination"> 
-												<label for="skintype4"> Combination</label><br> 
-												
-												<input type="radio" id="skintype5" name="skintype" value="Sensitive"> 
+
+												<input type="radio" id="skintype1" name="skintype" value="Balanced">
+												<label for="skintype1">Balanced </label><br>
+
+												<input type="radio" id="skintype2" name="skintype" value="Dry">
+												<label for="skintype2"> Dry</label><br>
+
+												<input type="radio" id="skintype3" name="skintype" value="Oily">
+												<label for="skintype3">Oily</label><br>
+
+												<input type="radio" id="skintype4" name="skintype" value="combination">
+												<label for="skintype4"> Combination</label><br>
+
+												<input type="radio" id="skintype5" name="skintype" value="Sensitive">
 												<label for="skintype5"> Sensitive </label><br>
 											</div>
 										</div>
-										
+
 										<div class="col-sm-6">
 											<label>Would you recommend this product?</label>
 											<div class="form-group mb-6">
-		
-												<input type="radio" id="recommand1" name="recommand" value="Yes"> 
-												<label for="recommand1">Yes</label><br> 
-												
-												<input type="radio" id="recommand2" name="recommand" value="No"> 
+
+												<input type="radio" id="recommand1" name="recommand" value="Yes">
+												<label for="recommand1">Yes</label><br>
+
+												<input type="radio" id="recommand2" name="recommand" value="No">
 												<label for="recommand2"> No</label><br>
 											</div>
 										</div>
@@ -1397,7 +1401,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											</div>
 										</div>
 									</div>
-		
+
 									<div class="text-center">
 										<button type="button" class="btn btn-primary" ng-click="postReview();">Post</button>
 									</div>
@@ -1409,7 +1413,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 							<div class="container container-custom p-0">
 								<div class="comment-product mw-900 mx-auto">
 									<h2 class="text-center mb-4">Reviews</h2>
-		
+
 									<div class="container container-custom">
 										<div class="row border-bottom mb-2" ng-repeat="row in displayCollectionReviews">
 											<div class="col-12 col-md-3 col-xl-3">
@@ -1420,7 +1424,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<div class="media-body text-center-mbl">
 														<div class="row no-gutters mb-2 align-items-center rating-result r-result">
 															<ul class="list-inline mb-0 mr-auto d-flex col-sm-12">
-																
+
 																<li class="list-inline-item fs-12 text-primary" ng-if="row.STAR_RATING == '5'" style="width:100%;">
 																	<i class="fas fa-star"></i> <i class="fas fa-star"></i>
 																	<i class="fas fa-star"></i> <i class="fas fa-star"></i>
@@ -1440,7 +1444,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																<li class="list-inline-item fs-12 text-primary" ng-if="row.STAR_RATING == '1'" style="width:100%;">
 																	<i class="fas fa-star"></i>
 																</li>
-																
+
 															</ul>
 															<p class="text-primary mb-0">
 																<span class="font-weight-500 text-primary d-inline-block"> @{{row.USERNAME}}</span><br>
@@ -1449,7 +1453,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																<span class="fs-14 d-inline-block"><b>Age:</b> @{{row.AGE_RANGE}}</span><br>
 																<span class="fs-14 d-inline-block"><b>Murad Recommendation:</b> @{{row.RECOMMAND_MURAD}}</span>
 															</p>
-		
+
 														</div>
 													</div>
 												</div>
@@ -1467,7 +1471,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															</div>
 														</div>
 														<p class="mb-6">@{{row.REVIEW_DESCRIPTION}}</p>
-														
+
 														<!--
 														<br><br>
 														<div>
@@ -1476,28 +1480,28 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													</div>
 												</div>
 											</div>
-										</div> 
+										</div>
 										<div class="row" ng-if="displayCollectionReviews.length == 0 || displayCollectionReviews.length == undefined">
 											<div  class="col-sm-12 col-12">
 												<p class="text-center">No reviews...</p>
 											</div>
 										</div><br>
-										
+
 									</div>
-		
+
 								</div>
 							</div>
 						</section>
-		
+
 					</div>
 					<br>
 					<div class="" id="pillsQuestions_container" style="display: none">
-		
+
 						<div class="card border-0 mt-9 form-question hide mw-900 mx-auto" id="writeQuestion_container" style="display: none;">
 							<div class="card-body p-0">
 								<h2 class="text-center mb-9">Write Your Question</h2>
 								<form>
-		
+
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="form-group mb-6">
@@ -1524,7 +1528,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 							<div class="container container-custom">
 								<div class="comment-product mw-900 mx-auto">
 									<h2 class="text-center mb-4">Questions</h2>
-		
+
 									<div class="media border-bottom pb-7 mb-7 " ng-repeat="row in displayCollectionQuestions">
 										<div class="w-70px d-block mr-6">
 											<img class="img-round-50" src="{{ url('/assets-web') }}/images/test-img.jpg" alt="Dean. D">
@@ -1538,7 +1542,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 												</div>
 											</div>
 											<p><strong>Q: @{{row.QUESTION}}</strong></p>
-											<br> 
+											<br>
 												<a href="javascript:;"><i class="fa fa-comment"></i> Answers (@{{row.ANSWER != '' ? '1' : '0'}})</a><br>
 											<br>
 											<div class="container" ng-show="row.ANSWER != ''">
@@ -1570,14 +1574,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											</div>
 										</div>
 										<br>
-		
+
 									</div>
 									<div class="row" ng-if="displayCollectionQuestions.length == 0 || displayCollectionQuestions.length == undefined">
 										<div  class="col-sm-12 col-12">
 											<p class="text-center">No questions...</p>
 										</div>
 									</div>
-								
+
 								</div>
 							</div>
 						</section>
@@ -1585,8 +1589,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 				</div>
 			</div>
 		</section>
-		
-		
+
+
 		<section class="pb-10 pb-lg-13">
 			<div class="container container-custom container-xxl">
 				<ul class="nav nav-pills justify-content-center mb-lg-9 mb-6"
@@ -1611,18 +1615,18 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						aria-controls="pills-recently-viewed" aria-selected="true">Recently
 							Viewed</a>
 				</ul>
-				
+
 				<div class="tab-content p-0 m-0 shadow-none" id="pills-tabContent">
-					
+
 				<div class="tab-pane fade show active" id="pills-recommendations"
 						role="tabpanel" aria-labelledby="pills-recommendations-tab">
 						<div class="slick-slider "
 							data-slick-options='{"slidesToShow": 4, "autoplay":false,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-							
+
 							<?php if(isset($recommandedProducts) && !empty($recommandedProducts)){?>
-								
+
 								<?php foreach($recommandedProducts as $recommand){?>
-									
+
 									<div class="box px-1" data-animate="fadeInUp">
 										<div class="card border-0 product px-2">
 											<div class="position-relative">
@@ -1638,7 +1642,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 addto-wishlist"
 															data-productId="<?= $recommand['PRODUCT_ID']?>" data-type='single'>
 															<i class="fal fa-star wish_<?= $recommand['PRODUCT_ID']?> <?= $recommand['wishlistFlag'] == '1' ? 'activeWish' : ''?>"></i>
-														</a> 
+														</a>
 														<!-- <a href="#" data-toggle="tooltip" data-placement="left"
 															title="Quick view"
 															class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
@@ -1679,13 +1683,13 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<span class="text-line-through text-body mr-1"></span>$<?= $recommand['UNIT_PRICE'];?>
 													</p>
 												</div>
-												
+
 												<ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-													<?php 
+													<?php
 														$shades = $recommand['productShades'];
 														if(isset($shades) && !empty($shades)){
-														foreach ($shades as $shade){	
-														
+														foreach ($shades as $shade){
+
 													?>
 													<li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
 														<a href="javascript:;" class="d-block swatches-item shade_chooser" style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;"> </a>
@@ -1697,11 +1701,11 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											</div>
 										</div>
 									</div>
-									
+
 								<?php }?>
-								
+
 							<?php }?>
-							
+
 							<!-- <div class="box px-1" data-animate="fadeInUp">
 								<div class="card border-0 product px-2">
 									<div class="position-relative">
@@ -1896,8 +1900,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 										</ul>
 									</div>
 								</div>
-							</div> 
-							
+							</div>
+
 							<div class="box px-1" data-animate="fadeInUp">
 								<div class="card border-0 product px-2">
 									<div class="position-relative">
@@ -1968,9 +1972,9 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									</div>
 								</div>
 							</div> -->
-							
-							
-							
+
+
+
 						</div>
 						<div class="modal fade quick-view" id="product-recommendations-1"
 							tabindex="-1" aria-hidden="true">
@@ -1993,7 +1997,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
 														Sweaters</a>
 													<div class="d-flex align-items-center">
-														<h2 class="fs-30 mb-1">
+														<h2 class="mb-1">
 															<a href="product-detail.html">Hoodie with pouch pocket</a>
 														</h2>
 													</div>
@@ -2106,19 +2110,19 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 								</div>
 							</div>
 						</div>
-						
-						
-						
+
+
+
 					</div>
 					<div class="tab-pane fade " id="pills-recently-viewed"
 						role="tabpanel" aria-labelledby="pills-recently-viewed-tab">
 						<div class="slick-slider "
 							data-slick-options='{"slidesToShow": 4, "autoplay":false,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-							
+
 							<?php if(isset($recentViewedProducts) && !empty($recentViewedProducts)){?>
-								
+
 								<?php foreach($recentViewedProducts as $recent){?>
-									
+
 									<div class="box px-1" data-animate="fadeInUp">
 										<div class="card border-0 product px-2">
 											<div class="position-relative">
@@ -2134,7 +2138,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 addto-wishlist"
 															data-productId="<?= $recent['PRODUCT_ID']?>" data-type='single'>
 															<i class="fal fa-star wish_<?= $recent['PRODUCT_ID']?> <?= $recent['wishlistFlag'] == '1' ? 'activeWish' : ''?>"></i>
-														</a> 
+														</a>
 														<!-- <a href="#" data-toggle="tooltip" data-placement="left"
 															title="Quick view"
 															class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
@@ -2176,11 +2180,11 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													</p>
 												</div>
 												<ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-													<?php 
+													<?php
 														$shades1 = $recent['productShades'];
 														if(isset($shades1) && !empty($shades1)){
-														foreach ($shades1 as $shade){	
-														
+														foreach ($shades1 as $shade){
+
 													?>
 													<li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
 														<a href="javascript:;" class="d-block swatches-item shade_chooser" style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;"> </a>
@@ -2189,14 +2193,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<?php }?>
 													<?php }?>
 												</ul>
-												
-												
+
+
 											</div>
 										</div>
 									</div>
-									
+
 								<?php }?>
-								
+
 							<?php }?>
 						</div>
 						<div class="modal fade quick-view" id="product-recently-viewed-1"
@@ -2220,7 +2224,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
 														Sweaters</a>
 													<div class="d-flex align-items-center">
-														<h2 class="fs-30 mb-1">
+														<h2 class="mb-1">
 															<a href="product-detail-01.html">Hoodie with pouch pocket</a>
 														</h2>
 													</div>
@@ -2333,10 +2337,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 
-                             <!---Handpicked Start --> 
+                             <!---Handpicked Start -->
                     <div class="tab-pane fade" style="margin-bottom: 20px" id="pills-hand-picked"
                         role="tabpanel" aria-labelledby="pills-recommendations-tab">
                         <div class="slick-slider "
@@ -2415,11 +2419,11 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                             </p>
                                         </div>
                                         <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            <?php 
+                                            <?php
                                                         $shades1 = $recent['productShades'];
                                                         if(isset($shades1) && !empty($shades1)){
-                                                        foreach ($shades1 as $shade){	
-                                                    
+                                                        foreach ($shades1 as $shade){
+
                                                     ?>
                                             <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
                                                 <a href="javascript:;" class="d-block swatches-item"
@@ -2634,7 +2638,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						</div>
 						</div>
 					</div>
-					
+
 					<div class="box px-1" data-animate="fadeInUp">
 						<div class="card border-0 product px-2">
 						<div class="position-relative">
@@ -2731,7 +2735,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                                         class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
                                                         Sweaters</a>
                                                     <div class="d-flex align-items-center">
-                                                        <h2 class="fs-30 mb-1">
+                                                        <h2 class="mb-1">
                                                             <a href="product-detail.html">Hoodie with pouch pocket</a>
                                                         </h2>
                                                     </div>
@@ -2868,7 +2872,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 				</div>
 			</div>
 		</section>
-		
+
 		<?php }?>
 
 		<div class="modal fade selfi-view" id="productselfi"
@@ -2889,14 +2893,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<div class="col-xl-12 col-lg-12 col-md-12 mb-1" style="text-align: center">
 															<img src="" id="hung22" alt="" onclick="showfileload()" class="selfi-img" style="display:none;">
 														</div>
-													  
+
 													</div>
-												   
+
 														<form action="{{ route('saveProductSelfie') }}" method="POST" id="saveProductSelfie">
 															<label style=" display: block !important;text-align:left;">Enter your name</label>
 															<input type="text" id="name" name="name" class="form-control mb-3" placeholder="Name"
 																>
-														  
+
 															<label style=" display: block;text-align:left;">Enter your email</label>
 															<input name="email" type="email" id="email" name="email" class="form-control mb-3"
 																placeholder="Email" >
@@ -2905,10 +2909,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															<button type="submit" class="btn btn-primary btn-block savebtn">Submit</button>
 															<button type="button" class="btn btn-primary btn-block loaderbtn" disabled style="display: none"><i
 																	class="ft-rotate-cw spinner"></i> Processing</button>
-										
+
 														</form>
-												   
-												   
+
+
 												</div>
 											</div>
 										</div>
@@ -2933,12 +2937,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             }
         });
-        
+
     });
 	var productSelfiID = '';
 
 	$(document).on('click', '.list-inline-item', function() {
-       
+
 	   $(".list-inline-item").removeClass('selected');
 	   $(this).addClass('selected');
    	});
@@ -2977,12 +2981,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 		$('#hung221').show();
 		$("#hung22").hide();
 		$('#productselfi').modal('show');
-		
+
 	}
 	function showfileload(){
         $('#selfie_img').click();
     }
-	function loadFile(event) { 
+	function loadFile(event) {
 
 		var output = document.getElementById('hung22');
 
@@ -2991,25 +2995,25 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 		var height = this.naturalHeight;
 		var width = this.naturalWidth;
-		
+
 		if (height < 400 || width < 400) {
 
 			toastr.error('Height and Width must be greater than 400px.','', {
 				timeOut: 3000
 			});
-			
+
 			$('#hung221').show();
 			$("#hung22").hide();
 			$('#saveProductSelfie')[0].reset();
 			return false;
 		}else{
-		
+
 			URL.revokeObjectURL(output.src) // free memory
 			$('#hung221').hide();
 			$("#hung22").show();
 
 		}
-	
+
 		}
 	}
 
@@ -3030,7 +3034,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 			}
 			formData.append('productid',productid);
 			formData.append('flag','bundle');
-			
+
 			$.ajax({
 				type: $(this).attr('method'),
 				url: $(this).attr('action'),
@@ -3043,7 +3047,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 				beforeSend: function(data) {
 					$('.loaderbtn').show();
 					$('.savebtn').hide();
-					$.LoadingOverlay("show"); 
+					$.LoadingOverlay("show");
 				},
 				success: function(data) {
 					console.log(data);
@@ -3053,7 +3057,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						toastr.success(data.msg, '', {
 							timeOut: 3000
 						})
-						
+
 						$('#productselfi').modal('hide');
 						$('#saveProductSelfie')[0].reset();
 						$('#hung221').show();
@@ -3063,7 +3067,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 				complete: function(data) {
 					$('.loaderbtn').hide();
 					$('.savebtn').show();
-					$.LoadingOverlay("hide"); 
+					$.LoadingOverlay("hide");
 				},
 				error: function(e) {
 					$('.loaderbtn').hide();

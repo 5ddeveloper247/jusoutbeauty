@@ -75,14 +75,14 @@
                         <div class="row">
 
                             <div class="box_sec pt-6 pb-6 pl-6 pr-6">
-                                <h5 class="mb-5">RETURNING CUSTOMER, TROUBLE LOGGING IN?</h5>
+                                <h2 class="mb-5">RETURNING CUSTOMER, TROUBLE LOGGING IN?</h2>
                                 <p class="text-primary fs-12 mb-5 "> We updated our shopping experience. If you haven't
                                     logged in recently and are very trouble . Please reset your password to login. </p>
                                 <a href="javascript:;" class="btn btn-outline-primary w-100"
                                     ng-click="resetPass();">Reset Password</a>
                             </div>
                             <div class="box_sec pt-6 pb-6 pl-6 pr-6">
-                                <h5 class="mb-5">CHECK ORDER STATUS</h5>
+                                <h2 class="mb-5">CHECK ORDER STATUS</h2>
                                 <p class="text-primary fs-12 mb-5 ">To check your order status.
                                     You may SIGN IN, CREATE ACCOUNT, or click the links found in
                                     your order confirmation or shipping notification emails.</p>
@@ -126,7 +126,7 @@
                                                 <form action="" method="POST" class="digital-group">
 													<input type="hidden" ng-model="votp['V_7']" name="" id="user_otp" >
 													<div class="inputfield">
-														
+
 														<input type="number" ng-model="votp['V_1']" maxlength="1" class="input otp-model-mbl"  />
 														<input type="number" ng-model="votp['V_2']" maxlength="1" class="input otp-model-mbl" disabled />
 														<input type="number" ng-model="votp['V_3']" maxlength="1" class="input otp-model-mbl" disabled />
@@ -138,9 +138,9 @@
                                                         class="btn btn-primary btn-block mb-3 mt-5 hide">Submit</button>
 												</form>
 											</div>
-                                     
-                                                
-                                            
+
+
+
                                             <div class="col-lg-1 mb-8 mb-lg-0 pr-xl-2"></div>
                                         </div>
 
@@ -151,7 +151,7 @@
                                                 <h3 class="fs-24 mb-6">Enter New Password</h3>
                                                 <form action="" method="POST" class="digital-group">
 													<input type="hidden" ng-model="cpass['C_1']" name="" id="user_con_id" >
-													
+
 														<div class="form-group mb-3">
 															<label for="exampleInputPassword1" class="sr-only">Password</label>
 															<input type="password" ng-model="cpass['C_2']" id="password_reset" name="password" class="form-control" placeholder="Password">
@@ -161,15 +161,15 @@
 															<label for="exampleInputPassword1" class="sr-only">Confirm Password</label>
 															<input type="password" ng-model="cpass['C_3']" id="con_password_reset" name="" class="form-control" placeholder="Confirm Password">
 														</div>
-														
-													
+
+
 													  <button type="submit"  ng-click="validatePassword()"
                                                         class="btn btn-primary btn-block mb-3 mt-5">Submit</button>
 												</form>
 											</div>
-                                     
-                                                
-                                            
+
+
+
                                             <div class="col-lg-1 mb-8 mb-lg-0 pr-xl-2"></div>
                                         </div>
                                     </div>
@@ -177,14 +177,14 @@
                             </div>
                         </div>
                         {{-- <div class="row mt-4">
-                            
+
                         </div> --}}
 
                     </div>
                     <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="row">
                             <div class="box_sec pt-6 pb-6 pl-6 pr-6">
-                                <h5 class="fs-24 mb-6">SIGN IN</h5>
+                                <h2 class="mb-6">SIGN IN</h2>
                                 <p class=" mb-6">Sign in to your account to add or edit your
                                     addresses and email Preference, save your Pro filter to your
                                     profile and more.</p>
@@ -260,7 +260,7 @@
                     <!-- mujtaba -->
                     <div class="col-lg-4 p-0 d-flex align-items-stretch">
                         <div class="box_sec pt-6 pb-6 pl-6 pr-6">
-                            <h5 class="mb-5 fs-24">CREATE ACCOUNT</h5>
+                            <h2 class="mb-5">CREATE ACCOUNT</h2>
                             <h6 class="">GET YOUR FAVES FASTER</h6>
                             <p class="text-primary fs-12 mb-5 ">Save your order information to make checkout a breeze.
                             </p>
@@ -294,7 +294,7 @@
                                     <div class="row">
                                         {{-- <div class="col-lg-1 mb-8 mb-lg-0 pr-xl-2"></div> --}}
                                         <div class="col-lg-12 mb-8 mb-lg-8 mt-lg-8 pr-xl-2">
-                                            <h3 class="fs-24 mb-6">Create New Account</h3>
+                                            <h2 class=" mb-6">Create New Account</h2>
                                             <form>
                                                 <input ng-model="store['A_1']" type="text"
                                                     class="form-control mb-3" placeholder="First name" required>
@@ -417,7 +417,7 @@ const startInput = () => {
 };
 
 window.onload = startInput();
-	
+
 </script>
 <script>
 	function close_topbar(){

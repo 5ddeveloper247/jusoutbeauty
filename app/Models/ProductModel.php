@@ -72,7 +72,38 @@ class ProductModel extends Model
 
 		return isset($arrRes) ? $arrRes : null;
 	}
+    public function getSubscriptionDetailsOfSingleProduct($id){
+        $result = DB::table('jb_product_tbl as a')
+        ->select(
+            'a.PRODUCT_ID',
+            'a.SUBSCRIPTION_NOTE_DESCRIPTION',
+            'a.SUBSCRIPTION_NOTE_LINK',
+            'a.SUBSCRIPTION_NOTE_TITLE',
+            'imgTbl.DOWN_PATH',
+            'imgTbl.IMAGE_ID'
+        )
+        ->join('jb_product_images_tbl as imgTbl', 'a.PRODUCT_ID', '=', 'imgTbl.PRODUCT_ID')
+        ->where('a.PRODUCT_ID', $id)
+        ->where('a.IS_DELETED', 0)
+        ->orderBy('imgTbl.CREATED_ON','desc')
+        ->limit(1)
+        ->get();
 
+
+        // dd($result);
+        // $arrRes['S_1'] = base64_decode($result->SUBSCRIPTION_NOTE_DESCRIPTION);
+        foreach($result as $row){
+            $arrRes['S_1'] = isset($row->SUBSCRIPTION_NOTE_TITLE ) ? $row->SUBSCRIPTION_NOTE_TITLE : 'Subscription';
+            $arrRes['S_2'] = isset($row->SUBSCRIPTION_NOTE_LINK) ? $row->SUBSCRIPTION_NOTE_LINK : 'www.google.com';
+            $arrRes['S_3'] = isset($row->SUBSCRIPTION_NOTE_DESCRIPTION) ? strip_tags(base64_decode($row->SUBSCRIPTION_NOTE_DESCRIPTION)) : 'Detailed Description';
+            $arrRes['S_4'] = $row->DOWN_PATH;
+            $arrRes['S_5'] = $row->IMAGE_ID;
+        }
+
+
+        // dd($arrRes);
+        return isset($arrRes) ? $arrRes : null ;
+    }
 
 	public function getQuickAddProductDataWrtProductID($productID){
 		$result = DB::table('jb_product_tbl as a')->select('a.*')

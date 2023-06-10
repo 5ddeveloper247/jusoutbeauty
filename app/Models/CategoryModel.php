@@ -178,6 +178,8 @@ class CategoryModel extends Model
 
     	return isset($arrRes) ? $arrRes : null;
     }
+
+
     public function getSubCategoryData(){
 
     	$result = DB::table('jb_sub_category_tbl as jsct')->select('jsct.*', 'jct.CATEGORY_NAME as catName')

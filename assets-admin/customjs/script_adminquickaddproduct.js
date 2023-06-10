@@ -4,12 +4,15 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     $scope.basicEditView = 0;
     $scope.VideoEditView = 0;
-    $scope.SecondSectionEdit = 0; 
+    $scope.SecondSectionEdit = 0;
     $scope.clinicalNoteSection = 0;
     $scope.selectedValue = '';
     $scope.refreshFlag = 0;
     $scope.refreshFlag1 = 0;
     $scope.refreshFlag2 = 0;
+
+    $scope.subscriptionImage = 0;
+    $scope.subscriptionEditView = 0;
 
     $scope.QuickProduct = {};
     $scope.QuickProduct.ID = productId;
@@ -31,7 +34,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.QuickProduct.P_31 = "";
     $scope.QuickProduct.P_32 = "";
     $scope.QuickProduct.P_33 = "";
-    
+
     $scope.QuickProduct.P_46 = "";
     $scope.QuickProduct.P_46.id = "";
     $scope.QuickProduct.P_55 = '';
@@ -53,6 +56,14 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.video.V_2 = "";
     $scope.video.V_3 = "";
     $scope.video.V_4 = "";
+
+    $scope.subscription = {};
+    $scope.subscription.S_1 = '';
+    $scope.subscription.S_2 = '';
+    $scope.subscription.S_3 = '';
+    $scope.subscription.description = '';
+    // $scope.subscriptionImage = '';
+
 
     $scope.SecondSection = {};
     $scope.SecondSection.SS_1 = "";
@@ -90,7 +101,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
         }).success(function (data, status, headers, config) {
             var images=data.productDetails['DOWN_PATH'];
-            
+
             $scope.displayImagesLov = images;
             $scope.featurelov = data.features;
             $scope.QuickProduct = data.productDetails;
@@ -106,16 +117,23 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             $subcategory_value=data.productDetails['P_32'];
 
             $scope.QuickProduct.P_31 = $category_value;
-           
+
             $scope.QuickProduct.P_32 = $subcategory_value;
             $scope.QuickProduct.P_33 = data.productDetails['P_33'];
+
+            // $scope.subscription.S_1 = data.subscriptionDetails['SUBSCRIPTION_NOTE_TITLE'];
+            // $scope.subscription.S_2 = data.subscriptionDetails['SUBSCRIPTION_NOTE_LINK'];
+            // $scope.subscription.S_3 = data.subscriptionDetails['SUBSCRIPTION_NOTE_DESCRIPTION'];
+            $scope.subscription = data.subscriptionDetails;
+            // $scope.QuickProduct.P_20 = data.productDetails['P_20'];
 
             // $scope.video.V_3 = data.videoPro['V_3'];
             // $scope.video.V_2 = data.videoPro['V_2'];
             // $scope.video.V_1 = data.videoPro['V_1'];
 
-            $("#VideoSummerView").summernote("code", data.videoPro['V_2']); 
-            $("#SecondSectionSummerNote").summernote("code", data.productDetails['P_18']); 
+            $("#VideoSummerView").summernote("code", data.videoPro['V_2']);
+            $("#SecondSectionSummerNote").summernote("code", data.productDetails['P_18']);
+            // $("#SubscriptionSummerView").summernote("code", data.subscriptionDetails['SUBSCRIPTION_ENCODED']);
 
             // $scope.displayFeaturesSlider = data.productDetails['QUICK_ADD_FEATURES'];
 
@@ -123,7 +141,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             var html = '';
 
             $(".features_slider").html('');
-            
+
             if(getSelectedFeatures != null && getSelectedFeatures != ''){
                 for (let i = 0; i < getSelectedFeatures.length; i++) {
 
@@ -151,14 +169,14 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 </a>
                             </div>
                         </div>`;
-                        
-                }	
+
+                }
                 $(".features_slider").html(html);
             }
-        
+
             if ($('.features_slider').hasClass('slick-initialized')) {
 				    $('.features_slider').slick('destroy');
-				}   
+				}
 			setTimeout(function(){
 				$('.features_slider').slick({
 					slidesToShow: 4,
@@ -170,7 +188,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 					prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
 					nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
 					"responsive":[
-								
+
 								{"breakpoint": 1400,
 									"settings": {"slidesToShow": 6}},
 
@@ -189,7 +207,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 								{"breakpoint": 576,
 									"settings": {"slidesToShow": 1}}
 								]
-					
+
 					});
 				$.LoadingOverlay("hide");
 			}, 500);
@@ -199,24 +217,24 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 var htmlshade = '';
                 if ($('.shades_slider').hasClass('slick-initialized')) {
                     $('.shades_slider').slick('destroy');
-                } 
+                }
                 $(".shades_slider").html('');
-                
+
                 if(getSelectedShades != null && getSelectedShades != ''){
                     for (let i = 0; i < getSelectedShades.length; i++) {
-    
+
                         htmlshade += `<div class="box px-1">
                                 <div class="ag-courses_item">
                                 <span class="shade-edit-icon cursor-pointer" ng-click="editProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
                                 <span class="shade-close-icon cursor-pointer" ng-click="deleteProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                     <a href="#!" class="ag-courses-item_link">
                                         <div class="ag-courses-item_bg"></div>
-    
+
                                         <div class="ag-courses-item_title">
                                             <li class="product-hero__icons__item d-flex aic">
                                                 <div class="product-hero__icons__image relative">
                                                     <div class="img fit-contain is-loaded pos-center">
-    
+
                                                         <div class="skeleton"></div>
                                                         <img width="70" height="70"
                                                             src="`+getSelectedShades[i]['SHADE_IMAGE']+`"
@@ -231,13 +249,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     </a>
                                 </div>
                             </div>`;
-                            
-                    }	
+
+                    }
                     $(".shades_slider").html($compile(angular.element(htmlshade))($scope));
                 }
                 if ($('.shades_slider').hasClass('slick-initialized')) {
                         $('.shades_slider').slick('destroy');
-                    }   
+                    }
                 setTimeout(function(){
                     $('.shades_slider').slick({
                         slidesToShow: 4,
@@ -249,30 +267,30 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                         prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
                         nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
                         "responsive":[
-                                    
+
                                     {"breakpoint": 1400,
                                         "settings": {"slidesToShow": 6}},
-    
+
                                     {"breakpoint": 1366,
                                     "settings": {"slidesToShow": 4}},
-    
+
                                     {"breakpoint": 1200,
                                         "settings": {"slidesToShow": 4}},
-    
+
                                     {"breakpoint": 992,
                                         "settings": {"slidesToShow": 2}},
-    
+
                                     {"breakpoint": 768,
                                         "settings": {"slidesToShow": 1}},
-    
+
                                     {"breakpoint": 576,
                                         "settings": {"slidesToShow": 1}}
                                     ]
-                        
+
                         });
                     $.LoadingOverlay("hide");
                 }, 500);
-           
+
             // console.log($scope.QuickProduct, 'asd');
             setTimeout(function () {
                 $("#p1").val($scope.QuickProduct.P_1).trigger('change');
@@ -281,7 +299,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $("#p4").val($scope.QuickProduct.P_4).trigger('change');
                 $("#p5").val($scope.QuickProduct.P_5).trigger('change');
                 $("#p6").val($scope.QuickProduct.P_6).trigger('change');
-                $("#p13").val($scope.QuickProduct.P_13).trigger('change');
+                // $("#p13").val($scope.QuickProduct.P_13).trigger('change');
                 $("#p15").attr("src", $scope.QuickProduct.P_15);
                 $("#p16").attr("src", $scope.QuickProduct.P_16);
                 $("#p17").html($scope.QuickProduct.P_17);
@@ -293,9 +311,23 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $("#p31").val($scope.QuickProduct.P_31).trigger('change');
                 $("#p32").val($scope.QuickProduct.P_32).trigger('change');
                 $("#p33").val($scope.QuickProduct.P_33).trigger('change');
-                
+
+                $("#SUB1").html($scope.subscription.S_1).trigger('change');
+                $("#SUB2").attr('href',$scope.subscription.S_2).trigger('change');
+                $('#SUB3').html($scope.subscription.S_3).trigger('change');
+                $('#SubscriptionSummerView').summernote('code',$scope.subscription.S_3);
+                $('#uploadedImage').attr('src',$scope.subscription.S_4).trigger('change');
+
+                // var html = '<div class="col-sm-12 col-12 px-1 mb-2" id="img_file_'+$scope.subscription.S_5+'">'+
+                //                    '<img src="'+$scope.subscription.S_4+'" alt="" class="">'+
+                //                '</div>';
+
+                //        $("#uploadedImage").append($compile(angular.element(html))($scope));
+
+
+
             }, 500);
-           
+
            ;
             var html3 = '';
             var html4 = '';
@@ -306,9 +338,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                 if(displayCollectionProdIngredients != null && displayCollectionProdIngredients != ''){
                     for (let i = 0; i < displayCollectionProdIngredients.length; i++) {
-                        
+
                         if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Formulated'){
-                        
+
                             html3 += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
                                         style="background-color:#57813a96">
                                         <span class="close-icon cursor-pointer" ng-click="deleteIngredientQuickAdd(`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -322,7 +354,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                                     </div>`;
 
-                        
+
                         }else if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Spotlight'){
 
                             html4 += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
@@ -338,7 +370,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                                     </div>`;
                         }
-                    
+
                     }
                 }
                 $('#formulated_data').html($compile(angular.element(html3))($scope));
@@ -347,7 +379,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                 if(displayCollectionProdUses != null && displayCollectionProdUses != ''){
                     for (let i = 0; i < displayCollectionProdUses.length; i++) {
-                    
+
                         html2 += `<div class="col-md-4 mb-6 mb-md-0 ">
                                 <div class="card border-0">
                                 <span class="edit-icon cursor-pointer" ng-click="editProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
@@ -364,23 +396,23 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     </div>
                                 </div>
                             </div>`;
-    
+
                     }
                 }else{
                     html2 += `<div class="col-md-12 text-center ">
                                 <p class="text-light">No Steps Added....</p>
                             </div>`;
                 }
-               
+
                 $('#steps_users').html($compile(angular.element(html2))($scope));
 
                var rechtml = '';
                if ($('.completeYourGlow_slider').hasClass('slick-initialized')) {
                 $('.completeYourGlow_slider').slick('destroy');
-            }   
+            }
                 if(recommandedProducts != null && recommandedProducts != ''){
                     for (let i = 0; i < recommandedProducts.length; i++) {
-    
+
                         rechtml += `<div class="box px-1">
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
@@ -400,11 +432,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     </div>
                                 </div>
                             </div>`;
-                            
-                    }	
+
+                    }
                     $(".completeYourGlow_slider").html(rechtml);
                 }
-               
+
             setTimeout(function(){
                 $('.completeYourGlow_slider').slick({
                     slidesToShow: 4,
@@ -416,7 +448,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
                     nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
                     "responsive":[
-                                
+
                                 {"breakpoint": 1400,
                                     "settings": {"slidesToShow": 6}},
 
@@ -435,7 +467,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 {"breakpoint": 576,
                                     "settings": {"slidesToShow": 1}}
                                 ]
-                    
+
                     });
                 $.LoadingOverlay("hide");
             }, 500);
@@ -444,11 +476,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $('#addDailyHandPickedModal').modal('hide');
                 if ($('.Handpicked_slider').hasClass('slick-initialized')) {
                     $('.Handpicked_slider').slick('destroy');
-                }   
+                }
                 var rechtml = '';
                 if(handpickProducts != null && handpickProducts != ''){
                     for (let i = 0; i < handpickProducts.length; i++) {
-    
+
                         rechtml += `<div class="box px-1">
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
@@ -469,11 +501,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 </div>
 
                             </div>`;
-                            
-                    }	
+
+                    }
                     $(".Handpicked_slider").html(rechtml);
                 }
-               
+
             setTimeout(function(){
                 $('.Handpicked_slider').slick({
                     slidesToShow: 4,
@@ -485,7 +517,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
                     nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
                     "responsive":[
-                                
+
                                 {"breakpoint": 1400,
                                     "settings": {"slidesToShow": 6}},
 
@@ -504,7 +536,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 {"breakpoint": 576,
                                     "settings": {"slidesToShow": 1}}
                                 ]
-                    
+
                     });
                 $.LoadingOverlay("hide");
             }, 500);
@@ -514,12 +546,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     }
 
     $scope.editProductShade = function(id){
-		
+
 		var data = {};
 	    data.shadeId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/editProductShade",
@@ -528,41 +560,41 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.details != '' && data.details != null){
-				
+
 				$scope.shade = data.details;
 				$("#shadesModal").modal('show');
 				setTimeout(function(){
 					$("#s1").val($scope.shade.S_1).trigger('change');
-					
+
 				}, 500);
 			}
-			
+
 			$scope.makeProductShadeImageHtml(data.images);
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
     $scope.makeProductShadeImageHtml = function(images){
-		
+
 		$("#pss_att").html('');
-		
+
 		if(images != '' && images != null){
-			
+
 			for(var i=0; i<images.length; i++){
-				
+
 				var html = '<div class="col-3 image-overlay margin-r1" id="img_file_'+images[i]["ID"]+'">'+
 								'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+
 								'<div class="overlay">'+
 									'<div class="text" title="'+images[i]['titleText']+'">'+
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductShadeImage('+images[i]["ID"]+')" title="Delete Image">';
-										
-										
-									html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdShadeImage('+images[i]["ID"]+')" title="Mark Image">';	
-										
-										
+
+
+									html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdShadeImage('+images[i]["ID"]+')" title="Mark Image">';
+
+
 									html += '<div class="arrow-icon-move-box">'+
 											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
 											'<p>Move Position</p>'+
@@ -570,21 +602,21 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 									'</div>'+
 								'</div>'+
 							'</div>';
-					
+
 					$("#pss_att").append($compile(angular.element(html))($scope));
 			}
 		}
 	}
 
     $scope.deleteProductShadeImage = function(id){
-		
+
 		var data = {};
 		data.imageId = id;
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
 	    data.productShadeId = $scope.shade.ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteProductShadeImage",
@@ -593,11 +625,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			$scope.makeProductShadeImageHtml(data.images);
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -610,7 +642,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		$("#confirmProdShadeModal").modal('show');
 	}
     $scope.markProductShadeImageFlag = function(flag){
-		
+
 		var data = {};
 		data.flag = flag;
 	    data.imageId = $scope.tempId;
@@ -618,7 +650,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 	    data.shadeId = $scope.shade.ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/markProductShadeImage",
@@ -627,27 +659,27 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			$("#shadesModal").modal('show');
 			$("#confirmProdShadeModal").modal('hide');
-			
+
 			$scope.makeProductShadeImageHtml(data.images);
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
     $scope.deleteProductShade = function(id){
-		
+
 		var data = {};
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
 	    data.productShadeId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteProductShade",
@@ -656,17 +688,17 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
             var getSelectedShades = data.shades;
 
             var htmlshade = '';
             if ($('.shades_slider').hasClass('slick-initialized')) {
                 $('.shades_slider').slick('destroy');
-            } 
+            }
             $(".shades_slider").html('');
-            
+
             if(getSelectedShades != null && getSelectedShades != ''){
                 for (let i = 0; i < getSelectedShades.length; i++) {
 
@@ -696,13 +728,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 </a>
                             </div>
                         </div>`;
-                        
-                }	
+
+                }
                 $(".shades_slider").html($compile(angular.element(htmlshade))($scope));
             }
             if ($('.shades_slider').hasClass('slick-initialized')) {
                     $('.shades_slider').slick('destroy');
-                }   
+                }
             setTimeout(function(){
                 $('.shades_slider').slick({
                     slidesToShow: 4,
@@ -714,7 +746,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
                     nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
                     "responsive":[
-                                
+
                                 {"breakpoint": 1400,
                                     "settings": {"slidesToShow": 6}},
 
@@ -733,13 +765,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 {"breakpoint": 576,
                                     "settings": {"slidesToShow": 1}}
                                 ]
-                    
+
                     });
                 $.LoadingOverlay("hide");
             }, 500);
-			
-			
-			
+
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -747,7 +779,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     $scope.getQuickAddAdminProduct();
     $scope.editBasicInfo = function () {
-       
+
         setTimeout(function () {
             $("#p1").val($scope.QuickProduct.P_1).trigger('change');
             $("#p2").val($scope.QuickProduct.P_2).trigger('change');
@@ -759,7 +791,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         }, 500);
         $scope.basicEditView = 1;
 
-        
+
     }
 
     $scope.cancelBasicInfo = function () {
@@ -772,15 +804,15 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         data.userId = userId;
         data.record = $scope.QuickProduct;
         console.log($scope.QuickProduct.P_5);
-        if($scope.QuickProduct.P_1 == '' || $scope.QuickProduct.P_2 == '' 
-            || $scope.QuickProduct.P_3 == '' || $scope.QuickProduct.P_4 == '' 
+        if($scope.QuickProduct.P_1 == '' || $scope.QuickProduct.P_2 == ''
+            || $scope.QuickProduct.P_3 == '' || $scope.QuickProduct.P_4 == ''
             || $scope.QuickProduct.P_5 == '' || $scope.QuickProduct.P_6 == ''){
 
             toastr.error('Fields can`t be empty', '', {timeOut: 3000})
             return
         }
 
-        
+
         var temp = $.param({ details: data });
 
         $http({
@@ -793,7 +825,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         }).success(function (data, status, headers, config) {
 
             if (data.done == true || data.done == 'true') {
-                
+
                 // console.log($scope.QuickProduct.P_1,'1213');
                 setTimeout(function () {
                     $("#p7").html($scope.QuickProduct.P_1).trigger('change');
@@ -802,7 +834,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     $("#p10").html($scope.QuickProduct.P_4).trigger('change');
                     $("#p11").html($scope.QuickProduct.P_5).trigger('change');
                     $("#p12").html($scope.QuickProduct.P_6).trigger('change');
-                    
+
                 }, 500);
                 $scope.basicEditView = 0;
                 toastr.success(data.msg, '', { timeOut: 3000 })
@@ -819,12 +851,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.updateFeaturesModal = function(){
 
         var data = {};
-		
+
 	    data.featuresArr = $scope.QuickProduct.P_13;
         data.productId = $scope.QuickProduct.PRODUCT_ID;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/updateFeatures",
@@ -837,7 +869,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			var getSelectedFeatures = data.getSelectedFeatures;
             var html = '';
             $(".features_slider").html('');
-            
+
             if(getSelectedFeatures != null && getSelectedFeatures != ''){
                 for (let i = 0; i < getSelectedFeatures.length; i++) {
 
@@ -865,13 +897,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 </a>
                             </div>
                         </div>`;
-                        
-                }	
+
+                }
                 $(".features_slider").html(html);
             }
             if ($('.features_slider').hasClass('slick-initialized')) {
 				    $('.features_slider').slick('destroy');
-				}   
+				}
 			setTimeout(function(){
 				$('.features_slider').slick({
 					slidesToShow: 4,
@@ -883,7 +915,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 					prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
 					nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
 					"responsive":[
-								
+
 								{"breakpoint": 1400,
 									"settings": {"slidesToShow": 6}},
 
@@ -902,35 +934,35 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 								{"breakpoint": 576,
 									"settings": {"slidesToShow": 1}}
 								]
-					
+
 					});
 				$.LoadingOverlay("hide");
 			}, 500);
-			
+
 			$("#addFeaturesModal").modal('hide');
 			// $scope.makeImageAttachmentHtml(data.images);
             // location.reload();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
     }
     $scope.tempProId = '';
 	$scope.markProdImagePriSec = function(id){
-		
+
 		$scope.tempProId = id;
 		// $("#shadesModal").modal('hide');
 		$("#confirmProdImageModal").modal('show');
 	}
 
     $scope.addFeaturesModal = function(id){
-		
+
 		$scope.tempProId = id;
 		// $("#shadesModal").modal('hide');
 		$("#addFeaturesModal").modal('show');
 	}
     $scope.closeFeaturesModal = function(){
-		
+
 
 		// $("#shadesModal").modal('hide');
 		$("#addFeaturesModal").modal('hide');
@@ -945,57 +977,57 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     }
 
     $scope.saveProductShade = function(){
-		
+
 		if($scope.QuickProduct.PRODUCT_ID == ''){
 			toastr.error("Save Product Info first, then proceed...", '', {timeOut: 3000})
 			return;
 		}
-		
+
 		var data = {};
 	    data.product = $scope.QuickProduct.PRODUCT_ID;
 	    data.shade = $scope.shade;
 	    data.userId = userId;
-	    
+
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveAdminQuickProductShade",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				var getSelectedShades = data.shades;
 
 				$scope.shade.ID = data.ID;
-				
+
 
                 var html = '';
                 if ($('.shades_slider').hasClass('slick-initialized')) {
                     $('.shades_slider').slick('destroy');
-                } 
+                }
                 $(".shades_slider").html('').trigger('change');
-                
+
                 if(getSelectedShades != null && getSelectedShades != ''){
                     for (let i = 0; i < getSelectedShades.length; i++) {
-    
+
                         html += `<div class="box px-1">
                                 <div class="ag-courses_item">
                                 <span class="shade-edit-icon cursor-pointer" ng-click="editProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
                                 <span class="shade-close-icon cursor-pointer" ng-click="deleteProductShade(`+getSelectedShades[i]['PRODUCT_SHADE_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                     <a href="#!" class="ag-courses-item_link">
                                         <div class="ag-courses-item_bg"></div>
-    
+
                                         <div class="ag-courses-item_title">
                                             <li class="product-hero__icons__item d-flex aic">
                                                 <div class="product-hero__icons__image relative">
                                                     <div class="img fit-contain is-loaded pos-center">
-    
+
                                                         <div class="skeleton"></div>
                                                         <img width="70" height="70"
                                                             src="`+getSelectedShades[i]['SHADE_IMAGE']+`"
@@ -1010,13 +1042,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     </a>
                                 </div>
                             </div>`;
-                            
-                    }	
+
+                    }
                     $(".shades_slider").html($compile(angular.element(html))($scope));
                 }
                 // if ($('.shades_slider').hasClass('slick-initialized')) {
                 //         $('.shades_slider').slick('destroy');
-                //     }   
+                //     }
                 setTimeout(function(){
                     $('.shades_slider').slick({
                         slidesToShow: 4,
@@ -1028,41 +1060,41 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                         prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
                         nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
                         "responsive":[
-                                    
+
                                     {"breakpoint": 1400,
                                         "settings": {"slidesToShow": 6}},
-    
+
                                     {"breakpoint": 1366,
                                     "settings": {"slidesToShow": 4}},
-    
+
                                     {"breakpoint": 1200,
                                         "settings": {"slidesToShow": 4}},
-    
+
                                     {"breakpoint": 992,
                                         "settings": {"slidesToShow": 2}},
-    
+
                                     {"breakpoint": 768,
                                         "settings": {"slidesToShow": 1}},
-    
+
                                     {"breakpoint": 576,
                                         "settings": {"slidesToShow": 1}}
                                     ]
-                        
+
                         });
                     $.LoadingOverlay("hide");
                 }, 500);
-                
+
                 // $("#shadesModal").modal('hide');
 				// if ($.fn.DataTable.isDataTable("#productShadesTable")) {
 				// 	$('#productShadesTable').DataTable().clear().destroy();
 				// }
-				
+
 				// $scope.displayCollectionProdShades = data.shades;
-			
+
 				// setTimeout(function(){
 				// 	$("#productShadesTable").DataTable();
 				// }, 500);
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -1072,14 +1104,14 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 	}
 
     $scope.getIngredientsWrtCategory = function(id){
-		
-		
+
+
 			var data = {};
 		    data.category = $scope.ingredient.I_1;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getIngredientsWrtCategory",
@@ -1088,42 +1120,42 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				$scope.ingredientsLov = data.ingredients;
-				
+
 			})
 			.error(function(data, status, headers, config) {
 			});
-		
+
 	}
 
     $scope.saveProductIngredient = function(){
-		
+
 		// if($scope.QuickProduct.PRODUCT_ID == ''){
 		// 	toastr.error("Save Product Info first, then proceed...", '', {timeOut: 3000})
 		// 	return;
 		// }
-		
+
 		var data = {};
 	    data.product = $scope.QuickProduct;
 	    data.ingredient = $scope.ingredient;
 	    data.userId = userId;
-	    
+
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveAdminQuickProductIngredient",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
-				
+
 				// if ($.fn.DataTable.isDataTable("#productIngredientsTable")) {
 				// 	$('#productIngredientsTable').DataTable().clear().destroy();
 				// }
@@ -1136,7 +1168,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $('#formulated_data').html('');
 
                 for (let i = 0; i < displayCollectionProdIngredients.length; i++) {
-                    
+
                     if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Formulated'){
                     //    console.log('formulated');
                         html += ` <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" id="remove_ing_`+displayCollectionProdIngredients[i]['PRODUCT_INGREDIENT_ID']+`"
@@ -1152,7 +1184,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                                 </div>`;
 
-                       
+
                     }else if(displayCollectionProdIngredients[i]['INGREDIENT_CATEGORY'] == 'Spotlight'){
                         // console.log('spot');
 
@@ -1169,7 +1201,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                                 </div>`;
                     }
-                   
+
                 }
                 $('#formulated_data').html($compile(angular.element(html))($scope));
                 $('#spotlight_data').html($compile(angular.element(html1))($scope));
@@ -1177,15 +1209,15 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				// 	$("#productIngredientsTable").DataTable();
 				// }, 500);
                 $("#addSpotForModal").modal('hide');
-	
+
 				$scope.ingredient.ID = "";
 				$scope.ingredient.I_1 = "";
 				$scope.ingredient.I_2 = "";
-				
+
 				setTimeout(function(){
 					$("#i2").val('').trigger('change');
 				}, 500);
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -1211,13 +1243,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		}).success(function(data, status, headers, config) {
 
             var ing_id =data.id;
-			$('#remove_ing_'+ing_id).remove();	
+			$('#remove_ing_'+ing_id).remove();
 			toastr.success(data.msg, '', {timeOut: 3000})
 
 			// $scope.getQuickAddAdminProduct()
 			// $scope.makeImageAttachmentHtml(data.images);
-            
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -1229,10 +1261,10 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		$("#confirmProdImageModal").modal('hide');
 	}
     $scope.EditSecondSection = function(){
-        $scope.SecondSectionEdit = 1; 
+        $scope.SecondSectionEdit = 1;
     }
     $scope.CloseSecondSection = function(){
-        $scope.SecondSectionEdit = 0; 
+        $scope.SecondSectionEdit = 0;
     }
     $scope.UpdateSecondSection = function(){
         var data = {};
@@ -1256,34 +1288,34 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-          
+
 
             setTimeout(function () {
 
                 $("#p17").html($scope.QuickProduct.P_17).trigger('change');
                 $("#p18").html($scope.QuickProduct.P_18).trigger('change');
-                
+
             }, 500);
             $scope.SecondSectionEdit = 0;
 
 			// $scope.getQuickAddAdminProduct()
 			// $scope.makeImageAttachmentHtml(data.images);
-            
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
     }
     $scope.deleteProductImage = function(id){
-		
+
 		var data = {};
 		data.imageId = id;
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteProductImage",
@@ -1292,12 +1324,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			// $scope.makeImageAttachmentHtml(data.images);
             location.reload();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -1311,15 +1343,23 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         $scope.VideoEditView = 0;
     }
 
+    $scope.showSubscriptionInfo = function(){
+        $scope.subscriptionEditView = 1;
+    }
+
+    $scope.cancelSubscriptionInfo = function(){
+        $scope.subscriptionEditView = 0;
+    }
+
     $scope.updateVideoInfo = function(){
         // alert($scope.video.ID);
         $scope.video.V_2 = $('#VideoSummerView').summernote('code');
-       
+
         if($scope.video.V_2 == '' || $scope.video.V_1 == ''){
             toastr.error('Fields can`t be empty', '', {timeOut: 3000})
             return
         }
-        
+
 
         var data = {};
         data.videoDetails = $scope.video;
@@ -1350,24 +1390,69 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			// 	$scope.tempProId = '';
 			// 	toastr.error(data.msg, '', {timeOut: 3000})
 			// 	$("#confirmProdImageModal").modal('hide');
-				
+
 			// }
 
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
-        
+
+    }
+
+    $scope.updateSubscriptionInfo = function(){
+        // alert($scope.video.ID);
+
+        var data = {};
+        data.subcriptionDetails = $scope.subscription;
+        data.productId = $scope.QuickProduct.PRODUCT_ID;
+        $scope.subscription.S_3 = $('#SubscriptionSummerView').summernote('code');
+        data.userId = userId;
+        // console.log(data);return
+    	var temp = $.param({details: data});
+        $http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/updateSubscriptionInfo",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+
+			if(data.done == true || data.done == 'true'){
+				// $scope.tempProId = '';
+				toastr.success(data.msg, '', {timeOut: 3000})
+                $scope.subscriptionEditView = 0;
+                $scope.getQuickAddAdminProduct();
+                setTimeout(function () {
+
+                    $("#SUB1").html($scope.subscription.S_1).trigger('change');
+                    $("#SUB2").attr('href',$scope.subscription.S_2).trigger('change');
+                    $('#SUB3').html($scope.subscription.S_3).trigger('change');
+                }, 500);
+
+            }
+            else{
+                toastr.error(data.msg, '', {timeOut: 3000})
+            }
+
+
+
+		})
+		.error(function(data, status, headers, config) {
+            // toastr.error(data.msg, '', {timeOut: 3000})
+		});
+
     }
     $scope.markProductDetailImageFlag = function(flag){
-		
+
 		var data = {};
 	    data.imageId = $scope.tempProId;
 		data.flag = flag;
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/markPrimaryProdImage",
@@ -1388,20 +1473,20 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				$scope.tempProId = '';
 				toastr.error(data.msg, '', {timeOut: 3000})
 				$("#confirmProdImageModal").modal('hide');
-				
+
 			}
 
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
     // $scope.makeImageAttachmentHtml = function(images){
-		
+
 	// 	$("#p_att").html('');
-		
+
 	// 	if(images != '' && images != null){
-			
+
 	// 		for(var i=0; i<images.length; i++){
 	// 			var titletxt = images[i]["primFlag"] == 0 ? 'secondary' : 'primary';
 	// 			// var html = '<div class="col-2 image-overlay margin-r1" title="'+titletxt+'" id="img_file_'+images[i]["ID"]+'">'+
@@ -1409,9 +1494,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 	// 			// 				'<div class="overlay">'+
 	// 			// 					'<div class="text">'+
 	// 			// 						'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductImage('+images[i]["ID"]+')" title="Delete Image">';
-										
-	// 			// 							html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+images[i]["ID"]+')" title="Mark Primary">';	
-										
+
+	// 			// 							html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+images[i]["ID"]+')" title="Mark Primary">';
+
 	// 			// 					html += '<div class="arrow-icon-move-box">'+
 	// 			// 							'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
 	// 			// 							'<p>Move Position</p>'+
@@ -1429,9 +1514,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     //                             <button class="btn btn-danger btn-sm delete" ng-click="deleteProductImage(`+images[i]["ID"]+`)">DELETE</button>
     //                             <button class="btn btn-info btn-sm markprimary" ng-click="markProdImagePriSec(`+images[i]["ID"]+`)">Mark Image</button>
     //                         </div>
-                            
+
     //                     </div>`;
-					
+
 	// 				$("#p_att").append($compile(angular.element(html))($scope));
     //                 location.reload();
 	// 		}
@@ -1439,7 +1524,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 	// }
 
     $scope.addNewUses = function(){
-		
+
 		$scope.uses={};
 		$scope.uses.ID = "";
 		$scope.uses.U_1 = "";
@@ -1447,42 +1532,42 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		$scope.uses.U_3 = "";
 		$scope.uses.U_4 = "";
 		$("#u1").val($scope.uses.U_1).trigger('change');
-		
+
 		$("#usesStepsModal").modal("show");
 	}
 
     $scope.saveProductUses = function(){
-       
+
 		if($scope.QuickProduct.PRODUCT_ID == ''){
 			toastr.error("Save Product Info first, then proceed...", '', {timeOut: 3000})
 			return;
 		}
-		
+
 		var data = {};
 	    // data.product = $scope.product;
 	     data.product = $scope.QuickProduct.PRODUCT_ID;
 	    data.uses = $scope.uses;
 	    data.userId = userId;
-	    
+
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveAdminQuickProductUses",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
 				var displayCollectionProdUses = data.productuses;
 				toastr.success(data.msg, '', {timeOut: 3000})
 				var html = '';
 				$scope.uses.ID = data.ID;
-                
+
                 for (let i = 0; i < displayCollectionProdUses.length; i++) {
-                    
+
                     html += `<div class="col-md-4 mb-6 mb-md-0 ">
                             <div class="card border-0">
                             <span class="edit-icon cursor-pointer" ng-click="editProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
@@ -1508,13 +1593,13 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				// if ($.fn.DataTable.isDataTable("#productUsesTable")) {
 				// 	$('#productUsesTable').DataTable().clear().destroy();
 				// }
-				
+
 				// $scope.displayCollectionProdUses = data.productuses;
-			
+
 				// setTimeout(function(){
 				// 	$("#productUsesTable").DataTable();
 				// }, 500);
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -1523,12 +1608,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		});
 	}
     $scope.editProductUses = function(id){
-		
+
 		var data = {};
 	    data.productUsesId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/editProductUses",
@@ -1537,29 +1622,29 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.details != '' && data.details != null){
-				
+
 				$scope.uses = data.details;
 				$("#usesStepsModal").modal('show');
 				setTimeout(function(){
 					$("#u1").val($scope.uses.U_1).trigger('change');
 				}, 500);
 			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
     $scope.deleteProductUses = function(id){
-		
+
 		var data = {};
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
 	    data.productUsesId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteProductUses",
@@ -1568,7 +1653,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			var displayCollectionProdUses = data.productuses;
 				toastr.success(data.msg, '', {timeOut: 3000})
 				var html = '';
@@ -1576,12 +1661,12 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
                 if(displayCollectionProdUses != null && displayCollectionProdUses != ''){
                     for (let i = 0; i < displayCollectionProdUses.length; i++) {
-                    
+
                         html += `<div class="col-md-4 mb-6 mb-md-0 ">
                                 <div class="card border-0">
                                 <span class="edit-icon cursor-pointer" ng-click="editProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true"></i></span>
                                 <span class="close-icon cursor-pointer" ng-click="deleteProductUses(`+displayCollectionProdUses[i]['PRODUCT_USES_ID']+`)"><i class="fa fa-times" aria-hidden="true"></i></span>
-    
+
                                     <img src="`+ displayCollectionProdUses[i]['DOWN_PATH'] +`"
                                         alt="Image"
                                         class="card-img h_to_use_img">
@@ -1594,18 +1679,18 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     </div>
                                 </div>
                             </div>`;
-    
+
                     }
                 }else{
                     html += `<div class="col-md-12 text-center ">
                                 <p class="text-light">No Steps Added....</p>
                             </div>`;
                 }
-               
+
                 $('#steps_users').html($compile(angular.element(html))($scope));
-			
-			
-			
+
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -1614,27 +1699,27 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     //Clinical Note
 
     $scope.EditclinicalNoteSection = function(){
-        
+
         $scope.clinicalNoteSection = 1;
     }
     $scope.cancelClinicalNoteSection = function(){
-        
+
         $scope.clinicalNoteSection = 0;
     }
 
     $scope.updateClinicalInfo = function(){
 
-        
+
         var data = {};
 	    data.productId = $scope.QuickProduct.PRODUCT_ID;
         $scope.QuickProduct.P_18 = $('#clinicalNoteSectionView').summernote('code');
-        
+
         if($scope.QuickProduct.P_18 == ''){
             toastr.error('Field can`t be empty', '', {timeOut: 3000})
             return
         }
         data.updateClinicalInfo = $scope.QuickProduct.P_18;
-	    
+
     	var temp = $.param({details: data});
         $http({
 			data: temp+"&"+$scope.tokenHash,
@@ -1652,25 +1737,25 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $('#clinicalNoteSectionView').summernote('code',$scope.QuickProduct.P_19);
 				$('#p19').html($scope.QuickProduct.P_19).trigger('change');
 			}, 500);
-            
+
             $scope.clinicalNoteSection = 0;
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
     }
 
     $('#uploadattch').fileupload({
-		
+
         add: function (e, data) {
-            
+
             // if($scope.QuickProduct.PRODUCT_ID == ""){
-                
+
             //     toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
             //     return false;
-            
+
             // }else{
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
                 var jqXHR = data.submit();
             // }
         },
@@ -1688,35 +1773,35 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             setTimeout(function(){
                $.LoadingOverlay("hide");
            }, 500);
-            
+
             xhr.responseText = jQuery.parseJSON(xhr.responseText);
-              
+
             if(xhr.responseText[0] == 01){
-                
+
                   toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 02){
-                
+
                   toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 03){
-            
+
                   toastr.error("Error : Save Basic Info first, then upload Images...", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 04){
-            
+
                   toastr.error("Error : Image dimensions must be minimum 270 X 370", '', {timeOut: 3000});
 
               }else{
 
                   toastr.success("Image Upload Successfully", '', {timeOut: 3000});
-                
+
                 //   var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
                 //                '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
                 //                '<div class="overlay">'+
                 //                    '<div class="text">'+
                 //                        '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductImage('+xhr.responseText[1]+')" title="Delete Image">'+
-                //                        '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+xhr.responseText[1]+')" title="Mark Primary">'+	
+                //                        '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+xhr.responseText[1]+')" title="Mark Primary">'+
                 //                        '<div class="arrow-icon-move-box">'+
                 //                            '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
                 //                            '<p>Move Position</p>'+
@@ -1734,9 +1819,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                         <button class="btn btn-danger btn-sm delete" ng-click="deleteProductImage(`+xhr.responseText[1]+`)">DELETE</button>
                                         <button class="btn btn-info btn-sm markprimary" ng-click="markProdImagePriSec(`+xhr.responseText[1]+`)">Mark Image</button>
                                     </div>
-                                    
+
                                 </div>`;
-                  
+
                   $("#p_att").append($compile(angular.element(html))($scope));
                   location.reload();
 
@@ -1744,17 +1829,92 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
            }
     });
 
+
+        $('#uploadSubscriptionImage').fileupload({
+
+            add: function (e, data) {
+
+                // if($scope.QuickProduct.PRODUCT_ID == ""){
+
+                //     toastr.error('Save Product Basic Info first, then upload Images...', '', {timeOut: 3000})
+                //     return false;
+
+                // }else if($scope.shade.ID == ""){
+
+                //     toastr.error('Save Shade Info first, then upload Images...', '', {timeOut: 3000})
+                //     return false;
+
+                // }else{
+                    $.LoadingOverlay("show");
+                    var jqXHR = data.submit();
+                // }
+            },
+            beforeSend: function() {
+
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+
+            },
+            success: function() {
+
+            },
+            complete: function(xhr) {
+
+                setTimeout(function(){
+                   $.LoadingOverlay("hide");
+               }, 500);
+
+                xhr.responseText = jQuery.parseJSON(xhr.responseText);
+
+                if(xhr.responseText[0] == 01){
+
+                      toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
+
+                  }else if(xhr.responseText[0] == 02){
+
+                      toastr.error("Error : Unable To upload", '', {timeOut: 3000});
+
+                  }else if(xhr.responseText[0] == 04){
+
+                      toastr.error("Error : Image dimension must be minimum 270 X 370", '', {timeOut: 3000});
+
+                  }else{
+
+                            $scope.$apply(function () {
+
+                                $scope.subscriptionImage = 1;
+
+                        // $scope.shade.ID = xhr.responseText[1];
+                        // $scope.shade.S_3 = xhr.responseText[2];
+
+                    });
+                    // console.log(xhr.responseText[2]);
+                    setTimeout(function(){
+                        $('#uploadedImage').attr('src',xhr.responseText[2]).trigger('change');
+                    }, 500);
+
+
+                      toastr.success("Image Upload Successfully", '', {timeOut: 3000});
+
+
+
+                        // location.reload();
+                        // $scope.getQuickAddAdminProduct();
+
+                  }
+               }
+        });
     $('#uploadattch2').fileupload({
 
     add: function (e, data) {
-        
+
         // if($scope.QuickProduct.PRODUCT_ID == ""){
-            
+
         // 	toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
         // 	return false;
-        
+
         // }else{
-            $.LoadingOverlay("show"); 
+            $.LoadingOverlay("show");
             var jqXHR = data.submit();
         // }
     },
@@ -1772,19 +1932,19 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         setTimeout(function(){
             $.LoadingOverlay("hide");
         }, 500);
-        
+
         xhr.responseText = jQuery.parseJSON(xhr.responseText);
-        
+
         if(xhr.responseText[0] == 01){
-            
+
             toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
         }else if(xhr.responseText[0] == 02){
-            
+
             toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
         }else if(xhr.responseText[0] == 03){
-        
+
             toastr.error("Error : Save Basic Info first, then upload Images...", '', {timeOut: 3000});
 
         }else{
@@ -1801,27 +1961,27 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 // location.reload();
 
             });
-            
+
         }
     }
     });
 
     $('#uploadattch3').fileupload({
-		
+
         add: function (e, data) {
-            
+
             if($scope.QuickProduct.PRODUCT_ID == ""){
-                
+
                 toastr.error('Save Product Basic Info first, then upload Images...', '', {timeOut: 3000})
                 return false;
-            
+
             }else if($scope.shade.ID == ""){
-                
+
                 toastr.error('Save Shade Info first, then upload Images...', '', {timeOut: 3000})
                 return false;
-            
+
             }else{
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
                 var jqXHR = data.submit();
             }
         },
@@ -1839,33 +1999,33 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             setTimeout(function(){
                $.LoadingOverlay("hide");
            }, 500);
-            
+
             xhr.responseText = jQuery.parseJSON(xhr.responseText);
-              
+
             if(xhr.responseText[0] == 01){
-                
+
                   toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 02){
-                
+
                   toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 03){
-            
+
                   toastr.error("Error : Save Shade Info first, then upload Images...", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 04){
-            
+
                   toastr.error("Error : Image dimension must be minimum 270 X 370", '', {timeOut: 3000});
 
               }else{
 
                   toastr.success("Image Upload Successfully", '', {timeOut: 3000});
-                  
+
                   var html = '<div class="col-3 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
                                '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
                            '</div>';
-                   
+
                    $("#pss_att").append($compile(angular.element(html))($scope));
                     location.reload();
                 //    $scope.$apply(function () {
@@ -1878,21 +2038,21 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
            }
     });
      $('#uploadattch4').fileupload({
-		
+
         add: function (e, data) {
-            
+
             if($scope.QuickProduct.PRODUCT_ID == ""){
-                
+
                 toastr.error('Save Product Basic Info first, then upload Images...', '', {timeOut: 3000})
                 return false;
-            
+
             }else if($scope.uses.ID == ""){
-                
+
                 toastr.error('Save Product Uses Info first, then upload Images...', '', {timeOut: 3000})
                 return false;
-            
+
             }else{
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
                 var jqXHR = data.submit();
             }
         },
@@ -1910,23 +2070,23 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             setTimeout(function(){
                $.LoadingOverlay("hide");
            }, 500);
-            
+
             xhr.responseText = jQuery.parseJSON(xhr.responseText);
-              
+
             if(xhr.responseText[0] == 01){
-                
+
                   toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 02){
-                
+
                   toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 03){
-            
+
                   toastr.error("Error : Save Shade Info first, then upload Images...", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 04){
-            
+
                   toastr.error("Error : Image dimension must be minimum 360 X 450", '', {timeOut: 3000});
 
               }else{
@@ -1939,22 +2099,22 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                        $scope.uses.U_3 = xhr.responseText[2];
 
                   });
-                  
+
               }
            }
     });
 
     $('#uploadattch5').fileupload({
-		
+
         add: function (e, data) {
-            
+
             if($scope.QuickProduct.PRODUCT_ID == ""){
-                
+
                 toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
                 return false;
-            
+
             }else{
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
                 var jqXHR = data.submit();
             }
         },
@@ -1972,35 +2132,35 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             setTimeout(function(){
                $.LoadingOverlay("hide");
            }, 500);
-            
+
             xhr.responseText = jQuery.parseJSON(xhr.responseText);
-              
+
             if(xhr.responseText[0] == 01){
-                
+
                   toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 02){
-                
+
                   toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 03){
-            
+
                   toastr.error("Error : Save Basic Info first, then upload Images...", '', {timeOut: 3000});
 
               }else if(xhr.responseText[0] == 04){
-            
+
                   toastr.error("Error : Image dimensions must be 270 X 370", '', {timeOut: 3000});
 
               }else{
 
                   toastr.success("Image Upload Successfully", '', {timeOut: 3000});
-                
+
                   var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
                                '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
                                '<div class="overlay">'+
                                    '<div class="text">'+
                                        '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteClinicalNoteImage('+xhr.responseText[1]+')" title="Delete Image">'+
-                                       '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimaryClinicalNoteImage('+xhr.responseText[1]+')" title="Mark Primary">'+	
+                                       '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimaryClinicalNoteImage('+xhr.responseText[1]+')" title="Mark Primary">'+
                                        '<div class="arrow-icon-move-box">'+
                                            '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
                                            '<p>Move Position</p>'+
@@ -2008,7 +2168,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                    '</div>'+
                                '</div>'+
                            '</div>';
-                  
+
                   $("#cn_att").append($compile(angular.element(html))($scope));
                 $scope.$apply(function () {
 
@@ -2045,7 +2205,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             setTimeout(function(){
                 $("#p46").val($scope.QuickProduct.P_46).trigger('change');
                 $("#p56").val($scope.QuickProduct.P_56).trigger('change');
-               
+
 
             }, 500);
             // $scope.QuickProduct.P_46.id =data.selectRecomended_lov;
@@ -2053,7 +2213,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         })
         .error(function(data, status, headers, config) {
         });
-        
+
     };
 
     $scope.addJusOFlowModal = function () {
@@ -2066,7 +2226,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     }
 
     $scope.addDailyHandPickedModal = function () {
-        
+
         $scope.showAllProductsOfCategory();
         $("#addDailyHandPickedModal").modal('show');
     }
@@ -2074,7 +2234,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.closeDailyHandPickedModal = function () {
         $("#addDailyHandPickedModal").modal('hide');
     }
-    
+
     // $scope.updateDailyHandPickedModal = function(){
     //     alert('123');
     // }
@@ -2086,18 +2246,18 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             return;
         }
 		// e.preventDefault();
-        
+
 		if($scope.QuickProduct.P_31 != null){
 			var data = {};
 		    data.category = $scope.QuickProduct.P_31;
             data.productId = $scope.QuickProduct.PRODUCT_ID;
-		    data.userId = userId;            
-		    
+		    data.userId = userId;
+
 	    	var temp = $.param({details: data});
-		   
+
 			$scope.recommended={};
 			// $scope.handpickedlov={};
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/UpdateCategories",
@@ -2108,9 +2268,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			}).success(function(data, status, headers, config) {
 
                 // console.log(data);
-					
+
 				// $scope.subCategoryLov = data.subCategory;
-	        	
+
 				$scope.recommended=data.product;
                 $scope.subCategoryLov = data.subCategory;
 
@@ -2124,7 +2284,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
 				// $('#p46').val($scope.handpickedlo['id']).trigger('change');
 				// $('#p47').val($scope.recommended['id']).trigger('change');
-				
+
 			})
 			.error(function(data, status, headers, config) {
 			});
@@ -2132,22 +2292,22 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 			$scope.subCategoryLov = {};
 		}
 	}
-   
+
     $scope.getSubSubCategoriesWrtSubCategory = function(){
 
         if($scope.refreshFlag == 0){// Function will not call on first page loads
             $scope.refreshFlag = 1;
             return;
         }
-		
+
 		if($scope.QuickProduct.P_32 != null){
 			var data = {};
 		    data.subcategory = $scope.QuickProduct.P_32;
             data.productId = $scope.QuickProduct.PRODUCT_ID;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getSubSubCategoriesWrtSubCategoryQuickAdd",
@@ -2156,9 +2316,9 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				$scope.subSubCategoryLov = data.subSubCategory;
-				
+
 			})
 			.error(function(data, status, headers, config) {
 			});
@@ -2172,14 +2332,14 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                 $scope.refreshFlag1 = 1;
                 return;
             }
-		
+
 			var data = {};
 		    data.subsubcategory = $scope.QuickProduct.P_33;
             data.productId = $scope.QuickProduct.PRODUCT_ID;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/updateSubSubCategoriesWrtSubCategoryQuickAdd",
@@ -2188,16 +2348,16 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
                 toastr.success(data.msg, '', {timeOut: 3000});
-				
-				
+
+
 			})
 			.error(function(data, status, headers, config) {
 			});
-		
+
 	}
-    
+
     $scope.saveJusOFlowProduct = function(){
 
         // if ($('#basicInfo_description').summernote('isEmpty')) {
@@ -2205,41 +2365,41 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
         // }else{
         //     $scope.product.P_13 = $('#basicInfo_description').summernote('code');
         // }
-        
+
         var data = {};
         if($scope.QuickProduct.P_46 == ''){
             toastr.error('Please Select atleast one', '', {timeOut: 3000})
             return
         }
-        
+
         data.recomended = $scope.QuickProduct.P_46;
         data.productId = $scope.QuickProduct.PRODUCT_ID;
         data.userId = userId;
-        
+
         var temp = $.param({details: data});
-        
+
         $http({
-            data: temp+"&"+$scope.tokenHash, 
+            data: temp+"&"+$scope.tokenHash,
             url : site+"/saveAdminProductsaveJusOFlow",
             method: "POST",
             async: false,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
         }).success(function(data, status, headers, config) {
-                
+
             if(data.done == true || data.done == 'true'){
-                
+
                 toastr.success(data.msg, '', {timeOut: 3000})
                 // $scope.product.ID = data.ID;
                 var recommandedProducts = data.recommandedProducts;
                 $('#addJusOFlowModal').modal('hide');
                 if ($('.completeYourGlow_slider').hasClass('slick-initialized')) {
                     $('.completeYourGlow_slider').slick('destroy');
-                }  
+                }
                 var rechtml = '';
                 if(recommandedProducts != null && recommandedProducts != ''){
                     for (let i = 0; i < recommandedProducts.length; i++) {
-    
+
                         rechtml += `<div class="box px-1">
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
@@ -2259,11 +2419,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                     </div>
                                 </div>
                             </div>`;
-                            
-                    }	
+
+                    }
                     $(".completeYourGlow_slider").html(rechtml);
                 }
-                
+
             setTimeout(function(){
                 $('.completeYourGlow_slider').slick({
                     slidesToShow: 4,
@@ -2275,7 +2435,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
                     nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
                     "responsive":[
-                                
+
                                 {"breakpoint": 1400,
                                     "settings": {"slidesToShow": 6}},
 
@@ -2294,11 +2454,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 {"breakpoint": 576,
                                     "settings": {"slidesToShow": 1}}
                                 ]
-                    
+
                     });
                 $.LoadingOverlay("hide");
             }, 500);
-                
+
             }else{
                 toastr.error(data.msg, '', {timeOut: 3000})
             }
@@ -2322,32 +2482,32 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
         data.productId = $scope.QuickProduct.PRODUCT_ID;
         data.userId = userId;
-        
+
         var temp = $.param({details: data});
-        
+
         $http({
-            data: temp+"&"+$scope.tokenHash, 
+            data: temp+"&"+$scope.tokenHash,
             url : site+"/saveDailyhandPickProduct",
             method: "POST",
             async: false,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
         }).success(function(data, status, headers, config) {
-                
+
             if(data.done == true || data.done == 'true'){
-                
+
                 toastr.success(data.msg, '', {timeOut: 3000})
 
                 var handpickProducts = data.handpickProducts;
-                
+
                 $('#addDailyHandPickedModal').modal('hide');
                 if ($('.Handpicked_slider').hasClass('slick-initialized')) {
                     $('.Handpicked_slider').slick('destroy');
-                }  
+                }
                 var rechtml = '';
                 if(handpickProducts != null && handpickProducts != ''){
                     for (let i = 0; i < handpickProducts.length; i++) {
-    
+
                         rechtml += `<div class="box px-1">
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
@@ -2368,11 +2528,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 </div>
 
                             </div>`;
-                            
-                    }	
+
+                    }
                     $(".Handpicked_slider").html(rechtml);
                 }
-               
+
             setTimeout(function(){
                 $('.Handpicked_slider').slick({
                     slidesToShow: 4,
@@ -2384,7 +2544,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                     prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
                     nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
                     "responsive":[
-                                
+
                                 {"breakpoint": 1400,
                                     "settings": {"slidesToShow": 6}},
 
@@ -2403,11 +2563,11 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
                                 {"breakpoint": 576,
                                     "settings": {"slidesToShow": 1}}
                                 ]
-                    
+
                     });
                 $.LoadingOverlay("hide");
             }, 500);
-                
+
             }else{
                 toastr.error(data.msg, '', {timeOut: 3000})
             }

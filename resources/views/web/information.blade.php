@@ -51,13 +51,13 @@
             <h2 class="mb-2 text-center font-size-banner" id="information-page" data-animate="fadeInRight"
                 style="color: white; ">Customer Help
             </h2>
-            
+
         </div>
-        
+
     </section>
     <!-- Demo header-->
     <section class="py-5 header">
-        
+
         <div class="container container-custom py-4">
 
             <div class="row">
@@ -129,20 +129,20 @@
                          <div class="tab-pane fade shadow rounded bg-white p-5" id="customer" role="tabpanel"
                             aria-labelledby="tab-8">
 
-                            <h4>FOR ASSISTANCE</h4>
-                            <h5>DOMESTIC CUSTOMERS</h5>
+                            <h2>FOR ASSISTANCE</h2>
+                            <h6>DOMESTIC CUSTOMERS</h6>
                             <h6>Call Us:</h6>
-                            
+
                             <p>
                                 Representatives are available from 7am – 2am ET, 7 days a week (excluding major U.S. holidays) and are ready to help.
                             </p>
                             <p><u>866-848-2168</u></p>
 
-                            <h5>Live Chat with Us:</h5>
+                            <h2>Live Chat with Us:</h2>
                             <p>
                                 Representatives are available from 7am – 11pm ET, 7 days a week (excluding major U.S. holidays) and are ready to help. Click the ‘Chat now’ button at the lower right of any page.
                             </p>
-                            <h4>International Customer</h4>
+                            <h2>International Customer</h2>
                             <p>
                                 Our international customers may access our international help center 24 hours a day, 7 days a week HERE. If you are unable to find the answer to your question, you may contact a customer service representative through the help center. Representatives are available 6 days a week (Sunday - Friday) and are ready to help. Please allow 24 hours to receive a response.
                             </p>
@@ -151,7 +151,7 @@
 
                          <div class="tab-pane fade shadow rounded bg-white p-5" id="contact" role="tabpanel"
                             aria-labelledby="tab-9">
-                            <h4>WE’RE HERE FOR YOU!</h4>
+                            <h2>WE’RE HERE FOR YOU!</h2>
                             <p>
                                 Email JUSOUT BEAUTY Customer Service (admin@jusoutbeauty.com) or call 866-848-2168. Operating hours are from 7am – 2am EST, 7 days a week, excluding major U.S. holidays. Live chat representatives are available 7am – 11pm ET, 7 days a week (excluding major U.S. holidays) and are ready to help. Click the ‘Chat now’ button at the lower right of any page
                             </p>
@@ -160,7 +160,7 @@
 
                         <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home"
                             role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            <h4> SCOPE</h4>
+                            <h2> SCOPE</h2>
                             <p>The business relationships between Barbara Sturm Molecular Cosmetics GmbH - hereinafter
                                 referred to as "BSMC"
                                 - and the buyer shall be subject exclusively to the version of the following General
@@ -168,7 +168,7 @@
                                 applicable at the time the order is placed. Conflicting terms of business or purchase of
                                 the buyer shall
                                 only be deemed recognized if this has been explicitly agreed in writing. </p>
-                            <h4>CONCLUSION OF CONTRACT</h4>
+                            <h2>CONCLUSION OF CONTRACT</h2>
                             <p>
                                 By sending an order via the website the buyer makes a binding offer to BSMC to conclude
                                 a purchase
@@ -189,11 +189,11 @@
                                 as assurance that you are of legal age. We accept no liability for orders for our
                                 product placed by minors.
                             </p>
-                            <h4>
+                            <h2>
                                 RIGHT TO CANCEL WITHIN 14 DAYS; EXCLUSION OF THE RIGHT TO CANCEL, NOTIFICATION
                                 OF RIGHT TO CANCEL,
 
-                            </h4>
+                            </h2>
                             <p>
                                 You can revoke your contractual declaration without stating grounds within 14 days in
                                 text form (e.g.
@@ -218,13 +218,14 @@
                                 Notification of cancellation must be sent to:
                             </p>
 
-                            <h4>
+                            <h2>
                                 JUSOUTBEAUTY
-                                <br>
+                            </h2>
+                            <h6>
                                 Contact: 866-848-2168
                                 <br>
                                 Email: admin@jusoutbeauty.com
-                            </h4>
+                            </h6>
 
                         </div>
 
@@ -240,10 +241,10 @@
                                 collection and use and its purpose. This information can be read at any time on our
                                 website.
                             </p>
-                            <h4>
+                            <h2>
                                 DATE COMMUNICATION AND RECORDING FOR INSTRASYSTEM AND STATISTICAL PURPOSES
 
-                            </h4>
+                            </h2>
                             <p>
                                 For technical reasons your Internet browser automatically conveys data to our web server
                                 every time you
@@ -258,9 +259,9 @@
                                 data is used for statistical purposes and subsequently deleted in accordance with GDPR
                                 compliance.
                             </p>
-                            <h4>
+                            <h2>
                                 CUSTOMER BASIC DATA
-                            </h4>
+                            </h2>
                             <p>
                                 If a contractual relationship is created between us and you or if the contents of such a
                                 contractual
@@ -276,9 +277,9 @@
                                 Counterintelligence
                                 Office of for the purposes of asserting rights to intellectual property.
                             </p>
-                            <h4>
+                            <h2>
                                 COOKIES
-                            </h4>
+                            </h2>
                             <p>
                                 In order to extend the functional scope of our Internet service and to make it easier
                                 for you to use, we
@@ -333,7 +334,7 @@
 
                         <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-settings" role="tabpanel"
                             aria-labelledby="v-pills-settings-tab">
-                            <h4>About this cookie policy</h4>
+                            <h2>About this cookie policy</h2>
                             <p>
                                 This Cookie Policy explains what cookies are and how we use them, the types of cookies
                                 we use i.e, the information we collect using cookies and how that information is used,
@@ -342,7 +343,7 @@
                                 withdraw your consent from the Cookie Declaration on our websiteLearn more about who we
                                 are, how you can contact us, and how we process personal data in our Privacy Policy
                             </p>
-                            <h4>What are cookies?</h4>
+                            <h2>What are cookies?</h2>
                             <p>
                                 Cookies are small text files that are used to store small pieces of information. They
                                 are stored on your device when the website is loaded on your browser. These cookies help
@@ -350,9 +351,9 @@
                                 experience, and understand how the website performs and to analyze what works and where
                                 it needs improvement.
                             </p>
-                            <h4>
+                            <h2>
                                 How do we use cookies?
-                            </h4>
+                            </h2>
 
                             <p>
                                 As most of the online services, our website uses first-party and third-party cookies for
@@ -364,9 +365,9 @@
                                 improved user experience and help speed up your future interactions with our website.
 
                             </p>
-                            <h4>
+                            <h2>
                                 What types of cookies do we use?
-                            </h4>
+                            </h2>
                             <p>
                                 <b>Essential:</b> Some cookies are essential for you to be able to experience the full
                                 functionality of our site. They allow us to maintain user sessions and prevent any
@@ -404,7 +405,7 @@
 
                         <div class="tab-pane fade shadow rounded bg-white p-5" id=ship role="tabpanel"
                             aria-labelledby="tab-4">
-                            <h4>FREE SHIPPING</h4>
+                            <h2>FREE SHIPPING</h2>
                             <p>
                                 Below are the free shipping offers available on <strong>JUSOUTBEAUTY</strong>
                             </p>
@@ -424,7 +425,7 @@
                                 by country and will be determined at checkout.
                             </p>
 
-                            <h4>DOMESTIC SHIPPING COSTS + DELIVERY TIMES</h4>
+                            <h2>DOMESTIC SHIPPING COSTS + DELIVERY TIMES</h2>
                             <p>
                                 Orders must be placed by 12pm ET to start processing on the same day. Processing time
                                 usually takes 1-2 business days. Delivery times are based on orders placed between
@@ -484,10 +485,10 @@
                         </div>
                         <div class="tab-pane fade shadow rounded bg-white p-5" id="account" role="tabpanel"
                             aria-labelledby="tab-6">
-                            <h4>Sign In</h4>
+                            <h2>Sign In</h2>
                             <p>Sign in to your account to add or edit your addresses and email Preference, save your Pro
                                 filter to your profile and more.</p>
-                            <h4>Creat Account</h4>
+                            <h2>Creat Account</h2>
                             <p>EXCLUSIVE OFFERS + INFO <br>
                                 Sign up to stay posted on hyper-limited offers, online-only product drops, in store
                                 events, and-as true fenty beauty + fenty skin family-personal beauty tips from Rihhana
@@ -499,19 +500,19 @@
                         </div>
                         <div class="tab-pane fade shadow rounded bg-white p-5" id="faq" role="tabpanel"
                             aria-labelledby="tab-7">
-                            <h4>SHIPPING/ORDER STATUS</h4>
-                            <h5>CAN WE GET FENTY BEAUTY INTERNATIONALLY?</h5>
+                            <h2>SHIPPING/ORDER STATUS</h2>
+                            <h6>CAN WE GET FENTY BEAUTY INTERNATIONALLY?</h6>
                            <p>
                                 Of course! FentyBeauty.com ships internationally to 150+ countries. Fenty Beauty is also available for purchase at select Sephora stores throughout the U.S., Canada, Mexico, France, Spain, Denmark, Sweden, Thailand, Malaysia, Australia, Singapore and the Middle East (UAE, Bahrain, Qatar, Kuwait). Fenty Beauty will also be available at select SiJCP stores as well as on Sephora.com. If you live in the UK or Ireland, you can also shop Fenty Beauty at Harvey Nichols or on HarveyNichols.com as well as Boots or Boots.com. For a full list of all international retailers
                            </p>
-                           <h5>                            
+                           <h6>
                                 WHEN CAN I GET PRODUCTS THAT ARE OUT OF STOCK?
-                           </h5>
+                           </h6>
                            <p>
                             We try our best to replenish stock as quickly as possible. Here’s what you can do in the meantime: Sign up for an email alert by going to the specific product page and clicking the “Notify Me” button. When that must-have item is back in action, you’ll be the first to know.
                            </p>
-                           <h4>RETURNS</h4>
-                           <h5>RETURNING DEFECTIVE/WRONG ITEMS</h5>
+                           <h2>RETURNS</h2>
+                           <h6>RETURNING DEFECTIVE/WRONG ITEMS</h6>
                            <p>For domestic orders, please send the defective or incorrect item(s) back to us, using the FREE RETURNS PROCESS. Once we receive the returned item(s), we will gladly send you a replacement. Use the return form included in your original packaging or contact Customer Service at866-848-2168. For international orders, please follow the returns process specific to your country. For Canada, UK, EU, and AUS orders, please follow the RETURNS PROCESS HERE. For all other countries, please contact customer service</p>
                         </div>
                     </div>
@@ -579,7 +580,7 @@
     }
 
 
-    
+
 </script>
 <script>
     // function close_topbar() {
@@ -595,7 +596,7 @@
     });
 
     checkScreenSize();
-    
+
     function checkScreenSize(){
         var newWindowWidth = $(window).width();
 
