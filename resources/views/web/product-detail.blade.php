@@ -915,8 +915,8 @@
                                                 <section style="background-color: #f38c7b;">
                                                     <div class="pb-10 pb-lg-8 py-8">
                                                         <div class="container container-xl">
-                                                            <h2 class="text-center mb-9" style="color: #fff;">How To
-                                                                Use: AM and PM</h2>
+                                                            <h3 class="text-center mb-9" style="color: #fff;">How To
+                                                                Use: AM and PM</h3>
                                                             <div class="row">
                                                                 <?php $i=1 ?>
                                                                 <?php if(isset($productUses) && !empty($productUses)){?>
@@ -1482,7 +1482,7 @@
                         <section class=" pb-lg-13">
                             <div class="">
                                 <div class="comment-product mw-900 mx-auto">
-                                    <h2 class="text-center mb-4">Reviews</h2>
+                                    <h3 class="text-center mb-4">Reviews</h3>
 
                                     <div class="">
                                         <div class="row border-bottom mb-2"
@@ -1631,7 +1631,7 @@
                         <section class="pb-lg-13">
                             <div class="">
                                 <div class="comment-product mw-900 mx-auto">
-                                    <h2 class="text-center mb-4">Questions</h2>
+                                    <h3 class="text-center mb-4">Questions</h3>
 
                                     <div class="media mbl-class border-bottom pb-7 mb-7 flex-sm-column-mbl"
                                         ng-repeat="row in displayCollectionQuestions">

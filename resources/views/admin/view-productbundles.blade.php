@@ -155,14 +155,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																<input type="text" class="form-control" id="p3" ng-model="bundle['P_3']" placeholder="Unit">
 															</div>
 														</div>
-														<div class="col-sm-6">
+														{{-- <div class="col-sm-6">
 															<div class="form-group">
 																<label class="col-form-label" for="p4"><b>Minimum Purchase Qty</b> <span class="text-danger">*</span> </label>
 																<input type="number" class="form-control" id="p4" ng-model="bundle['P_4']" placeholder="Enter Minimum Purchase Quantity">
 															</div>
+														</div> --}}
+														<div class="col-sm-6">
+															<div class="form-group">
+																<label class="col-form-label" for="p6"><b>Tags</b> <span class="text-danger">*</span> </label> 
+																<input type="text" class="form-control" id="p5" ng-model="bundle['P_5']" placeholder="Tags"> 
+																<small>This is used for search.Customer Search by these Tags.</small>
+															</div>
 														</div>
 													</div>
-													<div class="row">
+													{{-- <div class="row">
 														<div class="col-sm-6">
 															<div class="form-group">
 																<label class="col-form-label" for="p6"><b>Tags</b> <span class="text-danger">*</span> </label> 
@@ -176,7 +183,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																<input type="text" class="form-control" id="p6" ng-model="bundle['P_6']" placeholder="Enter Barcode">
 															</div>
 														</div>
-													</div>
+													</div> --}}
 	
 													<!-- <div class="row">
 														<div class="col-sm-4 col-6">

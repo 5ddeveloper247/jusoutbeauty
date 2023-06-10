@@ -332,7 +332,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             var html3 = '';
             var html4 = '';
             var displayCollectionProdIngredients = data.ingredients;
-
+            console.log(displayCollectionProdIngredients,'spot-section-img');
                 $('#spotlight_data').html('');
                 $('#formulated_data').html('');
 

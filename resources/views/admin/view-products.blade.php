@@ -168,17 +168,14 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 	
 															</div>
 														</div>
-														<div class="col-sm-6">
+														{{-- <div class="col-sm-6">
 															<div class="form-group">
 	
 																<label class="col-form-label" for="brand"><b>Minimum Purchase Qty</b> <span class="text-danger">*</span> </label>
 																<input type="number" class="form-control" id="p4" ng-model="product['P_4']" placeholder="Enter Minimum Purchase Quantity">
 	
 															</div>
-														</div>
-	
-													</div>
-													<div class="row">
+														</div> --}}
 														<div class="col-sm-6">
 															<div class="form-group">
 	
@@ -188,25 +185,29 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 	
 															</div>
 														</div>
-														<div class="col-sm-6">
+	
+													</div>
+													<div class="row">
+														
+														{{-- <div class="col-sm-6">
 															<div class="form-group">
 	
 																<label class="col-form-label" for="barcode"><b>Barcode</b> </label> 
 																<input type="text" class="form-control" id="barcode" ng-model="product['P_6']" placeholder="Enter Barcode">
 	
 															</div>
-														</div>
+														</div> --}}
 	
 													</div>
 	
-													<div class="row">
+													{{-- <div class="row">
 														<div class="col-sm-4 col-6">
 															<div class="custom-control custom-checkbox mb-3 checkbox-warning">
 																<input type="checkbox" class="custom-control-input" id="refundable" ng-model="product['P_7']"> 
 																<label class="custom-control-label" for="refundable">Refundable</label>
 															</div>
 														</div>
-													</div>
+													</div> --}}
 													<div class="row">
 														<div class="col-sm-6">
 															<div class="form-group">
@@ -505,18 +506,14 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														</div>
 													</div>
 												</div>
-												<div class="col-sm-6">
+												{{-- <div class="col-sm-6">
 													<div class="form-group">
 	
 														<label class="col-form-label" for="earn_point"><b>Set Point</b> </label> 
 														<input type="number" min="0" step="1" id="p19" ng-model="product['P_19']" class="form-control">
 	
 													</div>
-												</div>
-											</div>
-	
-	
-											<div class="row">
+												</div> --}}
 												<div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-form-label" for="quantity"><b>Quantity<span class="text-danger">*</span></b> </label> 
@@ -524,6 +521,17 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 	
 													</div>
 												</div>
+											</div>
+	
+	
+											<div class="row">
+												{{-- <div class="col-sm-6">
+													<div class="form-group">
+														<label class="col-form-label" for="quantity"><b>Quantity<span class="text-danger">*</span></b> </label> 
+														<input type="number" min="0" step="1" id="p20" ng-model="product['P_20']" placeholder="Quantity"class="form-control">
+	
+													</div>
+												</div> --}}
 												<div class="col-sm-6">
 													<label class="col-form-label" for="sku"><b>SKU</b> </label>
 													<input type="text" placeholder="SKU" id="sku" ng-model="product['P_21']" class="form-control">
@@ -551,7 +559,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 									<div class="tab-pane fade" id="VAT" role="tabpanel">
 										<div class="pt-4">
 											<div class="row">
-												<div class="col-sm-6">
+												{{-- <div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-form-label" for="tax"><b>TAX</b> </label>
 	
@@ -568,7 +576,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															</div>
 														</div>
 													</div>
-												</div>
+												</div> --}}
 												<div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-form-label" for="vat"><b>VAT</b> </label>
@@ -946,7 +954,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								<li class="nav-item"><a class="nav-link active" id="clinical_note_new" data-toggle="tab"
 										href="#clinical_note"> <span> Clinical Note </span>
 									</a></li>	
-								<li class="nav-item"><a class="nav-link "
+								{{-- <li class="nav-item"><a class="nav-link "
 										data-toggle="tab" href="#shipping_conf"> <span> Shipping
 												Configurations </span>
 									</a></li>
@@ -962,7 +970,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 									
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="#setting"> <span> Settings </span>
-									</a></li>
+									</a></li> --}}
 								</ul>
 								<!-- Tab panes -->
 								<div class="tab-content tabcontent-border">
@@ -1305,12 +1313,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 						</div>
 						<div class="modal-body">
 							
-							<div class="row">
+							{{-- <div class="row">
 							   <div class="col-6">
 							     <label><b>Sequence Number<span class="required-field">*</span></b></label>
 							     <input type="number" class="form-control" id="u1" ng-model="uses['U_1']">
 							   </div>
-							</div>
+							</div> --}}
 							<div class="row mt-4">
 							   <div class="col-12">
 							     <label><b>Title<span class="required-field">*</span></b></label>
