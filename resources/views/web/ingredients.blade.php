@@ -438,30 +438,34 @@
     <section class="pt-5 pt-lg-10 pb-10 bottom_sec">
         {{-- <div class="container container-custom"> --}}
             <div class="row smile-smart-card">
-                @foreach ($ingredients as $ingredient)
-                    <div class="col-sm-3 col-5">
-                        <div class="card-ing">
-                            <div class="main-content">
-                                <div class="smile-smart-card-svg">
-                                    <img width="200" height="200" class="my-lg-4 my-2"
-                                        src="{{ $ingredient['DOWN_PATH'] }}" alt="easy and secure">
-                                </div>
-                                <div class="smile-smart-card-text">
-                                    <h5 class="mb-lg-4 mb-2 mt-3 mt-lg-2">{{ $ingredient['TITLE'] }}</h5>
-                                    <p class="my-md-4 my-lg-5 my-0 mx-1 mx-md-2">{{ $ingredient['INGREDIENT_DESCRIPTION'] }}
-                                    </p>
-                                </div>
+
+                @forelse ($ingredients as $ingredient)
+                <div class="col-sm-3 col-5">
+                    <div class="card-ing">
+                        <div class="main-content">
+                            <div class="smile-smart-card-svg">
+                                <img width="200" height="200" class="my-lg-4 my-2"
+                                    src="{{ $ingredient['DOWN_PATH'] }}" alt="easy and secure">
                             </div>
-                            <div class="overlay-content" style="overflow-y: auto;">
-                                <div class="blue-card-hover-text">
-                                    <h5>{{ $ingredient['TITLE'] }}</h5>
-                                    <p>{{ $ingredient['INGREDIENT_DESCRIPTION_FULL'] }}</p>
-                                    {{-- <a href="#">Learn More <i class="fas fa-arrow-right"></i></a> --}}
-                                </div>
+                            <div class="smile-smart-card-text">
+                                <h5 class="mb-lg-4 mb-2 mt-3 mt-lg-2">{{ $ingredient['TITLE'] }}</h5>
+                                <p class="my-md-4 my-lg-5 my-0 mx-1 mx-md-2">{{ $ingredient['INGREDIENT_DESCRIPTION'] }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="overlay-content" style="overflow-y: auto;">
+                            <div class="blue-card-hover-text">
+                                <h5>{{ $ingredient['TITLE'] }}</h5>
+                                <p>{{ $ingredient['INGREDIENT_DESCRIPTION_FULL'] }}</p>
+                                {{-- <a href="#">Learn More <i class="fas fa-arrow-right"></i></a> --}}
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+                @empty
+                    
+                @endforelse
+               
             {{-- </div> --}}
         </div>
         
