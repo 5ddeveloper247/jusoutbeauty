@@ -17,25 +17,208 @@
             height: auto;
         }
     }
+    @media screen and (min-width: 615px) and (min-width: 768px) {
+        .card-ing {
+        width: 20vw !important;
+        height: 30vw !important;
+        overflow: hidden;
+        box-shadow: 0 0 15px lightgray;
+        justify-content: center;
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+    }
+    }
+
     @media screen and (min-width: 1650px) {
         .py-lg-18 {
-     padding-top: 358px !important;
-    padding-bottom: 358px !important;}
+            padding-top: 358px !important;
+            padding-bottom: 358px !important;
+        }
+    }
+
+    .smile-smart-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .smile-smart-card .col-sm-3 {
+        -ms-flex: 0 0 22% !important;
+        flex: 0 0 22% !important;
+        max-width: 22% !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .card-ing {
+        width: 20vw;
+        height: 26vw;
+        overflow: hidden;
+
+        box-shadow: 0 0 15px lightgray;
+        justify-content: center;
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+    }
+
+    .card-ing .main-content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-ing .overlay-content {
+        width: 100%;
+        height: 100%;
+        background-color: #57813a;
+        cursor: pointer;
+        color: #080808;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: absolute;
+        z-index: 1;
+        transition: 0.8s;
+        top: 0%;
+        right: 100%;
+        opacity: 0.8;
+    }
+
+    .card-ing .overlay-content p {
+        text-align: start;
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
+
+    .blue-card-hover-text a {
+        font-size: 0.9vw !important;
+        color: white;
+        text-align: center;
+    }
+
+    .blue-card-hover-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: absolute;
+        top: 0;
+        padding: 1.2vw;
+    }
+
+    .blue-card-hover-text h5 {
+        font-size: 1.2vw !important;
+        color: white;
+        font-weight: bold;
+        margin-top: 1vw !important;
+    }
+
+    .card-ing .overlay-content p {
+        text-align: start;
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
+
+    .blue-card-hover-text p {
+        font-size: 0.9vw !important;
+        color: white;
+        text-align: left;
+        margin: 0 0 0 0 !important;
+        margin-top: 1.5vw !important;
+        margin-bottom: 3vw !important;
+    }
+
+
+    .card-ing:hover .overlay-content {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+
+    .smile-smart-card .col-sm-3 {
+        flex: 0 0 22% !important;
+        max-width: 22% !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        padding: 0 !important;
+    }
+
+    .smile-smart-card-svg {
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-ing .main-content img {
+        width: 16vw;
+        height: 12vw;
+        border-radius: 5px
+    }
+
+    .smile-smart-card-svg img {
+        width: 14vw;
+        margin-bottom: 5vw;
+    }
+
+    .smile-smart-card-text h5 {
+        font-size: 1vw;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .smile-smart-card-text p {
+        font-size: 1vw;
+        text-align: center;
+    }
+
+    .heading-c-c-i {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .heading-c-c-i h1 {
+        font-size: 2vw;
+        font-weight: bold;
+        color: #bb85ff;
+        margin: 0 2vw;
     }
 </style>
 <main id="content" style="padding-top: 111px">
-<section class="py-10  py-lg-18 rab" id="details-header"
+    <section class="py-10  py-lg-18 rab" id="details-header"
         style="background-repeat: no-repeat; background-image:url('{{ url('assets-web') }}/images/images.jpg'); background-size: cover;">
-    <div class="container container-xl">
+        <div class="container container-xl">
 
-        <div class=" no-gutters" style="justify-content: center">
-            <h2 class="mb-2 text-center font-size-banner" data-animate="fadeInRight" style="color: white;">Ingredients
-            </h2>
+            <div class=" no-gutters" style="justify-content: center">
+                <h2 class="mb-2 text-center font-size-banner" data-animate="fadeInRight" style="color: white;">Ingredients
+                </h2>
+            </div>
+
         </div>
 
-    </div>
-
-</section>
+    </section>
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
@@ -233,12 +416,12 @@
         </div>
     </section> --}}
 
-    <section class="pt-10 pt-lg-10 pb-10 bottom_sec">
+    <section class="pt-10 pt-lg-10 pb-5 bottom_sec">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving"
-                        src="{{ url('/assets-web') }}/images/Rosemary.jpg" alt="Our approach">
+                    <img loading="lazy" class="last-section-giving" src="{{ url('/assets-web') }}/images/Rosemary.jpg"
+                        alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
@@ -252,11 +435,36 @@
         </div>
     </section>
 
-    <section class="pt-10 pt-lg-10 pb-10 bottom_sec">
-            @foreach ($ingredients as $ingredient)
-                <p>{{ $ingredient->DESCRIPTION }}</p>
-                <img src="{{ $ingredient->DOWN_PATH }}" alt="">
-            @endforeach
+    <section class="pt-5 pt-lg-10 pb-10 bottom_sec">
+        {{-- <div class="container container-custom"> --}}
+            <div class="row smile-smart-card">
+                @foreach ($ingredients as $ingredient)
+                    <div class="col-sm-3 col-5">
+                        <div class="card-ing">
+                            <div class="main-content">
+                                <div class="smile-smart-card-svg">
+                                    <img width="200" height="200" class="my-lg-4 my-2"
+                                        src="{{ $ingredient['DOWN_PATH'] }}" alt="easy and secure">
+                                </div>
+                                <div class="smile-smart-card-text">
+                                    <h5 class="mb-lg-4 mb-2 mt-3 mt-lg-2">{{ $ingredient['TITLE'] }}</h5>
+                                    <p class="my-md-4 my-lg-5 my-0 mx-1 mx-md-2">{{ $ingredient['INGREDIENT_DESCRIPTION'] }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="overlay-content" style="overflow-y: auto;">
+                                <div class="blue-card-hover-text">
+                                    <h5>{{ $ingredient['TITLE'] }}</h5>
+                                    <p>{{ $ingredient['INGREDIENT_DESCRIPTION_FULL'] }}</p>
+                                    {{-- <a href="#">Learn More <i class="fas fa-arrow-right"></i></a> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            {{-- </div> --}}
+        </div>
+        
     </section>
 
 </main>

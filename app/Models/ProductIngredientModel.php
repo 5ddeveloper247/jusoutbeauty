@@ -11,6 +11,31 @@ use DateTime;
 class ProductIngredientModel extends Model
 {
     use HasFactory;
+
+	public function getIngredientsWithImags(){
+		
+        $result = DB::table('jb_ingredient_tbl as a')
+        ->select('a.INGREDIENT_ID', 'a.DESCRIPTION','a.TITLE', 'att.ATTACHMENT_ID', 'att.DOWN_PATH')
+        ->join('jb_ingredient_attachment_tbl as att', 'a.INGREDIENT_ID', '=', 'att.INGREDIENT_ID')
+        ->where('a.STATUS', 'active')
+        ->get();
+
+		$i=0;
+    	foreach ($result as $row){
+			
+    		$arrRes[$i]['INGREDIENT_ID'] = $row->INGREDIENT_ID;
+    		$arrRes[$i]['ATTACHMENT_ID'] = $row->ATTACHMENT_ID;
+    		$arrRes[$i]['TITLE'] = $row->TITLE;
+    		$arrRes[$i]['DOWN_PATH'] = isset($row->DOWN_PATH) != null ? $row->DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
+
+			$descText = strip_tags(base64_decode($row->DESCRIPTION));
+			$arrRes[$i]['INGREDIENT_DESCRIPTION_FULL'] = $descText;
+    		$arrRes[$i]['INGREDIENT_DESCRIPTION'] = strlen ( $descText ) > 120?substr ( $descText, 0, 120 )."..." :$descText;
+    
+    		$i++;
+    	}
+		return isset($arrRes) ? $arrRes : null;
+    }
     
     public function getAllProductIngredientByProduct($productId){
     
