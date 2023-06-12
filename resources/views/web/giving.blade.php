@@ -176,7 +176,7 @@
                     BASIC - AFFORDABLE - WITHOUT - LOOSING EFFECTIVENESS
                 </p>
                 <div class="text-center">
-                    <a href="javascript:;" ng-click="donatePayment()" class="btn btn-primary">Donate</a>
+                    <a href="javascript:;" ng-click="donatePayment();" class="btn btn-primary">Donate</a>
                 </div>
             </div>
         </section>
@@ -330,9 +330,9 @@
 
 <script src="{{ url('/assets-web') }}/customjs/script_usergiving.js?v={{time()}}"></script>
 
-<script src="https://checkout.sandbox.dev.clover.com/sdk.js"></script>
+{{-- <script src="https://checkout.sandbox.dev.clover.com/sdk.js"></script> --}}
 
-<script>
+{{-- <script>
     const accesskey = document.getElementById('accesskey').value;
 
     const clover = new Clover(accesskey);
@@ -428,7 +428,7 @@
 
         form.submit();
     }
-</script>
+</script> --}}
 
 <script>
     //     function show_payment_modal_clover(){

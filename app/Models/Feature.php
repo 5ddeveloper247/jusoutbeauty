@@ -95,9 +95,9 @@ class Feature extends Model
 		 
           $result=DB::table('jb_product_tbl as a')->select('a.*')->where('a.PRODUCT_ID',$id)->get();
 		  $feaures_id = isset($result[0]->FEATURE_ID) ? $result[0]->FEATURE_ID :'';
-           
-		  if($feaures_id != null){
-		
+          
+		  if($feaures_id != null || $feaures_id != ''){
+			
 			$features= explode(',',$feaures_id);
 		
 		  $i=0;
@@ -121,10 +121,11 @@ class Feature extends Model
               
 			$i++;
 		 }
+		 $arrSort = collect($arrRes)->sortBy('SEQ_NUM')->toArray();
 		}
-		$arrSort = collect($arrRes)->sortBy('SEQ_NUM')->toArray();
+
 		
-        // dd($arrSort);
+		
 		return isset($arrSort) ? $arrSort : null;
 
 	}

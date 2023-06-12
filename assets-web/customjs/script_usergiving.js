@@ -6,7 +6,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 //		$("#chooseShade_container").slideToggle('slow');
 //		
 //	});
-
+	
 	$scope.giving={};
 	$scope.giving.G_1 = "";
 	$scope.giving.G_2 = "";
@@ -83,21 +83,22 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		$("#clover_second").hide(1000);
         $("#show_giving_modal_clover").modal('hide');
 	}
+	
 	$scope.donatePayment = function(){
-
-		$scope.giving={};
-		$scope.giving.G_1 = "";
-		$scope.giving.G_2 = "";
-		$scope.giving.G_3 = "";
-		$scope.giving.G_4 = "";
-		$scope.giving.G_5 = "5";
-		$scope.cloverGivingAmount = '500';
+		alert('12');
+		// $scope.giving={};
+		// $scope.giving.G_1 = "";
+		// $scope.giving.G_2 = "";
+		// $scope.giving.G_3 = "";
+		// $scope.giving.G_4 = "";
+		// $scope.giving.G_5 = "5";
+		// $scope.cloverGivingAmount = '500';
 		
-		$scope.paymentStep = 1;
+		// $scope.paymentStep = 1;
 		
-		$("#clover_first").show(1000);
-		$("#clover_second").hide(1000);
-        $("#show_giving_modal_clover").modal('show');
+		// $("#clover_first").show(1000);
+		// $("#clover_second").hide(1000);
+        // $("#show_giving_modal_clover").modal('show');
 	}
 	
 	

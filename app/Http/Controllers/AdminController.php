@@ -3744,18 +3744,18 @@ class AdminController extends Controller
 			// 	die ();
 			// }
 
-			if ($data ['P_5'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Tags is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-			if (strlen($data['P_5']) > 100) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Tags must be less then 100 characters.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data ['P_5'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Tags is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
+			// if (strlen($data['P_5']) > 100) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Tags must be less then 100 characters.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			// if (strlen($data['P_6']) > 100) {
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Barcode must be less then 100 characters.';
@@ -3840,7 +3840,7 @@ class AdminController extends Controller
 								'UNIT' => $data ['P_3'],
 								// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
 								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
-								'TAGS' => $data ['P_5'],
+								// 'TAGS' => $data ['P_5'],
 								// 'BARCODE' => $data ['P_6'],
 								// 'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
@@ -3927,7 +3927,7 @@ class AdminController extends Controller
 								'SUB_TITLE' => $data['P_2'],
 								'UNIT' => $data ['P_3'],
 								'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
-								'TAGS' => $data ['P_5'],
+								// 'TAGS' => $data ['P_5'],
 								'BARCODE' => $data ['P_6'],
 								'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
@@ -4263,24 +4263,24 @@ class AdminController extends Controller
 					die ();
 				}
 			}
-			if ($data['P_17'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Discount is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data['P_17'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Discount is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if ($data['P_17'] <= 0) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Discount must be greater then zero.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if ($data['P_18'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Discount type is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data['P_18'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Discount type is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if ($data['P_18'] != '' && $data['P_18'] == 'Percent') {
 				if($data['P_17'] < 0 || $data['P_17'] > 100){
 					$arrRes ['done'] = false;
@@ -4301,12 +4301,12 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['P_21']) > 100) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'SKU must be less then 100 characters.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if (strlen($data['P_21']) > 100) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'SKU must be less then 100 characters.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if (strlen($data['P_22']) > 100) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'External link must be less then 100 characters.';
@@ -4374,7 +4374,7 @@ class AdminController extends Controller
 								'DISCOUNT_TYPE' => $data['P_18'],
 								'SET_POINT' => $data['P_19'],
 								'QUANTITY' => $data['P_20'],
-								'SKU' => $data['P_21'],
+								// 'SKU' => $data['P_21'],
 								'EXTERNAL_LINK' => $data['P_22'],
 								'EXTERNAL_LINK_TEXT' => $data['P_23'],
 								'TAX' => $data['P_24'],
@@ -6301,18 +6301,18 @@ class AdminController extends Controller
 			// 	die ();
 			// }
 
-			if ($data ['P_5'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Tags is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-			if (strlen($data['P_5']) > 100) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Tags must be less then 100 characters.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data ['P_5'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Tags is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
+			// if (strlen($data['P_5']) > 100) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Tags must be less then 100 characters.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			// if (strlen($data['P_6']) > 100) {
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Barcode must be less then 100 characters.';
@@ -6338,18 +6338,18 @@ class AdminController extends Controller
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
-			if ($data['P_10'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Slug is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-			if (strlen($data['P_10']) > 100) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Slug must be less then 100 characters.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data['P_10'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Slug is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
+			// if (strlen($data['P_10']) > 100) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Slug must be less then 100 characters.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if ($data['P_12'] < 0 || $data['P_12'] > 100 ) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = "TAX Rate must be in between 0 to 100.";
@@ -7693,6 +7693,8 @@ class AdminController extends Controller
 	public function saveAdminTicketDetails(Request $request) {
 		$TicketsModel = new TicketsModel();
 		$OrderModel = new OrderModel();
+		$EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
 
 		$details = $_REQUEST ['details'];
 		$data = $details ['ticket'];
@@ -7833,6 +7835,41 @@ class AdminController extends Controller
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
 						);
+
+								// Getting data WRT MODULE_CODE
+				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('TICKET');
+
+				$message_username = str_replace("{User_Name}",$data ['T_3'],$emailConfigDetails['message']);
+
+				$htmlbody=	'<tr>
+								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+									<p>Hello '.$data ['T_3'].',</p><br>
+									'.$message_username.'
+								</td>
+							</tr>';
+		
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $data ['T_4'];//useremail
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "TICKET";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $data ['T_4'];//useremail
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "TICKET";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Ticket Created Successfully';

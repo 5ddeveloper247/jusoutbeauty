@@ -161,13 +161,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																<input type="number" class="form-control" id="p4" ng-model="bundle['P_4']" placeholder="Enter Minimum Purchase Quantity">
 															</div>
 														</div> --}}
-														<div class="col-sm-6">
+														{{-- <div class="col-sm-6">
 															<div class="form-group">
 																<label class="col-form-label" for="p6"><b>Tags</b> <span class="text-danger">*</span> </label> 
 																<input type="text" class="form-control" id="p5" ng-model="bundle['P_5']" placeholder="Tags"> 
 																<small>This is used for search.Customer Search by these Tags.</small>
 															</div>
-														</div>
+														</div> --}}
 													</div>
 													{{-- <div class="row">
 														<div class="col-sm-6">
@@ -217,12 +217,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														</div>
 													</div>
 													<div class="row">
-														<div class="col-sm-6">
+														{{-- <div class="col-sm-6">
 															<div class="form-group">
 																<label class="col-form-label" for="p10"><b>Slug</b> <span class="text-danger">*</span></label>
 																<input type="text" class="form-control" id="p10" ng-model="bundle['P_10']" placeholder="Slug">
 															</div>
-														</div>
+														</div> --}}
 														<div class="col-sm-6">
 															<div class="form-group">
 																<label class="col-form-label" for="p11"><b>Product Sub Sub Category</b></label>
@@ -230,6 +230,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																	ng-options="item as item.name for item in subSubCategoryLov track by item.id">
 										                        	<option value="">---SELECT---</option>
 										                        </select>
+															</div>
+														</div>
+														<div class="col-sm-6">
+															<div class="form-group">
+																<label class="col-form-label"><b>Inv. Quantity</b></label>
+																<input type="text" class="form-control" id="p16" ng-model="bundle['P_16']" placeholder="0">
 															</div>
 														</div>
 													</div>
@@ -255,12 +261,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																<input type="text" class="form-control" id="p15" ng-model="bundle['P_15']" placeholder="0">
 															</div>
 														</div>
-														<div class="col-sm-6">
-															<div class="form-group">
-																<label class="col-form-label"><b>Inv. Quantity</b></label>
-																<input type="text" class="form-control" id="p16" ng-model="bundle['P_16']" placeholder="0">
-															</div>
-														</div>
+														
 													</div>
 													<div class="row">
 														<div class="col-sm-12">

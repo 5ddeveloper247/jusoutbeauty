@@ -401,12 +401,12 @@
 
 				</div>
 			</div>
-			<div class="col-sm-6">
+			{{-- <div class="col-sm-6">
 				<label class="col-form-label" for="sku"><b>SKU</b> </label> <input
 					type="text" placeholder="SKU" id="sku" name="sku"
 					class="form-control">
 
-			</div>
+			</div> --}}
 											
 		</div>
 										

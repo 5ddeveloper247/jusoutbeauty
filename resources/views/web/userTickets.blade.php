@@ -132,7 +132,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="col-form-label" for="t3"><b>Username<span class="text-danger">*</span></b> </label> 
-													<input type="text" class="form-control bg-dark text-light" id="t3" ng-model="ticket['T_3']" placeholder="Username" value="" disabled>
+													<input type="text" class="form-control bg-dark text-light" id="t3" ng-model="ticket['T_3']" placeholder="Username" disabled>
 												</div>
 											</div>
 											<div class="col-sm-6">

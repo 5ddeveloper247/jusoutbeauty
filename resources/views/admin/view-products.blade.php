@@ -176,7 +176,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 	
 															</div>
 														</div> --}}
-														<div class="col-sm-6">
+														{{-- <div class="col-sm-6">
 															<div class="form-group">
 	
 																<label class="col-form-label" for="tags"><b>Tags</b> <span class="text-danger">*</span> </label> 
@@ -184,10 +184,10 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																<small>This is used for search.Customer Search by these Tags.</small>
 	
 															</div>
-														</div>
+														</div> --}}
 	
 													</div>
-													<div class="row">
+													{{-- <div class="row"> --}}
 														
 														{{-- <div class="col-sm-6">
 															<div class="form-group">
@@ -198,7 +198,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															</div>
 														</div> --}}
 	
-													</div>
+													{{-- </div> --}}
 	
 													{{-- <div class="row">
 														<div class="col-sm-4 col-6">
@@ -490,7 +490,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="discount"><b>Discount<span class="text-danger">*</span></b> </label>
+														<label class="col-form-label" for="discount"><b>Discount</b> </label>
 	
 														<div class="row">
 															<div class="col-sm-6">
@@ -524,21 +524,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											</div>
 	
 	
-											<div class="row">
-												{{-- <div class="col-sm-6">
+											{{-- <div class="row">
+												<div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-form-label" for="quantity"><b>Quantity<span class="text-danger">*</span></b> </label> 
 														<input type="number" min="0" step="1" id="p20" ng-model="product['P_20']" placeholder="Quantity"class="form-control">
 	
 													</div>
-												</div> --}}
+												</div>
 												<div class="col-sm-6">
 													<label class="col-form-label" for="sku"><b>SKU</b> </label>
 													<input type="text" placeholder="SKU" id="sku" ng-model="product['P_21']" class="form-control">
 	
 												</div>
 	
-											</div>
+											</div> --}}
 	
 											<!-- <div class="row">
 												<div class="col-sm-6">
@@ -945,9 +945,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 				<div class="row">
 					<div class="col-xl-12 col-xxl-12">
 						<div class="card">
-							<div class="card-header">
+							{{-- <div class="card-header">
 								<h4 class="card-title">Others</h4>
-							</div>
+							</div> --}}
 							<div class="card-body">
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs" role="tablist">

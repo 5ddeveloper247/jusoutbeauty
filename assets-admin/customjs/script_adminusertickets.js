@@ -84,7 +84,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		
 		$scope.editView = 0;
 		
-		$scope.getAllUserTicketslov();
+		$scope.getAllAdminUserTicketslov();
 	}
 	$scope.addNew = function(){
 		
