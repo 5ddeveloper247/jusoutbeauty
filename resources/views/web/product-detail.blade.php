@@ -425,7 +425,7 @@
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
                         <div class="primary-summary-inner">
-                            <h2 class="mb-0"><?= $productDetails['NAME'] ?></h2>
+                            <h2 class="mb-0 text-capitalize"><?= $productDetails['NAME'] ?></h2>
                             <p
                                 class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
@@ -667,7 +667,7 @@
                                             class="accordion accordion-01 border-md-0 border p-md-0">
                                             <div class="card-body p-0">
                                                 <div class="row " style="">
-                                                    <h2 class="col-12 mb-2 pb-8 text-center"
+                                                    <h2 class="col-12 mb-2 pb-8 text-center text-capitalize"
                                                         style="margin: 0 auto;"><?= $productDetails['SUB_TITLE'] ?>
                                                     </h2>
                                                     <div class="col-md-6 mb-6 mb-md-0">
@@ -784,7 +784,7 @@
                                                                             <?php foreach ($spotlightIngredients as $row){?>
                                                                             <div
                                                                                 class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" style="background-color:#57813a96">
-                                                                                <img class="spot-section-img" 
+                                                                                <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
@@ -915,8 +915,8 @@
                                                 <section style="background-color: #f38c7b;">
                                                     <div class="pb-10 pb-lg-8 py-8">
                                                         <div class="container container-xl">
-                                                            <h3 class="text-center mb-9" style="color: #fff;">How To
-                                                                Use: AM and PM</h3>
+                                                            <h2 class="text-center mb-9" style="color: #fff;">How To
+                                                                Use: AM and PM</h2>
                                                             <div class="row">
                                                                 <?php $i=1 ?>
                                                                 <?php if(isset($productUses) && !empty($productUses)){?>

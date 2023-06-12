@@ -28056,7 +28056,7 @@ button.accordion_inc {
 }
 
 .menu_ul a.nav-link.dropdown-toggle.p-0 {
-    font-size: 15px;
+    font-size: 16px;
 }
 
 @media (max-width: 480px) {
@@ -29603,7 +29603,7 @@ form.footer-formm .fa-phone:before {
 .footer-aboutus ul li {
     list-style: none;
 }
-.rab{ 
+.rab{
     background-position: 100%;
     padding-top: 200px !important;
     padding-bottom: 200px !important;

@@ -116,7 +116,7 @@
         .cursor-pointer{
             cursor: pointer;
         }
-        
+
     </style>
 </head>
 <script>
@@ -143,7 +143,7 @@
                 <div class="d-none d-xl-block">
                     <nav class="navbar navbar-expand-xl px-0 py-2 py-xl-0 row no-gutters">
                         <div class="col-xl-2">
-                            <a class="navbar-brand mr-0" href="{{ url('/home') }}"> 
+                            <a class="navbar-brand mr-0" href="{{ url('/home') }}">
                                 <img src="{{ url('/assets-web') }}/images/logo-black.png" alt="Jusout"
                                     style="position: relative;z-index: 999999">
                             </a>
@@ -173,7 +173,7 @@
                                                         Sub Categories</h4>
 
                                                     <?php $subCategories = $value['subCategories']; ?>
-														
+
 														<div class="dropdown-item">
                                                          	<a class="dropdown-link" href="{{session('site')}}/store">Shop All</a>
                                                       	</div>
@@ -408,7 +408,7 @@
                                                 <div class="col-2 h-100">
                                                     <?php $routines = $routine;?>
                                                     @if (!empty($routines))
-                                                        
+
                                                         <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 "
                                                             style="display: block;">ROUTINE BY NEEDS</h4>
                                                         @foreach ($routines as $routine)
@@ -417,13 +417,13 @@
                                                                 <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
                                                             </div>
                                                         @endif
-                                                        @endforeach  
-                                                    @endif   
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                                 <div class="col-2 h-100">
 
                                                     @if (!empty($routines))
-                                                        
+
                                                         <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 "
                                                             style="display: block;">ROUTINE BY AGE</h4>
                                                         @foreach ($routines as $routine)
@@ -432,11 +432,11 @@
                                                                 <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
                                                             </div>
                                                         @endif
-                                                        @endforeach  
-                                                    @endif   
+                                                        @endforeach
+                                                    @endif
 
                                                 </div>
-                                               
+
 
                                                 <div class="col-2 h-100"></div>
                                             </div>
@@ -446,7 +446,7 @@
                                     </div>
 
                                 </li>
-                                
+
                                 {{-- <li aria-haspopup="true" aria-expanded="false"
                                     class="nav-item dropdown-item-home dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5">
                                     <a class="nav-link p-0" href="{{ url('/become_a_partner') }}">
@@ -597,14 +597,14 @@
                         <a class="navbar-brand d-inline-block mx-auto" href="{{ url('home') }}"> <img
                                 src="{{ url('/assets-web') }}/images/logo-black.png" alt="Minimog">
                         </a>
-                        
+
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link px-3 py-0" href="javascript:void(0)" role="button" data-toggle="dropdown" aria-expanded="false">
                                 <i class="far fa-user-alt"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                             <?php if(session()->has('userId')){?>
-                                
+
                                     <a href="/site/userDashboard" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -612,9 +612,9 @@
                                         </svg>
                                         <span class="ml-2">Dashboard </span>
                                     </a>
-                                   
+
                             <?php } ?>
-                               
+
                                 <a class="dropdown-item ai-icon" href="{{ url('/wishlist') }}">
                                     <i class="far fa-star"></i>
                                     <span class="ml-2">Wishlist</span>
@@ -626,7 +626,7 @@
                                     <span class="numbermbl ml-1" id="cartHeaderCountMbl">0</span>
                                 </a>
                                 <?php if(session()->has('userId')){?>
-                                    
+
                                         <a href="/site/userlogout" class="dropdown-item ai-icon">
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -635,7 +635,7 @@
                                             </svg>
                                             <span class="ml-2">Logout </span>
                                         </a>
-                                    
+
                                 <?php }else{ ?>
                                     <a href="{{ session('site') }}/login" class="dropdown-item ai-icon">
                                         <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -645,7 +645,7 @@
                                         </svg>
                                         <span class="ml-2">Login </span>
                                     </a>
-                                    
+
                                     <?php  } ?>
                             </div>
                         </li>

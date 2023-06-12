@@ -23,7 +23,7 @@ use App\Http\Middleware\AdminAuth;
 //     return view('welcome');
 // });
 
-session()->put('site', '/site');
+session()->put('site', '/jusoutbeauty');
 
 cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
 cookie()->queue(cookie()->forever('site_url', url('/home')));

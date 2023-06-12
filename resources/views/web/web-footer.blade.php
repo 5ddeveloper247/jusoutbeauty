@@ -39,7 +39,7 @@
         <div class="container container-xxl container-footer">
             <div class="row align-items-center first-rw">
                 <div class="col-lg-12 mb-4 mb-lg-0 text-center footer-links-account">
-                    <h2 class="fs-25 mb-4 font-weight-500 footer-text-white" >Yu Jus Enough and Let's Be
+                    <h2 class="mb-4 footer-text-white" >Yu Jus Enough and Let's Be
                         Bestie</h2>
                     <p class="lh-2 mb-4 fs-14 footer-text-white">Don't Mis Out-All the exclusives' events,
                         skincare tips, Special Offers straight to yur inbox</p>

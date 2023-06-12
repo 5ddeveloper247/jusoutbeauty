@@ -1,4 +1,4 @@
-<?php 
+<?php
 // print_r('<pre>');
 // print_r($subCategoriesList);
 // exit();
@@ -19,11 +19,11 @@
 	}
 	.nut-img-2{
 		height: 33.6rem;
-    	
+
 	}
 	.product_image{
 		margin-top: 10px;
-	} 
+	}
 	.opacity-active{
 		opacity: 0.7;
 	}
@@ -35,10 +35,10 @@
 	/* @media only screen and (min-width: 1749px){
 		.nut-img-2{
 			height: 53rem;
-		}    
+		}
 		.product_image{
 			margin-top: 28px;
-		} 
+		}
 	} */
 	.cursor-pointer{
       cursor: pointer;
@@ -46,11 +46,11 @@
 </style>
 <main id="content" ng-app="project1">
 	<div class="" ng-controller="projectinfo1">
-	
+
 		<section class="pt-10 pt-lg-10 py-10 mob_sec">
 			<div class="container">
 				<div class="text-center mw-750 mx-auto">
-					<h2 class="text-center font-weight-600 mb-3" style="font-size: 55px;">
+					<h2 class="text-center mb-3">
 						JUSOUTBEAUTY</h2>
 					<p>SUPPLEMENTS</p>
 					<p>A COLLECTION OF SCIENCE-DRIVEN SUPPLEMENTS TO SUPPORT SKIN HEALTH
@@ -58,17 +58,17 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="pt-10 pt-lg-13 pt-10 pt-lg-13 pt-11 pt-lg-12 py-8 site_color">
 			<div class="text-center mw-730 mx-auto">
 				<img src="{{url('/assets-web')}}/images/supplement.png" alt=""><br>
 				<br>
-				<h1 class="text-white text-center mb-0 nu-cate">Nutrition Categories</h1>
+				<h2 class="text-white text-center mb-0 nu-cate">Nutrition Categories</h2>
 			</div>
-		
+
 			<div class="pt-5 pt-lg-3">
 				<div class="container container-custom nutrition-section cursor-pointer" >
-		
+
 					<div class="row">
 					<?php if(isset($subCategoriesList) && !empty($subCategoriesList)){?>
 						<?php foreach($subCategoriesList as $filter){?>
@@ -90,23 +90,23 @@
 								</div>
 							<?php }?>
 						<?php }?>
-						
+
 					</div>
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="pt-5 pt-lg-5 py-8 sit-col" id="nutrition-section-id">
-			
+
 			<div class="pt-0 pt-lg-0">
 				<div class="container container-custom nutrition-section" >
 					<div class="text-center mw-730 mx-auto">
 						<img src="{{url('/assets-web')}}/images/pro-gif.png" alt="" style="height
 						70;width:70px;"><br>
-						
-						<h1 class="pro-col text-center mb-6 nu-cate" style="color:#57813a ">Products</h1>
+
+						<h2 class="pro-col text-center mb-6 nu-cate" style="color:#57813a ">Products</h2>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-sm-6 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts" style="@{{row.styleBgColor}}">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
@@ -120,7 +120,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -158,7 +158,7 @@
 						</div>
 					</div> -->
 				</div>
-				
+
 			</div>
 		</section> --}}
 		<!-- <section class="pt-0 pt-lg-0 py-0" id="gut_health_img" style="display: none">
@@ -236,7 +236,7 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="pt-0 pt-lg-0 py-0" id="mood_img" style="display: none">
 			<div class="container-fluid product_inc">
 				<div class="row">
@@ -312,7 +312,7 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="pt-0 pt-lg-0 py-0" id="powder_img" style="display: none">
 			<div class="container-fluid product_inc">
 				<div class="row">
@@ -397,13 +397,13 @@
 
     }
 	$(document).on('click', '.filter-click', function() {
-		
+
 		$(".filter-click").addClass('opacity-active');
 		$(this).removeClass('opacity-active');
 	});
 
 	$( document ).ready(function() {
-    	setTimeout(function() { 
+    	setTimeout(function() {
 			if(flag == 'SUB_CATEGORY'){
 				$([document.documentElement, document.body]).animate({
 					scrollTop: $("#nutrition-section-id").offset().top
@@ -414,6 +414,6 @@
 			}
     	}, 1000);
 	});
-	
+
 </script>
 <script src="{{ url('/assets-web') }}/customjs/script_userstorelistingnutrition.js?v={{time()}}"></script>

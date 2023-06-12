@@ -27,6 +27,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         width: 6vw;
 
     }
+    .custom-h2{
+        font-size: 36px;
+        text-transform: capitalize;
+    }
     .overlay {
         position: absolute;
         top: 0;
@@ -588,7 +592,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 							<?php foreach ($bundleLines as $line){ ?>
 								<li class="nav-item"><a
-									class="nav-link <?php echo $i == 0 ? 'active show': '';?> font-weight-600 px-0 pb-3 mr-md-10 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
+									class="nav-link <?php echo $i == 0 ? 'active show': '';?> custom-h2 px-0 pb-3 mr-md-10 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
 									id="tab_<?= $line['BUNDLE_LINE_ID'];?>" data-toggle="pill"
 									href="#pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" role="tab"
 									aria-controls="pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" aria-selected="false"><?= $line['NAME']; ?></a></li>
@@ -673,7 +677,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											<div id="accordion-style-01" class="accordion accordion-01 border-md-0 border p-md-0">
 												<div class="card-body p-0">
 													<div class="row mb-10">
-														<h5 class="col-12 mb-2 font-weight-500 fs-24 pb-8 text-center" style="margin: 0 auto;"><?= $line['SUB_TITLE']; ?></h5>
+														<h2 class="col-12 mb-2 pb-8 text-center" style="margin: 0 auto;"><?= $line['SUB_TITLE']; ?></h2>
 														<div class="col-md-6 mb-6 mb-md-0">
 															<?php if(isset($images[0]['downPath'])){?>
 																<img src="<?= $images[0]['downPath']; ?>" alt="Image" class="prod_img_detail_acc img1-section2 fadeInLeft animated img-w25">
@@ -684,7 +688,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 														</div>
 														<div class="col-md-6 pt-10 scroll-to-see">
-														<h5 class="mb-2 font-weight-500 fs-20"><?= $line['DESCRIPTION_TITLE']; ?></h5>
+														<h2 class="mb-2 font-weight-500 fs-20"><?= $line['DESCRIPTION_TITLE']; ?></h2>
 														<?= $line['DESCRIPTION']; ?>
 														</div>
 													</div>
