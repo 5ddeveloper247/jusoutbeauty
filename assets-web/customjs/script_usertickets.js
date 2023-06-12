@@ -93,7 +93,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.ticket.ID = '';
 		$scope.ticket.T_1 = '';
 		$scope.ticket.T_2 = '';
-		$scope.ticket.T_3 = '';
+		$scope.ticket.T_3 = $scope.ticket.userName;
 		$scope.ticket.T_4 = '';
 		$scope.ticket.T_5 = '';
 		$scope.ticket.T_6 = '';
@@ -101,7 +101,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.ticket.T_8 = '';
 		
 		$('#t5').val($scope.ticket.T_5);
-		$('#t3').val($scope.ticket.userName);
+		// $('#t3').val($scope.ticket.userName);
 		
 		$scope.editView = 1;
 	}

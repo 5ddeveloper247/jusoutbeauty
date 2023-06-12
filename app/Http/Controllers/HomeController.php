@@ -1093,6 +1093,8 @@ class HomeController extends Controller
 
    	public function saveUserReview(Request $request) {
    		$ReviewsModel = new ReviewsModel();
+		$EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
 
    		$details = $_REQUEST ['details'];
    		$data = $details ['review'];
@@ -1181,6 +1183,41 @@ class HomeController extends Controller
    								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
    						)
    						);
+
+						// Getting data WRT MODULE_CODE
+				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('REVIEW');
+
+				$message_username = str_replace("{User_Name}",$data ['R_10'],$emailConfigDetails['message']);
+
+				$htmlbody=	'<tr>
+								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+									<p>Hello '.$data ['R_10'].',</p><br>
+									'.$message_username.'
+								</td>
+							</tr>';
+		
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $data ['R_11'];//useremail
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "REVIEW";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $data ['R_11'];//useremail
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "REVIEW";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
    				$arrRes ['done'] = true;
    				$arrRes ['msg'] = 'Review Posted Successfully...';
@@ -1278,6 +1315,8 @@ class HomeController extends Controller
 
 	public function saveUserQuestion(Request $request) {
    		$QuestionModel = new QuestionModel();
+		$EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
 
    		$details = $_REQUEST ['details'];
    		$data = $details ['question'];
@@ -1359,6 +1398,40 @@ class HomeController extends Controller
    								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
    						)
    						);
+				// Getting data WRT MODULE_CODE
+				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('QUESTION');
+
+				$message_username = str_replace("{User_Name}",$data ['Q_1'],$emailConfigDetails['message']);
+
+				$htmlbody=	'<tr>
+								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+									<p>Hello '.$data ['Q_2'].',</p><br>
+									'.$message_username.'
+								</td>
+							</tr>';
+		
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $data ['Q_2'];//useremail
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "QUESTION";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $data ['Q_2'];//useremail
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "QUESTION";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
    				$arrRes ['done'] = true;
    				$arrRes ['msg'] = 'Question Posted Successfully...';
@@ -2721,6 +2794,8 @@ class HomeController extends Controller
    	public function saveTicketDetails(Request $request) {
    		$TicketsModel = new TicketsModel();
    		$OrderModel = new OrderModel();
+		$EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
 
    		$details = $_REQUEST ['details'];
    		$data = $details ['ticket'];
@@ -2861,6 +2936,41 @@ class HomeController extends Controller
    								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
    						)
    						);
+
+				// Getting data WRT MODULE_CODE
+				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('TICKET');
+
+				$message_username = str_replace("{User_Name}",$data ['T_3'],$emailConfigDetails['message']);
+
+				$htmlbody=	'<tr>
+								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+									<p>Hello '.$data ['T_3'].',</p><br>
+									'.$message_username.'
+								</td>
+							</tr>';
+		
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $data ['T_4'];//useremail
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "TICKET";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+		
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $data ['T_4'];//useremail
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "TICKET";
+		
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
    				$arrRes ['done'] = true;
    				$arrRes ['msg'] = 'Ticket Created Successfully';
@@ -3020,6 +3130,9 @@ class HomeController extends Controller
    		echo json_encode ( $arrRes );
    	}
 	public function saveSelfie(Request $request){
+		$EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
+
 		$username= $request->name;
 		$username_email= $request->email;
 
@@ -3039,7 +3152,7 @@ class HomeController extends Controller
 
 			$fullpath = $path."/".$namefile.".".$file_ext;
 			$downpath = $downpath."/".$namefile.".".$file_ext;
-dd($fullpath);
+// dd($fullpath);
 			if (!file_exists($path)) {
 				mkdir($path, 0777, true);
 
@@ -3065,6 +3178,38 @@ dd($fullpath);
 				}
 			}
 		}
+
+		$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SHADEFINDERSELFI');
+		$message_username = str_replace("{User_Name}",$username,$emailConfigDetails['message']);
+		$htmlbody=	'<tr>
+						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+							<p>Hello '.$username.',</p><br>
+							'.$message_username.'
+						</td>
+	        		</tr>';
+
+
+		$email_details['to_id'] = '';
+		$email_details['to_email'] = $username_email;
+		$email_details['from_id'] = 1;
+		$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+		$email_details['subject'] = $emailConfigDetails['subject'];
+		$email_details['message'] = "";
+		$email_details['logo'] = $emailConfigDetails['logo'];
+		$email_details['module_code'] = "SHADEFINDERSELFI";
+
+		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+
+		$email_details['to_id'] = '';
+		$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+		$email_details['from_id'] = 1;
+		$email_details['from_email'] = $username_email;
+		$email_details['subject'] = $emailConfigDetails['subject'];
+		$email_details['message'] = "";
+		$email_details['logo'] = $emailConfigDetails['logo'];
+		$email_details['module_code'] = "SHADEFINDERSELFI";
+
+		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 		$arrRes ['done'] = true;
    		$arrRes ['msg'] = 'Selfie Data added successfully.';
    		echo json_encode ( $arrRes );
@@ -3073,6 +3218,10 @@ dd($fullpath);
 	}
 
 	public function saveProductSelfie(Request $request){
+
+		$EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
+
 		$details = $_REQUEST ['details'];
 		$data = $details['selfi'];
 		$productId = $data ['productId'];
@@ -3129,12 +3278,46 @@ dd($fullpath);
 			// 		}
 			// 	}
 			// }
+			$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SELFIPRODUCT');
+
+			$message_username = str_replace("{User_Name}",$name,$emailConfigDetails['message']);
+
+			$htmlbody=	'<tr>
+							<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+								<p>Hello '.$name.',</p><br>
+								'.$emailConfigDetails['message'].'
+							</td>
+						</tr>';
+
+
+			$email_details['to_id'] = '';
+			$email_details['to_email'] = $email;
+			$email_details['from_id'] = 1;
+			$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+			$email_details['subject'] = $emailConfigDetails['subject'];
+			$email_details['message'] = "";
+			$email_details['logo'] = $emailConfigDetails['logo'];
+			$email_details['module_code'] = "SELFIPRODUCT";
+
+			$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+
+			$email_details['to_id'] = '';
+			$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+			$email_details['from_id'] = 1;
+			$email_details['from_email'] = $email;
+			$email_details['subject'] = $emailConfigDetails['subject'];
+			$email_details['message'] = "";
+			$email_details['logo'] = $emailConfigDetails['logo'];
+			$email_details['module_code'] = "SELFIPRODUCT";
+
+			$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+
 			$arrRes ['done'] = true;
 			$arrRes ['ID'] = $selfielastID;
 
-			   $arrRes ['msg'] = 'Product Selfie Data Added Successfully. Wait For Admin Approval';
-			   echo json_encode ( $arrRes );
-			   die ();
+			$arrRes ['msg'] = 'Product Selfie Data Added Successfully. Wait For Admin Approval';
+			echo json_encode ( $arrRes );
+			die ();
 		}
 
 

@@ -784,7 +784,7 @@
                                                                             <?php foreach ($spotlightIngredients as $row){?>
                                                                             <div
                                                                                 class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" style="background-color:#57813a96">
-                                                                                <img class="spot-section-img"
+                                                                                <img class="spot-section-img" 
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
@@ -1007,7 +1007,7 @@
                 </div>
                 <?php if(isset($productselfi) && !empty($productselfi)){?>
                 <div class="slick-slider slick-sliderproductselfi" id="instaFeed_html"
-                    data-slick-options='{"slidesToShow": 4,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":true,"responsive":[
+                    data-slick-options='{"slidesToShow": 4,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":true,"arrows":false,"responsive":[
                     {"breakpoint": 1400,"settings": {"slidesToShow": 4}},
                     {"breakpoint": 1200,"settings": {"slidesToShow": 3}},
                     {"breakpoint": 992,"settings": {"slidesToShow": 2}},
@@ -1036,14 +1036,15 @@
                                 </div>
                             <?php }else{ ?>
                                 <div class="box px-1" data-animate="fadeInUp">
-                                    <a href="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>"
+                                    <a target="_blank" href="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>"
                                         class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 
-                                        <video width="400" controls>
-                                            <source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>" type="video/mp4">
-                                            <source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>" type="video/ogg">
+                                        {{-- <video width="400" controls>
+                                            <source src="" type="video/mp4">
+                                            <source src="" type="video/ogg">
                                             
-                                        </video>
+                                        </video> --}}
+                                        <img style="height: 100%;" src="{{ url('/assets-admin') }}//images/video.png" alt="">
                                         <div class="card-img-overlay d-flex align-items-center justify-content-center content-change">
                                             <span class="d-inline-flex align-items-center justify-content-center w-50px h-50px bg-white text-primary rounded-circle fs-24 content-change" style="position: absolute; top: 25%;"> 
                                                 <i class="fa fa-play"></i>
@@ -1105,7 +1106,7 @@
                                     onclick="form2();" style="">
                                     <img src="{{ url('/assets-admin') }}/images/admin/upload.svg"
                                         alt="" width="50">
-                                    <p>Upload Video</p>
+                                    <p>Upload Image/Video</p>
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="row" id="p_att">

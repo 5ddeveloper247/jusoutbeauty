@@ -1,15 +1,16 @@
 jQuery(document).ready(function() {
     $(".summernote").summernote(
         {
-        // fontSizes: ['8', '9', '10', '11', '12', '14', '18'],
+        fontSizes: ['8', '9', '10', '11', '12', '14','16','18','20'
+        ,'22','23','24','26','28','30','32','33','34','36'],
         // height: 190,
         // minHeight: null,
         // maxHeight: null,
         // focus: !1,
         // fontsize: fontsizes
         // fontSizes: ['8', '9', '10', '11', '12', '14', '18'],
-        fontNames: ['Jost','Cavolini', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Merriweather'],
-  fontNamesIgnoreCheck: ['Cavolini'],
+        fontNames: ['Cavolini'],
+        fontNamesIgnoreCheck: ['Cavolini'],
         // styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
         toolbar: [
             // [groupName, [list of button]]
