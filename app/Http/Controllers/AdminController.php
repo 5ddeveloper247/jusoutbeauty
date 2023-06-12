@@ -611,6 +611,15 @@ class AdminController extends Controller
 
 		$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
+		if($getLastSeq != null){
+					
+			$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+			
+		}else{
+			
+			$getLastSeq=1;
+		}
+
 		$result = DB::table ( 'jb_product_tbl' )
 				->insertGetId (
 					array ( 'USER_ID' => $userId,
@@ -620,7 +629,7 @@ class AdminController extends Controller
 							'UNIT' => '200',
 							'UNIT_PRICE' => '4000',
 							'QUANTITY' => '200',
-							'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+							'SEQ_NUM' => $getLastSeq,
 							// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
 							// 'TAGS' => $data ['P_5'],
 							// 'BARCODE' => $data ['P_6'],
@@ -2200,10 +2209,20 @@ class AdminController extends Controller
 				}
 
                 $getLastSeq = DB::table ( 'jb_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
-                // dd($getLastSeq);
+
+				if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
+                
+
 				$result = DB::table ( 'jb_category_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
-                                'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+                                'SEQ_NUM' => $getLastSeq,
 								'CATEGORY_NAME' => $data['C_1'],
 								'STATUS' => 'inactive',
 								'CREATED_BY' => $userId,
@@ -2349,9 +2368,18 @@ class AdminController extends Controller
 
                 $getLastSeq = DB::table ( 'jb_sub_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
+				if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
+
 				$result = DB::table ( 'jb_sub_category_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
-                                'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+                                'SEQ_NUM' => $getLastSeq,
 								'CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
 								'NAME' => $data['C_2'],
 								'STATUS' => 'active',
@@ -2479,9 +2507,19 @@ class AdminController extends Controller
 					die ();
 				}
                 $getLastSeq = DB::table ( 'jb_sub_sub_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
+
+				if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
+
 				$result = DB::table ( 'jb_sub_sub_category_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
-                                'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+                                'SEQ_NUM' => $getLastSeq,
 								'SUB_CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
 								'NAME' => $data['C_2'],
 								'STATUS' => 'active',
@@ -2628,13 +2666,21 @@ class AdminController extends Controller
 
 				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
+				if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
 
 				$result = DB::table ( 'jb_product_features_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'FEATURE_NAME' => $data ['P_1'],
 								'FEATURE_DESCRIPTION' => base64_encode($data['P_4']),
 								'STATUS' => 'active',
-								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+								'SEQ_NUM' => $getLastSeq,
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
 								'UPDATED_BY' => $userId,
@@ -2844,13 +2890,21 @@ class AdminController extends Controller
 			if ($data ['ID'] == '') {
 
 				$getLastSeq = DB::table ( 'jb_ingredient_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
-
+				
+                if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
 
 				$result = DB::table ( 'jb_ingredient_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
 								'QUANTITY' => $data['P_2'],
-								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+								'SEQ_NUM' => $getLastSeq,
 								'CATEGORY' => $data['P_3'],
 								'DESCRIPTION' => base64_encode($data['P_4']),
 								'STATUS' => 'active',
@@ -3211,11 +3265,20 @@ class AdminController extends Controller
 
 				$getLastSeq = DB::table ( 'jb_shades_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
+				if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
+
 				$result = DB::table ( 'jb_shades_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
 								'DESCRIPTION' => base64_encode($data['P_2']),
-								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+								'SEQ_NUM' => $getLastSeq,
 								'STATUS' => 'active',
 								'DATE' => date ( 'Y-m-d H:i:s' ),
 								'CREATED_BY' => $userId,
@@ -3832,14 +3895,21 @@ class AdminController extends Controller
 
 				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
-
+				if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
 				$result = DB::table ( 'jb_product_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'NAME' => $data['P_1'],
 								'SUB_TITLE' => $data['P_2'],
 								'UNIT' => $data ['P_3'],
 								// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
-								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+								'SEQ_NUM' => $getLastSeq,
 								// 'TAGS' => $data ['P_5'],
 								// 'BARCODE' => $data ['P_6'],
 								// 'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
@@ -6394,11 +6464,19 @@ class AdminController extends Controller
 
 				$getLastSeq = DB::table ( 'jb_bundle_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
+				if($getLastSeq != null){
+					
+					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
+					
+				}else{
+					
+				    $getLastSeq=1;
+				}
 
 				$result = DB::table ( 'jb_bundle_product_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'NAME' => $data['P_1'],
-								'SEQ_NUM' => ($getLastSeq->SEQ_NUM)+1,
+								'SEQ_NUM' => $getLastSeq,
 								'SUB_TITLE' => $data['P_2'],
 								'UNIT' => $data ['P_3'],
 								'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
