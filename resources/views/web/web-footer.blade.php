@@ -1101,6 +1101,7 @@
      }
 
 </script>
+
 <script>
     function informationflag($text){
         localStorage.setItem("information", $text);

@@ -175,7 +175,7 @@
             <div class="col-xl-12">
               <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
                 <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Products</h4>
-                <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a>
+                <a href="{{ url('view-products') }}" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a>
               </div>
               <div class="testimonial-one owl-carousel">
                 @forelse ($mostSaledItems as $item)
@@ -503,7 +503,7 @@
             <div class="col-xl-12">
               <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
                 <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Admin Users</h4>
-                <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a>
+                {{-- <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a> --}}
               </div>
             </div>
         
@@ -516,7 +516,7 @@
                   <div class="card text-center">
                     <div class="card-body">
                       <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
-                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">{{ $AdminUser->USER_NAME }}</a></h6>
+                      <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">{{ $AdminUser->FIRST_NAME }} {{ $AdminUser->LAST_NAME }}</a></h6>
                       <span class="text-primary">3 Roles</span>
                     </div>
                   </div>

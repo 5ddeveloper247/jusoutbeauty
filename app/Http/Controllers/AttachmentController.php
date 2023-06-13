@@ -384,7 +384,7 @@ class AttachmentController extends Controller
 				// 	print(json_encode(array(03)));
 				// 	exit;
 				// }else
-				list ( $width, $height ) = getimagesize ( $_FILES['uploadattl']['tmp_name'] );
+				list ( $width, $height ) = getimagesize ( $_FILES['uploadatt2']['tmp_name'] );
 
 				if ($width < "620" || $height < "620") {
 

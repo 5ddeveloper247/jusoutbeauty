@@ -60,7 +60,7 @@ class User extends Authenticatable
 
         $AdminUsers = DB::table('fnd_user_tbl')
                            ->where('USER_TYPE','admin')
-                           ->select('USER_NAME')
+                           ->select('FIRST_NAME','LAST_NAME')
                            ->get();
         
         return isset($AdminUsers) ? $AdminUsers : null;

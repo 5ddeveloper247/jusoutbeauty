@@ -114,8 +114,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								<div class="tab-content tabcontent-border">
 									<div class="tab-pane fade show active" id="basic_info" role="tabpanel">
 										<div class="pt-4">
-											<div class="form-validation">
-												<form class="form-valide" action="#" method="post">
+											{{-- <div class="form-validation"> --}}
+												<form class="form-valide" action="#" method="post" autocomplete="off">
 
 													<div class="row">
 														<div class="col-sm-6">
@@ -141,7 +141,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="form-group">
 	
 																<label class="col-form-label" for="userrole"><b>User Role</b>  <span class="text-danger">*</span>  </label> 
-																<input type="text" class="form-control" id="userrole" ng-model="user['UserRole']" placeholder="Enter User Role"  autocomplete="off">
+																<input type="text" class="form-control" id="userrole" ng-model="user['UserRole']" placeholder="Enter User Role" role="presentation"  autocomplete="off">
 	
 															</div>
 														</div>
@@ -160,7 +160,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="form-group">
 	
 																<label class="col-form-label" for="name"><b>Email</b>  <span class="text-danger">*</span>  </label> 
-																<input type="email" class="form-control" id="email" ng-model="user['EmailAddress']" placeholder="Enter Email Address"  autocomplete="off">
+																<input type="email" class="form-control" id="email" ng-model="user['EmailAddress']" placeholder="Enter Email Address" role="presentation"  autocomplete="off">
 	
 															</div>
 														</div>
@@ -171,8 +171,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="form-group">
 	
 																<label class="col-form-label" for="unit"><b>Password</b> <span class="text-danger">*</span>   </label>
-																<input type="password" class="form-control" id="password" ng-model="user['Password']" placeholder="Enter Password">
-	
+																<input type="password" name="new-password" class="form-control" id="password" ng-model="user['Password']" placeholder="Enter Password" autocomplete="new-password">
 															</div>
 														</div>
 														<div class="col-sm-6">
@@ -195,7 +194,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 													</div>
 
 												</form>
-											</div>
+											{{-- </div> --}}
 										</div>
 									</div>
 									
@@ -318,6 +317,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             Content body end
         ***********************************-->
     
-    
+    <script>
+		// $('input[name="address"]').attr('autocomplete','none');
+	</script>
 	<script src="{{ url('/assets-admin') }}/customjs/script_adminusercontrol.js?v={{time()}}"></script>
     

@@ -189,6 +189,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
                 $("#firstname").val($scope.user.FirstName).trigger('change');
 				$("#secondname").val($scope.user.LastName).trigger('change');
 				$("#userrole").val($scope.user.UserRole).trigger('change');
+				$("#phonenumber").val($scope.user.PhoneNumber).trigger('change');
 				$("#email").val($scope.user.EmailAddress).trigger('change');
 				$("#password").val($scope.user.Password).trigger('change');
 				$("#confirmpassword").val($scope.user.ConfirmPassword).trigger('change');

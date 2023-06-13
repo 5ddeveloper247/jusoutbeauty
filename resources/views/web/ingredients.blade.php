@@ -440,7 +440,7 @@
             <div class="row smile-smart-card">
                 @if ($ingredients != null)
                 @foreach ($ingredients as $ingredient)
-                <div class="col-sm-3 col-5">
+                <div class="col-sm-3 col-5 mb-10">
                     <div class="card-ing">
                         <div class="main-content">
                             <div class="smile-smart-card-svg">

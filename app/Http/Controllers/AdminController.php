@@ -9040,9 +9040,9 @@ class AdminController extends Controller
 			}
 
 			// Phone number validation
-			if (!preg_match('/^\d{10}$/',$details['user']['PhoneNumber'])) {
+			if (!preg_match('/^[+]?[1-9][0-9]{9,14}$/',$details['user']['PhoneNumber'])) {
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Invalid PhoneNumber Format';
+				$arrRes ['msg'] = 'Phone Number Must Be Between 9 to 15';
 				echo json_encode ( $arrRes );
 				die ();
 			}
