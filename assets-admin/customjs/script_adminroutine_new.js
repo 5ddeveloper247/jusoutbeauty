@@ -137,6 +137,13 @@ $scope.getroutinetypes = function(){
 
 
 	$scope.getSubCategoriesWrtCategory = function(){
+		if($scope.product.P_8 == null ){
+			$scope.subcategorylov = '';
+			$scope.subsubcategorylov = '';
+			$scope.productlov = '';
+			return false;
+			
+		 }
 		
 		if($scope.product.P_8 != null){
 			var data = {};
@@ -144,7 +151,6 @@ $scope.getroutinetypes = function(){
 		    data.userId = userId;
 		    
 	    	var temp = $.param({details: data});
-
 	    	
 			$http({
 				data: temp+"&"+$scope.tokenHash,
@@ -156,6 +162,8 @@ $scope.getroutinetypes = function(){
 			}).success(function(data, status, headers, config) {
 					
 				$scope.subcategorylov = data.subCategory;
+				$scope.product.P_10 = '';
+				$scope.subsubcategorylov = '';
 				$scope.productlov=data.product;
 
 				setTimeout(function(){
@@ -468,9 +476,16 @@ $scope.getroutinetypes = function(){
 	 $scope.checksteps = function(){
 		
 		 var data = {};  
+		 console.log($scope.product.P_7);
+		 if($scope.product.P_7 == null){
+			$('.step_show').hide();
+			return false;
+			
+		 }
 		 data.routinetypeid = $scope.product.P_7;
 		 // data.typeid= $scope.routinename.ID;
-		 data.typeid=$scope.routinename.ID;
+		 data.routineid=$scope.routinename.ID;
+		//  data.typeid=$scope.routinename.ID;
 		 data.userId = userId;
 		 var temp = $.param({details: data});
 
@@ -516,6 +531,8 @@ $scope.getroutinetypes = function(){
 			 $scope.product.P_12="";
 			 $scope.product.P_13="";
 			 $scope.product.P_9="";
+			 $scope.product.P_7="";
+			 $scope.product.P_8="";
 			 $scope.product.P_10="";
 
              $('#RoutineTypeStepsModal').modal('show');
@@ -678,7 +695,7 @@ $scope.getroutinetypes = function(){
 			var data = {};
 		     
 			data.stepid = $('#step_remove_id').val();
-		   //  data.typeid= $scope.routinename.ID;
+		    data.routineId= $scope.routinename.ID;
 			data.userId = userId;
 			var temp = $.param({details: data});
 	   $http({
@@ -730,7 +747,8 @@ $scope.getroutinetypes = function(){
 		 data.routinetype = $scope.product;
 		 data.typeid= $scope.routinename.ID;
 		 data.userId = userId;
-		 
+		 data.mainRoutine = $scope.routinename.ID;
+		 console.log(data);
 		 var temp = $.param({details: data});
 	$http({
 		data: temp+"&"+$scope.tokenHash, 
@@ -742,26 +760,28 @@ $scope.getroutinetypes = function(){
 	}).success(function(data, status, headers, config) {
 			
 		if(data.done == true || data.done == 'true'){
-
 			
-			
+			if ($.fn.DataTable.isDataTable("#steps_table")) {
+				$('#steps_table').DataTable().clear().destroy();
+			}
 			// $scope.getTypeNameLov();
 			$scope.Steps=data.steps;
+			console.log(data.steps);
+			setTimeout(function(){
+				$('#steps_table').DataTable( {
+					order: [],
+					aLengthMenu: [
+								  [10, 25, 50, 100, 200, -1],
+								  [10, 25, 50, 100, 200, "All"]
+							  ]
+				} );
+			}, 500);
+			
 			$('#RoutineTypeStepsModal').modal('hide');
 			$scope.product.P_7 ="";
 			toastr.success(data.msg, '', {timeOut: 3000});
 
-			setTimeout(function(){
-			  $('#steps_table').DataTable().destroy();
-				
-			   $('#steps_table').DataTable( {
-				order: [],
-				aLengthMenu: [
-							  [10, 25, 50, 100, 200, -1],
-							  [10, 25, 50, 100, 200, "All"]
-						  ]
-			} );
-		   }, 500);
+			
 
 			// $scope.routinename.ID = data.ID;
 //				window.location = data.redirect_url;
@@ -910,8 +930,8 @@ $scope.getroutinetypes = function(){
 				  if(data.alltypenamedata){
 					$scope.routinetypedata=data.alltypenamedata;
 				  }
-				  if(data.steps){
-					$scope.Steps=data.steps;
+				  if(data.getRoutineSteps){
+					$scope.Steps=data.getRoutineSteps;
 				  }
 				 console.log(data);
 				

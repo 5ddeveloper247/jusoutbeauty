@@ -10,15 +10,15 @@ use DateTime;
 class TypeName extends model
 {
       
-    protected $table="jb_type_name_tbl";
+    protected $table="jb_routine_type_tbl";
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
       protected $fillable = [
-          'NAME_ID',
-          'TYPE_ID',
+          'ROUTINETYPE_ID',
+        //   'TYPE_ID',
           'TYPE_NAME',
           'DATE',
            'CREATED_BY',
@@ -31,15 +31,15 @@ class TypeName extends model
       
        $typeid= $id;
 
-		$result = DB::table('jb_type_name_tbl as a')->select('a.*')
+		$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
 		->where('a.STATUS','active')
-		->where('a.TYPE_ID', $typeid)
-		->orderBy('a.NAME_ID','desc')
+		// ->where('a.TYPE_ID', $typeid)
+		->orderBy('a.ROUTINETYPE_ID','desc')
 		->get();
 		 
 		$i=0;
 		foreach ($result as $row){
-		   $arrRes[$i]['id'] = $row->NAME_ID;
+		   $arrRes[$i]['id'] = $row->ROUTINETYPE_ID;
 		   $arrRes[$i]['name'] = $row->TYPE_NAME;
          $arrRes[$i]['created_at'] = $row->CREATED_ON;
 		   $i++;
@@ -55,15 +55,15 @@ class TypeName extends model
 		// $details = $_REQUEST ['details'];
 		$typeid= $typeid;
 
-		$result = DB::table('jb_type_name_tbl as a')->select('a.*')
+		$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
 		->where('a.STATUS','active')
-		->where('a.TYPE_ID', $typeid)
-		->orderBy('a.NAME_ID','desc')
+		// ->where('a.TYPE_ID', $typeid)
+		->orderBy('a.ROUTINETYPE_ID','desc')
 		->get();
 		 
 		$i=0;
 		foreach ($result as $row){
-		   $arrRes[$i]['id'] = $row->NAME_ID;
+		   $arrRes[$i]['id'] = $row->ROUTINETYPE_ID;
 		   $arrRes[$i]['name'] = $row->TYPE_NAME;
 		   $i++;
 		}
@@ -71,37 +71,50 @@ class TypeName extends model
 		return isset($arrRes) ? $arrRes : null;
 	 }
 
-	 public function getTypeNameLovWithSteps($typeid){
+	 public function getTypeNameLovWithSteps($Routineid){
+		
     	 
-		// $details = $_REQUEST ['details'];
-		$typeid= $typeid;
-
-		$result = DB::table('jb_type_name_tbl as a')->select('a.NAME_ID','a.TYPE_NAME',)
+		$result = DB::table('jb_routine_type_tbl as a')->select('a.ROUTINETYPE_ID','a.TYPE_NAME')
+		->join('jb_routine_type_steps_tbl as d','a.ROUTINETYPE_ID','=','d.ROUTINETYPE_ID')
+		->join('jb_routine_tbl as b','d.ROUTINE_ID','=','b.ROUTINE_ID')
+		->where('b.ROUTINE_ID' ,$Routineid)
 		->where('a.STATUS','active')
-		->where('a.TYPE_ID', $typeid)
-		->orderBy('a.TYPE_ID','asc')
+		->groupBy('a.ROUTINETYPE_ID')
+		// ->where('a.ROUTINE_ID', $Routineid)
+		->orderBy('a.ROUTINETYPE_ID','asc')
 		->get();
 		 
-		
 		foreach ($result as $row){
 		
-			$row->steps = $this->getStepsWithResToNameId($row->NAME_ID);
+			$row->steps = $this->getStepsWithResToNameId($row->ROUTINETYPE_ID,$Routineid);
 		
 		}
-	 
+		
 		return isset($result) ? $result : null;
 	 }
-	public function getStepsWithResToNameId($id){
+	public function getStepsWithResToNameId($ROUTINETYPE_ID,$Routineid){
 		$product=new ProductModel();
 
-		$result = DB::table('jb_routine_steps_tbl as a')->select('a.DESCRIPTION','a.PRODUCT_ID','a.STEP_NO','b.NAME','c.DOWN_PATH')
-		->where('a.NAME_ID', $id)
-		->join('jb_product_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
-		->join('jb_product_images_tbl as c','a.PRODUCT_ID','=','c.PRODUCT_ID')
-		->groupBy('a.PRODUCT_ID')
-		->orderBy('a.STEP_NO','asc')
+		$result = DB::table('jb_routine_tbl as a')
+		->select('a.ROUTINE_ID','b.DESCRIPTION','d.PRODUCT_ID','d.STEP_NO','b.NAME')
+		->join('jb_routine_type_steps_tbl as d','a.ROUTINE_ID','=','d.ROUTINE_ID')
+		->join('jb_product_tbl as b','d.PRODUCT_ID','=','b.PRODUCT_ID')
+		// ->join('jb_product_images_tbl as c','b.PRODUCT_ID','=','c.PRODUCT_ID')
+		->where('d.ROUTINETYPE_ID',$ROUTINETYPE_ID)
+		->where('a.ROUTINE_ID',$Routineid)
+		->groupBy('d.PRODUCT_ID')
+		->orderBy('d.STEP_NO','asc')
 		->get();
-		 
+		
+		// $result = DB::table('jb_routine_type_steps_tbl as a')->select('a.DESCRIPTION','a.PRODUCT_ID','a.STEP_NO','b.NAME','c.DOWN_PATH')
+		// // ->where('a.ROUTINETYPE_ID', $id)
+		// ->where('a.ROUTINE_ID', $routineId)
+		// ->join('jb_product_tbl as b','a.PRODUCT_ID','=','b.PRODUCT_ID')
+		// ->join('jb_product_images_tbl as c','a.PRODUCT_ID','=','c.PRODUCT_ID')
+		// ->groupBy('a.PRODUCT_ID')
+		// ->orderBy('a.STEP_NO','asc')
+		// ->get();
+
 		$i=0;
 		foreach ($result as $row){
 		   
@@ -118,7 +131,7 @@ class TypeName extends model
 		   
 			$i++;
 		}
-	 
+		// dd($result);
 		return isset($arrRes) ? $arrRes : null;
 	}
 
@@ -150,12 +163,12 @@ class TypeName extends model
 
     public function getspecifictypename($nameid){
            
-      $result = DB::table('jb_type_name_tbl as a')->select('a.*')
-		->where('a.NAME_ID', $nameid)
-		->orderBy('a.NAME_ID','desc')
+      $result = DB::table('jb_routine_type_tbl as a')->select('a.*')
+		->where('a.ROUTINETYPE_ID', $nameid)
+		->orderBy('a.ROUTINETYPE_ID','desc')
 		->first();
 		$i=0;
-		   $arrRes['ID'] = $result->NAME_ID;
+		   $arrRes['ID'] = $result->ROUTINETYPE_ID;
 		   $arrRes['name'] = $result->TYPE_NAME;
 		   $i++;
 	 
@@ -165,13 +178,13 @@ class TypeName extends model
 
 	public function getAllRoutineTypes(){
 	
-		$result=DB::table('jb_type_name_tbl')->select('NAME_ID','TYPE_NAME','STATUS','CREATED_ON')
+		$result=DB::table('jb_routine_type_tbl')->select('ROUTINETYPE_ID','TYPE_NAME','STATUS','CREATED_ON')
 		->orderBy('UPDATED_ON','desc')
     	->get();
 
 		$i=0;
     	foreach ($result as $row){
-    		$arrRes[$i]['NAME_ID'] = $row->NAME_ID;
+    		$arrRes[$i]['ROUTINETYPE_ID'] = $row->ROUTINETYPE_ID;
 			$arrRes[$i]['TYPE_NAME'] = $row->TYPE_NAME;
 			$arrRes[$i]['STATUS'] = $row->STATUS;
 			$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
@@ -183,14 +196,14 @@ class TypeName extends model
 
 	public function getallroutinetypelov(){
 
-		$result = DB::table('jb_type_name_tbl as a')->select('a.*')
+		$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
 		->where('a.STATUS','active')
-		->orderBy('a.NAME_ID','desc')
+		->orderBy('a.ROUTINETYPE_ID','desc')
 		->get();
 		 
 		$i=0;
 		foreach ($result as $row){
-		   $arrRes[$i]['id'] = $row->NAME_ID;
+		   $arrRes[$i]['id'] = $row->ROUTINETYPE_ID;
 		   $arrRes[$i]['name'] = $row->TYPE_NAME;
 		   $i++;
 		}

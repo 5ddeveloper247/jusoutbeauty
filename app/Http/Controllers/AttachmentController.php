@@ -70,7 +70,7 @@ class AttachmentController extends Controller
 
 						if(move_uploaded_file($_FILES['uploadattl']['tmp_name'], $fullpath)){
 
-							$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'TYPE_ID', $namefile ) ->update (
+							$result = DB::table ( 'jb_routine_tbl' ) ->where ( 'ROUTINE_ID', $namefile ) ->update (
 									array ( 'IMAGE_PATH' => $fullpath,
 											'IMAGE_DOWN_PATH' => $downpath,
 											'UPDATED_BY' => $userId,
@@ -89,7 +89,7 @@ class AttachmentController extends Controller
 					}else{
 						if(move_uploaded_file($_FILES['uploadattl']['tmp_name'], $fullpath)){
 
-							$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'TYPE_ID', $namefile ) ->update (
+							$result = DB::table ( 'jb_routine_tbl' ) ->where ( 'ROUTINE_ID', $namefile ) ->update (
 									array ( 'IMAGE_PATH' => $fullpath,
 											'IMAGE_DOWN_PATH' => $downpath,
 											'UPDATED_BY' => $userId,

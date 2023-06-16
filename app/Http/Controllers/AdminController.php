@@ -1069,17 +1069,28 @@ class AdminController extends Controller
 		// return view('admin.Routines.addroutine')->with( $data );
 	   }
 
-	   public function routine_type(){
+	   public function routine(){
 			$data['adminMenu'] = $this->getAdminUserMenu();
 		    $data ['page'] = 'Add Routine';
-			$result=$this->checkUserControlAccess(session('userId'),"/routine_type");
+			$result=$this->checkUserControlAccess(session('userId'),"/routine");
 			if( $result != true) {
-				return view('admin.Routines.routine_type_new')->with( $data );
+				return view('admin.Routines.routine')->with( $data );
 			}else{
 				return redirect('/dashboard');
 			}
 		    // return view('admin.Routines.routine_type_new')->with( $data );
 	   }
+	   public function routine_type(){
+			$data['adminMenu'] = $this->getAdminUserMenu();
+			$data ['page'] = 'Routine Type';
+			$result=$this->checkUserControlAccess(session('userId'),"/routine_type");
+			if( $result != true) {
+				return view('admin.Routines.routine_type')->with( $data );
+			}else{
+				return redirect('/dashboard');
+			}
+			// return view('admin.Routines.routine_type_new')->with( $data );
+		}
 
 
 	   public function getTypeNameLov(Request $request){
@@ -1087,10 +1098,10 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$typeid= $details['typeid'];
 
-		$result = DB::table('jb_type_name_tbl as a')->select('a.*')
+		$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
 		->where('a.STATUS','active')
-		->where('a.TYPE_ID', $typeid)
-		->orderBy('a.NAME_ID','desc')
+		// ->where('a.TYPE_ID', $typeid)
+		->orderBy('a.ROUTINETYPE_ID','desc')
 		->get();
 
 		$i=0;
@@ -1108,17 +1119,17 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$routineid = $details ['routineid'];
 
-		$typename= TypeName::where('TYPE_ID',$routineid)->first();
+		$typename= TypeName::where('ROUTINETYPE_ID',$routineid)->first();
 
 		if($typename){
-			$nameid=$typename->NAME_ID;
-			$step = RoutineSteps::where('NAME_ID', $nameid)->delete();
-			$typename= TypeName::where('TYPE_ID',$routineid)->delete();
-			$routine= RoutineType::where('TYPE_ID',$routineid)->delete();
+			$nameid=$typename->ROUTINETYPE_ID;
+			$step = RoutineSteps::where('ROUTINETYPE_ID', $nameid)->delete();
+			$typename= TypeName::where('ROUTINETYPE_ID',$routineid)->delete();
+			$routine= RoutineType::where('ROUTINE_ID',$routineid)->delete();
 
 		}else{
 
-			$routine= RoutineType::where('TYPE_ID',$routineid)->delete();
+			$routine= RoutineType::where('ROUTINE_ID',$routineid)->delete();
 
 		}
 
@@ -1146,14 +1157,14 @@ class AdminController extends Controller
 		 $typenameid = $details ['typenameid'];
 
 		 //  $typename= TypeName::where('NAME_ID',$typenameid)->first();
-		 $typename=TypeName::where('NAME_ID',$typenameid)->delete();
+		 $typename=TypeName::where('ROUTINETYPE_ID',$typenameid)->delete();
 
 	    //  $typeid=$typename->TYPE_ID;
 		$typeid=$typenameid;
 
-		 $step = RoutineSteps::where('NAME_ID', $typenameid)->delete();
+		 $step = RoutineSteps::where('ROUTINETYPE_ID', $typenameid)->delete();
 
-		 $typename= TypeName::where('NAME_ID',$typenameid)->delete();
+		 $typename= TypeName::where('ROUTINETYPE_ID',$typenameid)->delete();
 
 	     $steps= new RoutineSteps();
 		 $typename= new TypeName();
@@ -1179,34 +1190,38 @@ class AdminController extends Controller
 
 		     $details = $_REQUEST ['details'];
 		     $stepid = $details ['stepid'];
+		     $routineid = $details ['routineId'];
+
 		     $step = RoutineSteps::where('STEP_ID', $stepid)->first();
-		     $name_id= $step->NAME_ID;
-             $step_no=$step->STEP_NO;
+		     $name_id = $step->ROUTINETYPE_ID;
+             $step_no = $step->STEP_NO;
 
-		     $getallsteps=RoutineSteps::where('NAME_ID', $name_id)->get()->count();
-		  if( $getallsteps == $step_no){
-			 $step = RoutineSteps::where('STEP_ID', $stepid)->delete();
-		  }else{
-			 $arrRes ['done'] = false;
-			 $arrRes ['msg'] = 'You must delete the steps in descending order.';
-			 echo json_encode ( $arrRes );
-				  die ();
-		  }
+		     $getallsteps = RoutineSteps::where('ROUTINETYPE_ID', $name_id)->where('ROUTINE_ID',$routineid)->count();
 
-		  $step = RoutineSteps::where('STEP_ID', $stepid)->delete();
-
-		  $typename= TypeName::where('NAME_ID',$name_id)->first();
-		  $typeid=$typename->TYPE_ID;
-
-          $steps= new RoutineSteps();
-		  $stepsarray=$steps->getstepsbasedonroutine($typeid);
-
-		  $arrRes['steps']=$stepsarray;
-
-		  $arrRes ['done'] = true;
-		  $arrRes ['msg'] = 'Step Deleted Successfully.';
-	       echo json_encode ( $arrRes );
+			if( $getallsteps == $step_no){
+				$step = RoutineSteps::where('STEP_ID', $stepid)->delete();
+			}
+			else{
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'You must delete the steps in descending order.';
+				echo json_encode ( $arrRes );
 				die ();
+		  	}
+
+		//   $step = RoutineSteps::where('STEP_ID', $stepid)->delete();
+
+		//   $typename= TypeName::where('ROUTINETYPE_ID',$name_id)->first();
+		//   $typeid=$typename->ROUTINE_ID;
+
+			$steps = new RoutineSteps();
+			$stepsarray = $steps->getRoutineSteps($routineid);
+
+			$arrRes['steps'] = $stepsarray;
+
+			$arrRes ['done'] = true;
+			$arrRes ['msg'] = 'Step Deleted Successfully.';
+			echo json_encode ( $arrRes );
+			die ();
 
 	 }
 
@@ -1216,6 +1231,7 @@ class AdminController extends Controller
 		 $data = $details ['routinetype'];
 		 $userId = $details ['userId'];
 		 $typeid = $details['typeid'];
+		 $mainRoutine = $details['mainRoutine'];
 
          if(!isset($data['P_7']['id'])){
 			$arrRes ['done'] = false;
@@ -1279,29 +1295,29 @@ class AdminController extends Controller
 			 $routinetypename= new TypeName();
 			 $steps=new RoutineSteps();
 
-			 $result = DB::table('jb_type_name_tbl as a')->select('a.*')
-    	     ->where('a.NAME_ID',$data['P_7']['id'])
+			 $result = DB::table('jb_routine_type_tbl as a')->select('a.*')
+    	     ->where('a.ROUTINETYPE_ID',$data['P_7']['id'])
     	     ->first();
 
-		     $recordId=$result->TYPE_ID;
+		     $recordId=$result->ROUTINETYPE_ID;
 
-				$result = DB::table ( 'jb_routine_steps_tbl' )->insertGetId (
-						array (
-								'USER_ID' => $userId,
-								'NAME_ID' => $data['P_7']['id'],
-								'STEP_NO' =>  $data['P_13'],
-								'PRODUCT_ID' => $data['P_11']['id'],
-								'TYPE_ID'=>  $typeid,
-								'DESCRIPTION' => $data['P_12'],
-								'DATE' => date ( 'Y-m-d H:i:s' ),
-								'CREATED_BY' => $userId,
-								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
-								'UPDATED_BY' => $userId,
-								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
+			$result = DB::table ( 'jb_routine_type_steps_tbl' )->insertGetId (
+				array (
+						'USER_ID' => $userId,
+						'ROUTINETYPE_ID' => $typeid,
+						'ROUTINE_ID' => $mainRoutine,
+						'STEP_NO' =>  $data['P_13'],
+						'PRODUCT_ID' => $data['P_11']['id'],
+						'DESCRIPTION' => $data['P_12'],
+						'DATE' => date ( 'Y-m-d H:i:s' ),
+						'CREATED_BY' => $userId,
+						'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+						'UPDATED_BY' => $userId,
+						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
 
-                         $stepsarray=$steps->getstepsbasedonroutine($recordId);
+					$stepsarray=$steps->getRoutineSteps($mainRoutine);
 
-						 $arrRes['steps']=$stepsarray;
+					$arrRes['steps']=$stepsarray;
 
 				 $arrRes ['done'] = true;
 				 $arrRes ['msg'] = 'Routine Type Step Created Successfully';
@@ -1318,8 +1334,7 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$data = $details ['routinetype'];
 		$userId = $details ['userId'];
-		$typeid= $details['typeid'];
-
+		
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
@@ -1336,21 +1351,14 @@ class AdminController extends Controller
 			}
 
 
-			if($details['typeid'] == ''){
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Please Save the above section to proceed.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if($details['typeid'] == ''){
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Please Save the above section to proceed.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 
-			 $typename= TypeName::where('TYPE_ID','=',$typeid)->where('TYPE_NAME','=',$data['C_1'])->get();
-
-			if($typename->count() > 0){
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Routine Name Already Exists,Choose different Name.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			
 			// if ($data ['P_2'] == '') {
 
 			// 	$arrRes ['done'] = false;
@@ -1358,16 +1366,21 @@ class AdminController extends Controller
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
-		    	$typename= new TypeName();
 
 			if ($data ['ID'] == '') {
 
+				$typename = TypeName::where('TYPE_NAME','=',$data['C_1'])->get();
 
+				if($typename->count() > 0){
+					$arrRes ['done'] = false;
+					$arrRes ['msg'] = 'Routine Name Already Exists,Choose different Name.';
+					echo json_encode ( $arrRes );
+					die ();
+				}
 
-
-				$result = DB::table ( 'jb_type_name_tbl' )->insertGetId (
+				 DB::table ( 'jb_routine_type_tbl' )->insertGetId (
 						array (
-								'TYPE_ID' => $typeid,
+								// 'TYPE_ID' => '',
 								'TYPE_NAME' => $data['C_1'],
 								'STATUS' => 'active',
 								'CREATED_BY' => $userId,
@@ -1375,22 +1388,17 @@ class AdminController extends Controller
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						));
+
 				$arrRes ['done'] = true;
-
-				$arrRes['typenamelov']= $typename->getTypeNameLov($typeid);
-				$arrRes['typedata']=$typename->getallnamedata($typeid);
-
 				$arrRes ['msg'] = 'Routine Type Name Created Successfully';
-				// $arrRes ['ID'] = $result;
-				// $arrRes ['redirect_url'] = url('routine_type_new');
 				echo json_encode ( $arrRes );
 				die ();
 
 			 } else {
 
-				$result = DB::table ( 'jb_type_name_tbl' ) ->where ( 'NAME_ID', $data ['ID'] ) ->update (
+				$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'ROUTINETYPE_ID', $data ['ID'] ) ->update (
 						array (
-							    'TYPE_ID' => $typeid,
+							    // 'TYPE_ID' => '',
 								'TYPE_NAME' => $data['C_1'],
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
@@ -1398,8 +1406,8 @@ class AdminController extends Controller
 						);
 
 				$arrRes ['done'] = true;
-				$arrRes['typenamelov']= $typename->getTypeNameLov($typeid);
-				$arrRes['typedata']=$typename->getallnamedata($typeid);
+				// $arrRes['typenamelov']= $typename->getTypeNameLov($typeid);
+				// $arrRes['typedata']=$typename->getallnamedata($typeid);
 
 				$arrRes ['msg'] = 'Routine Type Name Updated Successfully';
 				// $arrRes ['ID'] = $data ['ID'];
@@ -1412,33 +1420,39 @@ class AdminController extends Controller
 
 	   public function checksteps(Request $request){
 
-		         $details= $_REQUEST['details'];
-				 $type_id= $details['typeid'];
+			$details= $_REQUEST['details'];
+			$routineid= $details['routineid'];
 
-                 $name_id= $details['routinetypeid'];
+			$routinetype_id= $details['routinetypeid']['id'];
+			$arrRes = array();
+		
+			//  if($details['routinetypeid'] == '' && $type_id == ''){
 
-			     if($details['routinetypeid'] == '' && $type_id == ''){
+			//  $arrRes ['done'] = false;
+			//  $arrRes ['msg'] = 'Please Select routine and routine type is required.';
+			//  echo json_encode ( $arrRes );
+			//  die ();
 
-				 $arrRes ['done'] = false;
-				 $arrRes ['msg'] = 'Please Select routine and routine type is required.';
-				 echo json_encode ( $arrRes );
-				 die ();
-
-			     }
+			//  }
 
 
-
-			     $steps= RoutineSteps::where('NAME_ID', $name_id)->where('TYPE_ID', $type_id)->get();
-
-			     if($steps){
-				     $count=$steps->count();
-			     }
-				 $arrRes ['done'] = true;
-                  $arrRes['count'] =$count+1;
-				  echo json_encode ( $arrRes );
+			$steps = DB::table('jb_routine_type_steps_tbl')
+				->where('ROUTINETYPE_ID',$routinetype_id)
+				->where('ROUTINE_ID', $routineid)->count();
+		
+			if($steps > 0){
+				$count=$steps;
+				$arrRes['count'] = $count+1;
+			}else{
+			$arrRes['count'] = 1;
+			}
+			$arrRes ['done'] = true;
+			
+			echo json_encode ( $arrRes );
 
 
 	     }
+		 
 	   public function routine_type_add(Request $request){
 
 		$details = $_REQUEST ['details'];
@@ -1494,7 +1508,7 @@ class AdminController extends Controller
 					die ();
 				}
 
-				$result = DB::table ( 'jb_routine_type_tbl' )->insertGetId (
+				$result = DB::table ( 'jb_routine_tbl' )->insertGetId (
 						array (
 								'NAME' => $data['P_1'],
 								'IDENTIFY' => $data['P_3'],
@@ -1518,7 +1532,7 @@ class AdminController extends Controller
 
 			} else {
 
-				$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'TYPE_ID', $data ['ID'] ) ->update (
+				$result = DB::table ( 'jb_routine_tbl' ) ->where ( 'ROUTINE_ID', $data ['ID'] ) ->update (
 						array (
 							'NAME' => $data ['P_1'],
 							'IDENTIFY' => $data['P_3'],
@@ -1558,7 +1572,7 @@ class AdminController extends Controller
 			$arrRes ['msg'] = 'Routine Name Inactive successfully...';
 		}
 
-		$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'TYPE_ID', $recordId ) ->update (
+		$result = DB::table ( 'jb_routine_tbl' ) ->where ( 'ROUTINE_ID', $recordId ) ->update (
 				array ( 'STATUS' => $status,
 						'UPDATED_BY' => $userId,
 						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
@@ -1586,53 +1600,57 @@ class AdminController extends Controller
 
 	   public function routine_type_edit(){
 
-		  $ROUTINETYPE = new RoutineType();
-		  $routinetypename= new TypeName();
-		  $steps=new RoutineSteps();
+			$ROUTINETYPE = new RoutineType();
+			$routinetypename= new TypeName();
+			$steps=new RoutineSteps();
 
-		  $details = $_REQUEST ['details'];
-		  $recordId = $details ['recordId'];
-		  $userId = $details ['userId'];
+			$details = $_REQUEST ['details'];
+			$recordId = $details ['recordId'];
+			$userId = $details ['userId'];
+			
+			$arrRes ['details'] = $ROUTINETYPE->getSpecificRotineTypeData($recordId);
+			$arrRes ['images'] = $ROUTINETYPE->getSpecificRoutineTypeAttachments($recordId);
 
-		  $arrRes ['details'] = $ROUTINETYPE->getSpecificRotineTypeData($recordId);
-		  $arrRes ['images'] = $ROUTINETYPE->getSpecificRoutineTypeAttachments($recordId);
-		  $arrRes['typenamelov']= $routinetypename->getTypeNameLov($recordId);
-		  $type=$routinetypename->getallnamedata($recordId);
-		  $arrRes['alltypenamedata']= $type;
-		  $typeid=[];
+			$arrRes['typenamelov']= $routinetypename->getTypeNameLov($recordId);
+		//   dd($arrRes);
+			$type = $routinetypename->getallnamedata($recordId);
+			$arrRes['alltypenamedata']= $type;
+			$arrRes['getRoutineSteps'] = $steps->getRoutineSteps($recordId);
+			
 
+		//   $typeid=[];
 
-		  if($type){
-		  foreach($type as $data){
-              $typeid[]= $data['id'];
-			  $typename[]=$data['name'];
-		   }
-              $k=0;
+		//   if($type){
+		//   foreach($type as $data){
+        //       $typeid[]= $data['id'];
+		// 	  $typename[]=$data['name'];
+		//    }
+        //       $k=0;
 
-		   foreach($typeid as $v=>$id_type){
-		    foreach($typename as $b=>$name)
-			if($v== $b){
-			  $steps2=$steps->getsteps($id_type,$name);
+		//    foreach($typeid as $v=>$id_type){
+		//     foreach($typename as $b=>$name)
+		// 	if($v== $b){
+		// 	  $steps2=$steps->getsteps($id_type,$name);
 
-			   if($steps2){
-				$arr[$k]= $steps2 ;
-				$k++;
-			 }
-			}
-			}
-			$steps_array=[];
-			$j=0;
-			if(isset($arr)){
-			foreach($arr as $r){
-				foreach($r as $k){
-					$steps_array[$j] = $k;
-					$j++;
-				}
-			}
-		}
+		// 	   if($steps2){
+		// 		$arr[$k]= $steps2 ;
+		// 		$k++;
+		// 	 }
+		// 	}
+		// 	}
+		// 	$steps_array=[];
+		// 	$j=0;
+		// 	if(isset($arr)){
+		// 	foreach($arr as $r){
+		// 		foreach($r as $k){
+		// 			$steps_array[$j] = $k;
+		// 			$j++;
+		// 		}
+		// 	}
+		// }
 
-			$arrRes['steps'] =	$steps_array;
-		 }
+		// 	$arrRes['steps'] =	$steps_array;
+		//  }
 
 		   echo json_encode ( $arrRes );
 	}
@@ -3678,6 +3696,7 @@ class AdminController extends Controller
 			$details = $_REQUEST ['details'];
 			$subsubcategory = $details ['subcategory'];
 			$userId = $details ['userId'];
+			$arrRes = array ();
 
 			if(!isset($subsubcategory['id'])){
 			   $arrRes ['done'] = false;
@@ -3695,8 +3714,7 @@ class AdminController extends Controller
 
 				$i++;
 			}
-
-
+			
 			 echo json_encode ( $arrRes );
 
 		}
@@ -3720,6 +3738,30 @@ class AdminController extends Controller
 		 $arrRes ['done'] = true;
 		 echo json_encode ( $arrRes );
 	}
+	public function getSubSubCategoriesWrtSubCategory(Request $request) {
+		$Category = new CategoryModel();
+		// $Product = new ProductModel();
+
+		$details = $_REQUEST ['details'];
+		$subcategory = $details ['subcategory'];
+		// $product_ID = $details['productId'];
+		// $userId = $details ['userId'];
+		$product_lov = DB::table('jb_product_tbl')->where('SUB_CATEGORY_ID',$subcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
+
+		// $arrRes['product']=$product_lov;
+		$i=0;
+		foreach ($product_lov as $row){
+    		$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
+    		$arrRes['product'][$i]['name'] = $row->NAME;
+
+    		$i++;
+    	}
+
+		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory($subcategory['id']);
+		// $arrRes ['msg'] = 'Sub Category ID Updated Successfully!';
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+   }
 	public function updateSubSubCategoriesWrtSubCategoryQuickAdd(Request $request) {
 		$Category = new CategoryModel();
 		$Product = new ProductModel();

@@ -206,6 +206,7 @@ class HomeController extends Controller
 	}
 
 	public function showRoutineDetailPage($id){
+
 		$RoutineName = new RoutineType();
 		$getTypeNameLov = new TypeName();
 
@@ -216,7 +217,7 @@ class HomeController extends Controller
 		$data['routineById'] = $RoutineName->getAllRouteByIdForWebiste($id);
 		$data['getTypeNameLov'] = $getTypeNameLov->getTypeNameLovWithSteps($id);
 
-		// dd($data['routine']);
+		//  dd($data['getTypeNameLov']);
 		$data['page'] = 'Routine';
 		return view('web.routine-details')->with ( $data );
 	}

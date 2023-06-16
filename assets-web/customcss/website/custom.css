@@ -1643,6 +1643,12 @@ p.text-center.mb-0.text-white.hoverimages-text{
 	.btn{
 		border:none !important;
 	}
+	.menu_ul .border-left:hover {
+		border-left: 3px solid #006f7a !important;
+	}
+	a.bg-hover-primary:hover {
+		background-color: #006f7a !important;
+	}
 
 
 

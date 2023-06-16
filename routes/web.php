@@ -23,7 +23,7 @@ use App\Http\Middleware\AdminAuth;
 //     return view('welcome');
 // });
 
-session()->put('site', '/site');
+session()->put('site', '/jusoutbeauty');
 
 cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
 cookie()->queue(cookie()->forever('site_url', url('/home')));
@@ -273,9 +273,9 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/view-all-shades', [AdminController::class, 'viewAllShades']);
 	Route::get('/view-all-selfi', [AdminController::class, 'viewAllSelfi']);
        /* new selfie route */
-      Route::post('/get_selfies', [AdminController::class, 'get_selfies']);
-	  Route::post('/deletespecificselfie', [AdminController::class, 'deletespecificselfie']);
-	  Route::post('/deletSelectedSelfie', [AdminController::class, 'deletSelectedSelfie']);
+	Route::post('/get_selfies', [AdminController::class, 'get_selfies']);
+	Route::post('/deletespecificselfie', [AdminController::class, 'deletespecificselfie']);
+	Route::post('/deletSelectedSelfie', [AdminController::class, 'deletSelectedSelfie']);
 
 
 	Route::get('/add-shade', [AdminController::class, 'addShade']);
@@ -395,6 +395,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/getAllAdminGivings', [AdminController::class, 'getAllAdminGivings']);
 
 	Route::get('/add_routine', [AdminController::class, 'add_routine']);
+	Route::get('/routine', [AdminController::class, 'routine']);
 	Route::get('/routine_type', [AdminController::class, 'routine_type']);
 	Route::post('/getAllAdminroutinetype', [AdminController::class, 'getAllAdminroutinetype']);
 

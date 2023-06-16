@@ -288,8 +288,6 @@
                     </div> --}}
                     @if (!empty($getTypeNameLov))
                                 
-
-                    
                     <div class="row">
                         @php $i=0 @endphp 
                         @foreach ($getTypeNameLov as $TypeName)

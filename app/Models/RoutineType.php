@@ -10,14 +10,14 @@ use DateTime;
 class RoutineType extends model
 {
       
-    protected $table="jb_routine_type_tbl";
+    protected $table="jb_routine_tbl";
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
       protected $fillable = [
-          'TYPE_ID',
+          'ROUTINE_ID',
           'NAME',
           'STATUS',
 		  'DESCRIPTION',
@@ -32,14 +32,14 @@ class RoutineType extends model
 
      public function getRoutineTypeData(){
     	
-    	$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
+    	$result = DB::table('jb_routine_tbl as a')->select('a.*')
 		->where('a.status','active')
     	->orderBy('a.UPDATED_ON','desc')
     	->get()->toArray();
     	
     	$i=0;
     	foreach ($result as $row){
-    		$arrRes[$i]['seqNo'] = $row->TYPE_ID;//$i+1;
+    		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
     		$arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
 			$arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
     		$arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
@@ -61,13 +61,13 @@ class RoutineType extends model
 
 	public function getRoutineTypeDataAdmin(){
     	
-    	$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
+    	$result = DB::table('jb_routine_tbl as a')->select('a.*')
     	->orderBy('a.UPDATED_ON','desc')
     	->get();
     	
     	$i=0;
     	foreach ($result as $row){
-    		$arrRes[$i]['seqNo'] = $row->TYPE_ID;//$i+1;
+    		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
     		$arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
 			$arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
     		$arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
@@ -88,14 +88,14 @@ class RoutineType extends model
     }
 
 	public function getAllRouteByIdForWebiste($id){
-		$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
-		->where('TYPE_ID', $id)
+		$result = DB::table('jb_routine_tbl as a')->select('a.*')
+		->where('ROUTINE_ID', $id)
     	->orderBy('a.UPDATED_ON','desc')
     	->get();
     	
     	$i=0;
     	foreach ($result as $row){
-    		$arrRes[$i]['seqNo'] = $row->TYPE_ID;//$i+1;
+    		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
     		$arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
 			$arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
     		$arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
@@ -117,15 +117,15 @@ class RoutineType extends model
 
     public function getSpecificRotineTypeData($id){
     	 
-    	$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
-    	->where('a.TYPE_ID',$id)
-    	->orderBy('a.TYPE_ID','desc')
+    	$result = DB::table('jb_routine_tbl as a')->select('a.*')
+    	->where('a.ROUTINE_ID',$id)
+    	->orderBy('a.ROUTINE_ID','desc')
     	->get();
     	 
     	$i=0;
     	foreach ($result as $row){
 
-    		$arrRes['ID'] = $row->TYPE_ID;
+    		$arrRes['ID'] = $row->ROUTINE_ID;
     		$arrRes['NAME'] = $row->NAME;
 			$arrRes['DESCRIPTION'] = $row->DESCRIPTION;
     		$arrRes['IMAGE'] = $row->IMAGE_PATH;
@@ -147,15 +147,15 @@ class RoutineType extends model
 
 	public function getSpecificRoutineTypeAttachments($TYPEID){
     
-    	$result = DB::table('jb_routine_type_tbl as a')->select('a.*')
-    	->where('a.TYPE_ID', $TYPEID)
+    	$result = DB::table('jb_routine_tbl as a')->select('a.*')
+    	->where('a.ROUTINE_ID', $TYPEID)
     	->get();
     
     	$i=0;
     	foreach ($result as $row){
     		// $arrRes['ID'] = $row->ATTACHMENT_ID;
     		$arrRes['userId'] = $row->USER_ID;
-    		$arrRes['ingredientId'] = $row->TYPE_ID;
+    		$arrRes['ingredientId'] = $row->ROUTINE_ID;
     		// $arrRes['code'] = $row->SOURCE_CODE;
     		// $arrRes['fileType'] = $row->FILE_TYPE;
     		// $arrRes['fileName'] = $row->FILE_NAME;

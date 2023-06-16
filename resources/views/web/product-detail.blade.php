@@ -763,8 +763,8 @@
                                                 <section class="pb-10 pb-lg-0 mob_tab_sec">
                                                     <div class="">
                                                         <h2 class="text-center mb-3">Ingredients</h2>
-                                                        <h2 class="text-center mb-9">Backed by Science to Optimize
-                                                            Skin Wellness</h2>
+                                                        <h4 class="text-center mb-9">Backed by Science to Optimize
+                                                            Skin Wellness</h4>
                                                         <ul class="nav nav-pills justify-content-center mb-lg-9 mb-6">
                                                             <li class="nav-item px-5"><a
                                                                     class="pointer nav-link cursor-pointer ingredientTabBtn active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
