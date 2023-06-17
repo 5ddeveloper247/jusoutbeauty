@@ -37,7 +37,8 @@
     }
     h4.card-title.border-0{
         font-weight: 600;
-        color:white
+        color:white;
+        font-size: 1rem
     }
     .accordion .card-header a {
         border-bottom: 0px solid transparent !important;
@@ -150,6 +151,7 @@
             /* white-space: nowrap; */
             overflow: hidden;
             text-overflow: ellipsis;
+            /* background-size: 100% 100%; */
         }
     }
 </style>
@@ -158,11 +160,12 @@
     <section class="py-10 mt-15 mt-15-67 bg-gray hero-section" 
         style="background-image: url(<?=$routineId[0]['IMAGE_DOWNPATH']?>) !important;
             background-repeat: no-repeat;
-            background-size: cover;
-            background-position: 100%;
-            padding-top: 300px !important;
-            padding-bottom: 300px !important;
-            background-color: unset !important;">
+            background-size: contain;
+            background-position: 50%;
+            padding-top: 200px !important;
+            padding-bottom: 200px !important;
+            background-color: unset !important;
+            ">
         <div class="container">
             
             <h1 class=" mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
@@ -287,18 +290,19 @@
                         </div>
                     </div> --}}
                     @if (!empty($getTypeNameLov))
-                                
+                       
                     <div class="row">
-                        @php $i=0 @endphp 
+                       
                         @foreach ($getTypeNameLov as $TypeName)
-                        @php $i++ @endphp 
+                        
                         @if($TypeName->steps != '')
                         
                             <div class="col-12 text-center mb-8">
                                 <h1 class="heading-font-routine text-uppercase">{{ $TypeName->TYPE_NAME }}</h1>
                             </div>
+                            @php $i=1 @endphp 
                             @foreach ($TypeName->steps as $StepsName)
-                               
+                                
                                 <div class="col-6 col-lg-3 product productshop-listing mb-8 col-xl-3">
                                     <div class="card border-0">
                                         <div class="position-relative hover-zoom-in">
@@ -320,9 +324,9 @@
                                         <div class="card-body pt-4 px-0 pb-0 productdetail" data-id="{{ $StepsName['PRODUCT_ID'] }}">
                                             <a href="javascript:;"
                                                 class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary ng-binding">
-                                                STEP {{ $StepsName['STEP_NO'] }} </a>
+                                                STEP {{ $i++ }} </a>
     
-                                            <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading">
+                                            <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
                                                 <a href="javascript:;" >{{ $StepsName['NAME'] }}</a>
                                             </h3>
     

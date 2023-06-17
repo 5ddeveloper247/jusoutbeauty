@@ -292,7 +292,7 @@
                     </p>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset" >
-                    <a href="{{ url('/customer-help') }}" id="v-pills-home-tab"onclick="informationflag('term of use')"  class="footer-text-white">Terms of
+                    <a href="{{ url('/customer-help') }}" id="v-pills-home-tab" onclick="informationflag('term of use')"  class="footer-text-white">Terms of
                         Use</a> &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-profile-tab-1" id="v-pills-home-tab" onclick="informationflag('privacy policy')" class="footer-text-white">Privacy Policy</a>&nbsp; |&nbsp; <a href="{{ url('/customer-help') }}" class="footer-text-white" id="v-pills-messages-tab-2" id="v-pills-home-tab"onclick="informationflag('accessibility')" class="footer-text-white">Accessibility</a>
                     &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-3" id="v-pills-home-tab"onclick="informationflag('cookies settings/policy')" class="footer-text-white">Cookies Settings/Policy</a>
                     <!--<ul class="list-inline fs-18 ml-3 mb-0">-->

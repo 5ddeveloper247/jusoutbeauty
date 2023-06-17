@@ -168,6 +168,16 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 	
 															</div>
 														</div>
+														<div class="col-sm-6">
+															<div class="form-group">
+																<label class="col-form-label" for="tags"><b>Product Category</b> <span class="text-danger">*</span></label> 
+																<select class="form-control" id="p8" ng-model="product['P_8']"
+																	ng-change="getSubCategoriesWrtCategory();"
+																	ng-options="item as item.name for item in categoryLov track by item.id">
+										                        	<option value="">---SELECT---</option>
+										                        </select>
+															</div>
+														</div>
 														{{-- <div class="col-sm-6">
 															<div class="form-group">
 	
@@ -209,16 +219,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														</div>
 													</div> --}}
 													<div class="row">
-														<div class="col-sm-6">
-															<div class="form-group">
-																<label class="col-form-label" for="tags"><b>Porduct Category</b> <span class="text-danger">*</span></label> 
-																<select class="form-control" id="p8" ng-model="product['P_8']"
-																	ng-change="getSubCategoriesWrtCategory();"
-																	ng-options="item as item.name for item in categoryLov track by item.id">
-										                        	<option value="">---SELECT---</option>
-										                        </select>
-															</div>
-														</div>
+														
 														<div class="col-sm-6">
 															<div class="form-group">
 	
@@ -230,17 +231,6 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										                        </select>
 															</div>
 														</div>
-													</div>
-	
-													<div class="row">
-														<div class="col-sm-6">
-															<div class="form-group">
-	
-																<label class="col-form-label" for="slug"><b>Slug</b> <span class="text-danger">*</span> </label>
-																<input type="text" class="form-control" id="slug" ng-model="product['P_10']" placeholder="Slug">
-	
-															</div>
-														</div>
 														<div class="col-sm-6">
 															<div class="form-group">
 																<label class="col-form-label" for="sub_sub_category"><b>Product Sub Sub Category</b> <span class="text-danger">*</span> </label>
@@ -250,6 +240,18 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										                        </select>
 															</div>
 														</div>
+													</div>
+	
+													<div class="row">
+														{{-- <div class="col-sm-6">
+															<div class="form-group">
+	
+																<label class="col-form-label" for="slug"><b>Slug</b> <span class="text-danger">*</span> </label>
+																<input type="text" class="form-control" id="slug" ng-model="product['P_10']" placeholder="Slug">
+	
+															</div>
+														</div> --}}
+														
 													</div>
 													<div class="row">
 							                              <div class="col-12">

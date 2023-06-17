@@ -102,6 +102,7 @@ class TypeName extends model
 		// ->join('jb_product_images_tbl as c','b.PRODUCT_ID','=','c.PRODUCT_ID')
 		->where('d.ROUTINETYPE_ID',$ROUTINETYPE_ID)
 		->where('a.ROUTINE_ID',$Routineid)
+		->where('b.IS_DELETED',0)
 		->groupBy('d.PRODUCT_ID')
 		->orderBy('d.STEP_NO','asc')
 		->get();
@@ -117,8 +118,9 @@ class TypeName extends model
 
 		$i=0;
 		foreach ($result as $row){
-		   
-			$arrRes[$i]['DESCRIPTION']= $row->DESCRIPTION;
+			$descText = strip_tags(base64_decode($row->DESCRIPTION));
+			$change_string = str_replace("&nbsp;"," ",$descText);
+			$arrRes[$i]['DESCRIPTION']= $change_string;
 			$arrRes[$i]['PRODUCT_ID']= $row->PRODUCT_ID;
 			$arrRes[$i]['NAME']= $row->NAME;
 			$arrRes[$i]['STEP_NO']= $row->STEP_NO;

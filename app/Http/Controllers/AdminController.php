@@ -3651,7 +3651,7 @@ class AdminController extends Controller
 			echo json_encode ( $arrRes );
 			die();
 		}
-		$product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category['id'])->orderby('PRODUCT_ID', 'desc')->get();
+		$product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category['id'])->where('IS_DELETED',0)->orderby('PRODUCT_ID', 'desc')->get();
 
 		// $arrRes['product']=$product_lov;
 		$i=0;
@@ -3746,7 +3746,7 @@ class AdminController extends Controller
 		$subcategory = $details ['subcategory'];
 		// $product_ID = $details['productId'];
 		// $userId = $details ['userId'];
-		$product_lov = DB::table('jb_product_tbl')->where('SUB_CATEGORY_ID',$subcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
+		$product_lov = DB::table('jb_product_tbl')->where('IS_DELETED',0)->where('SUB_CATEGORY_ID',$subcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
 
 		// $arrRes['product']=$product_lov;
 		$i=0;
@@ -3886,18 +3886,18 @@ class AdminController extends Controller
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
-			if ($data['P_10'] == '') {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Slug is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-			if (strlen($data['P_10']) > 100) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Slug must be less then 100 characters.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// if ($data['P_10'] == '') {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Slug is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
+			// if (strlen($data['P_10']) > 100) {
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Slug must be less then 100 characters.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
 			if (strlen($data['P_11']) > 500) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Short Description must be less then 500 characters.';
@@ -3927,13 +3927,13 @@ class AdminController extends Controller
 
 			if ($data ['ID'] == '') {
 
-				$duplicate = $Product->checkDuplicateSlug($data['P_10']);
-				if ($duplicate != '') {
-					$arrRes ['done'] = false;
-					$arrRes ['msg'] = 'Slug is already exist, try different...';
-					echo json_encode ( $arrRes );
-					die ();
-				}
+				// $duplicate = $Product->checkDuplicateSlug($data['P_10']);
+				// if ($duplicate != '') {
+				// 	$arrRes ['done'] = false;
+				// 	$arrRes ['msg'] = 'Slug is already exist, try different...';
+				// 	echo json_encode ( $arrRes );
+				// 	die ();
+				// }
 
 				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
@@ -3958,7 +3958,7 @@ class AdminController extends Controller
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
-								'SLUG' => $data ['P_10'],
+								// 'SLUG' => $data ['P_10'],
 								'SHORT_DESCRIPTION' => $data ['P_11'],
 								'DESCRIPTION_TITLE' => $data ['P_12'],
 								'DESCRIPTION' => base64_encode($data['P_13']),
@@ -4026,13 +4026,13 @@ class AdminController extends Controller
 
 			} else {
 
-				$duplicate = $Product->checkDuplicateSlug($data['P_10'], $data ['ID']);
-				if ($duplicate != '') {
-					$arrRes ['done'] = false;
-					$arrRes ['msg'] = 'Slug is already exist, try different...';
-					echo json_encode ( $arrRes );
-					die ();
-				}
+				// $duplicate = $Product->checkDuplicateSlug($data['P_10'], $data ['ID']);
+				// if ($duplicate != '') {
+				// 	$arrRes ['done'] = false;
+				// 	$arrRes ['msg'] = 'Slug is already exist, try different...';
+				// 	echo json_encode ( $arrRes );
+				// 	die ();
+				// }
 
 				$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $data ['ID'] ) ->update (
 						array ( 'NAME' => $data['P_1'],
@@ -4045,7 +4045,7 @@ class AdminController extends Controller
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
-								'SLUG' => $data ['P_10'],
+								// 'SLUG' => $data ['P_10'],
 								'FEATURE_ID' =>  isset($feature_id) ? rtrim($feature_id,',') : '',
 								'SHORT_DESCRIPTION' => $data ['P_11'],
 								'DESCRIPTION_TITLE' => $data ['P_12'],
@@ -6527,7 +6527,7 @@ class AdminController extends Controller
 								'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
-								'SLUG' => $data ['P_10'],
+								// 'SLUG' => $data ['P_10'],
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_11']['id']) ? $data ['P_11']['id'] : '',
 								'VAT_RATE' => $data ['P_12'],
 // 								'TOTAL_AMOUNT' => $data ['P_13'],
@@ -6570,7 +6570,7 @@ class AdminController extends Controller
 								'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
-								'SLUG' => $data ['P_10'],
+								// 'SLUG' => $data ['P_10'],
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_11']['id']) ? $data ['P_11']['id'] : '',
 								'VAT_RATE' => $data ['P_12'],
 // 								'TOTAL_AMOUNT' => $data ['P_13'],
