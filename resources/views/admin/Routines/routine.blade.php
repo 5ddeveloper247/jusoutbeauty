@@ -467,7 +467,7 @@ button{
 							</div>
 
                              <div class="step_show" style="padding:15px;">
-							 <h3 id="step_no" >Step#</h3>
+							 <h3 class="text-center" id="step_no" >Step#</h3>
                              </div>
 
 							<div class="row step_show">

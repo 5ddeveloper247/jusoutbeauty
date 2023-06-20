@@ -143,6 +143,10 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 					$scope.unit_price = product_details['UNIT_PRICE'];
 					$scope.short_description = product_details['SHORT_DESCRIPTION'] ;
 					$scope.productImagesLoop = product_details['images'];
+					$scope.productInventryQuantity = product_details['INV_QUANTITY'];
+					$scope.productInventry = product_details['INV_QUANTITY_FLAG'];
+					$scope.productImagesLoop = product_details['images'];
+
 
 					$scope.displayCollectionProductShadesQuickView = product_shades_details;
 				}

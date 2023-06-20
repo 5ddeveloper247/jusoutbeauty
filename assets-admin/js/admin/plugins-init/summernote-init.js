@@ -9,8 +9,8 @@ jQuery(document).ready(function() {
         // focus: !1,
         // fontsize: fontsizes
         // fontSizes: ['8', '9', '10', '11', '12', '14', '18'],
-        fontNames: ['Cavolini'],
-        fontNamesIgnoreCheck: ['Cavolini'],
+        fontNames: ['Cavolini','Jost'],
+        fontNamesIgnoreCheck: ['Cavolini','Jost'],
         // styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
         toolbar: [
             // [groupName, [list of button]]

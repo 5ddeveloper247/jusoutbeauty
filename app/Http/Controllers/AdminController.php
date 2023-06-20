@@ -557,6 +557,7 @@ class AdminController extends Controller
 		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory(isset($arrRes['productDetails']['P_31']) ? $arrRes['productDetails']['P_31'] : '');
 		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory(isset($arrRes['productDetails']['P_32']) ? $arrRes['productDetails']['P_32'] : '');
         $arrRes ['subscriptionDetails'] = $ProductModel->getSubscriptionDetailsOfSingleProduct($productID);
+		
 		// $arrRes ['clinicalNote'] = $ProductModel->getAllProductClinicalNoteByProduct($productID);
 		// dd($arrRes['productDetails']);
 		// dd($arrRes['productDetails']);
@@ -630,6 +631,9 @@ class AdminController extends Controller
 							'UNIT_PRICE' => '4000',
 							'QUANTITY' => '200',
 							'SEQ_NUM' => $getLastSeq,
+							'SUBSCRIPTION_NOTE_TITLE' => 'Sub title',
+							'SUBSCRIPTION_NOTE_DESCRIPTION' => base64_encode('Sub desc'),
+							'SUBSCRIPTION_NOTE_LINK' => 'Sub-link.com',
 							// 'MINIMUM_PURCHASE_QUANTITY' => $data ['P_4'],
 							// 'TAGS' => $data ['P_5'],
 							// 'BARCODE' => $data ['P_6'],

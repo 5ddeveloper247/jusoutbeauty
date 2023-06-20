@@ -1,6 +1,9 @@
 
 <footer class="footer back_cs pt-10">
     <style>
+        #tictk:hover{
+            filter: invert(100%)
+        }
         .back_cs{
             background-color: #006f7a !important
         }
@@ -115,7 +118,7 @@
                             @endif
                             @if (isset($footerSocialIcons['twitterEnable']) && $footerSocialIcons['twitterEnable'] == '1')
                                 <li class="list-inline-item mr-1"><a href="{{ $footerSocialIcons['twitterLink'] }}"
-                                        class="text-body social-media" target="_blank">
+                                        class="text-body social-media" id="tictk" target="_blank">
                                         {{-- <i class="social-media footer-text-white fab fa-tiktok"></i> --}}
                                         <img  style="width: 25px;
                                         padding: 0px;
@@ -325,7 +328,7 @@
         height:58px;
         bottom:86px;
         right:26px;
-        background-color:#25d366;
+        background-color:#006f7a;
         color:#FFF;
         border-radius:50px;
         text-align:center;

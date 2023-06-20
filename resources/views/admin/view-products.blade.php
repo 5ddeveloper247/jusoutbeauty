@@ -63,9 +63,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                 
 												
                                                 <td>
-													<span class="badge light badge-success">
+													<span class="badge light badge-success" ng-if="row.INV_QUANTITY != '0'">
 														<i class="fa fa-circle text-success mr-1"></i>
 														Available
+													</span>
+													<span class="badge light badge-danger" ng-if="row.INV_QUANTITY == '0'">
+														<i class="fa fa-circle text-danger mr-1"></i>
+														Unavailable
 													</span>
 												</td>
 												<td>

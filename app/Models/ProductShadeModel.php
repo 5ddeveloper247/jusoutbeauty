@@ -275,6 +275,7 @@ class ProductShadeModel extends Model
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['SHADE_ID'] = $row->SHADE_ID;
     		$arrRes[$i]['SHADE_NAME'] = $row->shadeName;
+    		// $arrRes[$i]['QUANTITY'] = $this->getTotalQuantity($row->PRODUCT_ID);
     	
     		$arrRes[$i]['DATE'] = $row->DATE;
     	
@@ -282,4 +283,12 @@ class ProductShadeModel extends Model
     	}
     	return isset($arrRes) ? $arrRes : null;
     }
+	
+	public function getTotalQuantity($PRODUCT_ID){
+		$result = DB::table('jb_product_shades_tbl as a')->where('a.PRODUCT_ID', $PRODUCT_ID)->sum('a.QUANTITY');
+		
+		if ($result) {
+			return isset($result) ? $result : null;
+		}
+	}
 }

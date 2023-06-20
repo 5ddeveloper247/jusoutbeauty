@@ -1,6 +1,6 @@
 @include('admin.admin-header');
 <script>
-var userId = <?php echo session('userId');?>;
+var userId = '<?php echo session('userId');?>';
 var site = '<?php echo session('site');?>';
 var baseurl = "<?php echo url('/assets-admin');?>";
 </script>
@@ -30,7 +30,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                    
                                    	<div class="col-lg-4">
                                    		<div class="form-group">
-                                        	<label><b>Customer Name</b><span class="text-danger">**</span></label>
+                                        	<label><b>Customer Name</b><span class="text-danger">*</span></label>
                                          	<input type="text" id="search_1" class="form-control" ng-model="search['S_1']">
                                        	</div>
                                    	</div>
@@ -46,7 +46,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                    	</div>
                                    	<div class="col-lg-4">
                                      	<div class="form-group">
-                                        	<label><b>Shipping Status</b><span class="text-danger">**</span></label>
+                                        	<label><b>Shipping Status</b><span class="text-danger">*</span></label>
                                          	<select class="form-control" id="search_3" ng-model="search['S_3']">
                                             	<option value="">--SELECT--</option>
                                             	<option value="Pending">Pending</option>
@@ -59,18 +59,19 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                    
                                    	<div class="col-lg-4">
                                    		<div class="form-group">
-                                        	<label><b>Start Date</b><span class="text-danger">**</span></label>
+                                        	<label><b>Start Date</b><span class="text-danger">*</span></label>
                                          	<input type="date" id="search_4" class="form-control" ng-model="shipment['S_4']">
                                        	</div>
                                    	</div>
                                    	<div class="col-lg-4">
                                    		<div class="form-group">
-                                        	<label><b>End Date</b><span class="text-danger">**</span></label>
+                                        	<label><b>End Date</b><span class="text-danger">*</span></label>
                                          	<input type="date" id="search_5" class="form-control" ng-model="shipment['S_5']">
                                        	</div>
                                    	</div>
                                    	<div class="col-4">
-                                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="searchGlobal();" style="width:13vw;">Search</a>
+                                        <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="searchGlobal();" style="width:10vw;">Search</a>
+                                        <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="resetGlobal();" style="width:10vw;margin-right:10px">Reset</a>
                                 	</div>
                                    
                                 </div>

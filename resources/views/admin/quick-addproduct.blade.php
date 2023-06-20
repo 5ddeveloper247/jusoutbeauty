@@ -58,35 +58,38 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <style>
-        .close-icon{
+        .close-icon {
             position: absolute;
             right: 8px;
             top: 3px;
         }
 
-        .edit-icon{
+        .edit-icon {
             position: absolute;
             right: 26px;
             top: 3px;
             color: white;
         }
-        .shade-close-icon{
+
+        .shade-close-icon {
             position: absolute;
             right: 28px;
             top: 3px;
             z-index: 3;
         }
 
-        .shade-edit-icon{
+        .shade-edit-icon {
             position: absolute;
             right: 45px;
             top: 3px;
             color: white;
             z-index: 3;
         }
-        .gap-2{
+
+        .gap-2 {
             gap: 4px
         }
+
         span.select2.select2-container.select2-container--default {
             width: 100% !important
         }
@@ -572,7 +575,8 @@
                 <div class="container container-custom container-xxl ">
                     <div class="row ">
 
-                        <div class="col-12  " style="color: white !important;
+                        <div class="col-12  "
+                            style="color: white !important;
                         background-color: #a72160 !important;">
                             <a href="{{ url('/view-products') }}" class="d-flex gap-2">
                                 <h5><i class="fa fa-arrow-left text-light" aria-hidden="true"></i></h5>
@@ -580,7 +584,8 @@
                             </a>
 
                         </div>
-                        <div class="col-12 text-center p-2" style="color: white !important;
+                        <div class="col-12 text-center p-2"
+                            style="color: white !important;
                         background-color: #a72160 !important;">
                             <h3 class="text-light m-0">Add/Edit Product Form</h3>
                         </div>
@@ -593,7 +598,8 @@
                     <div class="row">
                         <div class="col-4 mt-1 mb-1">
                             <div class="form-group">
-                                <label class="col-form-label" for="tags"><b>Product Category</b> <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="tags"><b>Product Category</b> <span
+                                        class="text-danger">*</span></label>
                                 <select class="form-control" id="p31" ng-model="QuickProduct['P_31']"
                                     ng-change="getSubCategoriesWrtCategory();"
                                     ng-options="item as item.name for item in categoryLov track by item.id">
@@ -603,9 +609,9 @@
                         </div>
                         <div class="col-4 mt-1 mb-1">
                             <div class="form-group">
-                                <label class="col-form-label" for="tags"><b>Product Sub Category</b> <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="tags"><b>Product Sub Category</b> <span
+                                        class="text-danger">*</span></label>
                                 <select class="form-control" id="p32" ng-model="QuickProduct['P_32']"
-
                                     ng-change="getSubSubCategoriesWrtSubCategory();"
                                     ng-options="item as item.name for item in subCategoryLov track by item.id">
                                     <option value="">---SELECT---</option>
@@ -614,7 +620,8 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-form-label" for="sub_sub_category"><b>Product Sub Sub Category</b> <span class="text-danger">*</span> </label>
+                                <label class="col-form-label" for="sub_sub_category"><b>Product Sub Sub Category</b>
+                                    <span class="text-danger">*</span> </label>
                                 <select class="form-control" id="p33" ng-model="QuickProduct['P_33']"
                                     ng-change="updateSubSubCategoriesWrtSubCategoryQuickAdd();"
                                     ng-options="item as item.name for item in subSubCategoryLov track by item.id">
@@ -641,7 +648,9 @@
 
                                 </form>
                                 <div class="col-sm-6 col-6 px-1 mb-2">
-                                    <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
+                                    <small class="text-danger font-weight-bold"><span
+                                            class="badge badge-danger">*Note: Image dimensions must be minimum 270 X
+                                            370</span></small>
                                     <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
                                         onclick="form1();" alt="Image"
                                         class="prod_img_detail img-w35 img-product-gall cursor-pointer"
@@ -653,7 +662,8 @@
 
 
                                 <div class="col-md-6 px-1 pb-1" ng-repeat="row in displayImagesLov">
-                                    <small class="text-danger invisible ">*Note: Image dimensions must be minimum 270 X 370</small>
+                                    <small class="text-danger invisible ">*Note: Image dimensions must be minimum 270 X
+                                        370</small>
                                     <div class="show-image">
 
                                         <img src="@{{ row.DOWN_PATH }}" alt="Image"
@@ -792,9 +802,8 @@
             <section class="pb-11 pb-lg-6">
                 <div class="container container-custom container-xxl mt-8">
                     <h3 class="text-center my-4">Shades <i class="fa fa-pencil-square-o cursor-pointer"
-                            aria-hidden="true"  ng-click="addShadesModal()"></i></h3>
-                    <div class="shades_slider"
-                       >
+                            aria-hidden="true" ng-click="addShadesModal()"></i></h3>
+                    <div class="shades_slider">
 
                         <p class="text-center">No Shades Added...</p>
                     </div>
@@ -840,8 +849,8 @@
                                                                 aria-hidden="true" ng-click="EditSecondSection()"></i>
                                                         </div>
 
-                                                        <h3 class="col-12 text-center my-4"
-                                                            id="p17" ng-show="SecondSectionEdit == '0'">For Women </h3>
+                                                        <h3 class="col-12 text-center my-4" id="p17"
+                                                            ng-show="SecondSectionEdit == '0'">For Women </h3>
                                                         <div class="col-md-6 mb-6 mb-md-0">
                                                             <img id="p15"
                                                                 src="https://jusoutbeauty.com/site/public/uploads/product/images/292.jpg"
@@ -995,32 +1004,40 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <i class="fa fa-pencil-square-o cursor-pointer float-right"
-                                                                        aria-hidden="true" ng-show="subscriptionEditView == '0'"
+                                                                        aria-hidden="true"
+                                                                        ng-show="subscriptionEditView == '0'"
                                                                         ng-click="showSubscriptionInfo()">
                                                                     </i>
-                                                                    <div class="" ng-show="subscriptionEditView != 0">
+                                                                    <div class=""
+                                                                        ng-show="subscriptionEditView != 0">
                                                                         <button type="button"
-                                                                                class="btn btn-primary text-capitalize w-25 float-right"
-                                                                                ng-click="updateSubscriptionInfo()"
-                                                                                ng-show="subscriptionEditView != '0'">Update</button>
+                                                                            class="btn btn-primary text-capitalize w-25 float-right"
+                                                                            ng-click="updateSubscriptionInfo()"
+                                                                            ng-show="subscriptionEditView != '0'">Update</button>
                                                                         <button type="button"
-                                                                                class="btn btn-primary text-capitalize w-25 float-right mx-2"
-                                                                                ng-click="cancelSubscriptionInfo()"
-                                                                                ng-show="subscriptionEditView != '0'">Cancel</button>
+                                                                            class="btn btn-primary text-capitalize w-25 float-right mx-2"
+                                                                            ng-click="cancelSubscriptionInfo()"
+                                                                            ng-show="subscriptionEditView != '0'">Cancel</button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12 mt-3"
-                                                                        id="subscriptionSectionSummerNote2"
-                                                                        ng-show="subscriptionEditView != '0'">
+                                                                    id="subscriptionSectionSummerNote2"
+                                                                    ng-show="subscriptionEditView != '0'">
                                                                     <input type="text" class="form-control my-2"
-                                                                            ng-model="subscription['S_1']" placeholder="Subscription" id="">
+                                                                        ng-model="subscription['S_1']"
+                                                                        placeholder="Subscription" id="">
                                                                     <input type="text" class="form-control my-2"
-                                                                            ng-model="subscription['S_2']" placeholder="Link" id="">
-                                                                    <div class="summernote" id="SubscriptionSummerView" ></div>
+                                                                        ng-model="subscription['S_2']"
+                                                                        placeholder="Link" id="">
+                                                                    <div class="summernote"
+                                                                        id="SubscriptionSummerView"></div>
                                                                 </div>
                                                             </div>
-                                                            <h3 class="mb-2 font-weight-500 fs-35" ng-show="subscriptionEditView == '0'" id="SUB1">Subscription</h3>
-                                                            <p class="mb-6" ng-show="subscriptionEditView == '0'" id="SUB3">Indulge in the convenience and exclusive
+                                                            <h3 class="mb-2 font-weight-500 fs-35"
+                                                                ng-show="subscriptionEditView == '0'" id="SUB1">
+                                                                Subscription</h3>
+                                                            <p class="mb-6" ng-show="subscriptionEditView == '0'"
+                                                                id="SUB3">Indulge in the convenience and exclusive
                                                                 benefits offered with our subscription service. Simply
                                                                 select how frequently you'd like to recieve your
                                                                 products,
@@ -1030,45 +1047,53 @@
                                                             <a href="" data-toggle="tooltip"
                                                                 data-placement="left"
                                                                 title="Click to see more About Subscription"
-                                                                class="preview btn btn-primary" ng-show="subscriptionEditView == '0'" id="SUB2"> <span>Learn More
+                                                                class="preview btn btn-primary"
+                                                                ng-show="subscriptionEditView == '0'" id="SUB2">
+                                                                <span>Learn More
                                                                 </span>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-6 mb-6 mb-md-0">
-                                                            <form class="" id="uploadSubscriptionImage" method="POST"
-                                                            action="uploadProductSubscriptionImage" enctype="multipart/form-data"
-                                                            >
-                                                            <input type="hidden" name="_method" value="POST">
+                                                            <form class="" id="uploadSubscriptionImage"
+                                                                method="POST" action="uploadProductSubscriptionImage"
+                                                                enctype="multipart/form-data">
+                                                                <input type="hidden" name="_method" value="POST">
 
-                                                            {{ csrf_field() }}
+                                                                {{ csrf_field() }}
 
-                                                            <input type="hidden" id="userId" name="userId" value="<?php echo session('userId'); ?>">
-                                                            <input type="hidden" id="sourceId" name="sourceId"
-                                                                value="@{{ QuickProduct.PRODUCT_ID }}">
-                                                            <input type="hidden" id="sourceCode" name="sourceCode" value="SUBSCRIPTION_IMAGE">
-                                                            <input type="file" id="uploadImage" name="uploadImage" class="file-input"
-                                                                style="display: none;">
+                                                                <input type="hidden" id="userId" name="userId"
+                                                                    value="<?php echo session('userId'); ?>">
+                                                                <input type="hidden" id="sourceId" name="sourceId"
+                                                                    value="@{{ QuickProduct.PRODUCT_ID }}">
+                                                                <input type="hidden" id="sourceCode"
+                                                                    name="sourceCode" value="SUBSCRIPTION_IMAGE">
+                                                                <input type="file" id="uploadImage"
+                                                                    name="uploadImage" class="file-input"
+                                                                    style="display: none;">
 
-                                                        </form>
-                                                        {{-- <div class="col-sm-12 col-12 px-1 mb-2" ng-show="subscriptionImage == '0'" id="">
+                                                            </form>
+                                                            {{-- <div class="col-sm-12 col-12 px-1 mb-2" ng-show="subscriptionImage == '0'" id="">
                                                             <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
                                                             <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
                                                                 onclick="formSubscriptionImage();" alt="Image"
                                                                 class="prod_img_detail img-w35 img-product-gall cursor-pointer"
                                                                 style="border:5px dotted grey" id="">
                                                         </div> --}}
-                                                        <div class="col-sm-12 col-12 px-1 mb-2"  id="">
-                                                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
-                                                            <i class="fa fa-pencil-square-o cursor-pointer float-right"
-                                                                        aria-hidden="true"
-                                                                        onclick="formSubscriptionImage()">
-                                                                    </i>
-                                                            <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
-                                                                onclick="formSubscriptionImage();" alt="Image"
-                                                                class="prod_img_detail img-w35 img-product-gall cursor-pointer"
-                                                                style="border:5px dotted grey" id="uploadedImage">
-                                                        </div>
-                                                        {{-- <div class="col-sm-12 col-12 px-1 mb-2" ng-show="subscriptionImage != '0'" id="uploadedImage">
+                                                            <div class="col-sm-12 col-12 px-1 mb-2" id="">
+                                                                <small class="text-danger font-weight-bold"><span
+                                                                        class="badge badge-danger">*Note: Image
+                                                                        dimensions must be minimum 270 X
+                                                                        370</span></small>
+                                                                <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                    aria-hidden="true"
+                                                                    onclick="formSubscriptionImage()">
+                                                                </i>
+                                                                <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
+                                                                    onclick="formSubscriptionImage();" alt="Image"
+                                                                    class="prod_img_detail img-w35 img-product-gall cursor-pointer"
+                                                                    style="border:5px dotted grey" id="uploadedImage">
+                                                            </div>
+                                                            {{-- <div class="col-sm-12 col-12 px-1 mb-2" ng-show="subscriptionImage != '0'" id="uploadedImage">
                                                             <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
                                                             <img src=""
                                                                 alt="Image"
@@ -1078,729 +1103,750 @@
                                                         </div>
                                                     </div>
 
-                                                    </div>
-                                                    <br>
-                                                    <hr>
-                                                    <section class="pt-10 pt-lg-8 py-8">
-                                                        <div class="">
-                                                            <div class="row no-gutters align-items-center">
-                                                                <div class="col-md-7"></div>
-                                                                <div class="col-md-5">
+                                                </div>
+                                                <br>
+                                                <hr>
+                                                <section class="pt-10 pt-lg-8 py-8">
+                                                    <div class="">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col-md-7"></div>
+                                                            <div class="col-md-5">
 
-                                                                        <i class="fa fa-pencil-square-o cursor-pointer float-right"
-                                                                aria-hidden="true" ng-show="VideoEditView == '0'"
-                                                                ng-click="showVideoInfo()"></i>
-                                                                    <button type="button"
-                                                                        class="btn btn-primary text-capitalize w-25 float-right"
-                                                                        ng-click="updateVideoInfo()"
-                                                                        ng-show="VideoEditView != '0'">Update</button>
-                                                                    <button type="button"
-                                                                        class="btn btn-primary text-capitalize w-25 float-right mx-2"
-                                                                        ng-click="cancelVideoInfo()"
-                                                                        ng-show="VideoEditView != '0'">Cancel</button>
-                                                                </div>
-                                                                <div class="col-md-8 mb-8 mb-md-0">
-                                                                    <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
-
-                                                                    <div class="fix">
-                                                                        <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
-                                                                            ng-show="video.V_4 == ''"
-                                                                            onclick="form2();"
-                                                                            class="prod_img_detail img-w35 img-product-gall cursor-pointer"
-                                                                            style="border:5px dotted grey">
-
-                                                                        <div class=" "
-                                                                            ng-show="video.V_4 != ''">
-
-                                                                                <i class="fa fa-pencil-square-o cursor-pointer float-right" aria-hidden="true" onclick="form2();"></i>
-                                                                            <video id="video_product" src="@{{ video.V_4 }}"
-                                                                                class="card-img"></video>
-                                                                            <div
-                                                                                class="card-img-overlay d-flex flex-column align-items-center justify-content-center p-4">
-                                                                                <a href="@{{ video.V_3 }}"
-                                                                                    data-gtf-mfp="true"
-                                                                                    data-mfp-options='{"type":"iframe","preloader":false}'
-                                                                                    class="mb-3 mb-sm-7 w-45px h-45px w-sm-65 h-sm-65 d-flex justify-content-center align-items-center rounded-circle fs-sm-20 border border-white text-white bg-hover-primary border-hover-primary"><i
-                                                                                        class="fas fa-play"></i></a>
-                                                                                <p
-                                                                                    class="text-uppercase text-white fs-sm-30 letter-spacing-375px font-weight-800">
-                                                                                    lookbook
-                                                                                    video</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <form class="" id="uploadattch2"
-                                                                            method="POST"
-                                                                            action="uploadProductVideoAttachment"
-                                                                            enctype="multipart/form-data">
-                                                                            <input type="hidden" name="_method"
-                                                                                value="POST">
-                                                                            {{ csrf_field() }}
-                                                                            <input type="hidden" id="userId"
-                                                                                name="userId"
-                                                                                value="<?php echo session('userId'); ?>">
-                                                                            <input type="hidden" id="sourceId"
-                                                                                name="sourceId"
-                                                                                value="@{{ QuickProduct.PRODUCT_ID }}">
-                                                                            <input type="hidden" id="videoId"
-                                                                                name="videoId"
-                                                                                value="@{{ video.ID }}">
-                                                                            <input type="hidden" id="sourceCode"
-                                                                                name="sourceCode"
-                                                                                value="PRODUCT_VIDEO">
-                                                                            <input type="file" id="uploadatt2"
-                                                                                name="uploadattl" class="file-input"
-                                                                                style="display: none;">
-                                                                        </form>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4 pl-xl-7 pl-7"
-                                                                    id="videoSectionSummerNote1"
-                                                                    ng-show="VideoEditView == '0'"
-                                                                    style="height:40rem;overflow-y:auto">
-                                                                    <h3 class="fs-35 mb-5" id="video_heading">
-                                                                        Mascara </h3>
-
-                                                                    <p id="video_desc"><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its layout.&nbsp;</span>
-                                                                    </p>
-                                                                </div>
-                                                                <div class="col-md-4 pl-xl-7 pl-7"
-                                                                    id="videoSectionSummerNote2"
-                                                                    ng-show="VideoEditView != '0'">
-                                                                    <input type="text" class="form-control my-2"
-                                                                        ng-model="video['V_1']">
-                                                                    <div class="summernote" id="VideoSummerView">
-
-                                                                    </div>
-                                                                </div>
+                                                                <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                    aria-hidden="true" ng-show="VideoEditView == '0'"
+                                                                    ng-click="showVideoInfo()"></i>
+                                                                <button type="button"
+                                                                    class="btn btn-primary text-capitalize w-25 float-right"
+                                                                    ng-click="updateVideoInfo()"
+                                                                    ng-show="VideoEditView != '0'">Update</button>
+                                                                <button type="button"
+                                                                    class="btn btn-primary text-capitalize w-25 float-right mx-2"
+                                                                    ng-click="cancelVideoInfo()"
+                                                                    ng-show="VideoEditView != '0'">Cancel</button>
                                                             </div>
-                                                        </div>
-                                                    </section>
-                                                    <br>
-                                                    <hr>
-                                                    <section class="pb-10 pb-lg-0 mob_tab_sec">
-                                                        <div class="">
-                                                            <h5 class="text-center mb-3">Ingredients</h5>
-                                                            <h3 class="text-center mb-9">Backed by Science to Optimize
-                                                                Skin Wellness <i class="fa fa-pencil-square-o cursor-pointer"
-                                                                aria-hidden="true" ng-click="addSpotForModal()"></i></h3>
-                                                            <ul
-                                                                class="nav nav-pills justify-content-center mb-lg-9 mb-6">
-                                                                <li class="nav-item px-5 d-flex align-items-center gap-2"><a
-                                                                        class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
-                                                                        id="spotlightTabBtn">Spotlight Ingredients</a>
-                                                                </li>
-                                                                <li class="nav-item px-5 d-flex align-items-center gap-2"><a
-                                                                        class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400 active"
-                                                                        id="formulatedTabBtn">Formulated
-                                                                        Ingredients</a>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="p-0 m-0" id="pills-tabContent">
-                                                                <div class="tabbspotlight" id="tabbspotlight"
-                                                                    style="display: none;">
-                                                                    <section class="pb-11 pb-lg-0" id="">
-                                                                        <div
-                                                                            class="container container-custom container-xxl">
-                                                                            <div class="row" id="spotlight_data">
-                                                                                <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                    style="background-color:#57813a96">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Glycerin</p>
-                                                                                    <p>
-                                                                                        A humectant that helps to
-                                                                                        attract and retain
-                                                                                        moisture in the skin, providing
-                                                                                        hydration and a smooth
-                                                                                        appearance.
-                                                                                    </p>
+                                                            <div class="col-md-8 mb-8 mb-md-0">
+                                                                <small class="text-danger font-weight-bold"><span
+                                                                        class="badge badge-danger">*Note: Image
+                                                                        dimensions must be minimum 270 X
+                                                                        370</span></small>
 
-                                                                                </div>
-                                                                                <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                    style="background-color:#57813a96">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Polyethylene Terephthalate</p>
-                                                                                    <p>
-                                                                                        Used in cosmetics to create
-                                                                                        shimmering and
-                                                                                        glittering effects. It is often
-                                                                                        found in products that have a
-                                                                                        sparkly ...</p>
-
-                                                                                </div>
-                                                                                <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                    style="background-color:#57813a96">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Caprylic/Capric Triglyceride</p>
-                                                                                    <p>
-                                                                                        It is a lightweight and
-                                                                                        non-greasy emollient
-                                                                                        that helps to improve the
-                                                                                        spreadability of the product and
-                                                                                        provides ...</p>
-
-                                                                                </div>
-                                                                                <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                    style="background-color:#57813a96">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Phenoxyethanol</p>
-                                                                                    <p>
-                                                                                        It helps to maintain the
-                                                                                        stability and safety of the
-                                                                                        product. Is another preservative
-                                                                                        commonly used in
-                                                                                        cosmetics ...</p>
-
-                                                                                </div>
-
-
-                                                                                <div
-                                                                                    class="col-sm-12 ing_btn_prod_detail pt-4 text-center">
-                                                                                    <a href="javascript:;"
-                                                                                        data-toggle="tooltip"
-                                                                                        data-placement="left"
-                                                                                        title=""
-                                                                                        class="preview btn btn-primary"
-                                                                                        data-original-title="Click to see more Ingredients">
-                                                                                        <span data-toggle="modal"
-                                                                                            data-target="#ingred_pop">List
-                                                                                            of Full Ingredients </span>
-                                                                                    </a>
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </section>
-                                                                </div>
-                                                                <div class="tabbformulated" id="tabbformulated"
-                                                                    style="">
-                                                                    <section class="pb-11 pb-lg-0" id="">
-                                                                        <div
-                                                                            class="container container-custom container-xxl">
-                                                                            <div class="row" id="formulated_data">
-
-                                                                                <div
-                                                                                    class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Talc</p>
-
-                                                                                    Is a naturally occurring mineral
-                                                                                    that is used
-                                                                                    as a filler in cosmetics. It helps
-                                                                                    to improve the texture, absorb e...
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Zinc Stearate</p>
-                                                                                    A mineral-derived compound that acts
-                                                                                    as a bulking agent and provides a
-                                                                                    silky texture to cosmetics. It helps
-                                                                                    to improve a...
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Sodium Dehydroacetate</p>
-
-                                                                                    A preservative that helps to prevent
-                                                                                    the
-                                                                                    growth of microorganisms and extend
-                                                                                    the shelf life of the product.
-
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
-                                                                                    <img class="spot-section-img"
-                                                                                        src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
-                                                                                    <p
-                                                                                        class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
-                                                                                        Iron Oxides - CI
-                                                                                        77491/77492/77499</p>
-
-                                                                                    Mineral pigments that provide
-                                                                                    various shades
-                                                                                    of brown, red, and black colors in
-                                                                                    cosmetics.
-
-                                                                                </div>
-
-                                                                                <div
-                                                                                    class="col-sm-12 ing_btn_prod_detail pt-4 text-center">
-                                                                                    <a href="javascript:;"
-                                                                                        data-toggle="tooltip"
-                                                                                        data-placement="left"
-                                                                                        title=""
-                                                                                        class="preview btn btn-primary"
-                                                                                        data-original-title="Click to see more Ingredients">
-                                                                                        <span data-toggle="modal"
-                                                                                            data-target="#ingred_pop">List
-                                                                                            of Full Ingredients </span>
-                                                                                    </a>
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </section>
-                                                                </div>
-                                                                <div class="modal fade quick-view" id="ingred_pop"
-                                                                    tabindex="-1" aria-hidden="true">
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content p-0">
-                                                                            <div class="modal-body p-0">
-                                                                                <button type="button"
-                                                                                    class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-label="Close">
-                                                                                    <span aria-hidden="true"
-                                                                                        class="fs-20"><i
-                                                                                            class="fal fa-times"></i></span>
-                                                                                </button>
-                                                                                <div class="pop_content_prod_detail">
-                                                                                    <h3>Full List of ingredients</h3>
-                                                                                    <hr>
-                                                                                    <div class="row">
-
-
-                                                                                        <p class="col-lg-12">
-
-                                                                                            Talc, Zinc Stearate, Sodium
-                                                                                            Dehydroacetate, Iron Oxides
-                                                                                            - CI 77491/77492/77499,
-                                                                                            Glycerin, Polyethylene
-                                                                                            Terephthalate,
-                                                                                            Caprylic/Capric
-                                                                                            Triglyceride, Phenoxyethanol
-                                                                                        </p>
-
-
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                    <br>
-
-                                                    <section style="background-color: #f38c7b;">
-                                                        <div class="pb-10 pb-lg-8 py-8">
-                                                            <div class="container container-xl">
-                                                                <h3 class="text-center mb-9" style="color: #fff;">
-                                                                    How To
-                                                                    Use: AM and PM <i class="fa fa-pencil-square-o cursor-pointer"
-                                                                    aria-hidden="true" ng-click="addNewUses();"></i></h3>
-                                                                <div class="row" id="steps_users">
-                                                                    <div class="col-md-4 mb-6 mb-md-0 ">
-                                                                        <div class="card border-0">
-                                                                            <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527807-106.jpg"
-                                                                                alt="Image"
-                                                                                class="card-img h_to_use_img">
-                                                                            <div
-                                                                                class="card-body pt-6 px-0 pb-0 text-center">
-                                                                                <a href="#"
-                                                                                    class="fs-18 font-weight-500 lh-1444">Mascara</a>
-                                                                                <p class="mb-6">
-                                                                                    It is a long established fact that a
-                                                                                    reader will be distracted by the
-                                                                                    readable content of a page when
-                                                                                    looking at its layout.</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-4 mb-6 mb-md-0 pt-14 step_2">
-                                                                        <div class="card border-0">
-                                                                            <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527845-107.jpg"
-                                                                                alt="Image"
-                                                                                class="card-img h_to_use_img">
-                                                                            <div
-                                                                                class="card-body pt-6 px-0 pb-0 text-center">
-                                                                                <a href="#"
-                                                                                    class="fs-18 font-weight-500 lh-1444">mascara</a>
-                                                                                <p class="mb-6">
-                                                                                    It is a long established fact that a
-                                                                                    reader will be distracted by the
-                                                                                    readable content of a page when
-                                                                                    looking at its layout.</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-4 mb-6 mb-md-0 ">
-                                                                        <div class="card border-0">
-                                                                            <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527885-108.jpg"
-                                                                                alt="Image"
-                                                                                class="card-img h_to_use_img">
-                                                                            <div
-                                                                                class="card-body pt-6 px-0 pb-0 text-center">
-                                                                                <a href="#"
-                                                                                    class="fs-18 font-weight-500 lh-1444">mascara</a>
-                                                                                <p class="mb-6">
-                                                                                    It is a long established fact that a
-                                                                                    reader will be distracted by the
-                                                                                    readable content of a page when
-                                                                                    looking at its layout.</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-
-                                                    <section class="pt-10 pt-lg-8 py-8">
-                                                        <div class="">
-                                                            <div class="row no-gutters align-items-center">
-                                                                <div class="col-12 text-right" ng-show="clinicalNoteSection == '0'">
-                                                                    <i class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true" ng-click="EditclinicalNoteSection()"></i>
-                                                                </div>
-                                                                <div class="col-sm-6 col-6 px-1 mb-2">
-                                                                    <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
-
-                                                                    <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg" ng-show="QuickProduct.P_20 == ''"
-                                                                        onclick="form5();" alt="Image"
+                                                                <div class="fix">
+                                                                    <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
+                                                                        ng-show="video.V_4 == ''" onclick="form2();"
                                                                         class="prod_img_detail img-w35 img-product-gall cursor-pointer"
                                                                         style="border:5px dotted grey">
-                                                                    {{-- <button type="button" class="btn btn-primary btn-block text-capitalize w-25 mb-3" >Edit</button> --}}
-                                                                    <i class="fa fa-pencil-square-o cursor-pointer float-right"
-                                                                    aria-hidden="true" onclick="form5();"></i>
-                                                                    <img class="prod_img_detail img-w35 img-product-gall cursor-pointer" src="@{{ QuickProduct.P_20 }}" alt="">
-                                                                </div>
-                                                                <form class="" id="uploadattch5" method="POST" action="uploadProductImageAttachment" enctype="multipart/form-data">
-                                                                    <input type="hidden" name="_method" value="POST">
-                                                                       {{ csrf_field() }}
-                                                                    <input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
-                                                                    <input type="hidden" id="sourceId" name="sourceId" value="@{{QuickProduct.PRODUCT_ID}}">
-                                                                    <input type="hidden" id="sourceCode" name="sourceCode" value="CLINICAL_NOTE">
-                                                                    <input type="file" id="uploadatt5" name="uploadattl" class="file-input" style="display: none;">
-                                                                </form>
-                                                                <div class="col-md-6 px-6 px-md-0 pl-xl-7"
-                                                                    style="height:30rem;overflow-y:auto" ng-show="clinicalNoteSection == '0'">
-                                                                    <h3 class="mb-5">Clinical Note</h3>
-                                                                    <p id="p19" ><span style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its
-                                                                            layout.&nbsp;</span><span
-                                                                            style="text-align: justify;">It is a long
-                                                                            established fact that a reader will be
-                                                                            distracted by the readable content of a page
-                                                                            when looking at its layout.&nbsp;</span></p>
-                                                                </div>
-                                                                <div class="col-md-6 px-6 px-md-0 pl-xl-7" ng-show="clinicalNoteSection != '0'">
-                                                                    <button type="button"
-                                                                        class="btn btn-primary text-capitalize w-25 float-right"
-                                                                        ng-click="updateClinicalInfo()"
-                                                                        >Update</button>
-                                                                    <button type="button"
-                                                                        class="btn btn-primary text-capitalize w-25 float-right mx-2"
-                                                                        ng-click="cancelClinicalNoteSection()"
-                                                                       >Cancel</button>
-                                                                    <h3 class="fs-42 mb-5">Clinical Note</h3>
-                                                                    <div class="summernote" id="clinicalNoteSectionView">
 
+                                                                    <div class=" " ng-show="video.V_4 != ''">
+
+                                                                        <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                            aria-hidden="true" onclick="form2();"></i>
+                                                                        <video id="video_product"
+                                                                            src="@{{ video.V_4 }}"
+                                                                            class="card-img"></video>
+                                                                        <div
+                                                                            class="card-img-overlay d-flex flex-column align-items-center justify-content-center p-4">
+                                                                            <a href="@{{ video.V_3 }}"
+                                                                                data-gtf-mfp="true"
+                                                                                data-mfp-options='{"type":"iframe","preloader":false}'
+                                                                                class="mb-3 mb-sm-7 w-45px h-45px w-sm-65 h-sm-65 d-flex justify-content-center align-items-center rounded-circle fs-sm-20 border border-white text-white bg-hover-primary border-hover-primary"><i
+                                                                                    class="fas fa-play"></i></a>
+                                                                            <p
+                                                                                class="text-uppercase text-white fs-sm-30 letter-spacing-375px font-weight-800">
+                                                                                lookbook
+                                                                                video</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <form class="" id="uploadattch2"
+                                                                        method="POST"
+                                                                        action="uploadProductVideoAttachment"
+                                                                        enctype="multipart/form-data">
+                                                                        <input type="hidden" name="_method"
+                                                                            value="POST">
+                                                                        {{ csrf_field() }}
+                                                                        <input type="hidden" id="userId"
+                                                                            name="userId"
+                                                                            value="<?php echo session('userId'); ?>">
+                                                                        <input type="hidden" id="sourceId"
+                                                                            name="sourceId"
+                                                                            value="@{{ QuickProduct.PRODUCT_ID }}">
+                                                                        <input type="hidden" id="videoId"
+                                                                            name="videoId"
+                                                                            value="@{{ video.ID }}">
+                                                                        <input type="hidden" id="sourceCode"
+                                                                            name="sourceCode" value="PRODUCT_VIDEO">
+                                                                        <input type="file" id="uploadatt2"
+                                                                            name="uploadattl" class="file-input"
+                                                                            style="display: none;">
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 pl-xl-7 pl-7"
+                                                                id="videoSectionSummerNote1"
+                                                                ng-show="VideoEditView == '0'"
+                                                                style="height:40rem;overflow-y:auto">
+                                                                <h3 class="fs-35 mb-5" id="video_heading">
+                                                                    Mascara </h3>
+
+                                                                <p id="video_desc"><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its layout.&nbsp;</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-4 pl-xl-7 pl-7"
+                                                                id="videoSectionSummerNote2"
+                                                                ng-show="VideoEditView != '0'">
+                                                                <input type="text" class="form-control my-2"
+                                                                    ng-model="video['V_1']">
+                                                                <div class="summernote" id="VideoSummerView">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                                <br>
+                                                <hr>
+                                                <section class="pb-10 pb-lg-0 mob_tab_sec">
+                                                    <div class="">
+                                                        <h5 class="text-center mb-3">Ingredients</h5>
+                                                        <h3 class="text-center mb-9">Backed by Science to Optimize
+                                                            Skin Wellness <i
+                                                                class="fa fa-pencil-square-o cursor-pointer"
+                                                                aria-hidden="true" ng-click="addSpotForModal()"></i>
+                                                        </h3>
+                                                        <ul class="nav nav-pills justify-content-center mb-lg-9 mb-6">
+                                                            <li class="nav-item px-5 d-flex align-items-center gap-2">
+                                                                <a class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
+                                                                    id="spotlightTabBtn">Spotlight Ingredients</a>
+                                                            </li>
+                                                            <li class="nav-item px-5 d-flex align-items-center gap-2">
+                                                                <a class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400 active"
+                                                                    id="formulatedTabBtn">Formulated
+                                                                    Ingredients</a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="p-0 m-0" id="pills-tabContent">
+                                                            <div class="tabbspotlight" id="tabbspotlight"
+                                                                style="display: none;">
+                                                                <section class="pb-11 pb-lg-0" id="">
+                                                                    <div
+                                                                        class="container container-custom container-xxl">
+                                                                        <div class="row" id="spotlight_data">
+                                                                            <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
+                                                                                style="background-color:#57813a96">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Glycerin</p>
+                                                                                <p>
+                                                                                    A humectant that helps to
+                                                                                    attract and retain
+                                                                                    moisture in the skin, providing
+                                                                                    hydration and a smooth
+                                                                                    appearance.
+                                                                                </p>
+
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
+                                                                                style="background-color:#57813a96">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Polyethylene Terephthalate</p>
+                                                                                <p>
+                                                                                    Used in cosmetics to create
+                                                                                    shimmering and
+                                                                                    glittering effects. It is often
+                                                                                    found in products that have a
+                                                                                    sparkly ...</p>
+
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
+                                                                                style="background-color:#57813a96">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Caprylic/Capric Triglyceride</p>
+                                                                                <p>
+                                                                                    It is a lightweight and
+                                                                                    non-greasy emollient
+                                                                                    that helps to improve the
+                                                                                    spreadability of the product and
+                                                                                    provides ...</p>
+
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
+                                                                                style="background-color:#57813a96">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Phenoxyethanol</p>
+                                                                                <p>
+                                                                                    It helps to maintain the
+                                                                                    stability and safety of the
+                                                                                    product. Is another preservative
+                                                                                    commonly used in
+                                                                                    cosmetics ...</p>
+
+                                                                            </div>
+
+
+                                                                            <div
+                                                                                class="col-sm-12 ing_btn_prod_detail pt-4 text-center">
+                                                                                <a href="javascript:;"
+                                                                                    data-toggle="tooltip"
+                                                                                    data-placement="left"
+                                                                                    title=""
+                                                                                    class="preview btn btn-primary"
+                                                                                    data-original-title="Click to see more Ingredients">
+                                                                                    <span data-toggle="modal"
+                                                                                        data-target="#ingred_pop">List
+                                                                                        of Full Ingredients </span>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </section>
+                                                            </div>
+                                                            <div class="tabbformulated" id="tabbformulated"
+                                                                style="">
+                                                                <section class="pb-11 pb-lg-0" id="">
+                                                                    <div
+                                                                        class="container container-custom container-xxl">
+                                                                        <div class="row" id="formulated_data">
+
+                                                                            <div
+                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Talc</p>
+
+                                                                                Is a naturally occurring mineral
+                                                                                that is used
+                                                                                as a filler in cosmetics. It helps
+                                                                                to improve the texture, absorb e...
+                                                                            </div>
+                                                                            <div
+                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Zinc Stearate</p>
+                                                                                A mineral-derived compound that acts
+                                                                                as a bulking agent and provides a
+                                                                                silky texture to cosmetics. It helps
+                                                                                to improve a...
+                                                                            </div>
+                                                                            <div
+                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Sodium Dehydroacetate</p>
+
+                                                                                A preservative that helps to prevent
+                                                                                the
+                                                                                growth of microorganisms and extend
+                                                                                the shelf life of the product.
+
+                                                                            </div>
+                                                                            <div
+                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
+                                                                                <img class="spot-section-img"
+                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                <p
+                                                                                    class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
+                                                                                    Iron Oxides - CI
+                                                                                    77491/77492/77499</p>
+
+                                                                                Mineral pigments that provide
+                                                                                various shades
+                                                                                of brown, red, and black colors in
+                                                                                cosmetics.
+
+                                                                            </div>
+
+                                                                            <div
+                                                                                class="col-sm-12 ing_btn_prod_detail pt-4 text-center">
+                                                                                <a href="javascript:;"
+                                                                                    data-toggle="tooltip"
+                                                                                    data-placement="left"
+                                                                                    title=""
+                                                                                    class="preview btn btn-primary"
+                                                                                    data-original-title="Click to see more Ingredients">
+                                                                                    <span data-toggle="modal"
+                                                                                        data-target="#ingred_pop">List
+                                                                                        of Full Ingredients </span>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </section>
+                                                            </div>
+                                                            <div class="modal fade quick-view" id="ingred_pop"
+                                                                tabindex="-1" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content p-0">
+                                                                        <div class="modal-body p-0">
+                                                                            <button type="button"
+                                                                                class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
+                                                                                data-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                                <span aria-hidden="true"
+                                                                                    class="fs-20"><i
+                                                                                        class="fal fa-times"></i></span>
+                                                                            </button>
+                                                                            <div class="pop_content_prod_detail">
+                                                                                <h3>Full List of ingredients</h3>
+                                                                                <hr>
+                                                                                <div class="row">
+
+
+                                                                                    <p class="col-lg-12">
+
+                                                                                        Talc, Zinc Stearate, Sodium
+                                                                                        Dehydroacetate, Iron Oxides
+                                                                                        - CI 77491/77492/77499,
+                                                                                        Glycerin, Polyethylene
+                                                                                        Terephthalate,
+                                                                                        Caprylic/Capric
+                                                                                        Triglyceride, Phenoxyethanol
+                                                                                    </p>
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </section>
+                                                    </div>
+                                                </section>
+                                                <br>
 
-                                                </div>
+                                                <section style="background-color: #f38c7b;">
+                                                    <div class="pb-10 pb-lg-8 py-8">
+                                                        <div class="container container-xl">
+                                                            <h3 class="text-center mb-9" style="color: #fff;">
+                                                                How To
+                                                                Use: AM and PM <i
+                                                                    class="fa fa-pencil-square-o cursor-pointer"
+                                                                    aria-hidden="true" ng-click="addNewUses();"></i>
+                                                            </h3>
+                                                            <div class="row" id="steps_users">
+                                                                <div class="col-md-4 mb-6 mb-md-0 ">
+                                                                    <div class="card border-0">
+                                                                        <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527807-106.jpg"
+                                                                            alt="Image"
+                                                                            class="card-img h_to_use_img">
+                                                                        <div
+                                                                            class="card-body pt-6 px-0 pb-0 text-center">
+                                                                            <a href="#"
+                                                                                class="fs-18 font-weight-500 lh-1444">Mascara</a>
+                                                                            <p class="mb-6">
+                                                                                It is a long established fact that a
+                                                                                reader will be distracted by the
+                                                                                readable content of a page when
+                                                                                looking at its layout.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4 mb-6 mb-md-0 pt-14 step_2">
+                                                                    <div class="card border-0">
+                                                                        <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527845-107.jpg"
+                                                                            alt="Image"
+                                                                            class="card-img h_to_use_img">
+                                                                        <div
+                                                                            class="card-body pt-6 px-0 pb-0 text-center">
+                                                                            <a href="#"
+                                                                                class="fs-18 font-weight-500 lh-1444">mascara</a>
+                                                                            <p class="mb-6">
+                                                                                It is a long established fact that a
+                                                                                reader will be distracted by the
+                                                                                readable content of a page when
+                                                                                looking at its layout.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4 mb-6 mb-md-0 ">
+                                                                    <div class="card border-0">
+                                                                        <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527885-108.jpg"
+                                                                            alt="Image"
+                                                                            class="card-img h_to_use_img">
+                                                                        <div
+                                                                            class="card-body pt-6 px-0 pb-0 text-center">
+                                                                            <a href="#"
+                                                                                class="fs-18 font-weight-500 lh-1444">mascara</a>
+                                                                            <p class="mb-6">
+                                                                                It is a long established fact that a
+                                                                                reader will be distracted by the
+                                                                                readable content of a page when
+                                                                                looking at its layout.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+
+                                                <section class="pt-10 pt-lg-8 py-8">
+                                                    <div class="">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col-12 text-right"
+                                                                ng-show="clinicalNoteSection == '0'">
+                                                                <i class="fa fa-pencil-square-o cursor-pointer"
+                                                                    aria-hidden="true"
+                                                                    ng-click="EditclinicalNoteSection()"></i>
+                                                            </div>
+                                                            <div class="col-sm-6 col-6 px-1 mb-2">
+                                                                <small class="text-danger font-weight-bold"><span
+                                                                        class="badge badge-danger">*Note: Image
+                                                                        dimensions must be minimum 270 X
+                                                                        370</span></small>
+
+                                                                <img src="{{ url('/assets-admin') }}/images/admin/Placeholder.jpg"
+                                                                    ng-show="QuickProduct.P_20 == ''"
+                                                                    onclick="form5();" alt="Image"
+                                                                    class="prod_img_detail img-w35 img-product-gall cursor-pointer"
+                                                                    style="border:5px dotted grey">
+                                                                {{-- <button type="button" class="btn btn-primary btn-block text-capitalize w-25 mb-3" >Edit</button> --}}
+                                                                <i class="fa fa-pencil-square-o cursor-pointer float-right"
+                                                                    aria-hidden="true" onclick="form5();"></i>
+                                                                <img class="prod_img_detail img-w35 img-product-gall cursor-pointer"
+                                                                    src="@{{ QuickProduct.P_20 }}" alt="">
+                                                            </div>
+                                                            <form class="" id="uploadattch5" method="POST"
+                                                                action="uploadProductImageAttachment"
+                                                                enctype="multipart/form-data">
+                                                                <input type="hidden" name="_method" value="POST">
+                                                                {{ csrf_field() }}
+                                                                <input type="hidden" id="userId" name="userId"
+                                                                    value="<?php echo session('userId'); ?>">
+                                                                <input type="hidden" id="sourceId" name="sourceId"
+                                                                    value="@{{ QuickProduct.PRODUCT_ID }}">
+                                                                <input type="hidden" id="sourceCode"
+                                                                    name="sourceCode" value="CLINICAL_NOTE">
+                                                                <input type="file" id="uploadatt5"
+                                                                    name="uploadattl" class="file-input"
+                                                                    style="display: none;">
+                                                            </form>
+                                                            <div class="col-md-6 px-6 px-md-0 pl-xl-7"
+                                                                style="height:30rem;overflow-y:auto"
+                                                                ng-show="clinicalNoteSection == '0'">
+                                                                <h3 class="mb-5">Clinical Note</h3>
+                                                                <p id="p19"><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its
+                                                                        layout.&nbsp;</span><span
+                                                                        style="text-align: justify;">It is a long
+                                                                        established fact that a reader will be
+                                                                        distracted by the readable content of a page
+                                                                        when looking at its layout.&nbsp;</span></p>
+                                                            </div>
+                                                            <div class="col-md-6 px-6 px-md-0 pl-xl-7"
+                                                                ng-show="clinicalNoteSection != '0'">
+                                                                <button type="button"
+                                                                    class="btn btn-primary text-capitalize w-25 float-right"
+                                                                    ng-click="updateClinicalInfo()">Update</button>
+                                                                <button type="button"
+                                                                    class="btn btn-primary text-capitalize w-25 float-right mx-2"
+                                                                    ng-click="cancelClinicalNoteSection()">Cancel</button>
+                                                                <h3 class="fs-42 mb-5">Clinical Note</h3>
+                                                                <div class="summernote" id="clinicalNoteSectionView">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
+
+
                         </div>
                     </div>
                 </div>
+
             </section>
             <section class="pb-lg-13">
                 <div class="container container-custom container-xxl">
@@ -1811,16 +1857,18 @@
                                 class="pointer nav-link active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recommendations-tab" data-toggle="pill" href="#pills-recommendations"
                                 role="tab" aria-controls="pills-recommendations" aria-selected="true">Complete
-                                Your JusOGlow<span style="padding:10px;"><i class="fa fa-pencil-square-o cursor-pointer" style="font-size:1.875rem;"
-                                    ng-click="addJusOFlowModal()"></i></span></a>
+                                Your JusOGlow<span style="padding:10px;"><i
+                                        class="fa fa-pencil-square-o cursor-pointer" style="font-size:1.875rem;"
+                                        ng-click="addJusOFlowModal()"></i></span></a>
 
                         </li>
                         <li class="nav-item px-5"><a
                                 class="pointer nav-link  text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recently-viewed-tab" data-toggle="pill" href="#pills-hand-picked"
                                 role="tab" aria-controls="pills-recently-viewed" aria-selected="true">
-                                Your Daily HandPicked<span style="padding:10px;"><i class="fa fa-pencil-square-o cursor-pointer" style="font-size:1.875rem;"
-                                    ng-click="addDailyHandPickedModal()"></i></span></a>
+                                Your Daily HandPicked<span style="padding:10px;"><i
+                                        class="fa fa-pencil-square-o cursor-pointer" style="font-size:1.875rem;"
+                                        ng-click="addDailyHandPickedModal()"></i></span></a>
                         </li>
                         {{-- <li class="nav-item px-5"><a
                                 class="pointer nav-link  text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
@@ -1896,8 +1944,7 @@
                                                     <i class="fas fa-star" style="color:gray;"></i>
                                                 </li>
                                             </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail"
-                                                data-id="106">
+                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="106">
                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                     <a href="javascript:;">Fare Cream for men</a>
                                                 </h3>
@@ -1965,8 +2012,7 @@
                                                     <i class="fas fa-star" style="color:gray;"></i>
                                                 </li>
                                             </ul>
-                                            <div class="d-flex align-items-center mb-2 productdetail"
-                                                data-id="119">
+                                            <div class="d-flex align-items-center mb-2 productdetail" data-id="119">
                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                     <a href="javascript:;">Laborum id nesciunt</a>
                                                 </h3>
@@ -2442,8 +2488,10 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
 
-                                        <label class="col-form-label" for="ing_category"><b>Ingredient Category</b> <span class="text-danger">*</span> </label>
-                                        <select class="form-control" ng-model="ingredient['I_1']" ng-change="getIngredientsWrtCategory();">
+                                        <label class="col-form-label" for="ing_category"><b>Ingredient Category</b>
+                                            <span class="text-danger">*</span> </label>
+                                        <select class="form-control" ng-model="ingredient['I_1']"
+                                            ng-change="getIngredientsWrtCategory();">
                                             <option value="">---SELECT---</option>
                                             <option value="Formulated">Formulated</option>
                                             <option value="Spotlight">Spotlight</option>
@@ -2453,9 +2501,10 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
 
-                                        <label class="col-form-label" for="ingredient"><b>Ingredient</b> <span class="text-danger">*</span> </label>
+                                        <label class="col-form-label" for="ingredient"><b>Ingredient</b> <span
+                                                class="text-danger">*</span> </label>
                                         <select class="form-control" id="i2" ng-model="ingredient['I_2']"
-                                                ng-options="item as item.name for item in ingredientsLov track by item.id">
+                                            ng-options="item as item.name for item in ingredientsLov track by item.id">
                                             <option value="">---SELECT---</option>
                                         </select>
                                     </div>
@@ -2468,7 +2517,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger light"
                                 ng-click="closeFeaturesModal();">Close</button>
-                                <button class="btn btn-rounded btn-warning cmbm-6vw mt-2" ng-click="saveProductIngredient();">Add</button>
+                            <button class="btn btn-rounded btn-warning cmbm-6vw mt-2"
+                                ng-click="saveProductIngredient();">Add</button>
                             {{-- <button type="button" class="btn btn-warning" ng-click="markProductDetailImageFlag(2);">Mark Secondary</button> --}}
                         </div>
                     </div>
@@ -2476,138 +2526,170 @@
             </div>
 
             <div class="modal fade" id="usesStepsModal">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Add Step</h5>
-							<button type="button" class="close" data-dismiss="modal">
-								<span>&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Step</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
 
-							<div class="row">
-							   {{-- <div class="col-6">
+                            <div class="row">
+                                {{-- <div class="col-6">
 							     <label><b>Sequence Number<span class="required-field">*</span></b></label>
 							     <input type="number" class="form-control" id="u1" ng-model="uses['U_1']">
 							   </div> --}}
-							</div>
-							<div class="row mt-4">
-							   <div class="col-12">
-							     <label><b>Title<span class="required-field">*</span></b></label>
-							     <input type="text" class="form-control" id="u2" ng-model="uses['U_2']">
-							   </div>
-							</div>
-							<div class="row mt-4">
-								<div class="col-sm-12">
-									<label><b>Short Description<span class="required-field">*</span></b></label>
-									<textarea class="form-control" id="u4" rows="4" ng-model="uses['U_4']" placeholder="Enter Short Description..."></textarea>
-								</div>
-							</div>
-							<div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
-								<div class="row register-new-product-picture-para">
-									<div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form4();" style="">
-										<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-										<p>360 X 450</p>
-									</div>
-									<div class="col-sm-7">
-										<div class="row" id="ps_att">
-											<div class="col-3 image-overlay margin-r1" id="img_file" ng-show="uses.U_3 != ''">
-												<img src="@{{uses.U_3}}" alt="" class="image-box">
-												{{-- <div class="overlay">
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <label><b>Title<span class="required-field">*</span></b></label>
+                                    <input type="text" class="form-control" id="u2"
+                                        ng-model="uses['U_2']">
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-sm-12">
+                                    <label><b>Short Description<span class="required-field">*</span></b></label>
+                                    <textarea class="form-control" id="u4" rows="4" ng-model="uses['U_4']"
+                                        placeholder="Enter Short Description..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
+                                <div class="row register-new-product-picture-para">
+                                    <div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn"
+                                        onclick="form4();" style="">
+                                        <img src="{{ url('/assets-admin') }}/images/admin/upload.svg"
+                                            alt="" width="50">
+                                        <p>360 X 450</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="row" id="ps_att">
+                                            <div class="col-3 image-overlay margin-r1" id="img_file"
+                                                ng-show="uses.U_3 != ''">
+                                                <img src="@{{ uses.U_3 }}" alt=""
+                                                    class="image-box">
+                                                {{-- <div class="overlay">
 													<div class="text">
-														<img class="fa-trash-alt" src="{{url('/assets-admin')}}/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductUsesImage(@{{uses.ID}})" title="Delete Image">
+														<img class="fa-trash-alt" src="{{url('/assets-admin')}}/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductUsesImage(@{{ uses.ID }})" title="Delete Image">
 														<div class="arrow-icon-move-box">
 															<img class="arrow-center" src="{{url('/assets-admin')}}/images/admin/feather-move.svg" alt="">
 															<p>Move Position</p>
 														</div>
 													</div>
 												</div> --}}
-											</div>
-										</div>
-									</div>
-									<form class="" id="uploadattch4" method="POST" action="uploadProductUsesImage" enctype="multipart/form-data">
-										<input type="hidden" name="_method" value="POST">
-           								{{ csrf_field() }}
-           								<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
-										<input type="hidden" id="sourceId" name="sourceId" value="@{{QuickProduct.PRODUCT_ID}}">
-										<input type="hidden" id="usesId" name="usesId" value="@{{uses.ID}}">
-										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_USES_IMG">
-										<input type="file" id="uploadatt4" name="uploadattl" class="file-input" style="display: none;">
-									</form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form class="" id="uploadattch4" method="POST"
+                                        action="uploadProductUsesImage" enctype="multipart/form-data">
+                                        <input type="hidden" name="_method" value="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" id="userId" name="userId"
+                                            value="<?php echo session('userId'); ?>">
+                                        <input type="hidden" id="sourceId" name="sourceId"
+                                            value="@{{ QuickProduct.PRODUCT_ID }}">
+                                        <input type="hidden" id="usesId" name="usesId"
+                                            value="@{{ uses.ID }}">
+                                        <input type="hidden" id="sourceCode" name="sourceCode"
+                                            value="PRODUCT_USES_IMG">
+                                        <input type="file" id="uploadatt4" name="uploadattl"
+                                            class="file-input" style="display: none;">
+                                    </form>
 
-								</div>
-							</div>
-                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save basic info then upload image</span></small><br>
-                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-warning" ng-click="saveProductUses();">Save changes</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                                </div>
+                            </div>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save
+                                    basic
+                                    info then upload image</span></small><br>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note:
+                                    Image
+                                    dimensions must be minimum 270 X 370</span></small>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" ng-click="saveProductUses();">Save
+                                changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="modal fade" id="shadesModal">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Shades</h5>
-							<button type="button" class="close" data-dismiss="modal">
-								<span>&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Shades</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
 
-							<div class="row">
-							   <div class="col-12">
-							     <label><b>Shades<span class="required-field">*</span></b></label>
-							     <select class="form-control" id="s1" ng-model="shade['S_1']"
-										ng-options="item as item.name for item in shadesLov track by item.id">
-									<option value="">---SELECT---</option>
-								</select>
-							   </div>
-							   <div class="col-12">
-							     	<label><b>Inv. Quantity<span class="required-field">*</span></b></label>
-							    	<input type="text" class="form-control" id="s2" ng-model="shade['S_2']">
-							   </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Shades<span class="required-field">*</span></b></label>
+                                    <select class="form-control" id="s1" ng-model="shade['S_1']"
+                                        ng-options="item as item.name for item in shadesLov track by item.id">
+                                        <option value="">---SELECT---</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Inv. Quantity<span class="required-field">*</span></b></label>
+                                    <input type="text" class="form-control" id="s2"
+                                        ng-model="shade['S_2']">
+                                </div>
 
 
-							</div>
-							<div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
-								<div class="row register-new-product-picture-para">
-									<div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form3();" style="">
-										<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-										<p>270 X 370</p>
-									</div>
-									<div class="col-sm-12">
-										<div class="row" id="pss_att">
+                            </div>
+                            <div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
+                                <div class="row register-new-product-picture-para">
+                                    <div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn"
+                                        onclick="form3();" style="">
+                                        <img src="{{ url('/assets-admin') }}/images/admin/upload.svg"
+                                            alt="" width="50">
+                                        <p>270 X 370</p>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="row" id="pss_att">
 
-										</div>
-									</div>
-									<form class="" id="uploadattch3" method="POST" action="uploadProductShadeImage" enctype="multipart/form-data">
-										<input type="hidden" name="_method" value="POST">
-           								{{ csrf_field() }}
-           								<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
-										<input type="hidden" id="sourceId" name="sourceId" value="@{{shade.ID}}">
-										<input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_SHADE_IMG">
-										<input type="file" id="uploadatt3" name="uploadattl" class="file-input" style="display: none;">
-									</form>
+                                        </div>
+                                    </div>
+                                    <form class="" id="uploadattch3" method="POST"
+                                        action="uploadProductShadeImage" enctype="multipart/form-data">
+                                        <input type="hidden" name="_method" value="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" id="userId" name="userId"
+                                            value="<?php echo session('userId'); ?>">
+                                        <input type="hidden" id="sourceId" name="sourceId"
+                                            value="@{{ shade.ID }}">
+                                        <input type="hidden" id="sourceCode" name="sourceCode"
+                                            value="PRODUCT_SHADE_IMG">
+                                        <input type="file" id="uploadatt3" name="uploadattl"
+                                            class="file-input" style="display: none;">
+                                    </form>
 
-								</div>
-							</div>
-                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save basic info then upload image</span></small><br>
-                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note: Image dimensions must be minimum 270 X 370</span></small>
+                                </div>
+                            </div>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save
+                                    basic
+                                    info then upload image</span></small><br>
+                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note:
+                                    Image
+                                    dimensions must be minimum 270 X 370</span></small>
 
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-warning" ng-click="saveProductShade();">Save changes</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" ng-click="saveProductShade();">Save
+                                changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="addJusOFlowModal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -2661,9 +2743,10 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Your Daily HandPicked<span class="required-field">*</span></b></label>
-                                    <select class="default-placeholder select2-hidden-accessible" id="p56" multiple='multiple' ng-model="QuickProduct['P_56']"
-                                           ng-options="item as item.name for item in handPick track by item.id">
-                                             <option value="">---SELECT---</option>
+                                    <select class="default-placeholder select2-hidden-accessible" id="p56"
+                                        multiple='multiple' ng-model="QuickProduct['P_56']"
+                                        ng-options="item as item.name for item in handPick track by item.id">
+                                        <option value="">---SELECT---</option>
                                     </select>
                                 </div>
                             </div>
@@ -2681,34 +2764,38 @@
             </div>
 
             <div class="modal fade" id="confirmProdShadeModal">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-				<!-- 							<h5 class="modal-title">Shades</h5> -->
-							<button type="button" class="close" data-dismiss="modal">
-								<span>&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- 							<h5 class="modal-title">Shades</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
 
-							<div class="row">
-							   <div class="col-12">
-							     <label><b>Selected Image mark as primary or secondary!!!</b></label>
-							   </div>
-							</div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Selected Image mark as primary or secondary!!!</b></label>
+                                </div>
+                            </div>
 
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger light" ng-click="closeProdShadeModal();">Close</button>
-							<button type="button" class="btn btn-warning" ng-click="markProductShadeImageFlag(1);">Mark Primary</button>
-							<button type="button" class="btn btn-warning" ng-click="markProductShadeImageFlag(2);">Mark Secondary</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                ng-click="closeProdShadeModal();">Close</button>
+                            <button type="button" class="btn btn-warning"
+                                ng-click="markProductShadeImageFlag(1);">Mark Primary</button>
+                            <button type="button" class="btn btn-warning"
+                                ng-click="markProductShadeImageFlag(2);">Mark Secondary</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
+
 
 
 
@@ -2787,13 +2874,15 @@
 
     });
 
-    function form4(){
+    function form4() {
         $("#uploadatt4").click();
     }
-    function form5(){
+
+    function form5() {
         $("#uploadatt5").click();
     }
-    function form3(){
+
+    function form3() {
         $("#uploadatt3").click();
     }
 </script>

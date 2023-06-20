@@ -73,20 +73,21 @@ class ProductModel extends Model
 		return isset($arrRes) ? $arrRes : null;
 	}
     public function getSubscriptionDetailsOfSingleProduct($id){
+		// dd($id);
         $result = DB::table('jb_product_tbl as a')
         ->select(
             'a.PRODUCT_ID',
             'a.SUBSCRIPTION_NOTE_DESCRIPTION',
             'a.SUBSCRIPTION_NOTE_LINK',
             'a.SUBSCRIPTION_NOTE_TITLE',
-            'imgTbl.DOWN_PATH',
-            'imgTbl.IMAGE_ID'
+            // 'imgTbl.DOWN_PATH',
+            // 'imgTbl.IMAGE_ID'
         )
-        ->join('jb_product_images_tbl as imgTbl', 'a.PRODUCT_ID', '=', 'imgTbl.PRODUCT_ID')
+        // ->join('jb_product_images_tbl as imgTbl', 'a.PRODUCT_ID', '=', 'imgTbl.PRODUCT_ID')
         ->where('a.PRODUCT_ID', $id)
         ->where('a.IS_DELETED', 0)
-        ->orderBy('imgTbl.CREATED_ON','desc')
-        ->limit(1)
+        // ->orderBy('imgTbl.CREATED_ON','desc')
+        // ->limit(1)
         ->get();
 
 
@@ -96,8 +97,8 @@ class ProductModel extends Model
             $arrRes['S_1'] = isset($row->SUBSCRIPTION_NOTE_TITLE ) ? $row->SUBSCRIPTION_NOTE_TITLE : 'Subscription';
             $arrRes['S_2'] = isset($row->SUBSCRIPTION_NOTE_LINK) ? $row->SUBSCRIPTION_NOTE_LINK : 'www.google.com';
             $arrRes['S_3'] = isset($row->SUBSCRIPTION_NOTE_DESCRIPTION) ? strip_tags(base64_decode($row->SUBSCRIPTION_NOTE_DESCRIPTION)) : 'Detailed Description';
-            $arrRes['S_4'] = $row->DOWN_PATH;
-            $arrRes['S_5'] = $row->IMAGE_ID;
+            // $arrRes['S_4'] = $row->DOWN_PATH;
+            // $arrRes['S_5'] = $row->IMAGE_ID;
         }
 
 
@@ -203,21 +204,50 @@ class ProductModel extends Model
 			return isset($arrRes) ? $arrRes : null;
 
 		}
+
     public function getProductsLov(){
+		$ProductShade = new ProductShadeModel();
 
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
+
     	->orderBy('a.PRODUCT_ID','desc')
+		->where('a.STATUS','active')
+		->where('IS_DELETED',0)
     	->get();
 
     	$i=0;
     	foreach ($result as $row){
-    		$arrRes[$i]['id'] = $row->PRODUCT_ID;
-    		$arrRes[$i]['name'] = $row->NAME;
-    		$i++;
+			$productShades = $ProductShade->getTotalQuantity($row->PRODUCT_ID);
+			// dd($productShades);
+			
+			if($productShades != null){
+
+				$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+				$arrRes[$i]['INV_QUANTITY'] = $productShades;
+				$arrRes[$i]['id'] = $row->PRODUCT_ID;
+    			$arrRes[$i]['name'] = $row->NAME;
+				$i++;
+			}else if($row->QUANTITY != null){
+				$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+				$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY;
+				$arrRes[$i]['id'] = $row->PRODUCT_ID;
+    			$arrRes[$i]['name'] = $row->NAME;
+				$i++;
+			}
+    		
+    		
     	}
+		// $arr = array_values($arrRes);
 
     	return isset($arrRes) ? $arrRes : null;
     }
+	public function getTotalQuantity($PRODUCT_ID){
+		$result = DB::table('jb_product_shades_tbl as a')->where('a.PRODUCT_ID', $PRODUCT_ID)->sum('a.QUANTITY');
+		
+		if ($result) {
+			return isset($result) ? $result : null;
+		}
+	}
     public function getActiveProductsLov(){
 
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
@@ -258,6 +288,7 @@ class ProductModel extends Model
 
 
     public function getAllProductsData(){
+		$ProductShade = new ProductShadeModel();
 
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName')
     	// $result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
@@ -288,6 +319,17 @@ class ProductModel extends Model
     		// $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
+
+			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+			
+			if(!empty($productShades)){
+
+				$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+				$arrRes[$i]['INV_QUANTITY'] = $productShades;
+			}else{
+				$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+				$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+			}
 
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
@@ -1286,6 +1328,7 @@ class ProductModel extends Model
 
     public function getAllProductDetailsForAllShopListing($subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
     	$WishlistModel = new WishlistModel();
+		$ProductShade = new ProductShadeModel();
     	DB::enableQueryLog();
     	$userId = session('userId');
 
@@ -1365,6 +1408,16 @@ class ProductModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
+			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+
+				if(!empty($productShades)){
+
+					$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+					$arrRes[$i]['INV_QUANTITY'] = '';
+				}else{
+					$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+					$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+				}
 
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));

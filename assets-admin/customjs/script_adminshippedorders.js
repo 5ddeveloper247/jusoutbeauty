@@ -12,7 +12,14 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	$scope.editView = 0;
 //
 	$scope.tokenHash = $("#csrf").val();
-//	
+
+	$scope.resetGlobal = function(){
+		$scope.search.S_1 = '';
+		$scope.search.S_2 = '';
+		$scope.search.S_3 = '';
+		$('#search_4').val('');
+		$('#search_5').val('');
+	}
 	$scope.getAllAdminOrderslov = function(){
 		
 		var data = {};

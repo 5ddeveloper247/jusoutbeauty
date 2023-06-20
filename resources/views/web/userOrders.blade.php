@@ -69,7 +69,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                        	</div>
                                    	</div>
                                    	<div class="col-8">
-                                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="searchGlobal();" style="width:13rem;">Search</a>
+                                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="searchGlobal();" style="width:10rem;">Search</a>
+                                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="resetGlobal();" style="width:10vw;margin-right:10px">Reset</a>
                                 	</div>
                                    
                                 </div>

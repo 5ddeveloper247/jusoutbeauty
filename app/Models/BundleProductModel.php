@@ -319,6 +319,7 @@ class BundleProductModel extends Model
     }
     
     public function getSpecificBundleProductDetails($bundleId){
+		$ProductShade = new ProductShadeModel();
     	DB::enableQueryLog();
     	 
     	$where =array(['a.BUNDLE_ID','=',$bundleId]);
@@ -353,7 +354,18 @@ class BundleProductModel extends Model
     		$arrRes['DISCOUNTED_AMOUNT'] = number_format($row->DISCOUNTED_AMOUNT,2);
     		$arrRes['DISCOUNTED_AMOUNT1'] = $row->DISCOUNTED_AMOUNT;
     		$arrRes['VAT_RATE'] = $row->VAT_RATE;
-    		$arrRes['INV_QUANTITY'] = $row->QUANTITY;
+
+			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+			
+			if(!empty($productShades)){
+
+				$arrRes['INV_QUANTITY_FLAG'] = 'shade';
+				$arrRes['INV_QUANTITY'] = $productShades;
+			}else{
+				$arrRes['INV_QUANTITY_FLAG'] = 'inv';
+				$arrRes['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+			}
+    		// $arrRes['INV_QUANTITY'] = $row->QUANTITY;
     		
     		$arrRes['primaryImage'] = isset($row->IMAGE_DOWN_PATH) != null ? $row->IMAGE_DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
     		

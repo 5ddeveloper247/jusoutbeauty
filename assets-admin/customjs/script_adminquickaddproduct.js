@@ -125,6 +125,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             // $scope.subscription.S_2 = data.subscriptionDetails['SUBSCRIPTION_NOTE_LINK'];
             // $scope.subscription.S_3 = data.subscriptionDetails['SUBSCRIPTION_NOTE_DESCRIPTION'];
             $scope.subscription = data.subscriptionDetails;
+           
             // $scope.QuickProduct.P_20 = data.productDetails['P_20'];
 
             // $scope.video.V_3 = data.videoPro['V_3'];
@@ -327,8 +328,6 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
 
             }, 500);
-
-           ;
             var html3 = '';
             var html4 = '';
             var displayCollectionProdIngredients = data.ingredients;
@@ -1445,7 +1444,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     }
     $scope.markProductDetailImageFlag = function(flag){
-
+        
 		var data = {};
 	    data.imageId = $scope.tempProId;
 		data.flag = flag;
