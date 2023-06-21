@@ -2,13 +2,13 @@ var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
 //	$(document).on('click','.addNew',function(){
-//	    $('#addCity_modal').modal('show');return false; 
+//	    $('#addCity_modal').modal('show');return false;
 //	});
 //
 //	$(document).on('click','.modalClose',function(){
-//	    $('#addCity_modal').modal('hide');return false; 
+//	    $('#addCity_modal').modal('hide');return false;
 //	});
-	
+
 
 	$scope.ticket = {};
 	$scope.ticket.ID = '';
@@ -21,18 +21,18 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.ticket.T_7 = '';
 	$scope.ticket.userName = userName;
 	$scope.ticketReply = '';
-	
-	
+
+
 	$scope.editView = 0;
 
 	$scope.tokenHash = $("#csrf").val();
-	
+
 	$scope.getAllUserTicketslov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllUserTicketslov',
@@ -41,11 +41,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			if ($.fn.DataTable.isDataTable("#ticketListing_table")) {
 				$('#ticketListing_table').DataTable().clear().destroy();
 			}
-			
+
 			$scope.displayCollectionTickets = data.list;
 			$scope.orderList = data.orders;
 			$('.order_lov option[value=""]');
@@ -59,15 +59,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		                      ]
 				});
 			}, 500);
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 	$scope.getAllUserTicketslov();
-		
+
 	$scope.backToListing = function(){
-		
+
 		$scope.ticketId = '';
 		$scope.tktNumber = '';
 		$scope.tktType = '';
@@ -80,16 +80,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.tktStatus = '';
 		$scope.tktDate = '';
 		$scope.tktPriority = '';
-		
+
 		$scope.ticketReply = '';
-		
+
 		$scope.editView = 0;
-		
+
 		$scope.getAllUserTicketslov();
 	}
 	$scope.addNew = function(){
-		
-		
+
+
 		$scope.ticket.ID = '';
 		$scope.ticket.T_1 = '';
 		$scope.ticket.T_2 = '';
@@ -99,21 +99,20 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.ticket.T_6 = '';
 		$scope.ticket.T_7 = '';
 		$scope.ticket.T_8 = '';
-		
+
 		$('#t5').val($scope.ticket.T_5);
 		// $('#t3').val($scope.ticket.userName);
-		
+
 		$scope.editView = 1;
 	}
-	
+
 	$scope.saveTicket = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.ticket = $scope.ticket;
-	    
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/saveTicketDetails',
@@ -122,16 +121,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
-			
+
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				if ($.fn.DataTable.isDataTable("#ticketListing_table")) {
 					$('#ticketListing_table').DataTable().clear().destroy();
 				}
-				
+
 				$scope.displayCollectionTickets = data.list;
-				
+
 				setTimeout(function(){
 					$("#ticketListing_table").DataTable({
 						order: [],
@@ -141,31 +140,31 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			                      ]
 					});
 				}, 500);
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
-				
+
 				$scope.ticket.ID = data.ID;
-				
+
 //				$scope.editView = 0;
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.changeStatusOpenClose = function(ticketId, flag){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.ticketId = ticketId;
 	    data.flag = flag;
-	    
+
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/changeTicketStatus',
@@ -174,16 +173,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
-			
+
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				if ($.fn.DataTable.isDataTable("#ticketListing_table")) {
 					$('#ticketListing_table').DataTable().clear().destroy();
 				}
-				
+
 				$scope.displayCollectionTickets = data.list;
-				
+
 				setTimeout(function(){
 					$("#ticketListing_table").DataTable({
 						order: [],
@@ -192,17 +191,17 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			                          [10, 25, 50, 100, 200, "All"]
 			                      ]
 					});
-				}, 500);	
-				
+				}, 500);
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-		
+
 	$scope.ticketId = '';
 	$scope.tktNumber = '';
 	$scope.tktType = '';
@@ -215,14 +214,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.tktStatus = '';
 	$scope.tktDate = '';
 	$scope.tktPriority = '';
-	
+
 	$scope.viewTicketDetails = function(ticketId){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.ticketId = ticketId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getSpecificTicketDetails',
@@ -231,13 +230,13 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			$scope.editView = 2;
 			var detail = data.details;
 
 			$scope.displayCollectionTicketReplies = data.replies;
 			$scope.displayCollectionTicketImg = data.images;
-			
+
 			$scope.ticketId = detail['TICKET_ID'];
 			$scope.tktNumber = detail['TICKET_NUMBER'];
 			$scope.tktType = detail['TICKET_TYPE'];
@@ -250,24 +249,24 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			$scope.tktStatus = detail['STATUS'];
 			$scope.tktDate = detail['DATE'];
 			$scope.tktPriority = detail['PRIORITY'];
-			
-			
-			
+
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
-	
+
+
 	$scope.saveTicketReply = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.ticketId = $scope.ticketId;
 	    data.ticketReply = $scope.ticketReply;
-	    
+
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/saveTicketReplyDetail',
@@ -276,33 +275,33 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
-			
+
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				$scope.displayCollectionTicketReplies = data.replies;
-				
+
 				$scope.ticketReply = '';
-				
+
 				$scope.editView = 2;
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.deletePic = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.ticketId = $scope.ticket.ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteTicketAttachment",
@@ -311,26 +310,26 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			$('#img_file_'+id).remove();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$('#uploadattch').fileupload({
-		
+
  		add: function (e, data) {
-			 
-		    
+
+
  			if($scope.ticket.ID == ""){
- 				
+
  				toastr.error('Save record first, then upload Images...', '', {timeOut: 3000})
  				return false;
- 			
+
  			}else{
  				var jqXHR = data.submit();
  			}
@@ -345,25 +344,25 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
  	    },
  	    complete: function(xhr) {
- 	    	
+
  	    	xhr.responseText = jQuery.parseJSON(xhr.responseText);
- 	      	
+
  	    	if(xhr.responseText[0] == 01){
- 	        	
+
  	      		toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 02){
- 	        	
+
  	      		toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 03){
- 	        
+
  	      		toastr.error("Error : Save record first, then upload Images...", '', {timeOut: 3000});
 
  	      	}else{
 
  		  		toastr.success("Image Upload Successfully", '', {timeOut: 3000});
- 		  		
+
  		  		var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
 								'<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
 								'<div class="overlay">'+
@@ -371,7 +370,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePic('+xhr.responseText[1]+')" title="Delete Image">'+
 										'<div class="arrow-icon-move-box">'+
 											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											
+
 										'</div>'+
 									'</div>'+
 								'</div>'+
@@ -380,18 +379,18 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 				$scope.$apply(() => {
 					$scope.editView = 0;
-					$scope.getAllUserTicketslov();  
+					$scope.getAllUserTicketslov();
 				});
  	      	}
  	   	}
  	});
-		
+
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -416,7 +415,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);
@@ -438,9 +437,9 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 })
 
 
-// 	$('#searchInListing').on("keyup", function (e)  {     
+// 	$('#searchInListing').on("keyup", function (e)  {
 //            var tr = $('.identify');
-//            
+//
 //            if ($(this).val().length >= 1) {//character limit in search box.
 //                var noElem = true;
 //                var val = $.trim(this.value).toLowerCase();
@@ -465,13 +464,13 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 //                else{
 //                }
 ////    	            	$('#tabContentNoData').hide();
-//                       
+//
 //            }
 //        });
 
 
 
 
-		
-		
-		
+
+
+

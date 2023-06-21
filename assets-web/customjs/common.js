@@ -10,7 +10,7 @@ $(document).on("click", ".refferAfrieend", function () {
 	$('html, body').animate({
         scrollTop: $("#bestSelOnlineExc_section").offset().top
     }, 1000);
-	
+
 });
 $(document).on("click", ".toShopListing", function () {
 
@@ -46,15 +46,15 @@ $(document).on("click", ".toShopListing", function () {
 	});
 
 	function quickAdd(productid){
-		
+
 		var productId = productid;
 		var quantity = '1';
 		var type = 'product';
-	
+
 		// if(type == 'bundle'){
-	
-		// 	// product shades selection code 
-		// 	var number1 = new Array(); 
+
+		// 	// product shades selection code
+		// 	var number1 = new Array();
 		// 	var number2 = new Array();
 		// 	var number3 = new Array();
 		// 	var number4 = new Array();
@@ -73,28 +73,28 @@ $(document).on("click", ".toShopListing", function () {
 		// 		if(number5[i] == 'true'){
 		// 			if(number1[i] == ''){
 		// 				flag="1";
-		// 			}	
+		// 			}
 		// 		}
 		// 	}
 		// 	if(flag == '1'){
 		// 		toastr.error('Choose all product shades first, then proceed...', '', {timeOut: 3000})
 		// 		return;
 		// 	}
-			
+
 		// 	var prodshadeIds = number1;
 		// 	var shadeIds = number2;
 		// 	var shadeNames = number3;
 		// 	var productIds = number4;
-	
+
 		// }else{
-			
-			// product shades selection code 
+
+			// product shades selection code
 			// var shadeExistChk = $('#shadeExistChk').val();
 			// var prodshadeId = $('#prodShadeId').val();
 			// var shadeId = $('#shadeId').val();
 			// var shadeName = $('#shadeName').val();
 			// var prodId = $('#productId').val();
-		
+
 			// if(shadeExistChk == 'true'){
 			// 	if(prodshadeId == ''){
 			// 		toastr.error('Choose product shades first...', '', {timeOut: 3000})
@@ -102,36 +102,36 @@ $(document).on("click", ".toShopListing", function () {
 			// 	}
 			// }
 		//}
-		
+
 		// subscription product code  start
 		// var subscriptioncheck = $("input[name=subscriptioncheck]:checked").val();
 		// var subscriptionOption = '';
-		
+
 		// if(subscriptioncheck == 'subscription'){
 		// 	subscriptionOption = $("#subsOption").val();
-		
+
 		// 	if(subscriptionOption == ''){
 		// 		toastr.error('Choose Subscription option first...', '', {timeOut: 3000})
 		// 		return;
 		// 	}
 		// }
-		
+
 	//	console.log(subscriptioncheck);
 	//	console.log(subscriptionOption);
 	//	return;
 		// subscription product code  end
-	
+
 		if(quantity <= 0 || quantity == ''){
-	
+
 			toastr.error('Quantity must be greater then one...', '', {timeOut: 3000})
 			return;
-			
+
 		}else{
-			
-			$.LoadingOverlay("show"); 
-			
+
+			$.LoadingOverlay("show");
+
 			var token = $("#csrf").val();
-			
+
 			var form_data = new FormData();
 				form_data.append("userId", userId);
 				form_data.append("productId", productId);
@@ -139,20 +139,20 @@ $(document).on("click", ".toShopListing", function () {
 				form_data.append("type", type);
 				// form_data.append("subscheck", subscriptioncheck);
 				// form_data.append("subsOptionId", subscriptionOption);
-				
+
 				// if(type == 'bundle'){
 				// 	form_data.append("prodshadeIds", prodshadeIds);
 				// 	form_data.append("shadeIds", shadeIds);
 				// 	form_data.append("shadeNames", shadeNames);
 				// 	form_data.append("productIds", productIds);
-					
+
 				// }else{
 				// 	form_data.append("prodshadeId", prodshadeId);
 				// 	form_data.append("shadeId", shadeId);
 				// 	form_data.append("prodId", prodId);
 				// 	form_data.append("shadeName", shadeName);
 				// }
-				
+
 				form_data.append("_token", token);
 				 $.ajax({
 					url: site+"/addToCart",
@@ -163,18 +163,18 @@ $(document).on("click", ".toShopListing", function () {
 					processData: false,
 					success: function(data){
 						var data = JSON.parse(data);
-	
+
 						if(data.done == true || data.done == 'true'){
-	
+
 							toastr.success(data.msg, '', {timeOut: 3000})
-							
+
 
 							var cart = data.cart;
 							var list = data.cartDetails;
 							var html = '';
-							
+
 							$("#cartRightMenuListingHTML").html('');
-								
+
 							if(cart != null && cart != ''){
 								$("#itemCounts").text(cart['cartCount']+' Item(s).');
 								$("#cartHeaderCount").text(cart['cartCount']);
@@ -186,11 +186,11 @@ $(document).on("click", ".toShopListing", function () {
 								$("#cartCount").val('0')
 								$("#cartSubTotal").text('$0.00');
 							}
-							
+
 							   if(list != null && list != ''){
-								   
+
 								   for(var i=0; i<list.length; i++){
-									   
+
 											html +='<div class="media w-100 py-2" id="cartItemDiv-'+list[i]['CART_LINE_ID']+'">';
 										 html +='<div class="mr-3 w-110px">';
 										 html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
@@ -202,65 +202,65 @@ $(document).on("click", ".toShopListing", function () {
 										 html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 										 //html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
 										 //html +='<i class="far fa-minus"></i>';
-										 //html +='</a>'; 
-										 html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>'; 
+										 //html +='</a>';
+										 html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>';
 										 //html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
 										 //html +='<i class="far fa-plus"></i> ';
 										 //html +='</a>';
 										 html +='</div>';
-	
+
 										 html +='</div>';
-	//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;'; 
+	//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;';
 										 html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block removeItemCart" data-id="'+list[i]['CART_LINE_ID']+'" data-cartId="'+list[i]['CART_ID']+'">Remove Item</a>';
-											
+
 										 html +='</div>';
 										 html +='</div>';
 								   }
 							   }
-						   
+
 							$("#cartRightMenuListingHTML").html(html);
-							
+
 						}else{
 							toastr.error(data.msg, '', {timeOut: 3000});
-							
+
 							// if(data.flag == 0){
 							// 	setTimeout(function(){
 							// 		window.location.href = data.redirectURL;
 							// 	}, 3000);
-								
+
 							// 	localStorage.setItem("productId", productId);
-								
+
 							// }
 						}
-						
-						
+
+
 						setTimeout(function(){
 								$.LoadingOverlay("hide");
 						}, 500);
 					}
 				});
 		}
-	
-		
+
+
 	}
 
 	function quickAddWishList(productid){
-		
+
 		var productId = productid;
 		var productType = 'product';
 		var check_flag_wishlist = '1';
 
-		$.LoadingOverlay("show"); 
-			
+		$.LoadingOverlay("show");
+
 		var token = $("#csrf").val();
-			
+
 		var form_data = new FormData();
 
 		form_data.append("check_flag_wishlist", check_flag_wishlist);
 		form_data.append("userId", userId);
 		form_data.append("productId", productId);
 		form_data.append("productType", productType);
-		
+
 		form_data.append("_token", token);
 		$.ajax({
 			url: site+"/addProductToWishlist",
@@ -271,23 +271,23 @@ $(document).on("click", ".toShopListing", function () {
 			processData: false,
 			success: function(data){
 				var data = JSON.parse(data);
-				
+
 				if(data.done == true || data.done == 'true'){
 
 					toastr.success(data.msg, '', {timeOut: 3000})
-					
+
 					var wishlistCount = data.wishlistCount;
-					
+
 					$("#wishlistHeaderCount").text(wishlistCount);
 					$("#wishlistHeaderCountMbl").text(wishlistCount);
-					
+
 					if(data.flag == 'add'){
 						$('.wish_'+productId).addClass('activeWish');
 					}else{
 						$('.wish_'+productId).removeClass('activeWish');
 					}
-					
-					
+
+
 				}else{
 					toastr.error(data.msg, '', {timeOut: 3000});
 
@@ -296,12 +296,12 @@ $(document).on("click", ".toShopListing", function () {
 							//redirect to login
 							window.location.href= data.redirectURL;
 						}, 3000);
-						
+
 						localStorage.setItem("wishlistproductId", productId);
-						
+
 					}
 				}
-				
+
 				setTimeout(function(){
 						$.LoadingOverlay("hide");
 				}, 500);
@@ -318,8 +318,8 @@ $(document).on("click", ".addto-cart", function () {
 
 	if(type == 'bundle'){
 
-		// product shades selection code 
-		var number1 = new Array(); 
+		// product shades selection code
+		var number1 = new Array();
 		var number2 = new Array();
 		var number3 = new Array();
 		var number4 = new Array();
@@ -338,28 +338,28 @@ $(document).on("click", ".addto-cart", function () {
 			if(number5[i] == 'true'){
 				if(number1[i] == ''){
 					flag="1";
-				}	
+				}
 			}
 		}
 		if(flag == '1'){
 			toastr.error('Choose all product shades first, then proceed...', '', {timeOut: 3000})
 			return;
 		}
-		
+
 		var prodshadeIds = number1;
 		var shadeIds = number2;
 		var shadeNames = number3;
 		var productIds = number4;
 
 	}else{
-		
-		// product shades selection code 
+
+		// product shades selection code
 		var shadeExistChk = $('#shadeExistChk').val();
 		var prodshadeId = $('#prodShadeId').val();
 		var shadeId = $('#shadeId').val();
 		var shadeName = $('#shadeName').val();
 		var prodId = $('#productId').val();
-	
+
 		if(shadeExistChk == 'true'){
 			if(prodshadeId == ''){
 				toastr.error('Choose product shades first...', '', {timeOut: 3000})
@@ -367,20 +367,20 @@ $(document).on("click", ".addto-cart", function () {
 			}
 		}
 	}
-	
+
 	// subscription product code  start
 	var subscriptioncheck = $("input[name=subscriptioncheck]:checked").val();
 	var subscriptionOption = '';
-	
+
 	if(subscriptioncheck == 'subscription'){
 		subscriptionOption = $("#subsOption").val();
-	
+
 		if(subscriptionOption == ''){
 			toastr.error('Choose Subscription option first...', '', {timeOut: 3000})
 			return;
 		}
 	}
-	
+
 //	console.log(subscriptioncheck);
 //	console.log(subscriptionOption);
 //	return;
@@ -390,13 +390,13 @@ $(document).on("click", ".addto-cart", function () {
 
 		toastr.error('Quantity must be greater then one...', '', {timeOut: 3000})
 		return;
-		
+
 	}else{
-		
-		$.LoadingOverlay("show"); 
-		
+
+		$.LoadingOverlay("show");
+
 		var token = $("#csrf").val();
-		
+
 		var form_data = new FormData();
 			form_data.append("userId", userId);
 			form_data.append("productId", productId);
@@ -404,20 +404,20 @@ $(document).on("click", ".addto-cart", function () {
 			form_data.append("type", type);
 			form_data.append("subscheck", subscriptioncheck);
 			form_data.append("subsOptionId", subscriptionOption);
-			
+
 			if(type == 'bundle'){
 				form_data.append("prodshadeIds", prodshadeIds);
 				form_data.append("shadeIds", shadeIds);
 				form_data.append("shadeNames", shadeNames);
 				form_data.append("productIds", productIds);
-				
+
 			}else{
 				form_data.append("prodshadeId", prodshadeId);
 				form_data.append("shadeId", shadeId);
 				form_data.append("prodId", prodId);
 				form_data.append("shadeName", shadeName);
 			}
-			
+
 			form_data.append("_token", token);
 		 	$.ajax({
 		        url: site+"/addToCart",
@@ -432,13 +432,13 @@ $(document).on("click", ".addto-cart", function () {
 					if(data.done == true || data.done == 'true'){
 
 						toastr.success(data.msg, '', {timeOut: 3000})
-						
+
 						var cart = data.cart;
 			        	var list = data.cartDetails;
 			        	var html = '';
-			        	
+
 			        	$("#cartRightMenuListingHTML").html('');
-			       	 	
+
 			    		if(cart != null && cart != ''){
 			    			$("#itemCounts").text(cart['cartCount']+' Item(s).');
 			    			$("#cartHeaderCount").text(cart['cartCount']);
@@ -450,11 +450,11 @@ $(document).on("click", ".addto-cart", function () {
 			    			$("#cartCount").val('0')
 			    			$("#cartSubTotal").text('$0.00');
 			    		}
-			    		
+
 			    	   	if(list != null && list != ''){
-			    	   		
+
 			    	   		for(var i=0; i<list.length; i++){
-			    	   			
+
 			    	   			 	html +='<div class="media w-100 py-2" id="cartItemDiv-'+list[i]['CART_LINE_ID']+'">';
 			    		         	html +='<div class="mr-3 w-110px">';
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
@@ -466,38 +466,38 @@ $(document).on("click", ".addto-cart", function () {
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			    		         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
 			    		         	//html +='<i class="far fa-minus"></i>';
-			    		         	//html +='</a>'; 
-			    		         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>'; 
+			    		         	//html +='</a>';
+			    		         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>';
 			    		         	//html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
 			    		         	//html +='<i class="far fa-plus"></i> ';
 			    		         	//html +='</a>';
 			    		         	html +='</div>';
 
 			    		         	html +='</div>';
-//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;'; 
+//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;';
 			    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block removeItemCart" data-id="'+list[i]['CART_LINE_ID']+'" data-cartId="'+list[i]['CART_ID']+'">Remove Item</a>';
-			    						
+
 			    		         	html +='</div>';
 			    		         	html +='</div>';
 			    	   		}
 			    	   	}
-			       	
+
 			        	$("#cartRightMenuListingHTML").html(html);
-			        	
+
 					}else{
 						toastr.error(data.msg, '', {timeOut: 3000});
-						
+
 						if(data.flag == 0){
 							setTimeout(function(){
 								window.location.href= data.redirectURL;
 							}, 3000);
-							
+
 							localStorage.setItem("productId", productId);
-							
+
 						}
 					}
-		        	
-		        	
+
+
 		        	setTimeout(function(){
 							$.LoadingOverlay("hide");
 					}, 500);
@@ -515,8 +515,8 @@ $(document).on("click", ".addto-cart1", function () {
 
 	if(type == 'bundle'){
 
-		// product shades selection code 
-		var number1 = new Array(); 
+		// product shades selection code
+		var number1 = new Array();
 		var number2 = new Array();
 		var number3 = new Array();
 		var number4 = new Array();
@@ -538,15 +538,15 @@ $(document).on("click", ".addto-cart1", function () {
 //			toastr.error('Choose all product shades first, then proceed...', '', {timeOut: 3000})
 //			return;
 //		}
-		
+
 		var prodshadeIds = number1;
 		var shadeIds = number2;
 		var shadeNames = number3;
 		var productIds = number4;
 
 	}else{
-		
-		// product shades selection code 
+
+		// product shades selection code
 		var prodshadeId = $('#prodShadeId').val();
 		var shadeId = $('#shadeId').val();
 		var shadeName = $('#shadeName').val();
@@ -557,20 +557,20 @@ $(document).on("click", ".addto-cart1", function () {
 //			return;
 //		}
 	}
-	
+
 	// subscription product code  start
 	var subscriptioncheck = $("input[name=subscriptioncheck]:checked").val();
 	var subscriptionOption = '';
-	
+
 	if(subscriptioncheck == 'subscription'){
 		subscriptionOption = $("#subsOption").val();
-	
+
 		if(subscriptionOption == ''){
 			toastr.error('Choose Subscription option first...', '', {timeOut: 3000})
 			return;
 		}
 	}
-	
+
 //	console.log(subscriptioncheck);
 //	console.log(subscriptionOption);
 //	return;
@@ -580,13 +580,13 @@ $(document).on("click", ".addto-cart1", function () {
 
 		toastr.error('Quantity must be greater then one...', '', {timeOut: 3000})
 		return;
-		
+
 	}else{
-		
-		$.LoadingOverlay("show"); 
-		
+
+		$.LoadingOverlay("show");
+
 		var token = $("#csrf").val();
-		
+
 		var form_data = new FormData();
 			form_data.append("userId", userId);
 			form_data.append("productId", productId);
@@ -594,20 +594,20 @@ $(document).on("click", ".addto-cart1", function () {
 			form_data.append("type", type);
 			form_data.append("subscheck", subscriptioncheck);
 			form_data.append("subsOptionId", subscriptionOption);
-			
+
 			if(type == 'bundle'){
 				form_data.append("prodshadeIds", prodshadeIds);
 				form_data.append("shadeIds", shadeIds);
 				form_data.append("shadeNames", shadeNames);
 				form_data.append("productIds", productIds);
-				
+
 			}else{
 				form_data.append("prodshadeId", prodshadeId);
 				form_data.append("shadeId", shadeId);
 				form_data.append("prodId", prodId);
 				form_data.append("shadeName", shadeName);
 			}
-			
+
 			form_data.append("_token", token);
 		 	$.ajax({
 		        url: site+"/addToCart",
@@ -625,9 +625,9 @@ $(document).on("click", ".addto-cart1", function () {
 						var cart = data.cart;
 			        	var list = data.cartDetails;
 			        	var html = '';
-			        	
+
 			        	$("#cartRightMenuListingHTML").html('');
-			       	 	
+
 			    		if(cart != null && cart != ''){
 			    			$("#itemCounts").text(cart['cartCount']+' Item(s).');
 			    			$("#cartHeaderCount").text(cart['cartCount']);
@@ -641,11 +641,11 @@ $(document).on("click", ".addto-cart1", function () {
 			    			$("#cartCount").val('0')
 			    			$("#cartSubTotal").text('$0.00');
 			    		}
-			    		
+
 			    	   	if(list != null && list != ''){
-			    	   		
+
 			    	   		for(var i=0; i<list.length; i++){
-			    	   			
+
 			    	   			 	html +='<div class="media w-100 py-2" id="cartItemDiv-'+list[i]['CART_LINE_ID']+'">';
 			    		         	html +='<div class="mr-3 w-110px">';
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
@@ -657,24 +657,24 @@ $(document).on("click", ".addto-cart1", function () {
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			    		         	html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
 			    		         	html +='<i class="far fa-minus"></i>';
-			    		         	html +='</a>'; 
-			    		         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>'; 
+			    		         	html +='</a>';
+			    		         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>';
 			    		         	html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
 			    		         	html +='<i class="far fa-plus"></i> ';
 			    		         	html +='</a>';
 			    		         	html +='</div>';
 
 			    		         	html +='</div>';
-//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;'; 
+//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;';
 			    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block removeItemCart" data-id="'+list[i]['CART_LINE_ID']+'" data-cartId="'+list[i]['CART_ID']+'">Remove Item</a>';
-			    						
+
 			    		         	html +='</div>';
 			    		         	html +='</div>';
 			    	   		}
 			    	   	}
-			       	
+
 			        	$("#cartRightMenuListingHTML").html(html);
-			        	
+
 					}else{
 						toastr.error(data.msg, '', {timeOut: 3000});
 
@@ -682,14 +682,14 @@ $(document).on("click", ".addto-cart1", function () {
 							setTimeout(function(){
 								window.location.href = data.redirectURL;
 							}, 3000);
-							
+
 							localStorage.setItem("productId", productId);
-							
-							
+
+
 						}
 					}
-		        	
-		        	
+
+
 		        	setTimeout(function(){
 							$.LoadingOverlay("hide");
 					}, 500);
@@ -698,7 +698,7 @@ $(document).on("click", ".addto-cart1", function () {
 	}
 
 	});
-	
+
 $(document).on("click", ".quick-addto-cart", function () {
 
 	var productId = $(this).attr("data-id");
@@ -707,8 +707,8 @@ $(document).on("click", ".quick-addto-cart", function () {
 
 	if(type == 'bundle'){
 
-		// product shades selection code 
-		var number1 = new Array(); 
+		// product shades selection code
+		var number1 = new Array();
 		var number2 = new Array();
 		var number3 = new Array();
 		var number4 = new Array();
@@ -727,28 +727,28 @@ $(document).on("click", ".quick-addto-cart", function () {
 			if(number5[i] == 'true'){
 				if(number1[i] == ''){
 					flag="1";
-				}	
+				}
 			}
 		}
 		if(flag == '1'){
 			toastr.error('Choose all product shades first, then proceed...', '', {timeOut: 3000})
 			return;
 		}
-		
+
 		var prodshadeIds = number1;
 		var shadeIds = number2;
 		var shadeNames = number3;
 		var productIds = number4;
 
 	}else{
-		
-		// product shades selection code 
+
+		// product shades selection code
 		var shadeExistChk = $('#shadeExistChk').val();
 		var prodshadeId = $('#prodShadeId').val();
 		var shadeId = $('#shadeId').val();
 		var shadeName = $('#shadeName').val();
 		var prodId = $('#productId').val();
-	
+
 		if(shadeExistChk == 'true'){
 			if(prodshadeId == ''){
 				toastr.error('Choose product shades first...', '', {timeOut: 3000})
@@ -756,20 +756,20 @@ $(document).on("click", ".quick-addto-cart", function () {
 			}
 		}
 	}
-	
+
 	// subscription product code  start
 	var subscriptioncheck = $("input[name=subscriptioncheck]:checked").val();
 	var subscriptionOption = '';
-	
+
 	if(subscriptioncheck == 'subscription'){
 		subscriptionOption = $("#subsOption").val();
-	
+
 		if(subscriptionOption == ''){
 			toastr.error('Choose Subscription option first...', '', {timeOut: 3000})
 			return;
 		}
 	}
-	
+
 //	console.log(subscriptioncheck);
 //	console.log(subscriptionOption);
 //	return;
@@ -779,13 +779,13 @@ $(document).on("click", ".quick-addto-cart", function () {
 
 		toastr.error('Quantity must be greater then one...', '', {timeOut: 3000})
 		return;
-		
+
 	}else{
-		
-//		$.LoadingOverlay("show"); 
-		
+
+//		$.LoadingOverlay("show");
+
 		var token = $("#csrf").val();
-		
+
 		var form_data = new FormData();
 			form_data.append("userId", userId);
 			form_data.append("productId", productId);
@@ -793,20 +793,20 @@ $(document).on("click", ".quick-addto-cart", function () {
 			form_data.append("type", type);
 			form_data.append("subscheck", subscriptioncheck);
 			form_data.append("subsOptionId", subscriptionOption);
-			
+
 			if(type == 'bundle'){
 				form_data.append("prodshadeIds", prodshadeIds);
 				form_data.append("shadeIds", shadeIds);
 				form_data.append("shadeNames", shadeNames);
 				form_data.append("productIds", productIds);
-				
+
 			}else{
 				form_data.append("prodshadeId", prodshadeId);
 				form_data.append("shadeId", shadeId);
 				form_data.append("prodId", prodId);
 				form_data.append("shadeName", shadeName);
 			}
-			
+
 			form_data.append("_token", token);
 		 	$.ajax({
 		        url: site+"/addToCart",
@@ -821,13 +821,13 @@ $(document).on("click", ".quick-addto-cart", function () {
 					if(data.done == true || data.done == 'true'){
 
 						toastr.success(data.msg, '', {timeOut: 3000})
-						
+
 						var cart = data.cart;
 			        	var list = data.cartDetails;
 			        	var html = '';
-			        	
+
 			        	$("#cartRightMenuListingHTML").html('');
-			       	 	
+
 			    		if(cart != null && cart != ''){
 			    			$("#itemCounts").text(cart['cartCount']+' Item(s).');
 			    			$("#cartHeaderCount").text(cart['cartCount']);
@@ -839,11 +839,11 @@ $(document).on("click", ".quick-addto-cart", function () {
 			    			$("#cartCount").val('0')
 			    			$("#cartSubTotal").text('$0.00');
 			    		}
-			    		
+
 			    	   	if(list != null && list != ''){
-			    	   		
+
 			    	   		for(var i=0; i<list.length; i++){
-			    	   			
+
 			    	   			 	html +='<div class="media w-100 py-2" id="cartItemDiv-'+list[i]['CART_LINE_ID']+'">';
 			    		         	html +='<div class="mr-3 w-110px">';
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
@@ -855,38 +855,38 @@ $(document).on("click", ".quick-addto-cart", function () {
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			    		         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
 			    		         	//html +='<i class="far fa-minus"></i>';
-			    		         	//html +='</a>'; 
-			    		         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>'; 
+			    		         	//html +='</a>';
+			    		         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>';
 			    		         	//html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
 			    		         	//html +='<i class="far fa-plus"></i> ';
 			    		         	//html +='</a>';
 			    		         	html +='</div>';
 
 			    		         	html +='</div>';
-//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;'; 
+//				    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;';
 			    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block removeItemCart" data-id="'+list[i]['CART_LINE_ID']+'" data-cartId="'+list[i]['CART_ID']+'">Remove Item</a>';
-			    						
+
 			    		         	html +='</div>';
 			    		         	html +='</div>';
 			    	   		}
 			    	   	}
-			       	
+
 			        	$("#cartRightMenuListingHTML").html(html);
-			        	
+
 					}else{
 						toastr.error(data.msg, '', {timeOut: 3000});
-						
+
 						if(data.flag == 0){
 							setTimeout(function(){
 								window.location.href= data.redirectURL;
 							}, 3000);
-							
+
 							localStorage.setItem("productId", productId);
-							
+
 						}
 					}
-		        	
-		        	
+
+
 		        	setTimeout(function(){
 							$.LoadingOverlay("hide");
 					}, 500);
@@ -900,15 +900,15 @@ $(document).on("click", ".quick-addto-cart", function () {
 
 	var cartLineId = $(this).attr("data-id");
 	var cartId = $(this).attr("data-cartId");
-	$.LoadingOverlay("show"); 
-		
+	$.LoadingOverlay("show");
+
 	var token = $("#csrf").val();
-		
+
 	var form_data = new FormData();
 		form_data.append("userId", userId);
 		form_data.append("cartId", cartId);
 		form_data.append("cartLineId", cartLineId);
-		
+
 		form_data.append("_token", token);
 	 	$.ajax({
 	        url: site+"/removeCartItem",
@@ -919,13 +919,13 @@ $(document).on("click", ".quick-addto-cart", function () {
 	        processData: false,
 	        success: function(data){
 	        	var data = JSON.parse(data);
-				
+
 	        	var cart = data.cart;
 	        	var list = data.cartDetails;
 	        	var html = '';
-	        	
+
 	        	$("#cartRightMenuListingHTML").html('');
-	       	 	
+
 	    		if(cart != null && cart != ''){
 	    			$("#itemCounts").text(cart['cartCount']+' Item(s).');
 	    			$("#cartHeaderCount").text(cart['cartCount']);
@@ -940,7 +940,7 @@ $(document).on("click", ".quick-addto-cart", function () {
 
 	    	   	if(list != null && list != ''){
 	    	   		for(var i=0; i<list.length; i++){
-	    	   			
+
 		   			 	html +='<div class="media w-100 py-2" id="cartItemDiv-'+list[i]['CART_LINE_ID']+'">';
 			         	html +='<div class="mr-3 w-110px">';
 			         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
@@ -952,23 +952,23 @@ $(document).on("click", ".quick-addto-cart", function () {
 			         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
 			         	//html +='<i class="far fa-minus"></i>';
-			         	//html +='</a>'; 
-			         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>'; 
+			         	//html +='</a>';
+			         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>';
 			         	//html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
 			         	//html +='<i class="far fa-plus"></i> ';
 			         	//html +='</a>';
 			         	html +='</div>';
 
 			         	html +='</div>';
-//	    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;'; 
+//	    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;';
 			         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block removeItemCart" data-id="'+list[i]['CART_LINE_ID']+'" data-cartId="'+list[i]['CART_ID']+'">Remove Item</a>';
-							
+
 			         	html +='</div>';
 			         	html +='</div>';
 	    	   		}
 	    	   	}
 	        	$("#cartRightMenuListingHTML").html(html);
-	        	
+
 	        	setTimeout(function(){
 						$.LoadingOverlay("hide");
 				}, 500);
@@ -997,18 +997,18 @@ $(document).on("click", ".quick-addto-cart", function () {
 	        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 	        success: function(data){
 	        	var data = JSON.parse(data);
-				
+
 	        	var cart = data.cart;
 	        	var list = data.cartDetails;
 	        	var wishlistCount = data.wishlistCount;
-	        	
+
 	        	$("#wishlistHeaderCount").text(wishlistCount);
 	        	$("#wishlistHeaderCountMbl").text(wishlistCount);
-	        	
+
 	        	var html = '';
-	        	
+
 	        	$("#cartRightMenuListingHTML").html('');
-	       	 	
+
 	    		if(cart != null && cart != ''){
 	    			$("#itemCounts").text(cart['cartCount']+' Item(s).');
 	    			$("#cartHeaderCount").text(cart['cartCount']);
@@ -1020,11 +1020,11 @@ $(document).on("click", ".quick-addto-cart", function () {
 	    			$("#cartCount").val('0')
 	    			$("#cartSubTotal").text('$0.00');
 	    		}
-	    		
+
 	    	   	if(list != null && list != ''){
-	    	   		
+
 	    	   		for(var i=0; i<list.length; i++){
-	    	   			
+
 		   			 	html +='<div class="media w-100 py-2" id="cartItemDiv-'+list[i]['CART_LINE_ID']+'">';
 			         	html +='<div class="mr-3 w-110px">';
 			         	html +='<img src="'+list[i]['primaryImage']+'" style="height:100px" alt="High Ankle Jeans" class="border">';
@@ -1036,17 +1036,17 @@ $(document).on("click", ".quick-addto-cart", function () {
 			         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
 			         	//html +='<i class="far fa-minus"></i>';
-			         	//html +='</a>'; 
-			         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>'; 
+			         	//html +='</a>';
+			         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>';
 			         	//html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
 			         	//html +='<i class="far fa-plus"></i> ';
 			         	//html +='</a>';
 			         	html +='</div>';
 
 			         	html +='</div>';
-//	    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;'; 
+//	    		         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block">Save Item </a>&nbsp;&nbsp;';
 			         	html +='<a href="javascript:;" class="text-decoration-underline fs-14 opacity-8 d-inline-block removeItemCart" data-id="'+list[i]['CART_LINE_ID']+'" data-cartId="'+list[i]['CART_ID']+'">Remove Item</a>';
-							
+
 			         	html +='</div>';
 			         	html +='</div>';
 	    	   		}
@@ -1065,7 +1065,7 @@ $(document).on("click", ".quick-addto-cart", function () {
 
 		form_data.append("cartLineId", cartLineId);
 		form_data.append("_token", token);
-	
+
 		$.ajax({
 	        url: site+"/getProductShadesRightSideBar",
 	        type: "POST",
@@ -1078,15 +1078,15 @@ $(document).on("click", ".quick-addto-cart", function () {
 				console.log(data);
 	        	var list = data.shadename;
 				var html = '';
-	    		
+
 	    	   	if(list != null && list != ''){
-	    	   		
+
 	    	   		for(var i=0; i<list.length; i++){
 	    	   			html+=`<tr>
 									<td class="center">`+list[i]['PRODUCT_NAME']+`</td>
-									<td class="center">`+list[i]['SHADE_NAME']+`</td> 
+									<td class="center">`+list[i]['SHADE_NAME']+`</td>
 						   		</tr>`;
-		   			 	
+
 	    	   		}
 	    	   	}else{
 					html+=`<tr>
@@ -1104,7 +1104,7 @@ $(document).on("click", ".quick-addto-cart", function () {
 
 	        }
 	    });
-		
+
 	}
 	function closeSideBarShadeModal(){
 		$("#show_shade_modal_sidebar").modal('hide');
@@ -1125,15 +1125,15 @@ $(document).on("click", ".quick-addto-cart", function () {
 	var productId = $(this).attr("data-productId");
 	var productType = $(this).attr("data-type");
 
-	$.LoadingOverlay("show"); 
-		
+	$.LoadingOverlay("show");
+
 	var token = $("#csrf").val();
-		
+
 	var form_data = new FormData();
 		form_data.append("userId", userId);
 		form_data.append("productId", productId);
 		form_data.append("productType", productType);
-		
+
 		form_data.append("_token", token);
 	 	$.ajax({
 	        url: site+"/addProductToWishlist",
@@ -1144,23 +1144,23 @@ $(document).on("click", ".quick-addto-cart", function () {
 	        processData: false,
 	        success: function(data){
 	        	var data = JSON.parse(data);
-				
+
 	        	if(data.done == true || data.done == 'true'){
 
 					toastr.success(data.msg, '', {timeOut: 3000})
-					
+
 					var wishlistCount = data.wishlistCount;
-					
+
 					$("#wishlistHeaderCount").text(wishlistCount);
 					$("#wishlistHeaderCountMbl").text(wishlistCount);
-					
+
 					if(data.flag == 'add'){
 						$('.wish_'+productId).addClass('activeWish');
 					}else{
 						$('.wish_'+productId).removeClass('activeWish');
 					}
-					
-		        	
+
+
 				}else{
 					toastr.error(data.msg, '', {timeOut: 3000});
 
@@ -1169,12 +1169,12 @@ $(document).on("click", ".quick-addto-cart", function () {
 							//redirect to login
 							window.location.href= data.redirectURL;
 						}, 3000);
-						
+
 						localStorage.setItem("wishlistproductId", productId);
-						
+
 					}
 				}
-	        	
+
 	        	setTimeout(function(){
 						$.LoadingOverlay("hide");
 				}, 500);
@@ -1183,35 +1183,41 @@ $(document).on("click", ".quick-addto-cart", function () {
 
 
 	});
-	
-	
+
+
 	function footerEmailSubscription(){
-		
+
 		var email = $("#footerEmailSubs").val();
 		var phone = $("#footerPhoneSubs").val();
 
-		
+
 		if(email == ''){
 			toastr.error("Email is required", '', {timeOut: 3000}); return;
+		}
+        var isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+		if (!isValidEmail) {
+			toastr.error("Enter valid email address.", '', {timeOut: 3000}); return;
 		}
 		if(phone == ''){
 			toastr.error("Phone Number is required", '', {timeOut: 3000}); return;
 		}
-		
-		var isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-		if (!isValidEmail) {
-			toastr.error("Enter valid email address.", '', {timeOut: 3000}); return;
-		}
-		
-		$.LoadingOverlay("show"); 
-			
+        var phoneNumber = phone;
+        if (phoneNumber.length < 11 || phoneNumber.length > 14) {
+            toastr.error('Phone number should be between 11 and 14 digits.', '', {timeOut: 3000});
+            return; // Exit the function if phone number is invalid
+        }
+
+
+
+		$.LoadingOverlay("show");
+
 		var token = $("#csrf").val();
-			
+
 		var form_data = new FormData();
 			form_data.append("userId", userId);
 			form_data.append("email", email);
 			form_data.append("phone", phone);
-			
+
 			form_data.append("_token", token);
 		 	$.ajax({
 		        url: site+"/addFooterEmailSubscription",
@@ -1222,25 +1228,25 @@ $(document).on("click", ".quick-addto-cart", function () {
 		        processData: false,
 		        success: function(data){
 		        	var data = JSON.parse(data);
-					
+
 		        	if(data.done == true || data.done == 'true'){
 
 						toastr.success(data.msg, '', {timeOut: 3000})
-						
+
 						$("#footerEmailSubs").val('');
 						$("#footerPhoneSubs").val('');
-			        	
+
 					}else{
 						toastr.error(data.msg, '', {timeOut: 3000})
 					}
-		        	
+
 		        	setTimeout(function(){
 							$.LoadingOverlay("hide");
 					}, 500);
 		        }
 		    });
 
-			
+
 			$( document ).ready(function() {
 				// for product counter
 				$('.down').on('click', function(e) {
@@ -1279,7 +1285,7 @@ $(document).on("click", ".quick-addto-cart", function () {
 		var productid = localStorage.getItem("productId");
 
 		if(productid != '' && productid != null){
-			
+
 			quickAdd(productid);
 			productid = localStorage.setItem("productId","");
 
@@ -1288,11 +1294,11 @@ $(document).on("click", ".quick-addto-cart", function () {
 		var wishlistproductId = localStorage.getItem("wishlistproductId");
 
 		if(wishlistproductId != '' && wishlistproductId != null){
-			
+
 			quickAddWishList(wishlistproductId);
 			wishlistproductId = localStorage.setItem("wishlistproductId","");
 
 		}
-	} 
+	}
 
-	
+

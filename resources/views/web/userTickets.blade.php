@@ -9,7 +9,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             Content body start
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
-            
+
             <div class="container-fluid" ng-show="editView == '0'">
                 <div class="row">
                 	<div class="col-10">
@@ -24,7 +24,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                        <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" href="javascript:void(0)" ng-click="addNew();">Add new</a>
                    	</div>
                 </div>
-                
+
                 <!-- row -->
 
                 <div class="row">
@@ -34,7 +34,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                 <h4 class="card-title">Tickets</h4>
                             </div>
                             <div class="card-body">
-                            	
+
                                 <div class="table-responsive">
                                     <table id="ticketListing_table" class="display min-w850">
                                         <thead>
@@ -65,7 +65,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														@{{row.STATUS}}
 													</span>
 												</td>
-                                                
+
                                                 <td>
 													<div class="dropdown ml-auto text-right">
 														<div class="btn-link" data-toggle="dropdown">
@@ -77,9 +77,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 <!-- 															<a class="dropdown-item" href="javascript:;" ng-click="changeStatusOpenClose(row.TICKET_ID, 0);" ng-if="row.STATUS == 'OPEN'">Close</a> -->
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -88,7 +88,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     </div>
 				</div>
             </div>
-            
+
             <div class="container-fluid" ng-show="editView == '1'">
                 <div class="page-titles">
 					<ol class="breadcrumb">
@@ -100,7 +100,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     <div class="col-lg-12">
 
                         <div class="card">
-                            <div class="card-header row">  
+                            <div class="card-header row">
                             	<div class="col-6">Tickets Details</div>
                             </div>
                             <div class="card-body">
@@ -109,7 +109,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="col-form-label" for="t1"><b>Ticket Type</b> <span class="text-danger">*</span> </label> 
+													<label class="col-form-label" for="t1"><b>Ticket Type</b> <span class="text-danger">*</span> </label>
 													<select class="form-control" id="t1" ng-model="ticket['T_1']" >
 							                        	<option value="">---SELECT---</option>
 							                        	<option value="order">Order</option>
@@ -119,7 +119,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group order_lov" ng-show="ticket.T_1 == 'order'" >
-													<label class="col-form-label" for="t2"><b>Order Number<span class="text-danger">*</span></b> </label> 
+													<label class="col-form-label" for="t2"><b>Order Number<span class="text-danger">*</span></b> </label>
 													{{-- <input type="text" class="form-control" id="t2" ng-model="ticket['T_2']" placeholder="Document Number"> --}}
 													<select class="default-placeholder" id="t2" ng-model="ticket['T_2']"
 														ng-options="item as item.name for item in orderList track by item.id">
@@ -131,7 +131,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="col-form-label" for="t3"><b>Username<span class="text-danger">*</span></b> </label> 
+													<label class="col-form-label" for="t3"><b>Username<span class="text-danger">*</span></b> </label>
 													<input type="text" class="form-control bg-dark text-light" id="t3" ng-model="ticket['T_3']" placeholder="Username" disabled>
 												</div>
 											</div>
@@ -144,12 +144,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="col-form-label" for="t5"><b>Phone Number<span class="text-danger">*</span></b> </label>
-													<input type="number" class="form-control" id="t5" ng-model="ticket['T_5']" placeholder="Phone Number">
+													<input type="number" class="form-control" id="t5" ng-model="ticket['T_5']" placeholder="Phone Number" minlength="11" maxlength="14">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="col-form-label" for="t1"><b>Priority</b> <span class="text-danger">*</span> </label> 
+													<label class="col-form-label" for="t1"><b>Priority</b> <span class="text-danger">*</span> </label>
 													<select class="form-control" id="t1" ng-model="ticket['T_8']" >
 							                        	<option value="">---SELECT---</option>
 							                        	<option value="low">Low</option>
@@ -164,20 +164,20 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 													<input type="text" class="form-control" id="t6" ng-model="ticket['T_6']" placeholder="Subject">
 												</div>
 											</div>
-											
+
 											<div class="col-sm-12">
 												<div class="form-group">
 													<label class="col-form-label" for="t7"><b>Detail<span class="text-danger">*</span></b> </label>
 													<textarea class="form-control" id="t7" rows="8" ng-model="ticket['T_7']" placeholder="Enter Details..."></textarea>
 												</div>
 											</div>
-											
+
 										</div>
-										
+
 										<div class=" ml-0 ml-sm-12 ml-sm-0 mt-3">
 
                                         	<div class="compose-content">
-                                                    
+
                                         		<h5 class="mb-4"><i class="fa fa-paperclip"></i>Images </h5>
 
                                                	<div class="col-sm-12 col-12 register-new-product-picture-para-box">
@@ -203,19 +203,19 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                	</div>
 
                                         	</div>
-                                                
+
                                        	</div>
-                                            
+
 										<div class="save-admin-center mt-3">
 										   <button type="button" class="btn btn-rounded btn-success mobile-save-btn" ng-click="saveTicket();" style="width: 12rem;">Submit Ticket</button>
 										</div>
-										
-										
-                                   
+
+
+
 <!-- 									</form> -->
 								</div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -231,35 +231,35 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     <div class="col-lg-12">
 
                         <div class="card">
-                            <div class="card-header row">  
+                            <div class="card-header row">
                             	<div class="col-6">Ticket Details</div>
                             </div>
                             <div class="card-body">
                                 <div class="form-validation">
 									<form class="form-valide">
-										
+
 										<div class="row">
 											<div class="col-sm-4">
 												<div class="form-group">
-													<label class="col-form-label" for="t1"><b>Ticket Number</b></label> 
+													<label class="col-form-label" for="t1"><b>Ticket Number</b></label>
 													<p>@{{tktNumber}}</p>
 												</div>
 											</div>
 											<div class="col-sm-4">
 												<div class="form-group">
-													<label class="col-form-label" for="t1"><b>Ticket Type</b></label> 
+													<label class="col-form-label" for="t1"><b>Ticket Type</b></label>
 													<p>@{{tktType}}</p>
 												</div>
 											</div>
 											<div class="col-sm-4">
 												<div class="form-group">
-													<label class="col-form-label" for="t2"><b>Document Number</b></label> 
+													<label class="col-form-label" for="t2"><b>Document Number</b></label>
 													<p>@{{tktDocNum}}</p>
 												</div>
 											</div>
 											<div class="col-sm-4">
 												<div class="form-group">
-													<label class="col-form-label" for="t3"><b>Username</b></label> 
+													<label class="col-form-label" for="t3"><b>Username</b></label>
 													<p>@{{tktUsername}}</p>
 												</div>
 											</div>
@@ -308,9 +308,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class=" ml-0 col-sm-12 mt-3">
 
 	                                        	<div class="compose-content">
-	                                                    
+
 	                                        		<h5 class="mb-4"><i class="fa fa-paperclip"></i>Images </h5>
-	
+
 	                                               	<div class="col-sm-12 col-12 register-new-product-picture-para-box">
 	                                                  	<div class="row register-new-product-picture-para">
 	                                                       	<div class="col-sm-9">
@@ -325,21 +325,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																			</div>
 																		</div>
 																	</div>
- 		  		
+
 	                                                           	</div>
 	                                                       	</div>
 	                                                   	</div>
 	                                               	</div>
-	
+
 	                                        	</div>
-	                                                
+
 	                                       	</div>
 											<div class="col-sm-12">
 												<div class="form-group">
 													<label class="col-form-label" for="t7"><b>Replies:</b> </label>
 												</div>
 												<div class="border-bottom pb-7 mb-7 " ng-repeat="row in displayCollectionTicketReplies">
-													
+
 													<div class="row mt-3 mb-3" ng-if="row.USER_TYPE == 'user'">
 														<div class="w-70px d-block mr-6 col-sm-1">
 															<img src="{{url('assets-web')}}/images/user-avatar.png" alt="Dean. D" style="width:5vw; border-radius:50%;">
@@ -352,7 +352,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																</div>
 															</div>
 															<p>@{{row.REPLY_DESCRIPTION}}</p>
-																
+
 														</div>
 													</div>
 													<div class="row mt-3 mb-3" ng-if="row.USER_TYPE == 'admin'">
@@ -368,13 +368,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																</div>
 															</div>
 															<strong>@{{row.REPLY_DESCRIPTION}}</strong>
-															
+
 														</div>
 													</div>
-													
-													
-													
-					
+
+
+
+
 												</div>
 											</div>
 											<div class="col-sm-12" ng-show="tktStatus == 'OPEN'">
@@ -390,16 +390,16 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 									</form>
 								</div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- <div class="modal fade" id="alertDel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
                         </div>
@@ -418,12 +418,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
     </div>
     @include('admin.admin-footer')
-    
+
     <script src="{{ url('/assets-web') }}/customjs/script_usertickets.js?v={{time()}}"></script>
-    
+
     <script>
     function form() {
         $("#uploadatt1").click();
     }
-	
+
     </script>

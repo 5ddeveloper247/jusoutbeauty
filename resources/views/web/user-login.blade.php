@@ -277,7 +277,7 @@
                                 about your order, and track it every step of the way.
                             </p>
                             <a href="javascript:;" class="btn btn-outline-primary w-100" data-toggle="modal"
-                                data-target="#product-03-3">Create Account</a>
+                                data-target="#product-03-3" ng-click="registerModal()">Create Account</a>
                         </div>
 
                     </div>
@@ -302,7 +302,7 @@
                                                     class="form-control mb-3" placeholder="Last name" required>
                                                 <input ng-model="store['A_3']" type="email"
                                                     class="form-control mb-3" placeholder="Your email" required>
-                                                <input ng-model="store['A_4']" type="phone"
+                                                <input ng-model="store['A_4']" type="phone" minlength="11" maxlength="14"
                                                     class="form-control  mb-3" placeholder="Phone Number" required>
                                                 <input ng-model="store['A_5']" type="password"
                                                     class="form-control mb-3" placeholder="Password" required>

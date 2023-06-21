@@ -53,7 +53,7 @@
                                 class="d-inline-flex align-items-center position-absolute pos-fixed-left-center z-index-2 left-15">
                                 <i class="fal fa-envelope"></i>
                             </span>
-                            <input type="text" class="form-control border-0 bg-transparent pl-7 m-0"
+                            <input type="email" class="form-control border-0 bg-transparent pl-7 m-0"
                                 id="footerEmailSubs" placeholder="Enter your email" style="z-index: 1;">
 
                             <span class="d-inline-flex align-items-center z-index-2"
@@ -61,7 +61,7 @@
                                 <i class="fal fa-phone"></i>
                             </span>
                             <input type="number" class="form-control border-0 bg-transparent pl-7" id="footerPhoneSubs"
-                                placeholder="Phone" style="z-index: 1;">
+                                placeholder="Phone" style="z-index: 1;" minlength="11" maxlength="14">
 
                             <div
                                 class="input-group-append fs-14 position-absolute pos-fixed-right-center z-index-2 pr-3">

@@ -136,7 +136,7 @@ class HomeController extends Controller
 		$data['routine'] = $this->getAllRouteByNameForWebiste();
 		$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
         $data['ingredients'] = $ProductIngredient->getIngredientsWithImags();
-		
+
 		$data['page'] = 'Ingredients';
 		return view('web.ingredients')->with ( $data );
 	}
@@ -231,7 +231,7 @@ class HomeController extends Controller
 
 	}
 
-    
+
 	public function ecoVibes() {
 
 		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
@@ -1201,8 +1201,8 @@ class HomeController extends Controller
 									'.$message_username.'
 								</td>
 							</tr>';
-		
-		
+
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $data ['R_11'];//useremail
 				$email_details['from_id'] = 1;
@@ -1211,9 +1211,9 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "REVIEW";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-		
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
 				$email_details['from_id'] = 1;
@@ -1222,7 +1222,7 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "REVIEW";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
    				$arrRes ['done'] = true;
@@ -1415,8 +1415,8 @@ class HomeController extends Controller
 									'.$message_username.'
 								</td>
 							</tr>';
-		
-		
+
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $data ['Q_2'];//useremail
 				$email_details['from_id'] = 1;
@@ -1425,9 +1425,9 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "QUESTION";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-		
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
 				$email_details['from_id'] = 1;
@@ -1436,7 +1436,7 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "QUESTION";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
    				$arrRes ['done'] = true;
@@ -2884,10 +2884,10 @@ class HomeController extends Controller
    				echo json_encode ( $arrRes );
    				die ();
    			}
-   			if (strlen($data ['T_5']) != 11) {
+   			if (strlen($data ['T_5']) < 11 || strlen($data ['T_5']) > 14) {
 
    				$arrRes ['done'] = false;
-   				$arrRes ['msg'] = 'Phone number must be less then equal to 11 characters.';
+   				$arrRes ['msg'] = 'Phone number must be between 11 to 14 characters.';
    				echo json_encode ( $arrRes );
    				die ();
    			}
@@ -2954,8 +2954,8 @@ class HomeController extends Controller
 									'.$message_username.'
 								</td>
 							</tr>';
-		
-		
+
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $data ['T_4'];//useremail
 				$email_details['from_id'] = 1;
@@ -2964,9 +2964,9 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-		
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
 				$email_details['from_id'] = 1;
@@ -2975,7 +2975,7 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
    				$arrRes ['done'] = true;

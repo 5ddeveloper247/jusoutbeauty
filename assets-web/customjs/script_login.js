@@ -1,7 +1,7 @@
 var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
-   
+
 	$scope.store = {};
 	$scope.store.A_1 = '';
 	$scope.store.A_2 = '';
@@ -11,50 +11,102 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	$scope.store.A_6 = '';
 	$scope.store.A_7 = false;
 	$scope.tokenHash = $("#csrf").val();
-		
-	$scope.zakana = function(){
-		if($("#termsOfUse1").is(':checked')){
-			$scope.store.A_7 = '1';
-	
-		}else{
 
-			$scope.store.A_7 = '0';
-		}
-		var data = {};
-		data.reg = $scope.store; 
-		var temp = $.param({details: data});
-		$http({
-			data: temp+"&"+$scope.tokenHash,
-			url : site+'/UserReg',
-			method: "POST",
-			async: false,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	// $scope.zakana = function(){
+	// 	if($("#termsOfUse1").is(':checked')){
+	// 		$scope.store.A_7 = '1';
 
-		}).success(function(data) {
-			
-			if(data.done == true  || data.done == 'true'){
-				
-				toastr.success(data.msg, 'Account Created Successfully!', {timeOut: 3000})
-	            $scope.store.A_1 = '';
-	            $scope.store.A_2 = '';
-	            $scope.store.A_3 = '';
-	            $scope.store.A_4 = '';
-	            $scope.store.A_5 = '';
-	            $scope.store.A_6 = '';
-	            $(".show").addClass('d-none');
-	            
-			}else{
-				toastr.error(data.msg, '', {timeOut: 3000})
-			}
-    
-		})
-	}
-	
+	// 	}else{
+
+	// 		$scope.store.A_7 = '0';
+	// 	}
+	// 	var data = {};
+	// 	data.reg = $scope.store;
+    //     console.log(data.reg.A_4);
+    //     if(reg.A_4)
+	// 	var temp = $.param({details: data});
+	// 	$http({
+	// 		data: temp+"&"+$scope.tokenHash,
+	// 		url : site+'/UserReg',
+	// 		method: "POST",
+	// 		async: false,
+	// 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+	// 	}).success(function(data) {
+
+	// 		if(data.done == true  || data.done == 'true'){
+
+	// 			toastr.success(data.msg, 'Account Created Successfully!', {timeOut: 3000})
+	//             $scope.store.A_1 = '';
+	//             $scope.store.A_2 = '';
+	//             $scope.store.A_3 = '';
+	//             $scope.store.A_4 = '';
+	//             $scope.store.A_5 = '';
+	//             $scope.store.A_6 = '';
+	//             $(".show").addClass('d-none');
+
+	// 		}else{
+	// 			toastr.error(data.msg, '', {timeOut: 3000})
+	// 		}
+
+	// 	})
+	// }
+    $scope.registerModal= function (){
+        $scope.store.A_1 = '';
+        $scope.store.A_2 = '';
+        $scope.store.A_3 = '';
+        $scope.store.A_4 = '';
+        $scope.store.A_5 = '';
+        $scope.store.A_6 = '';
+        $scope.store.A_7 = false;
+    }
+    $scope.zakana = function() {
+        if ($("#termsOfUse1").is(':checked')) {
+            $scope.store.A_7 = '1';
+        } else {
+            $scope.store.A_7 = '0';
+        }
+
+        // Check if phone number is valid
+        var phoneNumber = $scope.store.A_4;
+        if (phoneNumber.length < 11 || phoneNumber.length > 14) {
+            toastr.error('Phone number should be between 11 and 14 digits.', '', {timeOut: 3000});
+            return; // Exit the function if phone number is invalid
+        }
+
+        var data = {};
+        data.reg = $scope.store;
+        console.log(data.reg.A_4);
+            var temp = $.param({details: data});
+        $http({
+            data: temp + "&" + $scope.tokenHash,
+            url: site + '/UserReg',
+            method: "POST",
+            async: false,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
+            if (data.done == true || data.done == 'true') {
+                toastr.success(data.msg, 'Account Created Successfully!', {timeOut: 3000});
+                $scope.store.A_1 = '';
+                $scope.store.A_2 = '';
+                $scope.store.A_3 = '';
+                $scope.store.A_4 = '';
+                $scope.store.A_5 = '';
+                $scope.store.A_6 = '';
+                 $("#product-03-3").modal('hide');
+                // location.reload();
+            } else {
+                toastr.error(data.msg, '', {timeOut: 3000});
+            }
+        });
+    }
+
+
 	$scope.resetpass = {};
 	$scope.resetpass.R_1 = '';
-		
+
 	$scope.resetPass = function(){
-		
+
 		$scope.resetpass.R_1 = '';
 		$('#reset_email').show();
 		$('#otp_num').hide();
@@ -62,7 +114,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 		$('#user_otp').val('');
 		$('#resetPassword_modal').modal('show');
-		
+
 	}
 	$scope.cpass = {};
 	$scope.cpass.C_1 = '';
@@ -76,7 +128,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		if($scope.cpass != undefined){
 			data.vpass = $scope.cpass;
 		}
-		 
+
 		let password_reset = $("#password_reset").val();
 		let con_password_reset = $("#con_password_reset").val();
 
@@ -100,7 +152,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 		}).success(function(data) {
 			if(data.done == true ){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 
 				$('#resetPassword_modal').modal('hide');
@@ -111,12 +163,12 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				$('#user_con_id').val('');
 				$('#user_otp').val('');
 				$('#reset_email').val('');
-				
-				
+
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-    
+
 		})
 	}
 
@@ -138,7 +190,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		if($scope.votp != undefined){
 			data.otp = $scope.votp;
 		}
-		 
+
 
 		var temp = $.param({details: data});
 		$http({
@@ -150,19 +202,19 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 		}).success(function(data) {
 			if(data.done == true ){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
-				
+
 				$('#reset_email').hide();
 				$('#otp_num').hide();
 				$('#reset_pass_form').show();
 				$('#otp_num').hide();
 				$('#user_con_id').val(data.user_id_otp);
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-    
+
 		})
 	}
 
@@ -170,9 +222,9 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	$scope.reset.R_3 = '';
 
 	$scope.resetPassFunction = function(){
-		
+
 		var data = {};
-		data.res = $scope.reset; 
+		data.res = $scope.reset;
 
 		let check_email = $("#reset_user_pass").val();
 
@@ -180,7 +232,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			toastr.error(data.msg, 'Please Enter Register Email!', {timeOut: 3000});
 			return;
 		}
-		
+
 		var temp = $.param({details: data});
 		$http({
 			data: temp,//+"&"+$scope.tokenHash,
@@ -191,24 +243,24 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 		}).success(function(data) {
 			if(data.done == true ){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 
 				$('#user_otp').val(data.user_id_otp);
 				$('#reset_email').hide();
 				$('#otp_num').show();
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-    
+
 		})
 	}
-	
+
 	$scope.resetPasswordStep1 = function(){
-		
+
 		var data = {};
-		data.resetpass = $scope.resetpass; 
+		data.resetpass = $scope.resetpass;
 		var temp = $.param({details: data});
 		$http({
 			data: temp+"&"+$scope.tokenHash,
@@ -219,7 +271,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 		}).success(function(data) {
 			if(data.message == true ){
-				
+
 				toastr.success(data.msg, 'Account Created Successfully!', {timeOut: 3000})
 	            $scope.store.A_1 = '';
 	            $scope.store.A_2 = '';
@@ -231,17 +283,17 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-    
+
 		})
 	}
-	
+
 
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -266,7 +318,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);
