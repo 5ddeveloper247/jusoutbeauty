@@ -108,7 +108,8 @@
 					</div>
 
 					<div class="row">
-						<div class="col-sm-6 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts" style="@{{row.styleBgColor}}">
+                        <div ng-init="productsToShowForNutrition = 4"></div>
+						<div class="col-sm-6 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)" style="@{{row.styleBgColor}}">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
 								<div class="overflow-hidden">
 									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2" data-id="@{{row.PRODUCT_ID}}" style="margin-top:15px"><br>
@@ -120,7 +121,12 @@
 								</div>
 							</div>
 						</div>
-
+                        <div class="col-12 col-lg-12" ng-if="displayCollectionProducts.length == 0 || displayCollectionProducts.length == undefined">
+                            <p class="text-center">No record found...</p>
+                        </div>
+                        <div class="col-12 col-lg-12 text-center mt-4" ng-show="displayCollectionProducts.length > productsToShow">
+                            <button class="btn btn-primary btn-sm" ng-click="loadMoreProductsForNutrition()">Load More</button>
+                          </div>
 					</div>
 				</div>
 			</div>

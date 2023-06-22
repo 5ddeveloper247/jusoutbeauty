@@ -4,7 +4,7 @@ var userId = '<?php echo session('userId');?>';
 var site = '<?php echo session('site');?>';
 var baseurl = "<?php echo url('/assets-admin');?>";
 </script>
-<!-- <style> 
+<!-- <style>
 a[type="button"] {
       color:white !important;
 }
@@ -18,7 +18,7 @@ button{
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid pt-0" ng-show="editView == '0'">
-                
+
                 <!-- row -->
 				<div class="row">
 					<div class="col-10">
@@ -34,7 +34,7 @@ button{
 					</div>
 				</div>
 				<div class="row">
-                    
+
 					<div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -63,7 +63,7 @@ button{
 														<i class="fa fa-circle text-success mr-1"></i>
 														Active
 													</span>
-													<span class="badge light badge-danger" ng-if="row.STATUS != 'active'"> 
+													<span class="badge light badge-danger" ng-if="row.STATUS != 'active'">
 														<i class="fa fa-circle text-danger mr-1"></i>
 														InActive
 													</span>
@@ -81,10 +81,10 @@ button{
 <!-- 															<a class="dropdown-item" href="#">View Details</a> -->
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
-                                            
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -92,10 +92,10 @@ button{
                         </div>
                     </div>
 				</div>
-				
+
 
             </div>
-            
+
             <div class="container-fluid pt-0" ng-show="editView == '1'">
                 <div class="page-titles pt-0 pb-0 mb-0">
 					<ol class="breadcrumb">
@@ -117,7 +117,7 @@ button{
 											<div class="col-sm-5">
 												<div class="form-group">
 
-													<label class="col-form-label" for="Title"><b>Title</b> <span class="text-danger">*</span> </label> 
+													<label class="col-form-label" for="Title"><b>Title</b> <span class="text-danger">*</span> </label>
 													<input type="text" class="form-control" id="title" ng-model="routinename['P_1']" placeholder="Enter a Title...">
 
 												</div>
@@ -154,13 +154,13 @@ button{
 
 
 									<div class=" ml-0 ml-sm-12 ml-sm-0 mt-3">
-                                    
+
                                     <div class="compose-content">
                                         <form action="#">
-                                          
+
                                         </form>
                                         <h5 class="mb-4"><i class="fa fa-paperclip"></i> Attachment</h5>
-                                        
+
                                         <div class="col-sm-12 col-12 register-new-product-picture-para-box">
 											<div class="row register-new-product-picture-para">
 												<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1();" style="">
@@ -169,7 +169,7 @@ button{
 												</div>
 												<div class="col-sm-9">
 													<div class="row" id="p_att">
-													
+
 													   <!-- <div class="col-2 image-overlay margin-r1" id="profuct_img_file_351">
 															<img src="http://jasad5d.5dsurf.com/themes/jasad18122020/65/product/94/banner01.jpg" alt="" class="image-box">
 															<div class="overlay">
@@ -190,10 +190,10 @@ button{
            											{{ csrf_field() }}
            											<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 													<input type="hidden" id="sourceId" name="sourceId" value="@{{routinename.ID}}">
-													<input type="hidden" id="sourceCode" name="sourceCode" value="INGREDIENT_IMG"> 
+													<input type="hidden" id="sourceCode" name="sourceCode" value="INGREDIENT_IMG">
 													<input type="file" id="uploadattl" name="uploadattl" class="file-input" style="display: none;">
 												</form>
-		
+
 											</div>
 										</div>
 										<!-- <form id="uploadfile" method="POST" action="importData" class="dropzone" id="myDropzone">
@@ -201,11 +201,11 @@ button{
            									{{ csrf_field() }}
 											<input type="hidden" name="form_code" value="INGREDIENT_IMG">
 											<input type="hidden" name="recordId" required>
-											
+
 											<div class="fallback">
 												<input name="file" type="file" multiple accept="image/*"/>
 											</div>
-		
+
 										</form> -->
                                     </div>
                                     <div class="text-left mt-4 mb-2">
@@ -218,9 +218,9 @@ button{
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-                        
+
 				<div class="row" >
 					<div class="col-xl-12 col-xxl-12">
 						<div class="card">
@@ -273,7 +273,7 @@ button{
 										<div class="col-sm-4 align-center-verticle" >
 												<button class="btn btn-rounded btn-warning cmbm-6vw mb-3" style="color:white;width:100%;" ng-click="addtype();" style="width:100%;">Add</button>
 										</div>
-										
+
 									</div>
 									<div class="table-responsive">
 										<table id="type_table" class="display min-w850">
@@ -295,11 +295,11 @@ button{
 															<i class="fa fa-circle text-success mr-1"></i>
 															Active
 														</span>
-														<span class="badge light badge-danger" ng-if="row.STATUS != 'active'"> 
+														<span class="badge light badge-danger" ng-if="row.STATUS != 'active'">
 															<i class="fa fa-circle text-danger mr-1"></i>
 															InActive
 														</span>
-													</td>									
+													</td>
 													<td>
 														<div class="dropdown ml-auto text-right">
 															<div class="btn-link" data-toggle="dropdown">
@@ -307,16 +307,16 @@ button{
 															</div>
 															<div class="dropdown-menu dropdown-menu-right">
 																<a class="dropdown-item" ng-click="removetypenamemodal(@{{row.NAME_ID}});">Remove</a>
-																<a class="dropdown-item" ng-click="continuetypename(@{{row.NAME_ID}});">Edit</a> 
+																<a class="dropdown-item" ng-click="continuetypename(@{{row.NAME_ID}});">Edit</a>
 															</div>
 														</div>
-													</td>												
+													</td>
 												</tr>
 
 												{{-- <tr ng-repeat="row in routinetypedata">
 													<td>@{{row.id}}</td>
-													<td>@{{row.name}}</td>	
-													<td>@{{row.created_at}}</td>											
+													<td>@{{row.name}}</td>
+													<td>@{{row.created_at}}</td>
 													<td>
 														<div class="dropdown ml-auto text-right">
 															<div class="btn-link" data-toggle="dropdown">
@@ -328,9 +328,9 @@ button{
 
 															</div>
 														</div>
-													</td>												
+													</td>
 												</tr> --}}
-										
+
 											</tbody>
 										</table>
 									</div>
@@ -360,7 +360,7 @@ button{
 										</div> -->
 										<div class="col-sm-4 align-center-verticle" >
 												<button class="btn btn-rounded btn-warning mb-3 cmbm-6vw" style="color:white;width:100%;" ng-click="addstepsmodal()"  style="width:100%;">Add</button>
-										</div>		
+										</div>
 									</div>
 
 									<div class="table-responsive">
@@ -377,12 +377,13 @@ button{
 											</thead>
 											<tbody>
 												<?php $k=0; ?>
-											
+
 											<tr ng-repeat="row in Steps">
 													<td>@{{row.seqNo}}</td>
 													<td>@{{row.TYPE_NAME}}</td>
 													<td>@{{row.STEP_NO}}</td>
-													<td>@{{row.PRODUCT_NAME}}</td>
+													<td>@{{row.PRODUCT_NAME.NAME}} <small class="badge badge-danger" ng-if="row.PRODUCT_NAME.IS_DELETED == '1'" style="font-size: 10px">Deleted</small>
+                                                    </td>
 													<td>@{{row.DESCRIPTION}}</td>
 													<td>
 														<div class="dropdown ml-auto text-right">
@@ -393,14 +394,14 @@ button{
 																<a class="dropdown-item" ng-click="removestepmodal(@{{row.seqNo}})">Remove</a>
 															</div>
 														</div>
-													</td>												
+													</td>
 												</tr>
-											
+
 											</tbody>
 										</table>
 									</div>
 								</div>
-							</div>                                
+							</div>
 						</div>
 					</div>
 					</div>
@@ -533,8 +534,8 @@ button{
 				</div>
 			</div>
 
-		
-            
+
+
             <div class="modal fade" id="alertsteps">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content align-center-verticle">
@@ -552,7 +553,7 @@ button{
 					</div>
 				</div>
 			</div>
-                 
+
 			<div class="modal fade" id="alertroutinetypemodal">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content align-center-verticle">
@@ -597,21 +598,21 @@ button{
         </div>
 
 
-		
+
 		<!--**********************************
             Content body end
         ***********************************-->
 
     </div>
     @include('admin.admin-footer');
-    
+
     <script src="{{ url('/assets-admin') }}/customjs/script_adminroutine_new.js?v={{time()}}"></script>
-    
+
 	<script>
 
     function form1(){
     	$("#uploadattl").click();
     }
-    
-	
+
+
     </script>

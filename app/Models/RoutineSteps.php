@@ -89,7 +89,7 @@ class RoutineSteps extends model
       ->orderBy('a.CREATED_ON', 'desc')
       ->get();
 
-    
+
     if ($result) {
 
       $i = 0;
@@ -101,12 +101,15 @@ class RoutineSteps extends model
         $arrRes[$i]['USER_ID'] = $row->USER_ID;
         $arrRes[$i]['TYPE_NAME'] = $row->TYPE_NAME;
         $arrRes[$i]['PRODUCT_NAME'] = $this->getProductName($row->PRODUCT_ID);
+        // $arrRes[$i]['IS_DELETED'] = $this->getProductDeleteStatus($row->PRODUCT_ID);
         $arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
         $arrRes[$i]['STEP_NO'] = $row->STEP_NO;
         $arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
         $arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
         $arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
         $arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
+
+
 
         $i++;
       }
@@ -118,7 +121,14 @@ class RoutineSteps extends model
     return isset($arrRes) ? $arrRes : null;
   }
   public function getProductName($productID){
-    $result = DB::table('jb_product_tbl as a')->select('a.NAME')
+    $result = DB::table('jb_product_tbl as a')->select('a.NAME','a.IS_DELETED')
+            ->where('a.PRODUCT_ID',$productID)->first();
+
+      return isset($result) ? $result : null;
+  }
+
+  public function getProductDeleteStatus($productID){
+    $result = DB::table('jb_product_tbl as a')->select('a.IS_DELETED')
             ->where('a.PRODUCT_ID',$productID)->first();
 
       return isset($result->NAME) ? $result->NAME : null;

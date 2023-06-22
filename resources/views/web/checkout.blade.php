@@ -83,7 +83,7 @@
 
 							<div class=""  ng-show="formstep == '1'">
 								<!-- <p class="mb-2"> Returning customer? <a href="javascript:;">Click here to login</a> </p> -->
-								<p> Have a coupon?
+								{{-- <p> Have a coupon?
 									<a data-toggle="collapse" href="#collapsecoupon" role="button" aria-expanded="false" aria-controls="collapsecoupon">Click here to enter your code </a>
 								</p>
 								<div class="card collapse mw-460 " id="collapsecoupon">
@@ -96,7 +96,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 								<h2 class="pt-1 mb-4">Shipping Infomation</h2>
 								<div class="mb-3">
 									<label class="mb-2 fs-13 letter-spacing-01 font-weight-600 text-uppercase">name</label>

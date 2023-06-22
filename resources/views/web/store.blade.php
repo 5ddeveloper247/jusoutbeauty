@@ -4,8 +4,8 @@
 	?>
  @include('web.web-header')
  <script>
- 	
-					
+
+
  	var site = '<?php echo session('site'); ?>';
  	var sourceId = "<?php echo isset($sourceId) ? $sourceId : ''; ?>";
  	var flag = "<?php echo isset($flag) ? $flag : ''; ?>";
@@ -80,7 +80,7 @@
  	/*     border: 1px solid #000; */
  	/* } */
 
- 	
+
 
  	.shade-active:before {
  		left: -1px !important;
@@ -130,7 +130,7 @@
 
  		#qckad {
  			font-size: .8rem;
-			
+
  		}
 
  		.shop-subtitle {
@@ -302,8 +302,9 @@
  						</div>
  					</div>
  					<div class="row">
- 						<div class="col-6 col-lg-3 product productshop-listing mb-8" ng-repeat="row in displayCollectionProducts">
- 							<div class="card border-0">
+                        <div ng-init="productsToShow = 8"></div>
+                        <div class="col-6 col-lg-3 product productshop-listing mb-8" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)">
+                            <div class="card border-0">
  								<div class="position-relative hover-zoom-in">
  									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}">
  										<img src="@{{row.primaryImage}}" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
@@ -316,9 +317,7 @@
  												<i class="icon fas fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}"></i>
  											</a>
  											<a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Quick view" ng-click="quickViewProductDetails(@{{row.PRODUCT_ID}})" class="preview d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle">
- 												{{-- <span data-toggle="modal" data-target="#productQuickView">  --}}
  												<i class="icon fal fa-eye"></i>
- 												{{-- </span> --}}
  											</a>
  										</div>
  									</div>
@@ -350,6 +349,60 @@
  						<div class="col-12 col-lg-12" ng-if="displayCollectionProducts.length == 0 || displayCollectionProducts.length == undefined">
  							<p class="text-center">No record found...</p>
  						</div>
+                         <div class="col-12 col-lg-12 text-center mt-4" ng-show="displayCollectionProducts.length > productsToShow">
+                            <button class="btn btn-primary btn-sm" ng-click="loadMoreProducts()">Load More</button>
+                          </div>
+
+                          {{-- <div class="col-12 col-lg-12 text-center mt-4" ng-show="displayCollectionProducts.length <= productsToShow">
+                            <p>That's all for now.</p>
+                          </div> --}}
+                        {{-- <div class="col-6 col-lg-3 product productshop-listing mb-8" ng-repeat="row in displayCollectionProducts">
+ 							<div class="card border-0">
+ 								<div class="position-relative hover-zoom-in">
+ 									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}">
+ 										<img src="@{{row.primaryImage}}" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
+ 										<img src="@{{row.primaryImage}}" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
+ 									</a>
+ 									<div class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10 "><!-- productdetail data-id="@{{row.PRODUCT_ID}}"-->
+ 										<div class="content-change-vertical d-flex flex-column ml-auto">
+
+ 											<a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Add to wish list" class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist" data-productId='@{{row.PRODUCT_ID}}' data-type='@{{productType}}'>
+ 												<i class="icon fas fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}"></i>
+ 											</a>
+ 											<a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Quick view" ng-click="quickViewProductDetails(@{{row.PRODUCT_ID}})" class="preview d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle">
+ 												<i class="icon fal fa-eye"></i>
+ 											</a>
+ 										</div>
+ 									</div>
+ 									<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+ 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white productdetail" id="qckad" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">+ Quick Add</a>
+ 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="@{{row.PRODUCT_ID}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'">+ Quick Add</a>
+ 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled>+ Out of Stock</a>
+ 									</div>
+ 								</div>
+ 								<div class="card-body pt-4 px-0 pb-0 productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}">
+ 									<a href="javascript:;" class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"> @{{row.CATEGORY_NAME}} </a>
+
+ 									<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading">
+ 										<a href="javascript:;">@{{row.NAME}}</a>
+ 									</h3>
+ 									<p class="text-primary mb-0 shop-subtitle card-title lh-14375 product-subtitle">@{{row.SUB_TITLE_TXT}}</p>
+
+ 									<div class="row">
+ 										<div class="col-sm-6 col-7">
+ 											<p class="text-primary mb-0 card-title lh-14375"> <span>$@{{row.UNIT_PRICE}}</span> </p>
+ 										</div>
+ 										<div class="col-sm-6 col-5">
+ 											<p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">@{{row.UNIT}}</p>
+ 										</div>
+ 									</div>
+ 								</div>
+ 							</div>
+ 						</div>
+ 						<div class="col-12 col-lg-12" ng-if="displayCollectionProducts.length == 0 || displayCollectionProducts.length == undefined">
+ 							<p class="text-center">No record found...</p>
+ 						</div> --}}
+
 
  						<div class="modal fade quick-view " id="productQuickView" tabindex="-1" aria-hidden="true">
  							<div class="modal-dialog quick_view_mbl modal-dialog-scrollable">
@@ -389,7 +442,7 @@
  												<div class="d-flex align-items-center">
  													<h2 class="fs-24 mb-0">@{{ QuickView_name }}</h2>
  												</div>
- 												<div class="primary-summary-inner" style="padding-bottom: 25px;"> 
+ 												<div class="primary-summary-inner" style="padding-bottom: 25px;">
  													<p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="category_name != ''">
  														@{{ category_name }}, @{{ subCategory_name }}</p>
  													<p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="bundleProductNames != ''">
@@ -438,48 +491,48 @@
 						                                            title="@{{ row.SHADE_NAME }}">
 						                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('@{{ row.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;"> </a>
 						                                            </li>
-						                                            
+
 						                                       	</ul>
- 															
+
  																<input type="hidden" id="shadeId" value="">
 						                                        <input type="hidden" id="prodShadeId" value="">
 						                                        <input type="hidden" id="shadeName" value="">
 						                                        <input type="hidden" id="productId" value="">
 						                                        <input type="hidden" id="shadeExistChk" value="@{{(displayCollectionProductShadesQuickView.length == 0 || displayCollectionProductShadesQuickView.length == undefined) ? 'false' : 'true'}}">
-						                                        
- 																
+
+
  															</div>
  															<a href="javascript:;" class="btn btn-primary" ng-click="confirmProductShade();">Continue</a>
  														</div>
  													</div>
- 													
+
  													<div class="chooseShade-container" style="margin-bottom: 30px;" ng-if="displayCollectionBundleProductShadesQuickView != ''">
 														<div id="shadeBundlechooser_container_@{{row.BUNDLE_LINE_ID}}" ng-repeat="row in displayCollectionBundleProductShadesQuickView">
 															<button class="accordion_inc_prod_detail shadeAccord-btn" data-id="@{{row.BUNDLE_LINE_ID}}">@{{row.seqNo}}. Choose Shade Product @{{row.productName}}</button><!-- chooseShadeBtn -->
 															<div class="panel_inc_prod_detail" id="chooseShade_container_@{{row.BUNDLE_LINE_ID}}">
 																<div class="form-group shop-swatch-color shop-swatch-color-02 mb-6 widget-color">
-																	
+
 																	<img src="" alt="Product Image" class="var text-capitalize quick_view_product_image bundleLineShadeImg" id="bundleLineShadeImg_@{{row.BUNDLE_LINE_ID}}" style="display:none;">
 																	<br>
-																	
+
 																	<label class="mb-2">
-																		<span class="font-weight-500 text-primary mr-2">Color:</span> 
+																		<span class="font-weight-500 text-primary mr-2">Color:</span>
 																		<span class="var text-capitalize" id="shadeName1_@{{row.BUNDLE_LINE_ID}}"></span>
 																	</label>
 																	<ul class="list-inline d-flex justify-content-start mb-0">
-																		<li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades" 
-																		ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"  
+																		<li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades"
+																		ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
 																		title="@{{list.SHADE_NAME}}">
 																			<a href="javascript:;" class="d-block swatches-item shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}" style="background-image: url('@{{list.shadeprimaryImage}}'); background-repeat:no-repeat;background-position: center;"> </a>
 																		</li>
-																		
+
 																	</ul>
-																	
+
 																	<input type="hidden" id="shadeId_@{{row.BUNDLE_LINE_ID}}" value="">
 																	<input type="hidden" id="prodShadeId_@{{row.BUNDLE_LINE_ID}}" value="">
 																	<input type="hidden" id="shadeName_@{{row.BUNDLE_LINE_ID}}" value="">
 																	<input type="hidden" id="productId_@{{row.BUNDLE_LINE_ID}}" value="">
-																	<input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">											
+																	<input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">
 																</div>
 																<a href="javascript:;" class="btn btn-primary" ng-click="confirmBundleProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
 															</div>
@@ -491,7 +544,7 @@
 													<input type="radio" id="single-sub" name="subscriptioncheck" value="One-Time Purchase"
 														checked>
 													<label for="single-sub" class="cursor-pointer">One-Time Purchase</label><br>
-	
+
 													<input type="radio" id="multiple-sub" name="subscriptioncheck" value="subscription">
 													<label for="multiple-sub" class="cursor-pointer">Subscription</label><br>
 												</form>
@@ -529,23 +582,23 @@
  													<div class="row align-items-end no-gutters mx-n2 mb-1">
  														<div class="col-sm-3 form-group px-2 mb-0">
  															<label class="text-primary fs-16 font-weight-bold mb-1" for="number">Quantity: </label>
- 															
+
  															<div class="input-group position-relative w-100">
 					                                            <a href="javascript:;"
 					                                                class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
 					                                                <i class="far fa-minus"></i>
 					                                            </a>
-					
+
 					                                            <input name="number" type="number" id="quantity"
 					                                                class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput"
 					                                                value="1">
-					
+
 					                                            <a href="javascript:;"
 					                                                class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
 					                                                <i class="far fa-plus"></i>
 					                                            </a>
 					                                        </div>
- 															
+
  														</div>
  														<div class="col-sm-8 mb-0 px-2">
  															<button type="button"
@@ -570,7 +623,7 @@
  							</div>
  						</div>
  					</div>
- 					
+
  					<div class="modal fade quick-view " id="bundleQuickView" tabindex="-1" aria-hidden="true">
  							<div class="modal-dialog quick_view_mbl modal-dialog-scrollable">
  								<div class="modal-content p-0 quick_view_mbl_carousel_modal">
@@ -651,16 +704,16 @@
 						                                            title="@{{ row.SHADE_NAME }}">
 						                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('@{{ row.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;"> </a>
 						                                            </li>
-						                                            
+
 						                                       	</ul>
- 															
+
  																<input type="hidden" id="shadeId" value="">
 						                                        <input type="hidden" id="prodShadeId" value="">
 						                                        <input type="hidden" id="shadeName" value="">
 						                                        <input type="hidden" id="productId" value="">
 						                                        <input type="hidden" id="shadeExistChk" value="@{{(displayCollectionProductShadesQuickView.length == 0 || displayCollectionProductShadesQuickView.length == undefined) ? 'false' : 'true'}}">
-						                                        
- 																
+
+
  															</div>
  															<a href="javascript:;" class="btn btn-primary" ng-click="confirmProductShade();">Continue</a>
  														</div>
@@ -729,23 +782,23 @@
  													<div class="row align-items-end no-gutters mx-n2 mb-1">
  														<div class="col-sm-3 form-group px-2 mb-0">
  															<label class="text-primary fs-16 font-weight-bold mb-1" for="number">Quantity: </label>
- 															
+
  															<div class="input-group position-relative w-100">
 					                                            <a href="javascript:;"
 					                                                class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
 					                                                <i class="far fa-minus"></i>
 					                                            </a>
-					
+
 					                                            <input name="number" type="number" id="quantity"
 					                                                class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput"
 					                                                value="1">
-					
+
 					                                            <a href="javascript:;"
 					                                                class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
 					                                                <i class="far fa-plus"></i>
 					                                            </a>
 					                                        </div>
- 															
+
  														</div>
  														<div class="col-sm-8 mb-0 px-2">
  															<button type="button"
@@ -754,12 +807,12 @@
 					                                            data-id="@{{QuickView_productId}}"
 					                                            data-quantity='1' data-subs='1'
 					                                            ng-if="QuickView_invQty > '0'">Add to cart</button>
-					                                     
+
 					                                     	<button type="button"
 					                                            class="btn btn-primary btn-block text-capitalize" disabled
 					                                            ng-if="QuickView_invQty <= '0'">Out of Stock</button>
-					                                            
-					                                            
+
+
  														</div>
  													</div>
  												</form>
@@ -913,7 +966,7 @@
  			$(this).hide();
  			$("#filtersiderbar-leftn").show();
  		});
- 		
+
  		$(".close_learnmore_pop").click(function() {
  	 		$("#learnmore_pop").modal('hide');
  		});
@@ -956,5 +1009,5 @@
             $input.val(1);
         }
     });
-    
+
  </script>
