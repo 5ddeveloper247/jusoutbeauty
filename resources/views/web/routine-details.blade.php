@@ -28,12 +28,12 @@
     .card-header.after-coll.collapsed {
         background-color: #F89880;
         color: white;
-       
+
     }
     .card-header.after-coll {
         background-color: #000000;
         color: white;
-       
+
     }
     h4.card-title.border-0{
         font-weight: 600;
@@ -44,9 +44,9 @@
         border-bottom: 0px solid transparent !important;
     }
     .accordion .card-header:after {
-        font-family: 'FontAwesome';  
+        font-family: 'FontAwesome';
         content: "-";
-        float: right; 
+        float: right;
         font-size: 26px;
         font-weight: bold
     }
@@ -108,7 +108,7 @@
     p{
         text-align: center
     }
-    
+
     .banner-font{
 		font-size: 100px
 	}
@@ -157,7 +157,7 @@
 </style>
 <main ng-app="project1">
     <?php $routineId = $routineById ;?>
-    <section class="py-10 mt-15 mt-15-67 bg-gray hero-section" 
+    <section class="py-10 mt-15 mt-15-67 bg-gray hero-section"
         style="background-image: url(<?=$routineId[0]['IMAGE_DOWNPATH']?>) !important;
             background-repeat: no-repeat;
             background-size: contain;
@@ -167,7 +167,7 @@
             background-color: unset !important;
             ">
         <div class="container">
-            
+
             <h1 class=" mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
             <p class="text-center"><?=$routineId[0]['DESCRIPTION']?></p>
             {{-- <nav aria-label="breadcrumb">
@@ -190,12 +190,12 @@
                         <h2 class="fs-34 mb-6">Filter</h2>
 
                         <div class="card border-0 mb-7">
-                           
+
                             <div class="card-body px-0 pt-2 pb-0">
                                 <ul class="list-unstyled mb-0">
                                     <?php $routinesNeedAge = $routine; ?>
                                     @if (!empty($routinesNeedAge))
-                                        
+
                                     <div class="card-header bg-transparent border-0 p-0">
                                         <h3 class="card-title fs-18 font-weight-500 mb-0">ROUTINE BY AGE</h3>
                                     </div>
@@ -205,20 +205,20 @@
                                             <a href="{{ url('routine-details').'/'.$routine['seqNo']}}" id="categoryFilterInput_">
                                                 {{ $routine['NAME'] }}
                                             </a>
-                                         </li>   
+                                         </li>
                                         @endif
-                                        @endforeach  
-                                    @endif   
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>
 
                         <div class="card border-0 mb-7">
-                           
+
                             <div class="card-body px-0 pt-2 pb-0">
                                 <ul class="list-unstyled mb-0">
                                     @if (!empty($routinesNeedAge))
-                                        
+
                                     <div class="card-header bg-transparent border-0 p-0">
                                         <h3 class="card-title fs-18 font-weight-500 mb-0">ROUTINE BY AGE</h3>
                                     </div>
@@ -228,14 +228,14 @@
                                             <a href="{{ url('routine-details').'/'.$routine['seqNo']}}" id="categoryFilterInput_">
                                                 {{ $routine['NAME'] }}
                                             </a>
-                                         </li>   
+                                         </li>
                                         @endif
-                                        @endforeach  
-                                    @endif   
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div> --}}
                 <div class="col-xl-12 shop-listing-right-portion">
@@ -286,23 +286,23 @@
                                 </a>
 
                             </div>
-                           
+
                         </div>
                     </div> --}}
                     @if (!empty($getTypeNameLov))
-                       
+
                     <div class="row">
-                       
+
                         @foreach ($getTypeNameLov as $TypeName)
-                        
+
                         @if($TypeName->steps != '')
-                        
+
                             <div class="col-12 text-center mb-8">
                                 <h1 class="heading-font-routine text-uppercase">{{ $TypeName->TYPE_NAME }}</h1>
                             </div>
-                            @php $i=1 @endphp 
+                            @php $i=1 @endphp
                             @foreach ($TypeName->steps as $StepsName)
-                                
+
                                 <div class="col-6 col-lg-3 product productshop-listing mb-8 col-xl-3">
                                     <div class="card border-0">
                                         <div class="position-relative hover-zoom-in">
@@ -314,7 +314,7 @@
                                                 <img src="{{ $StepsName['secondaryImage'] }}"
                                                     alt="Product 01" class="card-img-top all-products img-h60 image-hover">
                                             </a>
-                                            
+
                                             <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                                 <a href="javascript:;"
                                                     class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-pick productdetail"  data-id="{{ $StepsName['PRODUCT_ID'] }}"
@@ -325,11 +325,11 @@
                                             <a href="javascript:;"
                                                 class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary ng-binding">
                                                 STEP {{ $i++ }} </a>
-    
+
                                             <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
                                                 <a href="javascript:;" >{{ $StepsName['NAME'] }}</a>
                                             </h3>
-    
+
                                             {{-- <div class="row">
                                                 <div class="col-sm-6 col-7">
                                                     <p class="text-primary mb-0 card-title lh-14375"> <span
@@ -341,43 +341,43 @@
                                                         100</p>
                                                 </div>
                                             </div> --}}
-                                            
+
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 col-12">
-                                                <div id="accordion" class="accordion">
+                                                <div id="accordion_{{ $StepsName['PRODUCT_ID'] }}" class="accordion">
                                                     <div class="card mb-0 rounded">
                                                         <div class="card-header after-coll collapsed how_to_user" data-toggle="collapse" href="#collapse_{{ $StepsName['PRODUCT_ID'] }}">
                                                             <h4 class="card-title m-0 border-0" style="display: inline-block;">
                                                                 HOW TO USE
                                                             </h4>
                                                         </div>
-                                                        
-                                                        <div id="collapse_{{ $StepsName['PRODUCT_ID'] }}" class="card-body collapse how_to_user" data-parent="#accordion" >
+
+                                                        <div id="collapse_{{ $StepsName['PRODUCT_ID'] }}" class="card-body collapse how_to_user" data-parent="#accordion_{{ $StepsName['PRODUCT_ID'] }}" >
                                                             <p class="align-items-center read-more read-more-btn">{{ $StepsName['DESCRIPTION'] }}
                                                             </p>
-                                                            <a class="read-more-click-btn" style="float:right;cursor: pointer;" onclick="readmore()">Read more >></a>
+                                                            <a  id="remove_{{ $StepsName['PRODUCT_ID'] }}" class="read-more-click-btn" style="float:right;cursor: pointer;" onclick="readmore('remove_{{ $StepsName['PRODUCT_ID'] }}')">Read more >></a>
                                                         </div>
-                                                    
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        
+
                             @endforeach
-                       
+
                         @endif
                         @endforeach
-                        
+
                         @endif
                         @if($i == 0)
                         <div class="col-md-12 ">
                             <p class="text-center read-more read-more-btn">NO ROUTINE ADDED ...
                             </p>
                         </div>
-                       
+
                         @endif
 
                     </div>
@@ -397,12 +397,12 @@
                 </div>
                 <div class="card-body">
                     <div class="card border-0 mb-7">
-                           
+
                             <div class="card-body px-0 pt-2 pb-0">
                                 <ul class="list-unstyled mb-0">
                                     <?php $routinesNeedAge1 = $routineformbl; ?>
                                     @if (!empty($routinesNeedAge1))
-                                        
+
                                     <div class="card-header bg-transparent border-0 p-0">
                                         <h3 class="card-title fs-18 font-weight-500 mb-0">ROUTINE BY NEED</h3>
                                     </div>
@@ -412,20 +412,20 @@
                                             <a href="{{ url('routine-details').'/'.$routineNeed['seqNo']}}" id="categoryFilterInput_">
                                                 {{ $routineNeed['NAME'] }}
                                             </a>
-                                         </li>   
+                                         </li>
                                         @endif
-                                        @endforeach  
-                                    @endif   
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                     </div>
 
                         <div class="card border-0 mb-7">
-                           
+
                             <div class="card-body px-0 pt-2 pb-0">
                                 <ul class="list-unstyled mb-0">
                                     @if (!empty($routinesNeedAge1))
-                                        
+
                                     <div class="card-header bg-transparent border-0 p-0">
                                         <h3 class="card-title fs-18 font-weight-500 mb-0">ROUTINE BY AGE</h3>
                                     </div>
@@ -435,15 +435,15 @@
                                             <a href="{{ url('routine-details').'/'.$routineAge['seqNo']}}" id="categoryFilterInput_">
                                                 {{ $routineAge['NAME'] }}
                                             </a>
-                                         </li>   
+                                         </li>
                                         @endif
-                                        @endforeach  
-                                    @endif   
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>
 
-                  
+
                 </div>
             </div>
         </div> --}}
@@ -502,16 +502,16 @@
     });
 </script>
 <script>
-    function readmore(){
-        if($(".read-more").hasClass('read-more-btn')){
+    function readmore($id){
+        if($("#read-more_"+$id).hasClass('read-more-btn')){
 
             $(".read-more-click-btn").text('Read Less <<');
-            $(".read-more").removeClass('read-more-btn');
+            $("#read-more_"+$id).removeClass('read-more-btn');
         }else{
             $(".read-more-click-btn").text('Read More >>');
-            $(".read-more").addClass('read-more-btn');
+            $("#read-more_"+$id).addClass('read-more-btn');
         }
-       
+
 
     }
     function close_topbar() {

@@ -33,25 +33,33 @@ class LoginController extends Controller
 
 			if($password == $result->ENCRYPTED_PASSWORD){
 
-				$r->session()->put('userId', $result->USER_ID);
-				$r->session()->put('userName', $result->USER_NAME);
-				$r->session()->put('firstName', $result->FIRST_NAME);
-				$r->session()->put('lastName', $result->LAST_NAME);
-				$r->session()->put('userType', $result->USER_TYPE);
-				$r->session()->put('email', $result->EMAIL);
-				$r->session()->put('userSubType', $result->USER_SUBTYPE);
+                if($result->USER_STATUS == 'active'){
 
-                // $r->session()->put([
-                //     'userId' => $result->USER_ID,
-                //     'userName'=> $result->USER_NAME,
-                //     'firstName'=> $result->FIRST_NAME,
-                //     'lastName'=> $result->LAST_NAME,
-                //     'userType'=> $result->USER_TYPE,
-                //     'email'=> $result->EMAIL,
-                //     'userSubType'=> $result->USER_SUBTYPE
-                // ]);
+                    $r->session()->put('userId', $result->USER_ID);
+                    $r->session()->put('userName', $result->USER_NAME);
+                    $r->session()->put('firstName', $result->FIRST_NAME);
+                    $r->session()->put('lastName', $result->LAST_NAME);
+                    $r->session()->put('userType', $result->USER_TYPE);
+                    $r->session()->put('email', $result->EMAIL);
+                    $r->session()->put('userSubType', $result->USER_SUBTYPE);
 
-				return redirect('dashboard');
+                    // $r->session()->put([
+                    //     'userId' => $result->USER_ID,
+                    //     'userName'=> $result->USER_NAME,
+                    //     'firstName'=> $result->FIRST_NAME,
+                    //     'lastName'=> $result->LAST_NAME,
+                    //     'userType'=> $result->USER_TYPE,
+                    //     'email'=> $result->EMAIL,
+                    //     'userSubType'=> $result->USER_SUBTYPE
+                    // ]);
+
+                    return redirect('dashboard');
+                }else{
+                    $r->session()->flash('error', 'Account Inative! Contact Administrator');
+				    return redirect('admin-login');
+                }
+
+
 
 			}else{
 

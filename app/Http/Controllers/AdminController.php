@@ -43,9 +43,108 @@ use App\Models\ProductIngredientModel;
 use App\Models\ShadeFinderSelfieModel;
 use App\Models\FooterSubscriptionModel;
 use App\Models\OrderShippingTrackingModel;
+use Nette\Utils\Json;
 
 class AdminController extends Controller
 {
+
+    public function popup(){
+        $data['adminMenu'] = $this->getAdminUserMenu();
+		$data ['page'] = 'Home Page Popup';
+		$result=$this->checkUserControlAccess(session('userId'),"/home-page-popup");
+		if( $result != true) {
+			return view ( 'admin.popup' )->with ( $data );
+		}else{
+			return redirect('/dashboard');
+		}
+		// return view ( 'admin.home-page' )->with ( $data );
+    }
+
+    public function getPopupData(){
+        $result = DB::table('jb_popup_tbl as a')->select('a.*')->where('ID','1')->first();
+        return json_encode($result);
+    }
+
+    public function savePopupData(){
+        $details = $_REQUEST['details'];
+        $popup = $details['popup'];
+        $id = $popup['ID'];
+        $firstTitle = $popup['FIRST_TITLE'];
+        $discount = $popup['DISCOUNT'];
+        $secondTitle = $popup['SECOND_TITLE'];
+        $backgroundColor = $popup['BACKGROUND_COLOR'];
+        $buttonText = $popup['BUTTON_TEXT'];
+        $buttonLink = $popup['BUTTON_LINK'];
+
+        if($firstTitle == '' || $firstTitle == null){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'First Title is Required';
+            echo json_encode ( $arrRes );
+			die ();
+        }
+        if(strlen($firstTitle) > 50 ){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'First Title cant be greater than 50 chars';
+            echo json_encode ( $arrRes );
+			die ();
+        }
+        if($discount == '' || $discount == null){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Discount is Required';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+        if($discount >=100){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Discount can not be more than 99%';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+        if($secondTitle == '' || $secondTitle == null){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Second Title is Required';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+        if(strlen($secondTitle) > 60){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Second Title cant be greater than 60 chars';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+        if($backgroundColor == '' || $backgroundColor == null){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Background Color is Required';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+        if($buttonText == '' || $buttonText == null){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Button Text is Required';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+        if($buttonLink == '' || $buttonLink == null){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Button Link is Required';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+
+
+        DB::table ('jb_popup_tbl' )
+				->where('ID',$id)
+				->update($popup);
+
+                $arrRes ['done'] = true;
+                $arrRes ['msg'] = 'Popup Updated Successfully';
+
+                echo json_encode ( $arrRes );
+
+    }
+
+
+
 
 	public function updateProductOrder(){
 		$details = $_REQUEST ['details'];
@@ -557,7 +656,7 @@ class AdminController extends Controller
 		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory(isset($arrRes['productDetails']['P_31']) ? $arrRes['productDetails']['P_31'] : '');
 		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory(isset($arrRes['productDetails']['P_32']) ? $arrRes['productDetails']['P_32'] : '');
         $arrRes ['subscriptionDetails'] = $ProductModel->getSubscriptionDetailsOfSingleProduct($productID);
-		
+
 		// $arrRes ['clinicalNote'] = $ProductModel->getAllProductClinicalNoteByProduct($productID);
 		// dd($arrRes['productDetails']);
 		// dd($arrRes['productDetails']);
@@ -613,11 +712,11 @@ class AdminController extends Controller
 		$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 		if($getLastSeq != null){
-					
+
 			$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-			
+
 		}else{
-			
+
 			$getLastSeq=1;
 		}
 
@@ -1338,7 +1437,7 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$data = $details ['routinetype'];
 		$userId = $details ['userId'];
-		
+
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
@@ -1362,7 +1461,7 @@ class AdminController extends Controller
 			// 	die ();
 			// }
 
-			
+
 			// if ($data ['P_2'] == '') {
 
 			// 	$arrRes ['done'] = false;
@@ -1429,7 +1528,7 @@ class AdminController extends Controller
 
 			$routinetype_id= $details['routinetypeid']['id'];
 			$arrRes = array();
-		
+
 			//  if($details['routinetypeid'] == '' && $type_id == ''){
 
 			//  $arrRes ['done'] = false;
@@ -1443,7 +1542,7 @@ class AdminController extends Controller
 			$steps = DB::table('jb_routine_type_steps_tbl')
 				->where('ROUTINETYPE_ID',$routinetype_id)
 				->where('ROUTINE_ID', $routineid)->count();
-		
+
 			if($steps > 0){
 				$count=$steps;
 				$arrRes['count'] = $count+1;
@@ -1451,12 +1550,12 @@ class AdminController extends Controller
 			$arrRes['count'] = 1;
 			}
 			$arrRes ['done'] = true;
-			
+
 			echo json_encode ( $arrRes );
 
 
 	     }
-		 
+
 	   public function routine_type_add(Request $request){
 
 		$details = $_REQUEST ['details'];
@@ -1611,7 +1710,7 @@ class AdminController extends Controller
 			$details = $_REQUEST ['details'];
 			$recordId = $details ['recordId'];
 			$userId = $details ['userId'];
-			
+
 			$arrRes ['details'] = $ROUTINETYPE->getSpecificRotineTypeData($recordId);
 			$arrRes ['images'] = $ROUTINETYPE->getSpecificRoutineTypeAttachments($recordId);
 
@@ -1620,7 +1719,7 @@ class AdminController extends Controller
 			$type = $routinetypename->getallnamedata($recordId);
 			$arrRes['alltypenamedata']= $type;
 			$arrRes['getRoutineSteps'] = $steps->getRoutineSteps($recordId);
-			
+
 
 		//   $typeid=[];
 
@@ -2233,14 +2332,14 @@ class AdminController extends Controller
                 $getLastSeq = DB::table ( 'jb_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
-                
+
 
 				$result = DB::table ( 'jb_category_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
@@ -2391,11 +2490,11 @@ class AdminController extends Controller
                 $getLastSeq = DB::table ( 'jb_sub_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
 
@@ -2531,11 +2630,11 @@ class AdminController extends Controller
                 $getLastSeq = DB::table ( 'jb_sub_sub_category_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
 
@@ -2689,11 +2788,11 @@ class AdminController extends Controller
 				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
 
@@ -2912,13 +3011,13 @@ class AdminController extends Controller
 			if ($data ['ID'] == '') {
 
 				$getLastSeq = DB::table ( 'jb_ingredient_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
-				
+
                 if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
 
@@ -3288,11 +3387,11 @@ class AdminController extends Controller
 				$getLastSeq = DB::table ( 'jb_shades_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
 
@@ -3718,7 +3817,7 @@ class AdminController extends Controller
 
 				$i++;
 			}
-			
+
 			 echo json_encode ( $arrRes );
 
 		}
@@ -3833,15 +3932,27 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            if ($data['P_2'] == '') {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Sub Title is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
 			if (strlen($data['P_2']) > 100) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Sub Title must be less then 100 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['P_3']) > 100) {
+            if ($data['P_3'] == '') {
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Unit must be less then 100 characters.';
+				$arrRes ['msg'] = 'Unit is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			if (strlen($data['P_3']) > 8) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Unit must be less then 8 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -3942,11 +4053,11 @@ class AdminController extends Controller
 				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
 				$result = DB::table ( 'jb_product_tbl' )->insertGetId (
@@ -6511,11 +6622,11 @@ class AdminController extends Controller
 				$getLastSeq = DB::table ( 'jb_bundle_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
-					
+
 					$getLastSeq = ($getLastSeq->SEQ_NUM)+1;
-					
+
 				}else{
-					
+
 				    $getLastSeq=1;
 				}
 
@@ -7971,8 +8082,8 @@ class AdminController extends Controller
 									'.$message_username.'
 								</td>
 							</tr>';
-		
-		
+
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $data ['T_4'];//useremail
 				$email_details['from_id'] = 1;
@@ -7981,9 +8092,9 @@ class AdminController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-		
+
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
 				$email_details['from_id'] = 1;
@@ -7992,7 +8103,7 @@ class AdminController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
-		
+
 				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
 				$arrRes ['done'] = true;
@@ -9055,46 +9166,9 @@ class AdminController extends Controller
 			$details = $_REQUEST ['details'];
 			$userid = $details['updateduserId'];
 			$UserMenuControl = new UserMenuControlModel();
+            //validating the Input Fields
 
-			//validating the Input Fields
-
-			$checkduplicatephone = $UserMenuControl->checkPhoneNumberExists($details['user']['PhoneNumber'],$userid);
-			$checkduplicateemail = $UserMenuControl->checkEmailAddressExists($details['user']['EmailAddress'],$userid);
-
-			if($checkduplicatephone == false){
-
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Phone Number must be unique';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-
-			if($checkduplicateemail == false){
-
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Email Address must be unique';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-
-			// Email validation
-			if (!filter_var($details['user']['EmailAddress'], FILTER_VALIDATE_EMAIL)) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Invalid Email Format';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-
-			// Phone number validation
-			if (!preg_match('/^[+]?[1-9][0-9]{9,14}$/',$details['user']['PhoneNumber'])) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Phone Number Must Be Between 9 to 15';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-
-
-			if ($details['user']['FirstName'] == '') {
+            if ($details['user']['FirstName'] == '') {
 
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'First Name is required.';
@@ -9125,11 +9199,43 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            // Phone number validation
+			if (!preg_match('/^[+]?[1-9][0-9]{11,14}$/',$details['user']['PhoneNumber'])) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Phone Number Must Be Between 11 to 14';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+            $checkduplicatephone = $UserMenuControl->checkPhoneNumberExists($details['user']['PhoneNumber'],$userid);
 
-			if ($details['user']['EmailAddress'] == '') {
+            if($checkduplicatephone == false){
 
 				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Phone Number must be unique';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+			if ($details['user']['EmailAddress'] == '') {
+				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Email Address is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
+            // Email validation
+			if (!filter_var($details['user']['EmailAddress'], FILTER_VALIDATE_EMAIL)) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Invalid Email Format';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+			$checkduplicateemail = $UserMenuControl->checkEmailAddressExists($details['user']['EmailAddress'],$userid);
+
+			if($checkduplicateemail == false){
+
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Email Address must be unique';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -9145,7 +9251,7 @@ class AdminController extends Controller
 			if (strlen($details['user']['Password']) < 8) {
 
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Password must be equal and greater then 8 characters';
+				$arrRes ['msg'] = 'Password must be equal to or greater then 8 characters';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -9165,6 +9271,14 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+
+
+
+
+
+
+
+
 
 		// $arrRes = $UserMenuControl->saveAdminUser($details);
 

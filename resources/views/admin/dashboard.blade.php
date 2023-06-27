@@ -1,4 +1,4 @@
-<?php 
+<?php
 // try {
 // 	\DB::connection()->getPDO();
 // 	echo \DB::connection()->getDatabaseName();
@@ -7,7 +7,7 @@
 // }
 
 ?>
-  
+
   @include('admin.admin-header');
         <!--**********************************
             Content body start
@@ -16,48 +16,48 @@
             <!-- row -->
         <div class="container-fluid">
           <div class="row">
-              <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
                 <div class="card border-card">
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-success">{{ $getTotalUsers }}</h2>
+                        <h2 class="text-success display-4 display-md-5">{{ $getTotalUsers }}</h2>
                         <span class="position">Users</span>
                       </div>
                       <span class="cd-icon bgl-success align-center-verticle">
-                         <i class="fa fa-user dashboard-user-av"></i>
+                         <i class="fa fa-user dashboard-user-av fa-lg fa-2x"></i>
                       </span>
                     </div>
                   </div>
                   <span class="line bg-success"></span>
                 </div>
               </div>
-              <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
                 <div class="card border-card">
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-secondary">{{ $getTotalTickets }}</h2>
+                        <h2 class="text-secondary display-4 display-md-5">{{ $getTotalTickets }}</h2>
                         <span class="position">Open Tickets</span>
                       </div>
                       <span class="cd-icon bgl-secondary align-center-verticle">
-                          <i class="fa fa-ticket dashboard-orders-av"></i>
+                          <i class="fa fa-ticket dashboard-orders-av fa-lg fa-2x"></i>
                       </span>
                     </div>
                   </div>
                   <span class="line bg-secondary"></span>
                 </div>
               </div>
-              <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+              <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
                 <div class="card border-card">
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-warning">{{ $getTotalProducts }}</h2>
+                        <h2 class="text-warning display-4 display-md-5">{{ $getTotalProducts }}</h2>
                         <span class="position">Products</span>
                       </div>
                       <span class="cd-icon bgl-warning align-center-verticle">
-                          <i class="fa fa-product-hunt" style=" font-size: 40px ;color:#ff9b52 ;"></i>
+                          <i class="fa fa-product-hunt fa-lg fa-2x" style="color:#ff9b52 ;"></i>
                       </span>
                     </div>
                   </div>
@@ -70,7 +70,7 @@
             <div class="card">
               <div class="card-header border-0 pb-0 flex-wrap">
                 <h4 class="fs-20 text-black mr-4 mb-2">Order Stats</h4>
-                
+
                 <div class="dropdown custom-dropdown mb-0 mt-3 mt-sm-0 mb-2">
                   {{-- <div class="btn border text-black rounded" role="button" data-toggle="dropdown" aria-expanded="false">
                     This Month
@@ -94,7 +94,7 @@
                   </div> --}}
                 </div>
               </div>
-              <div class="card-body"> 
+              <div class="card-body">
                 <div id="lineChart" class="line-chart"></div>
                 <div class="d-flex flex-wrap align-items-center justify-content-center mt-3">
                   <div class="fs-14 text-black mr-4">
@@ -121,49 +121,53 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-success">{{ $getTotalPayments }}</h2>
+                      <h2 class="text-success display-4 display-md-5 ">{{ $getTotalPayments }}</h2>
                       <span class="position">Payments</span>
                     </div>
                     <span class="cd-icon bgl-success align-center-verticle">
-                         <i class="fa fa-credit-card" style="font-size: 40px;color:#45c96b;"></i>
+                      <i class="fa fa-credit-card fa-lg fa-2x" style="color:#45c96b;"></i>
                     </span>
                   </div>
+
                 </div>
                 <span class="line bg-success"></span>
               </div>
             </div>
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-secondary">{{ $getTotalBundles }}</h2>
+                      <h2 class="text-secondary display-4 display-md-5 ">{{ $getTotalBundles }}</h2>
                       <span class="position">Bundles</span>
                     </div>
                     <span class="cd-icon bgl-secondary align-center-verticle">
-                        <svg style="position: relative;top:16px;left:14px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z" fill="#3f9ae0"/></svg>
+                        {{-- <svg style="position: relative;top:16px;left:14px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z" fill="#3f9ae0"/></svg> --}}
+                        {{-- <i class="fa-solid fa-layer-group" style="color:#3f9ae0"></i> --}}
+                        <i class="fa fa-database fa-lg fa-2x" style="color:#3f9ae0"></i>
                     </span>
                   </div>
                 </div>
                 <span class="line bg-secondary"></span>
               </div>
             </div>
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-warning">{{ $getTotalBlogs }}</h2>
+                      <h2 class="text-warning display-4 display-md-5 ">{{ $getTotalBlogs }}</h2>
                       <span class="position">Blogs</span>
                     </div>
                     <span class="cd-icon bgl-warning align-center-verticle">
-                      <i class="fab fa-blogger-b" style=" font-size: 40px ;color:#ff9b52 ;"></i>
-                      <svg style="position: relative;top:16px;left:14px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M172.2 226.8c-14.6-2.9-28.2 8.9-28.2 23.8V301c0 10.2 7.1 18.4 16.7 22 18.2 6.8 31.3 24.4 31.3 45 0 26.5-21.5 48-48 48s-48-21.5-48-48V120c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24v248c0 89.5 82.1 160.2 175 140.7 54.4-11.4 98.3-55.4 109.7-109.7 17.4-82.9-37-157.2-112.5-172.2zM209 0c-9.2-.5-17 6.8-17 16v31.6c0 8.5 6.6 15.5 15 15.9 129.4 7 233.4 112 240.9 241.5.5 8.4 7.5 15 15.9 15h32.1c9.2 0 16.5-7.8 16-17C503.4 139.8 372.2 8.6 209 0zm.3 96c-9.3-.7-17.3 6.7-17.3 16.1v32.1c0 8.4 6.5 15.3 14.8 15.9 76.8 6.3 138 68.2 144.9 145.2.8 8.3 7.6 14.7 15.9 14.7h32.2c9.3 0 16.8-8 16.1-17.3-8.4-110.1-96.5-198.2-206.6-206.7z" fill="#ff9b52"/></svg>
+                      {{-- <i class="fab fa-blogger-b" style=" font-size: 40px ;color:#ff9b52 ;"></i> --}}
+                      <i class="fa fa-rss-square fa-lg fa-2x" aria-hidden="true" style="color:#ff9b52"></i>
+                      {{-- <svg style="position: relative;top:16px;left:14px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M172.2 226.8c-14.6-2.9-28.2 8.9-28.2 23.8V301c0 10.2 7.1 18.4 16.7 22 18.2 6.8 31.3 24.4 31.3 45 0 26.5-21.5 48-48 48s-48-21.5-48-48V120c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24v248c0 89.5 82.1 160.2 175 140.7 54.4-11.4 98.3-55.4 109.7-109.7 17.4-82.9-37-157.2-112.5-172.2zM209 0c-9.2-.5-17 6.8-17 16v31.6c0 8.5 6.6 15.5 15 15.9 129.4 7 233.4 112 240.9 241.5.5 8.4 7.5 15 15.9 15h32.1c9.2 0 16.5-7.8 16-17C503.4 139.8 372.2 8.6 209 0zm.3 96c-9.3-.7-17.3 6.7-17.3 16.1v32.1c0 8.4 6.5 15.3 14.8 15.9 76.8 6.3 138 68.2 144.9 145.2.8 8.3 7.6 14.7 15.9 14.7h32.2c9.3 0 16.8-8 16.1-17.3-8.4-110.1-96.5-198.2-206.6-206.7z" fill="#ff9b52"/></svg> --}}
                     </span>
                   </div>
                 </div>
@@ -181,9 +185,9 @@
                 @forelse ($mostSaledItems as $item)
                   <div class="item" >
                     <div class="card">
-                      <div class="card-body"> 
+                      <div class="card-body">
                         <div class="media pb-4 border-bottom mb-4 align-items-center">
-                          
+
                           <img src="{{ url($item['productImage']) }}" class="dashboard-product-img">
                           <div class="media-body">
                             <h4 class="fs-20"><a href="#" class="text-black">{{ $item['productName'] }}</a></h4>
@@ -223,15 +227,15 @@
                     </div>
                   </div>
                 @empty
-                  
+
                 @endforelse
-                
-                
+
+
                 {{-- <div class="items">
                   <div class="card">
-                    <div class="card-body"> 
+                    <div class="card-body">
                       <div class="media pb-4 border-bottom mb-4 align-items-center">
-                        
+
                         <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                         <div class="media-body">
                           <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -270,12 +274,12 @@
                     </div>
                   </div>
                 </div> --}}
-                
+
                 {{-- <div class="items">
                   <div class="card">
-                    <div class="card-body"> 
+                    <div class="card-body">
                       <div class="media pb-4 border-bottom mb-4 align-items-center">
-                        
+
                         <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                         <div class="media-body">
                           <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -314,12 +318,12 @@
                     </div>
                   </div>
                 </div> --}}
-                
+
                 {{-- <div class="items">
                   <div class="card">
-                    <div class="card-body"> 
+                    <div class="card-body">
                       <div class="media pb-4 border-bottom mb-4 align-items-center">
-                        
+
                         <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                         <div class="media-body">
                           <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -358,12 +362,12 @@
                     </div>
                   </div>
                 </div> --}}
-                
+
                 {{-- <div class="items">
                   <div class="card">
-                    <div class="card-body"> 
+                    <div class="card-body">
                       <div class="media pb-4 border-bottom mb-4 align-items-center">
-                        
+
                         <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                         <div class="media-body">
                           <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -402,12 +406,12 @@
                     </div>
                   </div>
                 </div> --}}
-                
+
                 {{-- <div class="items">
                   <div class="card">
-                    <div class="card-body"> 
+                    <div class="card-body">
                       <div class="media pb-4 border-bottom mb-4 align-items-center">
-                        
+
                         <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                         <div class="media-body">
                           <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -450,48 +454,48 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-success">{{ $getTotalOrders }}</h2>
+                      <h2 class="text-success display-4 display-md-5">{{ $getTotalOrders }}</h2>
                       <span class="position">Orders</span>
                     </div>
                     <span class="cd-icon bgl-successalign-center-verticle">
-                         <i class="fa fa-first-order" style="font-size: 40px;color:#45c96b;"></i>
+                         <i class="fa fa-first-order fa-lg fa-2x" style="font-size: 40px;color:#45c96b;"></i>
                     </span>
                   </div>
                 </div>
                 <span class="line bg-success"></span>
               </div>
             </div>
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-secondary">{{ $getShippedOrders }}</h2>
+                      <h2 class="text-secondary display-4 display-md-5">{{ $getShippedOrders }}</h2>
                       <span class="position">Shipped</span>
                     </div>
                     <span class="cd-icon bgl-secondary align-center-verticle">
-                        <i class="fa fa-ship dashboard-orders-av"></i>
+                        <i class="fa fa-ship dashboard-orders-av fa-lg fa-2x"></i>
                     </span>
                   </div>
                 </div>
                 <span class="line bg-secondary"></span>
               </div>
             </div>
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-warning">{{ $getTotalInTransitOrders }}</h2>
+                      <h2 class="text-warning display-4 display-md-5">{{ $getTotalInTransitOrders }}</h2>
                       <span class="position">In Transit</span>
                     </div>
                     <span class="cd-icon bgl-warning align-center-verticle">
-                        <i class="fa fa-truck" style=" font-size: 40px ;color:#ff9b52 ;"></i>
+                        <i class="fa fa-truck fa-lg fa-2x" style="color:#ff9b52 ;"></i>
                     </span>
                   </div>
                 </div>
@@ -506,13 +510,12 @@
                 {{-- <a href="#" class="btn btn-outline-primary rounded mb-sm-0 mb-1">View More</a> --}}
               </div>
             </div>
-        
+
             <div class="col-xl-12">
               <div class="row sp-sm-15">
-                
+
                 @forelse ($getAdminUsers as $AdminUser)
-              
-                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6">
+                <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6 clickable-div " style="cursor: pointer;" onclick="showAdmin({{ $AdminUser->USER_ID }})">
                   <div class="card text-center">
                     <div class="card-body">
                       <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
@@ -521,58 +524,56 @@
                     </div>
                   </div>
                 </div>
-
                 @empty
-              
+
                 @endforelse
-               
+
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-success">{{ $getTotalSubscriptions }}</h2>
+                      <h2 class="text-success display-4 display-md-5">{{ $getTotalSubscriptions }}</h2>
                       <span class="position">Total Subscriptions</span>
                     </div>
                     <span class="cd-icon bgl-success align-center-verticle">
-                      <i class="fa fa-ticket" style="font-size: 40px;color:#45c96b;"></i>
+                      <i class="fa fa-ticket fa-lg fa-2x" style="color:#45c96b;"></i>
                     </span>
                   </div>
                 </div>
                 <span class="line bg-success"></span>
               </div>
             </div>
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-secondary">{{ $getTotalReviews }}</h2>
+                      <h2 class="text-secondary display-4 display-md-5">{{ $getTotalReviews }}</h2>
                       <span class="position">Reviews</span>
                     </div>
                     <span class="cd-icon bgl-secondary align-center-verticle">
-                        <i class="fa fa-comments dashboard-orders-av"></i>
+                        <i class="fa fa-comments dashboard-orders-av fa-lg fa-2x"></i>
                     </span>
                   </div>
                 </div>
                 <span class="line bg-secondary"></span>
               </div>
             </div>
-            <div class="col-xl-4 col-xxl-4 col-lg-3 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
                     <div class="media-body mr-3">
-                      <h2 class="text-warning">{{ $getTotalGivings}}</h2>
+                      <h2 class="text-warning display-4 display-md-5">{{ $getTotalGivings}}</h2>
                       <span class="position">Total Givings</span>
                     </div>
                     <span class="cd-icon bgl-warning align-center-verticle">
-                        {{-- <i class="fas fa-donate" style=" font-size: 40px ;color:#ff9b52 ;"></i> --}}
-                        <svg style="position: relative;top:16px;left:14px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M256 416c114.9 0 208-93.1 208-208S370.9 0 256 0 48 93.1 48 208s93.1 208 208 208zM233.8 97.4V80.6c0-9.2 7.4-16.6 16.6-16.6h11.1c9.2 0 16.6 7.4 16.6 16.6v17c15.5.8 30.5 6.1 43 15.4 5.6 4.1 6.2 12.3 1.2 17.1L306 145.6c-3.8 3.7-9.5 3.8-14 1-5.4-3.4-11.4-5.1-17.8-5.1h-38.9c-9 0-16.3 8.2-16.3 18.3 0 8.2 5 15.5 12.1 17.6l62.3 18.7c25.7 7.7 43.7 32.4 43.7 60.1 0 34-26.4 61.5-59.1 62.4v16.8c0 9.2-7.4 16.6-16.6 16.6h-11.1c-9.2 0-16.6-7.4-16.6-16.6v-17c-15.5-.8-30.5-6.1-43-15.4-5.6-4.1-6.2-12.3-1.2-17.1l16.3-15.5c3.8-3.7 9.5-3.8 14-1 5.4 3.4 11.4 5.1 17.8 5.1h38.9c9 0 16.3-8.2 16.3-18.3 0-8.2-5-15.5-12.1-17.6l-62.3-18.7c-25.7-7.7-43.7-32.4-43.7-60.1.1-34 26.4-61.5 59.1-62.4zM480 352h-32.5c-19.6 26-44.6 47.7-73 64h63.8c5.3 0 9.6 3.6 9.6 8v16c0 4.4-4.3 8-9.6 8H73.6c-5.3 0-9.6-3.6-9.6-8v-16c0-4.4 4.3-8 9.6-8h63.8c-28.4-16.3-53.3-38-73-64H32c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32v-96c0-17.7-14.3-32-32-32z" fill="#ff9b52" /></svg>
+                        <i class="fa fa-usd fa-lg fa-2x" style="color:#ff9b52" aria-hidden="true"></i>
                     </span>
                   </div>
                 </div>
@@ -581,7 +582,7 @@
             </div>
           </div>
         </div>
-          
+
           {{-- <div class="col-xl-3 col-xxl-4">
             <div class="row">
               <div class="col-xl-12">
@@ -592,7 +593,7 @@
                     </div>
                     <h4 class="fs-22 text-black mb-1">{{session('firstName')}} {{session('lastName')}}</h4>
                     <p class="mb-4">Admin User</p>
-                    
+
                   </div>
                   <div class="card-body col-xl-12 col-md-6 col-sm-12 pb-0">
                     <h4 class="fs-18 text-black mb-3">Recent Activities</h4>
@@ -637,9 +638,9 @@
               </div>
             </div>
           </div> --}}
-          
-          
-        
+
+
+
         <!--**********************************
             Content body end
         ***********************************-->
@@ -648,5 +649,11 @@
     <script>
       var linechartmonths = {!! json_encode($lineChartData["month"]) !!};
       var linechartorders = {!! json_encode($lineChartData["total_orders"]) !!};
+
+    function showAdmin($id){
+        window.location.href = 'admin-users';
+        localStorage.setItem('adminId', $id);
+
+    }
     </script>
      @include('admin.admin-footer');

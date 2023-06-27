@@ -60,7 +60,7 @@
     }
 
     .modal-content .modal-body h2 span {
-        font-size: 180px;
+        font-size: 100px;
         font-weight: 700;
         margin-left: -40px;
         color: #fff;
@@ -277,7 +277,7 @@
         }
 
         .modal-content .modal-body h2 span {
-            font-size: 85px;
+            font-size: 65px;
             font-weight: 700;
             margin-left: -40px;
             color: #fff;
@@ -313,7 +313,7 @@
         }
 
         .modal-content .modal-body h2 span {
-            font-size: 120px;
+            font-size: 80px;
             font-weight: 700;
             margin-left: -40px;
             color: #fff;
@@ -365,7 +365,7 @@
             color: #fff;
         }
         .modal-content .modal-body h2 span {
-            font-size: 185px;
+            font-size: 100px;
             font-weight: 700;
             margin-left: -40px;
             color: #fff;
@@ -399,7 +399,7 @@
             color: #fff;
         }
         .modal-content .modal-body h2 span {
-            font-size: 228px;
+            font-size: 100px;
             font-weight: 700;
             margin-left: -40px;
             color: #fff;
@@ -1357,30 +1357,56 @@
                     </div>
                     <div class="row no-gutters">
                         <div class="col-md-5 col-6 d-flex">
-                            <div class="modal-body popup-padding color-1 d-flex" style="background-color:#f38c7b">
+                            <div class="modal-body popup-padding color-1 d-flex" style="background-color:{{ $popupData->BACKGROUND_COLOR }}">
                                 <span class="icon-2 flaticon-snowflake"></span>
-                                <div class="w-100 text text-center">
-                                    <span class="subheading">Winter</span>
-                                    <h3 class="sale">Sale
-                                        <span class="icon flaticon-snowflake"></span>
-                                    </h3>
-                                    <h2>
-                                        <span>40</span>
-                                        <sup>%</sup>
-                                        <sub>off</sub>
-                                    </h2>
-                                    <p class="upper">To all Jusout Beauty products</p>
+                                {{-- <div class="w-100 text text-center d-flex align-items-center justify-content-center">
+                                    <div>
+                                        <p class="text-white upper">{{ $popupData->FIRST_TITLE }}
+                                            <span class="icon flaticon-snowflake"></span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h2>
+                                            <span>{{ $popupData->DISCOUNT }}</span>
+                                            <sup>%</sup>
+                                            <sub>off</sub>
+                                        </h2>
+                                    </div>
+                                    <div>
+                                        <p class="upper">{{ $popupData->SECOND_TITLE }}</p>
+                                    </div>
+                                </div> --}}
+                                <div class="w-100 d-flex align-items-center justify-content-center" style="height: 70vh;">
+                                    <div class="text-center">
+                                        <p class="text-white upper">{{ $popupData->FIRST_TITLE }}</p>
+                                        <div style="height: 15vh" class="d-flex align-items-center justify-content-center">
+                                            <p class="text-white upper">
+                                                <span class="icon flaticon-snowflake"></span>
+                                            </p>
+                                        </div>
+                                        <div style="height: 40vh" class="d-flex align-items-center justify-content-center">
+                                            <h2>
+                                                <span style="text-size:36px;">{{ $popupData->DISCOUNT }}</span>
+                                                <sup>%</sup>
+                                                <sub>off</sub>
+                                            </h2>
+                                        </div>
+                                        <div style="height: 15vh" class="d-flex align-items-center justify-content-center">
+                                            <p class="upper">{{ $popupData->SECOND_TITLE }}</p>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md-7 col-6 d-flex">
                             <div class="modal-body p-5 img d-flex align-items-center"
-                                style="background-image: url('{{ url('/assets-web') }}/images/routine.jpg');
+                                style="background-image: url('{{ url($popupData->DOWN_PATH) }}');
 							background-size: cover;
 							background-repeat: no-repeat;
 							background-position: center center;">
                                 <div class="text w-100 mt-20">
-                                    <a href="#" class="btn btn-primary d-block py-3 px-0 px-md-4">Shop now</a>
+                                    <a href="{{  $popupData->BUTTON_LINK  }}" class="btn btn-primary d-block py-3 px-0 px-md-4">{{ $popupData->BUTTON_TEXT }}</a>
                                 </div>
                             </div>
                         </div>

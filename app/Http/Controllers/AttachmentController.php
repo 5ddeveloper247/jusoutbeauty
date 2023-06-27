@@ -897,6 +897,218 @@ class AttachmentController extends Controller
 	/*===================== admin Product Image Attachment code end ==========================*/
 
 	/*===================== admin Product Image Attachment code start ==========================*/
+    // public function uploadPopupImage(){
+    //     $allowed =  array('png','jpg','jpeg','JPEG','PNG','JPG','jpe','jpge','JPGE','JPE','jfif', 'svg', 'SVG', 'gif', 'GIF', 'webp', 'WEBP');
+
+	// 	if (isset($_FILES['popupImage']) && ($_FILES['popupImage']['size']>0)){
+	// 		$path = 	public_path()."/uploads/popup/images";
+	// 		$downpath= 	url('public')."/uploads/popup/images";
+
+	// 		if(isset($_FILES['popupImage']) && $_FILES['popupImage']['error'] == 0){
+	// 			$userId = isset($_REQUEST['userId'])?$_REQUEST['userId']:"0";
+	// 			$pathInfo = pathinfo($_FILES['popupImage']['name']);
+	// 			$ext = $pathInfo['extension'];
+	// 			$size = filesize($_FILES['popupImage']['tmp_name']);//print_r($size);exit;
+	// 			$fileName = $pathInfo['filename'];
+	// 			$fileNameFull = $pathInfo['filename'].".".$ext;
+
+	// 			list ( $width, $height ) = getimagesize ( $_FILES['popupImage']['tmp_name'] );
+
+	// 			if ($width < "1200" || $height < "600") {
+
+	// 				print(json_encode(array(04)));
+	// 				exit;
+
+	// 			}
+
+	// 				//insert code here
+	// 				$namefile = DB::table ( 'jb_popup_tbl' )->insertGetId (
+	// 						array ( 'USER_ID' => $userId,
+	// 								'IMAGE_NAME' => $fileNameFull,
+	// 								'CREATED_BY' => $userId,
+	// 								'UPDATED_AT' => date ( 'Y-m-d H:i:s' ),
+	// 						)
+	// 						);
+
+	// 				$fullpath = $path."/".$namefile.".".$ext;
+	// 				$downpath = $downpath."/".$namefile.".".$ext;
+
+
+
+	// 			}
+    //         }
+
+    // }
+//     public function uploadPopupImage()
+// {
+//     $popup = $_REQUEST['details']['popup'];
+//     $id = $popup['ID'];
+//     $allowed = array('png', 'jpg', 'jpeg', 'JPEG', 'PNG', 'JPG', 'jpe', 'jpge', 'JPGE', 'JPE', 'jfif', 'svg', 'SVG', 'gif', 'GIF', 'webp', 'WEBP');
+
+//     if (isset($_FILES['popupImage']) && ($_FILES['popupImage']['size'] > 0)) {
+//         $path = public_path() . "/uploads/popup/images";
+//         $downpath = url('public') . "/uploads/popup/images";
+
+//         if (isset($_FILES['popupImage']) && $_FILES['popupImage']['error'] == 0) {
+//             $userId = isset($_REQUEST['userId']) ? $_REQUEST['userId'] : "0";
+//             $pathInfo = pathinfo($_FILES['popupImage']['name']);
+//             $ext = $pathInfo['extension'];
+
+//             list($width, $height) = getimagesize($_FILES['popupImage']['tmp_name']);
+
+//             if ($width < "1200" || $height < "600") {
+//                 print(json_encode(array(04)));
+// 					exit;
+//             }
+
+//             // Generate a unique file name with timestamp and extension
+//             $imageName = time() . '.' . $ext;
+
+//             // Move the uploaded file to the desired directory
+//             move_uploaded_file($_FILES['popupImage']['tmp_name'], $path . '/' . $imageName);
+
+//            $downpath = $downpath . '/' . $imageName;
+//            $result =  DB::table ('jb_popup_tbl' )
+//             ->where('ID',$id)
+//             ->update([
+//                 'CREATED_BY' => $userId,
+//                 'IMAGE_NAME' => $imageName,
+//                 'DOWN_PATH' => $downpath,
+//                 'CREATED_BY' => $userId,
+//                 'UPDATED_AT' => date('Y-m-d H:i:s'),
+//             ]);
+//             if($result){
+//                 $arrRes ['done'] = true;
+//                 $arrRes ['msg'] = 'Products Position Updated Successfully';
+
+//                 echo json_encode ( $arrRes );
+//             }
+//         }else{
+//             $arrRes ['done'] = false;
+//             $arrRes ['msg'] = 'Error';
+
+//             echo json_encode ( $arrRes );
+//         }
+//     }
+//     else{
+//         print(json_encode(array(02)));
+//         exit;
+//     }
+// }
+public function uploadPopupImage(Request $request) {
+    // dd($request->file('uploadattl'));
+
+    $allowed =  array('png','jpg','jpeg','JPEG','PNG','JPG','jpe','jpge','JPGE','JPE','jfif', 'svg', 'SVG', 'gif', 'GIF', 'webp', 'WEBP');
+
+    if (isset($_FILES['uploadImage']) && ($_FILES['uploadImage']['size']>0)){
+        $path = 	public_path()."/uploads/popup/images";
+        $downpath= 	url('public')."/uploads/popup//images";
+
+        if(isset($_FILES['uploadImage']) && $_FILES['uploadImage']['error'] == 0){
+            $userId = isset($_REQUEST['userId'])?$_REQUEST['userId']:"0";
+            $sourceId = isset($_REQUEST['sourceId'])?$_REQUEST['sourceId']:"";
+            $pathInfo = pathinfo($_FILES['uploadImage']['name']);
+            $ext = $pathInfo['extension'];
+            $size = filesize($_FILES['uploadImage']['tmp_name']);//print_r($size);exit;
+            $fileName = $pathInfo['filename'];
+            $fileNameFull = $pathInfo['filename'].".".$ext;
+
+            /*if($size > 5242880){//3145728 now:5mp
+             print(JsonHelper::encode(array(03)));
+             exit;
+             }else{
+             //echo $size;
+             print(JsonHelper::encode(array(02)));
+             exit;
+             }*/
+            list ( $width, $height ) = getimagesize ( $_FILES['uploadImage']['tmp_name'] );
+
+            if ($width < "1200" || $height < "1000") {
+
+                print(json_encode(array(04)));
+                // dd(json_encode(array(04)));
+                exit;
+
+            }
+            if($sourceId == '' ) {
+                print(json_encode(array(03)));
+                // dd(json_encode(array(03)));
+                exit;
+            }else if(!in_array($ext,$allowed) ) {
+                print(json_encode(array(01)));
+                // dd(json_encode(array(01)));
+                exit;
+            }else{
+
+                //insert code here
+                $namefile = DB::table ( 'jb_popup_tbl' )->where ( 'ID', $sourceId ) ->update (
+                        array ( 'CREATED_BY' => $userId,
+                                'ID' => $sourceId,
+                                'IMAGE_NAME' => $fileNameFull,
+                                'DOWN_PATH' => $downpath,
+                                'UPDATED_AT' => date ( 'Y-m-d H:i:s' )
+                        )
+                        );
+
+                $fullpath = $path."/".$namefile.".".$ext;
+                $downpath = $downpath."/".$namefile.".".$ext;
+
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                    // dd($namefile);
+
+                    if(move_uploaded_file($_FILES['uploadImage']['tmp_name'], $fullpath)){
+
+                        $result = DB::table ( 'jb_popup_tbl' ) ->where ( 'ID', $sourceId ) ->update (
+                                array (
+                                        'DOWN_PATH' => $downpath,
+                                        'CREATED_BY' => $userId,
+                                        'UPDATED_AT' => date ( 'Y-m-d H:i:s' )
+                                )
+                                );
+
+                        print(json_encode(array(00, $namefile, $downpath, $_FILES['uploadImage']['name'], '1')));
+                        exit;
+
+                    }else{
+                        print(json_encode(array(02)));
+                        // dd(json_encode(array(02)));
+                        exit;
+                    }
+
+                }else{
+                    if(move_uploaded_file($_FILES['uploadImage']['tmp_name'], $fullpath)){
+
+                        $result = DB::table ( 'jb_popup_tbl' ) ->where ( 'ID', $sourceId ) ->update (
+                                array (
+                                        'DOWN_PATH' => $downpath,
+                                        'CREATED_BY' => $userId,
+                                        'UPDATED_AT' => date ( 'Y-m-d H:i:s' )
+                                )
+                                );
+
+                        print(json_encode(array(00, $namefile, $downpath, $_FILES['uploadImage']['name'], '2')));
+                        exit;
+                    }else{
+                        print(json_encode(array(02)));
+                        // dd(json_encode(array(02)));
+                        exit;
+                    }
+                }
+
+            }
+        }else{
+            print(json_encode(array(02)));
+            // dd(json_encode(array(02)));
+            exit;
+        }
+
+    }else{
+        print(json_encode(array(02)));
+        dd(json_encode(array(02)));
+        exit;
+    }
+}
 
 	public function uploadProductSubscriptionImage(Request $request) {
         // dd($request);

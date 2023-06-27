@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     public function getTotalUsers(){
-        
+
         $totalUsers = DB::table('fnd_user_tbl')
                       ->where('USER_TYPE','user')
                       ->count();
@@ -60,9 +60,8 @@ class User extends Authenticatable
 
         $AdminUsers = DB::table('fnd_user_tbl')
                            ->where('USER_TYPE','admin')
-                           ->select('FIRST_NAME','LAST_NAME')
+                           ->select('FIRST_NAME','LAST_NAME','USER_ID')
                            ->get();
-        
         return isset($AdminUsers) ? $AdminUsers : null;
 
     }
@@ -120,11 +119,11 @@ class User extends Authenticatable
             $dotzero = '.' . str_repeat( '0', 1 );
             $n_format = str_replace( $dotzero, '', $n_format );
         }
-        
+
         $totalCostInDollars=$n_format . $suffix;
 
         return isset($totalCostInDollars) ?  $totalCostInDollars :null;
-            
+
     }
 
     public function getTotalProducts(){
@@ -247,10 +246,10 @@ class User extends Authenticatable
             $arrRes[$i]['revenue'] = $this->getRevevueWRTProductID($result[$i]->PRODUCT_ID);
             $arrRes[$i]['productImage'] = $this->getProductImage($result[$i]->PRODUCT_ID)->DOWN_PATH;
         }
-        
+
         return isset( $arrRes) ?  $arrRes :null;
 	}
-    
+
     public function getShadesQuantity($PRODUCT_ID){
         $result = DB::table('jb_product_shades_tbl as j')
         ->select('j.Quantity')
@@ -318,7 +317,7 @@ class User extends Authenticatable
             $dotzero = '.' . str_repeat( '0', 1 );
             $n_format = str_replace( $dotzero, '', $n_format );
         }
-        
+
         $totalRevenue=$n_format . $suffix;
 
         return isset($totalRevenue) ?  $totalRevenue :null;
@@ -344,7 +343,7 @@ class User extends Authenticatable
     }
 
     public function getLineChartDetails()
-    {    
+    {
         $arrRes['month'] = [];
         $arrRes['total_orders'] = [];
         for ($i = 6; $i > 0; $i--) {
@@ -356,9 +355,9 @@ class User extends Authenticatable
             ->select(DB::raw("DATE_FORMAT((DATE_SUB(curdate(), INTERVAL $monthInterval MONTH)), '%b-%y') AS month"))
             ->selectRaw('COUNT(*) AS total_orders')
             ->whereRaw('DATE_FORMAT(CREATED_ON, "%m %Y") = ?', [$targetDate->format('m Y')])
-            ->get('total_orders','month')[0]; 
+            ->get('total_orders','month')[0];
             array_push($arrRes['month'],(string)$result->month);
-            array_push($arrRes['total_orders'],(int)$result->total_orders); 
+            array_push($arrRes['total_orders'],(int)$result->total_orders);
 
         }
         // dd($arrRes);
@@ -366,7 +365,7 @@ class User extends Authenticatable
 
     }
 
-   
+
 
     public function getAllAdminUsersWRTSubUsers($id){
 
@@ -375,7 +374,7 @@ class User extends Authenticatable
                         ->select('USER_ID','EMAIL','USER_NAME','USER_TYPE','ENCRYPTED_PASSWORD','USER_STATUS','FIRST_NAME','LAST_NAME')
                         ->latest('CREATED_ON','UPDATED_ON')
 				        ->get();
-        
+
         return isset( $result) ?  $result :null;
 
     }
@@ -395,7 +394,7 @@ class User extends Authenticatable
 
        $result = DB :: table('fnd_user_menu_tbl')
                 ->select('MENU_NAME','MENU_ID')
-                ->get(); 
+                ->get();
 
         return isset($result) ? $result :null;
     }

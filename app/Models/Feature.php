@@ -32,17 +32,17 @@ class Feature extends Model
             $arrRes[$i]['name'] = $row->FEATURE_NAME;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
 
     }
 
     public function getFeaturesData(){
-    	 
+
     	$result = DB::table('jb_product_features_tbl as a')->select('a.*')
     	->orderBy('a.SEQ_NUM','asc')
     	->get();
-    	 
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->FEATURE_ID;//$i+1;
@@ -59,15 +59,15 @@ class Feature extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
     public function getSpecificFeaturetData($id){
-    
+
         	$result = DB::table('jb_product_features_tbl as a')->select('a.*')
         	->where('a.FEATURE_ID',$id)
          	->get();
@@ -85,27 +85,28 @@ class Feature extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
 	public function getspecificproductdata($id){
-		 
+
           $result=DB::table('jb_product_tbl as a')->select('a.*')->where('a.PRODUCT_ID',$id)->get();
 		  $feaures_id = isset($result[0]->FEATURE_ID) ? $result[0]->FEATURE_ID :'';
-          
-		  if($feaures_id != null || $feaures_id != ''){
-			
-			$features= explode(',',$feaures_id);
-		
-		  $i=0;
 
-		  foreach($features as $v){
-		     
-			$row=DB::table('jb_product_features_tbl as a')->select('a.*')->where('a.FEATURE_ID',$v)->first();
-			 
+		  if($feaures_id != null || $feaures_id != ''){
+
+			$feature= explode(',',$feaures_id);
+
+		  $i=0;
+          $features=DB::table('jb_product_features_tbl as a')->select('a.*')->whereIn('a.FEATURE_ID',$feature)->where('STATUS','active')->get();
+
+		  foreach($features as $row){
+
+
+
 			$arrRes[$i]['ID'] = $row->FEATURE_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
@@ -118,25 +119,25 @@ class Feature extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-              
+
 			$i++;
 		 }
 		 $arrSort = collect($arrRes)->sortBy('SEQ_NUM')->toArray();
 		}
 
-		
-		
+
+
 		return isset($arrSort) ? $arrSort : null;
 
 	}
 
     public function getFeatureAttachments($id){
-    
+
     	$result = DB::table('jb_product_features_tbl as a')->select('a.*')
     	->where('a.FEATURE_ID', $id)
     	->orderBy('a.FEATURE_ID','desc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['ID'] = $row->FEATURE_ID;
@@ -148,15 +149,15 @@ class Feature extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
 
-    
-  
-    
+
+
+
 }

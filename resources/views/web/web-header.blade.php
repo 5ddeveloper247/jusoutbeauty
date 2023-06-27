@@ -394,15 +394,13 @@
 
                                 </li>
                                 <li aria-haspopup="true" aria-expanded="false"
-                                    class="nav-item dropdown-item-shop dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5">
-                                    <a class="nav-link dropdown-toggle p-0" href="#!"> Routine
+                                    class="nav-item dropdown-item-shop dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5" >
+                                    <a class="nav-link dropdown-toggle p-0" href="" onclick="menutoggleRoutine();">Routine
                                         <span class="caret"></span>
                                     </a>
                                     <div
                                         class="dropdown-menu dropdown-menu-xl px-0 pb-8 pt-5 dropdown-menu-listing overflow-hidden x-animated x-fadeInUp">
                                         <div class="container container-xxl d-block">
-
-
                                             <div class="row">
                                                 <div class="col-4 h-100"></div>
                                                 <div class="col-2 h-100">

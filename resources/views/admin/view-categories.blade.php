@@ -15,7 +15,7 @@ var site = '<?php echo session('site');?>';
 
 
 				<div class="row">
-					<div class="col-9">
+					<div class="col-md-6">
 						<div class="page-titles pt-0 pb-0 mb-0">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="javascript:void(0)">Categories</a></li>
@@ -23,9 +23,19 @@ var site = '<?php echo session('site');?>';
 							</ol>
 		                </div>
 					</div>
-					<div class="col-3">
-						<button type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" ng-click="addNewCat()">Add Product Category</button>
-					</div>
+					{{-- <div class="col-3 row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-rounded btn-warning mb-3 btn-sm-block" ng-click="addNewCat()">Add Product Category</button>
+                        </div>
+					</div> --}}
+                    <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-12">
+                            <button type="button" class="btn btn-rounded btn-warning mb-3 float-right" ng-click="addNewCat()">Add Product Category</button>
+                          </div>
+                        </div>
+                      </div>
+
 				</div>
 				<div class="row">
 
@@ -45,15 +55,15 @@ var site = '<?php echo session('site');?>';
 														<label class="custom-control-label" for="checkAll"></label>
 													</div>
 												</th>-->
-                                                <th>ID</th>
-                                                <th>Category Name</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Category Name</th>
                                                 <!-- <th>Parent</th> -->
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th class="text-center">Status</th>
+                                                <th class="text-right">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tableContents">
-                                            <tr ng-repeat="row in displayCollectionCategory" class="row1" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.CATEGORY_ID}}">
+                                            <tr ng-repeat="row in displayCollectionCategory" class="row1 text-center" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.CATEGORY_ID}}">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.NAME}}</td>
                                                 <!-- <td>Category</td> -->
@@ -92,10 +102,10 @@ var site = '<?php echo session('site');?>';
 				</div>
             </div>
 
-            <div class="container-fluid pt-0">
+            <div class="col-12 pt-0">
                	<div class="row">
 					<div class="col-12">
-						<button type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" ng-click="addNewSubCat()">Add Product Sub Category</button>
+						<button type="button" class="btn btn-rounded btn-warning mb-3 float-right" ng-click="addNewSubCat()">Add Product Sub Category</button>
 					</div>
 				</div>
 				<div class="row">
@@ -109,18 +119,18 @@ var site = '<?php echo session('site');?>';
                                 <div class="table-responsive">
                                     <table id="subCategoryTable" class="display min-w850">
                                         <thead>
-                                            <tr>
+                                            <tr class="text-center">
 
                                                 <th>ID</th>
                                                 <th>Product Sub Category</th>
                                                 <th>Product Category</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th class="text-right">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="subCategoryTableContents">
 
-                                            <tr ng-repeat="row in displayCollectionSubCategory" class="row2" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.SUB_CATEGORY_ID}}">
+                                            <tr ng-repeat="row in displayCollectionSubCategory" class="row2 text-center" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.SUB_CATEGORY_ID}}">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.NAME}}</td>
 												<td>@{{ row.CATEGORY_NAME}}</td>
@@ -157,10 +167,10 @@ var site = '<?php echo session('site');?>';
                     </div>
 				</div>
             </div>
-            <div class="container-fluid pt-0">
+            <div class="col-12 pt-0">
                	<div class="row">
 					<div class="col-12">
-						<button type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" ng-click="addNewSubSubCat()">Add Product Sub Sub Category</button>
+						<button type="button" class="btn btn-rounded btn-warning float-right mb-3" ng-click="addNewSubSubCat()">Add Product Sub Sub Category</button>
 					</div>
 				</div>
 				<div class="row">
@@ -174,17 +184,17 @@ var site = '<?php echo session('site');?>';
                                 <div class="table-responsive">
                                     <table id="subSubCategoryTable" class="display min-w850">
                                         <thead>
-                                            <tr>
+                                            <tr class="text-center">
                                                 <th>ID</th>
                                                 <th>Product Sub Sub Category Name</th>
                                                 <th>Product Sub Category</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th class="text-right">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="subSubCategoryTableContents">
 
-                                            <tr ng-repeat="row in displayCollectionSubSubCategory" class="row3" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.SUB_SUB_CATEGORY_ID}}">
+                                            <tr ng-repeat="row in displayCollectionSubSubCategory" class="row3 text-center" data-seq="@{{row.SEQ_NUM}}" data-id="@{{row.SUB_SUB_CATEGORY_ID}}">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.NAME}}</td>
 												<td>@{{row.SUB_CATEGORY_NAME}}</td>

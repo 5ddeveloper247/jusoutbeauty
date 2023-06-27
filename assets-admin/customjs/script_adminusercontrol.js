@@ -19,16 +19,20 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
     $scope.allNavLinks = '';
     $scope.tokenHash = $("#csrf").val();
 
+    $scope.adminId= localStorage.getItem('adminId');
+
+
+
 	$scope.saveAdminUserPermission = function(){
 
 	}
 
 	$scope.getAllAdminUserslov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminUserslov',
@@ -37,14 +41,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			if ($.fn.DataTable.isDataTable("#AdminTable")) {
 				$('#AdminTable').DataTable().clear().destroy();
 			}
-			
+
 			$scope.allAdminUsers = data.allAdminUsers;
 			// console.log($scope.allAdminUsers);
-		
+
 			setTimeout(function(){
 				$('#AdminTable').DataTable( {
 					order: [],
@@ -54,15 +58,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		                      ]
 		        } );
 			}, 500);
-			
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
     $scope.getAllNavLinksLov = function(){
-    	
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
@@ -75,9 +79,9 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
-			$scope.allNavLinks = data.allNavLinks;			
-			
+
+			$scope.allNavLinks = data.allNavLinks;
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -87,7 +91,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.getAllNavLinksLov();
 
 	$scope.reset = function(){
-		
+
 		$scope.user={};
 		$scope.allAdminUsers = "";
 		$scope.user.ID = "";
@@ -95,16 +99,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.user.EmailAddress = "";
 		$scope.user.Password = "";
 		$scope.user.ConfirmPassword = "";
-		
+
 		$("#name").val('').trigger('change');
 		$("#email").val('').trigger('change');
 		$("#password").val('').trigger('change');
 		$("#confirmpassword").val('').trigger('change');
-		
+
 	}
 
 	$scope.addNew = function(){
-		
+
         $scope.user={};
         $scope.allAdminUsers = "";
 		$scope.user.ID = "";
@@ -116,28 +120,27 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.user.Password = "";
 		$scope.user.ConfirmPassword = "";
 		$scope.user.Enable = "";
-		
+
 		if ($.fn.DataTable.isDataTable("#AdminTable")) {
 			$('#AdminTable').DataTable().clear().destroy();
 		}
-	
+
 		setTimeout(function(){
 			$("#AdminTable").DataTable();
 		}, 500);
 
 		$(".menu_check").prop('checked',false);
-		
+
 		$('#menu_1').prop("checked", true);
 		$('#menu_1').prop("disabled", true);
-		
+
 		$scope.editView = 1;
-		
+
 	}
 	$scope.backToListing = function(){
 		$scope.getAllAdminUserslov();
 		$scope.editView = 0;
 	}
-
 	$scope.editAdmin = function(id) {
 
 		var data = {};
@@ -147,7 +150,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.user.UserRole = "";
 		$scope.user.PhoneNumber = "";
 		$scope.user.EmailAddress = "";
-	    
+
     	var temp = $.param({details: data});
 
 		$http({
@@ -160,7 +163,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}).success(function(data, status, headers, config) {
 
 			// console.log(data);
-			//Setting the value 
+			//Setting the value
 			$status = data['AdminDetail'].USER_STATUS == 'active' ? true : false ;
 			$scope.user.ID = data['AdminDetail'].USER_ID;
 			$scope.user.FirstName = data['AdminDetail'].FIRST_NAME;
@@ -200,17 +203,22 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
+    if($scope.adminId != null || $scope.adminId != ''){
+        $scope.editAdmin($scope.adminId);
+        localStorage.setItem('adminId','');
+    }
+
     $scope.saveAdminUser = function(){
-		
+
 		var data = {};
 	    data.user = $scope.user;
 	    data.updateduserId = $scope.user.ID;
-	    
+
     	var temp = $.param({details: data});
 
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveAdminUser",
 			method: "POST",
 			async: false,
@@ -219,42 +227,44 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}).success(function(data, status, headers, config) {
 
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
                 $scope.user.ID = data.id;
 				//set Value to Null
-				// $scope.user.FirstName = "";
-				// $scope.user.LastName = "";
-				// $scope.user.UserRole = "";
-				// $scope.user.PhoneNumber = "";
-				// $scope.user.EmailAddress = "";
-				// $scope.user.Password = "";
-				// $scope.user.ConfirmPassword = "";
-				// $scope.user.Enable = "";
+				$scope.user.FirstName = "";
+				$scope.user.LastName = "";
+				$scope.user.UserRole = "";
+				$scope.user.PhoneNumber = "";
+				$scope.user.EmailAddress = "";
+				$scope.user.Password = "";
+				$scope.user.ConfirmPassword = "";
+				$scope.user.Enable = "";
+                $scope.editView = 0;
+
 
 				$scope.getAllAdminUserslov();
 
 				// $scope.editView = 0;
-				
+
 			}else{
-				
-				
+
+
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
 		})
 		.error(function(data, status, headers, config) {
-			
+
 		});
 	}
 
 	$scope.deleteAdmin = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteSpecificAdmin",
@@ -263,32 +273,32 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.getAllAdminUserslov();
-				
+
 			}else{
-			
+
 				$scope.alertDeleteMsg = data.msg;
 				$("#alertDel").modal('show');
 			}
-			
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
 	$scope.changeStatusAdmin = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/changeStatusAdmin",
@@ -297,10 +307,10 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
 			$scope.getAllAdminUserslov();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -317,7 +327,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 					i++;
 	 			}
 	 		});
-			
+
 			if(menu_ids.length <= 0){
 				toastr.error('Error : First Choose Menu Controls ', '', {timeOut: 3000});
 				return ;
@@ -328,7 +338,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			data.userId = $scope.user.ID;
 			data.selected_options = menu_ids;
 			var temp = $.param({details: data});
-			
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/menuControlOptions",
@@ -337,11 +347,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.getAllAdminUserslov();
 				$scope.editView = 0;
-				
+
 			})
 		.error(function(data, status, headers, config) {
 		});
@@ -359,7 +369,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -384,7 +394,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);
@@ -410,6 +420,6 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 
 
-		
-		
-		
+
+
+

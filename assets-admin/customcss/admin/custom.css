@@ -179,7 +179,7 @@
 }
 @media screen and (min-width: 0px) and (max-width: 414px) {
 	.mobile-save-btn{
-		width: 50% !important;
+		/* width: 50% !important; */
 	}
 	.dashboard-user-av{
 		font-size: 30px;

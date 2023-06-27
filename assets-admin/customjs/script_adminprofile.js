@@ -2,35 +2,35 @@ var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
 //	$(document).on('click','.addNew',function(){
-//	    $('#addCity_modal').modal('show');return false; 
+//	    $('#addCity_modal').modal('show');return false;
 //	});
 
 //	$(document).on('click','.modalClose',function(){
-//	    $('#addCity_modal').modal('hide');return false; 
+//	    $('#addCity_modal').modal('hide');return false;
 //	});
-	
+
 	$scope.user = {};
 	$scope.user.ID = '';
 	$scope.user.A_1 = '';
 	$scope.user.A_2 = '';
 	$scope.user.A_3 = '';
 	$scope.user.A_4 = '';
-	
+
 	$scope.password = {};
 	$scope.password.C_1 = '';
 	$scope.password.C_2 = '';
 	$scope.password.C_3 = '';
-	
+
 	$scope.editView = 0;
 
 	$scope.tokenHash = $("#csrf").val();
-	
+
 	$scope.getAllAdminProfilelov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminProfilelov',
@@ -39,31 +39,49 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			var details = data.detail;
-			
+
 			$scope.user.ID = userId;
 			$scope.user.A_1 = details['firstName'];
 			$scope.user.A_2 = details['lastName'];
 			$scope.user.A_3 = details['email'];
 			$scope.user.A_4 = details['phoneNumber'];
-			
+
 			$("#phone_number").val($scope.user.A_4);
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 	$scope.getAllAdminProfilelov();
-	
+
 	$scope.updateAdminProfile = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.user = $scope.user;
-	    
+
+        if($scope.user.A_1 == null || $scope.user.A_1 == ''){
+            toastr.error(data.msg, 'First Name Can not be Empty', {timeOut: 3000});
+            return;
+        }
+        if($scope.user.A_2 == null || $scope.user.A_2 == ''){
+            toastr.error(data.msg, 'Last Name Can not be Empty', {timeOut: 3000});
+            return;
+        }
+        if($scope.user.A_3 == null || $scope.user.A_3 == ''){
+            toastr.error(data.msg, 'Email Can not be Empty', {timeOut: 3000});
+            return;
+        }
+        if($scope.user.A_4 == null || $scope.user.A_4 == ''){
+            toastr.error(data.msg, 'Phone Can not be Empty', {timeOut: 3000});
+            return;
+        }
+
+
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/updateAdminProfile',
@@ -72,11 +90,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			if(data.done == true || data.done == 'true'){
-				
-				toastr.success(data.msg, '', {timeOut: 3000})	
-			
+
+				toastr.success(data.msg, '', {timeOut: 3000})
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -84,15 +102,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.updateAdminPassword = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.password = $scope.password;
-	    
+
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/updateAdminPassword',
@@ -101,15 +119,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
-				
+
 				$scope.password.C_1 = '';
 				$scope.password.C_2 = '';
 				$scope.password.C_3 = '';
-			
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -117,13 +135,13 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -147,7 +165,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);

@@ -42,6 +42,7 @@ use App\Models\ShadeFinderSelfieModel;
 use App\Models\FooterSubscriptionModel;
 use App\Http\Controllers\CloverController;
 use App\Models\OrderShippingTrackingModel;
+use App\Models\ProductImageModel;
 
 class HomeController extends Controller
 {
@@ -68,12 +69,18 @@ class HomeController extends Controller
    		$data ['blogs'] = $BlogsModel ->getAllActiveBlogsData(3);
 		$data['routine'] = $this->getAllRouteByNameForWebiste();
 		$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+        $data['popupData'] = $this->getPopupData();
    		$data ['page'] = 'Dashboard';
 //    		print_r('<pre>');
 //    		print_r($data ['forYou']);
 //    		exit();
 		return view ( 'web.index' )->with ( $data );
 	}
+
+    public function getPopupData(){
+        $result = DB::table('jb_popup_tbl as a')->select('a.*')->where('ID','1')->first();
+        return $result;
+    }
 	public function getAllSelfies(){
 		$ShadeFinderSelfieModel = new ShadeFinderSelfieModel();
 
@@ -318,6 +325,7 @@ class HomeController extends Controller
 
    			$data ['categoryFilter'] = $subSubCatArray;
    			$data ['categoryName'] = $Category->getSpecificCategoryData($sourceId);
+            // dd($data['categoryName']);
 
 			$data['routine'] = $this->getAllRouteByNameForWebiste();
 			$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
@@ -344,24 +352,29 @@ class HomeController extends Controller
 
    		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
    		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
+        if($data ['categoryName'] != null || $data ['categoryName'] != ''){
+            $CategoryNameNutrition = $data ['categoryName']['NAME'];
+            $CategoryNameNutritionLower = strtolower($CategoryNameNutrition);
+            $CategoryNameNutritionFirstCap = ucfirst($CategoryNameNutritionLower);
 
-		$CategoryNameNutrition = $data ['categoryName']['NAME'];
+            if($CategoryNameNutritionFirstCap == 'Nutrition'){		// if neutrition category then load nutrition sub category page
 
-		$CategoryNameNutritionLower = strtolower($CategoryNameNutrition);
+                $data ['subCategoriesList'] = $Category->getAllSubCategoriesWrtCategory($data ['categoryName']['ID']);
+                $data ['page'] = 'nutrition';
+                return view ( 'web.nutrition' )->with ( $data );
 
-		$CategoryNameNutritionFirstCap = ucfirst($CategoryNameNutritionLower);
+        }else{
+            $data['page'] = 'store';
+            return view('web.store')->with ( $data );
+        }
+        }else{
+            return redirect('/home');
+        }
 
 
-   		if($CategoryNameNutritionFirstCap == 'Nutrition'){		// if neutrition category then load nutrition sub category page
 
-   				$data ['subCategoriesList'] = $Category->getAllSubCategoriesWrtCategory($data ['categoryName']['ID']);
-   				$data ['page'] = 'nutrition';
-   				return view ( 'web.nutrition' )->with ( $data );
 
-   		}else{
-   			$data['page'] = 'store';
-   			return view('web.store')->with ( $data );
-   		}
+
    	}
 
   	public function blogPage() {
@@ -503,6 +516,7 @@ class HomeController extends Controller
 
 			$data ['features'] = $features->getspecificproductdata($sourceId);
 			$data ['productDetails'] = $Products->getSpecificProductDetails($sourceId);
+            // dd($data['productSubscriptionImage']);
 			// dd($data ['features']);
 
 // 			print_r('<pre>');
@@ -530,6 +544,8 @@ class HomeController extends Controller
 			return view ( 'web.product-detail' )->with ( $data );
 		}
 	}
+
+
 
 	public function orderDetail() {
 

@@ -219,7 +219,7 @@ class ProductModel extends Model
     	foreach ($result as $row){
 			$productShades = $ProductShade->getTotalQuantity($row->PRODUCT_ID);
 			// dd($productShades);
-			
+
 			if($productShades != null){
 
 				$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
@@ -234,8 +234,8 @@ class ProductModel extends Model
     			$arrRes[$i]['name'] = $row->NAME;
 				$i++;
 			}
-    		
-    		
+
+
     	}
 		// $arr = array_values($arrRes);
 
@@ -243,7 +243,7 @@ class ProductModel extends Model
     }
 	public function getTotalQuantity($PRODUCT_ID){
 		$result = DB::table('jb_product_shades_tbl as a')->where('a.PRODUCT_ID', $PRODUCT_ID)->sum('a.QUANTITY');
-		
+
 		if ($result) {
 			return isset($result) ? $result : null;
 		}
@@ -321,7 +321,7 @@ class ProductModel extends Model
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
 
 			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
-			
+
 			if(!empty($productShades)){
 
 				$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
@@ -1063,6 +1063,12 @@ class ProductModel extends Model
     		$arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
+            $arrRes['SUBSCRIPTION_NOTE_TITLE'] = $row->SUBSCRIPTION_NOTE_TITLE;
+    		$arrRes['SUBSCRIPTION_NOTE_DESCRIPTION'] = strip_tags(base64_decode($row->SUBSCRIPTION_NOTE_DESCRIPTION));
+    		$arrRes['SUBSCRIPTION_NOTE_LINK'] = $row->SUBSCRIPTION_NOTE_LINK;
+            $arrRes['SUBSCRIPTION_NOTE_IMAGE'] = $this->getSusbcriptionImage($row->PRODUCT_ID);
+
+            // dd($arrRes['SUBSCRIPTION_NOTE_IMAGE']);
 
     		$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
 
@@ -1103,6 +1109,14 @@ class ProductModel extends Model
     	}
 
     	return isset($arrRes) ? $arrRes : null;
+    }
+
+    public function getSusbcriptionImage($id){
+        $result = DB::table('jb_product_images_tbl')->select('DOWN_PATH')
+        ->where('PRODUCT_ID',$id)
+        ->where('SOURCE_CODE','SUBSCRIPTION_IMAGE')
+        ->first();
+        return $result;
     }
     public function getSpecificProductUnitPrice($productId){
     	DB::enableQueryLog();

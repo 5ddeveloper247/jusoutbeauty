@@ -49,7 +49,7 @@ var site = '<?php echo session('site');?>';
 			<div class="card shadee px-0 pt-2 pb-0 mt-8 mb-3">
 
 				<form id="">
-					<h2>Take A Quiz</h2>
+					<h2 class="mb-3">Take A Quiz</h2>
 					<!-- progressbar -->
 
 					<div class="progress progbar">
@@ -91,11 +91,11 @@ var site = '<?php echo session('site');?>';
 
 										<ul class="nav nav-pills d-md-flex border-bottom" id="pills-tab">
 
-											<li class="nav-item quiz_nav_links" >
+											<li class="nav-item quiz_nav_links mb-4" >
 												<a class="nav-link cursor-pointer yeslevelonetabs active show font-weight-600 px-0 pb-3 mr-md-6 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
 												id="yes_level_one_all" ng-click="levelOneTabsSwitch('all');">All 100-498</a>
 											</li>
-											<li class="nav-item quiz_nav_links" ng-repeat="row in displayCollectionLevelOneTypesOptions">
+											<li class="nav-item quiz_nav_links mb-4" ng-repeat="row in displayCollectionLevelOneTypesOptions">
 												<a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-0 pb-3 mr-md-6 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
 												id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
 											</li>
@@ -121,7 +121,7 @@ var site = '<?php echo session('site');?>';
 																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img" width="445" height="411"> --}}
 																		</a>
 
-																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION}}</p>
+																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION | limitTo:60}}</p>
 																	</div>
 
 																</div>
@@ -173,11 +173,11 @@ var site = '<?php echo session('site');?>';
 																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.TITLE}}</p>
 
 																		<a href="javascript:;" ng-repeat="img in row.images" class="card shadee border-0 hover-change-content insta-secc insta_section_shade_finder insta-section-image submit-btn">
-																			{{-- <img src="@{{img.downPath}}" alt="alt" class="card-img objectfit-cover"> --}}
-																			<img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img objectfit-cover">
+																			<img src="@{{img.downPath}}" alt="alt" class="card-img objectfit-cover">
+																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img objectfit-cover"> --}}
 																		</a>
 
-																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION}}</p>
+																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION | limitTo:60}}</p>
 																	</div>
 																</div>
 
@@ -303,7 +303,7 @@ var site = '<?php echo session('site');?>';
 								<div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts"><!-- data-animate="fadeInUp" -->
 									<div class="card shadee border-0">
 										<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 mb-2">
-											<a href="javascript:;">@{{row.CATEGORY_NAME}}</a>
+											<a href="javascript:;">@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
 										</h3>
 										<div class="position-relative hover-zoom-in">
 
@@ -337,7 +337,7 @@ var site = '<?php echo session('site');?>';
 										<div class="card-body pt-4 px-0 pb-0 text-left">
 											<a href="store.html"
 												class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
-												@{{row.SUB_CATEGORY_NAME}}</a>
+												@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
 
 											<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375">
 												<a href="product-detail.html">@{{row.NAME}}</a>
@@ -350,7 +350,7 @@ var site = '<?php echo session('site');?>';
 													</p>
 												</div>
 												<div class="col-6">
-													<p class="text-primary mb-0 card-title text-right lh-14375">@{{row.UNIT}}</p>
+													<p class="text-primary mb-0 card-title text-right lh-14375">@{{row.UNIT | limitTo:8}}</p>
 												</div>
 											</div>
 
@@ -1194,7 +1194,8 @@ $("#yes_level_one_all").click(function(){
 		$('.slick-slider1').not('.slick-initialized').slick({
 			slidesToShow: 4,
 			"infinite":false,
-			"autoplay":false,
+			"autoplay":true,
+            "autoplaySpeed": 10000,
 			"dots":false,
 			"arrows":true,
 			"responsive":[{

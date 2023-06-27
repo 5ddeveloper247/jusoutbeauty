@@ -692,22 +692,17 @@
                                                 <hr>
 
                                                 <div class="row pt-10 align-items-center subsc_ec">
-
                                                     <div class="col-md-6 ">
-                                                        <h2 class="mb-2">Subscription</h2>
-                                                        <p class="mb-6">Indulge in the convenience and exclusive
-                                                            benefits offered with our subscription service. Simply
-                                                            select how frequently you'd like to recieve your products,
-                                                            and we'll ensure you never run on empty. You may adjust
-                                                            your delivery preferences at any time.</p>
+                                                        <h2 class="mb-2">{{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
+                                                        <p class="mb-6">{{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}</p>
 
-                                                        <a href="#" data-toggle="tooltip" data-placement="left"
+                                                        <a href="{{  $productDetails['SUBSCRIPTION_NOTE_LINK'] }}" data-toggle="tooltip" data-placement="left"
                                                             title="Click to see more Ingredients"
-                                                            class="preview btn btn-primary"> <span>Learn More </span>
+                                                            class="preview btn btn-primary"> <span>Read More</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-6 mb-6 mb-md-0">
-                                                        <img src="{{ url('assets-web') }}/images/image-new.jpg"
+                                                        <img src="{{  $productDetails['SUBSCRIPTION_NOTE_IMAGE']->DOWN_PATH }}"
                                                             alt="The Iconic Silhouette "
                                                             class="fadeInRight animated subs_img">
 
