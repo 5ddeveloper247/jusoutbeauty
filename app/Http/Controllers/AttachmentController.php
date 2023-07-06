@@ -44,7 +44,7 @@ class AttachmentController extends Controller
 
 				list ( $width, $height ) = getimagesize ( $_FILES['uploadattl']['tmp_name'] );
 
-				if ($width < "170" || $height < "70") {
+				if ($width < "1200" || $height < "600") {
 
 					print(json_encode(array(04)));
 					exit;
@@ -1002,7 +1002,7 @@ public function uploadPopupImage(Request $request) {
 
     if (isset($_FILES['uploadImage']) && ($_FILES['uploadImage']['size']>0)){
         $path = 	public_path()."/uploads/popup/images";
-        $downpath= 	url('public')."/uploads/popup//images";
+        $downpath= 	url('public')."/uploads/popup/images";
 
         if(isset($_FILES['uploadImage']) && $_FILES['uploadImage']['error'] == 0){
             $userId = isset($_REQUEST['userId'])?$_REQUEST['userId']:"0";

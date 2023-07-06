@@ -311,6 +311,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
     Route::get('/home-page-popup',[AdminController::class,'popup']);
     Route::post('/getPopupData',[AdminController::class,'getPopupData']);
     Route::post('/savePopupData',[AdminController::class,'savePopupData']);
+    Route::post('/uploadPopupImage',[AttachmentController::class,'uploadPopupImage']);
 	Route::get('/payments', [AdminController::class, 'payments']);
 	Route::get('/view-payment', [AdminController::class, 'viewPayment']);
 	Route::get('/delivery', [AdminController::class, 'Delivery']);

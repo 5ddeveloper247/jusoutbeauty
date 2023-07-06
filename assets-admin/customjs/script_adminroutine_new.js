@@ -160,11 +160,17 @@ $scope.getroutinetypes = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-
 				$scope.subcategorylov = data.subCategory;
 				$scope.product.P_10 = '';
 				$scope.subsubcategorylov = '';
-				$scope.productlov=data.product;
+                $test = data.product;
+                if($test != 0 || $test != ''){
+                    $scope.productlov=data.product;
+                }else{
+                    $scope.product.P_8 = '';
+                    toastr.error('No Products found for selected Category, Choose Another','', {timeOut: 3000});
+                }
+
 
 				setTimeout(function(){
 
@@ -198,9 +204,13 @@ $scope.getroutinetypes = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-
-				$scope.productlov=data.product;
-
+                $test = data.product;
+                if($test != 0 || $test != ''){
+                    $scope.productlov=data.product;
+                }else{
+                    $scope.product.P_10 = '';
+                    toastr.error('No Products found for selected SubSubCategory, Choose Another','', {timeOut: 3000});
+                }
 			})
 			.error(function(data, status, headers, config) {
 			});
@@ -253,7 +263,15 @@ $scope.getroutinetypes = function(){
 			 }).success(function(data, status, headers, config) {
 
 				$scope.subsubcategorylov = data.subSubCategory;
-				$scope.productlov=data.product;
+                $test = data.product;
+                console.log(data);
+                if($test != 0 || $test != ''){
+                    $scope.productlov=data.product;
+                }else{
+                    $scope.product.P_9 = '';
+                    toastr.error('No Products found for selected SubCategory, Choose Another','', {timeOut: 3000});
+                }
+				// $scope.productlov=data.product;
 			 })
 			.error(function(data, status, headers, config) {
 			});
@@ -1208,7 +1226,7 @@ $scope.getroutinetypes = function(){
 
  	      	}else if(xhr.responseText[0] == 04){
 
- 	      		toastr.error("Error : Image dimension must be minimum 170 X 70", '', {timeOut: 3000});
+ 	      		toastr.error("Error : Image dimension must be minimum 1200 X 600", '', {timeOut: 3000});
 
  	      	}else{
 
@@ -1335,6 +1353,8 @@ $scope.getroutinetypes = function(){
 //
 //            }
 //        });
+
+
 
 
 

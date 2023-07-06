@@ -3765,21 +3765,27 @@ class AdminController extends Controller
 			echo json_encode ( $arrRes );
 			die();
 		}
-		$product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category['id'])->where('IS_DELETED',0)->orderby('PRODUCT_ID', 'desc')->get();
+		$product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$category['id'])->where('IS_DELETED',0)->where('STATUS','active')->orderby('PRODUCT_ID', 'desc')->get();
+        if($product_lov->isEmpty()){
+            $arrRes ['done'] = false;
+			$arrRes ['product'] = [];
+			echo json_encode ( $arrRes );
+			die();
+        }else{
+             // $arrRes['product']=$product_lov;
+             $i=0;
+             foreach ($product_lov as $row){
+                 $arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
+                 $arrRes['product'][$i]['name'] = $row->NAME;
+                 $i++;
+             }
+             $arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory($category['id']);
+             echo json_encode ( $arrRes );
 
-		// $arrRes['product']=$product_lov;
-		$i=0;
-		foreach ($product_lov as $row){
-    		$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
-    		$arrRes['product'][$i]['name'] = $row->NAME;
-
-    		$i++;
-    	}
-		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory($category['id']);
 
 
+        }
 
-		echo json_encode ( $arrRes );
 	}
 	public function getSubCategoriesWrtCategory1(Request $request) {
 		$Category = new CategoryModel();
@@ -3799,7 +3805,6 @@ class AdminController extends Controller
 		}
 
 		$arrRes ['subCategory'] = $Category->getSubCategoryBundleLovWrtCategory($category['id']);
-
 		echo json_encode ( $arrRes );
 	}
         public function getproductswrtsubcategory(Request $request){
@@ -3819,17 +3824,25 @@ class AdminController extends Controller
 			   die();
 			}
 
-			$product_lov = DB::table('jb_product_tbl')->where('SUB_SUB_CATEGORY_ID',$subsubcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
-			// $arrRes['product']=$product_lov;
-			$i=0;
-			foreach ($product_lov as $row){
-				$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
-				$arrRes['product'][$i]['name'] = $row->NAME;
+			$product_lov = DB::table('jb_product_tbl')->where('SUB_SUB_CATEGORY_ID',$subsubcategory['id'])->where('STATUS','active')->orderby('PRODUCT_ID', 'desc')->get();
+            if($product_lov->isEmpty()){
+                $arrRes ['done'] = false;
+                $arrRes ['product'] = [];
+                echo json_encode ( $arrRes );
+                die();
+            }else{
+                // $arrRes['product']=$product_lov;
+                $i=0;
+                foreach ($product_lov as $row){
+                    $arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
+                    $arrRes['product'][$i]['name'] = $row->NAME;
 
-				$i++;
-			}
+                    $i++;
+                }
 
-			 echo json_encode ( $arrRes );
+                echo json_encode ( $arrRes );
+
+            }
 
 		}
 
@@ -3860,16 +3873,25 @@ class AdminController extends Controller
 		$subcategory = $details ['subcategory'];
 		// $product_ID = $details['productId'];
 		// $userId = $details ['userId'];
-		$product_lov = DB::table('jb_product_tbl')->where('IS_DELETED',0)->where('SUB_CATEGORY_ID',$subcategory['id'])->orderby('PRODUCT_ID', 'desc')->get();
+		$product_lov = DB::table('jb_product_tbl')->where('IS_DELETED',0)->where('SUB_CATEGORY_ID',$subcategory['id'])->where('STATUS','active')->orderby('PRODUCT_ID', 'desc')->get();
 
-		// $arrRes['product']=$product_lov;
-		$i=0;
+
+       if($product_lov->isEmpty()){
+            $arrRes ['done'] = false;
+			$arrRes ['product'] = [];
+			echo json_encode ( $arrRes );
+			die();
+       }else{
+        $i=0;
 		foreach ($product_lov as $row){
     		$arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
     		$arrRes['product'][$i]['name'] = $row->NAME;
 
     		$i++;
     	}
+       }
+		// $arrRes['product']=$product_lov;
+
 
 		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory($subcategory['id']);
 		// $arrRes ['msg'] = 'Sub Category ID Updated Successfully!';

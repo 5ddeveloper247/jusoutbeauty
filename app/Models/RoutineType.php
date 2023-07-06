@@ -9,7 +9,7 @@ use DateTime;
 
 class RoutineType extends model
 {
-      
+
     protected $table="jb_routine_tbl";
     /**
      * The attributes that are mass assignable.
@@ -31,12 +31,12 @@ class RoutineType extends model
      ];
 
      public function getRoutineTypeData(){
-    	
+
     	$result = DB::table('jb_routine_tbl as a')->select('a.*')
 		->where('a.status','active')
     	->orderBy('a.UPDATED_ON','desc')
     	->get()->toArray();
-    	
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
@@ -52,19 +52,19 @@ class RoutineType extends model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    		
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
 	public function getRoutineTypeDataAdmin(){
-    	
+
     	$result = DB::table('jb_routine_tbl as a')->select('a.*')
     	->orderBy('a.UPDATED_ON','desc')
     	->get();
-    	
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
@@ -80,10 +80,10 @@ class RoutineType extends model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    		
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
@@ -92,36 +92,42 @@ class RoutineType extends model
 		->where('ROUTINE_ID', $id)
     	->orderBy('a.UPDATED_ON','desc')
     	->get();
-    	
-    	$i=0;
-    	foreach ($result as $row){
-    		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
-    		$arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
-			$arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
-    		$arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
-			$arrRes[$i]['IMAGE_DOWNPATH'] = $row->IMAGE_DOWN_PATH;
-    		$arrRes[$i]['USER_ID'] = $row->USER_ID;
-    		$arrRes[$i]['NAME'] = $row->NAME;
-    		$arrRes[$i]['STATUS'] = $row->STATUS;
-    		$arrRes[$i]['DATE'] = $row->DATE;
-    		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
-    		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
-    		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
-    		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    		
-    		$i++;
-    	}
-    
-    	return isset($arrRes) ? $arrRes : null;
+
+        if($result->isEmpty()){
+            abort(404);
+        }else{
+            $i=0;
+            foreach ($result as $row){
+                $arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
+                $arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
+                $arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
+                $arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
+                $arrRes[$i]['IMAGE_DOWNPATH'] = $row->IMAGE_DOWN_PATH;
+                $arrRes[$i]['USER_ID'] = $row->USER_ID;
+                $arrRes[$i]['NAME'] = $row->NAME;
+                $arrRes[$i]['STATUS'] = $row->STATUS;
+                $arrRes[$i]['DATE'] = $row->DATE;
+                $arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
+                $arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
+                $arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
+                $arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
+
+                $i++;
+            }
+
+            return isset($arrRes) ? $arrRes : null;
+        }
+
+
 	}
 
     public function getSpecificRotineTypeData($id){
-    	 
+
     	$result = DB::table('jb_routine_tbl as a')->select('a.*')
     	->where('a.ROUTINE_ID',$id)
     	->orderBy('a.ROUTINE_ID','desc')
     	->get();
-    	 
+
     	$i=0;
     	foreach ($result as $row){
 
@@ -138,19 +144,19 @@ class RoutineType extends model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
 	public function getSpecificRoutineTypeAttachments($TYPEID){
-    
+
     	$result = DB::table('jb_routine_tbl as a')->select('a.*')
     	->where('a.ROUTINE_ID', $TYPEID)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		// $arrRes['ID'] = $row->ATTACHMENT_ID;
@@ -169,9 +175,9 @@ class RoutineType extends model
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
-   
+
 }

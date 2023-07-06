@@ -102,7 +102,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                     <div class="form-group col-12">
                                         <h3>Write Your Reply</h3>
                                         <label for="comment">Comment/Suggestion</label>
-                                        <textarea name="comment" id="comment" ng-model="Reply['R_1']" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea name="comment" id="comment" ng-model="Reply['R_1']" cols="30" rows="5" class="form-control" placeholder="Write Your Comment(s) here..."></textarea>
                                     </div>
                                     <div class="form-group col-12">
                                         <label for="products">Select Product(s)</label>

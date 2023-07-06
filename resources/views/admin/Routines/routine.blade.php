@@ -175,6 +175,7 @@ button{
 												<span class="text-danger">*</span></label>
 											<div class="summernote" id="summernote"></div>
 										</div>
+
 									</div>
 
 
@@ -190,7 +191,7 @@ button{
 											<div class="row register-new-product-picture-para">
 												<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1();" style="">
 													<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-													<p>Min : 170 X 70</p>
+													<p>Min : 1200 X 600</p>
 												</div>
 												<div class="col-sm-9">
 													<div class="row" id="p_att">
@@ -235,7 +236,7 @@ button{
                                     </div>
                                     <div class="text-left mt-4 mb-2">
                                         <button class="btn btn-primary btn-sl-sm mr-2" type="button" ng-click="saveRoutinename();"><span class="mr-2"><i class="fa fa-paper-plane"></i></span>Save</button>
-                                        <a href="javascript:;" class="btn btn-danger light btn-sl-sm" ng-click="backToListing();"><span class="mr-2"><i class="fa fa-times" aria-hidden="true"></i></span>Discard</a>
+                                        {{-- <a href="javascript:;" class="btn btn-danger light btn-sl-sm" ng-click="backToListing();"><span class="mr-2"><i class="fa fa-times" aria-hidden="true"></i></span>Back</a> --}}
                                     </div>
                                    </div>
 									</form>
@@ -250,7 +251,7 @@ button{
 					<div class="col-xl-12 col-xxl-12">
 						<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Product Routine & Types</h4>
+									<h4 class="card-title">Routine Steps</h4>
 								</div>
 								<div class="card-body">
 									<!-- Nav tabs -->
@@ -409,7 +410,7 @@ button{
 													<td>@{{row.STEP_NO}}</td>
 													<td>@{{row.PRODUCT_NAME.NAME}} <small class="badge badge-danger" ng-if="row.PRODUCT_NAME.IS_DELETED == '1'" style="font-size: 10px">Deleted</small>
                                                     </td>
-													<td>@{{row.DESCRIPTION}}</td>
+													<td>@{{row.DESCRIPTION | limitTo:20}}</td>
 													<td>
 														<div class="dropdown ml-auto text-right">
 															<div class="btn-link" data-toggle="dropdown">
@@ -638,6 +639,11 @@ button{
     function form1(){
     	$("#uploadattl").click();
     }
+
+
+
+
+
 
 
     </script>

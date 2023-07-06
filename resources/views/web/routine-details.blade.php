@@ -2,6 +2,9 @@
 // print_r($categoryName);
 // exit();
 ?>
+@php
+use Illuminate\Support\Str;
+@endphp
 @include('web.web-header')
 <script>
     var site = '<?php echo session('site'); ?>';
@@ -154,32 +157,81 @@
             /* background-size: 100% 100%; */
         }
     }
+    .overlay {
+    position: relative;
+}
+
+.overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    z-index: 1;
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 2;
+}
+
+
 </style>
 <main ng-app="project1">
     <?php $routineId = $routineById ;?>
-    <section class="py-10 mt-15 mt-15-67 bg-gray hero-section"
+    {{-- <section class="py-10 mt-15 mt-15-67 bg-gray hero-section"
         style="background-image: url(<?=$routineId[0]['IMAGE_DOWNPATH']?>) !important;
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: cover;
             background-position: 50%;
-            padding-top: 200px !important;
-            padding-bottom: 200px !important;
+            padding-top: 100px !important;
+            padding-bottom: 100px !important;
             background-color: unset !important;
             ">
         <div class="container">
 
             <h1 class=" mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
-            <p class="text-center"><?=$routineId[0]['DESCRIPTION']?></p>
-            {{-- <nav aria-label="breadcrumb">
+            <p class="text-center text-white"><?=$routineId[0]['DESCRIPTION']?></p>
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center align-items-center fs-15 mb-3">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ session('site') }}/routine">Routine</a>
                     </li>
                     <li class="breadcrumb-item d-flex align-items-center"><a class="text-decoration-none"></a>
                     </li>
                 </ol>
-            </nav> --}}
+            </nav>
         </div>
-    </section>
+    </section> --}}
+
+    <section class="py-10 mt-15 mt-15-67 bg-gray hero-section overlay d-flex justify-content-center align-content-center"
+    style="background-image: url(<?=$routineId[0]['IMAGE_DOWNPATH']?>);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding-top: 100px !important;
+        padding-bottom: 100px !important;
+        background-color: unset !important;
+        /* background-attachment:fixed; */
+        height:80vh;
+        ">
+    <div class="overlay-content container">
+        <h1 class="mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
+        {{-- <p class="text-center text-white"><?=$routineId[0]['DESCRIPTION']?></p> --}}
+        <p class="text-center text-white">{!! Str::limit($routineId[0]['DESCRIPTION'], 200,false) !!}</p>
+
+        {{-- <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center align-items-center fs-15 mb-3">
+                <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ session('site') }}/routine">Routine</a>
+                </li>
+                <li class="breadcrumb-item d-flex align-items-center"><a class="text-decoration-none"></a>
+                </li>
+            </ol>
+        </nav> --}}
+    </div>
+</section>
+
 
     <section class="pb-6 inc_sec" ng-controller="projectinfo1">
         <div class="container container-custom">
@@ -372,7 +424,7 @@
                         @endforeach
 
                         @endif
-                        @if($i == 0)
+                        @if(!isset($i))
                         <div class="col-md-12 ">
                             <p class="text-center read-more read-more-btn">NO ROUTINE ADDED ...
                             </p>
