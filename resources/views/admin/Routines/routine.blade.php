@@ -4,14 +4,39 @@ var userId = '<?php echo session('userId');?>';
 var site = '<?php echo session('site');?>';
 var baseurl = "<?php echo url('/assets-admin');?>";
 </script>
-<!-- <style>
-a[type="button"] {
+
+<style>
+/* a[type="button"] {
       color:white !important;
 }
 button{
 	color:white !important;
+} */
+.image-box-wrapper {
+  position: relative;
 }
-</style> -->
+
+.image-box {
+  filter: brightness(1); /* Adjust the value to make it darker */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: 9vw;
+  height: 100%;
+  background-color: rgba(209, 209, 209, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 0;
+}
+
+.img_remove:hover .overlay {
+  opacity: 1;
+}
+
+</style>
 	<div ng-app="project1">
         <!--**********************************
             Content body start
@@ -165,7 +190,7 @@ button{
 											<div class="row register-new-product-picture-para">
 												<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1();" style="">
 													<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-													<p>125 X 125</p>
+													<p>Min : 170 X 70</p>
 												</div>
 												<div class="col-sm-9">
 													<div class="row" id="p_att">

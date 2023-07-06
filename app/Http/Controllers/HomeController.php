@@ -2207,7 +2207,6 @@ class HomeController extends Controller
    		$SubscriptionModel = new SubscriptionModel();
    		$ProductModel = new ProductModel();
    		$BundleProductLineModel = new BundleProductLineModel();
-
    		$details = $_REQUEST ['details'];
    		$userId = $details ['userId'];
    		$cartId = $details ['cartId'];

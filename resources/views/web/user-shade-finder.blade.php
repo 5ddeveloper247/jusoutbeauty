@@ -72,7 +72,7 @@
                         placeholder="Email" required>
                     <label style=" display: block;text-align:left;">Upload your selfie</label>
                     <input name="file" type="file" class="form-control mb-3" placeholder="UPLOAD YOUR SELFIE"
-                        id="selfie_img" name="selfie_img" required>
+                        id="selfie_img" name="selfie_img" required accept="images/*">
 
                     <button type="submit" class="btn btn-primary btn-block savebtn">Submit</button>
                     <button type="button" class="btn btn-primary btn-block loaderbtn" disabled style="display: none"><i

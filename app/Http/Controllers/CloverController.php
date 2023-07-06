@@ -40,12 +40,13 @@ class CloverController extends Controller
     public function makePayment(Request $request, $type = '',$response = false)
     {
         $post=$request->all();
+        // dd($post);
         $post['currency'] = 'USD';
         $post['source'] = $_POST['cloverToken'];
         $post['type'] = isset($_POST['paymentType']) ? $_POST['paymentType'] : '';
-        
+
         if($post['type'] == 'checkout'){
-        
+
         	$checkoutDetails['cloverToken'] = isset($_POST['cloverToken']) ? $_POST['cloverToken'] : '';
         	$checkoutDetails['paymentType'] = isset($_POST['paymentType']) ? $_POST['paymentType'] : '';
         	$checkoutDetails['userId'] = isset($_POST['userId']) ? $_POST['userId'] : '';
@@ -61,15 +62,15 @@ class CloverController extends Controller
         	$checkoutDetails['S_9'] = isset($_POST['S_9']) ? $_POST['S_9'] : '';
         	$checkoutDetails['S_10'] = isset($_POST['S_10']) ? $_POST['S_10'] : '';
         	$checkoutDetails['S_11'] = isset($_POST['S_11']) ? $_POST['S_11'] : '';
-        
+
         }else if($post['type'] == 'subscription'){
-        	
+
         	$subsDetails['paymentType'] = isset($_POST['paymentType']) ? $_POST['paymentType'] : '';
         	$subsDetails['userId'] = isset($_POST['userId']) ? $_POST['userId'] : '';
         	$subsDetails['subsId'] = isset($_POST['subsId']) ? $_POST['subsId'] : '';
-        	
+
         }else if($post['type'] == 'giving'){
-        
+
         	$givingDetails['cloverToken'] = isset($_POST['cloverToken']) ? $_POST['cloverToken'] : '';
         	$givingDetails['paymentType'] = isset($_POST['paymentType']) ? $_POST['paymentType'] : '';
         	$givingDetails['userId'] = isset($_POST['userId']) ? $_POST['userId'] : '';
@@ -77,10 +78,10 @@ class CloverController extends Controller
         	$givingDetails['G_2'] = isset($_POST['G_2']) ? $_POST['G_2'] : '';
         	$givingDetails['G_3'] = isset($_POST['G_3']) ? $_POST['G_3'] : '';
         	$givingDetails['G_4'] = isset($_POST['G_4']) ? $_POST['G_4'] : '';
-        
+
         }
-        
-        
+
+
         $clover_details = $this->getCloverConfig();
 
         $url= env('CLOVER_CHARGE_END_POINT');
@@ -118,18 +119,18 @@ class CloverController extends Controller
 //             	print_r('<pre>');
 //             	print_r($checkoutDetails);
 //             	exit();
-            	
+
             	if($_POST['paymentType'] == 'checkout'){
-            		
+
             		$this->saveCheckout($request,$checkoutDetails,$response1);
             		//return redirect('home');// for success case
 					return redirect('success-message');
             	}else if($_POST['paymentType'] == 'subscription'){
-            		
+
             		$this->saveSubscription($request,$subsDetails,$response1);
             		return redirect('success-message-sub');// for success case
             	}else if($_POST['paymentType'] == 'giving'){
-            		
+
             		$this->saveGivings($request,$givingDetails,$response1);
             		return redirect('success-message-giving');// for success case
             	}
@@ -137,15 +138,15 @@ class CloverController extends Controller
                 return redirect('error-message');
             }
     }
-    
+
     public function saveGivings(Request $request,$givingDetails,$response1){
-    	
+
     	$EmailForwardModel = new EmailForwardModel();
     	$EmailConfigModel = new EmailConfigModel;
-    	
+
     	$userId = $givingDetails['userId'];
     	$amount = $response1->amount/100;
-    	
+
     	$givingId = DB::table ( 'jb_giving_tbl' )->insertGetId (
     			array ( 'USER_ID' => $userId,
     					'USER_NAME' => $givingDetails['G_1'].' '.$givingDetails['G_2'],
@@ -155,30 +156,30 @@ class CloverController extends Controller
     					'PAYMENT_DATE' => date ( 'Y-m-d H:i:s' ),
     					'PAYMENT_TYPE' => 'clover',
     					'PAYMENT_STATUS' => 'paid',
-    					
+
     					'TRANSACTION_ID' => $response1->id,
     					'TRANSACTION_STATUS' => $response1->status,
     					'TRANSACTION_RESPONSE' => json_encode($response1),
-    					
+
     					'CREATED_BY' => $userId,
     					'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
     					'UPDATED_BY' => $userId,
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
+
     	// to user email push
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('GIVING REGARDS');
-    	 
+
     	$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
 							<p>Dear '.$givingDetails['G_1'].',</p><br>
 							'.$emailConfigDetails['message'].'
-							<p>JusOut Beauty</p><br>		
+							<p>JusOut Beauty</p><br>
 						</td>
 	        		</tr>';
-    	 
-    	 
+
+
     	$email_details['to_id'] = session('userId');
     	$email_details['to_email'] = $givingDetails['G_3'];
     	$email_details['from_id'] = 1;
@@ -187,12 +188,12 @@ class CloverController extends Controller
     	$email_details['message'] = "";
     	$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "GIVING REGARDS";
-    	 
+
     	$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-    	
+
     	// to admin email push
     	$emailConfigDetails1 = $EmailConfigModel->getSpecificEmailConfigByCode('GIVING ALERT');
-    	
+
     	$htmlbody1=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
 							<p>Hello admin,</p><br>
@@ -204,7 +205,7 @@ class CloverController extends Controller
 							<p>Kind Regards, JusOut Beauty</p>
 						</td>
 	        		</tr>';
-    	
+
     	$email_details['to_id'] = 1;
     	$email_details['to_email'] = 'admin@jusoutbeauty.com';
     	$email_details['from_id'] = 1;
@@ -213,13 +214,13 @@ class CloverController extends Controller
     	$email_details['message'] = "";
     	$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "GIVING ALERT";
-    	
+
     	$EmailForwardModel->sendEmail('Received Donation',$htmlbody1,$email_details);
-    	
+
     	return true;
     }
     public function saveSubscription(Request $request,$subsDetails,$response1){
-    	 
+
 //     	$OrderModel = new OrderModel();
    		$OrderDetailModel = new OrderDetailModel();
    		$OrderShippingModel = new OrderShippingModel();
@@ -228,17 +229,17 @@ class CloverController extends Controller
    		$SubscriptionModel = new SubscriptionModel();
    		$EmailForwardModel = new EmailForwardModel();
    		$EmailConfigModel = new EmailConfigModel;
-    	
+
     	$userId = $subsDetails['userId'];
     	$subsId = $subsDetails ['subsId'];
-    	
+
     	$subsDetail = $SubscriptionModel->getSpecificUserSubscriptionDetails($subsId);
-    	
+
     	$orderlineShades = $OrderDetailModel->getOrderLineProductShadesDetail($subsDetail['ORDER_LINE_ID']);
     	$shippingAddr = $OrderShippingModel->getAllSpecificOrderShippingData($subsDetail['ORDER_ID']);
-    	
+
     	$orderStatus = 'placed';
-    	
+
     	$orderId = DB::table ( 'jb_order_tbl' )->insertGetId (
     			array ( 'USER_ID' => $userId,
     					'ORDER_DATE' => date ( 'Y-m-d H:i:s' ),
@@ -249,9 +250,9 @@ class CloverController extends Controller
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
+
     	if(isset($subsDetail) && !empty($subsDetail)){
-    			 
+
     		$orderLineId = DB::table ( 'jb_order_detail_tbl' )->insertGetId (
     				array ( 'ORDER_ID' => $orderId,
     						'PRODUCT_TYPE' => $subsDetail['PRODUCT_TYPE'],
@@ -260,26 +261,26 @@ class CloverController extends Controller
     						'QUANTITY' => $subsDetail['QUANTITY'],
     						'UNIT_PRICE' => $subsDetail['UNIT_PRICE1'],
     						'TOTAL_AMOUNT' => $subsDetail['TOTAL_AMOUNT1'],
-    							 
+
     						'VAT_PERCENT' => $subsDetail['VAT_PERCENT'],
     						'VAT_AMOUNT' => $subsDetail['VAT_AMOUNT'],
     						'DISCOUNT_AMOUNT' => $subsDetail['subsDiscount1'],
     						'TOTAL_AMOUNT_INC_VAT' => $subsDetail['IncVatTotalAmount1'],
-    							 
+
     						'SUBSCRIPTION_CHECK' => 'One-Time Purchase',
     						'SUBSCRIPTION_ID' => '',
-    	
+
     						'CREATED_BY' => $userId,
     						'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
     						'UPDATED_BY' => $userId,
     						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     				)
     			);
-    			 
+
     		if(isset($orderlineShades) && !empty($orderlineShades)){
-    				 
+
     			foreach($orderlineShades as $list){
-    					 
+
     				$orderShadeLineId = DB::table ( 'jb_order_shade_detail_tbl' )->insertGetId (
     						array ( 'ORDER_LINE_ID' => $orderLineId,
     								'ADDED_EFFECTIVE_DATE' => date ( 'Y-m-d H:i:s' ),
@@ -296,7 +297,7 @@ class CloverController extends Controller
     			}
     		}
     	}
-    	
+
     	$shippingAddrId = DB::table ( 'jb_order_shipping_address_tbl' )->insertGetId (
     			array ( 'USER_ID' => $userId,
     					'ORDER_ID' => $orderId,
@@ -311,7 +312,7 @@ class CloverController extends Controller
     					'EMAIL' => isset($shippingAddr ['EMAIL']) ? $shippingAddr ['EMAIL'] : '',
     					'PHONE_NUMBER' => isset($shippingAddr ['PHONE_NUMBER']) ? $shippingAddr ['PHONE_NUMBER'] : '',
     					'BILLING_ADDRESS_FLAG' => isset($shippingAddr ['BILLING_ADDRESS_FLAG']) ? $shippingAddr ['BILLING_ADDRESS_FLAG'] : '',
-    	
+
     					'DATE' => date ( 'Y-m-d H:i:s' ),
     					'CREATED_BY' => $userId,
     					'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -331,7 +332,7 @@ class CloverController extends Controller
     					'TRANSACTION_ID' => $response1->id,
     					'TRANSACTION_STATUS' => $response1->status,
     					'TRANSACTION_RESPONSE' => json_encode($response1),
-    						
+
     					'DATE' => date ( 'Y-m-d H:i:s' ),
     					'CREATED_BY' => $userId,
     					'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -339,18 +340,18 @@ class CloverController extends Controller
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
-    	// next subscription table 
-    	
+
+    	// next subscription table
+
     	$subscrptionDetails = $SubscriptionModel->getSpecificSubscriptionData($subsDetail['SUBSCRIPTION_ID']);
-    		
+
     	if(isset($subscrptionDetails) && !empty($subscrptionDetails)){
-    		 
+
     		$subsMonths = $subscrptionDetails['S_7']; // duration months
     		$subscriptionDate = $subsDetail['SUBSCRIPTION_DATE1'];
     		$currentDate = date('Y-m-d');
     		$nextSubsDate = date ( "Y-m-d", strtotime ( "$currentDate +$subsMonths month" ) );
-    		 
+
     		$result = DB::table ( 'jb_user_subscription_tbl' )->insertGetId (
     				array ( 'USER_ID' => $userId,
     						'SUBSCRIPTION_ID' => $subscrptionDetails['ID'],
@@ -363,7 +364,7 @@ class CloverController extends Controller
     						'NEXT_PAYMENT_DATE' => $nextSubsDate,
     						'PAYMENT_STATUS' => 'pending',
     						'SUBSCRIPTION_STATUS' => 'active',
-    						 
+
     						'DATE' => date ( 'Y-m-d H:i:s' ),
     						'CREATED_BY' => $userId,
     						'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -372,7 +373,7 @@ class CloverController extends Controller
     				)
     			);
     	}
-    	
+
     	$trackingId = DB::table ( 'jb_order_shippment_tracking_tbl' )->insertGetId (
     			array ( 'ORDER_ID' => $orderId,
     					'STATUS' => $orderStatus,
@@ -383,23 +384,23 @@ class CloverController extends Controller
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
+
     	$result = DB::table ( 'jb_user_subscription_tbl' ) ->where ( 'USER_SUBSCRIPTION_ID', $subsDetail['USER_SUBSCRIPTION_ID'] ) ->update (
     			array ( 'PAYMENT_STATUS' => 'paid',
     					'UPDATED_BY' => $userId,
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
+
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SUBSCRIPTION');
-    	
+
     	$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
 							<p>Hello '.session("email").',</p><br>
 							'.$emailConfigDetails['message'].'
 						</td>
 	        		</tr>';
-    	
+
     	$email_details['to_id'] = session('userId');
     	$email_details['to_email'] = session('email');
     	$email_details['from_id'] = 1;
@@ -408,45 +409,44 @@ class CloverController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "SUBSCRIPTION_ORDER";
-    	 
+
     	$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-    	
+
     	return;
     }
-    
+
     public function saveCheckout(Request $request,$checkoutDetails,$response1){
-    	
+
     	$ShoppingcartModel = new ShoppingcartModel();
     	$SubscriptionModel = new SubscriptionModel();
     	$EmailForwardModel = new EmailForwardModel();
     	$EmailConfigModel = new EmailConfigModel;
     	$ProductModel = new ProductModel();
     	$BundleProductLineModel = new BundleProductLineModel();
-    	
     	$userId = $checkoutDetails['userId'];
     	$cartId = $checkoutDetails ['cartId'];
     	$shipping = $checkoutDetails;
-    	
+
     	$cart = $ShoppingcartModel->getSpecificCartDetails($cartId);
     	$cartDetails = $ShoppingcartModel->getSpecificCartLineForOrder($cartId);
-    	
+
     	$orderStatus = 'placed';
-    	
+
     	$orderId = DB::table ( 'jb_order_tbl' )->insertGetId (
     			array ( 'USER_ID' => $userId,
     					'ORDER_DATE' => date ( 'Y-m-d H:i:s' ),
     					'ORDER_STATUS' => $orderStatus,
-    	
+
     					'CREATED_BY' => $userId,
     					'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
     					'UPDATED_BY' => $userId,
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     			);
-    	
+
     	if(isset($cartDetails) && !empty($cartDetails)){
     		foreach ($cartDetails as $line){
-    	
+
     			$orderLineId = DB::table ( 'jb_order_detail_tbl' )->insertGetId (
     					array ( 'ORDER_ID' => $orderId,
     							'PRODUCT_TYPE' => $line['PRODUCT_TYPE'],
@@ -455,28 +455,28 @@ class CloverController extends Controller
     							'QUANTITY' => $line['QUANTITY'],
     							'UNIT_PRICE' => $line['UNIT_PRICE'],
     							'TOTAL_AMOUNT' => $line['TOTAL_AMOUNT'],
-    	
+
     							'VAT_PERCENT' => $line['VAT_PERCENT'],
     							'VAT_AMOUNT' => $line['VAT_AMOUNT'],
     							'DISCOUNT_AMOUNT' => $line['DISCOUNT_AMOUNT'],
     							'TOTAL_AMOUNT_INC_VAT' => $line['TOTAL_AMOUNT_INC_VAT'],
-    	
+
     							'SUBSCRIPTION_CHECK' => $line['SUBSCRIPTION_CHECK'],
     							'SUBSCRIPTION_ID' => $line['SUBSCRIPTION_ID'],
-    								
+
     							'CREATED_BY' => $userId,
     							'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
     							'UPDATED_BY' => $userId,
     							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     					)
     					);
-    	
+
     			$orderlineShades = $ShoppingcartModel->getCartLineProductShadesDetail($line['CART_LINE_ID']);
-    	
+
     			if(isset($orderlineShades) && !empty($orderlineShades)){
-    	
+
     				foreach($orderlineShades as $list){
-    	
+
     					$orderShadeLineId = DB::table ( 'jb_order_shade_detail_tbl' )->insertGetId (
     							array ( 'ORDER_LINE_ID' => $orderLineId,
     									'ADDED_EFFECTIVE_DATE' => date ( 'Y-m-d H:i:s' ),
@@ -494,15 +494,15 @@ class CloverController extends Controller
     			}
     			// push data in subscription table in case product is subscribed
     			if($line['SUBSCRIPTION_CHECK'] == 'subscription'){
-    					
+
     				$subscrptionDetails = $SubscriptionModel->getSpecificSubscriptionData($line['SUBSCRIPTION_ID']);
-    					
+
     				if(isset($subscrptionDetails) && !empty($subscrptionDetails)){
-    	
+
     					$subsMonths = $subscrptionDetails['S_7']; // duration months
     					$subscriptionDate = date('Y-m-d');
     					$nextSubsDate = date ( "Y-m-d", strtotime ( "$subscriptionDate +$subsMonths month" ) );
-    	
+
     					$result = DB::table ( 'jb_user_subscription_tbl' )->insertGetId (
     							array ( 'USER_ID' => $userId,
     									'SUBSCRIPTION_ID' => $subscrptionDetails['ID'],
@@ -515,7 +515,7 @@ class CloverController extends Controller
     									'NEXT_PAYMENT_DATE' => $nextSubsDate,
     									'PAYMENT_STATUS' => 'pending',
     									'SUBSCRIPTION_STATUS' => 'active',
-    	
+
     									'DATE' => date ( 'Y-m-d H:i:s' ),
     									'CREATED_BY' => $userId,
     									'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -527,37 +527,37 @@ class CloverController extends Controller
     			}
     		}
     	}
-    	
+
     	if(isset($cartDetails) && !empty($cartDetails)){
     		foreach ($cartDetails as $line){
-    			
+
     			if($line['PRODUCT_TYPE'] == 'bundle'){
-    				
+
     				$bundleLines = $BundleProductLineModel->getAllBundleProductLinesForInvChk($line['BUNDLE_ID']);
-    					
+
     				if(!empty($bundleLines)){
-    						
+
     					foreach($bundleLines as $bundleLine){
-    				
+
     						$itemDetail = $ProductModel->getSpecificProductDetails($bundleLine['PRODUCT_ID']);
-    							
+
     						if($itemDetail['INV_QUANTITY_FLAG'] == 'shade'){
-    				
+
     							$cartLineShades = $ShoppingcartModel->getCartLineProductShadesDetailForInvChk($line['CART_LINE_ID']);
-    				
+
     							$newSlectShadeInvQty = $cartLineShades['shadeQuantity'] - $line['QUANTITY'];
-    				
+
     							$result = DB::table ( 'jb_product_shades_tbl' ) ->where ( 'PRODUCT_SHADE_ID', $cartLineShades['PRODUCT_SHADE_ID'] ) ->update (
     									array ( 'QUANTITY' => $newSlectShadeInvQty,
     											'UPDATED_BY' => $userId,
     											'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     									)
     								);
-    							
+
     						}else{
-    							
+
     							$newProdInvQty = $itemDetail['INV_QUANTITY'] - $line['QUANTITY'];
-    							
+
     							$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $bundleLine['PRODUCT_ID'] ) ->update (
     									array ( 'QUANTITY' => $newProdInvQty,
     											'UPDATED_BY' => $userId,
@@ -568,15 +568,15 @@ class CloverController extends Controller
     					}
     				}
     			}else{
-    				
+
     				$itemDetail = $ProductModel->getSpecificProductDetails($line['PRODUCT_ID']);
-    					
+
     				if($itemDetail['INV_QUANTITY_FLAG'] == 'shade'){
-    						
+
     					$cartLineShades = $ShoppingcartModel->getCartLineProductShadesDetailForInvChk($line['CART_LINE_ID']);
-    						
+
     					$newSlctShadeInvQty = $cartLineShades['shadeQuantity'] - $line['QUANTITY'];
-    						
+
     					$result = DB::table ( 'jb_product_shades_tbl' ) ->where ( 'PRODUCT_SHADE_ID', $cartLineShades['PRODUCT_SHADE_ID'] ) ->update (
     									array ( 'QUANTITY' => $newSlctShadeInvQty,
     											'UPDATED_BY' => $userId,
@@ -585,7 +585,7 @@ class CloverController extends Controller
     								);
     				}else{
     					$newProdInvQty = $itemDetail['INV_QUANTITY'] - $line['QUANTITY'];
-    							
+
     					$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $line['PRODUCT_ID'] ) ->update (
     									array ( 'QUANTITY' => $newProdInvQty,
     											'UPDATED_BY' => $userId,
@@ -596,7 +596,8 @@ class CloverController extends Controller
     			}
     		}
     	}
-    	
+
+
     	$shippingAddrId = DB::table ( 'jb_order_shipping_address_tbl' )->insertGetId (
     			array ( 'USER_ID' => $userId,
     					'ORDER_ID' => $orderId,
@@ -611,7 +612,7 @@ class CloverController extends Controller
     					'EMAIL' => isset($checkoutDetails ['S_9']) ? $checkoutDetails ['S_9'] : '',
     					'PHONE_NUMBER' => isset($checkoutDetails ['S_10']) ? $checkoutDetails ['S_10'] : '',
     					'BILLING_ADDRESS_FLAG' => isset($checkoutDetails ['S_11']) ? $checkoutDetails ['S_11'] : '',
-    						
+
     					'DATE' => date ( 'Y-m-d H:i:s' ),
     					'CREATED_BY' => $userId,
     					'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -631,7 +632,7 @@ class CloverController extends Controller
     					'TRANSACTION_ID' => $response1->id,
     					'TRANSACTION_STATUS' => $response1->status,
     					'TRANSACTION_RESPONSE' => json_encode($response1),
-    					
+
     					'DATE' => date ( 'Y-m-d H:i:s' ),
     					'CREATED_BY' => $userId,
     					'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -639,7 +640,7 @@ class CloverController extends Controller
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
+
     	$trackingId = DB::table ( 'jb_order_shippment_tracking_tbl' )->insertGetId (
     			array ( 'ORDER_ID' => $orderId,
     					'STATUS' => $orderStatus,
@@ -650,26 +651,26 @@ class CloverController extends Controller
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
+
     	$result = DB::table ( 'jb_shopping_cart_tbl' ) ->where ( 'CART_ID', $cartId ) ->update (
     			array ( 'CHECKOUT_FLAG' => '1',
     					'UPDATED_BY' => $userId,
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     		);
-    	
-    	
-    	
+
+
+
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('ORDER');
-    	
+
     	$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
 							<p>Hello '.session("email").',</p><br>
 							'.$emailConfigDetails['message'].'
 						</td>
 	        		</tr>';
-    	
-    	
+
+
     	$email_details['to_id'] = session('userId');
     	$email_details['to_email'] = session('email');
     	$email_details['from_id'] = 1;
@@ -678,9 +679,9 @@ class CloverController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "ORDER";
-    	
+
     	$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-    	
+
 //         $checkout_info = new Checkout();
 //         $checkout_info->tracking = $response1->id;
 //         $checkout_info->user_id = (int)$request->user_id;
@@ -692,7 +693,7 @@ class CloverController extends Controller
 //         $checkout_info->save();
         return;
     }
-    
+
     public function saveCloverResponce($user_id,$response,$type){
 
         $pay = new CloverPayment;

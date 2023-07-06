@@ -32,7 +32,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                 {{-- <th>Selfie</th> --}}
                                                 <th>Username</th>
                                                 <th>Email</th>
-                                                
+                                                <th>Created On</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -42,16 +42,18 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                 {{-- <td class=""><a href="@{{row.DOWNPATH}}" target="_blank"><img class="round-product-img" src="@{{row.DOWNPATH}}"></a></td> --}}
                                                 <td>@{{row.USERNAME}}</td>
                                                 <td>@{{row.USER_EMAIL}}</td>
+                                                <td>@{{row.CREATED_ON}}</td>
                                                 <td>
 													<div class="dropdown ml-auto text-right">
 														<div class="btn-link" data-toggle="dropdown">
 															<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="javascript:;" ng-click="showSelfieDetail(@{{row.SELFIE_ID}})">View</a>
 															<a class="dropdown-item" href="javascript:;" ng-click="deleteSelfieDetails(@{{row.SELFIE_ID}});">Delete</a>
 														</div>
 													</div>
-												</td>	
+												</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -60,17 +62,71 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                         </div>
                     </div>
 				</div>
-				
-				
             </div>
-            
-            
-            
-            
+
+            <div class="container-fluid " ng-show="snapDetail == '0'">
+                <div class="page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Snaps</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Snap Detail</a></li>
+					</ol>
+                </div>
+                <div class="card p-3">
+                    <div class="card-header">
+                        <span ng-click="backToSnaps()" style="cursor: pointer">
+                            <i class="fa fa-arrow-left text-dark" aria-hidden="true"></i>
+                            Back To Snaps</span>
+                        <h4 class="card-title">Snap Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label for="name">Name</label>
+                                <input type="text" readonly value="" name="" id="snapUserName" ng-modle="S_U_N" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="email">Email</label>
+                                <input type="email" readonly value="" name="" id="snapUserEmail" ng-modle="S_U_E" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="date">Date</label>
+                                <input type="text" readonly value="" name="" id="snapUserDate" ng-modle="S_U_D" class="form-control">
+                            </div>
+                            <div class="form-group col-12">
+                                {{-- <label for="snapSelfie" class="col-12">Selfie</label> --}}
+                                <img src="" alt="No Image Found" id="snapUserImage" ng-model="S_U_I" class="img-fluid" style="height: 70vh; width: 70vw;">
+                            </div>
+                            <div class="col-12">
+                                <form action="" method="post">
+                                    @csrf
+                                    <div class="form-group col-12">
+                                        <h3>Write Your Reply</h3>
+                                        <label for="comment">Comment/Suggestion</label>
+                                        <textarea name="comment" id="comment" ng-model="Reply['R_1']" cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label for="products">Select Product(s)</label>
+                                        <select class="default-placeholder select2-hidden-accessible form-select"
+                                            id="products" multiple='multiple'
+                                            ng-model="Reply['Products']"
+                                            ng-options="item as item.NAME for item in productlov track by item.PRODUCT_ID">
+                                            <option value="">---SELECT---</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <button ng-click="sendSelfieReply()" class="btn btn-primary float-right">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="alertDel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
                         </div>
@@ -89,5 +145,5 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
     </div>
     @include('admin.admin-footer')
-    
+
     <script src="{{ url('/assets-admin') }}/customjs/script_adminsnapselfie.js?v={{time()}}"></script>

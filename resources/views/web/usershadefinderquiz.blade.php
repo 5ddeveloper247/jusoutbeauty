@@ -242,17 +242,17 @@ var site = '<?php echo session('site');?>';
 						</div>
 					</section>
 					<section class="pt-6 pt-lg-5">
-						<div class="row align-items-center">
-							<div class="col-lg-6">
+						<div class="row">
+							<div class="col-lg-6" style="height: 100vh;">
 								<img id="take_a_q" src="@{{levelOneLatestImg}}" style="height: 37rem">
 							</div>
-							<div class="col-md-6">
-								<div class="text-center align-items-center">
+							<div class="col-md-6" >
+								<div class="text-center">
 									<h2>Liquid Foundation Iconic Edition</h2>
 									<p>Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
-								<div class="row d-flex">
+								<div class="row d-flex" style="height: 60vh; overflow:scroll;">
 									<div class="col-lg-6 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
 										<div class="box shade py-2 fadeInUp animated"
 											data-animate="fadeInUp">
@@ -298,7 +298,7 @@ var site = '<?php echo session('site');?>';
 							<h2 class="text-center pb-3">Other Products To Complete The Look</h2>
 
 							<div class="slick-slider2 shadefinder"
-							data-slick-options='{"slidesToShow": 1,"dots":true,"autoplay":true,"arrows":false,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
+							data-slick-options='{"slidesToShow": 1,"dots":true,"autoplay":true,"arrows":true,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":true}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":true}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":true}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":true}}]}'>
 
 								<div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts"><!-- data-animate="fadeInUp" -->
 									<div class="card shadee border-0">
@@ -1191,12 +1191,12 @@ $("#yes_level_one_all").click(function(){
 </script>
 <script type="text/javascript">
 	$(window).on('load', function() {
-		$('.slick-slider1').not('.slick-initialized').slick({
+		$('.slick-slider2').not('.slick-initialized').slick({
 			slidesToShow: 4,
-			"infinite":false,
+			"infinite":true,
 			"autoplay":true,
-            "autoplaySpeed": 10000,
-			"dots":false,
+            "autoplaySpeed": 5000,
+			"dots":true,
 			"arrows":true,
 			"responsive":[{
 				"breakpoint": 1366,"settings": {"slidesToShow":1}},

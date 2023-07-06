@@ -533,28 +533,46 @@
                             </div>
                             <form class="cart-roww">
                                 <div class="row align-items-end no-gutters mx-n2">
+                                    <?php if( $productDetails['INV_QUANTITY'] > 0){?>
                                     <div class="col-sm-4 form-group px-2 mb-6">
                                         <label class="text-primary fs-19-qua font-weight-bold mb-3"
                                             for="number">Quantity: </label>
-                                        <div class="input-group position-relative w-100">
-                                            <a href="javascript:;"
-                                                class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
-                                                <i class="far fa-minus"></i>
-                                            </a>
 
-                                            <input name="number" type="number" id="quantity"
-                                                class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput"
-                                                value="1">
+                                                <div class="input-group position-relative w-100">
+                                                    <a href="javascript:;"
+                                                        class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
+                                                        <i class="far fa-minus"></i>
+                                                    </a>
 
-                                            <a href="javascript:;"
-                                                class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
-                                                <i class="far fa-plus"></i>
-                                            </a>
-                                        </div>
+                                                    <input name="number" type="number" id="quantity"
+                                                        class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput"
+                                                        value="1"  min="1" max="<?php echo $productDetails['INV_QUANTITY']; ?>">
+
+                                                    <a href="javascript:;"
+                                                        class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
+                                                        <i class="far fa-plus"></i>
+                                                    </a>
+                                                </div>
+
                                     </div>
-                                    <div class="col-sm-8 mb-6 px-2">
+                                    <?php }?>
+                                    <div class="col-sm-{{ ($productDetails['INV_QUANTITY'] <= 0) ? '12' : '8' }} mb-6 px-2">
 
-                                    	<?php if($productDetails['INV_QUANTITY_FLAG'] == 'shade'){?>
+                                    	<?php if($productDetails['INV_QUANTITY_FLAG'] == 'shade'){
+                                            if($productDetails['INV_QUANTITY'] > 0){
+                                            ?>
+                                    		<button type="button"
+	                                            class="btn btn-primary btn-block text-capitalize addto-cart"
+	                                            data-type="single"
+	                                            data-id="<?= isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : '' ?>"
+	                                            data-quantity='1' data-subs='1'>Add to cart</button>
+
+                                    	<?php }
+                                        else{
+                                            echo'<button type="button"
+	                                            class="btn btn-primary btn-block text-capitalize" disabled>Out of Stock</button>';
+                                        }
+                                    }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] > 0){?>
 
                                     		<button type="button"
 	                                            class="btn btn-primary btn-block text-capitalize addto-cart"
@@ -562,15 +580,7 @@
 	                                            data-id="<?= isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : '' ?>"
 	                                            data-quantity='1' data-subs='1'>Add to cart</button>
 
-                                    	<?php }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] > '0'){?>
-
-                                    		<button type="button"
-	                                            class="btn btn-primary btn-block text-capitalize addto-cart"
-	                                            data-type="single"
-	                                            data-id="<?= isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : '' ?>"
-	                                            data-quantity='1' data-subs='1'>Add to cart</button>
-
-                                    	<?php }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] <= '0'){?>
+                                    	<?php }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] <= 0){?>
 
                                     		<button type="button"
 	                                            class="btn btn-primary btn-block text-capitalize" disabled>Out of Stock</button>
@@ -702,7 +712,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-md-6 mb-6 mb-md-0">
-                                                        <img src="{{  $productDetails['SUBSCRIPTION_NOTE_IMAGE']->DOWN_PATH }}"
+                                                        <img src="{{ $productDetails['SUBSCRIPTION_NOTE_IMAGE']->DOWN_PATH ?? '' }}                                                        "
                                                             alt="The Iconic Silhouette "
                                                             class="fadeInRight animated subs_img">
 
@@ -3110,31 +3120,42 @@
 
     }
     $('.down').on('click', function(e) {
-        console.log('down')
-        e.preventDefault();
-        var $parent = $(this).parent('.input-group');
-        var $input = $parent.find('input');
-        var $value = parseInt($input.val());
-        if ($value > 0) {
-            $value -= 1;
-            $input.val($value);
-        }
-    });
-    $('.up').on('click', function(e) {
-        console.log('up')
+    e.preventDefault();
+    var $parent = $(this).parent('.input-group');
+    var $input = $parent.find('input');
+    var $value = parseInt($input.val());
+    var maxQuantity = parseInt($input.attr('max'));
 
-        e.preventDefault();
-        var $parent = $(this).parent('.input-group');
-        var $input = $parent.find('input');
-        var $value = $input.val();
-        if ($value !== '') {
-            $value = parseInt($value);
+    if ($value > 1) {
+        $value -= 1;
+    } else {
+        $value = 1;
+    }
+
+    $input.val($value);
+});
+
+$('.up').on('click', function(e) {
+    e.preventDefault();
+    var $parent = $(this).parent('.input-group');
+    var $input = $parent.find('input');
+    var $value = $input.val();
+    var maxQuantity = parseInt($input.attr('max'));
+
+    if ($value != '') {
+        $value = parseInt($value);
+        if ($value < maxQuantity) {
             $value += 1;
-            $input.val($value);
         } else {
-            $input.val(1);
+            $value = maxQuantity;
         }
-    });
+    } else {
+        $value = 1;
+    }
+
+    $input.val($value);
+});
+
 
     function showfileload() {
         $('#selfie_img').click();

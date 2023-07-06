@@ -290,6 +290,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/shippedorders', [AdminController::class, 'shippedorders']);
 	Route::get('/newsLatters', [AdminController::class, 'newsLatters']);
 	Route::get('/snapSelfie', [AdminController::class, 'snapSelfie']);
+    Route::post('/getSnapDetail/{id}',[AdminController::class,'getSnapDetail']);
 
 
 
@@ -307,6 +308,9 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/header', [AdminController::class, 'header']);
 	Route::get('/footer', [AdminController::class, 'footer']);
 	Route::get('/home-page', [AdminController::class, 'homePage']);
+    Route::get('/home-page-popup',[AdminController::class,'popup']);
+    Route::post('/getPopupData',[AdminController::class,'getPopupData']);
+    Route::post('/savePopupData',[AdminController::class,'savePopupData']);
 	Route::get('/payments', [AdminController::class, 'payments']);
 	Route::get('/view-payment', [AdminController::class, 'viewPayment']);
 	Route::get('/delivery', [AdminController::class, 'Delivery']);
@@ -357,11 +361,12 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 
 	Route::post('/deleteIngredientAttachment', [AdminController::class, 'deleteIngredientAttachment']);
 
+
 	Route::post('/markPrimaryIngredientAttachment', [AdminController::class, 'markPrimaryIngredientAttachment']);
 	Route::post('/uploadIngredientAttachment', [AttachmentController::class, 'uploadIngredientAttachment']);
 	Route::post('/uploadFeatureAttachment', [AttachmentController::class, 'uploadFeatureAttachment']);
 	Route::post('/uploadRoutineAttachment', [AttachmentController::class, 'uploadRoutineAttachment']);
-
+    Route::post('/deleteRoutineAttachment',[AdminController::class,'deleteRoutineAttachment']);
 
 	// Blogs Section
 	Route::post('/getAllAdminBloglov', [AdminController::class, 'getAllAdminBloglov']);

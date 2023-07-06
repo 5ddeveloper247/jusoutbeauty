@@ -2277,6 +2277,16 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.view-snapSelfie' )->with ( $data );
 	}
+    public function getSnapDetail(Request $request,$id){
+        $Product = new ProductModel();
+
+        $arrRes['SelfieDetails'] = DB::table('jb_shade_finder_selfie_tbl as a')->select('a.*')
+    	->where('SELFIE_ID',$id)->first();
+        // dd($result);
+        $arrRes ['Products'] = $Product->getAllProductsData();
+        // dd($arrRes);
+        return isset($arrRes) ? $arrRes : '';
+    }
 
 	/*==================== admin categories code start ==========================*/
 
@@ -3185,6 +3195,7 @@ class AdminController extends Controller
 
 		echo json_encode ( $arrRes );
 	}
+
 	public function markPrimaryIngredientAttachment(Request $request) {
 		$Ingredient = new IngredientModel();
 

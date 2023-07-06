@@ -1075,10 +1075,10 @@ class ProductModel extends Model
     		if(!empty($productShades)){
 
     			$arrRes['INV_QUANTITY_FLAG'] = 'shade';
-    			$arrRes['INV_QUANTITY'] = '';
+    			$arrRes['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : 0;
     		}else{
     			$arrRes['INV_QUANTITY_FLAG'] = 'inv';
-    			$arrRes['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+    			$arrRes['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : 0;
     		}
 
     		$arrRes['DESCRIPTION'] = base64_decode($row->DESCRIPTION);

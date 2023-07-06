@@ -67,16 +67,10 @@ var optionId = '1';
 								<div class="card-body">
 									<div class="form-validation">
 										<div class="row">
-											<div class="col-sm-5">
+											<div class="col-sm-10">
 												<div class="form-group">
 													<label class="col-form-label" for="title"><b>Title Question</b>  <span class="text-danger">*</span>  </label>
 													<input type="text" class="form-control" id="L1_1" ng-model="level1['L_1']" placeholder="Enter Title">
-												</div>
-											</div>
-											<div class="col-sm-5">
-												<div class="form-group">
-													<label class="col-form-label" for="caption"><b>Description</b> </label>
-													<input type="text" class="form-control" id="L1_2" ng-model="level1['L_2']" placeholder="Enter Description">
 												</div>
 											</div>
 											<div class="col-sm-2 pt-4">
@@ -127,7 +121,7 @@ var optionId = '1';
 													<div class="row register-new-product-picture-para">
 														<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1();" style="">
 															<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-															<p>200 X 300</p>
+															<p>Min : 200 X 300</p>
 														</div>
 														<div class="col-sm-9">
 															<div class="row" id="p_att">
@@ -140,7 +134,7 @@ var optionId = '1';
 		           											<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 															<input type="hidden" id="sourceId" name="sourceId" value="@{{level1Type.ID}}">
 															<input type="hidden" id="sourceCode" name="sourceCode" value="SHADE_FINDER_TYPE_IMAGE">
-															<input type="file" id="uploadattl" name="uploadattl" class="file-input"  style="display: none;"><!-- accept="image/*" -->
+															<input type="file" id="uploadattl" name="uploadattl" class="file-input"  style="display: none;" multiple accept="images/*"><!-- accept="image/*" -->
 														</form>
 
 													</div>

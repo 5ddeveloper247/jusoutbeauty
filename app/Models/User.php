@@ -244,7 +244,8 @@ class User extends Authenticatable
             $arrRes[$i]['productTotalUnits'] = $this->getShadesQuantity($result[$i]->PRODUCT_ID) == null ?  $result[$i]->QUANTITY : $this->getShadesQuantity($result[$i]->PRODUCT_ID) ;
             $arrRes[$i]['productprice'] = $result[$i]->UNIT_PRICE;
             $arrRes[$i]['revenue'] = $this->getRevevueWRTProductID($result[$i]->PRODUCT_ID);
-            $arrRes[$i]['productImage'] = $this->getProductImage($result[$i]->PRODUCT_ID)->DOWN_PATH;
+            $productimage = $this->getProductImage($result[$i]->PRODUCT_ID);
+            $arrRes[$i]['productImage'] = isset($productimage->DOWN_PATH) ? $productimage->DOWN_PATH : '';
         }
 
         return isset( $arrRes) ?  $arrRes :null;

@@ -2,20 +2,20 @@ var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
 //	$(document).on('click','.addNew',function(){
-//	    $('#addCity_modal').modal('show');return false; 
+//	    $('#addCity_modal').modal('show');return false;
 //	});
 
 //	$(document).on('click','.modalClose',function(){
-//	    $('#addCity_modal').modal('hide');return false; 
+//	    $('#addCity_modal').modal('hide');return false;
 //	});
-	
+
 	$scope.routinename={};
 	$scope.routinename.ID = "";
 	$scope.routinename.P_1 = "";
 	$scope.routinename.P_2 = "";
 	$scope.routinename.P_3 = "";
 	$scope.routinename.P_4 = "";
-	
+
     $scope.routinetypedata={};
 	$scope.routinetype={};
 	$scope.routinetype.ID="";
@@ -48,11 +48,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 	$scope.product.ID="";
 
-	
+
 /* Get all Routine Types */
 /* --------------------------------------------------- */
 $scope.getroutinetypes = function(){
-		
+
 		$http({
 			data: $scope.tokenHash,
 			url : site+"/showAllRoutineTypes",
@@ -65,11 +65,11 @@ $scope.getroutinetypes = function(){
 				$('#type_table').DataTable().clear().destroy();
 			}
 			$scope.getAllRoutineTypes = data.getAllRoutineType;
-			
+
 			$scope.RoutineTypelov=data.routinetypenamelov;
 
 			// getAllRoutineType
-			
+
 			setTimeout(function(){
 				$('#type_table').DataTable( {
 				   order: [],
@@ -101,11 +101,11 @@ $scope.getroutinetypes = function(){
 	$scope.tokenHash = $("#csrf").val();
 
 	$scope.getAllAdminProductlov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminProductlov',
@@ -114,10 +114,10 @@ $scope.getroutinetypes = function(){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			$scope.categoryLov = data.list1;
 			$scope.subCategoryLov = {};
-		
+
 			setTimeout(function(){
 				 $('#productsTable').DataTable( {
 					order: [],
@@ -127,8 +127,8 @@ $scope.getroutinetypes = function(){
 		                      ]
 		        } );
 			}, 500);
-			
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -142,16 +142,16 @@ $scope.getroutinetypes = function(){
 			$scope.subsubcategorylov = '';
 			$scope.productlov = '';
 			return false;
-			
+
 		 }
-		
+
 		if($scope.product.P_8 != null){
 			var data = {};
 		    data.category = $scope.product.P_8;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getSubCategoriesWrtCategory",
@@ -160,19 +160,19 @@ $scope.getroutinetypes = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				$scope.subcategorylov = data.subCategory;
 				$scope.product.P_10 = '';
 				$scope.subsubcategorylov = '';
 				$scope.productlov=data.product;
 
 				setTimeout(function(){
-				
+
 
 				}, 500);
 				// $('#p46').val($scope.handpickedlo['id']).trigger('change');
 				// $('#p47').val($scope.recommended['id']).trigger('change');
-				
+
 			})
 			.error(function(data, status, headers, config) {
 			});
@@ -182,14 +182,14 @@ $scope.getroutinetypes = function(){
 	}
 
 	$scope.getproductswrtsubcategory = function(){
-		
+
 		if($scope.product.P_10 != null){
 			var data = {};
 		    data.subcategory = $scope.product.P_10;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getproductswrtsubcategory",
@@ -198,7 +198,7 @@ $scope.getroutinetypes = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				$scope.productlov=data.product;
 
 			})
@@ -210,13 +210,13 @@ $scope.getroutinetypes = function(){
 
 
 	// $scope.getsteps = function(){
-		
+
 	// 		var data = {};
 	// 		data.id = $scope.routinename.ID;
 	// 	    data.userId = userId;
-		    
+
 	//     	var temp = $.param({details: data});
-	    	
+
 	// 		$http({
 	// 			data: temp+"&"+$scope.tokenHash,
 	// 			url : site+"/getsteps",
@@ -225,7 +225,7 @@ $scope.getroutinetypes = function(){
 	// 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 	// 		}).success(function(data, status, headers, config) {
-					
+
 	// 			$scope.productlov=data.product;
 
 	// 		})
@@ -235,14 +235,14 @@ $scope.getroutinetypes = function(){
 
 
 	$scope.getSubSubCategoriesWrtCategory = function(){
-		
+
 		if($scope.product.P_9 != null){
 			var data = {};
 		    data.subcategory = $scope.product.P_9;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			 $http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getSubSubCategoriesWrtSubCategory",
@@ -251,7 +251,7 @@ $scope.getroutinetypes = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			 }).success(function(data, status, headers, config) {
-					
+
 				$scope.subsubcategorylov = data.subSubCategory;
 				$scope.productlov=data.product;
 			 })
@@ -263,12 +263,12 @@ $scope.getroutinetypes = function(){
 	}
 
 	$scope.getAllAdminRoutinenamelov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.ingredientId = $scope.routinenameId;
 	    var temp = $.param({details: data});
-    	
+
 		 $http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminroutinetype',
@@ -288,7 +288,7 @@ $scope.getroutinetypes = function(){
 
 			 console.log(data.routinetypes);
 			 // $scope.RoutineTypelov=data.routinetypessteps;
-		
+
 			 setTimeout(function(){
 				$("#ingredientTable").DataTable({
 					order: [],
@@ -298,20 +298,20 @@ $scope.getroutinetypes = function(){
 		                      ]
 				});
 			 }, 500);
-			
+
                      //			if($scope.routinenameId != '' && data.details != ''){
                  //				$scope.editFlag = 1;
                  //				$scope.continouRecord(data.details);
                   //			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 	$scope.getAllAdminRoutinenamelov();
 	// $scope.getroutinetypes();
-		
-	
+
+
 	$scope.reset = function(){
 		$scope.routinename={};
 		$scope.routinename.ID = "";
@@ -319,16 +319,16 @@ $scope.getroutinetypes = function(){
 		$scope.routinename.P_2 = "";
 		$scope.routinename.P_3 = "";
 		$scope.routinename.P_4 = "";
-	
+
 		$("#p_att").html('');
-		
+
 		setTimeout(function(){
 			$("#quantity_in_stock").val($scope.routinename.P_2).trigger('change');
 			$(".summernote").summernote("code", $scope.routinename.P_4);
 		}, 500);
-		
+
 	}
-	
+
 	$scope.addNew = function(){
 		$scope.routinename={};
 		// $scope.RoutineTypelov={};
@@ -344,18 +344,18 @@ $scope.getroutinetypes = function(){
 
 		$('#summernote').summernote('code','');
 		$("#p_att").html('');
-		
+
 		// setTimeout(function(){
 		// 	$("#quantity_in_stock").val($scope.routinename.P_2).trigger('change');
 		// 	$(".summernote").summernote("code", $scope.routinename.P_4);
 		// }, 500);
-		
+
 		$scope.editView = 1;
 		setTimeout(function(){
 			if ($.fn.DataTable.isDataTable("#steps_table")) {
 				$('#steps_table').DataTable().clear().destroy();
 			}
-			
+
 			// setTimeout(function(){
 			// 	$('#steps_table').DataTable( {
 			// 		order: [],
@@ -369,7 +369,7 @@ $scope.getroutinetypes = function(){
 			// if ($.fn.DataTable.isDataTable("#type_table")) {
 			// 	$('#type_table').DataTable().clear().destroy();
 			// }
-			
+
 			// setTimeout(function(){
 			// 	$('#type_table').DataTable( {
 			// 		order: [],
@@ -379,9 +379,9 @@ $scope.getroutinetypes = function(){
 			// 				  ]
 			// 	} );
 			// }, 500);
-			
 
-		   
+
+
 	   }, 1000);
 	}
 	$scope.backToListing = function(){
@@ -396,40 +396,40 @@ $scope.getroutinetypes = function(){
 			// if ($.fn.DataTable.isDataTable("#type_table")) {
 			// 	$('#type_table').DataTable().clear().destroy();
 			// }
-			
+
 	   }, 500);
-		
+
 	}
 	$scope.saveRoutinename = function(){
 
-		
+
 		if ($('.summernote').summernote('isEmpty')) {
 			$scope.routinename.P_4 = '';
 		}else{
 			$scope.routinename.P_4 = $('#summernote').summernote('code');
 		}
-		
+
 	    	var data = {};
 	        data.Routinename = $scope.routinename;
 	        data.userId = userId;
     	    var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/routine_type_add",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.routinename.ID = data.ID;
 //				window.location = data.redirect_url;
-				
-				
+
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -439,15 +439,15 @@ $scope.getroutinetypes = function(){
 	}
 
 	$scope.getTypeNameLov = function(){
-		
+
 		if($scope.product.P_8 != null){
 			var data = {};
 		    data.typeid = $scope.routinename.ID;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
 
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getTypeNameLov",
@@ -456,11 +456,11 @@ $scope.getroutinetypes = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				$scope.RoutineTypelov = data;
 
 				setTimeout(function(){
-				
+
 
 				}, 500);
 				// $('#p46').val($scope.handpickedlo['id']).trigger('change');
@@ -472,15 +472,15 @@ $scope.getroutinetypes = function(){
 			$scope.subCategoryLov = {};
 		 }
 	 }
-	
+
 	 $scope.checksteps = function(){
-		
-		 var data = {};  
+
+		 var data = {};
 		 console.log($scope.product.P_7);
 		 if($scope.product.P_7 == null){
 			$('.step_show').hide();
 			return false;
-			
+
 		 }
 		 data.routinetypeid = $scope.product.P_7;
 		 // data.typeid= $scope.routinename.ID;
@@ -490,14 +490,14 @@ $scope.getroutinetypes = function(){
 		 var temp = $.param({details: data});
 
      $http({
-	   data: temp+"&"+$scope.tokenHash, 
+	   data: temp+"&"+$scope.tokenHash,
 	   url : site+"/checksteps",
 	   method: "POST",
 	   async: false,
 	   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
      }).success(function(data, status, headers, config) {
-		   
+
 	   if(data.done == true || data.done == 'true'){
 		   // $scope.getTypeNameLov();
 
@@ -515,7 +515,7 @@ $scope.getroutinetypes = function(){
 
 		   // $scope.routinename.ID = data.ID;
           //				window.location = data.redirect_url;
-		   
+
 	   }else{
 		   toastr.error(data.msg, '', {timeOut: 3000})
 	   }
@@ -523,9 +523,9 @@ $scope.getroutinetypes = function(){
    .error(function(data, status, headers, config) {
    });
 }
-     
-        $scope.addstepsmodal = function (){ 
-             
+
+        $scope.addstepsmodal = function (){
+
 			 $('.step_show').hide();
 			 $scope.product.P_11="";
 			 $scope.product.P_12="";
@@ -539,19 +539,19 @@ $scope.getroutinetypes = function(){
 		}
 
 		$scope.removetypenamemodal =function(id){
-		
+
 			$('#routine_type_remove_id').val('');
 
 			$('#routine_type_remove_id').val(id);
 
 			$('#alertroutinetypemodal').modal('show');
 		 }
-          
+
 		$scope.removestepmodal =function(id){
 
 
 			 $('#step_remove_id').val('');
-			 
+
 			 $('#step_remove_id').val(id);
 
 			 $('#alertsteps').modal('show');
@@ -562,36 +562,36 @@ $scope.getroutinetypes = function(){
 
 
 			$('#routine_remove_id').val('');
-			
+
 			$('#routine_remove_id').val(id);
 
 			$('#alertroutinemodal').modal('show');
 
 		 }
 
-		         
+
 		 $scope.remove_routine = function(){
 
 			// $scope.alertDeleteMsg = 'Are You Sure You want to delete this step';
 
 			// $("#alertDel").modal('show');
 			var data = {};
-		     
+
 			data.routineid = $('#routine_remove_id').val();
 		   //  data.typeid= $scope.routinename.ID;
 			data.userId = userId;
 			var temp = $.param({details: data});
 	   $http({
-		   data: temp+"&"+$scope.tokenHash, 
+		   data: temp+"&"+$scope.tokenHash,
 		   url : site+"/remove_routine",
 		   method: "POST",
 		   async: false,
 		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-   
+
 	   }).success(function(data, status, headers, config) {
-			   
+
 		   if(data.done == true || data.done == 'true'){
-			   
+
 			         // $scope.getTypeNameLov();
      			    //   $scope.Steps=data.steps;
 	    			//     $scope.RoutineTypelov=data.typenamelov;
@@ -605,7 +605,7 @@ $scope.getroutinetypes = function(){
 
 			   // $scope.routinename.ID = data.ID;
              //				window.location = data.redirect_url;
-			   
+
 		   }else{
 			   toastr.error(data.msg, '', {timeOut: 3000})
 			   $('#alertroutinemodal').modal('hide');
@@ -616,29 +616,29 @@ $scope.getroutinetypes = function(){
 	   });
    }
 
-             
+
 		  $scope.remove_routine_type_name = function(){
 
 			// $scope.alertDeleteMsg = 'Are You Sure You want to delete this step';
 
 			// $("#alertDel").modal('show');
 			var data = {};
-		     
+
 			data.typenameid = $('#routine_type_remove_id').val();
 		   //  data.typeid= $scope.routinename.ID;
 			data.userId = userId;
 			var temp = $.param({details: data});
 	   $http({
-		   data: temp+"&"+$scope.tokenHash, 
+		   data: temp+"&"+$scope.tokenHash,
 		   url : site+"/remove_routine_type_name",
 		   method: "POST",
 		   async: false,
 		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-   
+
 	   }).success(function(data, status, headers, config) {
-			   
+
 		   if(data.done == true || data.done == 'true'){
-			   
+
 			      // $scope.getTypeNameLov();
 			      $scope.Steps=data.steps;
 				    $scope.RoutineTypelov=data.typenamelov;
@@ -650,7 +650,7 @@ $scope.getroutinetypes = function(){
 				// 		table.destroy();
 						// var table = $('#type_table').DataTable();
 						// table.destroy();
-		
+
 				// 		$('#steps_table').DataTable( {
 				// 		   order: [],
 				// 		   aLengthMenu: [
@@ -667,14 +667,14 @@ $scope.getroutinetypes = function(){
 				// 	} );
 				//    }, 1000);
 		    	 //    $('#RoutineTypeStepsModal').modal('hide');
-   
+
 			      toastr.success(data.msg, '', {timeOut: 3000})
 				  $('#alertroutinetypemodal').modal('hide');
-				  
+
 
 			   // $scope.routinename.ID = data.ID;
              //				window.location = data.redirect_url;
-			   
+
 		   }else{
 			   toastr.error(data.msg, '', {timeOut: 3000})
 			   $('#alertroutinetypemodal').modal('hide');
@@ -693,28 +693,28 @@ $scope.getroutinetypes = function(){
 
 			// $("#alertDel").modal('show');
 			var data = {};
-		     
+
 			data.stepid = $('#step_remove_id').val();
 		    data.routineId= $scope.routinename.ID;
 			data.userId = userId;
 			var temp = $.param({details: data});
 	   $http({
-		   data: temp+"&"+$scope.tokenHash, 
+		   data: temp+"&"+$scope.tokenHash,
 		   url : site+"/removesteps",
 		   method: "POST",
 		   async: false,
 		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-   
+
 	   }).success(function(data, status, headers, config) {
-			   
+
 		   if(data.done == true || data.done == 'true'){
-			   
+
 			    // $scope.getTypeNameLov();
 			    $scope.Steps=data.steps;
 			// 	setTimeout(function(){
 			// 		var table = $('#steps_table').DataTable();
 			// 		table.destroy();
-	
+
 			// 		$('#steps_table').DataTable( {
 			// 		   order: [],
 			// 		   aLengthMenu: [
@@ -727,10 +727,10 @@ $scope.getroutinetypes = function(){
    			 $('#alertsteps').modal('hide');
 
 			   toastr.success(data.msg, '', {timeOut: 3000})
-   
+
 			   // $scope.routinename.ID = data.ID;
    //				window.location = data.redirect_url;
-			   
+
 		   }else{
 			   toastr.error(data.msg, '', {timeOut: 3000})
 			   $('#alertsteps').modal('hide');
@@ -742,7 +742,7 @@ $scope.getroutinetypes = function(){
    }
 
 	$scope.addstep = function(){
-		
+
 		 var data = {};
 		 data.routinetype = $scope.product;
 		 data.typeid= $scope.routinename.ID;
@@ -751,16 +751,16 @@ $scope.getroutinetypes = function(){
 		 console.log(data);
 		 var temp = $.param({details: data});
 	$http({
-		data: temp+"&"+$scope.tokenHash, 
+		data: temp+"&"+$scope.tokenHash,
 		url : site+"/addstep_routine",
 		method: "POST",
 		async: false,
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 	}).success(function(data, status, headers, config) {
-			
+
 		if(data.done == true || data.done == 'true'){
-			
+
 			if ($.fn.DataTable.isDataTable("#steps_table")) {
 				$('#steps_table').DataTable().clear().destroy();
 			}
@@ -776,16 +776,16 @@ $scope.getroutinetypes = function(){
 							  ]
 				} );
 			}, 500);
-			
+
 			$('#RoutineTypeStepsModal').modal('hide');
 			$scope.product.P_7 ="";
 			toastr.success(data.msg, '', {timeOut: 3000});
 
-			
+
 
 			// $scope.routinename.ID = data.ID;
 //				window.location = data.redirect_url;
-			
+
 		}else{
 			toastr.error(data.msg, '', {timeOut: 3000})
 		}
@@ -795,25 +795,25 @@ $scope.getroutinetypes = function(){
 }
 
 	$scope.saveTypename = function(){
-		
+
 	    	var data = {};
-			
+
 	        data.routinetype = $scope.routinetype;
 			data.typeid= $scope.routinename.ID;
 	        data.userId = userId;
     	    var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/add_routine_type_name",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				// $scope.getTypeNameLov();
 				$scope.RoutineTypelov=data.typenamelov;
 				$scope.routinetypedata=data.typedata;
@@ -821,7 +821,7 @@ $scope.getroutinetypes = function(){
 				$('#RoutineTypeModal').modal('hide');
 			// 	setTimeout(function(){
 			// 	$('#type_table').DataTable().destroy();
-				
+
 			// 	$('#type_table').DataTable( {
 			// 	 order: [],
 			// 	 aLengthMenu: [
@@ -835,7 +835,7 @@ $scope.getroutinetypes = function(){
 
 				// $scope.routinename.ID = data.ID;
 //				window.location = data.redirect_url;
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -852,14 +852,14 @@ $scope.getroutinetypes = function(){
 	}
 
 	$scope.continuetypename = function(id){
-		
+
 		 var data = {};
 	     data.recordId = id;
 	     data.userId = userId;
 
 
     	 var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/routine_type_name_edit",
@@ -868,20 +868,20 @@ $scope.getroutinetypes = function(){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			var details = data.typename;
             $scope.routinetype.C_1= details['name'] ;
 			$scope.routinetype.ID= details['ID'];
 			$('#RoutineTypeModal').modal('show');
-			
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
 	$scope.continouRecord = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
@@ -892,7 +892,7 @@ $scope.getroutinetypes = function(){
 
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/routine_type_edit",
@@ -901,18 +901,18 @@ $scope.getroutinetypes = function(){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			var details = data.details;
 			var images = data.images;
-			
+
 			$("#p_att").html('');
-			
+
 			if(details != '' && details != null){
-				
+
 				if ($.fn.DataTable.isDataTable("#steps_table")) {
 					$('#steps_table').DataTable().clear().destroy();
 				}
-	
+
 				if ($.fn.DataTable.isDataTable("#type_table")) {
 					$('#type_table').DataTable().clear().destroy();
 				}
@@ -934,7 +934,7 @@ $scope.getroutinetypes = function(){
 					$scope.Steps=data.getRoutineSteps;
 				  }
 				 console.log(data);
-				
+
 				setTimeout(function(){
 					$("#quantity_in_stock").val($scope.routinename.P_2).trigger('change');
 					$(".summernote").summernote("code", $scope.routinename.P_4);
@@ -944,8 +944,8 @@ $scope.getroutinetypes = function(){
 
 
 				setTimeout(function(){
-		
-				
+
+
 					$('#steps_table').DataTable( {
 					   order: [],
 					   aLengthMenu: [
@@ -963,23 +963,23 @@ $scope.getroutinetypes = function(){
 				}, 1000);
 			}
 
-			
-			
+
+
 			if(images != '' && images != null){
-			 
+
                 // for(var i=0; i<images.length; i++){
-		
+
 					var html = '<div class="col-2  margin-r1 img_remove" id="img_file_'+images["ID"]+'">'+
 									'<img src="'+images["downPath"]+'" alt="" class="image-box">'+
 									'<div class="overlay">'+
-										'<div class="text">';
-											
-										    // '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePic('+images["ID"]+')" title="Delete Image">';	
+										'<div class="text">'+
+
+										    '<img class="fa-pencil-alt text-white" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" onclick="form1();" title="Change Image">';
 											// if(images[i]["primFlag"] == '0'){
-											// 	html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimary('+images[i]["ID"]+')" title="Mark Primary">';	
+											// 	html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimary('+images[i]["ID"]+')" title="Mark Primary">';
 											// }
-											
-										html += 
+
+										html +=
 										// '<div class="arrow-icon-move-box">'+
 										// 		'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
 										// 		'<p>Move Position</p>'+
@@ -995,113 +995,115 @@ $scope.getroutinetypes = function(){
 		 });
 	 }
 
-	 // $scope.markPrimary = function(id){
-		
-// 		var data = {};
-// 	    data.recordId = id;
-// 	    data.ingredientId = $scope.routinename.ID;
-// 	    data.userId = userId;
-//     	var temp = $.param({details: data});
-    	
-// 		$http({
-// 			data: temp+"&"+$scope.tokenHash,
-// 			url : site+"/markPrimaryIngredientAttachment",
-// 			method: "POST",
-// 			async: false,
-// 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
-// 		}).success(function(data, status, headers, config) {
-				
-// 			toastr.success(data.msg, '', {timeOut: 3000})
-			
-// 			var images = data.images;
-			
-// 			$("#p_att").html('');
-			
-// 			if(images != '' && images != null){
-// 				for(var i=0; i<images.length; i++){
-					
-// 					var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+images[i]["ID"]+'">'+
-// 									'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+
-// 									'<div class="overlay">'+
-// 										'<div class="text">'+
-// 											'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePic('+images[i]["ID"]+')" title="Delete Image">';
-											
-// 											if(images[i]["primFlag"] == '0'){
-// 												html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimary('+images[i]["ID"]+')" title="Mark Primary">';	
-// 											}
-											
-// 									html += '<div class="arrow-icon-move-box">'+
-// 												'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-// 												'<p>Move Position</p>'+
-// 											'</div>'+
-// 										'</div>'+
-// 									'</div>'+
-// 								'</div>';
-						
-// 						$("#p_att").append($compile(angular.element(html))($scope));
-// 				}
-// 			}
-			
-// 		})
-// 		.error(function(data, status, headers, config) {
-// 		});
-// 	}
-	$scope.deletePic = function(id){
-		
-		var data = {};
-	    data.recordId = id;
-	    data.ingredientId = $scope.routinename.ID;
-	    data.userId = userId;
-    	var temp = $.param({details: data});
-    	
-		$http({
-			data: temp+"&"+$scope.tokenHash,
-			url : site+"/deleteIngredientAttachment",
-			method: "POST",
-			async: false,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
-		}).success(function(data, status, headers, config) {
-				
-			toastr.success(data.msg, '', {timeOut: 3000})
-			
-			var images = data.images;
-			
-			$("#p_att").html('');
-			
-			if(images != '' && images != null){
-				for(var i=0; i<images.length; i++){
-					
-					var html = '<div class="col-2 image-overlay margin-r1 img_remove" id="img_file_'+images[i]["ID"]+'">'+
-									'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+
-									'<div class="overlay">'+
-										'<div class="text">';
-											// '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePic('+images[i]["ID"]+')" title="Delete Image">';
-					
-											// if(images[i]["primFlag"] == '0'){
-											// 	html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimary('+images[i]["ID"]+')" title="Mark Primary">';	
-											// }
-					
-									html += 
-									// '<div class="arrow-icon-move-box">'+
-												// '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-												// '<p>Move Position</p>'+
-											// '</div>'+
-										'</div>'+
-									'</div>'+
-								'</div>';
-						
-						$("#p_att").append($compile(angular.element(html))($scope));
-				}
-			}
-			
-		}).error(function(data, status, headers, config) {
-		});
-	}
+	//  $scope.markPrimary = function(id){
+
+	// 	var data = {};
+	//     data.recordId = id;
+	//     data.ingredientId = $scope.routinename.ID;
+	//     data.userId = userId;
+    // 	var temp = $.param({details: data});
+
+	// 	$http({
+	// 		data: temp+"&"+$scope.tokenHash,
+	// 		url : site+"/markPrimaryIngredientAttachment",
+	// 		method: "POST",
+	// 		async: false,
+	// 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+	// 	}).success(function(data, status, headers, config) {
+
+	// 		toastr.success(data.msg, '', {timeOut: 3000})
+
+	// 		var images = data.images;
+
+	// 		$("#p_att").html('');
+
+	// 		if(images != '' && images != null){
+	// 			for(var i=0; i<images.length; i++){
+
+	// 				var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+images[i]["ID"]+'">'+
+	// 								'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+
+	// 								'<div class="overlay">'+
+	// 									'<div class="text">'+
+	// 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePic('+images[i]["ID"]+')" title="Delete Image">';
+
+	// 										if(images[i]["primFlag"] == '0'){
+	// 											html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimary('+images[i]["ID"]+')" title="Mark Primary">';
+	// 										}
+
+	// 								html += '<div class="arrow-icon-move-box">'+
+	// 											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
+	// 											'<p>Move Position</p>'+
+	// 										'</div>'+
+	// 									'</div>'+
+	// 								'</div>'+
+	// 							'</div>';
+
+	// 					$("#p_att").append($compile(angular.element(html))($scope));
+	// 			}
+	// 		}
+
+	// 	})
+	// 	.error(function(data, status, headers, config) {
+	// 	});
+	// }
+	// $scope.deletePic = function(id){
+
+	// 	var data = {};
+	//     data.recordId = id;
+	//     data.ingredientId = $scope.routinename.ID;
+	//     data.userId = userId;
+    // 	var temp = $.param({details: data});
+
+	// 	$http({
+	// 		data: temp+"&"+$scope.tokenHash,
+	// 		url : site+"/deleteRoutineAttachment",
+	// 		method: "POST",
+	// 		async: false,
+	// 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+	// 	}).success(function(data, status, headers, config) {
+
+	// 		toastr.success(data.msg, '', {timeOut: 3000})
+
+	// 		var images = data.images;
+
+	// 		$("#p_att").html('');
+
+	// 		if(images != '' && images != null){
+	// 			for(var i=0; i<images.length; i++){
+
+	// 				var html = '<div class="col-2 image-overlay margin-r1 img_remove" id="img_file_'+images[i]["ID"]+'">'+
+	// 								'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+
+	// 								'<div class="overlay">'+
+	// 									'<div class="text">';
+	// 										// '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePic('+images[i]["ID"]+')" title="Delete Image">';
+
+	// 										// if(images[i]["primFlag"] == '0'){
+	// 										// 	html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimary('+images[i]["ID"]+')" title="Mark Primary">';
+	// 										// }
+
+	// 								html +=
+	// 								// '<div class="arrow-icon-move-box">'+
+	// 											// '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
+	// 											// '<p>Move Position</p>'+
+	// 										// '</div>'+
+	// 									'</div>'+
+	// 								'</div>'+
+	// 							'</div>';
+
+	// 					$("#p_att").append($compile(angular.element(html))($scope));
+	// 			}
+	// 		}
+
+	// 	}).error(function(data, status, headers, config) {
+	// 	});
+	// }
 
 	$scope.statusChange = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
@@ -1114,22 +1116,22 @@ $scope.getroutinetypes = function(){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
 			$scope.getAllAdminRoutinenamelov();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 	$scope.alertDeleteMsg = '';
 	$scope.deleteIngredient = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteIngredient",
@@ -1138,40 +1140,40 @@ $scope.getroutinetypes = function(){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.getAllAdminRoutinenamelov();
-				
+
 			}else{
-			
+
 				$scope.alertDeleteMsg = data.msg;
 				$("#alertDel").modal('show');
 			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
 	$scope.closealertDeleteModal = function(id) {
-          
-		  $("#"+id).modal('hide');		
+
+		  $("#"+id).modal('hide');
 	}
 
 
 	$('#uploadattch').fileupload({
-		
+
  		add: function (e, data) {
- 		    
+
  			if($scope.routinename.ID == ""){
- 				
+
  				toastr.error('Save record first, then upload Images...', '', {timeOut: 3000})
  				return false;
- 			
+
  			}else{
- 				$.LoadingOverlay("show"); 
+ 				$.LoadingOverlay("show");
  				var jqXHR = data.submit();
  			}
  	    },
@@ -1189,36 +1191,38 @@ $scope.getroutinetypes = function(){
  	    	setTimeout(function(){
 				$.LoadingOverlay("hide");
 			}, 500);
- 	    	
+
  	    	xhr.responseText = jQuery.parseJSON(xhr.responseText);
- 	      	
+
  	    	if(xhr.responseText[0] == 01){
- 	        	
+
  	      		toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 02){
- 	        	
+
  	      		toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 03){
- 	        
+
  	      		toastr.error("Error : Save record first, then upload Images...", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 04){
- 	        
- 	      		toastr.error("Error : Image dimension must be minimum 125 X 125", '', {timeOut: 3000});
+
+ 	      		toastr.error("Error : Image dimension must be minimum 170 X 70", '', {timeOut: 3000});
 
  	      	}else{
-                 
+
 				$('.img_remove').remove();
  		  		 toastr.success("Image Upload Successfully", '', {timeOut: 3000});
- 			    
+
  		  		var html = '<div class="col-2  margin-r1 img_remove" id="img_file_'+xhr.responseText[1]+'">'+
 								'<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
 								'<div class="overlay">'+
-									'<div class="text">'
+									'<div class="text">'+
 										// '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePic('+xhr.responseText[1]+')" title="Delete Image">'+
-										// '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimary('+xhr.responseText[1]+')" title="Mark Primary">'+	
+										// '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" onclick="form1();" title="Change Image">'+
+                                        '<img class="fa-pencil-alt text-white" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" onclick="form1();" title="Change Image">'+
+
 										// '<div class="arrow-icon-move-box">'+
 										// 	// '<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
 										// 	// '<p>Move Position</p>'+
@@ -1226,26 +1230,35 @@ $scope.getroutinetypes = function(){
 									'</div>'+
 								'</div>'+
 							'</div>';
- 		  		
+
  		  		$("#p_att").append($compile(angular.element(html))($scope));
-				
+
 				   $scope.$apply(() => {
- 		        		  
-					$scope.editView = 0;
+
+					// $scope.editView = 0;
 					$scope.getAllAdminRoutinenamelov();
 					});
-				  
+
  	      	}
  	   	}
+
+
+
+
  	});
-		
-	
+
+     function form1(){
+    	$("#uploadattl").click();
+    }
+
+
+
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -1270,7 +1283,7 @@ $scope.getroutinetypes = function(){
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);
@@ -1292,9 +1305,9 @@ $scope.getroutinetypes = function(){
 })
 
 
-// 	$('#searchInListing').on("keyup", function (e)  {     
+// 	$('#searchInListing').on("keyup", function (e)  {
 //            var tr = $('.identify');
-//            
+//
 //            if ($(this).val().length >= 1) {//character limit in search box.
 //                var noElem = true;
 //                var val = $.trim(this.value).toLowerCase();
@@ -1319,13 +1332,13 @@ $scope.getroutinetypes = function(){
 //                else{
 //                }
 ////    	            	$('#tabContentNoData').hide();
-//                       
+//
 //            }
 //        });
 
 
 
 
-		
-		
-		
+
+
+
