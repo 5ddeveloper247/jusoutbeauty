@@ -1,7 +1,9 @@
  <?php //print_r('<pre>');
 	// print_r($categoryName);
 	// exit();
+    // dd('ehllo');
 	?>
+     {{-- @dd('Working') --}}
  @include('web.web-header')
  <script>
 
@@ -168,6 +170,7 @@
  		}
  	}
  </style>
+ {{-- @dd('after style tag') --}}
  <main ng-app="project1">
  	<section class="py-10 mt-15 bg-gray-1 hero-section">
  		<div class="container">
@@ -266,6 +269,7 @@
  						</div>
  					</div>
  				</div>
+                {{-- @dd('Working'); --}}
  				<div class="col-xl-12 shop-listing-right-portion">
  					<div class="row">
  						<div class="col-sm-12 mb-4 mb-sm-0 pb-3 sort_inc_shop">
@@ -316,9 +320,9 @@
                         <div class="col-6 col-lg-3 product productshop-listing mb-8" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)">
                             <div class="card border-0">
  								<div class="position-relative hover-zoom-in">
- 									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}">
- 										<img src="@{{row.primaryImage}}" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
- 										<img src="@{{row.primaryImage}}" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
+ 									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
+ 										<img src="@{{row.primaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 img-h30-m image-active">
+ 										<img src="@{{row.primaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 image-hover">
  									</a>
  									<div class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10 "><!-- productdetail data-id="@{{row.PRODUCT_ID}}"-->
  										<div class="content-change-vertical d-flex flex-column ml-auto">
@@ -934,9 +938,10 @@
  		</div>
  	</section>
  </main>
- @include('web.web-footer')
 
+ @include('web.web-footer')
  <script src="{{ url('/assets-web') }}/customjs/script_userstorelistingall.js?v={{time()}}"></script>
+
 
  <script>
  	$(document).ready(function() {
@@ -969,6 +974,7 @@
 
  	});
  </script>
+
  <script>
  	function close_topbar() {
 

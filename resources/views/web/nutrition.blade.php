@@ -84,7 +84,8 @@
 									?>
 								<div class="col-md-3 col-4 mb-6 mb-md-0 <?= $activeClass ?> filter-click" ng-click="filter(<?= $filter['SUB_CATEGORY_ID'];?>);">
 									<div class="card border-0 hover-zoom-in" id="skin_health_col">
-										<img src="<?= $filter['image'];?>" alt="alt" class="card-img inr-img">
+										<img src="<?= $filter['image'];?>" alt="alt" class="card-img inr-img toShopListing"
+                                        data-id="<?= $filter['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $filter['CATEGORY_SLUG'] ?>">
 									</div>
 									<p class="nut_para"><?= $filter['NAME'];?></p>
 								</div>
@@ -112,7 +113,7 @@
 						<div class="col-sm-6 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)" style="@{{row.styleBgColor}}">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
 								<div class="overflow-hidden">
-									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2" data-id="@{{row.PRODUCT_ID}}" style="margin-top:15px"><br>
+									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" style="margin-top:15px"><br>
 									<h3 class="text-center productdetail cursor-pointer product_image"  data-id="@{{row.PRODUCT_ID}}">@{{row.NAME}}</h3>
 									<p class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.CATEGORY_NAME}}</p>
 									<h3 class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.SUB_TITLE}}</h3>

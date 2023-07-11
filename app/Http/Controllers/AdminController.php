@@ -70,7 +70,7 @@ class AdminController extends Controller
         $popup = $details['popup'];
         $id = $popup['ID'];
         $firstTitle = $popup['FIRST_TITLE'];
-        $discount = $popup['DISCOUNT'];
+        $mainTitle = $popup['MAIN_TITLE'];
         $secondTitle = $popup['SECOND_TITLE'];
         $backgroundColor = $popup['BACKGROUND_COLOR'];
         $buttonText = $popup['BUTTON_TEXT'];
@@ -78,37 +78,37 @@ class AdminController extends Controller
 
         if($firstTitle == '' || $firstTitle == null){
             $arrRes ['done'] = false;
-		    $arrRes ['msg'] = 'First Title is Required';
+		    $arrRes ['msg'] = 'First Text is Required';
             echo json_encode ( $arrRes );
 			die ();
         }
         if(strlen($firstTitle) > 50 ){
             $arrRes ['done'] = false;
-		    $arrRes ['msg'] = 'First Title cant be greater than 50 chars';
+		    $arrRes ['msg'] = 'First Text cant be greater than 50 chars';
             echo json_encode ( $arrRes );
 			die ();
         }
-        if($discount == '' || $discount == null){
+        if($mainTitle == '' || $mainTitle == null){
             $arrRes ['done'] = false;
-		    $arrRes ['msg'] = 'Discount is Required';
+		    $arrRes ['msg'] = 'Mian Title is  Required';
             echo json_encode ( $arrRes );
 				die ();
         }
-        if($discount >=100){
+        if(strlen($mainTitle) > 10 ){
             $arrRes ['done'] = false;
-		    $arrRes ['msg'] = 'Discount can not be more than 99%';
+		    $arrRes ['msg'] = 'Main Title can not be more than 10 chars';
             echo json_encode ( $arrRes );
 				die ();
         }
         if($secondTitle == '' || $secondTitle == null){
             $arrRes ['done'] = false;
-		    $arrRes ['msg'] = 'Second Title is Required';
+		    $arrRes ['msg'] = 'Second Text is Required';
             echo json_encode ( $arrRes );
 				die ();
         }
-        if(strlen($secondTitle) > 60){
+        if(strlen($secondTitle) > 70){
             $arrRes ['done'] = false;
-		    $arrRes ['msg'] = 'Second Title cant be greater than 60 chars';
+		    $arrRes ['msg'] = 'Second Text cant be greater than 60 chars';
             echo json_encode ( $arrRes );
 				die ();
         }
@@ -121,6 +121,12 @@ class AdminController extends Controller
         if($buttonText == '' || $buttonText == null){
             $arrRes ['done'] = false;
 		    $arrRes ['msg'] = 'Button Text is Required';
+            echo json_encode ( $arrRes );
+				die ();
+        }
+        if(strlen($buttonText) > 15 ){
+            $arrRes ['done'] = false;
+		    $arrRes ['msg'] = 'Button Text can not be more than 15 chars';
             echo json_encode ( $arrRes );
 				die ();
         }
@@ -3940,6 +3946,7 @@ class AdminController extends Controller
 	}
 
 	public function saveAdminProductBasicInfo(Request $request) {
+
 		$Product = new ProductModel();
 		$details = $_REQUEST ['details'];
 		$data = $details ['product'];
@@ -3948,6 +3955,7 @@ class AdminController extends Controller
 		$arrRes = array ();
 		$arrRes ['done'] = false;
 		$arrRes ['msg'] = '';
+
 
 
 
@@ -4075,13 +4083,22 @@ class AdminController extends Controller
 
 			if ($data ['ID'] == '') {
 
-				// $duplicate = $Product->checkDuplicateSlug($data['P_10']);
-				// if ($duplicate != '') {
-				// 	$arrRes ['done'] = false;
-				// 	$arrRes ['msg'] = 'Slug is already exist, try different...';
-				// 	echo json_encode ( $arrRes );
-				// 	die ();
-				// }
+				$duplicate = $Product->checkDuplicateSlug($data['P_1']);
+				if ($duplicate != '') {
+					$arrRes ['done'] = false;
+					$arrRes ['msg'] = 'Product Name Already exists, try different...';
+					echo json_encode ( $arrRes );
+					die ();
+				}else{
+                    $name = $data['P_1'];
+                    $words = explode(' ', $name);
+                    if (count($words) > 1 || strpos($name, ' ') !== false) {
+                        $name = implode('-', $words);
+                    } else {
+                        $name = $data['P_1'];
+                    }
+                    $slug = $name;
+                }
 
 				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
@@ -4093,6 +4110,8 @@ class AdminController extends Controller
 
 				    $getLastSeq=1;
 				}
+
+
 				$result = DB::table ( 'jb_product_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'NAME' => $data['P_1'],
@@ -4106,7 +4125,7 @@ class AdminController extends Controller
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
-								// 'SLUG' => $data ['P_10'],
+								'SLUG' => $slug,
 								'SHORT_DESCRIPTION' => $data ['P_11'],
 								'DESCRIPTION_TITLE' => $data ['P_12'],
 								'DESCRIPTION' => base64_encode($data['P_13']),
@@ -4174,13 +4193,22 @@ class AdminController extends Controller
 
 			} else {
 
-				// $duplicate = $Product->checkDuplicateSlug($data['P_10'], $data ['ID']);
-				// if ($duplicate != '') {
-				// 	$arrRes ['done'] = false;
-				// 	$arrRes ['msg'] = 'Slug is already exist, try different...';
-				// 	echo json_encode ( $arrRes );
-				// 	die ();
-				// }
+                $duplicate = $Product->checkDuplicateSlug($data['P_1']);
+				if ($duplicate != '') {
+					$arrRes ['done'] = false;
+					$arrRes ['msg'] = 'Product Name Already exists, try different...';
+					echo json_encode ( $arrRes );
+					die ();
+				}else{
+                    $name = $data['P_1'];
+                    $words = explode(' ', $name);
+                    if (count($words) > 1 || strpos($name, ' ') !== false) {
+                        $name = implode('-', $words);
+                    } else {
+                        $name = $data['P_1'];
+                    }
+                    $slug = $name;
+                }
 
 				$result = DB::table ( 'jb_product_tbl' ) ->where ( 'PRODUCT_ID', $data ['ID'] ) ->update (
 						array ( 'NAME' => $data['P_1'],
@@ -4193,7 +4221,7 @@ class AdminController extends Controller
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_44']['id']) ? $data ['P_44']['id'] : '',
-								// 'SLUG' => $data ['P_10'],
+								'SLUG' => $slug,
 								'FEATURE_ID' =>  isset($feature_id) ? rtrim($feature_id,',') : '',
 								'SHORT_DESCRIPTION' => $data ['P_11'],
 								'DESCRIPTION_TITLE' => $data ['P_12'],
@@ -6644,13 +6672,37 @@ class AdminController extends Controller
 
 			if ($data ['ID'] == '') {
 
-// 				$duplicate = $Product->checkDuplicateSlug($data['P_10']);
-// 				if ($duplicate != '') {
-// 					$arrRes ['done'] = false;
-// 					$arrRes ['msg'] = 'Slug is already exist, try different...';
-// 					echo json_encode ( $arrRes );
-// 					die ();
-// 				}
+
+                $duplicateBundle = $this->checkDuplicateBundleName($data['P_1']);
+                $duplicate = $this->checkBundleNameAgainstProducts($data['P_1']);
+                if($duplicateBundle->isEmpty()){
+                    // dd('No Duplicate Bundle Name');
+                    if ($duplicate->isEmpty()) {
+                        // dd('No same Name against products');
+                        $name = $data['P_1'];
+                        $words = explode(' ', $name);
+                        if (count($words) > 1 || strpos($name, ' ') !== false) {
+                            $name = implode('-', $words);
+                        } else {
+                            $name = $data['P_1'];
+                        }
+                        $slug = $name;
+
+                    }else{
+                        // dd('same Name against products');
+                        $arrRes ['done'] = false;
+                        $arrRes ['msg'] = 'Name Already Exists In Products, try different Name for Bundle...';
+                        echo json_encode ( $arrRes );
+                        die ();
+                    }
+                }else{
+                    // dd('Duplicate Bundle Name');
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'Bundle Name Already Exists, try different Name for Bundle...';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
+
 
 				$getLastSeq = DB::table ( 'jb_bundle_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
@@ -6675,7 +6727,7 @@ class AdminController extends Controller
 								'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
-								// 'SLUG' => $data ['P_10'],
+								'SLUG' => $slug,
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_11']['id']) ? $data ['P_11']['id'] : '',
 								'VAT_RATE' => $data ['P_12'],
 // 								'TOTAL_AMOUNT' => $data ['P_13'],
@@ -6707,6 +6759,36 @@ class AdminController extends Controller
 // 					echo json_encode ( $arrRes );
 // 					die ();
 // 				}
+                $duplicateBundle = $this->checkDuplicateBundleNameExceptItself($data['ID'],$data['P_1']);
+                $duplicate = $this->checkBundleNameAgainstProducts($data['P_1']);
+                $slug = '';
+                if($duplicateBundle->isEmpty()){
+                    // dd('No Duplicate Bundle Name');
+                    if ($duplicate->isEmpty()) {
+                        // dd('No same Name against products');
+                        $name = $data['P_1'];
+                        $words = explode(' ', $name);
+                        if (count($words) > 1 || strpos($name, ' ') !== false) {
+                            $name = implode('-', $words);
+                        } else {
+                            $name = $data['P_1'];
+                        }
+                        $slug = $name;
+
+                    }else{
+                        // dd('same Name against products');
+                        $arrRes ['done'] = false;
+                        $arrRes ['msg'] = 'Name Already Exists In Products, try different Name for Bundle...';
+                        echo json_encode ( $arrRes );
+                        die ();
+                    }
+                }else{
+                    // dd('Duplicate Bundle Name');
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'Bundle Name Already Exists, try different Name for Bundle...';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
 
 				$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $data ['ID'] ) ->update (
 						array ( 'NAME' => $data['P_1'],
@@ -6718,14 +6800,13 @@ class AdminController extends Controller
 								'REFUNDABLE_FLAG' => $data ['P_7'] == 'true' ? '1' : '0',
 								'CATEGORY_ID' => isset($data ['P_8']['id']) ? $data ['P_8']['id'] : '',
 								'SUB_CATEGORY_ID' => isset($data ['P_9']['id']) ? $data ['P_9']['id'] : '',
-								// 'SLUG' => $data ['P_10'],
+								'SLUG' => $slug,
 								'SUB_SUB_CATEGORY_ID' => isset($data ['P_11']['id']) ? $data ['P_11']['id'] : '',
 								'VAT_RATE' => $data ['P_12'],
 // 								'TOTAL_AMOUNT' => $data ['P_13'],
 								'SHORT_DESCRIPTION' => $data ['P_14'],
 								'DISCOUNTED_AMOUNT' => $data ['P_15'],
 								'QUANTITY' => $data ['P_16'],
-
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 						)
@@ -6739,6 +6820,19 @@ class AdminController extends Controller
 			}
 		}
 	}
+    public function checkDuplicateBundleName($bundleName){
+        $result = DB::table('jb_bundle_product_tbl')->select('NAME')->where('Name',$bundleName)->get();
+        return $result;
+    }
+    public function checkDuplicateBundleNameExceptItself($id,$bundleName){
+        $result = DB::table('jb_bundle_product_tbl')->select('NAME')->whereNot('BUNDLE_ID',$id)->where('NAME', $bundleName)->get();
+        return $result;
+    }
+    public function checkBundleNameAgainstProducts($bundleName){
+        $result = DB::table('jb_product_tbl')->select('NAME')->where('Name',$bundleName)->get();
+        return $result;
+    }
+
 	public function editAdminBundleProduct(Request $request) {
 		$Category = new CategoryModel();
 		$Bundle = new BundleProductModel();

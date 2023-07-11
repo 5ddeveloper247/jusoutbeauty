@@ -43,7 +43,7 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label class="col-form-label" for="first_title"><b>First
-                                                                        Titlte</b> <span class="text-danger">*</span>
+                                                                        Text</b> <span class="text-danger">*</span>
                                                                 </label>
                                                                 <input type="text" class="form-control"
                                                                     id="first_title" ng-model="popup['FIRST_TITLE']"
@@ -53,11 +53,11 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label class="col-form-label"
-                                                                    for="discount"><b>Discount</b> </label>
-                                                                <input type="number" class="form-control"
-                                                                    maxlength="2" id="discount"
-                                                                    ng-model="popup['DISCOUNT']"
-                                                                    placeholder="Enter Discount Percentage" id="discount">
+                                                                    for="discount"><b>Main Titlte</b> </label>
+                                                                <input type="text" class="form-control"
+                                                                    maxlength="10" id="discount"
+                                                                    ng-model="popup['MAIN_TITLE']"
+                                                                    placeholder="Enter Main Title Here..." id="discount">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -66,11 +66,11 @@
                                                             <div class="form-group">
                                                                 <label class="col-form-label"
                                                                     for="second_title"><b>Second
-                                                                        Titlte</b> <span class="text-danger">*</span>
+                                                                        Text</b> <span class="text-danger">*</span>
                                                                 </label>
                                                                 <input type="text" class="form-control"
                                                                     id="second_title" ng-model="popup['SECOND_TITLE']"
-                                                                    placeholder="Enter Second Title" maxlength="75">
+                                                                    placeholder="Enter Second Title" maxlength="70">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
@@ -88,6 +88,7 @@
                                                             <label id="btn-title">Button Text</label>
                                                             <input type="text" id="btn-title" class="form-control"
                                                                 ng-model="popup['BUTTON_TEXT']"
+                                                                maxlength="15"
                                                                 placeholder="Write Button Text Here...">
                                                         </div>
                                                         <div class="form-group col-sm-6">

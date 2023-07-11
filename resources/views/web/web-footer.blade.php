@@ -1027,15 +1027,22 @@
     <input type="hidden" class="sourceId" id="sourceId" name="sourceId" value="">
     <input type="hidden" class="sourceCode" id="sourceCode" name="sourceCode" value="">
     <input type="hidden" class="sourceType" id="sourceType" name="sourceType" value="">
+    <input type="hidden" class="category" id="category" name="category" value="">
+    <input type="hidden" class="subcategory" id="subcategory" name="subcategory" value="">
 </form>
-<form class="" id="productDetailRedirectForm" method="POST" action="{{ url('/productDetail') }}"
+<form class="" id="productDetailRedirectForm" method="POST" action=""
     enctype="multipart/form-data" style="display:none;">
-    <input type="hidden" name="_method" value="POST">
-    {{ csrf_field() }}
+    @method('POST')
+    {{-- <input type="hidden" name="_method" value="POST"> --}}
+    {{-- {{ csrf_field() }} --}}
+    @csrf
     <input type="hidden" class="userId1" id="userId1" name="userId" value="<?php echo session('userId'); ?>">
     <input type="hidden" class="sourceId1" id="sourceId1" name="sourceId" value="">
     <input type="hidden" class="sourceCode1" id="sourceCode1" name="sourceCode" value="">
     <input type="hidden" class="sourceType1" id="sourceType1" name="sourceType" value="">
+    <input type="hidden" class="category" id="category" name="category" value="">
+    <input type="hidden" class="subcategory" id="subcategory" name="subcategory" value="">
+    <input type="hidden" class="slug" id="slug" name="slug" value="">
 </form>
 </body>
 

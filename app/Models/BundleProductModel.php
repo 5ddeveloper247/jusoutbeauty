@@ -110,6 +110,17 @@ class BundleProductModel extends Model
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['NAME'] = $row->NAME;
+
+            $name = $row->NAME;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->NAME;
+            }
+            $arrRes[$i]['SLUG'] = $name;
+
+
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
     		$arrRes[$i]['UNIT'] = $row->UNIT;
     		$arrRes[$i]['MINIMUM_PURCHASE_QUANTITY'] = $row->MINIMUM_PURCHASE_QUANTITY;
@@ -117,8 +128,28 @@ class BundleProductModel extends Model
     		$arrRes[$i]['BARCODE'] = $row->BARCODE;
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
+
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+
+            $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subCategoryName;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
 
@@ -209,7 +240,7 @@ class BundleProductModel extends Model
     		$arrRes[$i]['PRODUCT_ID'] = $row->BUNDLE_ID;
     		$arrRes[$i]['BUNDLE_ID'] = $row->BUNDLE_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
-    		$arrRes[$i]['SLUG'] = $row->SLUG;
+            $arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['NAME'] = $row->NAME;
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
     		$arrRes[$i]['SUB_TITLE_TXT'] = strlen ( $row->SUB_TITLE ) > 60?substr ( $row->SUB_TITLE, 0, 60 )."..." :$row->SUB_TITLE;
@@ -219,8 +250,28 @@ class BundleProductModel extends Model
     		$arrRes[$i]['BARCODE'] = $row->BARCODE;
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
+
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+
+            $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subCategoryName;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['INV_QUANTITY_FLAG'] = 'bundle';
@@ -250,7 +301,7 @@ class BundleProductModel extends Model
 
     		$i++;
     	}
-
+        // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
     }
 
@@ -330,6 +381,7 @@ class BundleProductModel extends Model
     	->where($where)->groupBy('a.BUNDLE_ID')->get();
 
     	//     	    	$query = DB::getQueryLog(); dd($query);
+        // dd($result);
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['seqNo'] = $i+1;
@@ -355,7 +407,7 @@ class BundleProductModel extends Model
     		$arrRes['DISCOUNTED_AMOUNT1'] = $row->DISCOUNTED_AMOUNT;
     		$arrRes['VAT_RATE'] = $row->VAT_RATE;
 
-			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+			$productShades = $ProductShade->getAllProductShadesProduct($row->BUNDLE_ID);
 
 			if(!empty($productShades)){
 

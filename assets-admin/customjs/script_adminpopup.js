@@ -6,7 +6,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
     $scope.popup={};
     $scope.popup.ID='';
     $scope.popup.FIRST_IMAGE='';
-    $scope.popup.DISCOUNT='';
+    $scope.popup.MAIN_TITLE='';
     $scope.popup.SECOND_TIILE='';
     $scope.popup.BACKGROUND_COLOR='';
     $scope.popup.BUTTON_TEXT='';

@@ -120,6 +120,7 @@
     </style>
 </head>
 <script>
+    var baseUrl = "<?php echo url('');?>";
     var userId = "<?php echo session('userId'); ?>";
     var cartId = "<?php echo session('cartid'); ?>";
 </script>
@@ -157,7 +158,7 @@
                                 <li aria-haspopup="true" aria-expanded="false"
                                     class="nav-item dropdown-item-shop dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5">
                                     <a class="nav-link dropdown-toggle p-0 toShopListing" href="javascript:;"
-                                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY">
+                                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
                                         <!-- {{ session('site') }}/store -->
                                         <?= $value['NAME'] ?> <span class="caret"></span>
                                     </a>
@@ -175,14 +176,16 @@
                                                     <?php $subCategories = $value['subCategories']; ?>
 
 														<div class="dropdown-item">
-                                                         	<a class="dropdown-link" href="{{session('site')}}/store">Shop All</a>
+                                                         	<a class="dropdown-link toShopListing" href="{{session('site')}}/Shop-All">Shop All</a>
                                                       	</div>
                                                     @if (!empty($subCategories))
                                                         @foreach ($subCategories as $category)
                                                             <div class="dropdown-item">
                                                                 <a class="dropdown-link toShopListing" href="javascript:;"
                                                                     data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
-                                                                    data-type="SUB_CATEGORY">{{ $category['NAME'] }}</a>
+                                                                    data-type="SUB_CATEGORY"
+                                                                    data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                                                    data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">{{ $category['NAME'] }}</a>
                                                             </div>
                                                         @endforeach
                                                     @endif
@@ -203,8 +206,11 @@
                                                                     <div class="col-12 col-lg-12 product mb-8"
                                                                         data-animate="fadeInUp">
                                                                         <div class="card border-0 productdetail"
-                                                                            data-id="{{ $product['PRODUCT_ID'] }}"
-                                                                            data-type="">
+                                                                        data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                        data-type="{{ $product['CATEGORY_NAME'] }}"
+                                                                        data-category="{{ $product['CATEGORY_SLUG'] }}"
+                                                                        data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
+                                                                        data-name="{{ $product['SLUG'] }}">
                                                                             <div
                                                                                 class="position-relative hover-zoom-in ">
                                                                                 <a href="javascript:;"
@@ -275,7 +281,9 @@
                                                             @foreach ($subCategories as $category)
                                                                 <div class="col-4 h-100 toShopListing"
                                                                     data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
-                                                                    data-type="SUB_CATEGORY">
+                                                                    data-type="SUB_CATEGORY"
+                                                                    data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                                                    data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
                                                                     <div class="col-12 col-lg-12 product mb-2 ">
 
                                                                         <h4 class=" fs-14 mb-3 lh-1 font-weight-500 p-0 text-center ellipsis"
@@ -321,7 +329,11 @@
                                                                     <div class="col-12 col-lg-12 product mb-8" data-animate="fadeInUp">
                                                                         <div class="card border-0 productdetail"
                                                                             data-id="{{ $product['PRODUCT_ID'] }}"
-                                                                            data-type="{{ $product['CATEGORY_NAME'] }}">
+                                                                            data-type="{{ $product['CATEGORY_NAME'] }}"
+                                                                            data-category="{{ $product['CATEGORY_SLUG'] }}"
+                                                                            data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
+                                                                            data-name="{{ $product['SLUG'] }}"
+                                                                             >
                                                                             <div
                                                                                 class="position-relative hover-zoom-in">
                                                                                 <a href="javascript:;"

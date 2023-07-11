@@ -21,7 +21,7 @@ class Handpicked extends Model
 
 
     public function deleteHandpicked($product,$product_id){
-             
+
          DB::beginTransaction();
              try{
                 foreach ($product as $p){
@@ -40,7 +40,7 @@ class Handpicked extends Model
      }
 
      public function insertHandpicked($product,$userId,$product_id){
-             
+
               DB::beginTransaction();
           try{
             $i=0;
@@ -55,7 +55,7 @@ class Handpicked extends Model
                             'UPDATED_BY' => $userId,
                             'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
                             $i++;
-                 } 
+                 }
              DB::commit();
                      $status=true;
                      $message="success";
@@ -66,11 +66,11 @@ class Handpicked extends Model
                       $message=$e->getMessage();
                       return response()->json(['status' => $status,'message'=>$message]);
           }
-      
+
      }
-     
+
      public function getspecifichandpickedlov($product_id){
-       
+
            $result =DB::table('jb_product_handpicked_tbl')->where('PRODUCT_ID',$product_id)->get();
                  $i=0;
       foreach($result as $s){
@@ -82,10 +82,10 @@ class Handpicked extends Model
      }
 
      public function gethanpickedproducts($product_id){
-                   
+
 
         $result =DB::table('jb_product_handpicked_tbl')->where('PRODUCT_ID',$product_id)->get();
-        
+
         if($result->count() > 0){
            $i=0;
            $k=0;
@@ -102,7 +102,7 @@ class Handpicked extends Model
 
 
         // foreach($result as $p){
-          
+
            $row1 =DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
            ->whereIn('PRODUCT_ID', $id)
            ->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
@@ -128,11 +128,31 @@ class Handpicked extends Model
            $arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
            $arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
            $arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+
+           $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
            $arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
            $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+
+           $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subCategoryName;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
            $arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
            $arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-   
+
            $arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
            $descText = strip_tags(base64_decode($row->DESCRIPTION));
            $arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -144,51 +164,51 @@ class Handpicked extends Model
            $arrRes[$i]['TAX'] = $row->TAX;
            $arrRes[$i]['TAX_TYPE'] = $row->TAX_TYPE;
            $arrRes[$i]['CLINICAL_NOTE'] = base64_decode($row->CLINICAL_NOTE_DESCRIPTION);
-   
+
            $productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-    		 
+
 			$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-       
+
 
            $arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
            $arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-           
+
            $reviews = $ReviewsModel->getAllPublishedReviewsByProductId($row->PRODUCT_ID,'');
            $totalReviews=0;$allRatingSum=0;
            if(isset($reviews) && !empty($reviews)){
                $totalReviews = count($reviews);
                foreach($reviews as $value){
-                   
+
                    $allRatingSum = $allRatingSum+$value['STAR_RATING'];
                }
            }
-           
+
            if($totalReviews > 0){
                $averageRating = $allRatingSum/$totalReviews;
                $averageRating = round($averageRating);
            }else{
                $averageRating = 0;
            }
-           
+
            $arrRes[$i]['averageRating'] = $averageRating;
-           
+
            $arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
            $arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
            $arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
            $arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-   
+
            $i++;
 
         }
     }
    }
-    return isset($arrRes) ? $arrRes : null;        
+    return isset($arrRes) ? $arrRes : null;
 
 }
 public function getSpecificProductPrimaryImage($id){
-    
+
     $result = DB::table('jb_product_images_tbl as a')->select('a.*')
     ->where('a.PRODUCT_ID', $id)
     ->where('a.SOURCE_CODE', 'PRODUCT_IMG')
@@ -221,7 +241,7 @@ public function getSpecificProductPrimaryImage($id){
 
 
 public function getSpecificProductSecondaryImage($id){
-    
+
     $result = DB::table('jb_product_images_tbl as a')->select('a.*')
     ->where('a.PRODUCT_ID', $id)
     ->where('a.SOURCE_CODE', 'PRODUCT_IMG')

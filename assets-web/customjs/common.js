@@ -16,8 +16,22 @@ $(document).on("click", ".toShopListing", function () {
 
 	var id = $(this).attr("data-id");
 	var type = $(this).attr("data-type");
+    var category = $(this).attr("data-categoryslug");
+    var subCategory = $(this).attr("data-subcategoryslug");
+
 	$('.sourceId').val(id);
 	$('.sourceType').val(type);
+    $('.category').val(category);
+    $('.subcategory').val(subCategory);
+    // alert(subCategory);
+    if (category && subCategory !== undefined && subCategory !== '') {
+        $('#shoplistingRedirectForm').attr('action', baseUrl + '/Store/' + category + '/' + subCategory);
+        // alert(baseUrl + '/' + category + '/' + subCategory);
+    } else if (category) {
+        $('#shoplistingRedirectForm').attr('action', baseUrl + '/Store/' + category);
+        // alert(baseUrl + '/' + category);
+    }
+
 	setTimeout(function(){
 		$("#shoplistingRedirectForm").submit();
 	}, 500);
@@ -25,17 +39,54 @@ $(document).on("click", ".toShopListing", function () {
 
 	$(document).on("click", ".productdetail", function () {
 
-		var id = $(this).attr("data-id");
-		var code = $(this).attr("data-type");
-		var type = 'PRODUCT_DETAIL';
-		$('#sourceId1').val(id);
-		$('#sourceType1').val(type);
-		$('#sourceCode1').val(code);
+		// var id = $(this).attr("data-id");
+		// var code = $(this).attr("data-type");
+        // var category = $(this).attr('data-category');
+        // var subCategory = $(this).attr('data-subcategory');
+        // var slug = $(this).attr("data-name");
+        // console.log(category,subCategory,slug,code);
+
+		// var type = 'PRODUCT_DETAIL';
+		// $('#sourceId1').val(id);
+		// $('#sourceType1').val(type);
+		// $('#sourceCode1').val(code);
+        // if((category != '' || category != null) && (subCategory != '' || subCategory != null) && (slug != '' || slug != null)){
+        //     $('#productDetailRedirectForm').attr('action', baseUrl+'/'+category+'/'+subCategory+'/' + slug);
+        //     alert(baseUrl+'/'+category+'/'+subCategory+'/' + slug);
+        // }else
+        // if(subCategory == '' || subCategory == null){
+        //     $('#productDetailRedirectForm').attr('action', baseUrl+'/'+category+'/' + slug);
+        //     alert(baseUrl+'/'+category+'/' + slug);
+        // }
+
+        var id = $(this).attr("data-id");
+        var code = $(this).attr("data-type");
+        var category = $(this).attr('data-category');
+        var subCategory = $(this).attr('data-subcategory');
+        var slug = $(this).attr("data-name");
+        // console.log(category, subCategory, slug, code);
+
+        var type = 'PRODUCT_DETAIL';
+        $('#sourceId1').val(id);
+        $('#sourceType1').val(type);
+        $('#sourceCode1').val(code);
+        $('#category').val(category);
+        $('#subcategory').val(subCategory);
+        $('#slug').val(slug);
+
+        if (category && subCategory && slug) {
+            $('#productDetailRedirectForm').attr('action', baseUrl + '/Products/' + category + '/' + subCategory + '/' + slug);
+            // alert(baseUrl + '/' + category + '/' + subCategory + '/' + slug);
+        } else if (category && slug) {
+            $('#productDetailRedirectForm').attr('action', baseUrl + '/Products/' + category + '/' + slug);
+            // alert(baseUrl + '/' + category + '/' + slug);
+        }
 
 		setTimeout(function(){
 			$("#productDetailRedirectForm").submit();
 		}, 500);
 	});
+
 	$(document).on("click", ".addsubquantity", function () {
 		$(".addto-cart").attr("data-quantity", $("#quantity").val() != '' ? $("#quantity").val() : '0')
 		$(".quick-addto-cart").attr("data-quantity", $("#quantity").val() != '' ? $("#quantity").val() : '0')

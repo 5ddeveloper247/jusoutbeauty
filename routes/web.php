@@ -51,7 +51,7 @@ Route::get('/userlogout', [HomeController::class, 'logout']);
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('/store', [HomeController::class, 'store']);
+Route::get('/Shop-All', [HomeController::class, 'store']);
 
 Route::get('/blog-page', [HomeController::class, 'blogPage']);
 Route::get('/blog-detail/{id}', [HomeController::class, 'blogDetails']);
@@ -87,7 +87,7 @@ Route::get('/user-registration', [HomeController::class, 'userRegistration']);
 Route::get('/shopping-cart', [HomeController::class, 'shoppingCart']);
 Route::get('/shipping-step', [HomeController::class, 'shippingStep']);
 
-Route::post('/storeListing', [HomeController::class, 'storeListing']);
+Route::match(['get', 'post'],'/Store/{category}/{subcategory?}', [HomeController::class, 'storeListing']);
 Route::get('/getAllNavLinksLov',[AdminController::class,'getAllNavLinksLov']);
 
 
@@ -101,8 +101,10 @@ Route::get('/accessibility', [HomeController::class, 'accessibility']);
 Route::get('/cookie', [HomeController::class, 'cookie']);
 
 
+Route::get('/making-slug',[HomeController::class,'makingSlug']);
+Route::match(['get', 'post'], '/Products/{category}/{subCategory?}/{slug?}', [HomeController::class, 'productDetail']);
 
-Route::post('/productDetail', [HomeController::class, 'productDetail']);
+// Route::post('/productDetail/{slug}', [HomeController::class, 'productDetail']);
 Route::get('/productDetail', function () {
 	return redirect('home');
 });
@@ -165,6 +167,8 @@ Route::post('/getshadeFinderQuizLevelThreeDetails', [HomeController::class, 'get
 Route::post('/getshadeFinderQuizLevelFourDetails', [HomeController::class, 'getshadeFinderQuizLevelFourDetails']);
 
 Route::post('/getAllUserStoreListingLov', [HomeController::class, 'getAllUserStoreListingLov']);
+
+
 Route::post('/getUserSearchStoreListing', [HomeController::class, 'getUserSearchStoreListing']);
 Route::post('/getAllUserStoreListingAllLov', [HomeController::class, 'getAllUserStoreListingAllLov']);
 Route::post('/getUserSearchStoreListingAll', [HomeController::class, 'getUserSearchStoreListingAll']);

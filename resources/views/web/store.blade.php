@@ -306,9 +306,9 @@
                         <div class="col-6 col-lg-3 product productshop-listing mb-8" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)">
                             <div class="card border-0">
  								<div class="position-relative hover-zoom-in">
- 									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}">
- 										<img src="@{{row.primaryImage}}" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
- 										<img src="@{{row.primaryImage}}" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
+ 									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" >
+ 										<img src="@{{row.primaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 img-h30-m image-active">
+ 										<img src="@{{row.primaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 image-hover">
  									</a>
  									<div class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10 "><!-- productdetail data-id="@{{row.PRODUCT_ID}}"-->
  										<div class="content-change-vertical d-flex flex-column ml-auto">
@@ -327,7 +327,7 @@
  										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled>+ Out of Stock</a>
  									</div>
  								</div>
- 								<div class="card-body pt-4 px-0 pb-0 productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}">
+ 								<div class="card-body pt-4 px-0 pb-0 productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}" >
  									<a href="javascript:;" class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"> @{{row.CATEGORY_NAME}} </a>
 
  									<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading">

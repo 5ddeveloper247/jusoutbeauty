@@ -256,7 +256,12 @@ var site = '<?php echo session('site');?>';
 									<div class="col-lg-6 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
 										<div class="box shade py-2 fadeInUp animated"
 											data-animate="fadeInUp">
-											<div class="card shadee border-0 product-right-side productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{row.CATEGORY_NAME}}">
+											<div class="card shadee border-0 product-right-side productdetail"
+                                            data-id="@{{row.PRODUCT_ID}}"
+                                            data-category="@{{ row.CATEGORY_SLUG }}"
+                                            data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                            data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"
+                                            >
 												<div class="position-relative hover-zoom-in">
 													<a href="javascript:;" class="d-block overflow-hidden">
 													<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top img-h30">
@@ -301,7 +306,11 @@ var site = '<?php echo session('site');?>';
 							data-slick-options='{"slidesToShow": 1,"dots":true,"autoplay":true,"arrows":true,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":true}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":true}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":true}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":true}}]}'>
 
 								<div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts"><!-- data-animate="fadeInUp" -->
-									<div class="card shadee border-0">
+									<div class="card shadee border-0 productdetail"
+                                    data-id="@{{row.PRODUCT_ID}}"
+                                    data-category="@{{ row.CATEGORY_SLUG }}"
+                                    data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                    data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
 										<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 mb-2">
 											<a href="javascript:;">@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
 										</h3>
@@ -340,7 +349,11 @@ var site = '<?php echo session('site');?>';
 												@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
 
 											<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375">
-												<a href="product-detail.html">@{{row.NAME}}</a>
+												<a class="productdetail"
+                                                data-id="@{{row.PRODUCT_ID}}"
+                                                data-category="@{{ row.CATEGORY_SLUG }}"
+                                                data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                                data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME}}</a>
 											</h3>
 											<p class="text-primary mb-0 card-title lh-14375">@{{row.SUB_TITLE_TXT}}</p>
 											<div class="row">

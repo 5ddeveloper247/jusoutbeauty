@@ -1740,7 +1740,10 @@
                             <div class="box px-1" data-animate="fadeInUp">
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
-                                        <a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="<?= $recommand['PRODUCT_ID'] ?>">
+                                        <a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="<?= $recommand['PRODUCT_ID'] ?>"
+                                            data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
+                                            data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
+                                            data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATEGORY_NAME'] ?>">
                                             <img src="<?= $recommand['primaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
                                             <img src="<?= $recommand['secondaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
                                         </a>
@@ -1796,7 +1799,10 @@
                                             </li>
                                         </ul>
                                         <div class="d-flex align-items-center mb-2 productdetail"
-                                            data-id="<?= $recommand['PRODUCT_ID'] ?>">
+                                            data-id="<?= $recommand['PRODUCT_ID'] ?>"
+                                            data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
+                                            data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
+                                            data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATEGORY_NAME'] ?>">
                                             <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                 <a href="javascript:;"><?= $recommand['NAME'] ?></a>
                                             </h3>
@@ -1999,7 +2005,11 @@
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
 
-                                        <a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="<?= $recent['PRODUCT_ID'] ?>">
+                                        <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                            data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                             data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                            data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                            data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>">
                                             <img src="<?= $recent['primaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
                                             <img src="<?= $recent['secondaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
                                         </a>

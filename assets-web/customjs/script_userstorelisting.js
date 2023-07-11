@@ -290,8 +290,9 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	    data.sourceId = $scope.sourceId;
 	    data.flag = $scope.flag;
 	    data.catFlag = $scope.catFlag;
-
+        // alert(data);
 	    var temp = $.param({details: data});
+        // alert(baseUrl);
 
 		$http({
 			data: temp+"&"+$scope.tokenHash,
@@ -301,13 +302,16 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-
+            // alert('coming');
+            // alert(data.products);
 			$scope.displayCollectionProducts = data.products;
 
 			$scope.displayCollectionShadeFilter = data.list1;
 
 		})
 		.error(function(data, status, headers, config) {
+            // alert('failed coming');
+            // alert(data);
 		});
 	}
 

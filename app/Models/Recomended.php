@@ -27,7 +27,7 @@ class Recomended extends Model
         }
         //   $status=true;
         //   $message="success";
-        //   return response()->json(['status' => $status,'message'=>$message]); 
+        //   return response()->json(['status' => $status,'message'=>$message]);
 
             $i=0;
             foreach ($product as $p){
@@ -41,7 +41,7 @@ class Recomended extends Model
                           'UPDATED_BY' => $userId,
                           'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
                           $i++;
-               }   
+               }
             $status=true;
             $message="success";
             return response()->json(['status' => $status,'message'=>$message]);
@@ -49,7 +49,7 @@ class Recomended extends Model
 
 
      public function deleteRecomended($product,$product_id){
-         
+
          DB::beginTransaction();
      try{
          foreach ($product as $p){
@@ -58,17 +58,17 @@ class Recomended extends Model
           DB::commit();
           $status=true;
           $message="success";
-          return response()->json(['status' => $status,'message'=>$message]);     
-    
+          return response()->json(['status' => $status,'message'=>$message]);
+
          }catch(\Exception $e){
-               
+
             DB::rollback();
             $status=false;
             $message=$e->getMessage();
               return response()->json(['status' => $status,'message' =>$message]);
          }
      }
-     
+
      public function insertRecomended($product,$userId,$product_id){
         DB::beginTransaction();
 
@@ -85,21 +85,21 @@ class Recomended extends Model
                           'UPDATED_BY' => $userId,
                           'UPDATED_ON' => date ( 'Y-m-d H:i:s' )));
                           $i++;
-               } 
+               }
                      DB::commit();
-                   
+
                      $status=true;
                      $message="success";
                      return response()->json(['status' => $status,'message'=>$message]);
 
         }catch(\Exception $e){
-           
+
             DB::rollback();
             $status=false;
             $message=$e->getMessage();
             return response()->json(['status' => $status,'message'=>$message]);
         }
-    
+
    }
 
    public function getspecificrecomendedlov($product_id){
@@ -110,16 +110,16 @@ class Recomended extends Model
                 $arrRes[$i] = $s->RECOMEDEDPRODUCT_ID;
                 $i++;
              }
-             return isset($arrRes) ? $arrRes : null;        
+             return isset($arrRes) ? $arrRes : null;
             }
 
 
             public function getrecomendedproducts($product_id){
-                   
+
                  $result =DB::table('jb_product_recommend_tbl')->where('PRODUCT_ID',$product_id)->get();
-                     
+
                  $id=array();
-               
+
                  if($result->count() > 0){
                     $i=0;
                     $k=0;
@@ -161,11 +161,31 @@ class Recomended extends Model
                     $arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
                     $arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
                     $arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+
+                    $name = $row->categoryName;
+                    $words = explode(' ', $name);
+                    if (count($words) > 1 || strpos($name, ' ') !== false) {
+                        $name = implode('-', $words);
+                    } else {
+                        $name = $row->categoryName;
+                    }
+                    $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
                     $arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
                     $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+
+                    $name = $row->subCategoryName;
+                    $words = explode(' ', $name);
+                    if (count($words) > 1 || strpos($name, ' ') !== false) {
+                        $name = implode('-', $words);
+                    } else {
+                        $name = $row->subCategoryName;
+                    }
+                    $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
                     $arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
                     $arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
-            
+
                     $arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
                     $descText = strip_tags(base64_decode($row->DESCRIPTION));
                     $arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -177,58 +197,58 @@ class Recomended extends Model
                     $arrRes[$i]['TAX'] = $row->TAX;
                     $arrRes[$i]['TAX_TYPE'] = $row->TAX_TYPE;
                     $arrRes[$i]['CLINICAL_NOTE'] = base64_decode($row->CLINICAL_NOTE_DESCRIPTION);
-            
+
                     $productImage = $product->getSpecificProductPrimaryImage($row->PRODUCT_ID);
                     $arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-                
+
                     $productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		        $arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
                     $arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
                     $arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-                    
+
                     $reviews = $ReviewsModel->getAllPublishedReviewsByProductId($row->PRODUCT_ID,'');
                     $totalReviews=0;$allRatingSum=0;
                     if(isset($reviews) && !empty($reviews)){
                         $totalReviews = count($reviews);
                         foreach($reviews as $value){
-                            
+
                             $allRatingSum = $allRatingSum+$value['STAR_RATING'];
                         }
                     }
-                    
+
                     if($totalReviews > 0){
                         $averageRating = $allRatingSum/$totalReviews;
                         $averageRating = round($averageRating);
                     }else{
                         $averageRating = 0;
                     }
-                    
+
                     $arrRes[$i]['averageRating'] = $averageRating;
-                    
+
                     $arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
                     $arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
                     $arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
                     $arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-            
+
                     $i++;
 
                  }
              }
 
             }
-             return isset($arrRes) ? $arrRes : null;        
+             return isset($arrRes) ? $arrRes : null;
 
          }
 
          public function getSpecificProductSecondaryImage($id){
-    
+
             $result = DB::table('jb_product_images_tbl as a')->select('a.*')
             ->where('a.PRODUCT_ID', $id)
             ->where('a.SOURCE_CODE', 'PRODUCT_IMG')
             ->where('a.SECONDARY_FLAG', '1')
             ->get();
-        
+
             $i=0;
             foreach ($result as $row){
                 $arrRes['ID'] = $row->IMAGE_ID;
@@ -246,10 +266,10 @@ class Recomended extends Model
                 $arrRes['CREATED_ON'] = $row->CREATED_ON;
                 $arrRes['UPDATED_BY'] = $row->UPDATED_BY;
                 $arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-        
+
                 $i++;
             }
-        
+
             return isset($arrRes) ? $arrRes : null;
         }
 }

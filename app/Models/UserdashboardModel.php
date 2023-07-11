@@ -10,14 +10,14 @@ use DateTime;
 class UserdashboardModel extends Model
 {
     use HasFactory;
-    
-    
+
+
     public function getAllUserBanners(){
-    
+
     	$result = DB::table('jb_user_home_banner_tbl as a')->select('a.*')
     	->orderBy('a.BANNER_ID')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['BANNER_ID'] = $row->BANNER_ID;
@@ -35,15 +35,15 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificUserBannerById($bannerId){
-    	 
+
     	$result = DB::table('jb_user_home_banner_tbl as a')->select('a.*')
     	->where('a.BANNER_ID',$bannerId)
     	->get();
-    	 
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['BANNER_ID'] = $row->BANNER_ID;
@@ -58,20 +58,20 @@ class UserdashboardModel extends Model
     		$arrRes['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
-    		$arrRes['UPDATED_ON'] = $row->UPDATED_ON; 
+    		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
-    
-    
-    
+
+
+
     public function getAllUserBestExcData(){
-    
+
     	$result = DB::table('jb_user_home_bestexclusive_tbl as a')->select('a.*')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['BESTEXC_ID'] = $row->BESTEXC_ID;
@@ -88,15 +88,15 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificUserBestExcById($bestexcId){
-    
+
     	$result = DB::table('jb_user_home_bestexclusive_tbl as a')->select('a.*')
     	->where('a.BESTEXC_ID',$bestexcId)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['BESTEXC_ID'] = $row->BESTEXC_ID;
@@ -112,21 +112,21 @@ class UserdashboardModel extends Model
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
-    
-    
+
+
+
     public function getAllUserHomeProductSectionData($code){
-    
+
     	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName','jpt.UNIT_PRICE as productPrice')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->where('a.BATCH_CODE', $code)
     	->orderBy('a.SECTION_ID','desc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
@@ -138,7 +138,7 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['PRODUCT_NAME'] = $row->productName;
     		$arrRes[$i]['PRODUCT_PRICE'] = number_format($row->productPrice,2);
-    		
+
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
@@ -147,23 +147,24 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getAllUserHomeProductSectionData1($code){
     	$WishlistModel = new WishlistModel();
     	$ProductShade = new ProductShadeModel();
     	$userId = session('userId');
-    	
-    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
+
+    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName','jpt.SLUG as slug','jpt.SUB_CATEGORY_ID as subcategoryid','sbcat.NAME as subcategoryname','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
+        ->join ('jb_sub_category_tbl as sbcat','jpt.SUB_CATEGORY_ID','=','sbcat.SUB_CATEGORY_ID')
 		->where('jpt.STATUS','active')
     	->where('a.BATCH_CODE', $code)
     	->orderBy('jpt.SEQ_NUM','asc')
     	->get();
-    
+        // dd($result);
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
@@ -173,6 +174,26 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['BATCH_CODE'] = $row->BATCH_CODE;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+            $arrRes[$i]['SLUG'] = $row->slug;
+            $arrRes[$i]['SUB_CATEGORY_ID'] = $row->subcategoryid;
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->NAME;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
+            $name = $row->subcategoryname;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subcategoryname;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['PRODUCT_NAME'] = $row->productName;
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
@@ -184,18 +205,18 @@ class UserdashboardModel extends Model
 			$productImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['productSecondaryImg'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
-    		
+
     		$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
-    		
+
     		if(!empty($productShades)){
-    			 
+
     			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
     			$arrRes[$i]['INV_QUANTITY'] = '';
     		}else{
     			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
     			$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
     		}
-    		
+
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
@@ -204,18 +225,18 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getAllUserHomeOfferSectionData(){
-    
+
     	$result = DB::table('jb_user_home_offer_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->orderBy('a.OFFER_ID','desc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
@@ -237,15 +258,15 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getActiveTodayOfferRecordForWebsite(){
     	DB::enableQueryLog();
     	$currentDate = date('Y-m-d H:i:s');
-    	
-    	
+
+
     	$result = DB::table('jb_user_home_offer_section_tbl as a')->select('a.*')
     	->where('a.OFFER_END_DATE', '>=', $currentDate)
 //     	->where('a.OFFER_END_DATE', '>=', today())
@@ -259,21 +280,21 @@ class UserdashboardModel extends Model
     		$arrRes['productId'] = $row->PRODUCT_ID;
     		$arrRes['offerEndTime'] = date ( "Y-m-d H:i:s", strtotime ( "$row->OFFER_END_DATE" ) );
     		$arrRes['description'] = $row->DESCRIPTION;
-    		
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes['productPrimaryImg'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
-			
+
 		}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getSpecificTodayOfferRecordById($offerId){
-    
+
     	$result = DB::table('jb_user_home_offer_section_tbl as a')->select('a.*')
     	->where('a.OFFER_ID', $offerId)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->OFFER_ID;
@@ -283,18 +304,18 @@ class UserdashboardModel extends Model
     		$arrRes['T_4'] = $row->OFFER_END_DATE;
     		$arrRes['T_5'] = $row->DESCRIPTION;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getSpecificProductPrimaryImage($id){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->where('a.SOURCE_CODE', 'PRODUCT_IMG')
     	->where('a.PRIMARY_FLAG', '1')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->IMAGE_ID;
@@ -312,21 +333,21 @@ class UserdashboardModel extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 
 	public function getSpecificProductSecondaryImage($id){
-    
+
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->where('a.SOURCE_CODE', 'PRODUCT_IMG')
     	->where('a.SECONDARY_FLAG', '1')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->IMAGE_ID;
@@ -344,60 +365,60 @@ class UserdashboardModel extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function checkTrendingForyouExistWrtProductId($productId){
     	DB::enableQueryLog();
-    	 
+
     	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $productId)
     	->get();
-    	 
+
     	//     	$query = DB::getQueryLog(); dd($query);
-    	 
+
     	$i=0;
     	foreach ($result as $row){
     		$check = true;
     	}
-    
+
     	return isset($check) ? $check : false;
     }
     public function checkTodayOfferExistWrtProductId($productId){
     	DB::enableQueryLog();
-    
+
     	$result = DB::table('jb_user_home_offer_section_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $productId)
     	->get();
-    
+
     	//     	$query = DB::getQueryLog(); dd($query);
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$check = true;
     	}
-    
+
     	return isset($check) ? $check : false;
     }
-    
+
     public function checkOnlineExcExistWrtProductId($productId){
     	DB::enableQueryLog();
-    
+
     	$result = DB::table('jb_user_home_bestexclusive_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $productId)
     	->get();
-    
+
     	//     	$query = DB::getQueryLog(); dd($query);
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$check = true;
     	}
-    
+
     	return isset($check) ? $check : false;
     }
 
@@ -414,7 +435,7 @@ class UserdashboardModel extends Model
 								->where('SYSTEM_CALL',$path)
 								->where('MENU_TYPE','main')
 								->get();
-		
+
 		if(count($result['MainMenu']) > 0) {
 			$status = true;
 		}
@@ -426,7 +447,7 @@ class UserdashboardModel extends Model
 								->select('MENU_ID')
 								->get();
 
-		
+
 		for($i =0 ;$i<count($result['MainMenuID']);$i++){
 
 			// This is check where the path is acccess for sub Links
@@ -442,8 +463,8 @@ class UserdashboardModel extends Model
 		}
 
 		return $status == "" ? true : false;
-		
+
 	}
-    
-    
+
+
 }

@@ -347,15 +347,15 @@ class ProductModel extends Model
 
     	return isset($arrRes) ? $arrRes : null;
     }
-    public function checkDuplicateSlug($slug, $id=''){
+    public function checkDuplicateSlug($name, $id=''){
     	if($id != ''){
 	    	$result = DB::table('jb_product_tbl')->select('PRODUCT_ID')
 	    	->where('PRODUCT_ID', '!=', $id)
-	    	->where('SLUG', "$slug")
+	    	->where('NAME', "$name")
 	    	->get();
     	}else{
     		$result = DB::table('jb_product_tbl')->select('PRODUCT_ID')
-    		->where('SLUG', "$slug")
+    		->where('SLUG', "$name")
     		->get();
     	}
     	$i=0;
@@ -576,8 +576,29 @@ class ProductModel extends Model
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
+
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+
+            $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subCategoryName;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
 
@@ -652,6 +673,14 @@ class ProductModel extends Model
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
+
+            $name = $row->CATEGORY_NAME;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['NAME'] = $row->CATEGORY_NAME;
     		$arrRes[$i]['subCategories'] = $this->getSubCategoryWrtCategoryId($row->CATEGORY_ID);
 
@@ -680,6 +709,15 @@ class ProductModel extends Model
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
+
+            $name = $row->NAME;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
+
     		$arrRes[$i]['NAME'] = $row->NAME;
 
     		$subCatProductImage = $this->getSpecificProductImageSubCategoryWise($row->SUB_CATEGORY_ID);
@@ -749,6 +787,16 @@ class ProductModel extends Model
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['NAME'] = $row->NAME;
+
+            // $name = $row->NAME;
+            // $words = explode(' ', $name);
+            // if (count($words) > 1 || strpos($name, ' ') !== false) {
+            //     $name = implode('-', $words);
+            // } else {
+            //     $name = $row->NAME;
+            // }
+            // $arrRes[$i]['URLNAME'] = $name;
+
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
     		$arrRes[$i]['UNIT'] = $row->UNIT;
     		$arrRes[$i]['MINIMUM_PURCHASE_QUANTITY'] = $row->MINIMUM_PURCHASE_QUANTITY;
@@ -756,8 +804,28 @@ class ProductModel extends Model
     		$arrRes[$i]['BARCODE'] = $row->BARCODE;
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
+
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+
+            $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subCategoryName;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
@@ -865,7 +933,7 @@ class ProductModel extends Model
 				$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
 				$arrRes[$i]['subSubCateStatus'] = $row->subSubCateStatus;
 				$arrRes[$i]['USER_ID'] = $row->USER_ID;
-				$arrRes[$i]['SLUG'] = $row->SLUG;
+                $arrRes[$i]['SLUG'] = $row->SLUG;
 				$arrRes[$i]['NAME'] = $row->NAME;
 				$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
 				$arrRes[$i]['SUB_TITLE_TXT'] = strlen ( $row->SUB_TITLE ) > 60?substr ( $row->SUB_TITLE, 0, 60 )."..." :$row->SUB_TITLE;
@@ -874,10 +942,30 @@ class ProductModel extends Model
 				$arrRes[$i]['TAGS'] = $row->TAGS;
 				$arrRes[$i]['BARCODE'] = $row->BARCODE;
 				$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
-				$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
-				$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
-				$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
-				$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+                $arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
+
+                $name = $row->categoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $name = implode('-', $words);
+                } else {
+                    $name = $row->categoryName;
+                }
+                $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
+                $arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+                $arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+
+                $name = $row->subCategoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $name = implode('-', $words);
+                } else {
+                    $name = $row->subCategoryName;
+                }
+                $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
+                $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
 				$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
 				$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
 
@@ -980,7 +1068,20 @@ class ProductModel extends Model
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
-    		$arrRes[$i]['SLUG'] = $row->SLUG;
+
+            if($row->SLUG == null || $row->SLUG == ''){
+                $name = $row->NAME;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['SLUG'] = implode('-', $words);
+                } else {
+                    $arrRes[$i]['SLUG'] = $row->NAME;
+                }
+            }else{
+                $arrRes[$i]['SLUG'] = $row->SLUG;
+            }
+
+    		// $arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['NAME'] = $row->NAME;
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
     		$arrRes[$i]['UNIT'] = $row->UNIT;
@@ -989,8 +1090,45 @@ class ProductModel extends Model
     		$arrRes[$i]['BARCODE'] = $row->BARCODE;
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
+
+            if($row->categoryName != null || $row->categoryName != ''){
+                // dd('coming');
+                $name = $row->categoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['CATEGORY_SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['CATEGORY_SLUG']);
+                } else {
+                    $arrRes[$i]['CATEGORY_SLUG'] = $row->categoryName;
+                    // dd($arrRes[$i]['CATEGORY_SLUG']);
+                }
+            }else{
+                // dd('skiped');
+                $arrRes[$i]['CATEGORY_SLUG'] = '';
+                // dd($arrRes[$i]['CATEGORY_SLUG']);
+
+                // dd($arrRes[$i]['SLUG']);
+            }
+
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+
+            if($row->subCategoryName != null || $row->subCategoryName != ''){
+                // dd('coming');
+                $name = $row->subCategoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['SUB_CATEGORY_SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['SLUG']);
+                } else {
+                    $arrRes[$i]['SUB_CATEGORY_SLUG'] = $row->subCategoryName;
+                    // dd($arrRes[$i]['SLUG']);
+                }
+            }else{
+                // dd('skiped');
+                $arrRes[$i]['SUB_CATEGORY_SLUG'] = '';
+                // dd($arrRes[$i]['SLUG']);
+            }
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
@@ -1262,8 +1400,28 @@ class ProductModel extends Model
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+
+            $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subCategoryName;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
 
@@ -1407,7 +1565,23 @@ class ProductModel extends Model
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
-    		$arrRes[$i]['SLUG'] = $row->SLUG;
+            // dd($row->SLUG);
+            if($row->SLUG == null || $row->SLUG == ''){
+
+                $name = $row->NAME;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['SLUG']);
+                } else {
+                    $arrRes[$i]['SLUG'] = $row->NAME;
+                    // dd($arrRes[$i]['SLUG']);
+                }
+            }else{
+                $arrRes[$i]['SLUG'] = $row->SLUG;
+                // dd($arrRes[$i]['SLUG']);
+            }
+
     		$arrRes[$i]['NAME'] = $row->NAME;
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
     		$arrRes[$i]['SUB_TITLE_TXT'] = strlen ( $row->SUB_TITLE ) > 60?substr ( $row->SUB_TITLE, 0, 60 )."..." :$row->SUB_TITLE;
@@ -1417,9 +1591,43 @@ class ProductModel extends Model
     		$arrRes[$i]['BARCODE'] = $row->BARCODE;
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
-    		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+
+            if($row->categoryName != null || $row->categoryName != ''){
+
+                $name = $row->categoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['CATEGORY_SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['SLUG']);
+                } else {
+                    $arrRes[$i]['CATEGORY_SLUG'] = $row->categoryName;
+                    // dd($arrRes[$i]['SLUG']);
+                }
+            }else{
+                $arrRes[$i]['CATEGORY_SLUG'] = '';
+                // dd($arrRes[$i]['SLUG']);
+            }
+
+    		// $arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
-    		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+
+            if($row->subCategoryName != null || $row->subCategoryName != ''){
+
+                $name = $row->subCategoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['SUB_CATEGORY_SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['SLUG']);
+                } else {
+                    $arrRes[$i]['SUB_CATEGORY_SLUG'] = $row->subCategoryName;
+                    // dd($arrRes[$i]['SLUG']);
+                }
+            }else{
+                $arrRes[$i]['SUB_CATEGORY_SLUG'] = '';
+                // dd($arrRes[$i]['SLUG']);
+            }
+
+    		// $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
 			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);

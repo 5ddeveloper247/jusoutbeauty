@@ -87,6 +87,7 @@ class CategoryModel extends Model
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificCategoryData($id){
+        // dd($id);
 
     	$result = DB::table('jb_category_tbl as a')->select('a.*')
     	->where('a.CATEGORY_ID',$id)
@@ -391,6 +392,15 @@ class CategoryModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['NAME'] = $row->NAME;
+            $name = $row->NAME;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->NAME;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
 

@@ -26,13 +26,20 @@
 							<tr class="position-relative" ng-repeat="row in displayCollectionWishlist">
 								<td class="pl-xl-6 py-4 d-flex align-items-center">
 									<a href="javascript:;" class="d-block" ng-click="removeWishlist(row.WISHLIST_ID);"><i class="fal fa-times"></i></a>
-									
-									<div class="media align-items-center productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="">
-										<a href="javascript:;" class="ml-3 mr-4 d-block" > 
+
+									<div class="media align-items-center productdetail"
+                                    data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}"
+                                    data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                    data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" >
+										<a href="javascript:;" class="ml-3 mr-4 d-block" >
 											<img src="@{{row.primaryImage}}" alt="Image" class="mw-75px">
 										</a>
 										<div class="media-body mw-210">
-											<a href="javascript:;" class="font-weight-500 text-primary mb-2 lh-13">@{{row.productName}}</a>
+											<a href="javascript:;" class="font-weight-500 text-primary mb-2 lh-13 productdetail"
+                                            data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}"
+                                            data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                            data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"
+                                            >@{{row.productName}}</a>
 											<p class="card-text fs-14 mb-1 text-primary">
 												<span>$@{{row.unitPrice}}</span>
 											</p>
@@ -41,9 +48,9 @@
 									</div>
 								</td>
 								<td class="align-middle text-right pr-6">
-									<span class="mr-4">In stock</span> 
+									<span class="mr-4">In stock</span>
 									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 addto-cart"
-										data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}" data-id="@{{row.PRODUCT_ID}}" 
+										data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}" data-id="@{{row.PRODUCT_ID}}"
 										data-quantity='1'>Add To Cart</a>
 								</td>
 							</tr>
@@ -70,7 +77,7 @@
 										stock</span> <a href="#"
 									class="btn btn-outline-primary py-1 w-150px px-0 my-3">Select
 										Options</a></td>
-							</tr> 
+							</tr>
 							<tr class="position-relative">
 								<td class="pl-xl-6 py-4 d-flex align-items-center"><a href="#"
 									class="d-block"><i class="fal fa-times"></i></a>
@@ -95,7 +102,7 @@
 									class="btn btn-outline-primary py-1 w-150px px-0 my-3">Add To
 										Cart</a></td>
 							</tr> -->
-							
+
 						</tbody>
 					</table>
 					<div class="row">

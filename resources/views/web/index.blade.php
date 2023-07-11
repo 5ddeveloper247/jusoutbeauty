@@ -10,6 +10,12 @@
     var instagram_feed = '';
 </script>
 <style>
+    .flower-icon{
+        font-size: 40px;
+        position: absolute;
+        left: 15px;
+
+    }
     /* h2{
         font-size: 36px;
         text-transform: capitalize;
@@ -60,7 +66,7 @@
     }
 
     .modal-content .modal-body h2 span {
-        font-size: 100px;
+        font-size: 36PX;
         font-weight: 700;
         margin-left: -40px;
         color: #fff;
@@ -122,7 +128,7 @@
     }
 
     .modal-content .modal-body .sale .icon {
-        font-size: 125px;
+        font-size: 79px;
         position: absolute;
         top: 0;
         left: 0;
@@ -266,8 +272,8 @@
             z-index: 0;
         }
 
-        .modal-content .modal-body .sale .icon {
-            font-size: 37px;
+        .modal-content .modal-body .icon {
+            font-size: 40px;
             position: absolute;
             top: 0;
             left: 0;
@@ -296,6 +302,15 @@
         .popup-dialog {
             max-width: 1100px;
         }
+        .modal-content .modal-body .icon {
+            font-size: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            line-height: 0;
+            z-index: 1;
+            color: #fff;
+        }
 
     }
 
@@ -313,7 +328,7 @@
         }
 
         .modal-content .modal-body h2 span {
-            font-size: 80px;
+            font-size: 36PX;
             font-weight: 700;
             margin-left: -40px;
             color: #fff;
@@ -328,8 +343,8 @@
             z-index: 0;
         }
 
-        .modal-content .modal-body .sale .icon {
-            font-size: 79px;
+        .modal-content .modal-body .icon {
+            font-size: 60px;
             position: absolute;
             top: 0;
             left: 0;
@@ -352,10 +367,11 @@
 			max-width: 822px;
 		}
 
+
     }
 
     @media screen and (min-width: 1200px) {
-		.modal-content .modal-body .sale .icon {
+		.modal-content .modal-body .icon {
             font-size: 79px;
             position: absolute;
             top: 0;
@@ -365,7 +381,7 @@
             color: #fff;
         }
         .modal-content .modal-body h2 span {
-            font-size: 100px;
+            font-size: 36PX;
             font-weight: 700;
             margin-left: -40px;
             color: #fff;
@@ -389,7 +405,7 @@
 
     }
 	@media screen and (min-width: 1400px) {
-		.modal-content .modal-body .sale .icon {
+		.modal-content .modal-body .icon {
             font-size: 79px;
             position: absolute;
             top: 0;
@@ -399,7 +415,7 @@
             color: #fff;
         }
         .modal-content .modal-body h2 span {
-            font-size: 100px;
+            font-size: 36PX;
             font-weight: 700;
             margin-left: -40px;
             color: #fff;
@@ -518,7 +534,10 @@
                                         <div class="card border-0">
                                             <div class="position-relative hover-zoom-in">
                                                 <a href="javascript:;" class="d-block overflow-hidden productdetail "
-                                                    data-id="{{ $trend['PRODUCT_ID'] }}" data-type="">
+                                                    data-id="{{ $trend['PRODUCT_ID'] }}"
+                                                    data-category="{{ $trend['CATEGORY_SLUG'] }}"
+                                                    data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
+                                                    data-name="{{ $trend['SLUG'] }}">
                                                     <img src="{{ $trend['productPrimaryImg'] }}" alt="Product"
                                                         class="card-img-top img-h60 trend_section_image image-active">
                                                     <img src="{{ $trend['productSecondaryImg'] }}" alt="Product"
@@ -1345,7 +1364,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        {{-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered popup-dialog" role="document" style="">
                 <div class="modal-content modalcontent-popup">
@@ -1359,7 +1378,10 @@
                         <div class="col-md-5 col-6 d-flex">
                             <div class="modal-body popup-padding color-1 d-flex" style="background-color:{{ $popupData->BACKGROUND_COLOR }}">
                                 <span class="icon-2 flaticon-snowflake"></span>
-                                {{-- <div class="w-100 text text-center d-flex align-items-center justify-content-center">
+                                <p class="text-white upper">
+                                    <span class="icon flaticon-snowflake text-white"></span>
+                                </p>
+                                <div class="w-100 text text-center d-flex align-items-center justify-content-center">
                                     <div>
                                         <p class="text-white upper">{{ $popupData->FIRST_TITLE }}
                                             <span class="icon flaticon-snowflake"></span>
@@ -1375,24 +1397,23 @@
                                     <div>
                                         <p class="upper">{{ $popupData->SECOND_TITLE }}</p>
                                     </div>
-                                </div> --}}
-                                <div class="w-100 d-flex align-items-center justify-content-center" style="height: 70vh;">
+                                </div>
+                                <div class="w-100 d-flex align-items-center justify-content-center" style="height: 60vh;">
                                     <div class="text-center">
-                                        <p class="text-white upper">{{ $popupData->FIRST_TITLE }}</p>
-                                        <div style="height: 15vh" class="d-flex align-items-center justify-content-center">
-                                            <p class="text-white upper">
-                                                <span class="icon flaticon-snowflake"></span>
-                                            </p>
+                                        <div style="height: 30%" class="">
+                                            <p class="text-white upper">{{ $popupData->FIRST_TITLE }}</p>
+                                            <hr class="w-25 text-white">
+
                                         </div>
-                                        <div style="height: 40vh" class="d-flex align-items-center justify-content-center">
+                                        <div style="height: 40%" class="d-flex align-items-center justify-content-center">
                                             <h2>
                                                 <span style="text-size:36px;">{{ $popupData->DISCOUNT }}</span>
                                                 <sup>%</sup>
                                                 <sub>off</sub>
                                             </h2>
                                         </div>
-                                        <div style="height: 15vh" class="d-flex align-items-center justify-content-center">
-                                            <p class="upper">{{ $popupData->SECOND_TITLE }}</p>
+                                        <div style="height: 30%" class="d-flex align-items-center justify-content-center">
+                                            <p class="upper mt-3">{{ $popupData->SECOND_TITLE }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1413,7 +1434,45 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered popup-dialog" role="document">
+              <div class="modal-content modalcontent-popup">
+                <div class="modal-header p-0 border-0">
+                  <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
+                  </button>
+                </div>
+                <div class="row no-gutters text-center">
+                  <div class="col-lg-5 col-md-6 col-6 d-flex">
+                    <div class="modal-body popup-padding color-1 d-flex" style="background-color:{{ $popupData->BACKGROUND_COLOR }}">
+                      <span class="icon-2 flaticon-snowflake"></span>
+                      <p class="text-white upper" >
+                        <span class="icon flaticon-snowflake text-white"></span>
+                      </p>
+                      <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                        <p class="text-white upper mb-3">{{ $popupData->FIRST_TITLE }}</p>
+                        <h2 class="mt-5 mb-5 text-center text-white font-weight-700">
+                          {{ $popupData->MAIN_TITLE }}
+                          {{-- <sup>%</sup>
+                          <sub>off</sub> --}}
+                        </h2>
+                        <p class="upper mt-3">{{ $popupData->SECOND_TITLE }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-7 col-md-6 col-6 d-flex">
+                    <div class="modal-body p-5 img d-flex align-items-center" style="background-image: url('{{ url($popupData->DOWN_PATH) }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+                      <div class="text w-100 mt-20">
+                        <a href="{{ $popupData->BUTTON_LINK }}" class="btn btn-primary d-block py-3 px-0 px-md-4">{{ $popupData->BUTTON_TEXT }}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
 
 

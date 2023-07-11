@@ -4,7 +4,7 @@
 
 <head>
     <title><?=$page?> — JustBeauty</title>
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -15,27 +15,27 @@
     <link href="{{ url('/assets-admin') }}/third_party/admin/summernote/summernote.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/third_party/admin/jqvmap/css/jqvmap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/chartist/css/chartist.min.css">
-	
-	
-	
+
+
+
 	<!-- Datatables -->
     <link href="{{ url('/assets-admin') }}/third_party/admin/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
-	
+
     <link href="{{ url('/assets-admin') }}/third_party/admin/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-	
+
 	<!-- DropeZone -->
 	<link href="{{ url('/assets-admin') }}/third_party/admin/dropzone/dist/dropzone.css" rel="stylesheet">
-	
+
 	<!-- Multi Select -->
     <link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/select2/css/select2.min.css">
-    
+
 	<link href="{{ url('/assets-admin') }}/third_party/admin/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/css/admin/style.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/customcss/admin/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('/public') }}/third_party/toastr/css/toastr.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	
-	
+
+
 
     </head>
 	<script>
@@ -82,8 +82,8 @@
         <!--**********************************
             Nav header end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Chat box start
         ***********************************-->
@@ -310,7 +310,7 @@
 								<div>
 									<h6 class="mb-1">Chat with Khelesh</h6>
 									<p class="mb-0 text-success">Online</p>
-								</div>							
+								</div>
 								<div class="dropdown">
 									<a href="javascript:void(0)" data-toggle="dropdown" ><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
 									<ul class="dropdown-menu dropdown-menu-right">
@@ -585,8 +585,8 @@
 		<!--**********************************
             Chat box End
         ***********************************-->
-		
-		
+
+
 <!--**********************************
             Header start
         ***********************************-->
@@ -600,7 +600,7 @@
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
-							
+
 							<!-- <li class="nav-item">
 								<div class="input-group search-area d-xl-inline-flex d-none">
 									<input type="text" class="form-control" placeholder="Search here...">
@@ -608,7 +608,7 @@
 										<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
 									</div>
 								</div>
-							</li> 
+							</li>
 							<li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link  ai-icon" href="javascript:void(0)" role="button" data-toggle="dropdown">
                                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -733,7 +733,7 @@
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
-                        
+
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-user"></i>
@@ -759,7 +759,7 @@
 							<span class="nav-text">Subscriptions</span>
 						</a>
                     </li>
-                    
+
                     <!-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-user"></i>
 							<span class="nav-text">Users</span>
@@ -769,12 +769,12 @@
                             <li><a href="{{session('site')}}/website-users">Website Users</a></li>
                         </ul>
                     </li> -->
-                    
-                    
-                    
-                    
+
+
+
+
                 </ul>
-				
+
 				<div class="copyright">
 					<p><strong>JustBeauty User Dashboard</strong> &#169; 2022 All Rights Reserved</p>
 					<p>Made with <span class="heart heart-blast"></span> by 5D Solutions</p>

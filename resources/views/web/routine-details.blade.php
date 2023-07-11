@@ -359,7 +359,10 @@ use Illuminate\Support\Str;
                                     <div class="card border-0">
                                         <div class="position-relative hover-zoom-in">
                                             <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                               data-id="{{ $StepsName['PRODUCT_ID'] }}" >
+                                               data-id="{{ $StepsName['PRODUCT_ID'] }}"
+                                               data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
+                                                data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
+                                                data-name="<?= $StepsName['SLUG'] ?>" data-type="<?= $StepsName['CATEGORY_NAME'] ?>">
                                                 <img src="{{ $StepsName['primaryImage'] }}"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 img-h30-m image-active">

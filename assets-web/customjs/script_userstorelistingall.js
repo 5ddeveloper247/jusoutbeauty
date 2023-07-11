@@ -281,7 +281,6 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	    data.lowerlimit = $scope.lowerlimit;
 
 	    var temp = $.param({details: data});
-
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllUserStoreListingAllLov',
@@ -290,7 +289,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-
+            // console.log(data.products);
 			$scope.displayCollectionProducts = data.products;
 
 			$scope.displayCollectionShadeFilter = data.list1;
