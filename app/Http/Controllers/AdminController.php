@@ -94,7 +94,7 @@ class AdminController extends Controller
             echo json_encode ( $arrRes );
 				die ();
         }
-        if(strlen($mainTitle) > 10 ){
+        if(strlen($mainTitle) > 35 ){
             $arrRes ['done'] = false;
 		    $arrRes ['msg'] = 'Main Title can not be more than 10 chars';
             echo json_encode ( $arrRes );
@@ -2283,15 +2283,167 @@ class AdminController extends Controller
 		}
 		// return view ( 'admin.view-snapSelfie' )->with ( $data );
 	}
-    public function getSnapDetail(Request $request,$id){
+    public function getSnapDetail($id){
         $Product = new ProductModel();
 
         $arrRes['SelfieDetails'] = DB::table('jb_shade_finder_selfie_tbl as a')->select('a.*')
     	->where('SELFIE_ID',$id)->first();
         // dd($result);
         $arrRes ['Products'] = $Product->getAllProductsData();
+
+         $result = DB::table('jb_selfie_reply_tbl')->select('ADMIN_REPLY','SUGGESTED_PRODUCTS_IDS')
+        ->where('SNAP_ID',$id)->where('IS_DELETED','0')->first();
+
+        if($result != null){
+            // $nestedIds = explode(',', $result->SUGGESTED_PRODUCTS_IDS);
+            // $arrRes ['Products'] = DB::table('jb_product_tbl')->select('*')->wherein('PRODUCT_ID',$nestedIds)->get();
+            $arrRes ['SelfieReply'] = $result;
+            // $nestedIds = explode(',', $result->SUGGESTED_PRODUCTS_IDS);
+            $arrRes['Ids'] = explode(',', $result->SUGGESTED_PRODUCTS_IDS);
+            // foreach ($nestedIds as $id) {
+            //     $arrRes['Ids'][] = array('PRODUCT_ID' => $id);
+            //     }
+        }else{
+            $arrRes ['SelfieReply'] = '';
+            $arrRes['Ids'] = '';
+
+        }
+
+
         // dd($arrRes);
         return isset($arrRes) ? $arrRes : '';
+    }
+
+    public function sendSelfieReply(Request $request){
+
+        $EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
+
+        $suggestedProductLinks = [];
+        $suggestedProductIds = [];
+        $suggestedProductNames = [];
+        $data = $request->details;
+        $products = $data['Reply']['Products'];
+        $adminReply = $data['Reply']['R_1'];
+        $snapDetails = $data['UserDetail'];
+        $SnapId = $snapDetails['SELFIE_ID'];
+        $ToId = $snapDetails['USER_ID'];
+        $ToName = $snapDetails['USERNAME'];
+        $ToEmail = $snapDetails['USER_EMAIL'];
+        $fromUserId = $data['SenderId'];
+        $baseUrl = url('');
+
+        if($adminReply == ''){
+            $arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Comment can not be empty';
+            echo json_encode ( $arrRes );
+            die();
+        }
+        if(empty($products)){
+            $arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Select atleast one Product';
+            echo json_encode ( $arrRes );
+            die();
+        }
+        // dd($data);
+        foreach($products as $product){
+            if($product['CATEGORY_SLUG'] && $product['SUB_CATEGORY_SLUG'] && $product['SLUG'] ){
+                $Url = $baseUrl.'/Products'.'/'.$product['CATEGORY_SLUG'].'/'.$product['SUB_CATEGORY_SLUG'].'/'.$product['SLUG'];
+
+            }
+            elseif(empty($product['SUB_CATEGORY_SLUG'])){
+                $Url = $baseUrl.'/Products'.'/'.$product['CATEGORY_SLUG'].'/'.$product['SLUG'];
+            }
+            $suggestedProductIds[] = $product['PRODUCT_ID'];
+            $suggestedProductNames[] = $product['NAME'];
+            $suggestedProductLinks[] = $Url;
+        }
+
+        $commaSeparatedIds = implode(',', $suggestedProductIds);
+
+        // dd($commaSeparatedIds);
+
+        $result = DB::table('jb_selfie_reply_tbl')->insertGetId(
+            array ( 'SNAP_ID' => $SnapId,
+                'TO_ID' => $ToId,
+                'TO_EMAIL' => $ToEmail,
+                'FROM_USER_ID' => $fromUserId,
+                'ADMIN_REPLY' => $adminReply,
+                'SUGGESTED_PRODUCTS_IDS' => $commaSeparatedIds,
+                'CREATED_BY' => $fromUserId,
+                'UPDATED_BY' => $fromUserId,
+                'CREATED_AT' => date ( 'Y-m-d H:i:s' ),
+                'UPDATED_AT' => date ( 'Y-m-d H:i:s' )
+        ));
+
+        // dd($result);
+
+        $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SELFIE REPLY');
+
+				$message_username = str_replace("{User_Name}",$ToName,$adminReply);
+
+				// $htmlbody=	'<tr>
+				// 				<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+				// 					<p>Hello '.$ToName.',</p><br>
+				// 					'.$message_username.'
+				// 				</td>';
+                //                 // $i = 1;
+                //                 foreach($suggestedProductLinks as $link){
+                //                     '<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+				// 					<p>'.$link.',</p>
+				// 					'.$message_username.'
+				// 				</td>';
+                //                 }
+				// 			'</tr>';
+                $htmlbody = '<tr>
+                                <td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+                                    <p>Hello '.$ToName.',</p><br>
+                                    '.$message_username.'
+                                </td>
+                            </tr>';
+                            $i = 0;
+                            foreach ($suggestedProductLinks as $link) {
+
+                                $htmlbody .= '<tr>
+                                    <td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+                                        <a href="'.$link.'" _target="_blank">'.$suggestedProductNames[$i].',</a>
+                                    </td>
+                                </tr>';
+                                $i++;
+                            }
+
+
+
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $ToEmail;//useremail
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "SELFIE REPLY";
+
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+
+				$email_details['to_id'] = '';
+				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+				$email_details['from_id'] = 1;
+				$email_details['from_email'] = $ToEmail;//useremail
+				$email_details['subject'] = $emailConfigDetails['subject'];
+				$email_details['message'] = "";
+				$email_details['logo'] = $emailConfigDetails['logo'];
+				$email_details['module_code'] = "SELFIE REPLY";
+
+				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+
+				$arrRes ['done'] = true;
+				$arrRes ['msg'] = 'Selfie Reply Sent Successfully';
+				$arrRes ['ID'] = $result;
+                $arrRes ['SelfieDetails'] = $this->getSnapDetail($SnapId);
+				// $arrRes ['list'] = $TicketsModel->getAllTicketsForAdmin();
+				echo json_encode ( $arrRes );
+				die ();
+
     }
 
 	/*==================== admin categories code start ==========================*/

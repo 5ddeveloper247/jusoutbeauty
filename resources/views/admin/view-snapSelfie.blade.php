@@ -42,7 +42,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                 {{-- <td class=""><a href="@{{row.DOWNPATH}}" target="_blank"><img class="round-product-img" src="@{{row.DOWNPATH}}"></a></td> --}}
                                                 <td>@{{row.USERNAME}}</td>
                                                 <td>@{{row.USER_EMAIL}}</td>
-                                                <td>@{{row.CREATED_ON}}</td>
+                                                <td>@{{row.CREATED_ON | date: 'dd-MM-YYYY HH:mm'}}</td>
+
                                                 <td>
 													<div class="dropdown ml-auto text-right">
 														<div class="btn-link" data-toggle="dropdown">
@@ -82,39 +83,43 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                         <div class="row">
                             <div class="form-group col-sm-4">
                                 <label for="name">Name</label>
-                                <input type="text" readonly value="" name="" id="snapUserName" ng-modle="S_U_N" class="form-control">
+                                <input type="text" readonly value="" name="" id="snapUserName" ng-model="UserDetail['USERNAME']" class="form-control">
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="email">Email</label>
-                                <input type="email" readonly value="" name="" id="snapUserEmail" ng-modle="S_U_E" class="form-control">
+                                <input type="email" readonly value="" name="" id="snapUserEmail" ng-model="UserDetail['USER_EMAIL']" class="form-control">
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="date">Date</label>
-                                <input type="text" readonly value="" name="" id="snapUserDate" ng-modle="S_U_D" class="form-control">
+                                <input type="text" readonly value="" name="" id="snapUserDate" ng-model="UserDetail['DATE']" class="form-control">
                             </div>
                             <div class="form-group col-12">
                                 {{-- <label for="snapSelfie" class="col-12">Selfie</label> --}}
-                                <img src="" alt="No Image Found" id="snapUserImage" ng-model="S_U_I" class="img-fluid" style="height: 70vh; width: 70vw;">
+                                <img src="@{{ UserDetail.DOWNPATH }}" alt="No Image Found" id="snapUserImage" class="img-fluid" style="height: 70vh; width: 70vw;">
                             </div>
                             <div class="col-12">
                                 <form action="" method="post">
                                     @csrf
                                     <div class="form-group col-12">
-                                        <h3>Write Your Reply</h3>
+                                        <h3 ng-show="checkId == 1">Reply Has Already Been Sent</h3>
+                                        <h3 ng-show="checkId == 0">Write Your Reply</h3>
                                         <label for="comment">Comment/Suggestion</label>
-                                        <textarea name="comment" id="comment" ng-model="Reply['R_1']" cols="30" rows="5" class="form-control" placeholder="Write Your Comment(s) here..."></textarea>
+                                        {{-- <p ng-show="Reply['R_1'] !== ''" >@{{ Reply.R_1 }}</p> --}}
+                                        <textarea name="comment" id="comment" ng-model="Reply['R_1']" cols="30" rows="5"  class="form-control border border-primary rounded p-3" placeholder="Write Your Comment(s) here..." ng-disabled="checkId == 1"></textarea>
+                                        <input type="hidden" ng-model="Reply['SenderId']" data-userId="{{ '<?php echo session('userId');?>' }}" value="{{ '<?php echo session('userId');?>' }}">
                                     </div>
                                     <div class="form-group col-12">
-                                        <label for="products">Select Product(s)</label>
-                                        <select class="default-placeholder select2-hidden-accessible form-select"
+                                        <label for="products" ng-show="checkId == 0">Select Product(s)</label>
+                                        <label for="products" ng-show="checkId == 1">Selected Product(s)</label>
+                                        <select class="default-placeholder select2-hidden-accessible form-select border border-primary rounded p-3"
                                             id="products" multiple='multiple'
                                             ng-model="Reply['Products']"
-                                            ng-options="item as item.NAME for item in productlov track by item.PRODUCT_ID">
+                                            ng-options="item as item.NAME for item in productlov track by item.PRODUCT_ID" ng-disabled="checkId == 1">
                                             <option value="">---SELECT---</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-12">
-                                        <button ng-click="sendSelfieReply()" class="btn btn-primary float-right">Send</button>
+                                        <button ng-click="sendSelfieReply()" class="btn btn-primary float-right" ng-disabled="checkId == 1">Send</button>
                                     </div>
                                 </form>
                             </div>
@@ -147,3 +152,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
     @include('admin.admin-footer')
 
     <script src="{{ url('/assets-admin') }}/customjs/script_adminsnapselfie.js?v={{time()}}"></script>
+    {{-- <script>
+        // Check if R_1 has a value
+        if (angular.isDefined(Reply['R_1']) && Reply['R_1'] !== '') {
+            alert('disabled');
+          // Select all products by default
+          Reply['Products'] = angular.copy(productlov);
+          // Disable the select field
+          angular.element(document.querySelector('#products')).attr('disabled', 'disabled');
+        }
+      </script> --}}

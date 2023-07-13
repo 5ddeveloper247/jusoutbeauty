@@ -14,7 +14,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
     $scope.snapDetail = 1;
     $scope.Reply = {};
     $scope.Reply.R_1 = '';
-    $scope.Reply.Products = '';
+    $scope.Reply.Products = {};
+    $scope.ProductIds = {};
+    $scope.UserDetail = {};
+    $scope.UserDetail.USERNAME = '';
+    $scope.UserDetail.USER_EMAIL = '';
+    $scope.UserDetail.DATE = '';
+    $scope.UserDetail.DOWNPATH = '';
+    $scope.Ids = '';
+
 
 	$scope.tokenHash = $("#csrf").val();
 
@@ -93,12 +101,29 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-            console.log(data.SelfieDetails)
+            // console.log(data.Ids)
             $scope.productlov = data.Products;
-            $('#snapUserName').val(data.SelfieDetails.USERNAME).trigger('change');
-            $('#snapUserEmail').val(data.SelfieDetails.USER_EMAIL).trigger('change');
-            $('#snapUserDate').val(data.SelfieDetails.CREATED_ON).trigger('change');
-            $('#snapUserImage').attr('src',data.SelfieDetails.DOWNPATH).trigger('change');
+            $scope.UserDetail = data.SelfieDetails;
+
+            if (data.SelfieReply !== '') {
+                $scope.Reply.R_1 = data.SelfieReply.ADMIN_REPLY;
+                $scope.checkId = 1;
+                setTimeout(function(){
+                    $scope.Reply.Products = data.Ids;
+                    console.log($scope.Reply.Products);
+                    $('#products').val(data.Ids).trigger('change');
+                    console.log($scope.Reply);
+                }, 1000);
+            }else
+            {
+                $scope.checkId = 0;
+                $scope.Reply.R_1 = '';
+                console.log($scope.Reply);
+
+            }
+
+
+
 
 		})
 		.error(function(data, status, headers, config) {
@@ -114,7 +139,36 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
     }
 
-    // $scope.showSelfieDetail();
+    $scope.sendSelfieReply = function (){
+        var data = {
+            Reply: {
+                Products: $scope.Reply.Products,
+                R_1: $scope.Reply.R_1
+            },
+            UserDetail : $scope.UserDetail,
+            SenderId : userId,
+            BaseUrl : site
+        };
+        console.log(data);
+
+        var temp = $.param({details: data});
+        $http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/sendSelfieReply",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+            toastr.success(data.msg, '', {timeOut: 3000})
+			// $scope.showSelfieDetail();
+		})
+		.error(function(data, status, headers, config) {
+            // toastr.error(data.msg, '', {timeOut: 3000})
+		});
+
+    }
+
 
 
 })

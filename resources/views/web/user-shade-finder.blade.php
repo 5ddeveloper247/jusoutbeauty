@@ -71,8 +71,13 @@
                     <input name="email" type="email" id="email" name="email" class="form-control mb-3"
                         placeholder="Email" required>
                     <label style=" display: block;text-align:left;">Upload your selfie</label>
-                    <input name="file" type="file" class="form-control mb-3" placeholder="UPLOAD YOUR SELFIE"
+                    <input name="file" type="file" class="form-control mb-3 @error('file')
+                        is-invalid
+                    @enderror" placeholder="UPLOAD YOUR SELFIE"
                         id="selfie_img" name="selfie_img" required accept="images/*">
+                    @error('file')
+                        {{ $message }}
+                    @enderror
 
                     <button type="submit" class="btn btn-primary btn-block savebtn">Submit</button>
                     <button type="button" class="btn btn-primary btn-block loaderbtn" disabled style="display: none"><i
@@ -130,6 +135,10 @@
                     $('html, body').animate({
                         scrollTop: $("#snap-selfie").offset().top
                     }, 2000);
+                }else{
+                    toastr.error(data.msg, '', {
+                        timeOut: 3000
+                    })
                 }
             },
             complete: function(data) {
@@ -137,9 +146,11 @@
                 $('.savebtn').show();
             },
             error: function(e) {
+
                 $('.loaderbtn').hide();
                 $('.savebtn').show();
                 console.log(e);
+
             }
         });
 

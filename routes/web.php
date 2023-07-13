@@ -23,7 +23,7 @@ use App\Http\Middleware\AdminAuth;
 //     return view('welcome');
 // });
 
-session()->put('site', '/site');
+session()->put('site', '/jusoutbeauty');
 
 cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
 cookie()->queue(cookie()->forever('site_url', url('/home')));
@@ -295,6 +295,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/newsLatters', [AdminController::class, 'newsLatters']);
 	Route::get('/snapSelfie', [AdminController::class, 'snapSelfie']);
     Route::post('/getSnapDetail/{id}',[AdminController::class,'getSnapDetail']);
+    Route::post('/sendSelfieReply',[AdminController::class,'sendSelfieReply']);
 
 
 
