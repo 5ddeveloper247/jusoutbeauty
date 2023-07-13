@@ -52,7 +52,7 @@ class HomeController extends Controller
 
     public function makingSlug()
     {
-        $result = DB::table('jb_bundle_product_tbl')->select('*')->get();
+        $result = DB::table('jb_product_tbl')->select('*')->get();
         foreach($result as $product){
             $name = $product->NAME;
             $words = explode(' ', $name);
@@ -60,24 +60,11 @@ class HomeController extends Controller
                 $name = implode('-', $words);
             }
             $slug = $name;
-            $update = DB::table('jb_bundle_product_tbl')->where('BUNDLE_ID', $product->BUNDLE_ID)->update(['SLUG' => $slug]);
+            $update = DB::table('jb_product_tbl')->where('PRODUCT_ID', $product->PRODUCT_ID)->update(['SLUG' => $slug]);
         }
         return $update;
     }
 
-//     public function makingSlug()
-// {
-//     $result = DB::table('jb_bundle_product_tbl')->select('*')->get();
-//     foreach ($result as $product) {
-//         $name = $product->NAME;
-//         $words = explode(' ', $name);
-//         if (count($words) > 1 || strpos($name, ' ') !== false) {
-//             $name = implode('-', $words);
-//         }
-//         $slug = $name;
-//         $update = DB::table('jb_bundle_product_tbl')->where('BUDNLE_ID', $product->BUDNLE_ID)->update(['SLUG' => $slug]);
-//     }
-// }
 
    	public function index() {
    		$UserdashboardModel = new UserdashboardModel();
@@ -256,7 +243,7 @@ class HomeController extends Controller
 		$data['routineById'] = $RoutineName->getAllRouteByIdForWebiste($id);
 		$data['getTypeNameLov'] = $getTypeNameLov->getTypeNameLovWithSteps($id);
 
-		//  dd($data['getTypeNameLov']);
+// 		 dd($data['routine']);
 		$data['page'] = 'Routine';
 		return view('web.routine-details')->with ( $data );
 	}
@@ -3844,6 +3831,20 @@ class HomeController extends Controller
 		$arrRes ['msg'] = 'Selfi image deleted successfully...';
 
 		echo json_encode ( $arrRes );
+	}
+	
+	public function updateSlug(){
+		$Products = new ProductModel();
+		
+		$allProd = $Products->getAllForSlugUpdate();
+		
+		foreach ($allProd as $product){
+			
+			
+			
+		}
+		print_r('<pre>');
+		print_r($allProd);
 	}
 }
 ?>

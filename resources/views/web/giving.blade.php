@@ -69,15 +69,12 @@
         <section class="py-10  py-lg-18 rab" id="details-header"
             style="background-repeat: no-repeat ;background-size: cover;background-image: url('{{ url('assets-web') }}/images/960x0.jpg')">
             <div class="container container-xl">
-                <div class="row no-gutters" style="justify-content: center">
-
-                        <div class="mw-370">
-                            <h2 class="mb-2 text-center" data-animate= "fadeInRight" style="color: white; font-size: 100px">Giving</h2>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            	<div class="row no-gutters" style="justify-content: center">
+                  	<div class="mw-370">
+                    	<h2 class="mb-2 text-center" data-animate= "fadeInRight" style="color: white; font-size: 100px">Giving</h2>
+                	</div>
+            	</div>
+          	</div>
         </section>
         <section class="pt-10 pt-lg-13">
             <div class="container container-custom">
@@ -91,7 +88,7 @@
                     <p>Together, we can work to make sure everyone has access to a shower everyday. But we can’t do it
                         alone. So wake up, take a shower, and join us. Let’s do it together </p>
                     <div class="text-center">
-                        <button ng-click="donatePayment()" class="btn btn-primary">Donate</button>
+                        <button ng-click="donatePayment();" class="btn btn-primary">Donate</button>
                     </div>
                 </div>
             </div>
@@ -330,9 +327,9 @@
 
 <script src="{{ url('/assets-web') }}/customjs/script_usergiving.js?v={{time()}}"></script>
 
-{{-- <script src="https://checkout.sandbox.dev.clover.com/sdk.js"></script> --}}
+<script src="https://checkout.sandbox.dev.clover.com/sdk.js"></script>
 
-{{-- <script>
+<script>
     const accesskey = document.getElementById('accesskey').value;
 
     const clover = new Clover(accesskey);
@@ -428,7 +425,7 @@
 
         form.submit();
     }
-</script> --}}
+</script>
 
 <script>
     //     function show_payment_modal_clover(){

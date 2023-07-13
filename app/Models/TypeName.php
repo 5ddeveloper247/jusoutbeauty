@@ -96,16 +96,16 @@ class TypeName extends model
 		$product=new ProductModel();
 
 		$result = DB::table('jb_routine_tbl as a')
-		->select('a.ROUTINE_ID','b.DESCRIPTION','d.PRODUCT_ID','d.STEP_NO','b.NAME','b.SLUG','ctbl.CATEGORY_NAME as categoryname','sctbl.NAME as subcategoryname','ctbl.CATEGORY_ID','sctbl.SUB_CATEGORY_ID')
+		->select('a.ROUTINE_ID','b.DESCRIPTION','d.PRODUCT_ID','d.STEP_NO','d.STEP_ID','b.NAME','b.SLUG','ctbl.CATEGORY_NAME as categoryname','sctbl.NAME as subcategoryname','ctbl.CATEGORY_ID','sctbl.SUB_CATEGORY_ID')
 		->join('jb_routine_type_steps_tbl as d','a.ROUTINE_ID','=','d.ROUTINE_ID')
 		->join('jb_product_tbl as b','d.PRODUCT_ID','=','b.PRODUCT_ID')
         ->join('jb_category_tbl as ctbl','b.CATEGORY_ID','=','ctbl.CATEGORY_ID')
-        ->join('jb_sub_category_tbl as sctbl','b.SUB_CATEGORY_ID','=','sctbl.SUB_CATEGORY_ID')
+        ->leftJoin('jb_sub_category_tbl as sctbl','b.SUB_CATEGORY_ID','=','sctbl.SUB_CATEGORY_ID')
 		// ->join('jb_product_images_tbl as c','b.PRODUCT_ID','=','c.PRODUCT_ID')
 		->where('d.ROUTINETYPE_ID',$ROUTINETYPE_ID)
 		->where('a.ROUTINE_ID',$Routineid)
 		->where('b.IS_DELETED',0)
-		->groupBy('d.PRODUCT_ID')
+// 		->groupBy('d.PRODUCT_ID')
 		->orderBy('d.STEP_NO','asc')
 		->get();
 
@@ -123,6 +123,7 @@ class TypeName extends model
 			$descText = strip_tags(base64_decode($row->DESCRIPTION));
 			$change_string = str_replace("&nbsp;"," ",$descText);
 			$arrRes[$i]['DESCRIPTION']= $change_string;
+			$arrRes[$i]['STEP_ID']= $row->STEP_ID;
 			$arrRes[$i]['PRODUCT_ID']= $row->PRODUCT_ID;
 			$arrRes[$i]['NAME']= $row->NAME;
 			$arrRes[$i]['STEP_NO']= $row->STEP_NO;

@@ -181,7 +181,7 @@ class UserdashboardModel extends Model
             if (count($words) > 1 || strpos($name, ' ') !== false) {
                 $name = implode('-', $words);
             } else {
-                $name = $row->NAME;
+                $name = $row->categoryName;
             }
             $arrRes[$i]['CATEGORY_SLUG'] = $name;
 

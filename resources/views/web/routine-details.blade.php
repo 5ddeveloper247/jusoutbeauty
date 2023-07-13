@@ -194,6 +194,7 @@ use Illuminate\Support\Str;
 
             <h1 class=" mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
             <p class="text-center text-white"><?=$routineId[0]['DESCRIPTION']?></p>
+            <p class="text-center text-white mx-4">{!! Str::limit($routineId[0]['DESCRIPTION'], 1100,false) !!}</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center align-items-center fs-15 mb-3">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ session('site') }}/routine">Routine</a>
@@ -219,7 +220,7 @@ use Illuminate\Support\Str;
     <div class="overlay-content container">
         <h1 class="mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
         {{-- <p class="text-center text-white"><?=$routineId[0]['DESCRIPTION']?></p> --}}
-        <p class="text-center text-white">{!! Str::limit($routineId[0]['DESCRIPTION'], 200,false) !!}</p>
+        <p class="text-center text-white mx-4">{!! Str::limit($routineId[0]['DESCRIPTION'], 1100,false) !!}</p>
 
         {{-- <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center align-items-center fs-15 mb-3">
@@ -402,13 +403,13 @@ use Illuminate\Support\Str;
                                             <div class="col-sm-12 col-12">
                                                 <div id="accordion_{{ $StepsName['PRODUCT_ID'] }}" class="accordion">
                                                     <div class="card mb-0 rounded">
-                                                        <div class="card-header after-coll collapsed how_to_user" data-toggle="collapse" href="#collapse_{{ $StepsName['PRODUCT_ID'] }}">
+                                                        <div class="card-header after-coll collapsed how_to_user" data-toggle="collapse" href="#collapse_{{ $StepsName['STEP_ID'] }}">
                                                             <h4 class="card-title m-0 border-0" style="display: inline-block;">
                                                                 HOW TO USE
                                                             </h4>
                                                         </div>
 
-                                                        <div id="collapse_{{ $StepsName['PRODUCT_ID'] }}" class="card-body collapse how_to_user" data-parent="#accordion_{{ $StepsName['PRODUCT_ID'] }}" >
+                                                        <div id="collapse_{{ $StepsName['STEP_ID'] }}" class="card-body collapse how_to_user" data-parent="#accordion_{{ $StepsName['PRODUCT_ID'] }}" >
                                                             <p class="align-items-center read-more read-more-btn">{{ $StepsName['DESCRIPTION'] }}
                                                             </p>
                                                             <a  id="remove_{{ $StepsName['PRODUCT_ID'] }}" class="read-more-click-btn" style="float:right;cursor: pointer;" onclick="readmore('remove_{{ $StepsName['PRODUCT_ID'] }}')">Read more >></a>

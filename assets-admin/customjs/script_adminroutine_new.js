@@ -276,6 +276,7 @@ $scope.getroutinetypes = function(){
 			.error(function(data, status, headers, config) {
 			});
 		}else{
+			$scope.getSubCategoriesWrtCategory();
 			$scope.subsubcategorylov = {};
 		}
 	}

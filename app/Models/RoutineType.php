@@ -41,7 +41,7 @@ class RoutineType extends model
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
     		$arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
-			$arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
+			$arrRes[$i]['DESCRIPTION'] = strip_tags($row->DESCRIPTION);
     		$arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
 			$arrRes[$i]['IMAGE_DOWNPATH'] = $row->IMAGE_DOWN_PATH;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
@@ -69,7 +69,7 @@ class RoutineType extends model
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
     		$arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
-			$arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
+			$arrRes[$i]['DESCRIPTION'] = strip_tags($row->DESCRIPTION);
     		$arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
 			$arrRes[$i]['IMAGE_DOWNPATH'] = $row->IMAGE_DOWN_PATH;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
@@ -100,7 +100,7 @@ class RoutineType extends model
             foreach ($result as $row){
                 $arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
                 $arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
-                $arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
+                $arrRes[$i]['DESCRIPTION'] = strip_tags($row->DESCRIPTION);
                 $arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
                 $arrRes[$i]['IMAGE_DOWNPATH'] = $row->IMAGE_DOWN_PATH;
                 $arrRes[$i]['USER_ID'] = $row->USER_ID;
@@ -133,7 +133,7 @@ class RoutineType extends model
 
     		$arrRes['ID'] = $row->ROUTINE_ID;
     		$arrRes['NAME'] = $row->NAME;
-			$arrRes['DESCRIPTION'] = $row->DESCRIPTION;
+			$arrRes['DESCRIPTION'] = strip_tags($row->DESCRIPTION);
     		$arrRes['IMAGE'] = $row->IMAGE_PATH;
 			$arrRes['IMAGE_DOWNPATH'] = $row->IMAGE_DOWN_PATH;
             $arrRes['IDENTIFY'] = $row->IDENTIFY;

@@ -963,7 +963,7 @@ class ProductModel extends Model
                 } else {
                     $name = $row->subCategoryName;
                 }
-                $arrRes[$i]['CATEGORY_SLUG'] = $name;
+                $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
 
                 $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
 				$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
@@ -1667,6 +1667,20 @@ class ProductModel extends Model
     		$i++;
     	}
 
+    	return isset($arrRes) ? $arrRes : null;
+    }
+    
+    public function getAllForSlugUpdate(){
+    	
+    	$result = DB::table('jb_product_tbl as a')->select('a.*') ->get();
+    	$i=0;
+    	foreach ($result as $row){
+    		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
+    		$arrRes[$i]['NAME'] = $row->NAME;
+    		
+    		$i++;
+    	}
+    
     	return isset($arrRes) ? $arrRes : null;
     }
 }

@@ -1,23 +1,26 @@
 var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
-//	$(document).on("click", "#chooseShadeBtn", function () {
-//		
-//		$("#chooseShade_container").slideToggle('slow');
-//		
-//	});
+	$(document).on("click", ".donatePayment", function () {
+		
+		$scope.$apply(function () {
+			$scope.donatePayment();
+		});
+		
+	});
 	
 	$scope.giving={};
-	$scope.giving.G_1 = "";
-	$scope.giving.G_2 = "";
-	$scope.giving.G_3 = "";
-	$scope.giving.G_4 = "";
-	$scope.giving.G_5 = "5";
-	$scope.cloverGivingAmount = '500';
+	 $scope.giving.G_1 = "";
+	 $scope.giving.G_2 = "";
+	 $scope.giving.G_3 = "";
+	 $scope.giving.G_4 = "";
+	 $scope.giving.G_5 = "5";
+	 $scope.cloverGivingAmount = '500';
 	
 	$scope.paymentStep = 1;
 	
 	$scope.backtoStep1 = function(){
+		
 		$scope.paymentStep = 1;
 		$("#clover_second").hide(1000);
         $("#clover_first").show(1000);
@@ -84,21 +87,23 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
         $("#show_giving_modal_clover").modal('hide');
 	}
 	
+
+
 	$scope.donatePayment = function(){
-		alert('12');
-		// $scope.giving={};
-		// $scope.giving.G_1 = "";
-		// $scope.giving.G_2 = "";
-		// $scope.giving.G_3 = "";
-		// $scope.giving.G_4 = "";
-		// $scope.giving.G_5 = "5";
-		// $scope.cloverGivingAmount = '500';
 		
-		// $scope.paymentStep = 1;
+		 $scope.giving={};
+		 $scope.giving.G_1 = "";
+		 $scope.giving.G_2 = "";
+		 $scope.giving.G_3 = "";
+		 $scope.giving.G_4 = "";
+		 $scope.giving.G_5 = "5";
+		 $scope.cloverGivingAmount = '500';
+		 
+		 $scope.paymentStep = 1;
 		
-		// $("#clover_first").show(1000);
-		// $("#clover_second").hide(1000);
-        // $("#show_giving_modal_clover").modal('show');
+		 $("#clover_first").show(1000);
+		 $("#clover_second").hide(1000);
+         $("#show_giving_modal_clover").modal('show');
 	}
 	
 	

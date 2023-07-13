@@ -1516,6 +1516,7 @@
     $(".close_learnmore_pop").click(function() {
         $("#learnmore_pop").modal('hide');
     });
+    
 </script>
 
 

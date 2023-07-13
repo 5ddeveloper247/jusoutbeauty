@@ -44,6 +44,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 	$scope.chooseOption = function(optionId, title){
 
+		
+		console.log('as');
 		var data = {};
 		data.optionId = optionId;
 	    data.userId = userId;
@@ -89,7 +91,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 					$('.slick-slider1').slick({
 						slidesToShow: 2,
-						autoplaySpeed: 3000,
+						autoplaySpeed: 5000,
 						"infinite":true,
 						"autoplay":true,
 						"dots":false,
@@ -109,6 +111,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 						});
 //					"slidesToShow": 2,"infinite":true,"autoplay":true,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
 //					"slidesToShow": 1,"infinite":false,"autoplay":false,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
+					console.log('12');
+					$("#yes_tab_all").show();
 				}, 800);
 			}
 
@@ -151,6 +155,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 				$('.slick-slider2').slick({
 						"slidesToShow": 4,
+						autoplaySpeed: 5000,
 						"autoplay":true,
 						"dots":false,
 						"arrows":false,
@@ -269,7 +274,6 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		$(".yestabs").hide();
 		$("#yes_tab_"+i).show();
 	}
-
 	$scope.backToPrevious = function(i){
 
 		if($scope.viewFlag == 'Y2'){
