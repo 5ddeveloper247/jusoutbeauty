@@ -2323,7 +2323,6 @@ class AdminController extends Controller
         $suggestedProductIds = [];
         $suggestedProductNames = [];
         $data = $request->details;
-        $products = $data['Reply']['Products'];
         $adminReply = $data['Reply']['R_1'];
         $snapDetails = $data['UserDetail'];
         $SnapId = $snapDetails['SELFIE_ID'];
@@ -2332,6 +2331,12 @@ class AdminController extends Controller
         $ToEmail = $snapDetails['USER_EMAIL'];
         $fromUserId = $data['SenderId'];
         $baseUrl = url('');
+        if(isset($data['Reply']['Products'])){
+            $products = $data['Reply']['Products'];
+        }else{
+            $products = null;
+        }
+
 
         if($adminReply == ''){
             $arrRes ['done'] = false;
@@ -2339,7 +2344,13 @@ class AdminController extends Controller
             echo json_encode ( $arrRes );
             die();
         }
-        if(empty($products)){
+        if(strlen($adminReply) < 20){
+            $arrRes ['done'] = false;
+			$arrRes ['msg'] = 'Comment can not be less than 20 chars';
+            echo json_encode ( $arrRes );
+            die();
+        }
+        if($products == null){
             $arrRes ['done'] = false;
 			$arrRes ['msg'] = 'Select atleast one Product';
             echo json_encode ( $arrRes );

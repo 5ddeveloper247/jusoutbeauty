@@ -160,7 +160,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
+            if (data.done == true || data.done == 'true') {
+
             toastr.success(data.msg, '', {timeOut: 3000})
+            $scope.checkId = 1;
+            }else{
+            toastr.error(data.msg, '', {timeOut: 3000})
+            $scope.checkId = 0;
+            }
 			// $scope.showSelfieDetail();
 		})
 		.error(function(data, status, headers, config) {
