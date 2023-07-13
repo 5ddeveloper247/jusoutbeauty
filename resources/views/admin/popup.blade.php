@@ -55,7 +55,7 @@
                                                                 <label class="col-form-label"
                                                                     for="discount"><b>Main Titlte</b> </label>
                                                                 <input type="text" class="form-control"
-                                                                    maxlength="10" id="discount"
+                                                                    maxlength="35" id="discount"
                                                                     ng-model="popup['MAIN_TITLE']"
                                                                     placeholder="Enter Main Title Here..." id="discount">
                                                             </div>

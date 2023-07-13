@@ -290,14 +290,17 @@ class ProductModel extends Model
     public function getAllProductsData(){
 		$ProductShade = new ProductShadeModel();
 
-    	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName')
+    	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName','jsct.NAME as subCategoryName')
     	// $result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
-    	// ->join ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
+    	->leftjoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
 //     	->join ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
 		->where('a.IS_DELETED',0)
+        ->where('a.STATUS','active')
     	->orderBy('a.SEQ_NUM','asc')
     	->get();
+
+        // dd($result);
 
     	$i=0;
     	foreach ($result as $row){
@@ -315,8 +318,28 @@ class ProductModel extends Model
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
-    		// $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+    		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+
+            $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subCategoryName;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
+
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
 

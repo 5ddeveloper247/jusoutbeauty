@@ -608,42 +608,43 @@ class HomeController extends Controller
 
 
 
-        if(!isset($_REQUEST['sourceId'])){
-            // dd($subCategory);
-            // dd(empty($slug));
+        if(!isset($_REQUEST['sourceId']))
+		{
             if($slug == null){
-                // dd('slug');
                 $slugByName = $subCategory;
-                // $reversedName = str_replace('-', ' ', $name);
-                // $slugByName = $reversedName;
-                // dd($slugByName);
+				$subCategory = null;
             }else if($slug != null){
-                // dd('no slug');
                 $slugByName = $slug;
-                // $reversedName = str_replace('-', ' ', $name);
-                // $slugByName = $reversedName;
-                // dd($slugByName);
-
             }
-            // dd($slugByName);
-
-
-            $result = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slugByName)->first();
-            // dd($result);
-            if(isset($result)){
-                // dd($result);
-                $_REQUEST['sourceId'] = $result->PRODUCT_ID;
-                    $validated = $this->validateParameters($category,$subCategory,$slug);
-                    if($validated == false){
-                        abort(404);
-                    }
-            }
-            else
-            {
-                // dd('slug not found');
-                abort(404);
-            }
-        }
+			if ($subCategory != null && ($subCategory == 'Bundles' || $subCategory == 'bundles')) {
+				$result = DB::table('jb_bundle_product_tbl')->select('BUNDLE_ID')->where('SLUG', $slugByName)->first();
+				if (isset($result)) {
+					$_REQUEST['sourceId'] = $result->BUNDLE_ID;
+					$validated = $this->validateParameters($category, $subCategory, $slug);
+					if ($validated == false) {
+						// dd('invalid parameters');
+						abort(404);
+					}
+				} else {
+					// dd('invalid slug');
+					abort(404);
+				}
+			} else if ($subCategory != null && ($subCategory != 'Bundles' && $subCategory != 'bundles')) {
+				$result = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG', $slugByName)->first();
+				if (isset($result)) {
+					$_REQUEST['sourceId'] = $result->PRODUCT_ID;
+					// dd($slugByName);
+					$validated = $this->validateParameters($category, $subCategory, $slug);
+					if ($validated == false) {
+						// dd('invalid parameters');
+						abort(404);
+					}
+				} else {
+					// dd('invalid slug');
+					abort(404);
+				}
+			}
+		}
 
         $sourceId = isset($_REQUEST['sourceId']) ? $_REQUEST['sourceId'] : "";
 		$sourceType = isset($_REQUEST['sourceType']) ? $_REQUEST['sourceType'] : "";
@@ -673,7 +674,9 @@ class HomeController extends Controller
 
 			return view ( 'web.bundle-detail' )->with ( $data );
 
-		}else{
+		}
+        else
+        {
 
 
 			$data ['features'] = $features->getspecificproductdata($sourceId);
@@ -705,7 +708,8 @@ class HomeController extends Controller
 			$data ['page'] = 'product Detail';
 			return view ( 'web.product-detail' )->with ( $data );
 		}
-	}
+    }
+
 
     public function validateParameters($category,$subCategory,$slug){
         // dd('working');
@@ -715,9 +719,9 @@ class HomeController extends Controller
             $subCategory = null;
             // dd($slug);
         }
-        $CategoryIdFromSlug = '';
-        $subCategoryIdFromSlug = '';
-        $productIdFromSlug = '';
+        // $CategoryIdFromSlug = '';
+        // $subCategoryIdFromSlug = '';
+        // $productIdFromSlug = '';
 
         // if(!isset($sourceId)){
 
@@ -742,152 +746,301 @@ class HomeController extends Controller
 
 
 
+            if($subCategory != null && ($subCategory == 'Bundles' || $subCategory == 'bundles')){
+				// dd('bundle');
+                $productIdFromSlug = DB::table('jb_bundle_product_tbl')->select('BUNDLE_ID')->where('SLUG',$slug)->first();
+				if(isset($slug) ){
+					// dd('slug found');
+					$productIdFromSlug = DB::table('jb_bundle_product_tbl')->select('BUNDLE_ID')->where('SLUG',$slug)->orWhere('NAME',$slugByName)->first();
+					if(isset($productIdFromSlug))
+					{
+						// echo 'Product Id Found through Slug';
+						// dd('sub category is missing');
+						if(isset($subCategory))
+						{
+							// echo 'subcategory is here';
+							$subCategoryIdFromSlug = DB::table('jb_bundle_product_tbl as prd')
+							->select('prd.BUNDLE_ID','cat.CATEGORY_ID','cat.SUB_CATEGORY_ID')
+							->join('jb_sub_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
+							->where(function ($query) use ($SubCategorySlugByName) {
+								$query->Where('cat.NAME', $SubCategorySlugByName);
+							})
+							->first();
 
-            // $subCategoryIdFromSlug = DB::table('jb_product_tbl as prd')->select('CATEGORY_ID')->where('SLUG',$slug)->first();
-            if(isset($slug)){
-                // dd($slug);
-            // echo 'Slug is here';
-                $productIdFromSlug = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slug)->orWhere('NAME',$slugByName)->first();
-                if(isset($productIdFromSlug))
-                {
-                    // echo 'Product Id Found through Slug';
-                    // dd('sub category is missing');
-                    if(isset($subCategory))
-                    {
-                        // echo 'subcategory is here';
-                        $subCategoryIdFromSlug = DB::table('jb_product_tbl as prd')
-                        ->select('prd.PRODUCT_ID','cat.CATEGORY_ID','cat.SUB_CATEGORY_ID')
-                        ->join('jb_sub_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
-                        ->where(function ($query) use ($SubCategorySlugByName) {
-                            $query->Where('cat.NAME', $SubCategorySlugByName);
-                        })
-                        ->first();
+							if(isset($subCategoryIdFromSlug))
+							{
+								// echo 'Sub category matched';
+								if(isset($category))
+								{
+									// echo 'category is here';
+									$CategoryIdFromSlug = DB::table('jb_bundle_product_tbl as prd')
+									->select('prd.BUNDLE_ID','cat.CATEGORY_ID')
+									->join('jb_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
+									->where(function ($query) use ($CategorySlugByName) {
+										$query->Where('cat.CATEGORY_NAME', $CategorySlugByName);
+									})
+									->first();
 
-                        if(isset($subCategoryIdFromSlug))
-                        {
-                            // echo 'Sub category matched';
-                            if(isset($category))
-                            {
-                                // echo 'category is here';
-                                $CategoryIdFromSlug = DB::table('jb_product_tbl as prd')
-                                ->select('prd.PRODUCT_ID','cat.CATEGORY_ID')
-                                ->join('jb_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
-                                ->where(function ($query) use ($CategorySlugByName) {
-                                    $query->Where('cat.CATEGORY_NAME', $CategorySlugByName);
-                                })
-                                ->first();
+									if(isset($CategoryIdFromSlug))
+									{
+										// echo 'category matched';
+										if(strtoupper($subCategory) == 'BUNDLE' || strtoupper($subCategory) == 'BUNDLES')
+										{
+											// dd('Bundle will load');
+											$_REQUEST['sourceId'] = $productIdFromSlug->BUNDLE_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = 'bundle';
+											// dd($_REQUEST['sourceId']);
+											return $_REQUEST;
 
-                                if(isset($CategoryIdFromSlug))
-                                {
-                                    // echo 'category matched';
-                                    if(strtoupper($subCategory) == 'BUNDLE' || strtoupper($subCategory) == 'BUNDLES')
-                                    {
-                                        // dd('Bundle will load');
-                                        $_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
-                                        $_REQUEST['sourceType'] = '';
-                                        $_REQUEST['sourceCode'] = 'bundle';
-                                        // dd($_REQUEST['sourceId']);
-                                        return $_REQUEST;
+										}
+										else
+										{
+											// dd('Listing will load');
+											$_REQUEST['sourceId'] = $productIdFromSlug->BUNDLE_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = '';
+											// dd($_REQUEST['sourceId']);
+											return $_REQUEST;
+										}
 
-                                    }
-                                    else
-                                    {
-                                        // dd('Listing will load');
-                                        $_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
-                                        $_REQUEST['sourceType'] = '';
-                                        $_REQUEST['sourceCode'] = '';
-                                        // dd($_REQUEST['sourceId']);
-                                        return $_REQUEST;
-                                    }
+									}
+									else
+									{
+										// echo 'category did not matched';
+										// abort(404);
+										return false;
+									}
+								}
+								else
+								{
+									// echo 'category is not here';
+									// abort(404);
+									return false;
+								}
 
-                                }
-                                else
-                                {
-                                    // echo 'category did not matched';
-                                    // abort(404);
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                // echo 'category is not here';
-                                // abort(404);
-                                return false;
-                            }
+							}
+							else
+							{
+								// echo 'Sub category did not match';
+								// abort(404);
+								return false;
+							}
+						}
+						else
+						{
+							// echo 'subcategory is not here';
+							// dd('sub category is missing');
+							// $productIdFromSlug = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slug)->orWhere('NAME',$slugByName)->first();
+							if(isset($productIdFromSlug))
+							{
+								if(isset($category))
+								{
+									// dd('slug and category');
+									$CategoryIdFromSlug = DB::table('jb_bundle_product_tbl as prd')
+									->select('prd.BUNDLE_ID','cat.CATEGORY_ID')
+									->join('jb_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
+									->where(function ($query) use ($CategorySlugByName) {
+										$query->Where('cat.CATEGORY_NAME', $CategorySlugByName);
+									})
+									->first();
 
-                        }
-                        else
-                        {
-                            // echo 'Sub category did not match';
-                            // abort(404);
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        // echo 'subcategory is not here';
-                        // dd('sub category is missing');
-                        // $productIdFromSlug = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slug)->orWhere('NAME',$slugByName)->first();
-                        if(isset($productIdFromSlug))
-                        {
-                            if(isset($category))
-                            {
-                                // dd('slug and category');
-                                $CategoryIdFromSlug = DB::table('jb_product_tbl as prd')
-                                ->select('prd.PRODUCT_ID','cat.CATEGORY_ID')
-                                ->join('jb_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
-                                ->where(function ($query) use ($CategorySlugByName) {
-                                    $query->Where('cat.CATEGORY_NAME', $CategorySlugByName);
-                                })
-                                ->first();
+									if(isset($CategoryIdFromSlug)){
+										if(strtoupper($subCategory) == 'BUNDLE' || strtoupper($subCategory) == 'BUNDLES'){
+											$_REQUEST['sourceId'] = $productIdFromSlug->BUNDLE_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = 'bundle';
+											return $_REQUEST;
+										}
+										else
+										{
+											$_REQUEST['sourceId'] = $productIdFromSlug->BUNDLE_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = '';
+											return $_REQUEST;
+										}
 
-                                if(isset($CategoryIdFromSlug)){
-                                    if(strtoupper($subCategory) == 'BUNDLE' || strtoupper($subCategory) == 'BUNDLES'){
-                                        $_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
-                                        $_REQUEST['sourceType'] = '';
-                                        $_REQUEST['sourceCode'] = 'bundle';
-                                        return $_REQUEST;
-                                    }
-                                    else
-                                    {
-                                        $_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
-                                        $_REQUEST['sourceType'] = '';
-                                        $_REQUEST['sourceCode'] = '';
-                                        return $_REQUEST;
-                                    }
+									}
+									else
+									{
+										// abort(404);
+										return false;
+									}
+								}
+								else
+								{
+									// abort(404);
+									return false;
+								}
+							}
+							else
+							{
+								// abort(404);
+								return false;
+							}
+						}
+					}else
+					{
+						dd('Product Id was not Found through Slug');
+						// abort(404);
+						return false;
+					}
+				}
+				else
+				{
+					// echo 'Slug is here';
+					// abort(404);
+					return false;
+				}
+            }elseif($subCategory != null && ($subCategory != 'Bundles' || $subCategory != 'bundles')){
+				// dd('product');
+                $productIdFromSlug = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slug)->first();
+				if(isset($slug) ){
+					$productIdFromSlug = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slug)->orWhere('NAME',$slugByName)->first();
+					if(isset($productIdFromSlug))
+					{
+						// echo 'Product Id Found through Slug';
+						// dd('sub category is missing');
+						if(isset($subCategory))
+						{
+							// echo 'subcategory is here';
+							$subCategoryIdFromSlug = DB::table('jb_product_tbl as prd')
+							->select('prd.PRODUCT_ID','cat.CATEGORY_ID','cat.SUB_CATEGORY_ID')
+							->join('jb_sub_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
+							->where(function ($query) use ($SubCategorySlugByName) {
+								$query->Where('cat.NAME', $SubCategorySlugByName);
+							})
+							->first();
 
-                                }
-                                else
-                                {
-                                    // abort(404);
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                // abort(404);
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            // abort(404);
-                            return false;
-                        }
-                    }
-                }else
-                {
-                    // echo 'Product Id was not Found through Slug';
-                    // abort(404);
-                    return false;
-                }
+							if(isset($subCategoryIdFromSlug))
+							{
+								// echo 'Sub category matched';
+								if(isset($category))
+								{
+									// echo 'category is here';
+									$CategoryIdFromSlug = DB::table('jb_product_tbl as prd')
+									->select('prd.PRODUCT_ID','cat.CATEGORY_ID')
+									->join('jb_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
+									->where(function ($query) use ($CategorySlugByName) {
+										$query->Where('cat.CATEGORY_NAME', $CategorySlugByName);
+									})
+									->first();
+
+									if(isset($CategoryIdFromSlug))
+									{
+										// echo 'category matched';
+										if(strtoupper($subCategory) == 'BUNDLE' || strtoupper($subCategory) == 'BUNDLES')
+										{
+											// dd('Bundle will load');
+											$_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = 'bundle';
+											// dd($_REQUEST['sourceId']);
+											return $_REQUEST;
+
+										}
+										else
+										{
+											// dd('Listing will load');
+											$_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = '';
+											// dd($_REQUEST['sourceId']);
+											return $_REQUEST;
+										}
+
+									}
+									else
+									{
+										// echo 'category did not matched';
+										// abort(404);
+										return false;
+									}
+								}
+								else
+								{
+									// echo 'category is not here';
+									// abort(404);
+									return false;
+								}
+
+							}
+							else
+							{
+								// echo 'Sub category did not match';
+								// abort(404);
+								return false;
+							}
+						}
+						else
+						{
+							// echo 'subcategory is not here';
+							// dd('sub category is missing');
+							// $productIdFromSlug = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slug)->orWhere('NAME',$slugByName)->first();
+							if(isset($productIdFromSlug))
+							{
+								if(isset($category))
+								{
+									// dd('slug and category');
+									$CategoryIdFromSlug = DB::table('jb_product_tbl as prd')
+									->select('prd.PRODUCT_ID','cat.CATEGORY_ID')
+									->join('jb_category_tbl as cat', 'prd.CATEGORY_ID', '=', 'cat.CATEGORY_ID')
+									->where(function ($query) use ($CategorySlugByName) {
+										$query->Where('cat.CATEGORY_NAME', $CategorySlugByName);
+									})
+									->first();
+
+									if(isset($CategoryIdFromSlug)){
+										if(strtoupper($subCategory) == 'BUNDLE' || strtoupper($subCategory) == 'BUNDLES'){
+											$_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = 'bundle';
+											return $_REQUEST;
+										}
+										else
+										{
+											$_REQUEST['sourceId'] = $productIdFromSlug->PRODUCT_ID;
+											$_REQUEST['sourceType'] = '';
+											$_REQUEST['sourceCode'] = '';
+											return $_REQUEST;
+										}
+
+									}
+									else
+									{
+										// abort(404);
+										return false;
+									}
+								}
+								else
+								{
+									// abort(404);
+									return false;
+								}
+							}
+							else
+							{
+								// abort(404);
+								return false;
+							}
+						}
+					}else
+					{
+						// dd('Product Id was not Found through Slug');
+						// abort(404);
+						return false;
+					}
+				}
+				else
+				{
+					// echo 'Slug is here';
+					// abort(404);
+					return false;
+				}
             }
-            else
-            {
-                // echo 'Slug is here';
-                // abort(404);
-                return false;
-            }
+
+
+
         // }
     }
 
@@ -1610,7 +1763,7 @@ class HomeController extends Controller
    		$userId = $details ['userId'];
    		$productId = isset($details ['productId']) ? $details ['productId'] : '';
    		$bundleId = isset($details ['bundleId']) ? $details ['bundleId'] : '';
-
+		// dd($bundleId);
    		$reviews = $ReviewsModel->getAllPublishedReviewsByProductId($productId,$bundleId);
    		$arrRes ['reviews'] = $reviews;
    		$arrRes ['questions'] = $QuestionModel->getAllPublishedQuestionsByProductId($productId,$bundleId);
@@ -3509,78 +3662,114 @@ class HomeController extends Controller
 					'USER_EMAIL' => $username_email,
 			)
 		);
-		if($request->file('file')){
+        if ($request->file('file')) {
+            $path = public_path() . "/uploads/beautyselfie";
+            $downpath = url('public') . "/uploads/beautyselfie";
 
-			$path = public_path()."/uploads/beautyselfie";
-			$downpath = url('public')."/uploads/beautyselfie";
+            $file = $request->file('file');
+            $file_ext = $file->getClientOriginalExtension();
+            $namefile = 'example'; // Replace with your own logic to generate the file name
 
-			$file = $request->file('file');
-			$file_ext= $file->getClientOriginalExtension();
+            $fullpath = $path . "/" . $namefile . "." . $file_ext;
+            $downpath = $downpath . "/" . $namefile . "." . $file_ext;
 
-			$fullpath = $path."/".$namefile.".".$file_ext;
-			$downpath = $downpath."/".$namefile.".".$file_ext;
-// dd($fullpath);
-			if (!file_exists($path)) {
-				mkdir($path, 0777, true);
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
 
-				if(move_uploaded_file($file, $fullpath)){
+            $imageSize = getimagesize($file);
+            $width = $imageSize[0];
+            $height = $imageSize[1];
 
-					$result = DB::table ( 'jb_shade_finder_selfie_tbl' ) ->where ( 'SELFIE_ID', $namefile ) ->update (
-					array ( 'PATH' => $fullpath,
-							'DOWNPATH' => $downpath,
-							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-						)
-					);
-				}
-			}else{
-
-				if(move_uploaded_file($file, $fullpath)){
-
-					$result = DB::table ( 'jb_shade_finder_selfie_tbl' ) ->where ( 'SELFIE_ID', $namefile ) ->update (
-						array ( 'PATH' => $fullpath,
-								'DOWNPATH' => $downpath,
-								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-						)
-						);
-				}
-			}
-		}
-
-		$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SHADEFINDERSELFI');
-		$message_username = str_replace("{User_Name}",$username,$emailConfigDetails['message']);
-		$htmlbody=	'<tr>
-						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-							<p>Hello '.$username.',</p><br>
-							'.$message_username.'
-						</td>
-	        		</tr>';
+            if ($width >= 1000 && $height >= 600) {
+                if (move_uploaded_file($file, $fullpath)) {
+                    $result = DB::table('jb_shade_finder_selfie_tbl')->where('SELFIE_ID', $namefile)->update(
+                        array(
+                            'PATH' => $fullpath,
+                            'DOWNPATH' => $downpath,
+                            'UPDATED_ON' => date('Y-m-d H:i:s')
+                        )
+                    );
+                }
+                $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SHADEFINDERSELFI');
+                $message_username = str_replace("{User_Name}",$username,$emailConfigDetails['message']);
+                $htmlbody=	'<tr>
+                                <td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+                                    <p>Hello '.$username.',</p><br>
+                                    '.$message_username.'
+                                </td>
+                            </tr>';
 
 
-		$email_details['to_id'] = '';
-		$email_details['to_email'] = $username_email;
-		$email_details['from_id'] = 1;
-		$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
-		$email_details['subject'] = $emailConfigDetails['subject'];
-		$email_details['message'] = "";
-		$email_details['logo'] = $emailConfigDetails['logo'];
-		$email_details['module_code'] = "SHADEFINDERSELFI";
+                $email_details['to_id'] = '';
+                $email_details['to_email'] = $username_email;
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+                $email_details['subject'] = $emailConfigDetails['subject'];
+                $email_details['message'] = "";
+                $email_details['logo'] = $emailConfigDetails['logo'];
+                $email_details['module_code'] = "SHADEFINDERSELFI";
 
-		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
-		$email_details['to_id'] = '';
-		$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
-		$email_details['from_id'] = 1;
-		$email_details['from_email'] = $username_email;
-		$email_details['subject'] = $emailConfigDetails['subject'];
-		$email_details['message'] = "";
-		$email_details['logo'] = $emailConfigDetails['logo'];
-		$email_details['module_code'] = "SHADEFINDERSELFI";
+                $email_details['to_id'] = '';
+                $email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $username_email;
+                $email_details['subject'] = $emailConfigDetails['subject'];
+                $email_details['message'] = "";
+                $email_details['logo'] = $emailConfigDetails['logo'];
+                $email_details['module_code'] = "SHADEFINDERSELFI";
 
-		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-		$arrRes ['done'] = true;
-   		$arrRes ['msg'] = 'Selfie Data added successfully.';
-   		echo json_encode ( $arrRes );
-   		die ();
+                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+                $arrRes ['done'] = true;
+                   $arrRes ['msg'] = 'Selfie Data added successfully.';
+                   echo json_encode ( $arrRes );
+                   die ();
+            } else {
+                $arrRes ['done'] = false;
+                $arrRes ['msg'] = 'Selfie Image must be atleast 1000 by 600 pixels.';
+                echo json_encode ( $arrRes );
+                die ();
+            }
+        }
+
+// 		if($request->file('file')){
+
+// 			$path = public_path()."/uploads/beautyselfie";
+// 			$downpath = url('public')."/uploads/beautyselfie";
+
+// 			$file = $request->file('file');
+// 			$file_ext= $file->getClientOriginalExtension();
+
+// 			$fullpath = $path."/".$namefile.".".$file_ext;
+// 			$downpath = $downpath."/".$namefile.".".$file_ext;
+// // dd($fullpath);
+// 			if (!file_exists($path)) {
+// 				mkdir($path, 0777, true);
+
+// 				if(move_uploaded_file($file, $fullpath)){
+
+// 					$result = DB::table ( 'jb_shade_finder_selfie_tbl' ) ->where ( 'SELFIE_ID', $namefile ) ->update (
+// 					array ( 'PATH' => $fullpath,
+// 							'DOWNPATH' => $downpath,
+// 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+// 						)
+// 					);
+// 				}
+// 			}else{
+
+// 				if(move_uploaded_file($file, $fullpath)){
+
+// 					$result = DB::table ( 'jb_shade_finder_selfie_tbl' ) ->where ( 'SELFIE_ID', $namefile ) ->update (
+// 						array ( 'PATH' => $fullpath,
+// 								'DOWNPATH' => $downpath,
+// 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+// 						)
+// 						);
+// 				}
+// 			}
+// 		}
 
 	}
 

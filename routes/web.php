@@ -294,6 +294,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::get('/newsLatters', [AdminController::class, 'newsLatters']);
 	Route::get('/snapSelfie', [AdminController::class, 'snapSelfie']);
     Route::post('/getSnapDetail/{id}',[AdminController::class,'getSnapDetail']);
+    Route::post('/sendSelfieReply',[AdminController::class,'sendSelfieReply']);
 
 
 
