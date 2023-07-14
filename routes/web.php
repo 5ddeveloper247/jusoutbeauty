@@ -22,7 +22,7 @@ use App\Http\Middleware\AdminAuth;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-session()->put('site', '/jusoutbeauty');
+session()->put('site', '/site');
 
 cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
 cookie()->queue(cookie()->forever('site_url', url('/home')));
