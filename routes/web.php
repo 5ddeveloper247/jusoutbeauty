@@ -47,6 +47,8 @@ Route::post('/UserReg', [LoginController::class, 'UserReg1']);
 Route::get('/userlogout', [HomeController::class, 'logout']);
 //web routs
 
+Route::get('/subscription-crone-job',[AdminController::class,'subscriptionCroneJob']);
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 

@@ -48,6 +48,139 @@ use Nette\Utils\Json;
 class AdminController extends Controller
 {
 
+    public function subscriptionCroneJob(){
+
+        $EmailForwardModel = new EmailForwardModel();
+		$EmailConfigModel = new EmailConfigModel;
+        $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SUBSCRIPTION NOTIFICATION');
+
+        $twoDaysAhead = date('Y-m-d', strtotime('+2 days'));
+        $sameDay = date('Y-m-d');
+
+        $results = DB::table('jb_user_subscription_tbl as stbl')
+            ->select('stbl.*','prd.*','utbl.*','ctbl.CATEGORY_NAME','subtbl.TITLE','ordtbl.QUANTITY as qantity','ordtbl.UNIT_PRICE','ordtbl.TOTAL_AMOUNT','bprd.NAME as bName','bprd.TOTAL_AMOUNT as bTotalAmount','bprd.QUANTITY as bQuantity','bctbl.CATEGORY_NAME as bCategoryName')
+            ->leftJoin('jb_product_tbl as prd', 'stbl.PRODUCT_ID', '=', 'prd.PRODUCT_ID')
+            ->leftJoin('jb_category_tbl as ctbl','prd.CATEGORY_ID','=','ctbl.CATEGORY_ID')
+            ->leftJoin('fnd_user_tbl as utbl','stbl.USER_ID','=','utbl.USER_ID')
+            ->leftJoin('jb_subscription_tbl as subtbl','stbl.SUBSCRIPTION_ID','=','subtbl.SUBSCRIPTION_ID')
+            ->leftJoin('jb_order_detail_tbl as ordtbl','stbl.ORDER_LINE_ID','=','ordtbl.ORDER_LINE_ID')
+			->leftJoin('jb_bundle_product_tbl as bprd','stbl.BUNDLE_ID','=','bprd.BUNDLE_ID')
+			->leftJoin('jb_category_tbl as bctbl','bprd.CATEGORY_ID','=','bctbl.CATEGORY_ID')
+            ->where('NEXT_PAYMENT_DATE', $twoDaysAhead)->orWhere('NEXT_PAYMENT_DATE',$sameDay)
+            ->where('SUBSCRIPTION_STATUS','active')
+            ->get();
+
+        // dd($results);
+        if(isset($results))
+		{
+            $i = 1;
+            foreach($results as $result){
+                $rslt = DB::table('sys_notification_tbl')->insert(
+                    array(
+                    'N_TYPE' => 'product subscription',
+                    'N_NAME' =>  'notification',
+                    'DATE' => date ( 'Y-m-d H:i:s' ),
+                    'TO_USER_ID' => $result->USER_ID,
+                    'TO_USER_EMAIL' => $result->EMAIL,
+                    'SOURCE_ID' =>  $result->USER_SUBSCRIPTION_ID,
+                    'FROM_USER_ID' => 1,
+                    'FROM_USER_EMAIL' => $emailConfigDetails['fromEmail'],
+                    'MODULE_CODE'=> 'subscription',
+                    'STATUS' => 'active',
+                    'PRIORITY' => 'hight',
+                    'MESSAGE' => 'Kindly pay your subscription fee on time to continue using our services',
+                    'N_HTML' => $emailConfigDetails['message'],
+                    'CREATED_BY' => 1,
+                    'CREATED_AT' => date ( 'Y-m-d H:i:s' ),
+                    'UPDATED_BY' => 1,
+                    'UPDATED_AT' => date ( 'Y-m-d H:i:s' ),
+                ));
+                $ToName = $result->FIRST_NAME;
+                $message_username = str_replace("{User_Name}",$ToName,$emailConfigDetails['message']);
+
+							$htmlbody = '<div bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+											<p>Hello '.$ToName.',</p><br>
+										'.$message_username.'
+										</div>
+										<html>
+										<head>
+										</head>
+										<body>
+											<div style="width: 100%; display: flex; justify-content: center;">
+												<div style="overflow-x: auto; max-width: 100%;">
+													<table style="width: 100%; border-collapse: collapse;">
+														<thead style="background-color: #f4f4f4;">
+															<tr>
+																<th style="padding: 10px; text-align: left;">S.No</th>
+																<th style="padding: 10px; text-align: left;">'.(isset($result->NAME) ? 'Product Name' : (isset($result->bName) ? 'Bundle Name' : '')).'</th>
+																<th style="padding: 10px; text-align: left;">Category</th>
+																<th style="padding: 10px; text-align: left;">Subscription Name</th>
+																<th style="padding: 10px; text-align: left;">Unit Cost</th>
+																<th style="padding: 10px; text-align: left;">Quantity</th>
+																<th style="padding: 10px; text-align: left;">Total</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td style="padding: 10px; text-align: left;">'.$i.'</td>
+																<td style="padding: 10px; text-align: left;">'.(isset($result->NAME) ? $result->NAME : (isset($result->bName) ? $result->bName : '')).'</td>
+																<td style="padding: 10px; text-align: left;">'.(isset($result->CATEGORY_NAME) ? $result->CATEGORY_NAME : (isset($result->bCategoryName) ? $result->bCategoryName : '')).'</td>
+																<td style="padding: 10px; text-align: left;">'.$result->TITLE.'</td>
+																<td style="padding: 10px; text-align: left;">'.$result->UNIT_PRICE.'</td>
+																<td style="padding: 10px; text-align: left;">'.$result->qantity.'</td>
+																<td style="padding: 10px; text-align: left;">'.(isset($result->TOTAL_AMOUNT) ? $result->TOTAL_AMOUNT : (isset($result->bTotalAmount) ? $result->bTotalAmount : '')).'</td>
+															</tr>
+															<!-- Add more rows as needed -->
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</body>
+										</html>
+									';
+
+                                // $i++;
+                            // }
+
+
+
+                $email_details['to_id'] = '';
+                $email_details['to_email'] = $result->EMAIL;//useremail
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+                $email_details['subject'] = $emailConfigDetails['subject'];
+                $email_details['message'] = "";
+                $email_details['logo'] = $emailConfigDetails['logo'];
+                $email_details['module_code'] = "SELFIE REPLY";
+
+                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+
+                $email_details['to_id'] = '';
+                $email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $result->EMAIL;//useremail
+                $email_details['subject'] = $emailConfigDetails['subject'];
+                $email_details['message'] = "";
+                $email_details['logo'] = $emailConfigDetails['logo'];
+                $email_details['module_code'] = "SELFIE REPLY";
+
+                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+            }
+			return true;
+        }
+        return false;
+
+
+
+
+
+
+
+
+
+
+    }
+
     public function popup(){
         $data['adminMenu'] = $this->getAdminUserMenu();
 		$data ['page'] = 'Home Page Popup';
@@ -2393,19 +2526,6 @@ class AdminController extends Controller
 
 				$message_username = str_replace("{User_Name}",$ToName,$adminReply);
 
-				// $htmlbody=	'<tr>
-				// 				<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-				// 					<p>Hello '.$ToName.',</p><br>
-				// 					'.$message_username.'
-				// 				</td>';
-                //                 // $i = 1;
-                //                 foreach($suggestedProductLinks as $link){
-                //                     '<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-				// 					<p>'.$link.',</p>
-				// 					'.$message_username.'
-				// 				</td>';
-                //                 }
-				// 			'</tr>';
                 $htmlbody = '<tr>
                                 <td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
                                     <p>Hello '.$ToName.',</p><br>

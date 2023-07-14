@@ -134,7 +134,10 @@ class CloverController extends Controller
             		$this->saveGivings($request,$givingDetails,$response1);
             		return redirect('success-message-giving');// for success case
             	}
-            }else{
+            }
+            else
+            {
+                // dd('failed');
                 return redirect('error-message');
             }
     }
@@ -234,7 +237,6 @@ class CloverController extends Controller
     	$subsId = $subsDetails ['subsId'];
 
     	$subsDetail = $SubscriptionModel->getSpecificUserSubscriptionDetails($subsId);
-
     	$orderlineShades = $OrderDetailModel->getOrderLineProductShadesDetail($subsDetail['ORDER_LINE_ID']);
     	$shippingAddr = $OrderShippingModel->getAllSpecificOrderShippingData($subsDetail['ORDER_ID']);
 
@@ -394,15 +396,147 @@ class CloverController extends Controller
 
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SUBSCRIPTION');
 
-    	$htmlbody=	'<tr>
-						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-							<p>Hello '.session("email").',</p><br>
-							'.$emailConfigDetails['message'].'
-						</td>
-	        		</tr>';
+    	// $htmlbody=	'<tr>
+		// 				<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+		// 					<p>Hello '.session("email").',</p><br>
+		// 					'.$emailConfigDetails['message'].'
+		// 				</td>
+	    //     		</tr>';
+
+        $htmlbody='
+        <div id=":pq" class="ii gt" jslog="20277; u014N:xr6bB; 4:W251bGwsbnVsbCxbXV0."><div id=":pp" class="a3s aiL ">
+          <span class="im"><p>&nbsp;</p>
+              <table style="width:100.0%" border="0" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+                      <tr>
+                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                              <p style=""><strong>Thank you for your quote request!</strong></p>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                              <p style="margin:0px 0px 10px 0;"><strong>Hi '.session("email").',</strong></p>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                              <p style="font-size: 1.17em;margin:0px 0px 10px 0;">'.$emailConfigDetails['message'].'</p>
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                              <p style="font-size: 1.17em;margin:0px 0px 10px 0;">In the meantime, if you have any Questions or require additional information, please do not hesitate to <a style="text-decoration: underline" href="http://vokausa.com/site/app/contact#/contact">contact us</a>.</p>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                              <h2 style="font-size: 1.17em;">The VOKA Team</h2>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+              <table style="width:100.0%" border="0" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+
+                      <tr>
+                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                              <p style="margin: 0;">'.$emailConfigDetails['title'].' </p>
+                          </td>
+                      </tr>
+
+                      <tr style="min-height:22.5pt">
+                          <td style="width:418.5pt;background:#05568c" colspan="4" valign="top" width="743"><strong><span style="font-size:15.0pt;font-family:Calibri,sans-serif;color:white;padding-left:10px;float:left">&nbsp; SENT EMAIL ON Quote</span></strong>
+                              <p>&nbsp;</p>
+                          </td>
+                      </tr>
+                      <tr style="min-height:22.5pt">
+                          <td style="border:solid #dfe0e2 1.0pt;padding:0in 0in 0in 0in;min-height:22.5pt" colspan="4 ">
+
+                              <p style="margin-bottom:12.0pt"><span style="font-size:10.0pt"><strong>&nbsp; &nbsp;Quote Details</strong></span></p>
+
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+
+          </span>
+
+                  <table style="width:100.0%;border-collapse:collapse" border="0" width="100%" cellspacing="0" cellpadding="0">
+
+                  <tbody>
+                      <tr style="min-height:22.5pt">
+                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                              <p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Sr# </span></strong></p>
+                          </td>
+                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                              <p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Description </span></strong></p>
+                          </td>
+                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                              <p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Quantity </span></strong></p>
+                          </td>
+                      </tr> ';
+
+if(!empty($subsDetail) ){
+$sequence = 1;
+foreach ($subsDetail as $value){
+
+  $productName = $value['NAME'];
+  $quantity = 2;
+
+  $htmlbody .='<tr style="min-height:22.5pt">
+                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                              <p style="margin-bottom:6.0pt">
+                                  <span style="font-size:8.5pt">'.$sequence.'</span>
+                              </p>
+                          </td>
+                          <td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                              <p style="margin-bottom:6.0pt">
+                                  <span style="font-size:8.5pt">'.$productName.'</span>
+                              </p>
+                          </td>
+                          <td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                              <p style="margin-bottom:6.0pt">
+                                  <span style="font-size:8.5pt">'.$quantity.'</span>
+                              </p>
+                          </td>
+                      </tr>';
+$sequence++;
+
+}
+}
+
+// 	<td bgcolor="#f2f2f2" align="left" colspan="8" style="padding: 0px 30px 20px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+// 	<br><p style="margin: 0;"> '.$emailsettings['message'].' </p><br>
+// </td>
+
+                      $htmlbody .='<tr>
+
+                                  </tr>
+                                  <tr>
+                                         <td style="width:445.5pt;background:#f2f2f2;padding:0in 5.4pt 0in 5.4pt" colspan="8" valign="top" width="743">
+                                      <p align="center">Copyright (c) 2020, VOKA USA. All rights reserved.</p>
+                                  </td>
+                              </tr>
+
+                  </tbody>
+              </table><div class="yj6qo"></div><div class="adL">
+        </div></div></div> ';
 
     	$email_details['to_id'] = session('userId');
     	$email_details['to_email'] = session('email');
+    	$email_details['from_id'] = 1;
+    	$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
+		$email_details['subject'] = $emailConfigDetails['subject'];
+		$email_details['message'] = "";
+		$email_details['logo'] = $emailConfigDetails['logo'];
+    	$email_details['module_code'] = "SUBSCRIPTION_ORDER";
+
+    	$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+
+
+        $email_details['to_id'] = 1;
+    	$email_details['to_email'] = $emailConfigDetails['fromEmail'];
     	$email_details['from_id'] = 1;
     	$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
 		$email_details['subject'] = $emailConfigDetails['subject'];
@@ -663,12 +797,134 @@ class CloverController extends Controller
 
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('ORDER');
 
-    	$htmlbody=	'<tr>
-						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-							<p>Hello '.session("email").',</p><br>
-							'.$emailConfigDetails['message'].'
-						</td>
-	        		</tr>';
+    	// $htmlbody=	'<tr>
+		// 				<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+		// 					<p>Hello '.session("email").',</p><br>
+		// 					'.$emailConfigDetails['message'].'
+		// 				</td>
+	    //     		</tr>';
+
+        $htmlbody='
+                          <div id=":pq" class="ii gt" jslog="20277; u014N:xr6bB; 4:W251bGwsbnVsbCxbXV0."><div id=":pp" class="a3s aiL ">
+            				<span class="im"><p>&nbsp;</p>
+								<table style="width:100.0%" border="0" width="100%" cellspacing="0" cellpadding="0">
+									<tbody>
+            							<tr>
+					                        <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+					                            <p style=""><strong>Thank you for your quote request!</strong></p>
+					                        </td>
+					                    </tr>
+										<tr>
+					                        <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+					                            <p style="margin:0px 0px 10px 0;"><strong>Hi '.session("email").',</strong></p>
+					                        </td>
+					                    </tr>
+										<tr>
+					                        <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+					                            <p style="font-size: 1.17em;margin:0px 0px 10px 0;">'.$emailConfigDetails['message'].'</p>
+					                        </td>
+					                    </tr>
+
+										<tr>
+					                        <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+					                            <p style="font-size: 1.17em;margin:0px 0px 10px 0;">In the meantime, if you have any Questions or require additional information, please do not hesitate to <a style="text-decoration: underline" href="http://vokausa.com/site/app/contact#/contact">contact us</a>.</p>
+					                        </td>
+					                    </tr>
+										<tr>
+					                        <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+					                            <h2 style="font-size: 1.17em;">The VOKA Team</h2>
+					                        </td>
+					                    </tr>
+									</tbody>
+								</table>
+								<table style="width:100.0%" border="0" width="100%" cellspacing="0" cellpadding="0">
+									<tbody>
+
+            							<tr>
+					                        <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+					                            <p style="margin: 0;">'.$emailConfigDetails['title'].' </p>
+					                        </td>
+					                    </tr>
+
+										<tr style="min-height:22.5pt">
+											<td style="width:418.5pt;background:#05568c" colspan="4" valign="top" width="743"><strong><span style="font-size:15.0pt;font-family:Calibri,sans-serif;color:white;padding-left:10px;float:left">&nbsp; SENT EMAIL ON Quote</span></strong>
+												<p>&nbsp;</p>
+											</td>
+										</tr>
+										<tr style="min-height:22.5pt">
+											<td style="border:solid #dfe0e2 1.0pt;padding:0in 0in 0in 0in;min-height:22.5pt" colspan="4 ">
+
+	            								<p style="margin-bottom:12.0pt"><span style="font-size:10.0pt"><strong>&nbsp; &nbsp;Quote Details</strong></span></p>
+
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+            				</span>
+
+									<table style="width:100.0%;border-collapse:collapse" border="0" width="100%" cellspacing="0" cellpadding="0">
+
+            						<tbody>
+            							<tr style="min-height:22.5pt">
+											<td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+												<p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Sr# </span></strong></p>
+											</td>
+											<td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+												<p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Description </span></strong></p>
+											</td>
+											<td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+												<p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Quantity </span></strong></p>
+											</td>
+										</tr> ';
+
+            if(!empty($cartDetails) ){
+                $sequence = 1;
+                dd($cartDetails);
+            	foreach ($cartDetails as $value){
+
+            		$productName = $value['NAME'];
+                    dd($productName);
+            		$quantity = 2;
+
+            		$htmlbody .='<tr style="min-height:22.5pt">
+            								<td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+            									<p style="margin-bottom:6.0pt">
+							            			<span style="font-size:8.5pt">'.$sequence.'</span>
+							            		</p>
+							            	</td>
+							            	<td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+							            		<p style="margin-bottom:6.0pt">
+							            			<span style="font-size:8.5pt">'.$productName.'</span>
+							            		</p>
+							            	</td>
+							            	<td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+							            		<p style="margin-bottom:6.0pt">
+							            			<span style="font-size:8.5pt">'.$quantity.'</span>
+							            		</p>
+							            	</td>
+            							</tr>';
+                $sequence++;
+
+            	}
+            }
+
+		// 	<td bgcolor="#f2f2f2" align="left" colspan="8" style="padding: 0px 30px 20px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+		// 	<br><p style="margin: 0;"> '.$emailsettings['message'].' </p><br>
+		// </td>
+
+										$htmlbody .='<tr>
+
+								                    </tr>
+													<tr>
+								                       	<td style="width:445.5pt;background:#f2f2f2;padding:0in 5.4pt 0in 5.4pt" colspan="8" valign="top" width="743">
+														<p align="center">Copyright (c) 2020, VOKA USA. All rights reserved.</p>
+													</td>
+							                	</tr>
+
+									</tbody>
+								</table><div class="yj6qo"></div><div class="adL">
+                          </div></div></div> ';
 
 
     	$email_details['to_id'] = session('userId');
