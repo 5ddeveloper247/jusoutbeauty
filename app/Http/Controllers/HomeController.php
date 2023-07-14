@@ -639,11 +639,11 @@ class HomeController extends Controller
 					// dd($slugByName);
 					$validated = $this->validateParameters($category, $subCategory, $slugByName);
 					if ($validated == false) {
-						dd('invalid parameters');
+						// dd('invalid parameters');
 						abort(404);
 					}
 				} else {
-					dd('invalid slug');
+					// dd('invalid slug');
 					abort(404);
 				}
 			} else if($subCategory == null){
