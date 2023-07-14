@@ -64,6 +64,20 @@ class HomeController extends Controller
         }
         return $update;
     }
+    public function makingSlug1()
+    {
+    	$result = DB::table('jb_bundle_product_tbl')->select('*')->get();
+    	foreach($result as $product){
+    		$name = $product->NAME;
+    		$words = explode(' ', $name);
+    		if (count($words) > 1 || strpos($name, ' ') !== false) {
+    			$name = implode('-', $words);
+    		}
+    		$slug = $name;
+    		$update = DB::table('jb_bundle_product_tbl')->where('BUNDLE_ID', $product->BUNDLE_ID)->update(['SLUG' => $slug]);
+    	}
+    	return $update;
+    }
 
 
    	public function index() {

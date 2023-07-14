@@ -612,6 +612,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/makePayment', [CloverController::class, 'makePayment']);
 
 	Route::get('/updateSlug', [HomeController::class, 'makingSlug']);
+	Route::get('/updateSlugBundle', [HomeController::class, 'makingSlug1']);
 
 Route::get('runCommand', function () {
 
