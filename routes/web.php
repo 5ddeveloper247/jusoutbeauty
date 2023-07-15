@@ -22,14 +22,11 @@ use App\Http\Middleware\AdminAuth;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-session()->put('site', '/jusoutbeauty');
-
-cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
-cookie()->queue(cookie()->forever('site_url', url('/home')));
-cookie()->queue(cookie()->forever('site_description', 'Welcome to JusOut Beauty, all inclusive, high performance, natural skincare, and makeup - Yur Jus Enough beauty products to glow from within.'));
-// cookie()->queue(cookie('site_name', 'JusOutBeauty', 120));
+session()->put('site', '/site');
 
 
+
+Route::post('/cookies/accept',[AdminController::class,'acceptCookies']);
 // Cookie::forever('site_name', 'JusOutBeauty');
 // Cookie::forever('site_url', url('/home'));
 // Cookie::forever('site_description', 'Welcome to JusOut Beauty, all inclusive, high performance, natural skincare, and makeup - Yur Jus Enough beauty products to glow from within.');

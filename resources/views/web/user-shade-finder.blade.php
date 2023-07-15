@@ -135,7 +135,8 @@
                     $('html, body').animate({
                         scrollTop: $("#snap-selfie").offset().top
                     }, 2000);
-                }else{
+                }else
+                if(data.done == false || data.done == 'false'){
                     toastr.error(data.msg, '', {
                         timeOut: 3000
                     })
