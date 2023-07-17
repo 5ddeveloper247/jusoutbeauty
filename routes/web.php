@@ -7,6 +7,8 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CloverController;
 use App\Http\Middleware\AdminAuth;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,66 +48,95 @@ Route::get('/userlogout', [HomeController::class, 'logout']);
 
 Route::get('/subscription-crone-job',[AdminController::class,'subscriptionCroneJob']);
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/testing/{id}', function($id){
+    $result = DB::table('jb_shopping_cart_detail_tbl as a')->select('a.*',  'a.UNIT_PRICE','prd.NAME as productName','bprd.NAME as bundleName','ctbl.CATEGORY_NAME as productCName','bprd.NAME as bundleCName','sctbl.USER_ID as userId')
+    ->leftJoin('jb_product_tbl as prd','a.PRODUCT_ID','=','prd.PRODUCT_ID')
+    ->leftJoin('jb_bundle_product_tbl as bprd','a.BUNDLE_ID','=','bprd.BUNDLE_ID')
+    ->leftJoin('jb_category_tbl as ctbl','prd.CATEGORY_ID','=','ctbl.CATEGORY_ID')
+    ->leftJoin('jb_category_tbl as bctbl','bprd.CATEGORY_ID','=','bctbl.CATEGORY_ID')
+    ->leftJoin('jb_shopping_cart_tbl as sctbl','a.CART_ID','=','sctbl.CART_ID')
+    ->where('a.CART_ID', $id)
+    ->orderBy('a.CART_LINE_ID', 'desc')
+    ->get();
 
-Route::get('/Shop-All', [HomeController::class, 'store']);
+    $userDetails = User::where('USER_ID',$result[0]->userId)->first();
+    dd($result,$userDetails);
+});
 
-Route::get('/blog-page', [HomeController::class, 'blogPage']);
-Route::get('/blog-detail/{id}', [HomeController::class, 'blogDetails']);
-// Route::get('/product-detail', [HomeController::class, 'productDetail']);
-Route::get('/discover', [HomeController::class, 'discover']);
+Route::middleware(['CheckLoggedInStatus'])->group(function () {
+    // Define your routes here
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('/who-we-are', [HomeController::class, 'whoWeAre']);
-Route::get('/ingredients', [HomeController::class, 'ingredients']);
+    Route::get('/Shop-All', [HomeController::class, 'store']);
 
-Route::get('/eco-vibes', [HomeController::class, 'ecoVibes']);
-Route::get('/lusty-looks', [HomeController::class, 'lustyLooks']);
-Route::get('/routine', [HomeController::class, 'routine']);
+    Route::get('/blog-page', [HomeController::class, 'blogPage']);
+    Route::get('/blog-detail/{id}', [HomeController::class, 'blogDetails']);
+    // Route::get('/product-detail', [HomeController::class, 'productDetail']);
+    Route::get('/discover', [HomeController::class, 'discover']);
 
-Route::get('/giving', [HomeController::class, 'giving']);
-Route::get('/makeup', [HomeController::class, 'makeup']);
-Route::get('/nutrition', [HomeController::class, 'nutrition']);
-Route::get('/user-shade-finder', [HomeController::class, 'UsershadeFinder']);
-Route::get('/skincare', [HomeController::class, 'skincare']);
-Route::get('/user-login', [HomeController::class, 'userLogin']);
+    Route::get('/who-we-are', [HomeController::class, 'whoWeAre']);
+    Route::get('/ingredients', [HomeController::class, 'ingredients']);
+
+    Route::get('/eco-vibes', [HomeController::class, 'ecoVibes']);
+    Route::get('/lusty-looks', [HomeController::class, 'lustyLooks']);
+    Route::get('/routine', [HomeController::class, 'routine']);
+
+    Route::get('/giving', [HomeController::class, 'giving']);
+    Route::get('/makeup', [HomeController::class, 'makeup']);
+    Route::get('/nutrition', [HomeController::class, 'nutrition']);
+    Route::get('/user-shade-finder', [HomeController::class, 'UsershadeFinder']);
+    Route::get('/skincare', [HomeController::class, 'skincare']);
+    Route::get('/user-login', [HomeController::class, 'userLogin']);
+    Route::get('/blog-detail-page', [HomeController::class, 'blogDetailPage']);
+    Route::get('/checkout', [HomeController::class, 'checkout']);
+    Route::get('/information-step', [HomeController::class, 'informationStep']);
+    Route::get('/payment_step', [HomeController::class, 'payment_step']);
+    // Route::get('/reward', [HomeController::class, 'reward']);
+    Route::get('/usershadefinderquiz', [HomeController::class, 'UserShadeFinderQuiz']);
+    Route::get('/subscription', [HomeController::class, 'subscription']);
+    Route::get('/user-registration', [HomeController::class, 'userRegistration']);
+    Route::get('/shopping-cart', [HomeController::class, 'shoppingCart']);
+    Route::get('/shipping-step', [HomeController::class, 'shippingStep']);
+
+    Route::match(['get', 'post'],'/Store/{category}/{subcategory?}', [HomeController::class, 'storeListing']);
+
+    Route::get('/storeListing', function () {
+        return redirect('/home');
+    });
+
+    Route::get('/term-conditions', [HomeController::class, 'termCondition']);
+    Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy']);
+    Route::get('/accessibility', [HomeController::class, 'accessibility']);
+    Route::get('/cookie', [HomeController::class, 'cookie']);
+
+    Route::match(['get', 'post'], '/Products/{category}/{subCategory?}/{slug?}', [HomeController::class, 'productDetail']);
+
+    // Route::post('/productDetail/{slug}', [HomeController::class, 'productDetail']);
+    Route::get('/productDetail', function () {
+        return redirect('home');
+    });
+    // ...
+});
+
+
 
 Route::get('/success-message-giving', [HomeController::class, 'successPageGiving']);
 
 // Route::get('/become_a_partner', [HomeController::class, 'becomePartner']);
 
-Route::get('/blog-detail-page', [HomeController::class, 'blogDetailPage']);
-Route::get('/checkout', [HomeController::class, 'checkout']);
-Route::get('/information-step', [HomeController::class, 'informationStep']);
-Route::get('/payment_step', [HomeController::class, 'payment_step']);
-// Route::get('/reward', [HomeController::class, 'reward']);
-Route::get('/usershadefinderquiz', [HomeController::class, 'UserShadeFinderQuiz']);
-Route::get('/subscription', [HomeController::class, 'subscription']);
-Route::get('/user-registration', [HomeController::class, 'userRegistration']);
-Route::get('/shopping-cart', [HomeController::class, 'shoppingCart']);
-Route::get('/shipping-step', [HomeController::class, 'shippingStep']);
 
-Route::match(['get', 'post'],'/Store/{category}/{subcategory?}', [HomeController::class, 'storeListing']);
 Route::get('/getAllNavLinksLov',[AdminController::class,'getAllNavLinksLov']);
 
 
-Route::get('/storeListing', function () {
-	return redirect('/home');
-});
 
-Route::get('/term-conditions', [HomeController::class, 'termCondition']);
-Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy']);
-Route::get('/accessibility', [HomeController::class, 'accessibility']);
-Route::get('/cookie', [HomeController::class, 'cookie']);
 
 
 Route::get('/making-slug',[HomeController::class,'makingSlug']);
-Route::match(['get', 'post'], '/Products/{category}/{subCategory?}/{slug?}', [HomeController::class, 'productDetail']);
 
-// Route::post('/productDetail/{slug}', [HomeController::class, 'productDetail']);
-Route::get('/productDetail', function () {
-	return redirect('home');
-});
+
+
+
 Route::post('/uploadProductImageVideoSelfi', [AttachmentController::class, 'uploadProductImageVideoSelfi']);
 Route::post('/deleteProductSelfiImage', [HomeController::class, 'deleteProductSelfiImage']);
 Route::get('/routine-detail/{id}', [HomeController::class, 'showRoutineDetailPage']);
