@@ -132,16 +132,17 @@ class ShoppingcartModel extends Model
     public function getSpecificCartLineForOrder($cartId){
     	$ProductModel = new ProductModel();
 
-    	$result = DB::table('jb_shopping_cart_detail_tbl as a')->select('a.*',  'a.UNIT_PRICE','prd.NAME as productName','bprd.NAME as bundleName','ctbl.NAME as productCName','bprd.NAME as bundleCName','sctbl.USER_ID as UserID')
+    	$result = DB::table('jb_shopping_cart_detail_tbl as a')->select('a.*',  'a.UNIT_PRICE','prd.NAME as productName','bprd.NAME as bundleName','ctbl.CATEGORY_NAME as productCName','bctbl.CATEGORY_NAME as bundleCName','sctbl.USER_ID as UserID')
         ->leftJoin('jb_product_tbl as prd','a.PRODUCT_ID','=','prd.PRODUCT_ID')
-        ->leftJoin('jb_bundle_product_tbl as bprd','a.BUNDLE_ID','=','bprd.BUDNLE_ID')
+        ->leftJoin('jb_bundle_product_tbl as bprd','a.BUNDLE_ID','=','bprd.BUNDLE_ID')
         ->leftJoin('jb_category_tbl as ctbl','prd.CATEGORY_ID','=','ctbl.CATEGORY_ID')
         ->leftJoin('jb_category_tbl as bctbl','bprd.CATEGORY_ID','=','bctbl.CATEGORY_ID')
         ->leftJoin('jb_shopping_cart_tbl as sctbl','a.CART_ID','=','sctbl.CART_ID')
     	->where('a.CART_ID', $cartId)
     	->orderBy('a.CART_LINE_ID', 'desc')
     	->get();
-        $userDetails = User::where('USER_ID',$result[0]->userId)->first();
+        // dd($result[0]->UserID);
+        $userDetails = User::where('USER_ID',$result[0]->UserID)->first();
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['CART_LINE_ID'] = $row->CART_LINE_ID;

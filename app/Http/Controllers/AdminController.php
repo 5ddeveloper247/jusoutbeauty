@@ -2513,22 +2513,11 @@ class AdminController extends Controller
 
         // dd($commaSeparatedIds);
 
-        $result = DB::table('jb_selfie_reply_tbl')->insertGetId(
-            array ( 'SNAP_ID' => $SnapId,
-                'TO_ID' => $ToId,
-                'TO_EMAIL' => $ToEmail,
-                'FROM_USER_ID' => $fromUserId,
-                'ADMIN_REPLY' => $adminReply,
-                'SUGGESTED_PRODUCTS_IDS' => $commaSeparatedIds,
-                'CREATED_BY' => $fromUserId,
-                'UPDATED_BY' => $fromUserId,
-                'CREATED_AT' => date ( 'Y-m-d H:i:s' ),
-                'UPDATED_AT' => date ( 'Y-m-d H:i:s' )
-        ));
 
         // dd($result);
 
         $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SELFIE REPLY');
+        // dd($emailConfigDetails);
 
 				$message_username = str_replace("{User_Name}",$ToName,$adminReply);
 
@@ -2560,8 +2549,8 @@ class AdminController extends Controller
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "SELFIE REPLY";
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
-
+				$check1 = $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+                // dd($check);
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
 				$email_details['from_id'] = 1;
@@ -2571,15 +2560,37 @@ class AdminController extends Controller
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "SELFIE REPLY";
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$check2 = $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+                if($check1 == true && $check2 == true){
+                    $result = DB::table('jb_selfie_reply_tbl')->insertGetId(
+                        array ( 'SNAP_ID' => $SnapId,
+                            'TO_ID' => $ToId,
+                            'TO_EMAIL' => $ToEmail,
+                            'FROM_USER_ID' => $fromUserId,
+                            'ADMIN_REPLY' => $adminReply,
+                            'SUGGESTED_PRODUCTS_IDS' => $commaSeparatedIds,
+                            'CREATED_BY' => $fromUserId,
+                            'UPDATED_BY' => $fromUserId,
+                            'CREATED_AT' => date ( 'Y-m-d H:i:s' ),
+                            'UPDATED_AT' => date ( 'Y-m-d H:i:s' )
+                    ));
 
-				$arrRes ['done'] = true;
-				$arrRes ['msg'] = 'Selfie Reply Sent Successfully';
-				$arrRes ['ID'] = $result;
-                $arrRes ['SelfieDetails'] = $this->getSnapDetail($SnapId);
-				// $arrRes ['list'] = $TicketsModel->getAllTicketsForAdmin();
-				echo json_encode ( $arrRes );
-				die ();
+                    $arrRes ['done'] = true;
+                    $arrRes ['msg'] = 'Selfie Reply Sent Successfully';
+                    $arrRes ['ID'] = $result;
+                    $arrRes ['SelfieDetails'] = $this->getSnapDetail($SnapId);
+                    // $arrRes ['list'] = $TicketsModel->getAllTicketsForAdmin();
+                    echo json_encode ( $arrRes );
+                    die ();
+                }else{
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'System Failed to Send Email';
+                    $arrRes ['SelfieDetails'] = $this->getSnapDetail($SnapId);
+                    // $arrRes ['list'] = $TicketsModel->getAllTicketsForAdmin();
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
+
 
     }
 

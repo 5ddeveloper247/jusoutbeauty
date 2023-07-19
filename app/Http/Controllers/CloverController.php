@@ -822,6 +822,7 @@ $sequence++;
                 $totalAmountIncVat = $row['TOTAL_AMOUNT_INC_VAT'];
                 // $subscriptionCheck = $row['SUBSCRIPTION_CHECK'];
                 $subscriptionId = $row['SUBSCRIPTION_ID'];
+                $subscriptionCheck = $row['SUBSCRIPTION_CHECK'];
                 // $createdBy = $row['CREATED_BY'];
                 // $createdOn = $row['CREATED_ON'];
                 // $updatedBy = $row['UPDATED_BY'];
@@ -833,6 +834,7 @@ $sequence++;
                         <td style="padding: 10px; text-align: left;">'.$cartLineId.'</td>
                         <td style="padding: 10px; text-align: left;">'.($productName ?: ($bundleName ?: '')).'</td>
                         <td style="padding: 10px; text-align: left;">'.($productCategoryName ?: ($bundleCategoryName ?: '')).'</td>
+                        <td style="padding: 10px; text-align: left;">'.$subscriptionCheck.'</td>
                         <td style="padding: 10px; text-align: left;">'.$unitPrice.'</td>
                         <td style="padding: 10px; text-align: left;">'.$quantity.'</td>
                         <td style="padding: 10px; text-align: left;">'.($totalAmount ?: ($totalAmountIncVat ?: '')).'</td>
@@ -843,7 +845,7 @@ $sequence++;
             $htmlbody = '
                 <div bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
                     <p>Hello '.$cartDetails[0]['UserName'].',</p><br>
-                    '.$emailConfigDetails['message_username'].'
+                    '.$emailConfigDetails['message'].'
                 </div>
                 <html>
                 <head></head>
@@ -868,7 +870,7 @@ $sequence++;
                     </div>
                 </body>
                 </html>';
-
+            // dd($htmlbody);
             // Set the email details
             $email_details['to_id'] = $cartDetails[0]['UserId'];
             $email_details['to_email'] = $cartDetails[0]['UserEmail'];
