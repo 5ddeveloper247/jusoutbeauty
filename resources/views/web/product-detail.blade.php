@@ -2065,7 +2065,11 @@
                                             </li>
                                         </ul>
                                         <div class="d-flex align-items-center mb-2 productdetail"
-                                            data-id="<?= $recent['PRODUCT_ID'] ?>">
+                                            data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                            data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                           data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                           data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>"
+                                            >
                                             <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
                                                 <a href="javascript:;"><?= $recent['NAME'] ?></a>
                                             </h3>
