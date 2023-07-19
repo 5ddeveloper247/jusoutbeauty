@@ -171,7 +171,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			// $scope.showSelfieDetail();
 		})
 		.error(function(data, status, headers, config) {
-            // toastr.error(data.msg, '', {timeOut: 3000})
+            toastr.error(data.msg, '', {timeOut: 3000})
 		});
 
     }

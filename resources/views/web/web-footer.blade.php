@@ -1,6 +1,60 @@
 
 <footer class="footer back_cs pt-10">
     <style>
+
+    /* #cookieModal {
+        position: fixed;
+        left: -20%;
+        top: 30%;
+    }
+
+    .modal-dialog.modal-sm.custom-max-width {
+        max-width: 400px;
+    }
+
+    .modal-footer {
+        text-align: right;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    /* Media Queries for Responsiveness */
+
+    /* Small devices (up to 576px) */
+    @media (max-width: 576px) {
+        #cookieModal {
+            left: 4%;
+            top: 0;
+        }
+
+        .modal-dialog.modal-sm.custom-max-width {
+            max-width: 90%;
+        }
+    }
+
+    /* Medium devices (576px - 768px) */
+    @media (min-width: 576px) and (max-width: 768px) {
+        .modal-dialog.modal-sm.custom-max-width {
+            max-width: 300px;
+        }
+    }
+
+    /* Large devices (768px - 992px) */
+    @media (min-width: 768px) and (max-width: 992px) {
+        .modal-dialog.modal-sm.custom-max-width {
+            max-width: 400px;
+        }
+    }
+
+    /* Extra-large devices (992px and above) */
+    @media (min-width: 992px) {
+        .modal-dialog.modal-sm.custom-max-width {
+            max-width: 500px;
+        }
+    }
         #tictk:hover{
             filter: invert(100%)
         }
@@ -35,7 +89,9 @@
                 font-size: 36px;
                 text-transform: capitalize;
             }
-        }
+        } */
+
+
     </style>
 
     <div class="py-4">
@@ -340,6 +396,188 @@
     .my-float{
         margin-top:16px;
     }
+
+    .cookie-frame {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: bottom 2s ease-out; /* Add transition effect */
+        transition-delay: 1s; /* Add delay */
+    }
+
+    .cookie-frame.open {
+        display: block;
+        bottom: -90%;
+        transition: bottom 1s ease-out; /* Add transition effect */
+        transition-delay: 1s; /* No delay when opening */
+    }
+
+    .cookie-frame.hide {
+        bottom: -100%; /* Move to the original hidden position */
+        transition: bottom 1s ease-out; /* Add transition effect */
+        transition-delay: 1s; /* No delay when hiding */
+    }
+
+
+    .cookie-content {
+        background-color: #f9f9f9;
+        padding: 5px 20px 5px 20px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .cookie-content .text {
+        padding-left: 80px;
+    }
+    .btn {
+        margin-top: 10px;
+    }
+    .btn-my {
+    color: white !important;
+    border-color: #006f7a;
+	background-color:  #006f7a;
+}
+
+.btn-my:hover {
+    color: white;
+    background-color: #a72160;
+    border-color: #a72160;
+	outline: #a72160;
+}
+.btn-my:focus,.btn-my:active {
+    color: white;
+    background-color: #a72160;
+    border-color: #a72160;
+	outline: #a72160;
+}
+    @media (max-width: 174px) {
+        /* Styles for mobile devices */
+        .cookie-frame.open {
+            bottom: -100%;
+            display: none; /* Adjust the bottom position for mobile devices */
+        }
+        .cookie-content {
+        background-color: #f9f9f9;
+        padding: 5px;
+        padding-bottom: 10px;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+}
+    @media (min-width: 174px) and (max-width: 200px) {
+        /* Styles for mobile devices */
+        .cookie-frame.open {
+            bottom: -72%; /* Adjust the bottom position for mobile devices */
+        }
+        .cookie-content {
+        background-color: #f9f9f9;
+        padding: 5px;
+        padding-bottom: 10px;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+}
+    @media (min-width: 200px) and (max-width: 252px) {
+        /* Styles for mobile devices */
+        .cookie-frame.open {
+            bottom: -72%; /* Adjust the bottom position for mobile devices */
+        }
+        .cookie-content {
+        background-color: #f9f9f9;
+        padding: 5px;
+        padding-bottom: 10px;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+}
+    @media (min-width: 252px) and (max-width: 300px) {
+        /* Styles for mobile devices */
+        .cookie-frame.open {
+            bottom: -72%; /* Adjust the bottom position for mobile devices */
+        }
+        .cookie-content {
+        background-color: #f9f9f9;
+        padding: 5px;
+        padding-bottom: 10px;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .btn {
+        margin-top: 0;
+    }
+    .cookie-content .text {
+        padding-left: 0px;
+    }
+    }
+    @media (min-width: 300px) and (max-width: 438px) {
+        /* Styles for mobile devices */
+        .cookie-frame.open {
+            bottom: -84%; /* Adjust the bottom position for mobile devices */
+        }
+        .cookie-content {
+        background-color: #f9f9f9;
+        padding: 5px;
+        padding-bottom: 10px;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .btn {
+        margin-top: 0;
+    }
+    .cookie-content .text {
+        padding-left: 10px;
+    }
+    }
+
+    @media (min-width: 438px) and (max-width: 576px) {
+        /* Styles for mobile devices */
+        .cookie-frame.open {
+            bottom: -80%; /* Adjust the bottom position for mobile devices */
+        }
+        .cookie-content {
+        background-color: #f9f9f9;
+        padding: 5px;
+        padding-bottom: 10px;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .btn {
+        margin-top: 0;
+    }
+    .cookie-content .text {
+        padding-left: 30px;
+    }
+    }
+
+    @media (min-width: 577px) and (max-width: 992px) {
+        /* Styles for tablets and smaller screens */
+        .cookie-frame.open {
+            bottom: -87%; /* Adjust the bottom position for tablets and smaller screens */
+        }
+        .cookie-content .text {
+        padding-left: 50px;
+    }
+    }
+
+
+    @media (min-width: 992px) {
+        /* Styles for larger screens */
+        .cookie-frame.open {
+            bottom: -88%;
+            /* Adjust the bottom position for larger screens */
+        }
+        .cookie-content .text {
+        padding-left: 80px;
+    }
+    }
+
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <a href="https://api.whatsapp.com/send?phone=19142991742" class="float" target="_blank">
@@ -748,6 +986,40 @@
         </div> --}}
     </div>
 </div>
+
+
+<div class="cookie-frame open">
+    <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
+        <div class="col-sm-8 text">
+            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking “Accept Cookies”, you agree to the storing of cookies on your device to enhance
+                site navigation, analyze site usage, and assist in our marketing efforts.</p>
+        </div>
+        <div class="d-flex justify-content-center col-sm-4">
+            {{-- <div class="col-sm-12 col-md-6 mb-md-2"> --}}
+                <button class="btn btn-outline-primary mr-2" id="acceptCookiesBtn">Accept</button>
+
+            {{-- </div> --}}
+            {{-- <div class="col-sm-12 col-md-6"> --}}
+                <button class="btn btn-my" id="declineCookiesBtn">Decline</button>
+
+            {{-- </div> --}}
+        </div>
+    </div>
+</div>
+<script>
+    var cookieAccepted = localStorage.getItem('cookiesAccepted');
+    // alert(cookieAccepted)
+    if (cookieAccepted != 1 && cookieAccepted != '1') {
+            // alert('will show up')
+            // $('.cookie-frame').fadeInUp(1000);
+            $('.cookie-frame').slideDown(5000)
+
+        }else{
+            $('.cookie-frame').hide();
+            // alert('will not show up')
+        }
+
+    </script>
 <div class="modal sign-in" id="sign-in" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -873,6 +1145,32 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<!-- Modal -->
+{{-- <div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm custom-max-width modal-frame modal-bottom" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cookieModalLabel">Cookie Consent</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Accept our cookies to experience the best of our services.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" id="acceptCookiesBtn">Accept</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Decline</button>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
+
+
+
 <!-- <div class="canvas-sidebar filter-canvas">
  <div class="canvas-overlay"></div>
  <div class="card border-0 px-6 overflow-y-auto bg-white h-100 pb-6">

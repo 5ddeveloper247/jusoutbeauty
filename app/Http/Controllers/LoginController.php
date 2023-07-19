@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\UserModel;
 use App\Models\EmailForwardModel;
 use App\Models\EmailConfigModel;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -244,6 +247,24 @@ class LoginController extends Controller
                         'userSubType'=> $result->USER_SUBTYPE
 
                     ]);
+                    // Set the logged-in status cookie
+                    $userKey = Str::random(40);
+
+                    DB::table('fnd_user_tbl')
+                    ->where('EMAIL', $email)
+                    ->update([
+                        'LOGGED_IN_STATUS' => $userKey,
+                    ]);
+                    // Cookie::queue('loggedIn', $userKey, 30 * 24 * 60); // Expires in 30 days
+                    cookie()->queue(cookie()->make('loggedIn', $userKey,30 * 24 * 60));
+                    cookie()->queue(cookie()->make('test', $userKey,30 * 24 * 60));
+                    // dd($response->withCookie($cookie));
+                    // DB::table('fnd_user_tbl')->update(array(
+                    //     'LOGGED_IN_STATUS' => $userKey
+                    // ));
+// dd(cookie()->make('loggedIn', $userKey,30 * 24 * 60))
+
+
 					return redirect('home');
 
 				}else{

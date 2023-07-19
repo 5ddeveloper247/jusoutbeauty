@@ -1516,7 +1516,7 @@
     $(".close_learnmore_pop").click(function() {
         $("#learnmore_pop").modal('hide');
     });
-    
+
 </script>
 
 
@@ -1530,3 +1530,50 @@
 	session()->put('homepopup',1);
 	@endphp
 @endif
+
+<script>
+$(document).ready(function() {
+    // Check if the user has accepted cookies
+    var cookieAccepted = localStorage.getItem('cookiesAccepted');
+
+    if (cookieAccepted != 1 && cookieAccepted != '1') {
+        // alert('will show up')
+        $('.cookie-frame').slideDown(5000);
+
+    }else{
+        // alert('will not show up')
+        $('.cookie-frame').hide();
+
+    }
+
+    // Handle accept button click
+    $('#acceptCookiesBtn').click(function() {
+        var tokenHash = $('#csrf').val();
+
+        $.ajax({
+            url: baseUrl + '/cookies/accept',
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': tokenHash
+            },
+            success: function(response) {
+                console.log(response.message);
+                localStorage.setItem('cookiesAccepted', '1');
+                $('.cookie-frame').slideUp(2000);
+                // $('.cookie-frame').addClass('hide');
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+    $('#declineCookiesBtn').click(function() {
+        localStorage.setItem('cookiesAccepted', '0');
+        $('.cookie-frame').slideUp(2000);
+        // $('.cookie-frame').addClass('hide');
+    });
+});
+
+</script>

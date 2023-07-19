@@ -43,6 +43,7 @@ use App\Models\ProductIngredientModel;
 use App\Models\ShadeFinderSelfieModel;
 use App\Models\FooterSubscriptionModel;
 use App\Models\OrderShippingTrackingModel;
+use Illuminate\Support\Facades\Cookie;
 use Nette\Utils\Json;
 
 class AdminController extends Controller
@@ -168,17 +169,22 @@ class AdminController extends Controller
             }
 			return true;
         }
-        return false;
+        return true;
+    }
 
+    public function acceptCookies(Request $request)
+    {
 
+        cookie()->queue(cookie()->forever('site_name', 'JusOutBeauty'));
+        cookie()->queue(cookie()->forever('site_url', url('/home')));
+        cookie()->queue(cookie()->forever('site_description', 'Welcome to JusOut Beauty, all inclusive, high performance, natural skincare, and makeup - Yur Jus Enough beauty products to glow from within.'));
+        // cookie()->queue(cookie('site_name', 'JusOutBeauty', 120));
+        cookie()->queue(cookie()->forever('site_url', url('/home')));
+        // Set the 'cookies_accepted' cookie with a value
+        // $cookie = Cookie::make('cookies_accepted', true, 365 * 24 * 60); // Expires in 1 year
 
-
-
-
-
-
-
-
+        // Return a response with the cookie set
+        return response()->json(['message' => 'Cookies accepted']);
     }
 
     public function popup(){
@@ -2489,7 +2495,7 @@ class AdminController extends Controller
             echo json_encode ( $arrRes );
             die();
         }
-        // dd($data);
+        // dd($products);
         foreach($products as $product){
             if($product['CATEGORY_SLUG'] && $product['SUB_CATEGORY_SLUG'] && $product['SLUG'] ){
                 $Url = $baseUrl.'/Products'.'/'.$product['CATEGORY_SLUG'].'/'.$product['SUB_CATEGORY_SLUG'].'/'.$product['SLUG'];
