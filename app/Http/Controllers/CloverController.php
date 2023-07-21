@@ -39,6 +39,7 @@ class CloverController extends Controller
 
     public function makePayment(Request $request, $type = '',$response = false)
     {
+        // dd('hello');
         $post=$request->all();
         // dd($post);
         $post['currency'] = 'USD';
@@ -121,7 +122,7 @@ class CloverController extends Controller
 //             	exit();
 
             	if($_POST['paymentType'] == 'checkout'){
-
+                    dd('hello');
             		$this->saveCheckout($request,$checkoutDetails,$response1);
             		//return redirect('home');// for success case
 					return redirect('success-message');
@@ -824,7 +825,7 @@ class CloverController extends Controller
                                     <thead style="background-color: #f4f4f4;">
                                         <tr>
                                             <th style="padding: 10px; text-align: left;">S.No</th>
-                                            <th style="padding: 10px; text-align: left;">'.($productName ? 'Product Name' : ($bundleName ? 'Bundle Name' : '')).'</th>
+                                            <th style="padding: 10px; text-align: left;">Product/Bundle Name</th>
                                             <th style="padding: 10px; text-align: left;">Category</th>
                                             <th style="padding: 10px; text-align: left;">Unit Cost</th>
                                             <th style="padding: 10px; text-align: left;">Quantity</th>
@@ -852,7 +853,7 @@ class CloverController extends Controller
                                     <thead style="background-color: #f4f4f4;">
                                         <tr>
                                             <th style="padding: 10px; text-align: left;">S.No</th>
-                                            <th style="padding: 10px; text-align: left;">'.($productName ? 'Product Name' : ($bundleName ? 'Bundle Name' : '')).'</th>
+                                            <th style="padding: 10px; text-align: left;">Product/Bundle Name</th>
                                             <th style="padding: 10px; text-align: left;">Category</th>
                                             <th style="padding: 10px; text-align: left;">Subscription Name</th>
                                             <th style="padding: 10px; text-align: left;">Subscription Start Date</th>
