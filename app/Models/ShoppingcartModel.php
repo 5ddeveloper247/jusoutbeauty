@@ -132,7 +132,9 @@ class ShoppingcartModel extends Model
     public function getSpecificCartLineForOrder($cartId){
     	$ProductModel = new ProductModel();
 
-    	$result = DB::table('jb_shopping_cart_detail_tbl as a')->select('a.*',  'a.UNIT_PRICE','prd.NAME as productName','bprd.NAME as bundleName','ctbl.CATEGORY_NAME as productCName','bctbl.CATEGORY_NAME as bundleCName','sctbl.USER_ID as UserID')
+    	$result = DB::table('jb_shopping_cart_detail_tbl as a')->select('a.*',  'a.UNIT_PRICE','prd.NAME as productName','bprd.NAME as bundleName','ctbl.CATEGORY_NAME as productCName','bctbl.CATEGORY_NAME as bundleCName','sctbl.USER_ID as UserID','substbl.TITLE as subsName','Usubstbl.SUBSCRIPTION_DATE as subsDate','Usubstbl.NEXT_PAYMENT_DATE as nextPayDate')
+        ->leftJoin('jb_subscription_tbl as substbl','a.SUBSCRIPTION_ID','=','substbl.SUBSCRIPTION_ID')
+        ->leftJoin('jb_user_subscription_tbl as Usubstbl','a.SUBSCRIPTION_ID','=','Usubstbl.SUBSCRIPTION_ID')
         ->leftJoin('jb_product_tbl as prd','a.PRODUCT_ID','=','prd.PRODUCT_ID')
         ->leftJoin('jb_bundle_product_tbl as bprd','a.BUNDLE_ID','=','bprd.BUNDLE_ID')
         ->leftJoin('jb_category_tbl as ctbl','prd.CATEGORY_ID','=','ctbl.CATEGORY_ID')
@@ -140,7 +142,9 @@ class ShoppingcartModel extends Model
         ->leftJoin('jb_shopping_cart_tbl as sctbl','a.CART_ID','=','sctbl.CART_ID')
     	->where('a.CART_ID', $cartId)
     	->orderBy('a.CART_LINE_ID', 'desc')
+        ->groupBy('a.CART_LINE_ID')
     	->get();
+        // dd($result);
         // dd($result[0]->UserID);
         $userDetails = User::where('USER_ID',$result[0]->UserID)->first();
     	$i=0;
@@ -166,6 +170,9 @@ class ShoppingcartModel extends Model
 
     		$arrRes[$i]['SUBSCRIPTION_CHECK'] = $row->SUBSCRIPTION_CHECK != null ? $row->SUBSCRIPTION_CHECK : '';
     		$arrRes[$i]['SUBSCRIPTION_ID'] = $row->SUBSCRIPTION_ID  != null ? $row->SUBSCRIPTION_ID : '';
+            $arrRes[$i]['SUBSCRIPTION_NAME'] = $row->subsName  != null ? $row->subsName : '';
+            $arrRes[$i]['SUBSCRIPTION_DATE'] = $row->subsDate  != null ? $row->subsDate : '';
+            $arrRes[$i]['NEXT_PAYMENT_DATE'] = $row->nextPayDate  != null ? $row->nextPayDate : '';
 
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
