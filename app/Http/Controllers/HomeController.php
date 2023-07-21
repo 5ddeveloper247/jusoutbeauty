@@ -2352,7 +2352,7 @@ class HomeController extends Controller
 
    				$cartDet = $ShoppingcartModel->getActiveCartWrtUserId($userId);
 
-   				if($cartDet['CART_ID']){
+   				if(isset($cartDet['CART_ID'])){
    					$cartId = $cartDet['CART_ID'];
    				}else{
    					$cartId = '';
@@ -2801,7 +2801,7 @@ class HomeController extends Controller
 
    								$cartLineShades = $ShoppingcartModel->getCartLineProductShadesDetailForInvChk($value['CART_LINE_ID']);
 
-   								$slctShadeInvQty = $cartLineShades['shadeQuantity'];
+   								$slctShadeInvQty = $cartLineShades['shadeQuantity'] ?? '';
 
    								if($slctShadeInvQty < $value['QUANTITY']){
    									$arrRes['done'] = false;
