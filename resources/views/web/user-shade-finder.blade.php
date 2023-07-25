@@ -1,5 +1,27 @@
 @include('web.web-header')
 <style>
+
+    /* Add this style in your CSS file or inside the <style> tag of your HTML */
+        .rab {
+        position: relative;
+    }
+
+    .rab .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency (0.5 in this case) */
+     /* Place the overlay behind the content */
+    }
+
+    /* Add any additional styles for the text or adjust existing styles as needed */
+    .rab .data {
+        position: relative;
+        z-index: 2; /* Set text color to white to make it visible on the dark overlay */
+    }
+
     @media only screen and (max-width: 480px) {
 
         .bg-img-cover-center {
@@ -24,17 +46,20 @@
     }
 </style>
 <main id="content">
-    <section class="header_user_shade_finder">
+    {{-- <section class="header_user_shade_finder">
         <div class="container container-xxl mt-5">
             <h2 class=" text-center" data-animate="fadeInUp">Let's Find Your Shade</h2>
             <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br> Modi harum quidem voluptate aliquam quod itaque velit eius vero doloribus ad.</p>
         </div>
-    </section>
-    <section class="py-lg-18  py-3 bg-img-cover-center" id="details-header"
+    </section> --}}
+    {{-- <section class="py-lg-10  py-3 bg-img-cover-center" id="details-header"
         style="background-image: url('{{ url('/assets-web') }}/images/shadeimg.webp');background-color: #F2F2F2">
         <div class="container container-xxl">
+            <div class="container container-xxl">
+                <h2 class=" text-center" data-animate="fadeInUp">Let's Find Your Shade</h2>
+                <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br> Modi harum quidem voluptate aliquam quod itaque velit eius vero doloribus ad.</p>
+            </div>
             <p class="text-primary fs-18 font-weight-600 mb-4 lh-1444" data-animate="fadeInUp"></p>
-
             <div>
                 <h2 class="mb-2 take-selfi-quiz">Take A Quiz</h2>
                 <p class="text-black quiz-text">One of our pro makeup artists will <br>personally provide shade recommendations.
@@ -52,7 +77,36 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+                <section class="py-lg-10 py-3 bg-img-cover-center rab" id="details-header"
+                style="background-image: url('{{ url('/assets-web') }}/images/shadeimg.webp'); background-color: #F2F2F2">
+                <div class="overlay"></div>
+                <div class="container container-xxl data">
+                    <div class="container container-xxl">
+                        <h2 class="text-center text-white" data-animate="fadeInUp">Let's Find Your Shade</h2>
+                        <p class="text-center text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br> Modi harum quidem
+                            voluptate aliquam quod itaque velit eius vero doloribus ad.</p>
+                    </div>
+                    <p class="text-primary fs-18 font-weight-600 mb-4 lh-1444" data-animate="fadeInUp"></p>
+                    <div>
+                        <h2 class="mb-2 take-selfi-quiz text-white">Take A Quiz</h2>
+                        <p class="text-black quiz-text text-white">One of our pro makeup artists will <br>personally provide shade
+                            recommendations.</p>
+                        <div class="">
+                            <a href="usershadefinderquiz" class="btn btn-primary selfi ">Take A Quiz</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <h2 class="mb-2 take-selfi-quiz text-white">Send Us a Selfie</h2>
+                        <div class="">
+                            <a href="#" class="btn btn-primary selfi " id="selfie-btn-shade">Snap A Selfie</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
     <section class="pt-10 pt-lg-13 mb-10" id="snap-selfie" style="display:none;">
         <div class="container">
             <div class="text-center mw-500 mx-auto">

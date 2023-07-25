@@ -168,7 +168,7 @@ var optionId = '1';
 																</div>
 																<div class="dropdown-menu dropdown-menu-right">
 																	<a class="dropdown-item"  href="javascript:;" ng-click="continueRecordLevel1Type(@{{row.LEVEL_ONE_TYPE_ID}});">Edit</a>
-																	<a class="dropdown-item"  href="javascript:;" ng-click="deleteRecordLevel1Type(@{{row.LEVEL_ONE_TYPE_ID}});">Delete</a>
+																	<a class="dropdown-item"  href="javascript:;" ng-click="confirmDeleteLevel(@{{row.LEVEL_ONE_TYPE_ID}});">Delete</a>
 																</div>
 															</div>
 														</td>
@@ -189,7 +189,21 @@ var optionId = '1';
 					</div>
 				</div>
             </div>
+            <div class="modal fade" id="alertDelLevel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
 
+                        <div class="modal-body">
+                           <h4 style="text-align: center;">Are Your sure to delete?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                data-dismiss="modal" ng-click='closeDeleteConfirmModal()'>No</button>
+                            <button type="button" class="btn btn-primary" ng-click="deleteRecordLevel1Type()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 		</div>

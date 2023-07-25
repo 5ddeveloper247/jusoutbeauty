@@ -168,7 +168,7 @@ var optionId = '2';
 																</div>
 																<div class="dropdown-menu dropdown-menu-right">
 																	<a class="dropdown-item"  href="javascript:;" ng-click="continueRecordLevel1Type(@{{row.LEVEL_ONE_TYPE_ID}});">Edit</a>
-																	<a class="dropdown-item"  href="javascript:;" ng-click="deleteRecordLevel1Type(@{{row.LEVEL_ONE_TYPE_ID}});">Delete</a>
+																	<a class="dropdown-item"  href="javascript:;" ng-click="confirmDeleteLevel1TypeForNo(@{{row.LEVEL_ONE_TYPE_ID}});"  >Delete</a>
 																</div>
 															</div>
 														</td>
@@ -261,7 +261,7 @@ var optionId = '2';
 																</div>
 																<div class="dropdown-menu dropdown-menu-right">
 																	<a class="dropdown-item"  href="javascript:;" ng-click="continueRecordLevel2Type(@{{row.LEVEL_TWO_TYPE_ID}});">Edit</a>
-																	<a class="dropdown-item"  href="javascript:;" ng-click="deleteRecordLevel2Type(@{{row.LEVEL_TWO_TYPE_ID}});">Delete</a>
+																	<a class="dropdown-item"  href="javascript:;" ng-click="confirmdeleteRecordLevel2Type(@{{row.LEVEL_TWO_TYPE_ID}});">Delete</a>
 																</div>
 															</div>
 														</td>
@@ -371,7 +371,7 @@ var optionId = '2';
 																</div>
 																<div class="dropdown-menu dropdown-menu-right">
 																	<a class="dropdown-item"  href="javascript:;" ng-click="continueRecordLevel3Type(@{{row.LEVEL_THREE_TYPE_ID}});">Edit</a>
-																	<a class="dropdown-item"  href="javascript:;" ng-click="deleteRecordLevel3Type(@{{row.LEVEL_THREE_TYPE_ID}});">Delete</a>
+																	<a class="dropdown-item"  href="javascript:;" ng-click="confirmdeleteRecordLevel3Type(@{{row.LEVEL_THREE_TYPE_ID}});">Delete</a>
 																</div>
 															</div>
 														</td>
@@ -388,7 +388,53 @@ var optionId = '2';
 				</div>
             </div>
 
+            <div class="modal fade" id="alertDelLevel1Record">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
 
+                        <div class="modal-body">
+                           <h4 style="text-align: center;">Are Your sure to delete ?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                data-dismiss="modal" ng-click='closeDeleteConfirmModal()'>No</button>
+                            <button type="button" class="btn btn-primary" ng-click="deleteRecordLevel1Type()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="alertDelLevel2Record">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                           <h4 style="text-align: center;">Are Your sure to delete ?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                data-dismiss="modal" ng-click='closeDeleteConfirmModal()'>No</button>
+                            <button type="button" class="btn btn-primary" ng-click="deleteRecordLevel2Type()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="alertDelLevel3Record">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                           <h4 style="text-align: center;">Are Your sure to delete This?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                data-dismiss="modal" ng-click='closeDeleteConfirmModal()'>No</button>
+                            <button type="button" class="btn btn-primary" ng-click="deleteRecordLevel3Type()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 		</div>
         <!--**********************************

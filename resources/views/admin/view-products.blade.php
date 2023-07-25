@@ -116,7 +116,7 @@
                                                             ng-click="quickEditProduct(@{{ row.PRODUCT_ID }});">Quick
                                                             Edit</a>
                                                         <a class="dropdown-item" href="javascript:;"
-                                                            ng-click="deleteProduct(@{{ row.PRODUCT_ID }});">Delete</a>
+                                                            ng-click="openDeleteConfirmModal(@{{ row.PRODUCT_ID }});">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -1506,7 +1506,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Step</h5>
+                        <h5 class="modal-title">Add a Usage</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
@@ -1605,6 +1605,21 @@
                         <button type="button" class="btn btn-danger light"
                             ng-click="closealertDeleteModal();">Close</button>
                         <!-- 							<button type="button" class="btn btn-primary">Yes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="alertDelProduct">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                       <h4 style="text-align: center;">Are Your sure to delete?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light"
+                            data-dismiss="modal" ng-click='closeDeleteConfirmModal()'>No</button>
+                        <button type="button" class="btn btn-primary" ng-click="deleteProductConfirmed()">Yes</button>
                     </div>
                 </div>
             </div>

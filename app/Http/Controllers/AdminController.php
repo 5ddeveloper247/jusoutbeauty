@@ -43,6 +43,7 @@ use App\Models\ProductIngredientModel;
 use App\Models\ShadeFinderSelfieModel;
 use App\Models\FooterSubscriptionModel;
 use App\Models\OrderShippingTrackingModel;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Cookie;
 use Nette\Utils\Json;
 
@@ -1721,6 +1722,19 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+
+            if(strlen($data['P_1']) < 3 || strlen($data['P_1']) > 100){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be between 3 and 100 chars.';
+				echo json_encode ( $arrRes );
+				die ();
+            }
+            if(ctype_digit($data['P_1'])){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be alphabetic or alphanumeric.';
+				echo json_encode ( $arrRes );
+				die ();
+            }
 			// if ($data ['P_2'] == '') {
 
 			// 	$arrRes ['done'] = false;
@@ -2625,13 +2639,23 @@ class AdminController extends Controller
 
 		if (isset ( $data ) && ! empty ( $data )) {
 
-			if ($data ['C_1'] == '') {
+			// if ($data ['C_1'] == '') {
 
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Name is required.';
-				echo json_encode ( $arrRes );
-				die ();
-			}
+			// 	$arrRes ['done'] = false;
+			// 	$arrRes ['msg'] = 'Name is required.';
+			// 	echo json_encode ( $arrRes );
+			// 	die ();
+			// }
+            if (empty($data['C_1']) || ctype_digit($data['C_1'])) {
+                $arrRes['done'] = false;
+                $arrRes['msg'] = 'Category Name must be alphabetic or alphanumeric.';
+                echo json_encode($arrRes);
+                die();
+            }
+
+
+
+
 
 
 			if ($data ['ID'] == '') {
@@ -2791,6 +2815,14 @@ class AdminController extends Controller
 				die ();
 			}
 
+            if (empty($data['C_2']) || ctype_digit($data['C_2'])) {
+                $arrRes['done'] = false;
+                $arrRes['msg'] = 'Sub Category Name must be alphabetic or alphanumeric.';
+                echo json_encode($arrRes);
+                die();
+            }
+
+
 			if ($data ['ID'] == '') {
 
 
@@ -2932,6 +2964,13 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            if (empty($data['C_2']) || ctype_digit($data['C_2'])) {
+                $arrRes['done'] = false;
+                $arrRes['msg'] = 'Category Name must be alphabetic or alphanumeric.';
+                echo json_encode($arrRes);
+                die();
+            }
+
 
 			if ($data ['ID'] == '') {
 
@@ -3098,9 +3137,25 @@ class AdminController extends Controller
 				die ();
 			}
 
+            if (empty($data['P_1']) || ctype_digit($data['P_1'])) {
+                $arrRes['done'] = false;
+                $arrRes['msg'] = 'Title Name must be alphabetic or alphanumeric.';
+                echo json_encode($arrRes);
+                die();
+            }
+
+
+
+
 			if ($data ['ID'] == '') {
 
-
+                $result = DB::table('jb_product_features_tbl')->where('FEATURE_NAME',$data['P_1'])->first();
+                if(isset($result) || !empty($result)){
+                    $arrRes['done'] = false;
+                    $arrRes['msg'] = 'Title Name Already Exists. Try Different...';
+                    echo json_encode($arrRes);
+                    die();
+                }
 				$getLastSeq = DB::table ( 'jb_product_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
 				if($getLastSeq != null){
@@ -3134,6 +3189,13 @@ class AdminController extends Controller
 				die ();
 
 			} else {
+                $result = DB::table('jb_product_features_tbl')->where('FEATURE_NAME',$data['P_1'])->whereNot('FEATURE_ID',$data ['ID'])->first();
+                if(isset($result) || !empty($result)){
+                    $arrRes['done'] = false;
+                    $arrRes['msg'] = 'Title Name Already Exists. Try Different...';
+                    echo json_encode($arrRes);
+                    die();
+                }
 
 				$result = DB::table ( 'jb_product_features_tbl' ) ->where ( 'FEATURE_ID', $data ['ID'] ) ->update (
 						array ( 'FEATURE_NAME' => $data ['P_1'],
@@ -3323,6 +3385,22 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            if (empty($data['P_1']) || ctype_digit($data['P_1'])) {
+                $arrRes['done'] = false;
+                $arrRes['msg'] = 'Ingredient Title must be alphabetic or alphanumeric.';
+                echo json_encode($arrRes);
+                die();
+            }
+
+
+            $result = DB::table ( 'jb_ingredient_tbl' )->where('TITLE',$data['P_1'])->first();
+
+            if(isset($result) || !empty($result)){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Ingredient Name Already Exists. Try Different...';
+				echo json_encode ( $arrRes );
+				die ();
+            }
 
 			if ($data ['ID'] == '') {
 
@@ -3608,11 +3686,16 @@ class AdminController extends Controller
 				die ();
 			}
 
+			$slug = $this->slugify($data['P_1']);
+
 			if ($data ['ID'] == '') {
+
+
 
 				$result = DB::table ( 'jb_blogs_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
 								'TITLE' => $data ['P_1'],
+								'SLUG' => $slug,
 								'DESCRIPTION' => base64_encode($data['P_2']),
 								'STATUS' => 'active',
 								'DATE' => date ( 'Y-m-d H:i:s' ),
@@ -3633,6 +3716,7 @@ class AdminController extends Controller
 
 				$result = DB::table ( 'jb_blogs_tbl' ) ->where ( 'BLOG_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data ['P_1'],
+								'SLUG' => $slug,
 								'DESCRIPTION' => base64_encode($data['P_2']),
 								'UPDATED_BY' => $userId,
 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
@@ -3646,6 +3730,18 @@ class AdminController extends Controller
 				die ();
 			}
 		}
+	}
+
+	function slugify($text) {
+		$text = trim($text);
+		$text = strtolower($text);
+		$text = preg_replace('/[^a-z0-9-]+/', '-', $text);
+
+		$text = preg_replace('/-+/', '-', $text);
+
+		$text = trim($text, '-');
+
+		return $text;
 	}
 
 	public function editAdminBlog(Request $request) {
@@ -5491,15 +5587,28 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            if (empty($data['U_2']) || ctype_digit($data['U_2'])) {
+                $arrRes['done'] = false;
+                $arrRes['msg'] = 'Usage Title must be alphabetic or alphanumeric.';
+                echo json_encode($arrRes);
+                die();
+            }
+            $result = DB::table ( 'jb_product_uses_tbl' )->where('USES_TITLE',$data['U_2'])->where('PRODUCT_ID',$prod['ID'])->first();
+            if(isset($result) || !empty($result)){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Usage Name Already Exist , Try different...';
+				echo json_encode ( $arrRes );
+				die ();
+            }
 			if ($data['U_4'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description is required.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['U_4']) > 500) {
+			if (strlen($data['U_4']) < 100 || strlen($data['U_4']) > 500) {
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Description must be less then 500 characters.';
+				$arrRes ['msg'] = 'Description must be between 100 and 500 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -5916,9 +6025,15 @@ class AdminController extends Controller
 				}
 			}
 
-			if ($data['LT_1'] == '') {
+			if (strlen($data['LT_1']) < 3) {
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Title is required.';
+				$arrRes ['msg'] = 'Title is required must be 3 chars long.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+            if (ctype_digit($data['LT_1'])) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be alphabetic or alphanuemeric.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -5949,7 +6064,7 @@ class AdminController extends Controller
 				$duplicate = $ShadeFinder->checkDuplicatelevelTypeWrtlevelID($data['LT_1'],$level1['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
-					$arrRes ['msg'] = 'Type is already exist, try different...';
+					$arrRes ['msg'] = 'Type already exists, try different...';
 					echo json_encode ( $arrRes );
 					die ();
 				}
@@ -5982,7 +6097,7 @@ class AdminController extends Controller
 				$duplicate = $ShadeFinder->checkDuplicatelevelTypeWrtlevelID($data['LT_1'],$level1['ID'], $data ['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
-					$arrRes ['msg'] = 'Type is already exist, try different...';
+					$arrRes ['msg'] = 'Type already exists, try different...';
 					echo json_encode ( $arrRes );
 					die ();
 				}
@@ -6097,9 +6212,15 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['L_1']) > 100) {
+			if (strlen($data['L_1']) < 3 || strlen($data['L_1'])  > 100) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Title Question must be less then 100 characters.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+            if (ctype_digit($data['L_1'])) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be alphabetic or alphanuemeric.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -6189,12 +6310,18 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['LT_1']) > 100) {
+			if (strlen($data['LT_1']) < 3 || strlen($data['LT_1']) > 100) {
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Title must be less then 100 characters.';
+				$arrRes ['msg'] = 'Title must be between 3 and 100 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            if(ctype_digit($data['LT_1'])){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be alphabetic or alphanumeric.';
+				echo json_encode ( $arrRes );
+				die ();
+            }
 			if (!isset($data['LT_2']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Level One Type first, then proceed.';
@@ -6442,12 +6569,19 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data['LT_1']) > 100) {
+			if (strlen($data['LT_1']) < 3 || strlen($data['LT_1']) > 100) {
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Title must be less then 100 characters.';
+				$arrRes ['msg'] = 'Title must be between 3 and 100 characters.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
+
+            if(ctype_digit($data['LT_1'])){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be alphabetic or alphanumeric.';
+				echo json_encode ( $arrRes );
+				die ();
+            }
 			if (!isset($data['LT_2']['id'])) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Choose Level Two Type first, then proceed.';
@@ -6793,13 +6927,13 @@ class AdminController extends Controller
 		$userId = $details ['userId'];
 		$search = $details ['search'];
 
-		$customerName = isset($search['S_1']) ? $search['S_1'] : '';
+		$orderNumber = isset($search['S_1']) ? $search['S_1'] : '';
 		$orderStatus = isset($search['S_2']) ? $search['S_2'] : '';
 		$shippmentStatus = isset($search['S_3']) ? $search['S_3'] : '';
 		$startDate = isset($search['S_4']) ? $search['S_4'] : '';
 		$endDate = isset($search['S_5']) ? $search['S_5'] : '';
 
-		if($customerName == '' && $orderStatus == '' && $shippmentStatus == '' && $startDate == '' && $endDate == ''){
+		if($orderNumber == '' && $orderStatus == '' && $shippmentStatus == '' && $startDate == '' && $endDate == ''){
 
 			$arrRes['done'] = false;
 			$arrRes['msg'] = 'Choose atleast one filter.';
@@ -6807,9 +6941,9 @@ class AdminController extends Controller
 		}else{
 
 			$arrRes['done'] = true;
-			$arrRes['msg'] = '';
+			$arrRes['msg'] = 'Record(s) Found';
 			// 1 for placed order listing & 2 for shipped/delivered order listing
-			$arrRes['order'] = $OrderModel->getAllSearchOrderData(2,$customerName,$orderStatus,$shippmentStatus,$startDate,$endDate);
+			$arrRes['order'] = $OrderModel->getAllSearchOrderData(2,$orderNumber,$orderStatus,$shippmentStatus,$startDate,$endDate);
 
 		}
 
@@ -6938,6 +7072,12 @@ class AdminController extends Controller
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
+            if ($data['P_16'] <= 0) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = "Inv. Quantity must be greater then zero.";
+				echo json_encode ( $arrRes );
+				die ();
+			}
 			if ($data['P_12'] < 0 || $data['P_12'] > 100 ) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = "TAX Rate must be in between 0 to 100.";
@@ -6956,12 +7096,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if ($data['P_16'] <= 0) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = "Inv. Quantity must be greater then zero.";
-				echo json_encode ( $arrRes );
-				die ();
-			}
+
 			if (strlen($data['P_14']) > 500) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Short Description must be less then 500 characters.';
@@ -7551,13 +7686,19 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data ['S_1']) > 100) {
+			if (strlen($data ['S_1']) < 3 || strlen($data ['S_1']) > 100) {
 
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Title must be less then 100 charactres long.';
+				$arrRes ['msg'] = 'Title must be between 3 and 100 charactres.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            if(ctype_digit($data ['S_1'])){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Title must be alphabetic or alphanumeric.';
+				echo json_encode ( $arrRes );
+				die ();
+            }
 // 			if ($data ['S_2'] == '') {
 
 // 				$arrRes ['done'] = false;
@@ -7640,6 +7781,13 @@ class AdminController extends Controller
 
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Duration (Months) is required.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+            if ($data ['S_7'] < 1 || $data ['S_7'] > 12) {
+
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Duration (Months) must be between 1 and 12.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -9462,7 +9610,24 @@ class AdminController extends Controller
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)
 					);
+            $result = User::where('USER_ID',$data ['ID'])->first();
+            // dd($result);
+            // session()->put('userId', $result->USER_ID);
+            // session()->put('userName', $result->USER_NAME);
+            // session()->put('firstName', $result->FIRST_NAME);
+            // session()->put('lastName', $result->LAST_NAME);
+            // session()->put('userType', $result->USER_TYPE);
+            // session()->put('email', $result->EMAIL);
+            // session()->put('userSubType', $result->USER_SUBTYPE);
+            $_SESSION['userId'] = $result->USER_ID;
+            // $_SESSION['userName'] = $result->USER_NAME;
+            $_SESSION['firstName'] = $result->FIRST_NAME;
+            $_SESSION['lastName'] = $result->LAST_NAME;
+            $_SESSION['email'] = $result->EMAIL;
 
+            // $_SESSION['lastName'] = $data ['A_2'];
+            // dd($_SESSION['lastName']);
+            // Session::put('firstName', $data ['A_1']);
 			$arrRes['done'] = true;
 			$arrRes['msg'] = 'Admin profile updated successfully...';
 			echo json_encode ( $arrRes );
@@ -9515,6 +9680,12 @@ class AdminController extends Controller
 			if ($data['C_2'] != $data['C_3']) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Confirm Password is not match with New Password.';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+            if ($userdetails['ENCRYPTED_PASSWORD'] == $data['C_2'] || $userdetails['ENCRYPTED_PASSWORD'] == $data['C_3']) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Your New Password Must be Different from Current Password. Try Different.';
 				echo json_encode ( $arrRes );
 				die ();
 			}

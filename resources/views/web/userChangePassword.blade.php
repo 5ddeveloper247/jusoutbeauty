@@ -26,41 +26,41 @@
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="col-form-label" for="current_password"><b>Current Password</b> <span class="text-danger">*</span> </label> 
-													<input type="text" class="form-control" id="current_password" ng-model="user1['A_1']" placeholder="Current Password">
+													<label class="col-form-label" for="current_password"><b>Current Password</b> <span class="text-danger">*</span> </label>
+													<input type="password" class="form-control" id="current_password" ng-model="user1['A_1']" placeholder="Current Password">
 												</div>
 											</div>
 											<div class="col-sm-6">
-												
+
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="col-form-label" for="new_pass"><b>New Password<span class="text-danger">*</span></b> </label> 
-													<input type="text" class="form-control" id="new_pass" ng-model="user1['A_2']" placeholder="New Password">
+													<label class="col-form-label" for="new_pass"><b>New Password<span class="text-danger">*</span></b> </label>
+													<input type="password" class="form-control" id="new_pass" ng-model="user1['A_2']" placeholder="New Password">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="col-form-label" for=""confirm_new_pass""><b>Confirm New Password<span class="text-danger">*</span></b> </label> 
-													<input type="text" class="form-control" id="confirm_new_pass" ng-model="user1['A_3']" placeholder="Confirm New Password">
+													<label class="col-form-label" for="confirm_new_pass"><b>Confirm New Password<span class="text-danger">*</span></b> </label>
+													<input type="password" class="form-control" id="confirm_new_pass" ng-model="user1['A_3']" placeholder="Confirm New Password">
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="save-admin-center mt-3">
 										   <button type="button" class="btn btn-rounded btn-success mobile-save-btn" ng-click="updateUserPassword();" style="width:16%;">Update Password</button>
 										</div>
-										
-										
-                                   
+
+
+
 									</form>
 								</div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -68,9 +68,9 @@
             Content body end
         ***********************************-->
 
-       
+
 
     </div>
     @include('admin.admin-footer')
-    
+
     <script src="{{ url('/assets-web') }}/customjs/script_userprofile.js?v={{time()}}"></script>

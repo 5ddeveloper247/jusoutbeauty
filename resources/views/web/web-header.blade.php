@@ -573,12 +573,12 @@
                                         </a></li>
                                     <?php }?>
 
-                                    <li class="nav-item" data-toggle="tooltip" title="Search"><a
+                                    {{-- <li class="nav-item" data-toggle="tooltip" title="Search"><a
                                             href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
                                             data-mfp-options='{"type":"inline","focus": "#keyword","mainClass": "mfp-search-form mfp-move-from-top mfp-align-top"}'
                                             class="nav-link nav-search d-flex align-items-center px-3"> <i
                                                 class="far fa-search"></i>
-                                        </a></li>
+                                        </a></li> --}}
                                     <li class="nav-item" data-toggle="tooltip" title="Wishlist">
                                         <a class="nav-link position-relative px-3 py-0"
                                             href="{{ url('/wishlist') }}">

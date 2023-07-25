@@ -2,13 +2,13 @@ var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
 //	$(document).on('click','.addNew',function(){
-//	    $('#addCity_modal').modal('show');return false; 
+//	    $('#addCity_modal').modal('show');return false;
 //	});
 //
 //	$(document).on('click','.modalClose',function(){
-//	    $('#addCity_modal').modal('hide');return false; 
+//	    $('#addCity_modal').modal('hide');return false;
 //	});
-	
+
 	$scope.editView = 0;
 //
 	$scope.tokenHash = $("#csrf").val();
@@ -19,13 +19,14 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		$scope.search.S_3 = '';
 		$('#search_4').val('');
 		$('#search_5').val('');
+        $scope.getAllAdminOrderslov();
 	}
 	$scope.getAllAdminOrderslov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminShippedOrderslov',
@@ -34,16 +35,16 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			$scope.categoryLov = data.list1;
 			$scope.subcategoryLov = data.list2;
-			
+
 			if ($.fn.DataTable.isDataTable("#orderListing_table")) {
 				$('#orderListing_table').DataTable().clear().destroy();
 			}
-			
+
 			$scope.displayCollectionOrders = data.list;
-			
+
 			setTimeout(function(){
 				$("#orderListing_table").DataTable({
 					order: [],
@@ -53,25 +54,25 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		                      ]
 				});
 			}, 500);
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 	$scope.getAllAdminOrderslov();
-		
+
 	$scope.backToListing = function(){
 		$scope.editView = 0;
 		$scope.getAllAdminOrderslov();
 	}
-	
+
 	$scope.viewOrderDetails = function(orderId){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.orderId = orderId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getSpecificOrderDetails',
@@ -80,17 +81,17 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			$scope.editView = 1;
 			var order = data.order;
 			var shipping = data.shipping;
 			var payment = data.payment;
 			var shipment = data.shipment;
 			var tracking = data.tracking;
-			
+
 			$scope.displayCollectionOrderLines = data.details;
 			$scope.displayCollectionOrderTracking = data.tracking;
-			
+
 			$scope.orderId = order['ORDER_ID'];
 			$scope.orderNumber = order['ORDER_NUM'];
 			$scope.orderStatus = order['ORDER_STATUS'];
@@ -101,32 +102,32 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			$scope.orderTotalIncTax = order['IncVatTotalAmount'];
 			$scope.orderDiscount = order['totalDiscountAmount'];
 			$scope.orderTotalAmount = order['grandTotal'];
-			
+
 			$scope.orderPayType = payment['PAYMENT_TYPE'];
-			
+
 			$scope.orderShipName = shipping['FIRST_NAME']+' '+shipping['LAST_NAME'];
 			$scope.orderShipEmail = shipping['EMAIL'];
 			$scope.orderShipPhone = shipping['PHONE_NUMBER'];
 			$scope.orderShipAdres = shipping['ADDRESS'];
 			$scope.orderShipCountry = shipping['COUNTRY_NAME'];
-			
+
 			$scope.shipment.ID = shipment['SHIPPING_ID'];
 			$scope.shipment.S_1 = shipment['SHIPPING_COMPANY_NAME'];
 			$scope.shipment.S_2 = shipment['STATUS'];
 			$scope.shipment.S_3 = shipment['TRACKING_NUMBER'];
 			$scope.shipment.S_4 = shipment['EXPECTED_DELIVERY_DATE'];
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 	$scope.orderStatusShipmentConfirm = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.orderId = $scope.orderId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/orderStatusShipmentConfirm',
@@ -135,29 +136,29 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			$scope.viewOrderDetails($scope.orderId);
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.shipment = {};
 	$scope.shipment.ID = '';
 	$scope.shipment.S_1 = '';
 	$scope.shipment.S_2 = 'Pending';
 	$scope.shipment.S_3 = '';
 	$scope.shipment.S_4 = '';
-	
+
 	$scope.addShipmentInfo = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.orderId = $scope.orderId;
 	    data.shipment = $scope.shipment;
-	    
+
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/addOrderShipmentDetail',
@@ -166,18 +167,18 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
-				
+
 				var shipment = data.shipment;
 				$scope.shipment.ID = shipment['SHIPPING_ID'];
 				$scope.shipment.S_1 = shipment['SHIPPING_COMPANY_NAME'];
 				$scope.shipment.S_2 = shipment['STATUS'];
 				$scope.shipment.S_3 = shipment['TRACKING_NUMBER'];
 				$scope.shipment.S_4 = shipment['EXPECTED_DELIVERY_DATE'];
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -185,16 +186,16 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.shipmentStatusUpdate = function(flag){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.shippingId = $scope.shipment.ID;
 	    data.orderId = $scope.orderId;
 	    data.flag = flag;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/shipmentStatusUpdate',
@@ -203,7 +204,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			$scope.viewOrderDetails($scope.orderId);
 		})
 		.error(function(data, status, headers, config) {
@@ -215,19 +216,22 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	$scope.search.S_3 = '';
 	$scope.search.S_4 = '';
 	$scope.search.S_5 = '';
-	
-	
+
+
 	$scope.searchGlobal = function(){
-		
+
+		$scope.search.S_1 = $("#search_1").val();
+        $scope.search.S_2 = $("#search_2").val();
+        $scope.search.S_3 = $("#search_3").val();
 		$scope.search.S_4 = $("#search_4").val();
 		$scope.search.S_5 = $("#search_5").val();
-		
+
 		var data = {};
 	    data.userId = userId;
 	    data.search = $scope.search;
-	    
+
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/searchShipmentOrders',
@@ -236,35 +240,35 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
-			
+
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				if ($.fn.DataTable.isDataTable("#orderListing_table")) {
 					$('#orderListing_table').DataTable().clear().destroy();
 				}
-				
+
 				$scope.displayCollectionOrders = data.order;
-				
+
 				setTimeout(function(){
 					$("#orderListing_table").DataTable();
-				}, 500);				
-				
+				}, 500);
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-		
+
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -289,7 +293,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);
@@ -311,9 +315,9 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 })
 
 
-// 	$('#searchInListing').on("keyup", function (e)  {     
+// 	$('#searchInListing').on("keyup", function (e)  {
 //            var tr = $('.identify');
-//            
+//
 //            if ($(this).val().length >= 1) {//character limit in search box.
 //                var noElem = true;
 //                var val = $.trim(this.value).toLowerCase();
@@ -338,13 +342,13 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 //                else{
 //                }
 ////    	            	$('#tabContentNoData').hide();
-//                       
+//
 //            }
 //        });
 
 
 
 
-		
-		
-		
+
+
+

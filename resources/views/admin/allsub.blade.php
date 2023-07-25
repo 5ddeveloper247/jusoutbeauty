@@ -10,7 +10,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid pt-0" ng-show="editView == '0'">
-                
+
                 <!-- row -->
 
                 <div class="row">
@@ -62,7 +62,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														InActive
 													</span>
 												</td>
-                                                
+
                                                 <td>
 													<div class="dropdown ml-auto text-right">
 														<div class="btn-link" data-toggle="dropdown">
@@ -75,9 +75,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<a class="dropdown-item" href="javascript:;" ng-click="deleteRecord(row.SUBSCRIPTION_ID);">Delete</a>
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -86,14 +86,14 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     </div>
 				</div>
             </div>
-            
+
             <div class="container-fluid" ng-show="editView == '1'">
                 <div class="page-titles mb-0">
 					<ol class="breadcrumb">
-					
+
 						<li class="breadcrumb-item" ng-click="backToListing();"><i class="fa fa-arrow-left p-1"></i> &nbsp;<a href="javascript:void(0)" ng-click="backToListing()">Subscription</a></li>
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Add</a></li>
-						
+
 					</ol>
                 </div>
                 <!-- row -->
@@ -120,7 +120,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 												</div>
 											  </div> -->
 										</div>
-										
+
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
@@ -135,7 +135,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 												</div>
 											  </div>
 										</div>
-										
+
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
@@ -150,12 +150,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 												</div>
 											  </div>
 										</div>
-										
+
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="col-form-label" for="s7"><b>Duration (Months)</b> <span class="text-danger">*</span> </label>
-													<input type="number" class="form-control" id="s7" ng-model="subscription['S_7']">
+													<input type="number" class="form-control" id="s7" ng-model="subscription['S_7']" minlength="1" maxlength="2">
 												</div>
 											  </div>
 											  <div class="col-sm-6">
@@ -165,7 +165,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 												</div>
 											  </div>
 										</div>
-										
+
 										<!-- <div class="row">
 											  <div class="col-sm-6">
 												<div class="form-group">
@@ -174,7 +174,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 												</div>
 											  </div>
 										</div> -->
-										
+
 										<div class="row">
 										    <div class="col-sm-12">
 										      <div class="form-group">
@@ -183,22 +183,22 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 												</div>
 										    </div>
 										</div>
-										
+
 										<div class="save-admin-center mt-3">
 										   <button type="button" class="btn btn-rounded btn-success" ng-click="saveSubscription();">Save</button>
 										</div>
-										
-										
-                                   
+
+
+
 									</form>
 								</div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
-           
+
         </div>
         <!--**********************************
             Content body end
@@ -206,5 +206,5 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
     </div>
     @include('admin.admin-footer');
-    
+
     <script src="{{ url('/assets-admin') }}/customjs/script_adminsubscription.js?v={{time()}}"></script>

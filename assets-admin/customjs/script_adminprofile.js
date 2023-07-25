@@ -78,6 +78,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
             toastr.error(data.msg, 'Phone Can not be Empty', {timeOut: 3000});
             return;
         }
+        if($scope.user.A_4.toString().length < 11 || $scope.user.A_4.toString().length > 14){
+            toastr.error(data.msg, 'Phone Number must be between 11 and 14 digits.', {timeOut: 3000});
+            return;
+        }
+        // alert($scope.user.A_4.toString().length);
 
 
 	    var temp = $.param({details: data});
@@ -94,6 +99,10 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			if(data.done == true || data.done == 'true'){
 
 				toastr.success(data.msg, '', {timeOut: 3000})
+                setTimeout(function(){
+					location.reload();
+				}, 500);
+
 
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
@@ -127,6 +136,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				$scope.password.C_1 = '';
 				$scope.password.C_2 = '';
 				$scope.password.C_3 = '';
+
 
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})

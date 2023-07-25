@@ -51,7 +51,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="javascript:;" ng-click="showSelfieDetail(@{{row.SELFIE_ID}})">View</a>
-															<a class="dropdown-item" href="javascript:;" ng-click="deleteSelfieDetails(@{{row.SELFIE_ID}});">Delete</a>
+															<a class="dropdown-item" href="javascript:;" ng-click="openConfirmDeleteModalForSelfie(@{{ row.SELFIE_ID }});">Delete</a>
 														</div>
 													</div>
 												</td>
@@ -127,7 +127,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="alertDelSelfie">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
 
+                        <div class="modal-body">
+                           <h4 style="text-align: center;">Are Your sure to delete?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light"
+                                data-dismiss="modal" ng-click='closeDeleteConfirmModal()'>No</button>
+                            <button type="button" class="btn btn-primary" ng-click="deleteSelfieConfirmed()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="alertDel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">

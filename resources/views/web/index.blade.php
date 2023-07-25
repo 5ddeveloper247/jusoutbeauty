@@ -238,6 +238,20 @@
  }
 
 } */
+
+.product-inclusive {
+        position: relative;
+        overflow: hidden; /* Make sure the overlay doesn't overflow outside the parent container */
+    }
+
+    .product-inclusive .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+    }
     .quick_view_product_image {
         width: 250px;
         height: 250px;
@@ -469,14 +483,14 @@
                             <div class="container container-xxl h-100">
                                 <div class="h-100 d-flex flex-column">
                                     <div data-animate="fadeInDown" class="my-auto text-center">
-                                        <h2 class="mb-7 fs-lg-60 fs-xxl-100 lh-111" style="color: black">
+                                        <h2 class="mb-7 fs-lg-60 fs-xxl-100 lh-111 text-uppercase" style="color: black">
                                             {{ $banner['TITLE'] }}</h2>
-                                        <p class=" fs-20 mb-4 font-weight-600" style="color: black">
+                                        <p class=" fs-20 mb-4 font-weight-600 text-capitalize" style="color: black">
                                             {{ $banner['DESCRIPTION'] }}
                                         </p>
                                         <p class="fs-18 lh-178 mb-5 mw-393"></p>
                                         <a href="{{ $banner['BUTTON_LINK'] }}"
-                                            class="font-weight-500 btn-link-custom btn-link-custom-03"
+                                            class="font-weight-500 btn-link-custom btn-link-custom-03 text-capitalize"
                                             style="color: black">{{ $banner['BUTTON_TEXT'] }}</a>
                                     </div>
                                 </div>
@@ -487,7 +501,7 @@
             @endif
 
         </section>
-        <section class="slick-slider mx-0 d-block d-md-none dots-mb-mt-0 d-block d-md-none slider-home-mobile"
+        {{-- <section class="slick-slider mx-0 d-block d-md-none dots-mb-mt-0 d-block d-md-none slider-home-mobile"
             data-slick-options='{"slidesToShow": 1,"infinite":true,"autoplay":true,"dots":true,"arrows":false,"fade":true,"cssEase":"ease-in-out","speed":600}'>
 
             @if (isset($homeBanner) && !empty($homeBanner))
@@ -498,7 +512,7 @@
                             <div class="card-body p-3">
                                 <div class="container container-xl">
                                     <div data-animate="fadeInDown" class="text-center">
-                                        <h2 class="mb-2 fs-33">{{ $banner['TITLE'] }}</h2>
+                                        <h2 class="mb-2 fs-33 text-uppercase">{{ $banner['TITLE'] }}</h2>
                                         <p class="text-primary fs-20 mb-2 font-weight-600">{{ $banner['DESCRIPTION'] }}
                                         </p>
                                         <a href="{{ $banner['BUTTON_LINK'] }}"
@@ -512,7 +526,7 @@
             @endif
 
 
-        </section>
+        </section> --}}
         <section class="py-11 pt-lg-13 pb-lg-14">
             <div class="container container-custom container-xl">
                 <div class="row">
@@ -522,7 +536,7 @@
                         <h2 class="mb-5">Trending items</h2>
                         <p class="text-primary fs-20 mb-5 ">Made using clean, non-toxic
                             ingredients, our products are designed for everyone.</p>
-                        <a href="{{session('site')}}/store" class="btn btn-outline-primary">Shop</a>
+                        <a href="{{session('site')}}/Shop-All" class="btn btn-outline-primary">Shop</a>
                     </div>
                     <div class="col-lg-9">
                         <div class="slick-slider"
@@ -617,7 +631,7 @@
                         <h2 class="mb-7 text-center part_head text-capitalize">Pay less, stay
                             in fashion!</h3>
 
-                        <a href="{{session('site')}}/store" class="btn btn-primary">All Products</a>
+                        <a href="{{session('site')}}/Shop-All" class="btn btn-primary">All Products</a>
 
                     </div>
                 </div>
@@ -775,7 +789,7 @@
 
                 </div>
                 <div class="text-center pt-2">
-                    <a href="{{session('site')}}/store" class="btn btn-outline-primary"
+                    <a href="{{session('site')}}/Store/Shop" class="btn btn-outline-primary"
                         data-type="SUB_CATEGORY"> Shop More </a>
                 </div>
             </div>
@@ -865,41 +879,64 @@
                 <div class="row">
 
                     @if (isset($bestSeller) && !empty($bestSeller))
-                        <div class="col-sm-6 mb-0 mb-sm-0 product-inclusive" data-animate="fadeInUp"
+                        {{-- <div class="col-sm-6 mb-0 mb-sm-0 product-inclusive" data-animate="fadeInUp"
                             style="background-image: url('{{ $bestSeller['IMAGE_DOWNPATH'] }}');">
                             <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in"
                                 style="background-color: unset !important; height: 600px;">
                                 <div class="card-img bg-img-cover-center"></div>
                                 <div class="card-img-overlay d-flex flex-column p-2">
-                                    <p class="mb-0 card-text font-weight-500 part_head">{{ $bestSeller['TITLE'] }}</p>
-                                    <h5 class="card-title fs-36 lh-128 mb-0 part_head">{{ $bestSeller['HEADING'] }}
+                                    <p class="mb-0 card-text font-weight-500 part_head text-uppercase">{{ $bestSeller['TITLE'] }}</p>
+                                    <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">{{ $bestSeller['HEADING'] }}
                                     </h5>
                                     <div class="mt-auto">
                                         <button type="button"
-                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head addto-cart"
-                                            data-type="single" data-id="{{ $bestSeller['PRODUCT_ID'] }}"
-                                            data-quantity='1'>Shop Now</button>
+                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head"
+                                            > Shop Now</button>
                                     </div>
                                 </div>
                             </a>
-                        </div>
+                        </div> --}}
+                        <div class="col-sm-6 mb-0 mb-sm-0 product-inclusive" data-animate="fadeInUp"
+                                style="background-image: url('{{ $bestSeller['IMAGE_DOWNPATH'] }}');">
+                                <div class="overlay"></div>
+                                <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in" style="background-color: unset !important; height: 600px;">
+                                    <!-- Add the black overlay here -->
+
+
+                                    <!-- Rest of the content -->
+                                    <div class="card-img bg-img-cover-center"></div>
+                                    <div class="card-img-overlay d-flex flex-column p-2">
+                                        <p class="mb-0 card-text font-weight-500 part_head text-uppercase">{{ $bestSeller['TITLE'] }}</p>
+                                        <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">{{ $bestSeller['HEADING'] }}</h5>
+                                        <div class="mt-auto">
+                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_headtoShopListing"
+                                            data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
                     @endif
                     @if (isset($onlineExclusive) && !empty($onlineExclusive))
                         <div class="col-sm-6 mb-0 product-inclusive" data-animate="fadeInUp"
                             style="background-image: url('{{ $onlineExclusive['IMAGE_DOWNPATH'] }}');">
+                            <div class="overlay"></div>
                             <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in"
                                 style="background-color: unset !important; height: 600px;">
+
+
                                 <div class="card-img bg-img-cover-center"></div>
                                 <div class="card-img-overlay d-flex flex-column p-2">
-                                    <p class="mb-0 card-text font-weight-500 part_head">
-                                        {{ $onlineExclusive['TITLE'] }}</p>
-                                    <h5 class="card-title fs-36 lh-128 mb-0 part_head">
-                                        {{ $onlineExclusive['HEADING'] }}</h5>
+                                        <p class="mb-0 card-text font-weight-500 part_head text-uppercase">
+                                            {{ $onlineExclusive['TITLE'] }}</p>
+                                        <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">
+                                            {{ $onlineExclusive['HEADING'] }}</h5>
+                                        {{-- <p><a href="">Shop Now</a></p> --}}
                                     <div class="mt-auto">
                                         <button type="button"
-                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head addto-cart"
-                                            data-type="single" data-id="{{ $onlineExclusive['PRODUCT_ID'] }}"
-                                            data-quantity='1'>Shop Now</button>
+                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head toShopListing"
+                                            data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
                                     </div>
                                 </div>
                             </a>
@@ -922,13 +959,14 @@
                         <div class="col-lg-6 first_box">
                             <div class="box" data-animate="fadeInUp">
                                 <div class="card border-0">
+
                                     <a href="{{ session('site') }}/blog-page" class="hover-shine">
                                         <img src="{{ $ourblog['image'] }}" class="card-img-top img-blog-height"
                                             alt="How to care for your cotton.">
                                     </a>
                                     <div class="card-body px-0 pt-0 pb-0 text-box">
                                         <h3 class="card-title mb-0 fs-20 font-weight-500">
-                                            <a class="text-decoration-none blog_text_home"
+                                            <a class="text-decoration-none blog_text_home text-capitalize"
                                                 href="{{ session('site') }}/blog-page">{{ $ourblog['NAME'] }}</a>
                                         </h3>
                                     </div>
@@ -950,7 +988,7 @@
                                                 <img src="{{ $blogs[0]['image'] }}" class="inc_image_blog_1_home"
                                                     alt="How to care for your cotton.">
                                                 <div class="middle_cont_blog_home">
-                                                    <div class="blog_text_1_home">{{ $blogs[0]['TITLE'] }}</div>
+                                                    <div class="blog_text_1_home text-capitalize">{{ $blogs[0]['TITLE'] }}</div>
                                                 </div>
                                             </a>
                                         </div>
@@ -967,7 +1005,7 @@
                                                     class="card-img-top inc_image_blog_1_home"
                                                     alt="How to care for your cotton.">
                                                 <div class="middle_cont_blog_home">
-                                                    <div class="blog_text_1_home">{{ $blogs[1]['TITLE'] }}</div>
+                                                    <div class="blog_text_1_home text-capitalize">{{ $blogs[1]['TITLE'] }}</div>
                                                 </div>
                                             </a>
                                         </div>
@@ -987,7 +1025,7 @@
                                                     class="inc_image_blog_1_home inc_image_blog_3"
                                                     alt="How to care for your cotton.">
                                                 <div class="middle_cont_blog_home">
-                                                    <div class="blog_text_1_home">{{ $blogs[2]['TITLE'] }}</div>
+                                                    <div class="blog_text_1_home text-capitalize">{{ $blogs[2]['TITLE'] }}</div>
                                                 </div>
                                             </a>
                                         </div>

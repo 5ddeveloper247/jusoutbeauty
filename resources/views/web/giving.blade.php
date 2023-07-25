@@ -44,6 +44,27 @@
 
     }
 
+        /* Add this style in your CSS file or inside the <style> tag of your HTML */
+        .rab {
+        position: relative;
+    }
+
+    .rab .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency (0.5 in this case) */
+     /* Place the overlay behind the content */
+    }
+
+    /* Add any additional styles for the text or adjust existing styles as needed */
+    .rab h2 {
+        position: relative;
+        z-index: 2; /* Set text color to white to make it visible on the dark overlay */
+    }
+
 
     .input-group>.form-control,
     .input-group>.form-select,
@@ -68,6 +89,7 @@
     <div ng-controller="projectinfo1">
         <section class="py-10  py-lg-18 rab" id="details-header"
             style="background-repeat: no-repeat ;background-size: cover;background-image: url('{{ url('assets-web') }}/images/960x0.jpg')">
+            <div class="overlay"></div>
             <div class="container container-xl">
             	<div class="row no-gutters" style="justify-content: center">
                   	<div class="mw-370">
@@ -97,12 +119,12 @@
             <div class="container container-custom">
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-6 mb-8 mb-md-0 inc-sec-img">
-                        <img src="{{ url('/assets-web') }}/images/Picture8.jpg"
+                        <img src="{{ url('/assets-web') }}/images/Picture8.jpg" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                             alt="OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.">
                     </div>
                     <div class="col-md-6 pl-xl-7">
-                        <h2 class=" mb-5">OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.</h2>
-                        <p>We strongly believe that by supporting the most vulnerable in society - elderly, children and
+                        <h2 class="text-white mb-5 text-uppercase">OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.</h2>
+                        <p class="text-white">We strongly believe that by supporting the most vulnerable in society - elderly, children and
                             young women - we can help give them the opportunity to turn their dreams into reality.
 
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus beatae aliquid qui quasi
@@ -158,11 +180,11 @@
                 </div>
             </div>
         </section>
-        <section class="py-10 py-lg-18  mt-10"
+        <section class="py-10 py-lg-18  mt-10 rab"
             style="background-image:url({{ url('/assets-web') }}/images/discover-banner.jpg);background-repeat:no-repeat;background-size:cover;">
+            <div class="overlay"></div>
             <div class="container full_sec">
                 <h2 class="text-center mb-5 text-white">JUSOUTBEAUTY THE SWEET <br>AND CARING</h2>
-
             </div>
         </section>
         <section class="py-10 pt-lg-14 pb-lg-13">

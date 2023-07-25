@@ -701,10 +701,13 @@
 									<span class="badge light text-white bg-primary">3</span>
                                 </a>
 							</li> -->
+                            <?php
+                                $result = DB::table('fnd_user_tbl')->where('USER_ID',session('userId'))->first();
+                            ?>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
 									<div class="header-info">
-										<span class="text-black"><strong>{{session('firstName')}}</strong></span>
+										<span class="text-black"><strong>{{$result->FIRST_NAME ?? session('firstName')}} {{$result->LAST_NAME ?? session('lastName')}}</strong></span>
 										<p class="fs-12 mb-0">User</p>
 									</div>
                                     <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" width="20" alt=""/>

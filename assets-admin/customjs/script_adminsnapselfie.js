@@ -61,12 +61,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		});
 	}
 	$scope.getAllAdminSnapSelfielov();
-
+    $scope.selfieToBeDeleted = '';
+    $scope.openConfirmDeleteModalForSelfie = function($id){
+        $scope.selfieToBeDeleted = $id;
+        $('#alertDelSelfie').modal('show');
+    }
 	// For delete Selfi
-	$scope.deleteSelfieDetails = function(id){
+	$scope.deleteSelfieConfirmed = function(){
 
 		var data = {};
-		data.recordId = id;
+		data.recordId = $scope.selfieToBeDeleted;
 
 		var temp = $.param({details: data});
 
@@ -79,6 +83,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 		}).success(function(data, status, headers, config) {
 			toastr.success(data.msg, '', {timeOut: 3000})
+            $scope.selfieToBeDeleted = '';
+            $('#alertDelSelfie').modal('hide');
 			$scope.getAllAdminSnapSelfielov();
 
 		})

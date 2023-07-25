@@ -294,10 +294,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			}
 		}
 	}
-	$scope.deleteRecordLevel1Type = function(id){
+    $scope.levelToBeDeleted = '';
+    $scope.confirmDeleteLevel = function ($id){
+        $scope.levelToBeDeleted = $id;
+        $('#alertDelLevel').modal('show');
+    }
+	$scope.deleteRecordLevel1Type = function(){
 
 		var data = {};
-	    data.recordId = id;
+	    data.recordId = $scope.levelToBeDeleted;
 	    data.level1ID = $scope.level1.ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
@@ -314,6 +319,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			if(data.done == true || data.done == 'true'){
 
 				toastr.success(data.msg, '', {timeOut: 3000})
+                $levelToBeDeleted = '';
+                $('#alertDelLevel').modal('hide');
 
 				$("#addLevelOneLines_container").slideUp("slow");
 
@@ -549,10 +556,20 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	$scope.deleteRecordLevel2Type = function(id){
 
+    $scope.closeDeleteConfirmModal = function (){
+        $scope.level2RecordToBeDeleted = '';
+        $('#alertDelLevel2Record').modal('hide');
+    }
+
+    $scope.level2RecordToBeDeleted = '';
+    $scope.confirmdeleteRecordLevel2Type = function (id){
+        $scope.level2RecordToBeDeleted = id;
+        $('#alertDelLevel2Record').modal('show');
+    }
+	$scope.deleteRecordLevel2Type = function(){
 		var data = {};
-	    data.recordId = id;
+	    data.recordId = $scope.level2RecordToBeDeleted;
 	    data.level2ID = $scope.level2.ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
@@ -570,6 +587,10 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 				toastr.success(data.msg, '', {timeOut: 3000})
 
+                $scope.level2RecordToBeDeleted = '';
+
+                $('#alertDelLevel2Record').modal('hide');
+
 				$("#addLevelTwoLines_container").slideUp("slow");
 
 				if ($.fn.DataTable.isDataTable("#levelTwoTypesTable")) {
@@ -582,7 +603,9 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 					$("#levelTwoTypesTable").DataTable();
 				}, 500);
 			}else{
+                $scope.level2RecordToBeDeleted = '';
 
+                $('#alertDelLevel2Record').modal('hide');
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
 
@@ -794,10 +817,19 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	$scope.deleteRecordLevel3Type = function(id){
+
+
+    $scope.level3RecordToBeDeleted = '';
+    $scope.confirmdeleteRecordLevel3Type = function (id){
+        $scope.level3RecordToBeDeleted = id;
+        $('#alertDelLevel3Record').modal('show');
+    }
+
+
+	$scope.deleteRecordLevel3Type = function(){
 
 		var data = {};
-	    data.recordId = id;
+	    data.recordId = $scope.level3RecordToBeDeleted;
 	    data.level3ID = $scope.level3.ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
@@ -810,20 +842,26 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
+            if(data.done == true || data.done == 'true'){
+                toastr.success(data.msg, '', {timeOut: 3000})
+                $scope.level3RecordToBeDeleted ='';
+                $('#alertDelLevel3Record').modal('hide');
+                $("#addLevelThreeLines_container").slideUp("slow");
 
-			toastr.success(data.msg, '', {timeOut: 3000})
+                if ($.fn.DataTable.isDataTable("#levelThreeTypesTable")) {
+                    $('#levelThreeTypesTable').DataTable().clear().destroy();
+                }
 
-			$("#addLevelThreeLines_container").slideUp("slow");
+                $scope.displayCollectionLevelThreeType = data.level3TypeListing;
 
-			if ($.fn.DataTable.isDataTable("#levelThreeTypesTable")) {
-				$('#levelThreeTypesTable').DataTable().clear().destroy();
-			}
+                setTimeout(function(){
+                    $("#levelThreeTypesTable").DataTable();
+                }, 500);
+            }else if(data.done == false || data.done == 'false'){
+                $scope.level3RecordToBeDeleted ='';
+                $('#alertDelLevel3Record').modal('hide');
+            }
 
-			$scope.displayCollectionLevelThreeType = data.level3TypeListing;
-
-			setTimeout(function(){
-				$("#levelThreeTypesTable").DataTable();
-			}, 500);
 
 		})
 		.error(function(data, status, headers, config) {

@@ -8,7 +8,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             Content body start
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
-            
+
             <div class="container-fluid" ng-show="editView == '0'">
                 <div class="page-titles">
 					<ol class="breadcrumb">
@@ -26,7 +26,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                             </div>
                             <div class="card-body">
                             	<div class="row">
-                                   
+
                                    	<!-- <div class="col-lg-4">
                                    		<div class="form-group">
                                         	<label><b>Customer Name</b><span class="text-danger">**</span></label>
@@ -45,7 +45,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                    	</div>
                                    	<div class="col-lg-4">
                                      	<div class="form-group">
-                                        	<label><b>Shipping Status</b><span class="text-danger">**</span></label>
+                                        	<label><b>Shipping Status</b><span class="text-danger">*</span></label>
                                          	<select class="form-control" id="search_3" ng-model="search['S_3']">
                                             	<option value="">--SELECT--</option>
                                             	<option value="Pending">Pending</option>
@@ -55,16 +55,16 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                          	</select>
                                     	</div>
                                    	</div>
-                                   
+
                                    	<div class="col-lg-4">
                                    		<div class="form-group">
-                                        	<label><b>Start Date</b><span class="text-danger">**</span></label>
+                                        	<label><b>Start Date</b><span class="text-danger">*</span></label>
                                          	<input type="date" id="search_4" class="form-control" ng-model="shipment['S_4']">
                                        	</div>
                                    	</div>
                                    	<div class="col-lg-4">
                                    		<div class="form-group">
-                                        	<label><b>End Date</b><span class="text-danger">**</span></label>
+                                        	<label><b>End Date</b><span class="text-danger">*</span></label>
                                          	<input type="date" id="search_5" class="form-control" ng-model="shipment['S_5']">
                                        	</div>
                                    	</div>
@@ -72,7 +72,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                        <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="searchGlobal();" style="width:10rem;">Search</a>
                                        <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="resetGlobal();" style="width:10vw;margin-right:10px">Reset</a>
                                 	</div>
-                                   
+
                                 </div>
                                 <div class="table-responsive">
                                     <table id="orderListing_table" class="display min-w850">
@@ -116,7 +116,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														@{{row.PAYMENT_STATUS}}
 													</span>
 												</td>
-                                                
+
                                                 <td>
 													<div class="dropdown ml-auto text-right">
 														<div class="btn-link" data-toggle="dropdown">
@@ -127,9 +127,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 <!-- 															<a class="dropdown-item" href="javascript:;">Delete</a> -->
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -138,7 +138,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     </div>
 				</div>
             </div>
-            
+
             <div class="container-fluid" ng-show="editView == '1'">
                 <div class="page-titles">
 					<ol class="breadcrumb">
@@ -150,7 +150,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     <div class="col-lg-12">
 
                         <div class="card">
-                            <div class="card-header row">  
+                            <div class="card-header row">
                             	<div class="col-6">Order Details</div>
                             	<!-- <div class="col-6">
                             		<a type="button" class="btn btn-rounded btn-warning admin-view-add" ng-click="shipmentStatusUpdate(1);" ng-if="shipment.ID != '' && shipment.S_2 == 'Pending'">picked up</a>
@@ -159,7 +159,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                             	</div> -->
                             </div>
                             <div class="card-body">
-                            
+
                             	<div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -180,11 +180,11 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                                 <hr>
-                                
+
                                 <div class="row">
-                               
+
                                    <div class="col-lg-3">
                                        <div class="form-group">
                                          <label><b>Shipping company name</b><span class="text-danger">*</span></label>
@@ -210,7 +210,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                        </div>
                                    </div>
                                 </div>
-                                
+
                                 <div class="row mb-5">
                                     <div class="mt-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div> <strong>@{{orderShipName}}</strong> </div>
@@ -277,7 +277,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                     <button type="button" data-toggle="tooltip" title="View Product Shades" data-placement="top" class="btn btn-rounded btn-light p-1" ng-click="viewProductShades(@{{row.ORDER_LINE_ID}});"><i style="font-size:20px" class="fa fa-info-circle"></i></button>
                                                 </td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -319,7 +319,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             <div class="modal fade" id="alertDel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
                         </div>
@@ -334,7 +334,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
            <div class="modal fade" id="show_shade_modal">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -360,7 +360,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger light"
 								data-dismiss="modal">Close</button>
-							
+
 						</div>
 					</div>
 				</div>
@@ -372,5 +372,5 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
     </div>
     @include('admin.admin-footer')
-    
+
     <script src="{{ url('/assets-web') }}/customjs/script_userorders.js?v={{time()}}"></script>
