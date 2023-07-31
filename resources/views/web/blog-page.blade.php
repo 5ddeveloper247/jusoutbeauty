@@ -1,5 +1,8 @@
 @include('web.web-header')
 <style>
+    /* Add this style in your CSS file or inside the <style> tag of your HTML */
+
+
 	.blogdo{
 		position: sticky;
 		top: 10px;
@@ -21,34 +24,108 @@
 			left: 0% !important;
 		}
     }
+
+    .blogdo {
+        /* position: relative; */
+    }
+
+    .blogdo .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+        z-index: 1; /* Make sure the overlay is above the image */
+    }
+
+    .mid_text_blog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 100%;
+        z-index: 2; /* Make sure the text is above the overlay */
+    }
+
+    /* Add any additional styles for the text or adjust existing styles as needed */
+    .mid_text_blog h2 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+
+      /* Add this style in your CSS file or inside the <style> tag of your HTML */
+        .sing_blog {
+        position: relative;
+    }
+
+    .sing_blog .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+    }
+
+    /* Add any additional styles for the text or adjust existing styles as needed */
+    .sing_blog h2 p,
+    .sing_blog p {
+        position: relative;
+        z-index: 1; /* Make sure the text is above the overlay */
+    }
 </style>
 <main id="content">
   	<section class="pt-5 pb-6 mt-0 mt-md-5 mt-sm-0 mt-xl-0 mt-xxl-5">
      	<div class="row">
 
       		@if(isset($ourblog) && !empty($ourblog))
-      		<div class="col-lg-6 position_inc_blog_detail">
+      		{{-- <div class="col-lg-6 position_inc_blog_detail">
 	           	<div class="blogdo">
+                    <div class="overlay"></div>
 	           		<img src="{{$ourblog['image']}}" alt="img" style="height: 55rem;width:100%;">
 
 		        	<div class="mid_text_blog" id="mid_text">
 						<h2 class="text-center text-white mb-0">{{ $ourblog['NAME']}}</h2>
 		        	</div>
 	           	</div>
-	         </div>
+	        </div> --}}
+            <div class="col-lg-6 position_inc_blog_detail">
+                <div class="blogdo">
+                    <img src="{{$ourblog['image']}}" alt="img" style="height: 55rem; width: 100%;">
+                    <div class="overlay"></div> <!-- Move the overlay after the image -->
+                    <div class="mid_text_blog" id="mid_text">
+                        <h2 class="text-center text-white mb-0">{{ $ourblog['NAME']}}</h2>
+                    </div>
+                </div>
+            </div>
+
+
 	         @endif
 
 	         <div class="col-lg-6">
 	         	@if(isset($blogs) && !empty($blogs))
 	         	@foreach($blogs as $blog)
-				<a href="{{session('site')}}/blog-detail/{{$blog['BLOG_ID']}}">
+				{{-- <a href="{{session('site')}}/blog-detail/{{$blog['BLOG_ID']}}">
 					<div class="sing_blog" style="background-image: url({{$blog['image']}}); background-size: cover; padding: 50px;">
 						<h2 class="text-capitalize mb-0" style="color:#fff;">
 							<p style="color:#fff;">{{ \Illuminate\Support\Str::limit($blog["TITLE"], 25, $end='...')}}</p>
 						</h2>
 						<p style="color:#fff;HEIGHT: 73PX;">{{$blog["DESCRIPTION_TEXT"]}}</p>
 					</div>
-				</a>
+				</a> --}}
+                <a href="{{session('site')}}/blog-detail/{{$blog['SLUG']}}">
+                    <div class="sing_blog" style="background-image: url({{$blog['image']}}); background-size: cover; padding: 50px;">
+                        <div class="overlay"></div> <!-- Add the overlay div here -->
+                        <h2 class="text-capitalize mb-0" style="color:#fff;">
+                            <p style="color:#fff;">{{ \Illuminate\Support\Str::limit($blog["TITLE"], 25, $end='...')}}</p>
+                        </h2>
+                        <p style="color:#fff; HEIGHT: 73PX;">{{$blog["DESCRIPTION_TEXT"]}}</p>
+                    </div>
+                </a>
+
 	            @endforeach
 	           	@endif
 				<!-- <div class="sing_blog" style="background-image: url({{ url('/assets-web') }}/images/blogging-2.webp); background-size: cover; padding: 50px;">

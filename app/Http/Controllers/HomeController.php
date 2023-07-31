@@ -517,13 +517,13 @@ class HomeController extends Controller
 		$data ['page'] = 'Blog Page';
 		return view ( 'web.blog-page' )->with ( $data );
 	}
-	public function blogDetails($id='') {
+	public function blogDetails($slug='') {
 		$BlogsModel = new BlogsModel();
 
-		if($id != ''){
+		if($slug != ''){
 			$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
   			$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
-			$data ['blogDetail'] = $BlogsModel ->getSpecificBlogsData($id);
+			$data ['blogDetail'] = $BlogsModel ->getSpecificBlogsData($slug);
 			$data['routine'] = $this->getAllRouteByNameForWebiste();
 			$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
 			$data ['page'] = 'Blog Detail';
@@ -1280,14 +1280,30 @@ class HomeController extends Controller
 	}
 
 	public function userDashboard() {
-
+        $data['orders'] = $this->getTotalNumberOfOrders();
+        $data['tickets'] = $this->getTotalNumberOfTickets();
+        $data['subscriptions'] = $this->getTotalNumberOfSubscriptions();
 		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
   		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
-		  $data['routine'] = $this->getAllRouteByNameForWebiste();
-		  $data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+		$data['routine'] = $this->getAllRouteByNameForWebiste();
+		$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+        // dd($data);
 		$data['page'] = 'Dashboard';
-		return view ( 'web.user-dashboard' )->with ( $data );
+		return view ('web.user-dashboard')->with($data);
 	}
+
+    public function getTotalNumberOfOrders(){
+        $result = DB::table('jb_order_tbl')->where('USER_ID',session('userId'))->count();
+        return $result;
+    }
+    public function getTotalNumberOfTickets(){
+        $result = DB::table('jb_user_tickets_tbl')->where('USER_ID',session('userId'))->count();
+        return $result;
+    }
+    public function getTotalNumberOfSubscriptions(){
+        $result = DB::table('jb_user_subscription_tbl')->where('USER_ID',session('userId'))->count();
+        return $result;
+    }
 	public function userProfile() {
 
 		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
@@ -2776,7 +2792,7 @@ class HomeController extends Controller
    										if($slctShadeInvQty < $value['QUANTITY']){
    											$arrRes['done'] = false;
    											$arrRes['flag'] = 1;
-   											$arrRes['msg'] = 'Bundle Product "'.$itemDetail['NAME'].'" with your selected shade is out of stock. kindly remove product then proceed to checkout. Thanks';
+   											$arrRes['msg'] = 'Bundle Product "'.$itemDetail['NAME'] ?? ''.'" with your selected shade is out of stock. kindly remove product then proceed to checkout. Thanks';
    											echo json_encode ( $arrRes );
    											die ();
    										}
@@ -2785,7 +2801,7 @@ class HomeController extends Controller
 
    											$arrRes['done'] = false;
    											$arrRes['flag'] = 1;
-   											$arrRes['msg'] = 'Bundle Product "'.$itemDetail['NAME'].'" with your selected shade is out of stock. kindly remove product then proceed to checkout. Thanks';
+   											$arrRes['msg'] = 'Bundle Product "'.$itemDetail['NAME'] ?? ''.'" with your selected shade is out of stock. kindly remove product then proceed to checkout. Thanks';
    											echo json_encode ( $arrRes );
    											die ();
    										}
@@ -3144,12 +3160,18 @@ class HomeController extends Controller
    				echo json_encode ( $arrRes );
    				die ();
    			}
-   			if ($data['A_4'] == '') {
+   			if (strlen($data['A_4']) <= 0) {
    				$arrRes ['done'] = false;
    				$arrRes ['msg'] = 'Phone Number is required.';
    				echo json_encode ( $arrRes );
    				die ();
    			}
+            if (strlen($data['A_4']) < 11 || strlen($data['A_4']) > 14 ) {
+                $arrRes ['done'] = false;
+                $arrRes ['msg'] = 'Phone Number must be between 11 to 14 digits';
+                echo json_encode ( $arrRes );
+                die ();
+            }
    			$userphone = $UserModel->getspecificUserByPhone1($data ['A_4'],$userId);
    			if(!empty($userphone)){
    				$arrRes['done'] = false;
@@ -3220,10 +3242,16 @@ class HomeController extends Controller
    			}
    			if ($data['A_2'] != $data['A_3']) {
    				$arrRes ['done'] = false;
-   				$arrRes ['msg'] = 'Confirm Password is not match with New Password.';
+   				$arrRes ['msg'] = 'Confirm Password does not match with New Password.';
    				echo json_encode ( $arrRes );
    				die ();
    			}
+            if($data['A_1'] == $data['A_2'] && $data['A_1'] == $data['A_3']){
+                $arrRes ['done'] = false;
+   				$arrRes ['msg'] = 'Your New Password must not match the current password. Try Different.';
+   				echo json_encode ( $arrRes );
+   				die ();
+            }
 
 
    			$result = DB::table ( 'fnd_user_tbl' ) ->where ( 'USER_ID', $data ['ID'] ) ->update (
@@ -3686,19 +3714,22 @@ class HomeController extends Controller
 		$username= $request->name;
 		$username_email= $request->email;
 
-		$namefile = DB::table ( 'jb_shade_finder_selfie_tbl' )->insertGetId (
-			array ( 'USER_ID' => session('userId'),
-					'USERNAME' => $username,
-					'USER_EMAIL' => $username_email,
-			)
-		);
+		// $namefile = DB::table ( 'jb_shade_finder_selfie_tbl' )->insertGetId (
+		// 	array ( 'USER_ID' => session('userId'),
+		// 			'USERNAME' => $username,
+		// 			'USER_EMAIL' => $username_email,
+		// 	)
+		// );
+
+        $namefile = $username . "'s_Selfie_" . date('Ymd_His');
+        // dd($namefile);
         if ($request->file('file')) {
             $path = public_path() . "/uploads/beautyselfie";
             $downpath = url('public') . "/uploads/beautyselfie";
 
             $file = $request->file('file');
             $file_ext = $file->getClientOriginalExtension();
-            $namefile = 'example'; // Replace with your own logic to generate the file name
+            // $namefile = 'example';
 
             $fullpath = $path . "/" . $namefile . "." . $file_ext;
             $downpath = $downpath . "/" . $namefile . "." . $file_ext;
@@ -3720,6 +3751,7 @@ class HomeController extends Controller
                             'UPDATED_ON' => date('Y-m-d H:i:s')
                         )
                     );
+                    // dd($result);
                 }
                 $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SHADEFINDERSELFI');
                 $message_username = str_replace("{User_Name}",$username,$emailConfigDetails['message']);
@@ -3763,44 +3795,6 @@ class HomeController extends Controller
                 die ();
             }
         }
-
-// 		if($request->file('file')){
-
-// 			$path = public_path()."/uploads/beautyselfie";
-// 			$downpath = url('public')."/uploads/beautyselfie";
-
-// 			$file = $request->file('file');
-// 			$file_ext= $file->getClientOriginalExtension();
-
-// 			$fullpath = $path."/".$namefile.".".$file_ext;
-// 			$downpath = $downpath."/".$namefile.".".$file_ext;
-// // dd($fullpath);
-// 			if (!file_exists($path)) {
-// 				mkdir($path, 0777, true);
-
-// 				if(move_uploaded_file($file, $fullpath)){
-
-// 					$result = DB::table ( 'jb_shade_finder_selfie_tbl' ) ->where ( 'SELFIE_ID', $namefile ) ->update (
-// 					array ( 'PATH' => $fullpath,
-// 							'DOWNPATH' => $downpath,
-// 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-// 						)
-// 					);
-// 				}
-// 			}else{
-
-// 				if(move_uploaded_file($file, $fullpath)){
-
-// 					$result = DB::table ( 'jb_shade_finder_selfie_tbl' ) ->where ( 'SELFIE_ID', $namefile ) ->update (
-// 						array ( 'PATH' => $fullpath,
-// 								'DOWNPATH' => $downpath,
-// 								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-// 						)
-// 						);
-// 				}
-// 			}
-// 		}
-
 	}
 
 	public function saveProductSelfie(Request $request){

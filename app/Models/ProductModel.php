@@ -296,7 +296,7 @@ class ProductModel extends Model
     	->leftjoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
 //     	->join ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
 		->where('a.IS_DELETED',0)
-        ->where('a.STATUS','active')
+        // ->where('a.STATUS','active')
     	->orderBy('a.SEQ_NUM','asc')
     	->get();
 
@@ -1692,18 +1692,18 @@ class ProductModel extends Model
 
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getAllForSlugUpdate(){
-    	
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*') ->get();
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['NAME'] = $row->NAME;
-    		
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
 }

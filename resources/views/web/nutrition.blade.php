@@ -69,7 +69,7 @@
 			<div class="pt-5 pt-lg-3">
 				<div class="container container-custom nutrition-section cursor-pointer" >
 
-					<div class="row">
+					<div class="row d-flex justify-content-center align-items-center">
 					<?php if(isset($subCategoriesList) && !empty($subCategoriesList)){?>
 						<?php foreach($subCategoriesList as $filter){?>
 								<?php
@@ -82,13 +82,20 @@
 										$activeClass = '';
 									}
 									?>
-								<div class="col-md-3 col-4 mb-6 mb-md-0 <?= $activeClass ?> filter-click" ng-click="filter(<?= $filter['SUB_CATEGORY_ID'];?>);">
-									<div class="card border-0 hover-zoom-in" id="skin_health_col">
-										<img src="<?= $filter['image'];?>" alt="alt" class="card-img inr-img toShopListing"
+								{{-- <div class="col-md-2 col-2 mb-6 mb-md-0 <?= $activeClass ?> filter-click" ng-click="filter(<?= $filter['SUB_CATEGORY_ID'];?>);" >
+									<div class="card border-0 hover-zoom-in" id="skin_health_col" style="background: transparent; border-radius:10px;">
+										<img src="<?= $filter['image'];?>" style="border-radius: 10px;" alt="alt" class="card-img inr-img toShopListing"
                                         data-id="<?= $filter['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $filter['CATEGORY_SLUG'] ?>">
 									</div>
 									<p class="nut_para"><?= $filter['NAME'];?></p>
-								</div>
+								</div> --}}
+                                <div class="col-md-2 col-2 mb-6 mb-md-0 <?= $activeClass ?> filter-click " ng-click="filter(<?= $filter['SUB_CATEGORY_ID'];?>);">
+                                    <div class="card border-0 hover-zoom-in" id="skin_health_col" style="background: transparent; border-radius: 10px;">
+                                        <img src="<?= $filter['image'];?>" style="border-radius: 10px;" alt="alt" class="card-img inr-img toShopListing" data-id="<?= $filter['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $filter['CATEGORY_SLUG'] ?>">
+                                    </div>
+                                    <p class="nut_para"><?= $filter['NAME'];?></p>
+                                </div>
+
 							<?php }?>
 						<?php }?>
 
@@ -108,16 +115,16 @@
 						<h2 class="pro-col text-center mb-6 nu-cate" style="color:#57813a ">Products</h2>
 					</div>
 
-					<div class="row">
+					<div class="row" style="padding:0 50px;">
                         <div ng-init="productsToShowForNutrition = 4"></div>
-						<div class="col-sm-6 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)" style="@{{row.styleBgColor}}">
+						<div class="col-sm-3 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
 								<div class="overflow-hidden">
-									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" style="margin-top:15px"><br>
-									<h3 class="text-center productdetail cursor-pointer product_image"  data-id="@{{row.PRODUCT_ID}}">@{{row.NAME}}</h3>
+									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2 mt-3" style="min-height: 200px; max-height:300px; border-radius:10px;" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" style="margin-top:15px"><br>
+									<h5 class="text-center productdetail cursor-pointer product_image"  data-id="@{{row.PRODUCT_ID}}">@{{row.NAME}}</h5>
 									<p class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.CATEGORY_NAME}}</p>
-									<h3 class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.SUB_TITLE}}</h3>
-									<a href="javascript:;" class="btn btn-primary nut_btn addto-cart" data-id="@{{row.PRODUCT_ID}}" data-quantity="1" style="display: block; margin: 0 auto; width: 33%;">Shop Now</a>
+									<h5 class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.SUB_TITLE}}</h5>
+									<a href="javascript:;" class="btn btn-primary nut_btn addto-cart" data-id="@{{row.PRODUCT_ID}}" data-quantity="1" style="display: block; margin: 0 auto; width: 50%;">Shop Now</a>
 									<br>
 								</div>
 							</div>

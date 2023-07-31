@@ -4,7 +4,7 @@
 
 <head>
     <title><?=$page?> — JustBeauty</title>
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -15,26 +15,26 @@
     <link href="{{ url('/assets-admin') }}/third_party/admin/summernote/summernote.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/third_party/admin/jqvmap/css/jqvmap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/chartist/css/chartist.min.css">
-	
+
 	<!-- Datatables -->
     <link href="{{ url('/assets-admin') }}/third_party/admin/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
-	
+
     <link href="{{ url('/assets-admin') }}/third_party/admin/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-	
+
 	<!-- DropeZone -->
 	<link href="{{ url('/assets-admin') }}/third_party/admin/dropzone/dist/dropzone.css" rel="stylesheet">
 	<link href="https://cdn.datatables.net/rowreorder/1.3.3/css/rowReorder.dataTables.min.css" rel="stylesheet">
-	
+
 	<!-- Multi Select -->
     <link rel="stylesheet" href="{{ url('/assets-admin') }}/third_party/admin/select2/css/select2.min.css">
-    
+
 	<link href="{{ url('/assets-admin') }}/third_party/admin/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/css/admin/style.css" rel="stylesheet">
     <link href="{{ url('/assets-admin') }}/customcss/admin/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('/public') }}/third_party/toastr/css/toastr.min.css" />
 	<link href="https://fonts.cdnfonts.com/css/cavolini" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	
+
 	<style>
 		/* body{
 			font-family: 'Cavolini','Jost' sans-serif !important;
@@ -111,8 +111,8 @@
         <!--**********************************
             Nav header end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Chat box start
         ***********************************-->
@@ -339,7 +339,7 @@
 								<div>
 									<h6 class="mb-1">Chat with Khelesh</h6>
 									<p class="mb-0 text-success">Online</p>
-								</div>							
+								</div>
 								<div class="dropdown">
 									<a href="javascript:void(0)" data-toggle="dropdown" ><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
 									<ul class="dropdown-menu dropdown-menu-right">
@@ -614,8 +614,8 @@
 		<!--**********************************
             Chat box End
         ***********************************-->
-		
-		
+
+
 <!--**********************************
             Header start
         ***********************************-->
@@ -729,10 +729,13 @@
 									<span class="badge light text-white bg-primary">3</span>
                                 </a>
 							</li> -->
+                            <?php
+                                $result = DB::table('fnd_user_tbl')->where('USER_ID',session('userId'))->first();
+                            ?>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
 									<div class="header-info">
-										<span class="text-black"><strong>{{session('firstName')}} {{session('lastName')}}</strong></span>
+										<span class="text-black"><strong>{{$result->FIRST_NAME ?? session('firstName')}} {{$result->LAST_NAME ?? session('lastName')}}</strong></span>
 										<p class="fs-12 mb-0">{{session('userSubType') == 'admin' ? 'Super Admin' : 'Admin'}}</p>
 									</div>
                                     <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" width="20" alt=""/>
@@ -769,7 +772,7 @@
 					@foreach ($adminMenu as $menu)
 
 						@if($menu['MENU_TYPE'] == 'main')
-						
+
 						<li>
 							<a class="ai-icon" href="{{ url('').$menu['SYSTEM_CALL'] }}" aria-expanded="false">
 								<i class='{{ $menu['MENU_ICON']}}'></i>
@@ -790,7 +793,7 @@
 									@if(session('userSubType') == 'admin')
 										<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
 									@elseif(session('userSubType') == 'subadmin' && $sub['SUB_MENU_ID'] != 3 )
-										<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>	
+										<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
 									@endif
 								@endforeach
 							</ul>
@@ -800,22 +803,22 @@
 
 						@endforeach
 					@elseif($adminMenu == '' )
-					
+
 						<li><a class="ai-icon" href="{{session('site')}}/dashboard" aria-expanded="false">
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
 
 					@endif
-				
-					
+
+
                     <!--<li><a class="ai-icon" href="{{session('site')}}/dashboard" aria-expanded="false">
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
-                        
+
                     </li>-->
-                    
+
                     <!-- <li>
                         <a class="ai-icon" href="{{session('site')}}/partners" aria-expanded="false">
                             <i class="flaticon-381-user"></i>
@@ -838,7 +841,7 @@
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="{{session('site')}}/view-categories">View All</a></li>
-                           
+
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -846,7 +849,7 @@
 							<span class="nav-text">Products</span>
 						</a>
                         <ul aria-expanded="false">
-						
+
                             <li><a href="{{session('site')}}/view-products">View All</a></li>
                             <li><a href="{{session('site')}}/view-bundles">Bundles</a></li>
 <!--                             <li><a href="{{session('site')}}/add-product">Add</a></li> -->
@@ -866,7 +869,7 @@
 <!--                                     <li><a href="{{session('site')}}/add-shade">Add new</a></li> -->
 <!--                                 </ul> -->
 <!--                             </li> -->
-                           
+
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -874,11 +877,11 @@
 							<span class="nav-text">Blog System</span>
 						</a>
                         <ul aria-expanded="false">
-                        
+
 <!--                             <li><a href="{{session('site')}}/blogs">View All</a></li> -->
                             <li><a href="{{session('site')}}/add-blog">Add</a></li>
-                            
-                           
+
+
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -905,7 +908,7 @@
                             <li><a href="{{session('site')}}/shippedorders">Shipped Orders</a></li>
                         </ul>
                     </li>
-                    
+
                     <!--
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="fa fa-gears"></i>
@@ -922,10 +925,10 @@
                         <ul aria-expanded="false">
                             <li><a href="{{session('site')}}/sms-apis">SMS APIs</a></li>
                             <li><a href="{{session('site')}}/sms-templates">SMS Template</a></li>
-                            
+
                         </ul>
                     </li> -->
-                    
+
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="fa fa-desktop"></i>
 							<span class="nav-text">Website Setup</span>
@@ -934,10 +937,10 @@
 <!--                             <li><a href="{{session('site')}}/header">Header</a></li> -->
 							<li><a href="{{session('site')}}/home-page">Home Page</a></li>
                             <li><a href="{{session('site')}}/footer">Footer</a></li>
-                            
+
                         </ul>
                     </li>
-                    
+
 					<li>
                         <a class="ai-icon" href="{{session('site')}}/payments" aria-expanded="false">
 							<i class="fa fa-credit-card"></i>
@@ -973,15 +976,15 @@
 							<span class="nav-text">Reviews</span>
 						</a>
                     </li>
-                    
+
                     <li>
                         <a class="ai-icon" href="{{session('site')}}/questions" aria-expanded="false">
 							<i class="fa fa-question-circle "></i>
 							<span class="nav-text">Questions</span>
 						</a>
                     </li>
-                    
-                    <!-- 
+
+                    <!--
                     <li>
                         <a class="ai-icon" href="{{session('site')}}/shade-finder" aria-expanded="false">
 							<i class="fa fa-search"></i>
@@ -997,8 +1000,8 @@
                             <li><a href="{{session('site')}}/emails-sent">Sent Emails</a></li>
                         </ul>
                     </li>
-                    
-                    
+
+
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="fa fa-rocket"></i>
 							<span class="nav-text">Subscription</span>
@@ -1014,9 +1017,9 @@
 							<span class="nav-text">News Latters</span>
 						</a>
                     </li>--}}
-                    
+
                 </ul>
-				
+
 				<div class="copyright">
 					<p><strong>JustBeauty Admin Dashboard</strong> &#169; 2022 All Rights Reserved</p>
 					<p>Made with <span class="heart heart-blast"></span> by 5D Solutions</p>

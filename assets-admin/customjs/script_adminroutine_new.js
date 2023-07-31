@@ -446,6 +446,12 @@ $scope.getroutinetypes = function(){
 
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.routinename.ID = data.ID;
+                // setTimeout(function(){
+                    // alert('working')
+                    $scope.backToListing();
+
+				// }, 500);
+
 //				window.location = data.redirect_url;
 
 

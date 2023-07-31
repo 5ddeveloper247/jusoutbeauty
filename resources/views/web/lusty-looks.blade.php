@@ -1,5 +1,25 @@
 @include('web.web-header')
 <style>
+
+    /* Add this style in your CSS file or inside the <style> tag of your HTML */
+        .overlay-section {
+        position: relative;
+        color: #fff; /* Set text color to white to make it visible on the dark overlay */
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency (0.5 in this case) */
+    }
+
+    .overlay h2{
+        position: relative;
+        z-index: 2;
+    }
     .giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
@@ -23,7 +43,7 @@
     }
 </style>
 <main id="content" style="padding-top: 111px">
-<section class="py-10  py-lg-18 rab" id="details-header"
+{{-- <section class="py-10  py-lg-18 rab" id="details-header"
         style="background-repeat: no-repeat; background-image: url('{{ url('assets-web') }}/images/best-banner.jpg'); background-size: cover;">
     <div class="container container-xl">
 
@@ -34,12 +54,22 @@
 
     </div>
 
+</section> --}}
+<section class="py-10 py-lg-18 rab overlay-section" id="details-header"
+    style="background-repeat: no-repeat; background-image: url('{{ url('assets-web') }}/images/best-banner.jpg'); background-size: cover; ">
+    <div class="overlay"></div> <!-- Add the overlay div here -->
+    <div class="container container-xl">
+        <div class="no-gutters" style="justify-content: center">
+            <h2 class="mb-2 text-center font-size-banner text-white" data-animate="fadeInRight">Lusty Looks</h2>
+        </div>
+    </div>
 </section>
+
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" src="{{ url('/assets-web') }}/images/last-looks.jpg"
+                    <img class="giving-section2-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7">
@@ -61,14 +91,14 @@
         </div>
     </section>
 
-    <div class="pickgradientabove">
-    </div>
+    {{-- <div class="pickgradientabove">
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10 lustylooks">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/last-looks.jpg"
+                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
@@ -95,14 +125,14 @@
         </div>
     </section>
 
-    <div class="pickgradientbelow">
-    </div>
+    {{-- <div class="pickgradientbelow">
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/last-looks.jpg"
+                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
@@ -234,7 +264,7 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving" src="{{ url('/assets-web') }}/images/Red-lipstick-for-every-look.png" alt="Our approach">
+                    <img loading="lazy" class="last-section-giving" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Red-lipstick-for-every-look.png" alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}

@@ -316,17 +316,17 @@
                     <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">BEAUTY
                         & SKIN</p>
                     <ul>
-                        <li><a href="{{session('site')}}/store" class="footer-text-white"
+                        <li><a href="{{session('site')}}/Shop-All" class="footer-text-white"
                                 data-type="SUB_CATEGORY">Shop Products</a></li>
-                        <li><a href="{{session('site')}}/store"
+                        <li><a href="{{session('site')}}/Shop-All"
                                 data-type="SUB_CATEGORY" class="footer-text-white">Shop Subscription</a></li>
                         <li><a href="{{ session('site') }}/user-shade-finder" class="footer-text-white">Shade Finder</a></li>
                         <li><a href="javascript:;" class="toShopListing footer-text-white" data-id="6"
-                                data-type="CATEGORY" >Skincare</a></li>
+                                data-type="CATEGORY"  data-categoryslug="Skincare">Skincare</a></li>
                         <li><a href="javascript:;" class="toShopListing footer-text-white" data-id="7"
-                                data-type="CATEGORY" >Makeup</a></li>
+                                data-type="CATEGORY" data-categoryslug="Makeup">Makeup</a></li>
                         <li><a href="javascript:;" class="toShopListing footer-text-white" data-id="8"
-                                data-type="CATEGORY" >Nutrition</a></li>
+                                data-type="CATEGORY" data-categoryslug="Nutrition">Nutrition</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">

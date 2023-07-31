@@ -969,10 +969,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 											html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+images[i]["ID"]+')" title="Mark Primary">';
 
-									html += '<div class="arrow-icon-move-box">'+
-											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											'<p>Move Position</p>'+
-										'</div>'+
+									html +=
 									'</div>'+
 								'</div>'+
 							'</div>';
@@ -999,10 +996,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 											html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimaryClinicalNoteImage('+images[i]["ID"]+')" title="Mark Primary">';
 										}
 
-									html += '<div class="arrow-icon-move-box">'+
-											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											'<p>Move Position</p>'+
-										'</div>'+
+									html +=
 									'</div>'+
 								'</div>'+
 							'</div>';
@@ -1061,10 +1055,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 									html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdShadeImage('+images[i]["ID"]+')" title="Mark Image">';
 
 
-									html += '<div class="arrow-icon-move-box">'+
-											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											'<p>Move Position</p>'+
-										'</div>'+
+									html +=
 									'</div>'+
 								'</div>'+
 							'</div>';
@@ -1352,6 +1343,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				$scope.displayCollectionProdUses = data.productuses;
 
 				setTimeout(function(){
+                    $('#usesStepsModal').modal('hide');
 					$("#productUsesTable").DataTable();
 				}, 500);
 
@@ -1519,11 +1511,21 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	}
 
 	$scope.alertDeleteMsg = '';
-
-	$scope.deleteProduct = function(id){
+    $scope.productIdToDelete = '';
+      // Function to open the modal and set the productId to delete
+  $scope.openDeleteConfirmModal = function(productId) {
+    $scope.productIdToDelete = productId;
+    $('#alertDelProduct').modal('show'); // Show the modal
+  };
+  $scope.closeDeleteConfirmModal = function(productId) {
+    $scope.productIdToDelete = productId;
+    $('#alertDelProduct').modal('hide'); // Show the modal
+    $scope.productIdToDelete = '';
+  };
+	$scope.deleteProductConfirmed = function(){
 
 		var data = {};
-	    data.recordId = id;
+	    data.recordId =  $scope.productIdToDelete;
 	    data.userId = userId;
 
     	var temp = $.param({details: data});
@@ -1539,13 +1541,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 			if(data.done == true || data.done == 'true'){
 
-				toastr.success(data.msg, '', {timeOut: 3000})
+
+                $scope.productIdToDelete = '';
+                $('#alertDelProduct').modal('hide');
+                toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.getAllAdminProductlov();
 
 			}else{
 
 				$scope.alertDeleteMsg = data.msg;
-				$("#alertDel").modal('show');
+				$("#alertDelProduct").modal('show');
 			}
 
 
@@ -1618,10 +1623,6 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 									'<div class="text">'+
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductImage('+xhr.responseText[1]+')" title="Delete Image">'+
 										'<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+xhr.responseText[1]+')" title="Mark Primary">'+
-										'<div class="arrow-icon-move-box">'+
-											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											'<p>Move Position</p>'+
-										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>';
@@ -1751,10 +1752,6 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 									'<div class="text">'+
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductShadeImage('+xhr.responseText[1]+')" title="Delete Image">'+
 										'<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdShadeImage('+xhr.responseText[1]+')" title="Mark Primary">'+
-										'<div class="arrow-icon-move-box">'+
-											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											'<p>Move Position</p>'+
-										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>';
@@ -1887,10 +1884,6 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 									'<div class="text">'+
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteClinicalNoteImage('+xhr.responseText[1]+')" title="Delete Image">'+
 										'<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markPrimaryClinicalNoteImage('+xhr.responseText[1]+')" title="Mark Primary">'+
-										'<div class="arrow-icon-move-box">'+
-											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											'<p>Move Position</p>'+
-										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>';

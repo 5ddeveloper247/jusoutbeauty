@@ -5,8 +5,8 @@
             height: 350px;
         }
         .subs-heading{
-            background-color: #f9f9f9; 
-            padding-top:83px; 
+            background-color: #f9f9f9;
+            padding-top:83px;
             padding-bottom:183px
         }
     }
@@ -17,8 +17,8 @@
         display: flex;
     }
     .subs-heading{
-            background-color: #f9f9f9; 
-            padding-top:183px; 
+            background-color: #f9f9f9;
+            padding-top:183px;
             padding-bottom:183px
         }
 
@@ -33,7 +33,7 @@
                     <img src="" style="height: 400px;">
                 </div>
                 <div class="col-lg-4 subs_pag_subs">
-                    <div class="text-center subs-heading" style="background-color: #006f7a ">
+                    <div class="text-center subs-heading" style="background-color: rgba(0, 111, 122, 1); ">
                         <h2 class="fs-24 fs-sm-36 text-center mb-8 text-white">
                             Subscribe + Save 10% Off
                         </h2>
@@ -172,7 +172,7 @@
                                                 class="fal fa-star wish_<?= $recommand['PRODUCT_ID'] ?> <?= $recommand['wishlistFlag'] == '1' ? 'activeWish' : '' ?>"></i>
                                         </a>
                                         {{-- <a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Quick view" ng-click="quickViewProductDetails(<?= $recommand['PRODUCT_ID'] ?>)" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-                                             <span data-toggle="modal" data-target="#productQuickView">  
+                                             <span data-toggle="modal" data-target="#productQuickView">
                                             <i class=" icon fal fa-eye"></i>
                                              </span>
                                         </a> --}}
@@ -218,11 +218,11 @@
                                     </p>
                                 </div>
                                 <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                    <?php 
+                                    <?php
                                             $shades = $recommand['productShades'];
                                             if(isset($shades) && !empty($shades)){
-                                            foreach ($shades as $shade){	
-                                            
+                                            foreach ($shades as $shade){
+
                                         ?>
                                     <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
                                         <a href="javascript:;" class="d-block swatches-item"
@@ -657,7 +657,7 @@
                             <div class="d-flex align-items-center">
                                 <h2 class="fs-24 mb-0">@{{ QuickView_name }}</h2>
                             </div>
-                            <div class="primary-summary-inner" style="max-height: 31rem;overflow: scroll;"> 
+                            <div class="primary-summary-inner" style="max-height: 31rem;overflow: scroll;">
                                 <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="category_name != ''">
                                     @{{ category_name }}, @{{ subCategory_name }}</p>
                                 <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="bundleProductNames != ''">
@@ -706,48 +706,48 @@
                                                title="@{{ row.SHADE_NAME }}">
                                                    <a href="javascript:;" class="d-block swatches-item" style="background-image: url('@{{ row.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;"> </a>
                                                </li>
-                                               
+
                                               </ul>
-                                        
+
                                             <input type="hidden" id="shadeId" value="">
                                            <input type="hidden" id="prodShadeId" value="">
                                            <input type="hidden" id="shadeName" value="">
                                            <input type="hidden" id="productId" value="">
                                            <input type="hidden" id="shadeExistChk" value="@{{(displayCollectionProductShadesQuickView.length == 0 || displayCollectionProductShadesQuickView.length == undefined) ? 'false' : 'true'}}">
-                                           
-                                            
+
+
                                         </div>
                                         <a href="javascript:;" class="btn btn-primary" ng-click="confirmProductShade();">Continue</a>
                                     </div>
                                 </div>
-                                
+
                                 <div class="chooseShade-container" style="margin-bottom: 30px;" ng-if="displayCollectionBundleProductShadesQuickView != ''">
                                    <div id="shadeBundlechooser_container_@{{row.BUNDLE_LINE_ID}}" ng-repeat="row in displayCollectionBundleProductShadesQuickView">
                                        <button class="accordion_inc_prod_detail shadeAccord-btn" data-id="@{{row.BUNDLE_LINE_ID}}">@{{row.seqNo}}. Choose Shade Product @{{row.productName}}</button><!-- chooseShadeBtn -->
                                        <div class="panel_inc_prod_detail" id="chooseShade_container_@{{row.BUNDLE_LINE_ID}}">
                                            <div class="form-group shop-swatch-color shop-swatch-color-02 mb-6 widget-color">
-                                               
+
                                                <img src="" alt="Product Image" class="var text-capitalize quick_view_product_image bundleLineShadeImg" id="bundleLineShadeImg_@{{row.BUNDLE_LINE_ID}}" style="display:none;">
                                                <br>
-                                               
+
                                                <label class="mb-2">
-                                                   <span class="font-weight-500 text-primary mr-2">Color:</span> 
+                                                   <span class="font-weight-500 text-primary mr-2">Color:</span>
                                                    <span class="var text-capitalize" id="shadeName1_@{{row.BUNDLE_LINE_ID}}"></span>
                                                </label>
                                                <ul class="list-inline d-flex justify-content-start mb-0">
-                                                   <li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades" 
-                                                   ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"  
+                                                   <li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades"
+                                                   ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
                                                    title="@{{list.SHADE_NAME}}">
                                                        <a href="javascript:;" class="d-block swatches-item shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}" style="background-image: url('@{{list.shadeprimaryImage}}'); background-repeat:no-repeat;background-position: center;"> </a>
                                                    </li>
-                                                   
+
                                                </ul>
-                                               
+
                                                <input type="hidden" id="shadeId_@{{row.BUNDLE_LINE_ID}}" value="">
                                                <input type="hidden" id="prodShadeId_@{{row.BUNDLE_LINE_ID}}" value="">
                                                <input type="hidden" id="shadeName_@{{row.BUNDLE_LINE_ID}}" value="">
                                                <input type="hidden" id="productId_@{{row.BUNDLE_LINE_ID}}" value="">
-                                               <input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">											
+                                               <input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">
                                            </div>
                                            <a href="javascript:;" class="btn btn-primary" ng-click="confirmBundleProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
                                        </div>
@@ -797,7 +797,7 @@
                                 <div class="row align-items-end no-gutters mx-n2 mb-1">
                                     <div class="col-sm-3 form-group px-2 mb-0">
                                         <label class="text-primary fs-16 font-weight-bold mb-1" for="number">Quantity: </label>
-                                        
+
                                         <div class="input-group position-relative w-100">
                                            <a href="javascript:;"
                                                class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
@@ -813,7 +813,7 @@
                                                <i class="far fa-plus"></i>
                                            </a>
                                        </div>
-                                        
+
                                     </div>
                                     <div class="col-sm-8 mb-0 px-2">
                                         <button type="button"

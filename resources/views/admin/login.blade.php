@@ -32,12 +32,12 @@
 										<a href="{{session('site')}}/admin"><img src="{{ url('/assets-admin') }}/images/admin/Logo-01.png" alt="" style="width: 100%;"></a>
 									</div>
                                     <h4 class="text-center mb-4 text-white">Sign in your account</h4>
-                                    
+
                                     <form action="loginAuth" method="POST">
-                                    	
+
                                     	<input type="hidden" name="_method" value="POST">
            								<input type="hidden" name="_token" id="csrf" value="{{ csrf_token() }}">
-                                        
+
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Email</strong></label>
                                             <input type="email" class="form-control" name="email" placeholder="hello@example.com">
@@ -52,9 +52,9 @@
 						            			<span class="error-msg">{{$message}}</span>
 						            		@enderror
                                         </div>
-                                        
-                                        
-                                        
+
+
+
                                         <div class="text-center">
                                            <span class="error-msg" style="margin-top:1vw;">{{session('error')}}</span>
                                         </div>
@@ -73,9 +73,9 @@
                                             <button type="submit" class="btn bg-white text-primary btn-block">Sign In</button>
                                         </div>
                                     </form>
-                                    <div class="new-account mt-3">
+                                    {{-- <div class="new-account mt-3">
                                         <p class="text-white">Don't have an account? <a class="text-white" href="{{session('site')}}/admin">Sign up</a></p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
