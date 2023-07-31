@@ -39,6 +39,7 @@ class CloverController extends Controller
 
     public function makePayment(Request $request, $type = '',$response = false)
     {
+        // dd('hello');
         $post=$request->all();
         // dd($post);
         $post['currency'] = 'USD';
@@ -121,7 +122,7 @@ class CloverController extends Controller
 //             	exit();
 
             	if($_POST['paymentType'] == 'checkout'){
-
+                    dd('hello');
             		$this->saveCheckout($request,$checkoutDetails,$response1);
             		//return redirect('home');// for success case
 					return redirect('success-message');
@@ -346,7 +347,7 @@ class CloverController extends Controller
     	// next subscription table
 
     	$subscrptionDetails = $SubscriptionModel->getSpecificSubscriptionData($subsDetail['SUBSCRIPTION_ID']);
-
+        $htmlbody = '';
     	if(isset($subscrptionDetails) && !empty($subscrptionDetails)){
 
     		$subsMonths = $subscrptionDetails['S_7']; // duration months
@@ -396,119 +397,43 @@ class CloverController extends Controller
 
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SUBSCRIPTION');
 
-    	// $htmlbody=	'<tr>
-		// 				<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-		// 					<p>Hello '.session("email").',</p><br>
-		// 					'.$emailConfigDetails['message'].'
-		// 				</td>
-	    //     		</tr>';
+    	$htmlbody=	'<tr>
+						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+							<p>Hello '.session("email").',</p><br>
+							'.$emailConfigDetails['message'].'
+						</td>
+	        		</tr>';
 
-        $htmlbody='
-        <div id=":pq" class="ii gt" jslog="20277; u014N:xr6bB; 4:W251bGwsbnVsbCxbXV0."><div id=":pp" class="a3s aiL ">
-          <span class="im"><p>&nbsp;</p>
-              <table style="width:100.0%" border="0" width="100%" cellspacing="0" cellpadding="0">
-                  <tbody>
-                      <tr>
-                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                              <p style=""><strong>Thank you for your quote request!</strong></p>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                              <p style="margin:0px 0px 10px 0;"><strong>Hi '.session("email").',</strong></p>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                              <p style="font-size: 1.17em;margin:0px 0px 10px 0;">'.$emailConfigDetails['message'].'</p>
-                          </td>
-                      </tr>
 
-                      <tr>
-                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                              <p style="font-size: 1.17em;margin:0px 0px 10px 0;">In the meantime, if you have any Questions or require additional information, please do not hesitate to <a style="text-decoration: underline" href="http://vokausa.com/site/app/contact#/contact">contact us</a>.</p>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                              <h2 style="font-size: 1.17em;">The VOKA Team</h2>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-              <table style="width:100.0%" border="0" width="100%" cellspacing="0" cellpadding="0">
-                  <tbody>
 
-                      <tr>
-                          <td bgcolor="#f4f4f4" align="left" colspan="4" style="padding: 20px 30px 40px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                              <p style="margin: 0;">'.$emailConfigDetails['title'].' </p>
-                          </td>
-                      </tr>
+                // if(!empty($subsDetail) ){
+                // $sequence = 1;
+                // foreach ($subsDetail as $value){
 
-                      <tr style="min-height:22.5pt">
-                          <td style="width:418.5pt;background:#05568c" colspan="4" valign="top" width="743"><strong><span style="font-size:15.0pt;font-family:Calibri,sans-serif;color:white;padding-left:10px;float:left">&nbsp; SENT EMAIL ON Quote</span></strong>
-                              <p>&nbsp;</p>
-                          </td>
-                      </tr>
-                      <tr style="min-height:22.5pt">
-                          <td style="border:solid #dfe0e2 1.0pt;padding:0in 0in 0in 0in;min-height:22.5pt" colspan="4 ">
+                // $productName = $value['NAME'];
+                // $quantity = 2;
 
-                              <p style="margin-bottom:12.0pt"><span style="font-size:10.0pt"><strong>&nbsp; &nbsp;Quote Details</strong></span></p>
+                // $htmlbody .='<tr style="min-height:22.5pt">
+                //                         <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                //                             <p style="margin-bottom:6.0pt">
+                //                                 <span style="font-size:8.5pt">'.$sequence.'</span>
+                //                             </p>
+                //                         </td>
+                //                         <td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                //                             <p style="margin-bottom:6.0pt">
+                //                                 <span style="font-size:8.5pt">'.$productName.'</span>
+                //                             </p>
+                //                         </td>
+                //                         <td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
+                //                             <p style="margin-bottom:6.0pt">
+                //                                 <span style="font-size:8.5pt">'.$quantity.'</span>
+                //                             </p>
+                //                         </td>
+                //                     </tr>';
+                // $sequence++;
 
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-
-          </span>
-
-                  <table style="width:100.0%;border-collapse:collapse" border="0" width="100%" cellspacing="0" cellpadding="0">
-
-                  <tbody>
-                      <tr style="min-height:22.5pt">
-                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
-                              <p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Sr# </span></strong></p>
-                          </td>
-                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
-                              <p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Description </span></strong></p>
-                          </td>
-                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
-                              <p style="margin-bottom:6.0pt"><strong><span style="font-size:8.5pt">Quantity </span></strong></p>
-                          </td>
-                      </tr> ';
-
-if(!empty($subsDetail) ){
-$sequence = 1;
-foreach ($subsDetail as $value){
-
-  $productName = $value['NAME'];
-  $quantity = 2;
-
-  $htmlbody .='<tr style="min-height:22.5pt">
-                          <td style="border:solid #dfe0e2 1.0pt;border-top:none;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
-                              <p style="margin-bottom:6.0pt">
-                                  <span style="font-size:8.5pt">'.$sequence.'</span>
-                              </p>
-                          </td>
-                          <td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
-                              <p style="margin-bottom:6.0pt">
-                                  <span style="font-size:8.5pt">'.$productName.'</span>
-                              </p>
-                          </td>
-                          <td style="border-top:none;border-left:none;border-bottom:solid #dfe0e2 1.0pt;border-right:solid #dfe0e2 1.0pt;padding:2.25pt 1.5pt 2.25pt 15.0pt;min-height:22.5pt">
-                              <p style="margin-bottom:6.0pt">
-                                  <span style="font-size:8.5pt">'.$quantity.'</span>
-                              </p>
-                          </td>
-                      </tr>';
-$sequence++;
-
-}
-}
-
-// 	<td bgcolor="#f2f2f2" align="left" colspan="8" style="padding: 0px 30px 20px 30px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-// 	<br><p style="margin: 0;"> '.$emailsettings['message'].' </p><br>
-// </td>
+                // }
+// }
 
                       $htmlbody .='<tr>
 
@@ -796,9 +721,17 @@ $sequence++;
 
 
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('ORDER');
-        $htmlbody = '';
+        $emailConfigDetailsForSubs = $EmailConfigModel->getSpecificEmailConfigByCode('SUBSCRIPTION');
+        $htmlbody = null;
+        $htmlbodyForSubs = null;
+        $htmlbodyForSubsRow = null;
+        $htmlbodyRow = null;
+        $subscriptionTotalAmount = 0;
+        $orderTotalAmount = 0;
 
         if (isset($cartDetails) && !empty($cartDetails)) {
+            $sequence = 0;
+            $sequenceForSubs = 0;
             foreach ($cartDetails as $row) {
                 // Retrieve the data fields
                 $cartLineId = $row['CART_LINE_ID'];
@@ -822,79 +755,181 @@ $sequence++;
                 $totalAmountIncVat = $row['TOTAL_AMOUNT_INC_VAT'];
                 // $subscriptionCheck = $row['SUBSCRIPTION_CHECK'];
                 $subscriptionId = $row['SUBSCRIPTION_ID'];
+                $subscriptionCheck = $row['SUBSCRIPTION_CHECK'];
+                $subscriptionName = $row['SUBSCRIPTION_NAME'];
+                $subscriptionStartDate = $row['SUBSCRIPTION_DATE'];
+                $nextPaymentDate = $row['NEXT_PAYMENT_DATE'];
                 // $createdBy = $row['CREATED_BY'];
                 // $createdOn = $row['CREATED_ON'];
                 // $updatedBy = $row['UPDATED_BY'];
                 // $updatedOn = $row['UPDATED_ON'];
 
                 // Add the data to the HTML body
-                $htmlbody .= '
+                if($subscriptionCheck == 'subscription' || $subscriptionCheck == 'Subscription' || $subscriptionCheck == 'SUBSCRIPTION'){
+                    $sequenceForSubs = $sequenceForSubs+1;
+                    $subscriptionTotalAmount += $totalAmount ?: ($totalAmountIncVat ?: 0);
+                    $htmlbodyForSubsRow .= '
                     <tr>
-                        <td style="padding: 10px; text-align: left;">'.$cartLineId.'</td>
+                        <td style="padding: 10px; text-align: left;">'.$sequenceForSubs.'</td>
+                        <td style="padding: 10px; text-align: left;">'.($productName ?: ($bundleName ?: '')).'</td>
+                        <td style="padding: 10px; text-align: left;">'.($productCategoryName ?: ($bundleCategoryName ?: '')).'</td>
+                        <td style="padding: 10px; text-align: left;">'.$subscriptionName.'</td>
+                        <td style="padding: 10px; text-align: left;">'.$subscriptionStartDate.'</td>
+                        <td style="padding: 10px; text-align: left;">'.$nextPaymentDate.'</td>
+                        <td style="padding: 10px; text-align: left;">'.$unitPrice.'</td>
+                        <td style="padding: 10px; text-align: left;">'.$quantity.'</td>
+                        <td style="padding: 10px; text-align: left;">'.($totalAmount ?: ($totalAmountIncVat ?: '')).'</td>
+                    </tr>';
+                    // dd($htmlbodyForSubsRow);
+                }else if($subscriptionCheck == 'One-Time Purchase'){
+                    $sequence = $sequence+1;
+                    $orderTotalAmount += $totalAmount ?: ($totalAmountIncVat ?: 0);
+                    $htmlbodyRow .= '
+                    <tr>
+                        <td style="padding: 10px; text-align: left;">'.$sequence.'</td>
                         <td style="padding: 10px; text-align: left;">'.($productName ?: ($bundleName ?: '')).'</td>
                         <td style="padding: 10px; text-align: left;">'.($productCategoryName ?: ($bundleCategoryName ?: '')).'</td>
                         <td style="padding: 10px; text-align: left;">'.$unitPrice.'</td>
                         <td style="padding: 10px; text-align: left;">'.$quantity.'</td>
                         <td style="padding: 10px; text-align: left;">'.($totalAmount ?: ($totalAmountIncVat ?: '')).'</td>
                     </tr>';
+                    // dd($htmlbodyRow);
+                }
+
             }
+
+            $htmlbodyForSubsRow .= '
+            <tr>
+                <td colspan="8" style="text-align: right;"><strong>Net Total:</strong></td>
+                <td style="padding: 10px; text-align: left;">' . $subscriptionTotalAmount . '</td>
+            </tr>';
+
+            $htmlbodyRow .= '
+            <tr>
+                <td colspan="5" style="text-align: right;"><strong>Net Total:</strong></td>
+                <td style="padding: 10px; text-align: left;">' . $orderTotalAmount . '</td>
+            </tr>';
 
             // Complete the HTML body
             $htmlbody = '
-                <div bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-                    <p>Hello '.$cartDetails[0]['UserName'].',</p><br>
-                    '.$emailConfigDetails['message_username'].'
-                </div>
-                <html>
-                <head></head>
-                <body>
-                    <div style="width: 100%; display: flex; justify-content: center;">
-                        <div style="overflow-x: auto; max-width: 100%;">
-                            <table style="width: 100%; border-collapse: collapse;">
-                                <thead style="background-color: #f4f4f4;">
-                                    <tr>
-                                        <th style="padding: 10px; text-align: left;">S.No</th>
-                                        <th style="padding: 10px; text-align: left;">'.($productName ? 'Product Name' : ($bundleName ? 'Bundle Name' : '')).'</th>
-                                        <th style="padding: 10px; text-align: left;">Category</th>
-                                        <th style="padding: 10px; text-align: left;">Subscription Name</th>
-                                        <th style="padding: 10px; text-align: left;">Unit Cost</th>
-                                        <th style="padding: 10px; text-align: left;">Quantity</th>
-                                        <th style="padding: 10px; text-align: left;">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>'.$htmlbody.'</tbody>
-                            </table>
-                        </div>
+                    <div bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+                        <p>Hello '.$cartDetails[0]['UserName'].',</p><br>
+                        '.$emailConfigDetails['message'].'
                     </div>
-                </body>
-                </html>';
+                    <html>
+                    <head></head>
+                    <body>
+                        <div style="width: 100%; display: flex; justify-content: center;">
+                            <div style="overflow-x: auto; max-width: 100%;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead style="background-color: #f4f4f4;">
+                                        <tr>
+                                            <th style="padding: 10px; text-align: left;">S.No</th>
+                                            <th style="padding: 10px; text-align: left;">Product/Bundle Name</th>
+                                            <th style="padding: 10px; text-align: left;">Category</th>
+                                            <th style="padding: 10px; text-align: left;">Unit Cost</th>
+                                            <th style="padding: 10px; text-align: left;">Quantity</th>
+                                            <th style="padding: 10px; text-align: left;">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>'.$htmlbodyRow.'</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </body>
+                    </html>';
 
-            // Set the email details
-            $email_details['to_id'] = $cartDetails[0]['UserId'];
-            $email_details['to_email'] = $cartDetails[0]['UserEmail'];
-            $email_details['from_id'] = 1;
-            $email_details['from_email'] = $emailConfigDetails['fromEmail'];
-            $email_details['subject'] = $emailConfigDetails['subject'];
-            $email_details['message'] = $htmlbody;
-            $email_details['logo'] = $emailConfigDetails['logo'];
-            $email_details['module_code'] = 'ORDER';
+                $htmlbodyForSubs = '
+                    <div bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
+                        <p>Hello '.$cartDetails[0]['UserName'].',</p><br>
+                        '.$emailConfigDetailsForSubs['message'].'
+                    </div>
+                    <html>
+                    <head></head>
+                    <body>
+                        <div style="width: 100%; display: flex; justify-content: center;">
+                            <div style="overflow-x: auto; max-width: 100%;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead style="background-color: #f4f4f4;">
+                                        <tr>
+                                            <th style="padding: 10px; text-align: left;">S.No</th>
+                                            <th style="padding: 10px; text-align: left;">Product/Bundle Name</th>
+                                            <th style="padding: 10px; text-align: left;">Category</th>
+                                            <th style="padding: 10px; text-align: left;">Subscription Name</th>
+                                            <th style="padding: 10px; text-align: left;">Subscription Start Date</th>
+                                            <th style="padding: 10px; text-align: left;">Next Payment Date</th>
+                                            <th style="padding: 10px; text-align: left;">Unit Cost</th>
+                                            <th style="padding: 10px; text-align: left;">Quantity</th>
+                                            <th style="padding: 10px; text-align: left;">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>'.$htmlbodyForSubsRow.'</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </body>
+                    </html>';
+            // dd($htmlbody);
+            if($htmlbodyForSubsRow != null){
+                // dd($htmlbodyForSubs);
+                // dd($htmlbodyForSubs);
+                 // Set the email details
+                $email_details['to_id'] = $cartDetails[0]['UserId'];
+                $email_details['to_email'] = $cartDetails[0]['UserEmail'];
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $emailConfigDetailsForSubs['fromEmail'];
+                $email_details['subject'] = $emailConfigDetailsForSubs['subject'];
+                $email_details['message'] = $htmlbodyForSubs;
+                $email_details['logo'] = $emailConfigDetailsForSubs['logo'];
+                $email_details['module_code'] = 'SUBSCRIPTION';
 
-            // Send the email
-            $EmailForwardModel->sendEmail($emailConfigDetails['title'], $htmlbody, $email_details);
+                // Send the email
+                $EmailForwardModel->sendEmail($emailConfigDetailsForSubs['title'], $htmlbodyForSubs, $email_details);
 
-            $email_details['to_id'] = 1;
-            $email_details['to_email'] = $emailConfigDetails['fromEmail'];
-            $email_details['from_id'] = 1;
-            $email_details['from_email'] = $cartDetails[0]['UserEmail'];
-            $email_details['subject'] = $emailConfigDetails['subject'];
-            $email_details['message'] = $htmlbody;
-            $email_details['logo'] = $emailConfigDetails['logo'];
-            $email_details['module_code'] = 'ORDER';
+                $email_details['to_id'] = 1;
+                $email_details['to_email'] = $emailConfigDetailsForSubs['fromEmail'];
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $cartDetails[0]['UserEmail'];
+                $email_details['subject'] = $emailConfigDetailsForSubs['subject'];
+                $email_details['message'] = $htmlbodyForSubs;
+                $email_details['logo'] = $emailConfigDetailsForSubs['logo'];
+                $email_details['module_code'] = 'SUBSCRIPTION';
 
-            // Send the email
-            $EmailForwardModel->sendEmail($emailConfigDetails['title'], $htmlbody, $email_details);
-        } else {
-            // Cart details not found
+                // Send the email
+                $EmailForwardModel->sendEmail($emailConfigDetailsForSubs['title'], $htmlbodyForSubs, $email_details);
+
+                // dd('mails sent');
+
+            }
+            if($htmlbodyRow != null ){
+                // dd($htmlbody);
+                            // Set the email details
+                $email_details['to_id'] = $cartDetails[0]['UserId'];
+                $email_details['to_email'] = $cartDetails[0]['UserEmail'];
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $emailConfigDetails['fromEmail'];
+                $email_details['subject'] = $emailConfigDetails['subject'];
+                $email_details['message'] = $htmlbody;
+                $email_details['logo'] = $emailConfigDetails['logo'];
+                $email_details['module_code'] = 'ORDER';
+
+                // Send the email
+                $EmailForwardModel->sendEmail($emailConfigDetails['title'], $htmlbody, $email_details);
+
+                $email_details['to_id'] = 1;
+                $email_details['to_email'] = $emailConfigDetails['fromEmail'];
+                $email_details['from_id'] = 1;
+                $email_details['from_email'] = $cartDetails[0]['UserEmail'];
+                $email_details['subject'] = $emailConfigDetails['subject'];
+                $email_details['message'] = $htmlbody;
+                $email_details['logo'] = $emailConfigDetails['logo'];
+                $email_details['module_code'] = 'ORDER';
+
+                // Send the email
+                $EmailForwardModel->sendEmail($emailConfigDetails['title'], $htmlbody, $email_details);
+
+                // dd('mails sent');
+            }
         }
     	// $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
 
@@ -1015,17 +1050,18 @@ $sequence++;
 
     public function getclovercode(Request $request)
     {
+        // dd($request->all());
 //     	$method = PaymentMethod::find(15);
         try {
             $method_setup = PaymentMethodCredentialModel::first();
-
+            // dd($method_setup);
             $method_setup->CLOVER_CLIENT_ID = trim($request->client_id);
             $method_setup->CLOVER_CODE = trim($request->code);
             $method_setup->CLOVER_MERCHANT_ID = trim($request->merchant_id);
             $method_setup->CLOVER_EMPLOYEE_ID = trim($request->employee_id);
             $access_token = $this->getAccessToken($request->client_id,$method_setup->CLOVER_CLIENT_SECRET,$request->code,$method_setup->IS_CLOVER_LOCALHOST);
             if(isset($access_token->message)){
-                return  "Something went wrong Trying Again:" .$access_token->message;
+                return  "Something went wrong Try Again:" .$access_token->message;
             }
             $method_setup->CLOVER_ACCESS_TOKEN = $access_token;
 //             dd($method_setup);

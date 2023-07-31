@@ -1,5 +1,29 @@
 @include('web.web-header')
 <style>
+
+.rab {
+        position: relative;
+    }
+
+    .rab::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+    }
+
+    .container-xl {
+        position: relative;
+        z-index: 1; /* Make sure the content is above the overlay */
+    }
+
+    /* Add any additional styles for the content or adjust existing styles as needed */
+    .font-size-banner {
+        /* Add any other styles for the heading as needed */
+    }
     .giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
@@ -223,7 +247,7 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" src="{{ url('/assets-web') }}/images/giving-section2.jpg"
+                    <img class="giving-section2-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/giving-section2.jpg"
                         alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
@@ -245,14 +269,14 @@
         </div>
     </section>
 
-    <div class="peachgradientabove">
-    </div>
+    {{-- <div class="peachgradientabove">
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10" style="background-color:#f3c9b3 ;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/Aloe-vera.jpg"
+                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Aloe-vera.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
@@ -279,14 +303,14 @@
         </div>
     </section>
 
-    <div class="peachgradientbelow">
-    </div>
+    {{-- <div class="peachgradientbelow">
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/Coconut-Oil.jpg"
+                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Coconut-Oil.jpg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7">
@@ -420,7 +444,7 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving" src="{{ url('/assets-web') }}/images/Rosemary.jpg"
+                    <img loading="lazy" class="last-section-giving"  style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Rosemary.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
@@ -445,30 +469,30 @@
                         <div class="main-content">
                             <div class="smile-smart-card-svg">
                                 <img width="200" height="200" class="my-lg-4 my-2"
-                                    src="{{ $ingredient['DOWN_PATH'] }}" alt="easy and secure">
+                                    src="{{ $ingredient['DOWN_PATH'] ?? 'https://via.placeholder.com/300x200' }}" alt="easy and secure">
                             </div>
                             <div class="smile-smart-card-text">
-                                <h5 class="mb-lg-4 mb-2 mt-3 mt-lg-2">{{ $ingredient['TITLE'] }}</h5>
-                                <p class="my-md-4 my-lg-5 my-0 mx-1 mx-md-2">{{ $ingredient['INGREDIENT_DESCRIPTION'] }}
+                                <h5 class="mb-lg-4 mb-2 mt-3 mt-lg-2 text-uppercase">{{ $ingredient['TITLE'] }}</h5>
+                                <p class="my-md-4 my-lg-5 my-0 mx-1 mx-md-2 text-capitalize">{{ $ingredient['INGREDIENT_DESCRIPTION'] }}
                                 </p>
                             </div>
                         </div>
                         <div class="overlay-content" style="overflow-y: auto;">
                             <div class="blue-card-hover-text">
-                                <h5>{{ $ingredient['TITLE'] }}</h5>
-                                <p>{{ $ingredient['INGREDIENT_DESCRIPTION_FULL'] }}</p>
+                                <h5 class="text-uppercase">{{ $ingredient['TITLE'] }}</h5>
+                                <p class="text-capitalize">{{ $ingredient['INGREDIENT_DESCRIPTION_FULL'] }}</p>
                                 {{-- <a href="#">Learn More <i class="fas fa-arrow-right"></i></a> --}}
                             </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
-                    
+
                 @endif
-               
+
             {{-- </div> --}}
         </div>
-        
+
     </section>
 
 </main>

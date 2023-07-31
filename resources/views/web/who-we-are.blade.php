@@ -1,5 +1,30 @@
 @include('web.web-header')
 <style>
+
+    /* Add this style in your CSS file or inside the <style> tag of your HTML */
+        .rab {
+        position: relative;
+    }
+
+    .rab::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+    }
+
+    .container-xl {
+        position: relative;
+        z-index: 1; /* Make sure the content is above the overlay */
+    }
+
+    /* Add any additional styles for the content or adjust existing styles as needed */
+    .font-size-banner {
+        /* Add any other styles for the heading as needed */
+    }
     .giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
@@ -24,6 +49,8 @@
     padding-top: 358px !important;
     padding-bottom: 358px !important;}
     }
+
+
 </style>
 <main id="content" style="padding-top: 111px">
 <section class="py-10  py-lg-18 rab" id="details-header"
@@ -42,7 +69,7 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" src="{{ url('/assets-web') }}/images/about-us.jpg"
+                    <img class="giving-section2-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/about-us.jpg"
                         alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
@@ -63,14 +90,14 @@
         </div>
     </section>
 
-    <div class="bluegradientabove">
-    </div>
+    {{-- <div class="bluegradientabove">
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10" style="background-color:#006f7a;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/our-story.jpg"
+                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/our-story.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
@@ -91,14 +118,14 @@
         </div>
     </section>
 
-    <div class="bluegradientbelow">
-    </div>
+    {{-- <div class="bluegradientbelow">
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/businessman-hand-holding-blocks.jpeg"
+                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/businessman-hand-holding-blocks.jpeg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
@@ -237,7 +264,7 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving"
+                    <img loading="lazy" class="last-section-giving" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/our-services.jpg" alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">

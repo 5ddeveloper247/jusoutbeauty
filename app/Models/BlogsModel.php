@@ -10,26 +10,26 @@ use DateTime;
 class BlogsModel extends Model
 {
     use HasFactory;
-    
+
     public function getBlogsLov(){
-    
+
     	$result = DB::table('jb_blogs_tbl as a')->select('a.*')
     	->orderBy('a.BLOG_ID','desc')
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['id'] = $row->SHADE_ID;
     		$arrRes[$i]['name'] = $row->TITLE;
-    		
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getBlogsData($limit=''){
-    	
+
     	if($limit != ''){
     		$result = DB::table('jb_blogs_tbl as a')->select('a.*')
     		->orderBy('a.UPDATED_ON','desc')
@@ -40,7 +40,7 @@ class BlogsModel extends Model
     		->orderBy('a.UPDATED_ON','desc')
     		->get();
     	}
-    	
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->BLOG_ID; //$i+1;
@@ -56,14 +56,14 @@ class BlogsModel extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getAllActiveBlogsData($limit=''){
-    	 
+
     	if($limit != ''){
     		$result = DB::table('jb_blogs_tbl as a')->select('a.*')
     		->where('a.STATUS','active')
@@ -76,13 +76,14 @@ class BlogsModel extends Model
     		->orderBy('a.BLOG_ID','desc')
     		->get();
     	}
-    	 
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['BLOG_ID'] = $row->BLOG_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['TITLE'] = $row->TITLE;
+            $arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 200?substr ( $descText, 0, 200 )."..." :$descText;
@@ -96,23 +97,24 @@ class BlogsModel extends Model
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    public function getSpecificBlogsData($id){
-    
+    public function getSpecificBlogsData($slug){
+
     	$result = DB::table('jb_blogs_tbl as a')->select('a.*')
-    	->where('a.BLOG_ID',$id)
+    	->where('a.SLUG',$slug)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['BLOG_ID'] = $row->BLOG_ID;
     		$arrRes['USER_ID'] = $row->USER_ID;
     		$arrRes['TITLE'] = $row->TITLE;
+            $arrRes['SLUG'] = $row->SLUG;
     		$arrRes['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
     		$arrRes['STATUS'] = $row->STATUS;
     		$arrRes['path'] = $row->IMAGE_PATH != null ? $row->IMAGE_PATH : '';
@@ -124,18 +126,18 @@ class BlogsModel extends Model
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
+
     public function getSpecificOurBlogsData($id='1'){
-    
+
     	$result = DB::table('jb_our_blog_tbl as a')->select('a.*')
     	->where('a.ID',$id)
     	->get();
-    
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->ID;
@@ -147,9 +149,9 @@ class BlogsModel extends Model
     		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
-    
-    
+
+
 }

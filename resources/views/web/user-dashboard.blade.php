@@ -1,4 +1,4 @@
-<?php 
+<?php
 // try {
 // 	\DB::connection()->getPDO();
 // 	echo \DB::connection()->getDatabaseName();
@@ -7,7 +7,7 @@
 // }
 
 ?>
-  
+
   @include('web.web-header-userprofile')
         <!--**********************************
             Content body start
@@ -16,15 +16,15 @@
             <!-- row -->
       <div class="container-fluid">
         <div class="row">
-          <div class="col-xl-9 col-xxl-8">  
+          <div class="col-xl-9 col-xxl-8">
             <div class="row">
               <div class="col-xl-4 col-xxl-6 col-lg-4 col-sm-6">
                 <div class="card border-card">
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-success">43</h2>
-                        <span class="position">Users</span>
+                        <h2 class="text-success">{{ $orders }}</h2>
+                        <span class="position">Orders</span>
                       </div>
                       <span class="cd-icon bgl-success align-center-verticle">
                          <i class="fa fa-user dashboard-user-av"></i>
@@ -44,8 +44,8 @@
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-secondary">27</h2>
-                        <span class="position">Orders</span>
+                        <h2 class="text-secondary">{{ $tickets }}</h2>
+                        <span class="position">Tickets</span>
                       </div>
                       <span class="cd-icon bgl-secondary align-center-verticle">
                           <i class="fa fa-shopping-cart dashboard-orders-av"></i>
@@ -64,8 +64,8 @@
                   <div class="card-body">
                     <div class="media">
                       <div class="media-body mr-3">
-                        <h2 class="text-warning">52k</h2>
-                        <span class="position">Payments</span>
+                        <h2 class="text-warning">{{ $subscriptions }}</h2>
+                        <span class="position">Subscriptions</span>
                       </div>
                       <span class="cd-icon bgl-warning align-center-verticle">
                            <i class="fa fa-credit-card dashboard-payments-av"></i>
@@ -82,7 +82,7 @@
                 <div class="card">
                   <div class="card-header border-0 pb-0 flex-wrap">
                     <h4 class="fs-20 text-black mr-4 mb-2">Order Stats</h4>
-                    
+
                     <div class="dropdown custom-dropdown mb-0 mt-3 mt-sm-0 mb-2">
                       <div class="btn border text-black rounded" role="button" data-toggle="dropdown" aria-expanded="false">
                         This Month
@@ -106,7 +106,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="card-body"> 
+                  <div class="card-body">
                     <div id="lineChart" class="line-chart"></div>
                     <div class="d-flex flex-wrap align-items-center justify-content-center mt-3">
                       <div class="fs-14 text-black mr-4">
@@ -143,7 +143,7 @@
                     </div>
                     <h4 class="fs-22 text-black mb-1">{{session('firstName')}} {{session('lastName')}}</h4>
                     <p class="mb-4">User</p>
-                    
+
                   </div>
                   <div class="card-body col-xl-12 col-md-6 col-sm-12 pb-0">
                     <h4 class="fs-18 text-black mb-3">Recent Activities</h4>
@@ -196,9 +196,9 @@
             <div class="testimonial-one owl-carousel">
               <div class="items">
                 <div class="card">
-                  <div class="card-body"> 
+                  <div class="card-body">
                     <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
+
                       <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                       <div class="media-body">
                         <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -237,12 +237,12 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="items">
                 <div class="card">
-                  <div class="card-body"> 
+                  <div class="card-body">
                     <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
+
                       <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                       <div class="media-body">
                         <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -281,12 +281,12 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="items">
                 <div class="card">
-                  <div class="card-body"> 
+                  <div class="card-body">
                     <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
+
                       <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                       <div class="media-body">
                         <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -325,12 +325,12 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="items">
                 <div class="card">
-                  <div class="card-body"> 
+                  <div class="card-body">
                     <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
+
                       <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                       <div class="media-body">
                         <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -369,12 +369,12 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="items">
                 <div class="card">
-                  <div class="card-body"> 
+                  <div class="card-body">
                     <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
+
                       <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                       <div class="media-body">
                         <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -413,12 +413,12 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="items">
                 <div class="card">
-                  <div class="card-body"> 
+                  <div class="card-body">
                     <div class="media pb-4 border-bottom mb-4 align-items-center">
-                      
+
                       <img src="{{ url('/assets-admin') }}/images/admin/big/img5.jpg" class="dashboard-product-img">
                       <div class="media-body">
                         <h4 class="fs-20"><a href="#" class="text-black">Red Lipstick</a></h4>
@@ -457,8 +457,8 @@
                   </div>
                 </div>
               </div>
-              
-              
+
+
             </div>
           </div>
           <div class="col-xl-12" style="display:none;">

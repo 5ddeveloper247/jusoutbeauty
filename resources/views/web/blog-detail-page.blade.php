@@ -31,33 +31,66 @@
 			font-size: 40px !important;
 		}
     }
+    /* Add this style in your CSS file or inside the <style> tag of your HTML */
+        .blogimg-div {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 33rem;
+    }
 
+    .blogimg-div .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+        z-index: 2; /* Make sure the overlay is above the image and text */
+    }
 
+    .blogimg-div img {
+        position: relative;
+        z-index: 2; /* Make sure the image is above the overlay */
+        width: 100%;
+        height: auto;
+    }
+
+    .mid_text_blog_detail {
+        position: relative;
+        z-index: 2; /* Make sure the text is above the overlay */
+        text-align: center;
+        color: #fff; /* Adjust text color as needed */
+    }
+
+    /* Add any additional styles for the text or adjust existing styles as needed */
+    .mid_text_blog_detail h2 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
 </style>
 <main id="content">
 
 <section class="pt-5 pb-6 mt-0 mt-md-5 mt-sm-0 mt-xl-5 mt-xxl-5">
 	<div class="container container-custom container-xl">
 		<div class="row">
-
-			<div class="col-lg-6 position_inc_blog_detail ">
-			<div class="blogimg-div">
-				<?php if(isset($blogDetail['detailImage']) && $blogDetail['detailImage'] != ''){?>
-					<img src="<?php echo $blogDetail['detailImage'];?>" alt="img" style="height: 33rem;width: 100%;">
-				<?php }?>
-				<div class="mid_text_blog_detail" id="mid_text-detail">
-					<h2 class="text-capitalize text-center mb-0">
-						<?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : '';?>
-					</h2>
-					<div class="text-center pt-4">
-						<p><?php echo isset($blogDetail['DATE']) ? $blogDetail['DATE'] : '';?></p>
-					</div>
-				</div>
-			</div>
-
-
-
-			</div>
+            <div class="col-lg-6 position_inc_blog_detail">
+                <div class="blogimg-div">
+                    <?php if (isset($blogDetail['detailImage']) && $blogDetail['detailImage'] != '') { ?>
+                        <img src="<?php echo $blogDetail['detailImage']; ?>" alt="img" style="height: 33rem; width: 100%;">
+                    <?php } ?>
+                    <div class="overlay"></div>
+                    <div class="mid_text_blog_detail" id="mid_text-detail">
+                        <h2 class="text-capitalize text-center mb-0">
+                            <?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : ''; ?>
+                        </h2>
+                        <div class="text-center pt-4">
+                            <p><?php echo isset($blogDetail['DATE']) ? $blogDetail['DATE'] : ''; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<div class="col-lg-6 mob_inc_blog_detail ">
 			<h2 class="text-capitalize mb-0">
 				<?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : '';?>

@@ -31,9 +31,14 @@ var site = '<?php echo session('site');?>';
 			margin-left: -8% !important
 		}
 	}
+    /* Hide elements with ng-cloak attribute */
+[ng-cloak], [ng\:cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 </style>
 <main id="content" ng-app="project1">
-<div class="container container-customshadefinder container-xxl mb-2" ng-controller="projectinfo1" id="details-header">
+<div class="container container-customshadefinder container-xxl mb-2" ng-cloak ng-controller="projectinfo1" id="details-header">
 
 	<div class="row justify-content-center mt-5 mt-md-5 mt-xl-10">
 		<div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-12 text-center p-0 mt-5 mb-2 quiz-fomewhole" >

@@ -9,7 +9,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             Content body start
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
-            
+
             <div class="container-fluid" ng-show="editView == '0'">
                 <div class="page-titles">
 					<ol class="breadcrumb">
@@ -27,10 +27,10 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                             </div>
                             <div class="card-body">
                             	<div class="row">
-                                   
+
                                    	<div class="col-lg-4">
                                    		<div class="form-group">
-                                        	<label><b>Customer Name</b><span class="text-danger">*</span></label>
+                                        	<label><b>Order Number</b><span class="text-danger">*</span></label>
                                          	<input type="text" id="search_1" class="form-control" ng-model="search['S_1']">
                                        	</div>
                                    	</div>
@@ -56,7 +56,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                          	</select>
                                     	</div>
                                    	</div>
-                                   
+
                                    	<div class="col-lg-4">
                                    		<div class="form-group">
                                         	<label><b>Start Date</b><span class="text-danger">*</span></label>
@@ -73,7 +73,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                         <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="searchGlobal();" style="width:10vw;">Search</a>
                                         <a type="button" class="btn btn-rounded btn-warning admin-view-add mt-4" ng-click="resetGlobal();" style="width:10vw;margin-right:10px">Reset</a>
                                 	</div>
-                                   
+
                                 </div>
                                 <div class="table-responsive">
                                     <table id="orderListing_table" class="display min-w850">
@@ -117,7 +117,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														@{{row.PAYMENT_STATUS}}
 													</span>
 												</td>
-                                                
+
                                                 <td>
 													<div class="dropdown ml-auto text-right">
 														<div class="btn-link" data-toggle="dropdown">
@@ -128,9 +128,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 <!-- 															<a class="dropdown-item" href="javascript:;">Delete</a> -->
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -139,7 +139,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     </div>
 				</div>
             </div>
-            
+
             <div class="container-fluid" ng-show="editView == '1'">
                 <div class="page-titles">
 					<ol class="breadcrumb">
@@ -151,7 +151,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     <div class="col-lg-12">
 
                         <div class="card">
-                            <div class="card-header row">  
+                            <div class="card-header row">
                             	<div class="col-6">Order Details</div>
                             	<div class="col-6">
                             		<a type="button" class="btn btn-rounded btn-warning admin-view-add" ng-click="shipmentStatusUpdate(1);" ng-if="shipment.ID != '' && shipment.S_2 == 'Pending'">picked up</a>
@@ -160,7 +160,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                             	</div>
                             </div>
                             <div class="card-body">
-                                
+
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -181,9 +181,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                                 <hr>
-                                
+
                                 <div class="row">
                                    <div class="col-lg-3">
                                        <div class="form-group">
@@ -225,9 +225,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                    </div>
                                    <div class="col-3 offset-9">
                                        <a type="button" class="btn btn-rounded btn-warning admin-view-add" href="javascript:void(0)" ng-click="addShipmentInfo();" ng-show="shipment.ID == ''">Confirm</a>
-                                       
+
                                    </div>
-                                   
+
                                 </div>
                                 <!-- <div class="row">
                                     <img src="{{url('assets-admin')}}/images/admin/qr.png" class="img-fluid width110">
@@ -294,7 +294,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                                 <td class="center">@{{row.QUANTITY}}</td>
                                                 <td class="right">$@{{row.TOTAL_AMOUNT}}</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -336,7 +336,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
             <div class="modal fade" id="alertDel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						
+
 						<div class="modal-body">
                            <h4 style="text-align: center;">Are Your sure to delete this ?</h4>
                         </div>
@@ -355,5 +355,5 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
     </div>
     @include('admin.admin-footer');
-    
+
     <script src="{{ url('/assets-admin') }}/customjs/script_adminshippedorders.js?v={{time()}}"></script>
