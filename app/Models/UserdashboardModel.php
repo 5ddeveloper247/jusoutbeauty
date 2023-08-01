@@ -267,7 +267,10 @@ class UserdashboardModel extends Model
     	$currentDate = date('Y-m-d H:i:s');
 
 
-    	$result = DB::table('jb_user_home_offer_section_tbl as a')->select('a.*')
+    	$result = DB::table('jb_user_home_offer_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName','jpt.SLUG as slug','jpt.SUB_CATEGORY_ID as subcategoryid','sbcat.NAME as subcategoryname')
+    	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
+    	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
+    	->leftJoin ('jb_sub_category_tbl as sbcat','jpt.SUB_CATEGORY_ID','=','sbcat.SUB_CATEGORY_ID')
     	->where('a.OFFER_END_DATE', '>=', $currentDate)
 //     	->where('a.OFFER_END_DATE', '>=', today())
     	->get();
@@ -280,6 +283,26 @@ class UserdashboardModel extends Model
     		$arrRes['productId'] = $row->PRODUCT_ID;
     		$arrRes['offerEndTime'] = date ( "Y-m-d H:i:s", strtotime ( "$row->OFFER_END_DATE" ) );
     		$arrRes['description'] = $row->DESCRIPTION;
+    		
+    		$arrRes['SLUG'] = $row->slug;
+    		$arrRes['SUB_CATEGORY_ID'] = $row->subcategoryid;
+    		$name = $row->categoryName;
+    		$words = explode(' ', $name);
+    		if (count($words) > 1 || strpos($name, ' ') !== false) {
+    			$name = implode('-', $words);
+    		} else {
+    			$name = $row->categoryName;
+    		}
+    		$arrRes['CATEGORY_SLUG'] = $name;
+    		
+    		$name = $row->subcategoryname;
+    		$words = explode(' ', $name);
+    		if (count($words) > 1 || strpos($name, ' ') !== false) {
+    			$name = implode('-', $words);
+    		} else {
+    			$name = $row->subcategoryname;
+    		}
+    		$arrRes['SUB_CATEGORY_SLUG'] = $name;
 
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes['productPrimaryImg'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";

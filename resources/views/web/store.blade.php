@@ -322,7 +322,7 @@
  										</div>
  									</div>
  									<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
- 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white productdetail" id="qckad" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">+ Quick Add</a>
+ 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white productdetail" id="qckad" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">+ Quick Add</a>
  										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="@{{row.PRODUCT_ID}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'">+ Quick Add</a>
  										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled>+ Out of Stock</a>
  									</div>
