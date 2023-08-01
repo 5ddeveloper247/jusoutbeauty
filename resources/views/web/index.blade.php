@@ -582,7 +582,9 @@
                                                     @if ($trend['INV_QUANTITY_FLAG'] == 'shade')
                                                     	<a href="javascript:;"
 	                                                        class="btn btn-white btn-block  border-hover-primary hover-white productdetail"
-	                                                        id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}" data-type="">+ Quick Add</a>
+	                                                        id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}" data-category="{{ $trend['CATEGORY_SLUG'] }}"
+                                                    		data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}" 
+                                                    		data-name="{{ $trend['SLUG'] }}" data-type="">+ Quick Add</a>
                                                     @elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] > '0')
                                                     	<a href="javascript:;"
 	                                                        class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
@@ -713,7 +715,9 @@
                                 <div class="card border-0">
                                     <div class="position-relative hover-zoom-in">
                                         <a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                            data-id="{{ $for['PRODUCT_ID'] }}" data-type="">
+                                            data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
+                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}" 
+                                            data-name="{{ $for['SLUG'] }}" data-type="">
                                             <img src="{{ $for['productPrimaryImg'] }}" alt="Product"
                                                 class="card-img-top created_section_img img-h45 image-active">
                                             <img src="{{ $for['productSecondaryImg'] }}" alt="Product"
@@ -750,7 +754,9 @@
                                             @if ($for['INV_QUANTITY_FLAG'] == 'shade')
                                          		<a href="javascript:;"
 	                                            	class="btn btn-white btn-block  border-hover-primary hover-white productdetail"
-	                                                id="qckad" data-id="{{ $for['PRODUCT_ID'] }}" data-type="">+ Quick Add</a>
+	                                                id="qckad" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
+		                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}" 
+		                                            data-name="{{ $for['SLUG'] }}" data-type="">+ Quick Add</a>
                                          	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] > '0')
                                             	<a href="javascript:;"
 	                                           		class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"

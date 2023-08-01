@@ -120,7 +120,7 @@
     </style>
 </head>
 <script>
-    var baseUrl = "<?php echo url('');?>";
+    var baseUrl = "<?php echo url('/');?>";
     var userId = "<?php echo session('userId'); ?>";
     var cartId = "<?php echo session('cartid'); ?>";
 </script>
@@ -132,7 +132,7 @@
             style="background: #006f7a !important;">
             <div class="container p-2">
                 <p class="mb-0 fs-14 letter-spacing-005 text-uppercase text-center font-weight-500"
-                    style="color: white;">COOL NEW COLOR: STERLING ☁️ SO WORTH IT</p>
+                    style="color: white;">COOL NEW COLOR: STERLING â˜�ï¸� SO WORTH IT</p>
             </div>
             <button type="button" onclick="close_topbar()"
                 class="close text-dark p-2 pr-3 fs-18 font-weight-300 opacity-10">
@@ -176,7 +176,7 @@
                                                     <?php $subCategories = $value['subCategories']; ?>
 
 														<div class="dropdown-item">
-                                                         	<a class="dropdown-link toShopListing" href="{{session('site')}}/Shop-All">Shop All</a>
+                                                         	<a class="dropdown-link" href="{{session('site')}}/Shop-All">Shop All</a>
                                                       	</div>
                                                     @if (!empty($subCategories))
                                                         @foreach ($subCategories as $category)

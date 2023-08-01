@@ -105,7 +105,7 @@ class HomeController extends Controller
         $data['popupData'] = $this->getPopupData();
    		$data ['page'] = 'Dashboard';
 //    		print_r('<pre>');
-//    		print_r($data ['forYou']);
+//    		print_r($data ['todayOffer']);
 //    		exit();
 		return view ( 'web.index' )->with ( $data );
 	}
