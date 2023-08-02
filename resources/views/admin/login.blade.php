@@ -58,7 +58,7 @@
                                         <div class="text-center">
                                            <span class="error-msg" style="margin-top:1vw;">{{session('error')}}</span>
                                         </div>
-                                        <div class="form-row d-flex justify-content-between mt-4 mb-2 ">
+                                        <!-- <div class="form-row d-flex justify-content-between mt-4 mb-2 ">
                                             <div class="form-group">
                                                <div class="custom-control custom-checkbox ml-1 text-white">
 													<input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
@@ -68,8 +68,8 @@
                                             <div class="form-group" >
                                                 <a class="text-white" href="{{session('site')}}/admin">Forgot Password?</a>
                                             </div>
-                                        </div>
-                                        <div class="text-center">
+                                        </div> -->
+                                        <div class="text-center mt-4">
                                             <button type="submit" class="btn bg-white text-primary btn-block">Sign In</button>
                                         </div>
                                     </form>
