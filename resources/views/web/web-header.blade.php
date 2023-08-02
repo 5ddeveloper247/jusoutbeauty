@@ -106,6 +106,9 @@
         li.nav-item.dropdown.header-profile {
             list-style-type: none;
         }
+        [ng-cloak], [ng\:cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+		  	display: none !important;
+		}
     </style>
     <style>
         @media only screen and (min-width: 1749px) {

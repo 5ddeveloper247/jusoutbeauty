@@ -79,7 +79,7 @@ class ProductModel extends Model
             'a.PRODUCT_ID',
             'a.SUBSCRIPTION_NOTE_DESCRIPTION',
             'a.SUBSCRIPTION_NOTE_LINK',
-            'a.SUBSCRIPTION_NOTE_TITLE',
+            'a.SUBSCRIPTION_NOTE_TITLE'
             // 'imgTbl.DOWN_PATH',
             // 'imgTbl.IMAGE_ID'
         )

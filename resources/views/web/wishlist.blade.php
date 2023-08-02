@@ -23,7 +23,7 @@
 				<form class="table-responsive-md pb-8 pb-lg-10">
 					<table class="table border-right border-left border-bottom mb-6">
 						<tbody>
-							<tr class="position-relative" ng-repeat="row in displayCollectionWishlist">
+							<tr class="position-relative ng-cloak" ng-repeat="row in displayCollectionWishlist">
 								<td class="pl-xl-6 py-4 d-flex align-items-center">
 									<a href="javascript:;" class="d-block" ng-click="removeWishlist(row.WISHLIST_ID);"><i class="fal fa-times"></i></a>
 
@@ -49,9 +49,21 @@
 								</td>
 								<td class="align-middle text-right pr-6">
 									<span class="mr-4">In stock</span>
-									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 addto-cart"
+									
+									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 productdetail" 
+										data-id="@{{row.PRODUCT_ID}}" data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}"
+										data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}"
+										ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">Add To Cart</a>
+										
+ 									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 addto-cart1" 
+ 										data-id="@{{row.PRODUCT_ID}}" data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}"
+ 										data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'">Add To Cart</a>
+									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3" 
+										ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled>Out of Stock</a>
+									
+									<!-- <a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 addto-cart"
 										data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}" data-id="@{{row.PRODUCT_ID}}"
-										data-quantity='1'>Add To Cart</a>
+										data-quantity='1'>Add To Cart</a> -->
 								</td>
 							</tr>
 							<!-- <tr class="position-relative">
