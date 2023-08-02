@@ -352,30 +352,21 @@ class HomeController extends Controller
    	public function storeListing($category,$subcategory=null)
     {
 
-        // dd($category);
-   		$Category = new CategoryModel();
+      $Category = new CategoryModel();
 
-        if(!isset($_REQUEST['sourceId']) && !isset($_REQUEST['sourceType']))
-        {
-            // dd('id not set');
-
-            if(isset($category) && isset($subcategory) )
-            {
-                // dd($subcategory);
+        if(!isset($_REQUEST['sourceId']) && !isset($_REQUEST['sourceType'])) {
+        	
+            if(isset($category) && isset($subcategory) ) {
+            	
                 $name = $category;
                 $reversedName = str_replace('-', ' ', $name);
                 $categoryNameFromSlug = $reversedName;
 
                 $result = DB::table('jb_category_tbl')->select('*')->where('CATEGORY_NAME',$categoryNameFromSlug)->first();
-                // dd($result);
                 if(isset($result)){
-                    // dd($subcategory);
                     $_REQUEST['sourceId'] = $result->CATEGORY_ID;
                     $_REQUEST['sourceType'] = 'CATEGORY';
-                    // dd($_REQUEST['sourceType']);
-                    // $validated =  $this->validateSubCategory($category,$subcategory);
-                }else
-                {
+                } else {
                    abort(404);
                 }
 
@@ -384,13 +375,9 @@ class HomeController extends Controller
                 $subCategoryNameFromSlug = $reversedName;
 
                 $result = DB::table('jb_sub_category_tbl')->select('*')->where('NAME',$subCategoryNameFromSlug)->first();
-                    // dd($result);
                     if(isset($result)){
-                        // dd($result);
                         $_REQUEST['sourceId'] = $result->SUB_CATEGORY_ID;
                         $_REQUEST['sourceType'] = 'SUB_CATEGORY';
-                        // dd($_REQUEST['sourceType']);
-                        // $validated =  $this->validateSubCategory($category,$subcategory);
                     }
                     else{
                        abort(404);
@@ -398,97 +385,68 @@ class HomeController extends Controller
             }
             elseif(empty($subcategory) && !empty($category))
             {
-                // dd($category);
                 $name = $category;
                 $reversedName = str_replace('-', ' ', $name);
                 $categoryNameFromSlug = $reversedName;
-                // dd($categoryNameFromSlug);
                 $result = DB::table('jb_category_tbl')->select('*')->where('CATEGORY_NAME',$categoryNameFromSlug)->first();
-                // dd($result);
                 if(isset($result->CATEGORY_ID)){
-                    // dd($subcategory);
                     $_REQUEST['sourceId'] = $result->CATEGORY_ID;
                     $_REQUEST['sourceType'] = 'CATEGORY';
-                    // dd($_REQUEST['sourceType']);
                     // $validated =  $this->validateSubCategory($category,$subcategory);
                 }else
                 {
                     abort(404);
                 }
             }
-
-
         }
-        // dd($_REQUEST['sourceType']);
    		$sourceId = isset($_REQUEST['sourceId']) ? $_REQUEST['sourceId'] : "";
    		$sourceType = isset($_REQUEST['sourceType']) ? $_REQUEST['sourceType'] : "";
-				   		// echo $sourceId;
-				   		// echo $sourceType;
-				   		// exit();
 
    		if($sourceType == 'CATEGORY'){
-            // dd('it is category');
-   			$subCatArray = $Category->getAllSubCategoryIdsWrtCategoryId($sourceId);
+            $subCatArray = $Category->getAllSubCategoryIdsWrtCategoryId($sourceId);
 
    			$subSubCatArray = $Category->getAllSubCategoryDetailsWrtSubCategoryId($subCatArray != null ? $subCatArray : array());
 
    			$data ['categoryFilter'] = $subSubCatArray;
-            // dd($sourceId);
-   			$data ['categoryName'] = $Category->getSpecificCategoryData($sourceId);
-            // dd($data['categoryName']);
+            $data ['categoryName'] = $Category->getSpecificCategoryData($sourceId);
 
-			$data['routine'] = $this->getAllRouteByNameForWebiste();
+   			$data['routine'] = $this->getAllRouteByNameForWebiste();
 			$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
    			$data ['subCategoryName'] = '';
    			$data ['sourceId'] = $sourceId;
    			$data ['flag'] = 'CATEGORY';
-            //    dd($data);
-
    		}
         elseif($sourceType == 'SUB_CATEGORY')
         {
-
-            // dd('it is subcategory');
-   			$subSubCatArray = $Category->getAllSubCategoryDetailsWrtSubCategoryId1($sourceId);
+			$subSubCatArray = $Category->getAllSubCategoryDetailsWrtSubCategoryId1($sourceId);
 
    			$data ['categoryFilter'] = $subSubCatArray;
    			$data ['subCategoryName'] = $Category->getSpecificSubCategoryData($sourceId);
-            // dd()
-			// dd($data ['subCategoryName']);
    			$data ['categoryName'] = $Category->getSpecificCategoryData($data ['subCategoryName']['CATEGORY_ID']);
-            //    dd($data ['categoryName']);
-   			$data['routine'] = $this->getAllRouteByNameForWebiste();
-			$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+   			$data ['routine'] = $this->getAllRouteByNameForWebiste();
+			$data ['routineformbl'] = $this->getAllRouteByNameForWebiste();
 			$data ['sourceId'] = $sourceId;
    			$data ['flag'] = 'SUB_CATEGORY';
-            // dd($data);
    		}
 
    		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
    		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
 
-        // dd($data);
         if(isset($data ['categoryName']) && $data ['categoryName'] != '')
         {
-            // dd($data['categoryName']);
             $CategoryNameNutrition = $data ['categoryName']['NAME'];
             $CategoryNameNutritionLower = strtolower($CategoryNameNutrition);
             $CategoryNameNutritionFirstCap = ucfirst($CategoryNameNutritionLower);
 
             if($CategoryNameNutritionFirstCap == 'Nutrition')
             {		// if neutrition category then load nutrition sub category page
-
                 $data ['subCategoriesList'] = $Category->getAllSubCategoriesWrtCategory($data ['categoryName']['ID']);
                 $data ['page'] = 'nutrition';
-                // dd('web nutrition');
                 return view ( 'web.nutrition' )->with ( $data );
-
             }
             else
             {
-                // dd('web soter');
             $data['page'] = 'store';
-            // dd($data);
             return view('web.store')->with ( $data );
             }
         }
@@ -496,11 +454,6 @@ class HomeController extends Controller
         {
             return redirect('/home');
         }
-
-
-
-
-
    	}
 
 

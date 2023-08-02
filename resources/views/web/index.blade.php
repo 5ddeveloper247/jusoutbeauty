@@ -739,7 +739,7 @@
                                                             ng-click="quickViewProductDetails({{ $trend['PRODUCT_ID'] }})"
                                                             class="preview d-flex align-items-center justify-content-center  bgiconcolor  w-45px h-45px rounded-circle">
                                                             <span> <i class="icon fal fa-eye"></i> </span>
-                                                </a> --}}
+                                            Â Â Â Â </a> --}}
 
                                             <a href="javascript:;" data-toggle="tooltip"
                                             data-placement="left" title="Quick view"
@@ -1521,6 +1521,19 @@
 
 
 </main>
+
+<div class="cookie-frame open">
+    <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
+        <div class="col-sm-8 text">
+            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking â€œAccept Cookiesâ€�, you agree to the storing of cookies on your device to enhance
+                site navigation, analyze site usage, and assist in our marketing efforts.</p>
+        </div>
+        <div class="d-flex justify-content-center col-sm-4">
+          	<button class="btn btn-outline-primary mr-2" id="acceptCookiesBtn">Accept</button>
+			<button class="btn btn-my" id="declineCookiesBtn">Decline</button>
+        </div>
+    </div>
+</div>
 @include('web.web-footer')
 
 <script src="{{ url('/assets-web') }}/customjs/script_userhome.js?v={{ time() }}"></script>

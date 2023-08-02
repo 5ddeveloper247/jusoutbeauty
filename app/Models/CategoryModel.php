@@ -381,7 +381,8 @@ class CategoryModel extends Model
 
     public function getAllSubCategoriesWrtCategory($id){
 
-    	$result = DB::table('jb_sub_category_tbl as a')->select('a.*')
+    	$result = DB::table('jb_sub_category_tbl as a')->select('a.*','jct.CATEGORY_NAME')
+    	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->where('a.CATEGORY_ID', $id)
     	->orderBy('a.SUB_CATEGORY_ID','asc')
     	->get();
@@ -392,14 +393,24 @@ class CategoryModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['NAME'] = $row->NAME;
+            
+    		$cname = $row->CATEGORY_NAME;
+            $words = explode(' ', $cname);
+            if (count($words) > 1 || strpos($cname, ' ') !== false) {
+                $cname = implode('-', $words);
+            } else {
+                $cname = $row->CATEGORY_NAME;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $cname;
+            
             $name = $row->NAME;
             $words = explode(' ', $name);
             if (count($words) > 1 || strpos($name, ' ') !== false) {
-                $name = implode('-', $words);
+            	$name = implode('-', $words);
             } else {
-                $name = $row->NAME;
+            	$name = $row->NAME;
             }
-            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
 
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;

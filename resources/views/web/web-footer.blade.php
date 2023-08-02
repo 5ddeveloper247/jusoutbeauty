@@ -78,7 +78,7 @@
             }
 
             ul.ul-mbl-site {
-                list-style-type: "► ";
+                list-style-type: "â–º ";
             }
 
             form.footer-formm .fa-envelope:before {
@@ -347,7 +347,7 @@
 
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <p class="mb-0 text-uppercase text-left fs-14 letter-spacing-07px">
-                        © 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
+                        Â© 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
                     </p>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset" >
@@ -981,31 +981,14 @@
                             class="fab fa-twitter"></i></a></li>
             </ul>
             <p class="mb-0 text-gray">
-                © 2022 Jusout.<br> All rights reserved.
+                Â© 2022 Jusout.<br> All rights reserved.
             </p>
         </div> --}}
     </div>
 </div>
 
 
-<div class="cookie-frame open">
-    <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
-        <div class="col-sm-8 text">
-            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking “Accept Cookies”, you agree to the storing of cookies on your device to enhance
-                site navigation, analyze site usage, and assist in our marketing efforts.</p>
-        </div>
-        <div class="d-flex justify-content-center col-sm-4">
-            {{-- <div class="col-sm-12 col-md-6 mb-md-2"> --}}
-                <button class="btn btn-outline-primary mr-2" id="acceptCookiesBtn">Accept</button>
 
-            {{-- </div> --}}
-            {{-- <div class="col-sm-12 col-md-6"> --}}
-                <button class="btn btn-my" id="declineCookiesBtn">Decline</button>
-
-            {{-- </div> --}}
-        </div>
-    </div>
-</div>
 <script>
     var cookieAccepted = localStorage.getItem('cookiesAccepted');
     // alert(cookieAccepted)
@@ -1041,7 +1024,7 @@
                         aria-labelledby="nav-log-in-tab">
                         <h4 class="fs-34 text-center mb-6">Sign In</h4>
                         <p class="text-center fs-16 mb-7">
-                            Donâ€™t have an account yet? <a href="{{ url('/store') }}"
+                            DonÃ¢â‚¬â„¢t have an account yet? <a href="{{ url('/store') }}"
                                 class=" border-bottom text-decoration-none">Sign up</a>
                             for free
                         </p>
@@ -1146,26 +1129,7 @@
     </div>
 </div>
 <!-- Modal -->
-<!-- Modal -->
-{{-- <div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm custom-max-width modal-frame modal-bottom" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cookieModalLabel">Cookie Consent</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Accept our cookies to experience the best of our services.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-sm" id="acceptCookiesBtn">Accept</button>
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Decline</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
+
 
 
 
