@@ -62,6 +62,7 @@ class WishlistModel extends Model
 
     public function getAllWishlistDataByUser($userId){
     	$ProductModel = new ProductModel();
+    	$ProductShade = new ProductShadeModel();
 
     	// $result = DB::table('jb_user_wishlist_tbl as a')->select('a.*','a.PRODUCT_TYPE','jpt.NAME as productName',
 		//     			'jpt.UNIT_PRICE as productPrice', 'jpt.UNIT as productUnit','jpt.CATEGORY_ID',
@@ -81,13 +82,13 @@ class WishlistModel extends Model
     	// 		->get();
         $result = DB::table('jb_user_wishlist_tbl as a')
     ->select('a.*', 'a.PRODUCT_TYPE', 'jpt.NAME as productName','jpt.SLUG', 'jpt.UNIT_PRICE as productPrice', 'jpt.UNIT as productUnit', 'jpt.CATEGORY_ID',
-        'jpt.SUB_CATEGORY_ID', 'ctbl.CATEGORY_NAME as categoryname', 'sctbl.NAME as subcategoryname',
+        'jpt.SUB_CATEGORY_ID', 'ctbl.CATEGORY_NAME as categoryname', 'sctbl.NAME as subcategoryname','jpt.QUANTITY',
         'jbpt.CATEGORY_ID as bctid', 'jbpt.SUB_CATEGORY_ID as bsctid', 'jbpt.NAME as bundleName', 'jbpt.DISCOUNTED_AMOUNT as bundlePrice',
         'jbpt.UNIT as bundleUnit', 'jbpt.IMAGE_DOWN_PATH as bundleImage')
     ->leftjoin('jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID')
     ->leftjoin('jb_bundle_product_tbl as jbpt', 'a.BUNDLE_ID', '=', 'jbpt.BUNDLE_ID')
     ->join('jb_category_tbl as ctbl', 'jpt.CATEGORY_ID', '=', 'ctbl.CATEGORY_ID')
-    ->join('jb_sub_category_tbl as sctbl', 'jpt.SUB_CATEGORY_ID', '=', 'sctbl.SUB_CATEGORY_ID')
+    ->leftJoin('jb_sub_category_tbl as sctbl', 'jpt.SUB_CATEGORY_ID', '=', 'sctbl.SUB_CATEGORY_ID')
     ->where('a.USER_ID', $userId)
     ->orderBy('a.WISHLIST_ID', 'desc')
     ->get();
@@ -127,6 +128,17 @@ class WishlistModel extends Model
                             $name = implode('-', $words);
                         } else {
                             $name = $row->subcategoryname;
+                        }
+                        
+                        $productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+                        
+                        if(!empty($productShades)){
+                        
+                        	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+                        	$arrRes[$i]['INV_QUANTITY'] = '';
+                        }else{
+                        	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+                        	$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
                         }
 
     					$arrRes[$i]['productUnit'] = $row->productUnit;
