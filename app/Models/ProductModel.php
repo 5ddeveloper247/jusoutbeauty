@@ -1065,6 +1065,7 @@ class ProductModel extends Model
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getAllProductDetailsWrtSubCatIdForNutritionShopListing($catId, $flag){
+    	$ProductShade = new ProductShadeModel();
     	DB::enableQueryLog();
 
     	if($flag == 'SUB_CATEGORY'){
@@ -1115,43 +1116,43 @@ class ProductModel extends Model
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
 
             if($row->categoryName != null || $row->categoryName != ''){
-                // dd('coming');
                 $name = $row->categoryName;
                 $words = explode(' ', $name);
                 if (count($words) > 1 || strpos($name, ' ') !== false) {
                     $arrRes[$i]['CATEGORY_SLUG'] = implode('-', $words);
-                    // dd($arrRes[$i]['CATEGORY_SLUG']);
                 } else {
                     $arrRes[$i]['CATEGORY_SLUG'] = $row->categoryName;
-                    // dd($arrRes[$i]['CATEGORY_SLUG']);
                 }
             }else{
-                // dd('skiped');
                 $arrRes[$i]['CATEGORY_SLUG'] = '';
-                // dd($arrRes[$i]['CATEGORY_SLUG']);
-
-                // dd($arrRes[$i]['SLUG']);
             }
 
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
 
             if($row->subCategoryName != null || $row->subCategoryName != ''){
-                // dd('coming');
                 $name = $row->subCategoryName;
                 $words = explode(' ', $name);
                 if (count($words) > 1 || strpos($name, ' ') !== false) {
                     $arrRes[$i]['SUB_CATEGORY_SLUG'] = implode('-', $words);
-                    // dd($arrRes[$i]['SLUG']);
                 } else {
                     $arrRes[$i]['SUB_CATEGORY_SLUG'] = $row->subCategoryName;
-                    // dd($arrRes[$i]['SLUG']);
                 }
             }else{
-                // dd('skiped');
                 $arrRes[$i]['SUB_CATEGORY_SLUG'] = '';
-                // dd($arrRes[$i]['SLUG']);
             }
+            
+            $productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+            
+            if(!empty($productShades)){
+            
+            	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+            	$arrRes[$i]['INV_QUANTITY'] = '';
+            }else{
+            	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+            	$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+            }
+            
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;

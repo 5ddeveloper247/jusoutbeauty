@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//resources/views/web/index.blade.php=UTF-8
+encoding//resources/views/web/web-footer.blade.php=UTF-8
 encoding//resources/views/web/web-header.blade.php=UTF-8
