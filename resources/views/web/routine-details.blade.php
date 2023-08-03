@@ -2,6 +2,11 @@
 // print_r($categoryName);
 // exit();
 ?>
+<?php
+// echo session('userId');
+// exit();
+$userId = session('userId');
+?>
 @php
 use Illuminate\Support\Str;
 @endphp
@@ -373,8 +378,10 @@ use Illuminate\Support\Str;
 
                                             <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                                 <a href="javascript:;"
-                                                    class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-pick productdetail"  data-id="{{ $StepsName['PRODUCT_ID'] }}"
-                                                    id="qckad">Add To Cart</a>
+                                                    class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-pick @if(isset($userId)) productdetail @else addto-cart @endif"  data-id="{{ $StepsName['PRODUCT_ID'] }}"
+                                                    id="qckad" data-id="{{ $StepsName['PRODUCT_ID'] }}" data-category="{{ $StepsName['CATEGORY_SLUG'] }}"
+                                                    data-subcategory="{{ $StepsName['SUB_CATEGORY_SLUG'] }}"
+                                                    data-name="{{ $StepsName['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">Add To Cart</a>
                                             </div>
                                         </div>
                                         <div class="card-body pt-4 px-0 pb-0 productdetail" data-id="{{ $StepsName['PRODUCT_ID'] }}">

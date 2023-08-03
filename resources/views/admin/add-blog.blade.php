@@ -24,7 +24,7 @@
                                 </ol>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="row">
 
@@ -55,25 +55,25 @@
                                                       <div class="row">
                                                           <div class="col-sm-5">
                                                               <div class="form-group">
-          
+
                                                                   <label class="col-form-label" for="Title"><b>Title</b>
                                                                       <span class="text-danger">*</span> </label>
                                                                   <input type="text" class="form-control" id="title"
                                                                       ng-model="single_blog['S_1']" placeholder="Enter a Title...">
-          
+
                                                               </div>
                                                           </div>
-          
+
                                                       </div>
-          
-          
+
+
                                                       <div class=" ml-0 ml-sm-12 ml-sm-0 mt-3">
-          
+
                                                           <div class="compose-content">
-                                                             
+
                                                               <h5 class="mb-4"><i class="fa fa-paperclip"></i> Attatchment
                                                               </h5>
-          
+
                                                               <div
                                                                   class="col-sm-12 col-12 register-new-product-picture-para-box">
                                                                   <div class="row register-new-product-picture-para">
@@ -88,33 +88,33 @@
                                                                           <div class="row" id="p_att_sin">
                                                                           </div>
                                                                       </div>
-          
+
                                                                       <form class="" id="uploadattch2" method="POST" action="uploadBlogAttachmentSingle" enctype="multipart/form-data">
                                                                           <input type="hidden" name="_method" value="POST">
                                                                           {{ csrf_field() }}
-                                                                          
+
                                                                           <input type="hidden" id="sourceCode" name="sourceCode" value="BlOGS_IMG">
                                                                           <input type="file" id="uploadatt2" name="uploadatt2" class="file-input" style="display: none;">
                                                                       </form>
-          
+
                                                                   </div>
                                                               </div>
-          
+
                                                           </div>
                                                           <div class="text-left mt-4 mb-2">
                                                               <button class="btn btn-primary btn-sl-sm mr-2" type="button" ng-click="saveSingleBlog();">
                                                               	<span class="mr-2"> <i class="fa fa-paper-plane"></i> </span>Save</button>
-                        
+
                                                           </div>
                                                       </div>
-          
+
 <!--                                                   </form> -->
                                               </div>
                                               </div>
                                             </div>
                                           </div>
                                          </div>
-                                         
+
                                         </div>
                                         <div class="tab-pane fade" id="blog_list" role="tabpanel">
                                           <div class="row">
@@ -186,8 +186,8 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-        
-        
+
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -244,7 +244,7 @@
                                             <div class=" ml-0 ml-sm-12 ml-sm-0 mt-3">
 
                                                 <div class="compose-content">
-                                                    
+
                                                    	<h5 class="mb-4"><i class="fa fa-paperclip"></i> List Image </h5>
 
                                                     <div
@@ -273,7 +273,7 @@
 
                                                 </div>
                                                 <div class="compose-content mt-4">
-                                                    
+
                                                    	<h5 class="mb-4"><i class="fa fa-paperclip"></i> Detail Image </h5>
 
                                                     <div

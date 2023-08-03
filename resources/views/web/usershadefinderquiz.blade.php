@@ -345,7 +345,9 @@ var site = '<?php echo session('site');?>';
 											</div>
 											<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
 												<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addtocart addto-cart"
-													id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-quantity='1'>+ Quick Add</a>
+													id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}"
+                                                    		data-subcategory="@{{row.SUB_CATEGORY_SLUG}}"
+                                                    		data-name="@{{row.SLUG}}" data-type="" data-quickAdd="{{ session('userId') }}" data-quantity='1'>+ Quick Add</a>
 											</div>
 										</div>
 										<div class="card-body pt-4 px-0 pb-0 text-left">

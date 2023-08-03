@@ -2,28 +2,28 @@ var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
 //	$(document).on('click','.addNew',function(){
-//	    $('#addCity_modal').modal('show');return false; 
+//	    $('#addCity_modal').modal('show');return false;
 //	});
 
 //	$(document).on('click','.modalClose',function(){
-//	    $('#addCity_modal').modal('hide');return false; 
+//	    $('#addCity_modal').modal('hide');return false;
 //	});
-	
+
 	$scope.blogs={};
 	$scope.blogs.ID = "";
 	$scope.blogs.P_1 = "";
 	$scope.blogs.P_2 = "";
-	
+
 	$scope.editView = 0;
 //
 	$scope.tokenHash = $("#csrf").val();
-	
+
 	$scope.getAllAdminBlogslov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminBloglov',
@@ -32,14 +32,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			var ourBlog = data.ourBlog;
-			
+
 			if(ourBlog != ''){
 				$scope.single_blog.S_1 = ourBlog['NAME'];
-				
+
 				$("#p_att_sin").html('');
-				
+
 				if(ourBlog['image'] != ''){
 					var html = '<div class="col-2 image-overlay margin-r1" id="img_file1_1">'+
 								   '<img src="'+ourBlog["image"]+'" alt="" class="image-box">'+
@@ -55,12 +55,12 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 					  $("#p_att_sin").append($compile(angular.element(html))($scope));
 				}
 			}
-			
+
 			if ($.fn.DataTable.isDataTable("#shadesTable")) {
 				$('#shadesTable').DataTable().clear().destroy();
 			}
 			$scope.displayCollection = data.list;
-			
+
 			setTimeout(function(){
 				$("#shadesTable").DataTable({
 					order: [],
@@ -83,7 +83,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$("#p_att").html('');
 		$(".summernote").summernote("code", '');
 	}
-	
+
 	$scope.addNew = function(){
 		$scope.blogs={};
 		$scope.blogs.ID = "";
@@ -92,7 +92,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		// $scope.blogs.P_3 = "";
 		$("#p_att").html('');
 		$(".summernote").summernote("code", '');
-		
+
 		$scope.editView = 1;
 	}
 	$scope.backToListing = function(){
@@ -103,29 +103,29 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 		$scope.single_blog={};
 		$scope.single_blog.S_1 = "";
-		
+
 
 	$scope.saveSingleBlog = function(){
-		
+
 		var data = {};
 	    data.blogs = $scope.single_blog;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveSingleAdminBlog",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
-				
-				
+
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -140,36 +140,36 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.blogs.P_2 = "";
 
 	$scope.saveBlog = function(){
-		
+
 		if ($('.summernote').summernote('isEmpty')) {
 			$scope.blogs.P_2 = '';
 		}else{
 			$scope.blogs.P_2 = $('#summernote').summernote('code');
 		}
-		
+
 		var data = {};
 	    data.blogs = $scope.blogs;
 	    data.userId = userId;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveAdminBlogs",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.blogs.ID = data.ID;
 				$scope.editView = 0;
 				$scope.getAllAdminBlogslov();
 
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -177,14 +177,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.continouRecord = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/editAdminBlog",
@@ -196,7 +196,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			var details = data.details;
 			var image = details['image'];
 			var detailImage = details['detailImage'];
-			
+
 			$("#p_att").html('');
 			if(details != '' && details != null){
 				$scope.editView = 1;
@@ -207,54 +207,54 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 					$(".summernote").summernote("code", $scope.blogs.P_2);
 				}, 500);
 			}
-			
+
 			if(image != ''){
-					
+
 				var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+details["BLOG_ID"]+'">'+
 								'<img src="'+image+'" alt="" class="image-box">'+
 								'<div class="overlay">'+
 									'<div class="text">'+
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePicBlog('+details["BLOG_ID"]+')" title="Delete Image">';
-										
+
 									html += '<div class="arrow-icon-move-box">'+
 											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>';
-						
+
 						$("#p_att").append($compile(angular.element(html))($scope));
 			}
 			if(detailImage != ''){
-				
+
 				var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+details["BLOG_ID"]+'">'+
 								'<img src="'+detailImage+'" alt="" class="image-box">'+
 								'<div class="overlay">'+
 									'<div class="text">'+
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePicBlogDetail('+details["BLOG_ID"]+')" title="Delete Image">';
-										
+
 									html += '<div class="arrow-icon-move-box">'+
 											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
 										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>';
-						
+
 						$("#p_att1").append($compile(angular.element(html))($scope));
 			}
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.deletePicBlog = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteBlogAttachment",
@@ -263,22 +263,22 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			$("#p_att").html('');
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 $scope.deletePicBlogDetail = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deletePicBlogDetail",
@@ -287,22 +287,22 @@ $scope.deletePicBlogDetail = function(id){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			$("#p_att1").html('');
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 	$scope.deletePicOurBlog = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deletePicOurBlog",
@@ -311,24 +311,24 @@ $scope.deletePicBlogDetail = function(id){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			$("#p_att_sin").html('');
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
 	$scope.statusChange = function(id){
-		
+        console.log(id);
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
-
+        console.log(id);
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/changeStatusBlogs",
@@ -337,10 +337,10 @@ $scope.deletePicBlogDetail = function(id){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
 			$scope.backToListing();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -358,27 +358,27 @@ $scope.deletePicBlogDetail = function(id){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
 			$scope.getAllAdminBlogslov();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
 	$('#uploadattch').fileupload({
-		
+
  		add: function (e, data) {
-			 
-		    
+
+
  			if($scope.blogs.ID == ""){
- 				
+
  				toastr.error('Save record first, then upload Images...', '', {timeOut: 3000})
  				return false;
- 			
+
  			}else{
- 				$.LoadingOverlay("show"); 
+ 				$.LoadingOverlay("show");
  				var jqXHR = data.submit();
  			}
  	    },
@@ -396,31 +396,31 @@ $scope.deletePicBlogDetail = function(id){
  	    	setTimeout(function(){
 				$.LoadingOverlay("hide");
 			}, 500);
- 	    	
+
  	    	xhr.responseText = jQuery.parseJSON(xhr.responseText);
- 	      	
+
  	    	if(xhr.responseText[0] == 01){
- 	        	
+
  	      		toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 02){
- 	        	
+
  	      		toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 03){
- 	        
+
  	      		toastr.error("Error : Save record first, then upload Images...", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 04){
- 	        
+
  	      		toastr.error("Error : Image dimensions must be minimum 390 X 150", '', {timeOut: 3000});
 
  	      	}else{
 
  		  		toastr.success("Image Upload Successfully", '', {timeOut: 3000});
- 		  		
+
  		  		$("#p_att").html('');
- 		  		
+
  		  		var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
 								'<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
 								'<div class="overlay">'+
@@ -428,7 +428,7 @@ $scope.deletePicBlogDetail = function(id){
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePicBlog('+xhr.responseText[1]+')" title="Delete Image">'+
 										'<div class="arrow-icon-move-box">'+
 											'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-											
+
 										'</div>'+
 									'</div>'+
 								'</div>'+
@@ -438,59 +438,59 @@ $scope.deletePicBlogDetail = function(id){
  	   	}
  	});
 	$('#uploadattch1').fileupload({
-			
+
 	 		add: function (e, data) {
-				 
-			    
+
+
 	 			if($scope.blogs.ID == ""){
-	 				
+
 	 				toastr.error('Save record first, then upload Images...', '', {timeOut: 3000})
 	 				return false;
-	 			
+
 	 			}else{
-	 				$.LoadingOverlay("show"); 
+	 				$.LoadingOverlay("show");
 	 				var jqXHR = data.submit();
 	 			}
 	 	    },
 	 		beforeSend: function() {
-	
+
 	 		},
 	 	    uploadProgress: function(event, position, total, percentComplete) {
-	
+
 	 	    },
 	 	    success: function() {
-	
+
 	 	    },
 	 	    complete: function(xhr) {
 
 	 	    	setTimeout(function(){
 					$.LoadingOverlay("hide");
 				}, 500);
-	 	    	
+
 	 	    	xhr.responseText = jQuery.parseJSON(xhr.responseText);
-	 	      	
+
 	 	    	if(xhr.responseText[0] == 01){
-	 	        	
+
 	 	      		toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
-	
+
 	 	      	}else if(xhr.responseText[0] == 02){
-	 	        	
+
 	 	      		toastr.error("Error : Unable To upload", '', {timeOut: 3000});
-	
+
 	 	      	}else if(xhr.responseText[0] == 03){
-	 	        
+
 	 	      		toastr.error("Error : Save record first, then upload Images...", '', {timeOut: 3000});
-	
+
 	 	      	}else if(xhr.responseText[0] == 04){
-	 	        
+
 	 	      		toastr.error("Error : Image dimensions must be minimum 620 X 620", '', {timeOut: 3000});
-	
+
 	 	      	}else{
-	
+
 	 		  		toastr.success("Image Upload Successfully", '', {timeOut: 3000});
-	 		  		
+
 	 		  		$("#p_att1").html('');
-	 		  		
+
 	 		  		var html = '<div class="col-2 image-overlay margin-r1" id="img_file_'+xhr.responseText[1]+'">'+
 									'<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
 									'<div class="overlay">'+
@@ -498,7 +498,7 @@ $scope.deletePicBlogDetail = function(id){
 											'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deletePicBlogDetail('+xhr.responseText[1]+')" title="Delete Image">'+
 											'<div class="arrow-icon-move-box">'+
 												'<img class="arrow-center" src="'+baseurl+'/images/admin/feather-move.svg" alt="">'+
-												
+
 											'</div>'+
 										'</div>'+
 									'</div>'+
@@ -508,13 +508,13 @@ $scope.deletePicBlogDetail = function(id){
 	 	   	}
 	 	});
 	 $('#uploadattch2').fileupload({
-		
+
 		add: function (e, data) {
 
-			$.LoadingOverlay("show"); 
-				
+			$.LoadingOverlay("show");
+
 			var jqXHR = data.submit();
-			
+
 		},
 		beforeSend: function() {
 
@@ -530,31 +530,31 @@ $scope.deletePicBlogDetail = function(id){
  	    	setTimeout(function(){
 				$.LoadingOverlay("hide");
 			}, 500);
- 	    	
+
 			xhr.responseText = jQuery.parseJSON(xhr.responseText);
-			  
+
 			if(xhr.responseText[0] == 01){
-				
+
 				  toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
 			  }else if(xhr.responseText[0] == 02){
-				
+
 				  toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
 			  }else if(xhr.responseText[0] == 03){
-			
+
 				  toastr.error("Error : Save record first, then upload Images...", '', {timeOut: 3000});
 
 			  }else if(xhr.responseText[0] == 04){
-			
+
 				  toastr.error("Error : Image dimensions must be minimum 620 X 620", '', {timeOut: 3000});
 
 			  }else{
 
 				  toastr.success("Image Upload Successfully", '', {timeOut: 3000});
-				 
+
 				  $("#p_att_sin").html('');
-				  
+
 				  var html = '<div class="col-2 image-overlay margin-r1" id="img_file1_1">'+
 							   '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
 							   '<div class="overlay">'+
@@ -570,14 +570,14 @@ $scope.deletePicBlogDetail = function(id){
 			  }
 		   }
 	});
-		
-	
+
+
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -601,7 +601,7 @@ $scope.deletePicBlogDetail = function(id){
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);

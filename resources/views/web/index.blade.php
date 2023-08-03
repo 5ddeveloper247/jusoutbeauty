@@ -1,6 +1,7 @@
 <?php
 // echo session('userId');
 // exit();
+$userId = session('userId');
 ?>
 @include('web.web-header')
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
@@ -581,10 +582,10 @@
                                                 <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                                     @if ($trend['INV_QUANTITY_FLAG'] == 'shade')
                                                     	<a href="javascript:;"
-	                                                        class="btn btn-white btn-block  border-hover-primary hover-white productdetail"
+	                                                        class="btn btn-white btn-block  border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif"
 	                                                        id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}" data-category="{{ $trend['CATEGORY_SLUG'] }}"
-                                                    		data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}" 
-                                                    		data-name="{{ $trend['SLUG'] }}" data-type="">+ Quick Add</a>
+                                                    		data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
+                                                    		data-name="{{ $trend['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">+ Quick Add</a>
                                                     @elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] > '0')
                                                     	<a href="javascript:;"
 	                                                        class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
@@ -716,7 +717,7 @@
                                     <div class="position-relative hover-zoom-in">
                                         <a href="javascript:;" class="d-block overflow-hidden productdetail"
                                             data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
-                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}" 
+                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $for['SLUG'] }}" data-type="">
                                             <img src="{{ $for['productPrimaryImg'] }}" alt="Product"
                                                 class="card-img-top created_section_img img-h45 image-active">
@@ -753,10 +754,10 @@
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                             @if ($for['INV_QUANTITY_FLAG'] == 'shade')
                                          		<a href="javascript:;"
-	                                            	class="btn btn-white btn-block  border-hover-primary hover-white productdetail"
+	                                            	class="btn btn-white btn-block  border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif"
 	                                                id="qckad" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
-		                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}" 
-		                                            data-name="{{ $for['SLUG'] }}" data-type="">+ Quick Add</a>
+		                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }} " data-quickAdd="{{ session('userId') }}"
+		                                            data-name="{{ $for['SLUG'] }}" data-quickAdd="{{ session('userId') }}" data-type="">+ Quick Add</a>
                                          	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] > '0')
                                             	<a href="javascript:;"
 	                                           		class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
@@ -989,7 +990,7 @@
                                 <div class="col-lg-4 col-6 fort_box_home">
                                     <div class="box" data-animate="fadeInUp">
                                         <div class="card border-0 blog_inc_container_home">
-                                            <a href="{{ session('site') }}/blog-detail/{{ $blogs[0]['BLOG_ID'] }}"
+                                            <a href="{{ session('site') }}/blog-detail/{{ $blogs[0]['SLUG'] }}"
                                                 class="hover-shine">
                                                 <img src="{{ $blogs[0]['image'] }}" class="inc_image_blog_1_home"
                                                     alt="How to care for your cotton.">
@@ -1005,7 +1006,7 @@
                                 <div class="col-lg-8 col-6 fort_box_home1 cont_box">
                                     <div class="box" data-animate="fadeInUp">
                                         <div class="card border-0 blog_inc_container_home">
-                                            <a href="{{ session('site') }}/blog-detail/{{ $blogs[1]['BLOG_ID'] }}"
+                                            <a href="{{ session('site') }}/blog-detail/{{ $blogs[1]['SLUG'] }}"
                                                 class="hover-shine">
                                                 <img src="{{ $blogs[1]['image'] }}"
                                                     class="card-img-top inc_image_blog_1_home"
@@ -1025,7 +1026,7 @@
                                 <div class="col-lg-12 col-12 fort_box_home2 bottom_box" style="margin-top: 15px;">
                                     <div class="box" data-animate="fadeInUp">
                                         <div class="card border-0 blog_inc_container_home">
-                                            <a href="{{ session('site') }}/blog-detail/{{ $blogs[2]['BLOG_ID'] }}"
+                                            <a href="{{ session('site') }}/blog-detail/{{ $blogs[2]['SLUG'] }}"
                                                 class="hover-shine">
                                                 <img src="{{ $blogs[2]['image'] }}"
                                                     class="inc_image_blog_1_home inc_image_blog_3"

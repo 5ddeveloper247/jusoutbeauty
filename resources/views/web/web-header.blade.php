@@ -1,6 +1,11 @@
 <?php
-// print_r('<pre>');
+// echo '<pre>';
 // print_r($homeBanner);
+
+// Assuming userId is stored in the session as 'userId'
+$userId = session('userId');
+// echo 'userId: ' . $userId;
+// echo 'hello';
 // exit();
 ?>
 

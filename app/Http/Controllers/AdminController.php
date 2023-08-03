@@ -3893,8 +3893,9 @@ class AdminController extends Controller
 		$details = $_REQUEST ['details'];
 		$recordId = $details ['recordId'];
 		$userId = $details ['userId'];
-
+        // dd($details);
 		$shadeDetail = $Shades->getSpecificBlogsData($recordId);
+        // dd($shadeDetail);
 
 		if(isset($shadeDetail['STATUS']) && $shadeDetail['STATUS'] != 'active'){
 			$status = 'active';

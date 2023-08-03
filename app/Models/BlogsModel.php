@@ -47,6 +47,7 @@ class BlogsModel extends Model
     		$arrRes[$i]['BLOG_ID'] = $row->BLOG_ID;
     		$arrRes[$i]['USER_ID'] = $row->USER_ID;
     		$arrRes[$i]['TITLE'] = $row->TITLE;
+            $arrRes[$i]['SLUG'] = $row->SLUG;
     		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
 			$descText = strip_tags(base64_decode($row->DESCRIPTION));
 			$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
@@ -106,7 +107,7 @@ class BlogsModel extends Model
     public function getSpecificBlogsData($slug){
 
     	$result = DB::table('jb_blogs_tbl as a')->select('a.*')
-    	->where('a.SLUG',$slug)
+    	->where('a.SLUG',$slug)->orWhere('a.BLOG_ID',$slug)
     	->get();
 
     	$i=0;
