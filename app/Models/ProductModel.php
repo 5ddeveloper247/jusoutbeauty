@@ -378,7 +378,7 @@ class ProductModel extends Model
 	    	->get();
     	}else{
     		$result = DB::table('jb_product_tbl')->select('PRODUCT_ID')
-    		->where('SLUG', "$name")
+    		->where('NAME', "$name")
     		->get();
     	}
     	$i=0;
@@ -575,6 +575,7 @@ class ProductModel extends Model
     public function getAllProductsDataForShadeQuiz($ids){
     	$WishlistModel = new WishlistModel();
     	$userId = session('userId');
+        $ProductShade = new ProductShadeModel();
 
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
@@ -639,6 +640,15 @@ class ProductModel extends Model
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
+            $productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+            if(!empty($productShades)){
+
+    			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+    			$arrRes[$i]['INV_QUANTITY'] = '';
+    		}else{
+    			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+    			$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+    		}
 
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
@@ -1141,18 +1151,18 @@ class ProductModel extends Model
             }else{
                 $arrRes[$i]['SUB_CATEGORY_SLUG'] = '';
             }
-            
+
             $productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
-            
+
             if(!empty($productShades)){
-            
+
             	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
             	$arrRes[$i]['INV_QUANTITY'] = '';
             }else{
             	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
             	$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
             }
-            
+
     		$arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
@@ -1408,8 +1418,8 @@ class ProductModel extends Model
     	->where('a.STATUS', 'active')
     	->orderBy('a.CREATED_BY','asc')->groupBy('a.PRODUCT_ID')->limit($limit)->get();
 
-    	//     	    	$query = DB::getQueryLog(); dd($query);
     	$i=0;$k=1;
+
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $i+1;
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
@@ -1468,6 +1478,14 @@ class ProductModel extends Model
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
     		$arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
+    		if(!empty($arrRes[$i]['productShades'])){
+
+    			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+    			$arrRes[$i]['INV_QUANTITY'] = '';
+    		}else{
+    			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+                $arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+    		}
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
 
     		$reviews = $ReviewsModel->getAllPublishedReviewsByProductId($row->PRODUCT_ID,'');

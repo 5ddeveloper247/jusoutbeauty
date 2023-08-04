@@ -230,13 +230,6 @@ class LoginController extends Controller
 
 			if($result->USER_STATUS == 'active'){
 				if($password == $result->ENCRYPTED_PASSWORD){
-					// $r->session()->put('userId', $result->USER_ID);
-					// $r->session()->put('userName', $result->USER_NAME);
-					// $r->session()->put('firstName', $result->FIRST_NAME);
-					// $r->session()->put('lastName', $result->LAST_NAME);
-					// $r->session()->put('userType', $result->USER_TYPE);
-					// $r->session()->put('email', $result->EMAIL);
-					// $r->session()->put('userSubType', $result->USER_SUBTYPE);
                     $r->session()->put([
                         'userId' => $result->USER_ID,
                         'userName'=> $result->USER_NAME,
@@ -255,17 +248,9 @@ class LoginController extends Controller
                     ->update([
                         'LOGGED_IN_STATUS' => $userKey,
                     ]);
-                    // Cookie::queue('loggedIn', $userKey, 30 * 24 * 60); // Expires in 30 days
                     cookie()->queue(cookie()->make('loggedIn', $userKey,30 * 24 * 60));
                     cookie()->queue(cookie()->make('test', $userKey,30 * 24 * 60));
-                    // dd($response->withCookie($cookie));
-                    // DB::table('fnd_user_tbl')->update(array(
-                    //     'LOGGED_IN_STATUS' => $userKey
-                    // ));
-// dd(cookie()->make('loggedIn', $userKey,30 * 24 * 60))
-
-
-					return redirect('home');
+					return back();
 
 				}else{
 

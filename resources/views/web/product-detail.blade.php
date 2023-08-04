@@ -1,5 +1,5 @@
 @include('web.web-header')
-
+<?php $userId = session('userId'); ?>
 <script>
     var site = '<?php echo session('site'); ?>';
 
@@ -1770,9 +1770,16 @@
                                             </div>
                                         </div>
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                            <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
+                                            {{-- <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
                                                 data-type="single" data-id="<?= $recommand['PRODUCT_ID'] ?>"
-                                                data-quantity='1'>+ Quick Add</a>
+                                                data-quantity='1'>+ Quick Add</a> --}}
+                                                @if(isset($recommand['productShades']))
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recommand['PRODUCT_ID'];?>" data-category="<?= $recommand['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recommand['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
+                                                @elseif($recommand['INV_QUANTITY_FLAG'] == 'inv' && $recommand['INV_QUANTITY'] > 0)
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recommand['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
+                                                @elseif($recommand['INV_QUANTITY'] <= 0)
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="card-body pt-4 px-0 pb-0">
@@ -2036,9 +2043,16 @@
                                             </div>
                                         </div>
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                            <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
+                                            {{-- <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
                                                 data-type="single" data-id="<?= $recent['PRODUCT_ID'] ?>"
-                                                data-quantity='1'>+ Quick Add</a>
+                                                data-quantity='1'>+ Quick Add</a> --}}
+                                                @if(isset($recent['productShades']))
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recent['PRODUCT_ID'];?>" data-category="<?= $recent['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recent['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
+                                                @elseif($recent['INV_QUANTITY_FLAG'] == 'inv' && $recent['INV_QUANTITY'] > 0)
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recent['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
+                                                @elseif($recent['INV_QUANTITY'] <= 0)
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="card-body pt-4 px-0 pb-0">
@@ -2539,7 +2553,11 @@
                             <div class="box px-1" data-animate="fadeInUp">
                                 <div class="card border-0 product px-2">
                                     <div class="position-relative">
-                                        <a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="<?= $recent['PRODUCT_ID'] ?>" data-type="@{{catFlag}}">
+                                        <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                         data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                            data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                            data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                            data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>" data-type="@{{catFlag}}">
                                             <img src="<?= $recent['primaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
                                             <img src="<?= $recent['secondaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
                                         </a>
@@ -2566,9 +2584,16 @@
                                             </div>
                                         </div>
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                            <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
+                                            {{-- <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
                                                 data-type="single" data-id="<?= $recent['PRODUCT_ID'] ?>"
-                                                data-quantity='1'>+ Quick Add</a>
+                                                data-quantity='1'>+ Quick Add</a> --}}
+                                                @if(isset($recent['productShades']))
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recent['PRODUCT_ID'];?>" data-category="<?= $recent['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recent['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
+                                                @elseif($recent['INV_QUANTITY_FLAG'] == 'inv' && $recent['INV_QUANTITY'] > 0)
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recent['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
+                                                @elseif($recent['INV_QUANTITY'] <= 0)
+                                                <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="card-body pt-4 px-0 pb-0">

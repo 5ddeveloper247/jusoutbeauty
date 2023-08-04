@@ -4475,9 +4475,6 @@ class AdminController extends Controller
 		 $handpicked= new Handpicked;
 		$recommend= new Recomended;
 
-
-
-
 			if ($data ['ID'] == '') {
 
 				$duplicate = $Product->checkDuplicateSlug($data['P_1']);
@@ -4590,7 +4587,7 @@ class AdminController extends Controller
 
 			} else {
 
-                $duplicate = $Product->checkDuplicateSlug($data['P_1']);
+                $duplicate = $Product->checkDuplicateSlug($data['P_1'],$data ['ID']);
 				if ($duplicate != '') {
 					$arrRes ['done'] = false;
 					$arrRes ['msg'] = 'Product Name Already exists, try different...';

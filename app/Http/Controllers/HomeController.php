@@ -355,9 +355,9 @@ class HomeController extends Controller
       $Category = new CategoryModel();
 
         if(!isset($_REQUEST['sourceId']) && !isset($_REQUEST['sourceType'])) {
-        	
+
             if(isset($category) && isset($subcategory) ) {
-            	
+
                 $name = $category;
                 $reversedName = str_replace('-', ' ', $name);
                 $categoryNameFromSlug = $reversedName;
@@ -563,7 +563,7 @@ class HomeController extends Controller
         //     $slug = $subCategory;
         // }
 
-
+        $ProductShade = new ProductShadeModel();
 		$Products = new ProductModel();
 		$ProductIngredient = new ProductIngredientModel();
 		$ProductUses = new ProductUsesModel();
@@ -584,7 +584,6 @@ class HomeController extends Controller
             }else if($slug != null){
                 $slugByName = $slug;
             }
-            // dd($subCategory);
 			if ($subCategory != null && ($subCategory == 'Bundles' || $subCategory == 'bundles')) {
 				$result = DB::table('jb_bundle_product_tbl')->select('BUNDLE_ID')->where('SLUG', $slugByName)->first();
 				if (isset($result)) {
@@ -595,33 +594,23 @@ class HomeController extends Controller
 						abort(404);
 					}
 				} else {
-					// dd('invalid slug');
 					abort(404);
 				}
 			} else if ($subCategory != null && ($subCategory != 'Bundles' && $subCategory != 'bundles')) {
-                // dd('coming');
 				$result = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG', $slugByName)->first();
-                // dd($result);
 				if (isset($result)) {
 					$_REQUEST['sourceId'] = $result->PRODUCT_ID;
-					// dd($slugByName);
 					$validated = $this->validateParameters($category, $subCategory, $slugByName);
 					if ($validated == false) {
-						// dd('invalid parameters');
 						abort(404);
 					}
 				} else {
-					// dd('invalid slug');
 					abort(404);
 				}
 			} else if($subCategory == null){
-                // dd($slugByName);
                 $result = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG', $slugByName)->first();
-                // dd($result);
 				if (isset($result)) {
 					$_REQUEST['sourceId'] = $result->PRODUCT_ID;
-					// dd($slugByName);
-
 					$validated = $this->validateParameters($category, $subCategory, $slugByName);
 					if ($validated == false) {
 						dd('invalid parameters');
@@ -650,12 +639,15 @@ class HomeController extends Controller
 
   			// $data ['recommandedProducts'] = $Products->getRecommandedProductDetailsForSite();
   			$data ['recommandedProducts'] = $recomended->getrecomendedproducts($sourceId);
+            // dd($data['recommandedProducts']);
 			$data ['productselfi'] = $ProductSelfiModel->getAllProductsSelfie($sourceId);
 			// $data ['productDetails'] = $Products->getSpecificProductDetails($sourceId);
 
      		$data ['handpicked'] = $handpicked->gethanpickedproducts($sourceId);
 
   			$data ['recentViewedProducts'] = $Products->getRecentlyViewedProductDetailsForSite();
+            //   dd($data['recentViewedProducts']);
+
   			$data['routine'] = $this->getAllRouteByNameForWebiste();
 			$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
 			$data ['page'] = 'product Detail';
@@ -1769,10 +1761,13 @@ class HomeController extends Controller
    		$arrRes ['subscriptions'] = $SubscriptionModel->getAllActiveSubscriptionsLov($productId);
    		if($productId != ''){
    			$arrRes ['shades'] = $ProductShade->getAllProductShadesWithImagByProduct($productId);
+
    		}
    		if($bundleId != ''){
    			$arrRes ['shades'] = $BundleLine->getAllBundleProductLineIdsWrtBundleId($bundleId);
+
    		}
+        // dd($arrRes['shades']);
 
    		$totalReviews = 0;
    		if(isset($reviews) && !empty($reviews)){

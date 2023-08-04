@@ -397,6 +397,7 @@ class BundleProductModel extends Model
     		$arrRes['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes['CATEGORY_NAME'] = $row->categoryName;
+
     		$arrRes['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;

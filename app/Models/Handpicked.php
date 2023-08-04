@@ -172,7 +172,16 @@ class Handpicked extends Model
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
 
-           $arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
+            $arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
+    		if(!empty($arrRes[$i]['productShades'])){
+
+    			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+    			$arrRes[$i]['INV_QUANTITY'] = '';
+    		}else{
+    			$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+                $arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+    		}
+            // $arrRes[$i]['productShades'] = $ProductShadeModel->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
            $arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
 
            $reviews = $ReviewsModel->getAllPublishedReviewsByProductId($row->PRODUCT_ID,'');

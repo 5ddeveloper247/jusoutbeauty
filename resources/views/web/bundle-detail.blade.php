@@ -1,4 +1,6 @@
-
+<?php
+$userId = session('userId');
+?>
 @include('web.web-header')
 
 <script>
@@ -1662,7 +1664,17 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													</div>
 												</div>
 												<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-													<a href="javascript:;" class="btn btn-white btn-block addto-cart1" data-type="single" data-id="<?= $recommand['PRODUCT_ID'];?>" data-quantity='1'>+ Quick Add</a>
+													{{-- <a href="javascript:;" class="btn btn-white btn-block @if(isset($userId)) productdetail @else addto-cart1 @endif" data-type="single" data-id="<?= $recommand['PRODUCT_ID'];?>"
+                                                        data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
+                                                        data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
+                                                        data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATGORY_NAME'] ?>" data-quantity='1'>+ Quick Add</a> --}}
+                                                        @if(isset($recommand['productShades']))
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recommand['PRODUCT_ID'];?>" data-category="<?= $recommand['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recommand['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
+                                                        @elseif($recommand['INV_QUANTITY_FLAG'] == 'inv' && $recommand['INV_QUANTITY'] > 0)
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recommand['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
+                                                        @elseif($recommand['INV_QUANTITY'] <= 0)
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
+                                                        @endif
 												</div>
 											</div>
 											<div class="card-body pt-4 px-0 pb-0">
@@ -2162,7 +2174,17 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													</div>
 												</div>
 												<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-													<a href="javascript:;" class="btn btn-white btn-block addto-cart1" data-type="single" data-id="<?= $recent['PRODUCT_ID'];?>" data-quantity='1'>+ Quick Add</a>
+													{{-- <a href="javascript:;" class="btn btn-white btn-block @if(isset($userId)) productdetail @else addto-cart1 @endif" data-type="single" data-id="<?= $recent['PRODUCT_ID'];?>"
+                                                        data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                        data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                        data-name="<?= $recent['SLUG'] ?>" data-type="" data-quantity='1'>+ Quick Add</a> --}}
+                                                        @if(isset($recent['productShades']))
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recent['PRODUCT_ID'];?>" data-category="<?= $recent['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recent['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
+                                                        @elseif($recent['INV_QUANTITY_FLAG'] == 'inv' && $recent['INV_QUANTITY'] > 0)
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recent['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
+                                                        @elseif($recent['INV_QUANTITY'] <= 0)
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
+                                                        @endif
 												</div>
 											</div>
 											<div class="card-body pt-4 px-0 pb-0">
@@ -2396,9 +2418,19 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                             </div>
                                         </div>
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                            <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
-                                                data-type="single" data-id="<?= $recent['PRODUCT_ID'] ?>"
-                                                data-quantity='1'>+ Quick Add</a>
+                                            {{-- <a href="javascript:;" class="btn btn-white btn-block @if(isset($userId)) productdetail @else addto-cart1 @endif"
+                                                data-type="single" data-id="<?= $recent['PRODUCT_ID'] ?>"  data-id="<?= $recommand['PRODUCT_ID'] ?>"
+                                                data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
+                                                data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
+                                                data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATGORY_NAME'] ?>"
+                                                data-quantity='1'>+ Quick Add</a> --}}
+                                                @if(isset($recommand['productShades']))
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recommand['PRODUCT_ID'];?>" data-category="<?= $recommand['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recommand['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
+                                                        @elseif($recommand['INV_QUANTITY_FLAG'] == 'inv' && $recommand['INV_QUANTITY'] > 0)
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recommand['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
+                                                        @elseif($recommand['INV_QUANTITY'] <= 0)
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
+                                                        @endif
                                         </div>
                                     </div>
                                     <div class="card-body pt-4 px-0 pb-0">

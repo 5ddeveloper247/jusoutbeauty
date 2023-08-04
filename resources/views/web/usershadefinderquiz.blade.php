@@ -1,4 +1,6 @@
 @include('web.web-header')
+<?php $userId = session('userId');
+?>
 <script>
 
 var site = '<?php echo session('site');?>';
@@ -311,17 +313,17 @@ var site = '<?php echo session('site');?>';
 							data-slick-options='{"slidesToShow": 1,"dots":true,"autoplay":true,"arrows":true,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":true}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":true}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":true}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":true}}]}'>
 
 								<div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts"><!-- data-animate="fadeInUp" -->
-									<div class="card shadee border-0 productdetail"
-                                    data-id="@{{row.PRODUCT_ID}}"
-                                    data-category="@{{ row.CATEGORY_SLUG }}"
-                                    data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
-                                    data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
+									<div class="card shadee border-0>
 										<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 mb-2">
 											<a href="javascript:;">@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
 										</h3>
 										<div class="position-relative hover-zoom-in">
 
-											<a href="javascript:;" class="d-block overflow-hidden">
+											<a href="javascript:;" class="d-block overflow-hidden  productdetail"
+                                            data-id="@{{row.PRODUCT_ID}}"
+                                            data-category="@{{ row.CATEGORY_SLUG }}"
+                                            data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                            data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
 												<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-active">
 												<img src="@{{row.secondaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-hover">
 											</a>
@@ -344,10 +346,16 @@ var site = '<?php echo session('site');?>';
 												</div>
 											</div>
 											<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-												<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addtocart addto-cart"
+												<a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'shade'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addtocart addto-cart @endif "
 													id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}"
                                                     		data-subcategory="@{{row.SUB_CATEGORY_SLUG}}"
                                                     		data-name="@{{row.SLUG}}" data-type="" data-quickAdd="{{ session('userId') }}" data-quantity='1'>+ Quick Add</a>
+                                                <a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white  addtocart addto-cart"
+                                                    id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}"
+                                                        data-subcategory="@{{row.SUB_CATEGORY_SLUG}}"
+                                                        data-name="@{{row.SLUG}}" data-type="" data-quickAdd="{{ session('userId') }}" data-quantity='1'>+ Quick Add</a>
+                                                <a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white disabled"
+                                                    >Out Of Stock</a>
 											</div>
 										</div>
 										<div class="card-body pt-4 px-0 pb-0 text-left">

@@ -744,7 +744,7 @@ $userId = session('userId');
 
                                             <a href="javascript:;" data-toggle="tooltip"
                                             data-placement="left" title="Quick view"
-                                            ng-click="quickViewProductDetails({{ $trend['PRODUCT_ID'] }})"
+                                            ng-click="quickViewProductDetails({{ $for['PRODUCT_ID'] }})"
                                             class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
                                             <span> <i class="icon fal fa-eye"></i> </span>
                                         </a>

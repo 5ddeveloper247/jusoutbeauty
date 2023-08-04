@@ -2,6 +2,8 @@
 // print_r('<pre>');
 // print_r($subCategoriesList);
 // exit();
+$userId = session('userId');
+
 ?>
 @include('web.web-header')
 <script>
@@ -89,11 +91,11 @@
 									</div>
 									<p class="nut_para"><?= $filter['NAME'];?></p>
 								</div> --}}
-                                <div class="col-md-2 col-2 mb-6 mb-md-0 <?= $activeClass ?> filter-click " 
+                                <div class="col-md-2 col-2 mb-6 mb-md-0 <?= $activeClass ?> filter-click "
                                 		data-categoryslug="<?= $filter['CATEGORY_SLUG'] ?>" data-subcategoryslug="<?= $filter['SUB_CATEGORY_SLUG'] ?>"
                                 		ng-click="filter(<?= $filter['SUB_CATEGORY_ID'];?>);">
                                     <div class="card border-0 hover-zoom-in" id="skin_health_col" style="background: transparent; border-radius: 10px;">
-                                        <img src="<?= $filter['image'];?>" style="border-radius: 10px;" alt="alt" class="card-img inr-img " 
+                                        <img src="<?= $filter['image'];?>" style="border-radius: 10px;" alt="alt" class="card-img inr-img "
                                         data-id="<?= $filter['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $filter['CATEGORY_SLUG'] ?>"><!-- toShopListing -->
                                     </div>
                                     <p class="nut_para"><?= $filter['NAME'];?></p>
@@ -120,25 +122,25 @@
 
 					<div class="row" style="padding:0 50px;">
                         <div ng-init="productsToShowForNutrition = 4"></div>
-						<div class="col-sm-3 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
+						<div class="col-sm-6 mb-0 mb-sm-0 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
 								<div class="overflow-hidden">
-									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2 mt-3"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" style="min-height: 200px; max-height:300px; border-radius:10px;margin-top:15px;"><br>
+									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2 mt-3"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"><br>
 									<h5 class="text-center productdetail cursor-pointer product_image"  data-id="@{{row.PRODUCT_ID}}">@{{row.NAME}}</h5>
 									<p class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.CATEGORY_NAME}}</p>
 									<h5 class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.SUB_TITLE}}</h5>
-									
-									<a href="javascript:;" class="btn btn-primary nut_btn productdetail" id="" data-id="@{{row.PRODUCT_ID}}" 
-										data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" 
-										data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'" 
+
+									<a href="javascript:;" class="btn btn-primary nut_btn @if(isset($userId)) productdetail @else addto-cart1 @endif" id="" data-id="@{{row.PRODUCT_ID}}"
+										data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+										data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'"
 										style="display: block; margin: 0 auto; width: 60%;">+ Shop Now</a>
- 									
+
  									<a href="javascript:;" class="btn btn-primary nut_btn addto-cart1" id=""  data-id="@{{row.PRODUCT_ID}}"
- 										data-type="@{{productType}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'" 
+ 										data-type="@{{productType}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'"
  										style="display: block; margin: 0 auto; width: 60%;">+ Shop Now</a>
-									
+
 									<a href="javascript:;" class="btn btn-primary nut_btn" id="" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled style="display: block; margin: 0 auto; width: 65%;">+ Out of Stock</a>
-								
+
 									<!-- <a href="javascript:;" class="btn btn-primary nut_btn addto-cart" data-id="@{{row.PRODUCT_ID}}" data-quantity="1" style="display: block; margin: 0 auto; width: 55%;">Shop Now</a> -->
 									<br>
 								</div>
@@ -164,18 +166,18 @@
 								<h3 class="text-center productdetail product_image"  data-id="@{{row.PRODUCT_ID}}">@{{row.NAME}}</h3>
 								<p class="text-center productdetail" data-id="@{{row.PRODUCT_ID}}">@{{row.CATEGORY_NAME}}</p>
 								<h3 class="text-center productdetail" data-id="@{{row.PRODUCT_ID}}">@{{row.SUB_TITLE}}</h3>
-								
-								<a href="javascript:;" class="btn btn-primary nut_btn productdetail" id="" data-id="@{{row.PRODUCT_ID}}" 
-									data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" 
-									data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'" 
+
+								<a href="javascript:;" class="btn btn-primary nut_btn productdetail" id="" data-id="@{{row.PRODUCT_ID}}"
+									data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+									data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'"
 									style="display: block; margin: 0 auto; width: 60%;">+ Shop Now</a>
- 									
+
  								<a href="javascript:;" class="btn btn-primary nut_btn addto-cart1" id=""  data-id="@{{row.PRODUCT_ID}}"
- 									data-type="@{{productType}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'" 
+ 									data-type="@{{productType}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'"
  									style="display: block; margin: 0 auto; width: 60%;">+ Shop Now</a>
-									
+
 								<a href="javascript:;" class="btn btn-primary nut_btn" id="" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled style="display: block; margin: 0 auto; width: 65%;">+ Out of Stock</a>
-									
+
 								<!-- <a href="javascript:;" class="btn btn-primary nut_btn addto-cart" data-id="@{{row.PRODUCT_ID}}" data-quantity="1" style="display: block; margin: 0 auto; width: 33%;">Shop Now</a> -->
 								<br>
 							</div>
@@ -445,7 +447,7 @@
 		// update url with out refreshing
 		var catSlug = $(this).attr('data-categoryslug');
 		var subCatSlug = $(this).attr('data-subcategoryslug');
-		
+
 		var nextURL = "<?php echo url('/Store');?>/"+catSlug+"/"+subCatSlug;
 		var nextTitle = catSlug;
 		var nextState = { additionalInformation: '' };//Updated the URL with JS
