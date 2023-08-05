@@ -126,7 +126,7 @@ $userId = session('userId');
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
 								<div class="overflow-hidden">
 									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2 mt-3"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"><br>
-									<h5 class="text-center productdetail cursor-pointer product_image"  data-id="@{{row.PRODUCT_ID}}">@{{row.NAME}}</h5>
+									<h5 class="text-center productdetail cursor-pointer product_image"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME}}</h5>
 									<p class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.CATEGORY_NAME}}</p>
 									<h5 class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}">@{{row.SUB_TITLE}}</h5>
 

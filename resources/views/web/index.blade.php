@@ -596,13 +596,18 @@ $userId = session('userId');
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="card-body pt-4 px-0 pb-0 productdetail"
-                                                data-id="{{ $trend['PRODUCT_ID'] }}" data-type="">
+                                            <div class="card-body pt-4 px-0 pb-0"
+                                          data-type="">
                                                 <a href="javascript:;"
-                                                    class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
+                                                    class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary toShopListing"
+                                                    data-type="{{ $trend['CATEGORY_SLUG'] }}" data-categorySlug="{{ $trend['SUB_CATEGORY_SLUG'] }}"
+                                                    >
                                                     {{ $trend['CATEGORY_NAME'] }}</a>
                                                 <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375">
-                                                    <a href="javascript:;">{{ $trend['PRODUCT_NAME'] }}</a>
+                                                    <a href="javascript:;" class="productdetail" data-id="{{ $trend['PRODUCT_ID'] }}"
+                                                    data-category="{{ $trend['CATEGORY_SLUG'] }}"
+                                                    data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
+                                                    data-name="{{ $trend['SLUG'] }}">{{ $trend['PRODUCT_NAME'] }}</a>
                                                 </h3>
                                                 <p class="text-primary mb-0 card-title lh-14375" style="height: 46px;">
                                                     {{ $trend['SUB_TITLE_TXT'] }}</p>
@@ -773,7 +778,9 @@ $userId = session('userId');
                                         </div>
                                     </div>
                                     <div class="card-body pt-4 px-0 pb-0 productdetail"
-                                        data-id="{{ $for['PRODUCT_ID'] }}" data-type="">
+                                    data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
+                                    data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
+                                    data-name="{{ $for['SLUG'] }}" data-type="">
                                         <a href="javascript:;"
                                             class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
                                             {{ $for['CATEGORY_NAME'] }}</a>

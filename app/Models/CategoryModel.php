@@ -24,7 +24,6 @@ class CategoryModel extends Model
     		$arrRes[$i]['name'] = $row->CATEGORY_NAME;
     		$i++;
     	}
-
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getCategoryBundleLov(){
@@ -34,13 +33,13 @@ class CategoryModel extends Model
     	->whereIn('a.CATEGORY_NAME',array('Shop','Shops')) //array('Bundles','Bundle')
     	->orderBy('a.CATEGORY_ID','desc')
     	->get();
-
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['id'] = $row->CATEGORY_ID;
     		$arrRes[$i]['name'] = $row->CATEGORY_NAME;
     		$i++;
     	}
+
 
     	return isset($arrRes) ? $arrRes : null;
     }
@@ -393,7 +392,7 @@ class CategoryModel extends Model
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['NAME'] = $row->NAME;
-            
+
     		$cname = $row->CATEGORY_NAME;
             $words = explode(' ', $cname);
             if (count($words) > 1 || strpos($cname, ' ') !== false) {
@@ -402,7 +401,7 @@ class CategoryModel extends Model
                 $cname = $row->CATEGORY_NAME;
             }
             $arrRes[$i]['CATEGORY_SLUG'] = $cname;
-            
+
             $name = $row->NAME;
             $words = explode(' ', $name);
             if (count($words) > 1 || strpos($name, ' ') !== false) {

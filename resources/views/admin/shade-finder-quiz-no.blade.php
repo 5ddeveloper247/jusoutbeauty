@@ -168,7 +168,7 @@ var optionId = '2';
 																</div>
 																<div class="dropdown-menu dropdown-menu-right">
 																	<a class="dropdown-item"  href="javascript:;" ng-click="continueRecordLevel1Type(@{{row.LEVEL_ONE_TYPE_ID}});">Edit</a>
-																	<a class="dropdown-item"  href="javascript:;" ng-click="confirmDeleteLevel1TypeForNo(@{{row.LEVEL_ONE_TYPE_ID}});"  >Delete</a>
+																	<a class="dropdown-item"  href="javascript:;" ng-click="confirmDeleteLevel1TypeForNo(@{{row.LEVEL_ONE_TYPE_ID}});">Delete</a>
 																</div>
 															</div>
 														</td>

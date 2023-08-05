@@ -2,23 +2,23 @@ var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
 	$(document).on('click','.addNew',function(){
-	    $('#addCity_modal').modal('show');return false; 
+	    $('#addCity_modal').modal('show');return false;
 	});
 
 	$(document).on('click','.modalClose',function(){
-	    $('#addCity_modal').modal('hide');return false; 
+	    $('#addCity_modal').modal('hide');return false;
 	});
-	
+
 	$scope.editView = 0;
 
 	$scope.tokenHash = $("#csrf").val();
-	
+
 	$scope.getAllAdminReviewslov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminQuestionslov',
@@ -27,14 +27,14 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
-			
+
+
 			if ($.fn.DataTable.isDataTable("#questionsTable")) {
 				$('#questionsTable').DataTable().clear().destroy();
 			}
-			
+
 			$scope.displayCollectionQuestions = data.questions;
-			
+
 			setTimeout(function(){
 				$("#questionsTable").DataTable({
 					order: [],
@@ -44,7 +44,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		                      ]
 				});
 			}, 500);
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -57,9 +57,9 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	    data.recordId = id;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteQuestionReply",
 			method: "POST",
 			async: false,
@@ -67,43 +67,43 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 		}).success(function(data, status, headers, config) {
 			toastr.success(data.msg, '', {timeOut: 3000})
-			$scope.getAllAdminReviewslov();	
-			
+			$scope.getAllAdminReviewslov();
+
 		})
 		.error(function(data, status, headers, config) {
 		});
-	}		
-	
+	}
+
 	$scope.getAllAdminReviewslov();
-		
+
 	$scope.backToListing = function(){
 		$scope.editView = 0;
 	}
-	
+
 	$scope.updateQuestionStatus = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/updateQuestionStatus",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
-			
+
+
 			if ($.fn.DataTable.isDataTable("#questionsTable")) {
 				$('#questionsTable').DataTable().clear().destroy();
 			}
 				$scope.getAllAdminReviewslov();
-			
+
 			// $scope.displayCollectionQuestions = data.questions;
-			
+
 			setTimeout(function(){
 				$("#questionsTable").DataTable({
 					order: [],
@@ -112,60 +112,60 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		                          [10, 25, 50, 100, 200, "All"]
 		                      ]
 				});
-			}, 500);
-			
+			}, 100);
+
 			toastr.success(data.msg, '', {timeOut: 3000});
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.head = {};
 	$scope.head.questionId = '';
 	$scope.head.question = '';
 	$scope.head.answer = '';
-	
+
 	$scope.sendQuestionReply = function(id, question, answer){
-		
+
 		$scope.head.questionId = id;
 		$scope.head.question = question;
 		$scope.head.answer = answer;
-		
+
 		$("#send_repy_modal").modal('show');
 	}
 	$scope.closeAnswerModal = function(){
-		
+
 		$scope.head.questionId = '';
 		$scope.head.question = '';
 		$scope.head.answer = '';
-		
+
 		$("#send_repy_modal").modal('hide');
 	}
-	
+
 	$scope.sendQuestionAnswer = function(id){
-		
+
 		var data = {};
 	    data.record = $scope.head;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveQuestionAnswer",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				if ($.fn.DataTable.isDataTable("#questionsTable")) {
 					$('#questionsTable').DataTable().clear().destroy();
 				}
-				
+
 				$scope.displayCollectionQuestions = data.questions;
-				
+
 				setTimeout(function(){
 					$("#questionsTable").DataTable({
 						order: [],
@@ -175,9 +175,9 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			                      ]
 					});
 				}, 500);
-				
+
 				$("#send_repy_modal").modal('hide');
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000});
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000});
@@ -186,15 +186,15 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
-	
-		
+
+
+
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -219,7 +219,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);
@@ -241,9 +241,9 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 })
 
 
-// 	$('#searchInListing').on("keyup", function (e)  {     
+// 	$('#searchInListing').on("keyup", function (e)  {
 //            var tr = $('.identify');
-//            
+//
 //            if ($(this).val().length >= 1) {//character limit in search box.
 //                var noElem = true;
 //                var val = $.trim(this.value).toLowerCase();
@@ -268,13 +268,13 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 //                else{
 //                }
 ////    	            	$('#tabContentNoData').hide();
-//                       
+//
 //            }
 //        });
 
 
 
 
-		
-		
-		
+
+
+

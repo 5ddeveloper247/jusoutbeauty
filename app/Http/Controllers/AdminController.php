@@ -3391,18 +3391,15 @@ class AdminController extends Controller
                 echo json_encode($arrRes);
                 die();
             }
-
-
-            $result = DB::table ( 'jb_ingredient_tbl' )->where('TITLE',$data['P_1'])->first();
-
-            if(isset($result) || !empty($result)){
-                $arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Ingredient Name Already Exists. Try Different...';
-				echo json_encode ( $arrRes );
-				die ();
-            }
-
 			if ($data ['ID'] == '') {
+                $result = DB::table ( 'jb_ingredient_tbl' )->where('TITLE',$data['P_1'])->first();
+
+                if(isset($result) || !empty($result)){
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'Ingredient Name Already Exists. Try Different...';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
 
 				$getLastSeq = DB::table ( 'jb_ingredient_tbl' )->select('SEQ_NUM')->latest('SEQ_NUM')->first();
 
@@ -3438,6 +3435,14 @@ class AdminController extends Controller
 				die ();
 
 			} else {
+                $result = DB::table ( 'jb_ingredient_tbl' )->where('TITLE',$data['P_1'])->whereNot('INGREDIENT_ID',$data ['ID'])->first();
+
+                if(isset($result) || !empty($result)){
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'Ingredient Name Already Exists. Try Different...';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
 
 				$result = DB::table ( 'jb_ingredient_tbl' ) ->where ( 'INGREDIENT_ID', $data ['ID'] ) ->update (
 						array ( 'TITLE' => $data ['P_1'],
@@ -5591,13 +5596,7 @@ class AdminController extends Controller
                 echo json_encode($arrRes);
                 die();
             }
-            $result = DB::table ( 'jb_product_uses_tbl' )->where('USES_TITLE',$data['U_2'])->where('PRODUCT_ID',$prod['ID'])->first();
-            if(isset($result) || !empty($result)){
-                $arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Usage Name Already Exist , Try different...';
-				echo json_encode ( $arrRes );
-				die ();
-            }
+
 			if ($data['U_4'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Description is required.';
@@ -5612,6 +5611,13 @@ class AdminController extends Controller
 			}
 
 			if ($data ['ID'] == '') {
+                $result = DB::table ( 'jb_product_uses_tbl' )->where('USES_TITLE',$data['U_2'])->first();
+                if(isset($result) || !empty($result)){
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'Usage Name Already Exist , Try different...';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
 
 				$result = DB::table ( 'jb_product_uses_tbl' )->insertGetId (
 						array ( 'USER_ID' => $userId,
@@ -5634,6 +5640,13 @@ class AdminController extends Controller
 				die ();
 
 			} else {
+                $result = DB::table ( 'jb_product_uses_tbl' )->where('USES_TITLE',$data['U_2'])->whereNot('PRODUCT_ID',$prod['ID'])->first();
+                if(isset($result) || !empty($result)){
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'Usage Name Already Exist , Try different...';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
 
 				$result = DB::table ( 'jb_product_uses_tbl' ) ->where ( 'PRODUCT_USES_ID', $data ['ID'] ) ->update (
 						array ( 'SEQUENCE_NUM' => $data['U_1'],
@@ -6150,7 +6163,9 @@ class AdminController extends Controller
 
 			if(isset($attDetail) && !empty($attDetail)){
 				foreach ($attDetail as $value){
-					unlink($value['path']);
+                    if(file_exists($value['path'])){
+                        unlink($value['path']);
+                    }
 				}
 			}
 
@@ -6965,7 +6980,6 @@ class AdminController extends Controller
 		$arrRes ['list'] = $Bundle->getAllBundleProductsData();
 		$arrRes ['list1'] = $Category->getCategoryBundleLov();
 		$arrRes ['list2'] = $Product->getProductsLov();
-
 		echo json_encode ( $arrRes );
 	}
 
@@ -8211,7 +8225,7 @@ class AdminController extends Controller
 		$subSubCatIds = $CategoryModel->getAllSubSubCategoryIdsWrtSubCategoryId($subCatIds);
 
 		$arrRes ['productLov'] = $ProductModel->getProductsLovWrtCatSubCatSubSubCatIds($categoryId,$subCatIds,$subSubCatIds);
-
+        // dd($arrRes);
 		echo json_encode ( $arrRes );
 	}
 
@@ -8719,15 +8733,13 @@ class AdminController extends Controller
 		$ticketId = $details ['ticketId'];
 		$flag = $details ['flag'];
 
-
-
-		if(isset($flag) && $flag == '1'){
-			$status = 'open';
-			$arrRes ['msg'] = 'Ticket open successfully...';
-		}else{
-			$status = 'close';
-			$arrRes ['msg'] = 'Ticket close successfully...';
-		}
+        if(isset($flag) && $flag == '1'){
+            $status = 'open';
+            $arrRes ['msg'] = 'Ticket open successfully...';
+        }else{
+            $status = 'close';
+            $arrRes ['msg'] = 'Ticket close successfully...';
+        }
 
 		$result = DB::table ( 'jb_user_tickets_tbl' ) ->where ( 'TICKET_ID', $ticketId ) ->update (
 				array ( 'STATUS' => $status,

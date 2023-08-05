@@ -1353,7 +1353,7 @@
                                                     id="imageAttach-btn" onclick="form5();" style="">
                                                     <img src="{{ url('/assets-admin') }}/images/admin/upload.svg"
                                                         alt="" width="50">
-                                                    <p>270 X 370</p>
+                                                    <p>Min: 270 X 370</p>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <div class="row" id="cn_att">
@@ -1539,7 +1539,7 @@
                                     onclick="form4();" style="">
                                     <img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt=""
                                         width="50">
-                                    <p>360 X 450</p>
+                                    <p>Min: 360 X 450</p>
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="row" id="ps_att">

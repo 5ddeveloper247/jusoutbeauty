@@ -74,11 +74,11 @@
 
 <section class="pt-5 pb-6 mt-0 mt-md-5 mt-sm-0 mt-xl-5 mt-xxl-5">
 	<div class="container container-custom container-xl">
-		<div class="row">
-            <div class="col-lg-6 position_inc_blog_detail">
-                <div class="blogimg-div">
+        <div class="row">
+            <div class="col-lg-6 position-sticky ">
+                <div class="blogimg-div" style="position: sticky;top: 15%;">
                     <?php if (isset($blogDetail['detailImage']) && $blogDetail['detailImage'] != '') { ?>
-                        <img src="<?php echo $blogDetail['detailImage']; ?>" alt="img" style="height: 33rem; width: 100%;">
+                        <img src="<?php echo $blogDetail['detailImage']; ?>" alt="img" class="img-fluid" style="height: 33rem;">
                     <?php } ?>
                     <div class="overlay"></div>
                     <div class="mid_text_blog_detail" id="mid_text-detail">
@@ -91,13 +91,14 @@
                     </div>
                 </div>
             </div>
-			<div class="col-lg-6 mob_inc_blog_detail ">
-			<h2 class="text-capitalize mb-0">
-				<?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : '';?>
-			</h2>
-			<?php echo isset($blogDetail['DESCRIPTION']) ? $blogDetail['DESCRIPTION'] : '';?>
-			</div>
-		</div>
+            <div class="col-lg-6 overflow-auto">
+                <h2 class="text-capitalize mb-0">
+                    <?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : '';?>
+                </h2>
+                <?php echo isset($blogDetail['DESCRIPTION']) ? $blogDetail['DESCRIPTION'] : '';?>
+            </div>
+        </div>
+
 	</div>
 </section>
 </main>

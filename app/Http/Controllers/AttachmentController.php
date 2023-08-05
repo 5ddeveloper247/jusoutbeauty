@@ -149,7 +149,7 @@ class AttachmentController extends Controller
 
 				list ( $width, $height ) = getimagesize ( $_FILES['uploadattl']['tmp_name'] );
 
-				if ($width < "170" || $height < "70") {
+				if ($width < 125 || $height < 125) {
 
 					print(json_encode(array(04)));
 					exit;
@@ -261,7 +261,7 @@ class AttachmentController extends Controller
 				 }*/
 				list ( $width, $height ) = getimagesize ( $_FILES['uploadattl']['tmp_name'] );
 
-				if ($width < "125" || $height < "125") {
+				if ($width < 125 || $height < 125) {
 
 					print(json_encode(array(04)));
 					exit;
@@ -386,7 +386,7 @@ class AttachmentController extends Controller
 				// }else
 				list ( $width, $height ) = getimagesize ( $_FILES['uploadatt2']['tmp_name'] );
 
-				if ($width < "620" || $height < "620") {
+				if ($width < 400 || $height < 650) {
 
 					print(json_encode(array(04)));
 					exit;
@@ -1023,7 +1023,7 @@ public function uploadPopupImage(Request $request) {
              }*/
             list ( $width, $height ) = getimagesize ( $_FILES['uploadImage']['tmp_name'] );
 
-            if ($width < "1200" || $height < "1000") {
+            if ($width < 900 || $height < 600) {
 
                 print(json_encode(array(04)));
                 // dd(json_encode(array(04)));
@@ -1887,12 +1887,12 @@ public function uploadPopupImage(Request $request) {
 				 }*/
 				list ( $width, $height ) = getimagesize ( $_FILES['uploadattl']['tmp_name'] );
 
-				if ($width < "270" || $height < "370") {
-
+				if ($width < 270 || $height < 370) {
 					print(json_encode(array(05)));
 					exit;
 
 				}
+
 				if($sourceId == '' ) {
 
 					print(json_encode(array(03)));

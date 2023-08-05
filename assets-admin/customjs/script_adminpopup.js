@@ -115,7 +115,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
               }else if(xhr.responseText[0] == 04){
 
-                  toastr.error("Error : Image dimensions must be minimum 1200 X 1000", '', {timeOut: 3000});
+                  toastr.error("Error : Image dimensions must be minimum 900 X 1000", '', {timeOut: 3000});
 
               }else{
 

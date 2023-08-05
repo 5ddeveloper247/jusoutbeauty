@@ -328,11 +328,11 @@
  										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled>+ Out of Stock</a>
  									</div>
  								</div>
- 								<div class="card-body pt-4 px-0 pb-0 productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}" >
- 									<a href="javascript:;" class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"> @{{row.CATEGORY_NAME}} </a>
+ 								<div class="card-body pt-4 px-0 pb-0" data-id="@{{row.PRODUCT_ID}}" data-type="@{{catFlag}}" >
+ 									<a href="javascript:;" class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary toShopListing" data-category="@{{ row.CATEGORY_SLUG }}"> @{{row.CATEGORY_NAME}} </a>
 
- 									<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading">
- 										<a href="javascript:;">@{{row.NAME}}</a>
+ 									<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading ">
+ 										<a href="javascript:;" class="productdetail" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" >@{{row.NAME}}</a>
  									</h3>
  									<p class="text-primary mb-0 shop-subtitle card-title lh-14375 product-subtitle">@{{row.SUB_TITLE_TXT}}</p>
 

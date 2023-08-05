@@ -547,7 +547,7 @@ $scope.deletePicBlogDetail = function(id){
 
 			  }else if(xhr.responseText[0] == 04){
 
-				  toastr.error("Error : Image dimensions must be minimum 620 X 620", '', {timeOut: 3000});
+				  toastr.error("Error : Image dimensions must be minimum 400 X 650", '', {timeOut: 3000});
 
 			  }else{
 

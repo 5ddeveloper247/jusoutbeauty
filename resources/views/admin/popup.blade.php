@@ -113,7 +113,7 @@
                                                             id="imageAttach-btn" onclick="form1();" style="">
                                                             <img src="{{ url('/assets-admin') }}/images/admin/upload.svg"
                                                                 alt="" width="50">
-                                                            <p>1200 X 600</p>
+                                                            <p>Min : 900 X 600</p>
                                                         </div>
                                                         <div class="col-sm-9">
                                                             <div class="row" id="p_att">

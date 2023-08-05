@@ -2,13 +2,13 @@ var myApp = angular.module('project1',["smart-table"], function(){});
 myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$http,$window,$filter,$q,$routeParams) {
 
 //	$(document).on('click','.addNew',function(){
-//	    $('#addCity_modal').modal('show');return false; 
+//	    $('#addCity_modal').modal('show');return false;
 //	});
 
 //	$(document).on('click','.modalClose',function(){
-//	    $('#addCity_modal').modal('hide');return false; 
+//	    $('#addCity_modal').modal('hide');return false;
 //	});
-	
+
 	$scope.bundle={};
 	$scope.bundle.ID = "";
 	$scope.bundle.P_1 = "";		//Name
@@ -28,17 +28,17 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.bundle.P_15 = "";	//Discounted Amount
 	$scope.bundle.P_16 = "";	//Inv. Quantity
 	$scope.bundle.image = '';	//bundle image
-	
+
 	$scope.editView = 0;
 
 	$scope.tokenHash = $("#csrf").val();
-	
+
 	$scope.getAllAdminProductBundlelov = function(){
-		
+
 		var data = {};
 	    data.userId = userId;
 	    var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+'/getAllAdminProductBundlelov',
@@ -47,16 +47,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-			
+
 			$scope.categoryLov = data.list1;
 			$scope.productsLov = data.list2;
 			$scope.subCategoryLov = {};
 			if ($.fn.DataTable.isDataTable("#bundlesTable")) {
 				$('#bundlesTable').DataTable().clear().destroy();
 			}
-			
+
 			$scope.displayCollection = data.list;
-		
+
 			setTimeout(function(){
 				$('#bundlesTable').DataTable( {
 					search: {
@@ -69,7 +69,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 						{ orderable: true, className: 'reorder', targets: 0 },
 						{ orderable: false, targets: '_all' }
 					],
-					
+
 		            aLengthMenu: [
 		                          [10, 25, 50, 100, 200, -1],
 		                          [10, 25, 50, 100, 200, "All"]
@@ -82,11 +82,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				cursor: 'move',
 				opacity: 0.6,
 				update: function() {
-					
+
 					$scope.$apply(function () {
 						$scope.sendOrderToServer();
 					});
-					
+
 				}
 			  });
 
@@ -95,17 +95,17 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		});
 	}
 	$scope.getAllAdminProductBundlelov();
-		
+
 	$scope.sendOrderToServer = function(){
-		
+
 		var order = [];
-		
+
 		// var token = $('meta[name="csrf-token"]').attr('content');
 		var page_length = parseInt($('select[name="bundlesTable_length"]').val());
 		var current_page = parseInt($('.paginate_button.current').text());
 
 		var postion_for = (current_page*page_length)-page_length;
-		
+
 		//  console.log(page_length,current_page);
 		$('tr.row1').each(function(index,element) {
 		  order.push({
@@ -115,7 +115,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			// position:index+1
 		  });
 		});
-		 
+
 
 		var data = {};
 	    data.order = order;
@@ -132,7 +132,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}).success(function(data, status, headers, config) {
 			toastr.success(data.msg, '', {timeOut: 3000})
 			$scope.getAllAdminProductBundlelov();
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -159,15 +159,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.bundle.P_15 = "";	//Discounted Amount
 		$scope.bundle.P_16 = "";	//Inv. Quantity
 		$scope.bundle.image = '';	//bundle image
-		
+
 		$("#p4").val('').trigger('change');
 		$("#p8").val('').trigger('change');
 		$("#p9").val('').trigger('change');
 		$("#p11").val('').trigger('change');
 	}
-	
+
 	$scope.addNew = function(){
-		
+
 		$scope.bundle={};
 		$scope.bundle.ID = "";
 		$scope.bundle.P_1 = "";		//Name
@@ -187,16 +187,16 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.bundle.P_15 = "";	//Discounted Amount
 		$scope.bundle.P_16 = "";	//Inv. Quantity
 		$scope.bundle.image = '';	//bundle image
-		
+
 		$("#p4").val('').trigger('change');
 //		$("#p8").val('').trigger('change');
 //		$("#p9").val('').trigger('change');
 //		$("#p11").val('').trigger('change');
-		
+
 //		$scope.product = {};
 		$scope.subCategoryLov = {};
 		$scope.subSubCategoryLov = {};
-		
+
 		$scope.editView = 1;
 	}
 	$scope.backToListing = function(){
@@ -204,27 +204,27 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.editView = 0;
 	}
 	$scope.saveProductBundleBasic = function(){
-		
+
 		var data = {};
 	    data.bundle = $scope.bundle;
 	    data.userId = userId;
-	    
+
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveAdminBundleProductBasicInfo",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.bundle.ID = data.ID;
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -232,14 +232,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.continouRecord = function(id){
-		
+
 		var data = {};
 	    data.bundleId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/editAdminBundleProduct",
@@ -248,20 +248,20 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.details != '' && data.details != null){
-				
+
 				if ($.fn.DataTable.isDataTable("#productsTable")) {
 					$('#productsTable').DataTable().clear().destroy();
 				}
-				
+
 				$scope.editView = 1;
 				$scope.bundle = data.details;
 				$scope.subCategoryLov = data.subCategory;
 				$scope.subSubCategoryLov = data.subSubCategory;
 
 				$scope.displayCollectionProducts = data.bundleLines;
-				
+
 				setTimeout(function(){
 					$("#productsTable").DataTable({
 						order: [],
@@ -271,7 +271,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			                      ]
 					});
 				}, 500);
-				
+
 				setTimeout(function(){
 					$("#p4").val($scope.bundle.P_4).trigger('change');
 					$("#p8").val($scope.bundle.P_8).trigger('change');
@@ -285,12 +285,12 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	}
 
 	$scope.deleteBundleImage = function(id){
-		
+
 		var data = {};
 	    data.bundleId = $scope.bundle.ID;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteBundleProductImage",
@@ -299,11 +299,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			toastr.success(data.msg, '', {timeOut: 3000})
-			
+
 			$scope.bundle.image = '';
-			
+
 		})
 		.error(function(data, status, headers, config) {
 		});
@@ -311,33 +311,33 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.product = {};
 	$scope.product.ID = '';
 	$scope.product.P_1 = '';
-	
+
 	$scope.addProduct = function(){
-		
+
 		if($scope.bundle.ID != ''){
-			
+
 			$scope.product = {};
 			$scope.product.ID = '';
 			$scope.product.P_1 = '';
-			
+
 			$("#bp1").val($scope.product.P_1).trigger('change');
 			$("#productsModal").modal('show');
-		
+
 		}else{
 			toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
 		}
 	}
 	$scope.closeProductModal = function(){
-		
+
 		$scope.product = {};
 		$scope.product.ID = '';
 		$scope.product.P_1 = '';
 		$("#bp1").val($scope.product.P_1).trigger('change');
 		$('#productsModal').modal('hide');
 	}
-	
+
 	$scope.saveBundleProductLine = function(){
-		
+
 		if($scope.bundle.ID == ''){
 			toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
 			return;
@@ -347,33 +347,33 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	    data.bundleId = $scope.bundle.ID;
 	    data.product = $scope.product;
 	    data.userId = userId;
-	    
+
     	var temp = $.param({details: data});
-    	
+
 		$http({
-			data: temp+"&"+$scope.tokenHash, 
+			data: temp+"&"+$scope.tokenHash,
 			url : site+"/saveAdminBundleProductLine",
 			method: "POST",
 			async: false,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
-				
+
 				$scope.closeProductModal();
 				$scope.continouRecord($scope.bundle.ID);
-				
+
 				// if ($.fn.DataTable.isDataTable("#productsTable")) {
 				// 	$('#productsTable').DataTable().clear().destroy();
 				// }
-				
+
 				$scope.getAllAdminProductBundlelov();
 
 				// $scope.displayCollectionProducts = data.bundleLines;
-				
+
 				// setTimeout(function(){
 				// 	$("#productsTable").DataTable({
 				// 		order: [],
@@ -383,7 +383,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			    //                   ]
 				// 	});
 				// }, 500);
-				
+
 			}else{
 				toastr.error(data.msg, '', {timeOut: 3000})
 			}
@@ -391,15 +391,15 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.deleteBundleLine = function(id){
-		
+
 		var data = {};
 	    data.bundleId = $scope.bundle.ID;
 	    data.bundleLineId = id;
 	    data.userId = userId;
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteBundleProductLine",
@@ -408,34 +408,34 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
-				
+
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.continouRecord($scope.bundle.ID);
-				
+
 			}else{
-			
+
 				$scope.alertDeleteMsg = data.msg;
 				$("#alertDel").modal('show');
 			}
-			
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
 
-	
+
 $scope.getSubCategoriesWrtCategory = function(){
 		console.log($scope.bundle.P_8);
 		if($scope.bundle.P_8 != null){
 			var data = {};
 		    data.category = $scope.bundle.P_8;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getSubCategoriesWrtCategory1",
@@ -444,9 +444,9 @@ $scope.getSubCategoriesWrtCategory = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				$scope.subCategoryLov = data.subCategory;
-				
+
 			})
 			.error(function(data, status, headers, config) {
 			});
@@ -455,14 +455,14 @@ $scope.getSubCategoriesWrtCategory = function(){
 		}
 	}
 	$scope.getSubSubCategoriesWrtSubCategory = function(){
-		
+
 		if($scope.bundle.P_9 != null){
 			var data = {};
 		    data.subcategory = $scope.bundle.P_9;
 		    data.userId = userId;
-		    
+
 	    	var temp = $.param({details: data});
-	    	
+
 			$http({
 				data: temp+"&"+$scope.tokenHash,
 				url : site+"/getSubSubCategoriesWrtSubCategory",
@@ -471,9 +471,9 @@ $scope.getSubCategoriesWrtCategory = function(){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 			}).success(function(data, status, headers, config) {
-					
+
 				$scope.subSubCategoryLov = data.subSubCategory;
-				
+
 			})
 			.error(function(data, status, headers, config) {
 			});
@@ -481,15 +481,15 @@ $scope.getSubCategoriesWrtCategory = function(){
 			$scope.subSubCategoryLov = {};
 		}
 	}
-	
+
 	$scope.changeStatusBundle = function(id){
-		
+
 		var data = {};
 	    data.recordId = id;
 	    data.userId = userId;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/changeStatusBundle",
@@ -508,7 +508,7 @@ $scope.getSubCategoriesWrtCategory = function(){
 			}
 		})
 		.error(function(data, status, headers, config) {
-			
+
 
 		});
 	}
@@ -517,7 +517,7 @@ $scope.getSubCategoriesWrtCategory = function(){
 	$scope.BundleModelId = '';
 
 	$scope.openAlertModel = function(id){
-		
+
 		$scope.BundleModelId = id;
 		$("#alertBundleDel").modal('show');
 
@@ -527,17 +527,17 @@ $scope.getSubCategoriesWrtCategory = function(){
 		$("#alertBundleDel").modal('hide');
 		$scope.alertDeleteMsg = '';
 		$scope.BundleModelId = '';
-		
+
 	}
 
 	$scope.deleteBundle = function(id){
-		
+
 		var data = {};
 	    data.recordId = $scope.BundleModelId;
 	    data.userId = userId;
 
     	var temp = $.param({details: data});
-    	
+
 		$http({
 			data: temp+"&"+$scope.tokenHash,
 			url : site+"/deleteSpecificBundle",
@@ -546,7 +546,7 @@ $scope.getSubCategoriesWrtCategory = function(){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-				
+
 			if(data.done == true || data.done == 'true'){
 
 				$("#alertBundleDel").modal('hide');
@@ -554,37 +554,37 @@ $scope.getSubCategoriesWrtCategory = function(){
 
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.getAllAdminProductBundlelov();
-				
+
 			}else{
-			
+
 				$scope.alertDeleteMsg = data.msg;
 				$("#alertDel").modal('show');
 			}
-			
-			
+
+
 		})
 		.error(function(data, status, headers, config) {
 		});
 	}
-	
+
 	$scope.closealertDeleteModal = function(id){
-		
+
 		$("#alertDel").modal('hide');
 		$scope.alertDeleteMsg = '';
-		
+
 	}
-	
+
 	$('#uploadattch').fileupload({
-		
+
  		add: function (e, data) {
- 		    
+
  			if($scope.bundle.ID == ""){
- 				
+
  				toastr.error('Save Basic Info first, then upload Images...', '', {timeOut: 3000})
  				return false;
- 			
+
  			}else{
- 				$.LoadingOverlay("show"); 
+ 				$.LoadingOverlay("show");
  				var jqXHR = data.submit();
  			}
  	    },
@@ -602,43 +602,43 @@ $scope.getSubCategoriesWrtCategory = function(){
  	    	setTimeout(function(){
 				$.LoadingOverlay("hide");
 			}, 500);
- 	    	
+
  	    	xhr.responseText = jQuery.parseJSON(xhr.responseText);
- 	      	
+
  	    	if(xhr.responseText[0] == 01){
- 	        	
+
  	      		toastr.error("Error: Invalid File Format", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 02){
- 	        	
+
  	      		toastr.error("Error : Unable To upload", '', {timeOut: 3000});
 
  	      	}else if(xhr.responseText[0] == 03){
- 	        
+
  	      		toastr.error("Error : Save Basic Info first, then upload Images...", '', {timeOut: 3000});
 
- 	      	}else if(xhr.responseText[0] == 04){
- 	        
+ 	      	}else if(xhr.responseText[0] == 05){
+
  	      		toastr.error("Error : Image dimension must be minimum 270 X 370", '', {timeOut: 3000});
 
  	      	}else{
 
  		  		toastr.success("Image Upload Successfully", '', {timeOut: 3000});
- 			    
+
  		  		$scope.$apply(function() {
  		  			$scope.bundle.image = xhr.responseText[2];
  		  		});
  		  	}
  	   	}
  	});
-	
-	
+
+
 })
 .config(function ($httpProvider, $provide) {
 	$provide.factory('httpInterceptor', function ($q, $rootScope) {
 		return {
 			'request': function (config) {
-                $.LoadingOverlay("show"); 
+                $.LoadingOverlay("show");
 
 				$rootScope.$broadcast('httpRequest', config);
 				return config || $q.when(config);
@@ -663,7 +663,7 @@ $scope.getSubCategoriesWrtCategory = function(){
 			},
 			'requestError': function (rejection) {
 				console.log("requestError");
-                $.LoadingOverlay("hide"); 
+                $.LoadingOverlay("hide");
 				$("div#error").html(rejection.data);
 				jQuery("#errorModal").modal('show');
 				$rootScope.$broadcast('httpRequestError', rejection);
@@ -685,9 +685,9 @@ $scope.getSubCategoriesWrtCategory = function(){
 })
 
 
-// 	$('#searchInListing').on("keyup", function (e)  {     
+// 	$('#searchInListing').on("keyup", function (e)  {
 //            var tr = $('.identify');
-//            
+//
 //            if ($(this).val().length >= 1) {//character limit in search box.
 //                var noElem = true;
 //                var val = $.trim(this.value).toLowerCase();
@@ -712,13 +712,13 @@ $scope.getSubCategoriesWrtCategory = function(){
 //                else{
 //                }
 ////    	            	$('#tabContentNoData').hide();
-//                       
+//
 //            }
 //        });
 
 
 
 
-		
-		
-		
+
+
+

@@ -295,9 +295,10 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}
 	}
     $scope.levelToBeDeleted = '';
-    $scope.confirmDeleteLevel = function ($id){
-        $scope.levelToBeDeleted = $id;
-        $('#alertDelLevel').modal('show');
+    $scope.confirmDeleteLevel1TypeForNo = function (id){
+        console.log(id);
+        $scope.levelToBeDeleted = id;
+        $('#alertDelLevel1Record').modal('show');
     }
 	$scope.deleteRecordLevel1Type = function(){
 
@@ -320,7 +321,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 				toastr.success(data.msg, '', {timeOut: 3000})
                 $levelToBeDeleted = '';
-                $('#alertDelLevel').modal('hide');
+                $('#alertDelLevel1Record').modal('hide');
 
 				$("#addLevelOneLines_container").slideUp("slow");
 

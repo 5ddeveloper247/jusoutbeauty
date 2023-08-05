@@ -267,7 +267,10 @@ class ProductModel extends Model
     }
     public function getProductsLovWrtCatSubCatSubSubCatIds($catId='', $subCatIds=array(), $subSubCatIds=array()){
     	DB::enableQueryLog();
+        // dd($subCatIds);
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
+        // ->where('a.QUANTITY','!=','0')
+        // ->whereNotNull('a.QUANTITY')
     	->where('a.STATUS','active')
     	->where('a.CATEGORY_ID',$catId)
     	->where('a.IS_DELETED', 0)
@@ -275,14 +278,17 @@ class ProductModel extends Model
     	->orWhereIn('a.SUB_CATEGORY_ID',$subSubCatIds)
     	->orderBy('a.PRODUCT_ID','desc')
     	->get();
+        // foreach()
+        // dd($result);
 //     	$query = DB::getQueryLog(); dd($query);
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['id'] = $row->PRODUCT_ID;
     		$arrRes[$i]['name'] = $row->NAME;
+            $arrRes[$i]['Quantity'] = $row->QUANTITY;
     		$i++;
     	}
-
+        // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
     }
 

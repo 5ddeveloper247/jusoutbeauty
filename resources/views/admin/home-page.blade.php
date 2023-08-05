@@ -49,10 +49,10 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 		           			{{ csrf_field() }}
            					<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 							<input type="hidden" id="sourceId" name="sourceId" value="">
-							<input type="hidden" id="sourceCode" name="sourceCode" value="BANNER_IMG"> 
+							<input type="hidden" id="sourceCode" name="sourceCode" value="BANNER_IMG">
 							<input type="file" id="uploadattl" name="uploadattl" class="file-input" style="display: none;">
 						</form>
-														
+
 						<div class="tab-content tabcontent-border">
 							<div class="tab-pane fade show active" id="banner_1" role="tabpanel">
 								<div class="pt-4">
@@ -61,7 +61,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_title_1"><b>Title</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_title_1"><b>Title</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_title_1" placeholder="Enter a title">
 													</div>
 												</div>
@@ -69,13 +69,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btntext_1"><b>Button Text</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_btntext_1"><b>Button Text</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_btntext_1" placeholder="Button Text">
 													</div>
 												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btnlink_1"><b>Button Link</b> </label> 
+														<label class="col-form-label" for="b_btnlink_1"><b>Button Link</b> </label>
 														<input type="text" class="form-control" id="b_btnlink_1" placeholder="Button Link">
 													</div>
 												</div>
@@ -93,13 +93,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 													<div class="row register-new-product-picture-para">
 														<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1(1);" style="">
 															<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-															<p>1170 X 880</p>
+															<p>Min : 1170 X 880</p>
 														</div>
 														<div class="col-sm-9">
 															<input type="hidden" id="b_imageDownPath_1" value="">
 															<input type="hidden" id="b_imagePath_1" value="">
 															<div class="row" id="p_att_1">
-																
+
 															</div>
 														</div>
 													</div>
@@ -119,7 +119,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_title_2"><b>Title</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_title_2"><b>Title</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_title_2" placeholder="Enter a title">
 													</div>
 												</div>
@@ -127,13 +127,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btntext_2"><b>Button Text</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_btntext_2"><b>Button Text</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_btntext_2" name="btntext1" placeholder="Button Text">
 													</div>
 												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btnlink_2"><b>Button Link</b> </label> 
+														<label class="col-form-label" for="b_btnlink_2"><b>Button Link</b> </label>
 														<input type="text" class="form-control" id="b_btnlink_2" placeholder="Button Link">
 													</div>
 												</div>
@@ -151,21 +151,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 													<div class="row register-new-product-picture-para">
 														<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1(2);" style="">
 															<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-															<p>1170 X 880</p>
+															<p>Min : 1170 X 880</p>
 														</div>
 														<div class="col-sm-9">
 															<input type="hidden" id="b_imageDownPath_2" value="">
 															<input type="hidden" id="b_imagePath_2" value="">
 															<div class="row" id="p_att_2">
-																
+
 															</div>
 														</div>
-														
-				
+
+
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="save-admin-center mt-3">
 												<button type="button" class="btn btn-rounded btn-success" ng-click="saveHeadertabsData(2);">Save</button>
 											</div>
@@ -180,7 +180,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_title_3"><b>Title</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_title_3"><b>Title</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_title_3" placeholder="Enter a title">
 													</div>
 												</div>
@@ -188,13 +188,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btntext_3"><b>Button Text</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_btntext_3"><b>Button Text</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_btntext_3" placeholder="Button Text">
 													</div>
 												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btnlink_3"><b>Button Link</b> </label> 
+														<label class="col-form-label" for="b_btnlink_3"><b>Button Link</b> </label>
 														<input type="text" class="form-control" id="b_btnlink_3" placeholder="Button Link">
 													</div>
 												</div>
@@ -212,21 +212,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 													<div class="row register-new-product-picture-para">
 														<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1(3);" style="">
 															<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-															<p>1170 X 880</p>
+															<p>Min : 1170 X 880</p>
 														</div>
 														<div class="col-sm-9">
 															<input type="hidden" id="b_imageDownPath_3" value="">
 															<input type="hidden" id="b_imagePath_3" value="">
 															<div class="row" id="p_att_3">
-																
+
 															</div>
 														</div>
-														
-				
+
+
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="save-admin-center mt-3">
 												<button type="button" class="btn btn-rounded btn-success" ng-click="saveHeadertabsData(3);">Save</button>
 											</div>
@@ -241,7 +241,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_title_4"><b>Title</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_title_4"><b>Title</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_title_4" placeholder="Enter a title">
 													</div>
 												</div>
@@ -249,13 +249,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btntext_4"><b>Button Text</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_btntext_4"><b>Button Text</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_btntext_4" placeholder="Button Text">
 													</div>
 												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btnlink_4"><b>Button Link</b> </label> 
+														<label class="col-form-label" for="b_btnlink_4"><b>Button Link</b> </label>
 														<input type="text" class="form-control" id="b_btnlink_4" placeholder="Button Link">
 													</div>
 												</div>
@@ -273,21 +273,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 													<div class="row register-new-product-picture-para">
 														<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1(4);" style="">
 															<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-															<p>1170 X 880</p>
+															<p>Min : 1170 X 880</p>
 														</div>
 														<div class="col-sm-9">
 															<input type="hidden" id="b_imageDownPath_4" value="">
 															<input type="hidden" id="b_imagePath_4" value="">
 															<div class="row" id="p_att_4">
-																
+
 															</div>
 														</div>
-														
-				
+
+
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="save-admin-center mt-3">
 												<button type="button" class="btn btn-rounded btn-success" ng-click="saveHeadertabsData(4);">Save</button>
 											</div>
@@ -302,7 +302,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_title_5"><b>Title</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_title_5"><b>Title</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_title_5" placeholder="Enter a title">
 													</div>
 												</div>
@@ -310,13 +310,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btntext_5"><b>Button Text</b><span class="text-danger">*</span> </label> 
+														<label class="col-form-label" for="b_btntext_5"><b>Button Text</b><span class="text-danger">*</span> </label>
 														<input type="text" class="form-control" id="b_btntext_5" placeholder="Button Text">
 													</div>
 												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-form-label" for="b_btnlink_5"><b>Button Link</b> </label> 
+														<label class="col-form-label" for="b_btnlink_5"><b>Button Link</b> </label>
 														<input type="text" class="form-control" id="b_btnlink_5" placeholder="Button Link">
 													</div>
 												</div>
@@ -334,21 +334,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 													<div class="row register-new-product-picture-para">
 														<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1(5);" style="">
 															<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-															<p>1170 X 880</p>
+															<p>Min : 1170 X 880</p>
 														</div>
 														<div class="col-sm-9">
 															<input type="hidden" id="b_imageDownPath_5" value="">
 															<input type="hidden" id="b_imagePath_5" value="">
 															<div class="row" id="p_att_5">
-																
+
 															</div>
 														</div>
-														
-				
+
+
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="save-admin-center mt-3">
 												<button type="button" class="btn btn-rounded btn-success" ng-click="saveHeadertabsData(5);">Save</button>
 											</div>
@@ -369,10 +369,10 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 		    {{ csrf_field() }}
            	<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 			<input type="hidden" id="sourceId1" name="sourceId" value="">
-			<input type="hidden" id="sourceCode1" name="sourceCode" value="BEST_SELLER"> 
+			<input type="hidden" id="sourceCode1" name="sourceCode" value="BEST_SELLER">
 			<input type="file" id="uploadatt11" name="uploadattl" class="file-input" style="display: none;">
 		</form>
-						
+
 		<div class="row">
 			<div class="col-xl-12 col-xxl-12">
 				<div class="card">
@@ -385,21 +385,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label class="col-form-label" for="text"><b>Title</b> <span class="text-danger">*</span> </label> 
+											<label class="col-form-label" for="text"><b>Title</b> <span class="text-danger">*</span> </label>
 											<input type="text" class="form-control" id="bs_title_1" placeholder="Enter a text">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label class="col-form-label" for="snl"><b>Heading</b> <span class="text-danger">*</span> </label> 
+											<label class="col-form-label" for="snl"><b>Heading</b> <span class="text-danger">*</span> </label>
 											<input type="text" class="form-control" id="bs_heading_1" placeholder="Enter a Shop now link">
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="row">
 									<div class="col-sm-6">
-										<label for="product">Product</label> 
+										<label for="product">Product</label>
 										<select class="form-control" id="bs_product_1" >
 											<option value="">--SELECT--</option>
 											<option ng-repeat="row in productLov" value="@{{row.id}}">@{{row.name}}</option>
@@ -411,13 +411,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<div class="row register-new-product-picture-para">
 											<div class="col-sm-2 image-overlay upload-photo-box" id="" onclick="form2(1);" style="">
 												<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-												<p>630 X 580</p>
+												<p>Min : 630 X 580</p>
 											</div>
 											<div class="col-sm-9">
 												<input type="hidden" id="bs_imageDownPath_1" value="">
 												<input type="hidden" id="bs_imagePath_1" value="">
 												<div class="row" id="p_att_bs_1">
-													
+
 												</div>
 											</div>
 										</div>
@@ -447,21 +447,21 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label class="col-form-label" for="bs_title_2"><b>Title</b> <span class="text-danger">*</span> </label> 
+											<label class="col-form-label" for="bs_title_2"><b>Title</b> <span class="text-danger">*</span> </label>
 											<input type="text" class="form-control" id="bs_title_2" placeholder="Enter a text">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label class="col-form-label" for="bs_heading_2"><b>Heading</b> <span class="text-danger">*</span> </label> 
+											<label class="col-form-label" for="bs_heading_2"><b>Heading</b> <span class="text-danger">*</span> </label>
 											<input type="text" class="form-control" id="bs_heading_2" placeholder="Enter a Shop now link">
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="row">
 									<div class="col-sm-6">
-										<label for="product">Product</label> 
+										<label for="product">Product</label>
 										<select class="form-control" id="bs_product_2" >
 											<option value="">--SELECT--</option>
 											<option ng-repeat="row in productLov" value="@{{row.id}}">@{{row.name}}</option>
@@ -473,13 +473,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<div class="row register-new-product-picture-para">
 											<div class="col-sm-2 image-overlay upload-photo-box" id="" onclick="form2(2);" style="">
 												<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-												<p>630 X 580</p>
+												<p>Min : 630 X 580</p>
 											</div>
 											<div class="col-sm-9">
 												<input type="hidden" id="bs_imageDownPath_2" value="">
 												<input type="hidden" id="bs_imagePath_2" value="">
 												<div class="row" id="p_att_bs_2">
-													
+
 												</div>
 											</div>
 										</div>
@@ -509,7 +509,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="t1"> Product Category </label> 
+										<label for="t1"> Product Category </label>
 										<select class="form-control" id="t1" ng-model="trending['T_1']"
 												ng-options="item as item.name for item in categoryLov track by item.id"
 												ng-change="getproductsfromcategory();">
@@ -519,7 +519,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="t2"> Product </label> 
+										<label for="t2"> Product </label>
 										<select class="form-control" id="t2" ng-model="trending['T_2']"
 												ng-options="item as item.name for item in categoryProductLov track by item.id">
 											<option value="">--SELECT--</option>
@@ -589,13 +589,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="product_category"> Title </label> 
+										<label for="product_category"> Title </label>
 										<input type="text" class="form-control" id="to1" ng-model="offer['T_1']">
 									</div>
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="t1"> Product Category </label> 
+										<label for="t1"> Product Category </label>
 										<select class="form-control" id="to2" ng-model="offer['T_2']"
 												ng-options="item as item.name for item in categoryLov track by item.id"
 												ng-change="getproductsfromcategory2();">
@@ -605,7 +605,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="t2"> Product </label> 
+										<label for="t2"> Product </label>
 										<select class="form-control" id="to3" ng-model="offer['T_3']"
 												ng-options="item as item.name for item in categoryProductOfferLov track by item.id">
 											<option value="">--SELECT--</option>
@@ -614,14 +614,14 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="offer_duration"> Offer End Time </label> 
+										<label for="offer_duration"> Offer End Time </label>
 										<input type="datetime-local" class="form-control" id="to4" ng-model="offer['T_4']">
 
 									</div>
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="product_category"> Description </label> 
+										<label for="product_category"> Description </label>
 										<input type="text" class="form-control" id="to5" ng-model="offer['T_5']">
 									</div>
 								</div>
@@ -691,7 +691,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="t1"> Product Category </label> 
+										<label for="t1"> Product Category </label>
 										<select class="form-control" id="t11" ng-model="trending1['T_1']"
 												ng-options="item as item.name for item in categoryLov track by item.id"
 												ng-change="getproductsfromcategory1();">
@@ -701,7 +701,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label for="t2"> Product </label> 
+										<label for="t2"> Product </label>
 										<select class="form-control" id="t12" ng-model="trending1['T_2']"
 												ng-options="item as item.name for item in categoryProductfyLov track by item.id">
 											<option value="">--SELECT--</option>
@@ -762,7 +762,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
 	</div>
 
-	
+
 
 
 	<!-- --------------- ADD Created for you Product Image -->
@@ -880,7 +880,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										</div>
 									</td>
 								</tr>
-								
+
 
 							</tbody>
 						</table>
@@ -956,5 +956,5 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 		    $("#sourceId1").val(flag);
 	    	$("#uploadatt11").click();
 	    }
-	   
+
    	</script>

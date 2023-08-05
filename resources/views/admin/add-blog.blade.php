@@ -82,7 +82,7 @@
                                                                           style="">
                                                                           <img src="{{ url('/assets-admin') }}/images/admin/upload.svg"
                                                                               alt="" width="50">
-                                                                          <p>620 X 620</p>
+                                                                          <p>Min : 400 X 650</p>
                                                                       </div>
                                                                       <div class="col-sm-9">
                                                                           <div class="row" id="p_att_sin">
@@ -252,7 +252,7 @@
                                                         <div class="row register-new-product-picture-para">
                                                             <div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1();" >
                                                                 <img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-                                                                <p>390 X 150</p>
+                                                                <p>Min : 390 X 150</p>
                                                             </div>
                                                             <div class="col-sm-9">
                                                                 <div class="row" id="p_att">
@@ -281,7 +281,7 @@
                                                         <div class="row register-new-product-picture-para">
                                                             <div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form2();" >
                                                                 <img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-                                                                <p>620 X 620</p>
+                                                                <p>Min : 620 X 620</p>
                                                             </div>
                                                             <div class="col-sm-9">
                                                                 <div class="row" id="p_att1">

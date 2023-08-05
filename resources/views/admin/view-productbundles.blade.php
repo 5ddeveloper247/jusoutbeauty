@@ -292,7 +292,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														<div class="row register-new-product-picture-para">
 															<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1();" style="">
 																<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-																<p>270 X 370</p>
+																<p>Min : 270 X 370</p>
 															</div>
 															<div class="col-sm-9">
 																<div class="row" id="p_att">

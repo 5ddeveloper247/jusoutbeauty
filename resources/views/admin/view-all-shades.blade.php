@@ -10,7 +10,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid pt-0" ng-show="editView == '0'">
-                
+
                 <div class="row">
                 	<div class="col-10">
                 		<div class="page-titles pt-0 pb-0 mb-0">
@@ -25,7 +25,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                    	</div>
                 </div>
                 <div class="row">
-                    
+
 					<div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -53,7 +53,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														<i class="fa fa-circle text-success mr-1"></i>
 														Active
 													</span>
-													<span class="badge light badge-danger" ng-if="row.STATUS != 'active'"> 
+													<span class="badge light badge-danger" ng-if="row.STATUS != 'active'">
 														<i class="fa fa-circle text-danger mr-1"></i>
 														InActive
 													</span>
@@ -71,10 +71,10 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 <!-- 															<a class="dropdown-item" href="#">View Details</a> -->
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
-                                            
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -83,7 +83,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                     </div>
 				</div>
             </div>
-            
+
             <div class="container-fluid pt-0" ng-show="editView == '1'">
                 <div class="page-titles pt-0 pb-0 mb-0">
 					<ol class="breadcrumb">
@@ -105,12 +105,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 											<div class="col-sm-5">
 												<div class="form-group">
 
-													<label class="col-form-label" for="Title"><b>Shade Name</b> <span class="text-danger">*</span> </label> 
+													<label class="col-form-label" for="Title"><b>Shade Name</b> <span class="text-danger">*</span> </label>
 													<input type="text" class="form-control" id="title" ng-model="shades['P_1']" placeholder="Enter a Shade Name...">
 
 												</div>
 											</div>
-											
+
 										</div>
 
 									<div class="row">
@@ -123,22 +123,22 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
 
 									<div class=" ml-0 ml-sm-12 ml-sm-0 mt-3">
-                                    
+
 	                                    <div class="compose-content">
 	                                        <form action="#">
-	                                          
+
 	                                        </form>
 	                                        <h5 class="mb-4"><i class="fa fa-paperclip"></i> Attatchment</h5>
-	                                        
+
 	                                        <div class="col-sm-12 col-12 register-new-product-picture-para-box">
 												<div class="row register-new-product-picture-para">
 													<div class="col-sm-2 image-overlay upload-photo-box" id="imageAttach-btn" onclick="form1();" style="">
 														<img src="{{ url('/assets-admin') }}/images/admin/upload.svg" alt="" width="50">
-														<p>24 X 24</p>
+														<p>Min : 24 X 24</p>
 													</div>
 													<div class="col-sm-9">
 														<div class="row" id="p_att">
-															
+
 														</div>
 													</div>
 													<form class="" id="uploadattch" method="POST" action="uploadShadesAttachment" enctype="multipart/form-data">
@@ -146,13 +146,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 	           											{{ csrf_field() }}
 	           											<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 														<input type="hidden" id="sourceId" name="sourceId" value="@{{shades.ID}}">
-														<input type="hidden" id="sourceCode" name="sourceCode" value="SHADES_IMG"> 
+														<input type="hidden" id="sourceCode" name="sourceCode" value="SHADES_IMG">
 														<input type="file" id="uploadattl" name="uploadattl" class="file-input" style="display: none;">
 													</form>
-			
+
 												</div>
 											</div>
-											
+
 	                                    </div>
 	                                    <div class="text-left mt-4 mb-2">
 	                                        <button class="btn btn-primary btn-sl-sm mr-2" type="button" ng-click="saveShade();"><span class="mr-2"><i class="fa fa-paper-plane"></i></span>Save</button>
@@ -164,10 +164,10 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
             <div class="modal fade" id="alertDel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content align-center-verticle">
@@ -194,7 +194,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 						<div class="alert alert-danger" role="alert">
 							<p class="m-0 text-center">This Shade will be deleted from product as well</p>
 						  </div>
-					  
+
 					  <h4 class="font-weight-bold text-center">Are you Sure you want to delete?</h4>
 					</div>
 					<div class="modal-footer" >
@@ -206,9 +206,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 			</div>
 		</div>
         </div>
-		
-		
-		
+
+
+
 		<!--**********************************
             Content body end
         ***********************************-->
@@ -219,12 +219,12 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
     <script src="{{ url('/assets-admin') }}/customjs/script_adminshades.js?v={{time()}}"></script>
-    
+
     <script>
 
     function form1(){
     	$("#uploadattl").click();
     }
-    
-	
+
+
     </script>
