@@ -599,8 +599,9 @@ $userId = session('userId');
                                             <div class="card-body pt-4 px-0 pb-0"
                                           data-type="">
                                                 <a href="javascript:;"
-                                                    class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary toShopListing"
-                                                    data-type="{{ $trend['CATEGORY_SLUG'] }}" data-categorySlug="{{ $trend['SUB_CATEGORY_SLUG'] }}"
+                                                    class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
+                                                    data-id="{{ $trend['CATEGORY_ID'] }}"
+                                                    data-type="CATEGORY" data-categorySlug="{{ $trend['CATEGORY_SLUG'] }}"
                                                     >
                                                     {{ $trend['CATEGORY_NAME'] }}</a>
                                                 <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375">
@@ -777,15 +778,14 @@ $userId = session('userId');
                                                 data-quantity='1'>+ Quick Add</a> -->
                                         </div>
                                     </div>
-                                    <div class="card-body pt-4 px-0 pb-0 productdetail"
-                                    data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
-                                    data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
-                                    data-name="{{ $for['SLUG'] }}" data-type="">
+                                    <div class="card-body pt-4 px-0 pb-0">
                                         <a href="javascript:;"
-                                            class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
+                                            class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary" data-id="{{ $for['CATEGORY_ID'] }}" data-type="CATEGORY" data-categorySlug="{{ $for['CATEGORY_SLUG'] }}">
                                             {{ $for['CATEGORY_NAME'] }}</a>
                                         <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 ellipsis-m">
-                                            <a href="javascript:;">{{ $for['PRODUCT_NAME'] }}</a>
+                                            <a href="javascript:;" class="productdetail" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
+                                            data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
+                                            data-name="{{ $for['SLUG'] }}" data-type="">{{ $for['PRODUCT_NAME'] }}</a>
                                         </h3>
                                         <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }}
                                         </p>
@@ -923,8 +923,8 @@ $userId = session('userId');
                                         <p class="mb-0 card-text font-weight-500 part_head text-uppercase">{{ $bestSeller['TITLE'] }}</p>
                                         <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">{{ $bestSeller['HEADING'] }}</h5>
                                         <div class="mt-auto">
-                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_headtoShopListing"
-                                            data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
+                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head toShopListing"
+                                            data-id="5" data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
                                         </div>
                                     </div>
                                 </a>
@@ -950,7 +950,7 @@ $userId = session('userId');
                                     <div class="mt-auto">
                                         <button type="button"
                                             class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head toShopListing"
-                                            data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
+                                            data-id="5" data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
                                     </div>
                                 </div>
                             </a>

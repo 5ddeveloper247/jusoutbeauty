@@ -213,16 +213,17 @@ $userId = session('userId');
 
                                                                     <div class="col-12 col-lg-12 product mb-8"
                                                                         data-animate="fadeInUp">
-                                                                        <div class="card border-0 productdetail"
-                                                                        data-id="{{ $product['PRODUCT_ID'] }}"
-                                                                        data-type="{{ $product['CATEGORY_NAME'] }}"
-                                                                        data-category="{{ $product['CATEGORY_SLUG'] }}"
-                                                                        data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
-                                                                        data-name="{{ $product['SLUG'] }}">
+                                                                        <div class="card border-0">
                                                                             <div
                                                                                 class="position-relative hover-zoom-in ">
                                                                                 <a href="javascript:;"
-                                                                                    class="d-block overflow-hidden">
+                                                                                    class="d-block overflow-hidden productdetail"
+                                                                                    data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                    data-type="{{ $product['CATEGORY_NAME'] }}"
+                                                                                    data-category="{{ $product['CATEGORY_SLUG'] }}"
+                                                                                    data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
+                                                                                    data-name="{{ $product['SLUG'] }}"
+                                                                                    >
                                                                                     <!-- {{ url('/product-detail') }} -->
                                                                                     <img src="{{ $product['primaryImage'] }}"
                                                                                         alt="Product 01"
@@ -247,13 +248,18 @@ $userId = session('userId');
                                                                                 </div>
                                                                                 <div class="card-body pt-4 px-0 pb-0">
                                                                                     <a href="javascript:;"
-                                                                                        class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
+                                                                                        class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
+                                                                                        data-id="{{ $product['CATEGORY_ID'] }}" data-type="CATEGORY" data-categoryslug="{{ $product['CATEGORY_SLUG'] }}">
                                                                                         {{ $product['CATEGORY_NAME'] }}</a>
                                                                                     <!-- {{ url('/store') }} -->
                                                                                     <h3
                                                                                         class="card-title fs-16 font-weight-500 mb-1 lh-14375">
                                                                                         <a
-                                                                                            href="javascript:;">{{ $product['NAME'] }}</a>
+                                                                                            href="javascript:;" class="productdetail" data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                            data-type="{{ $product['CATEGORY_NAME'] }}"
+                                                                                            data-category="{{ $product['CATEGORY_SLUG'] }}"
+                                                                                            data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
+                                                                                            data-name="{{ $product['SLUG'] }}">{{ $product['NAME'] }}</a>
                                                                                         <!-- {{ url('/product-detail') }} -->
                                                                                     </h3>
                                                                                 </div>
@@ -335,16 +341,15 @@ $userId = session('userId');
                                                                 <div class="col-4 h-100">
 
                                                                     <div class="col-12 col-lg-12 product mb-8" data-animate="fadeInUp">
-                                                                        <div class="card border-0 productdetail"
-                                                                            data-id="{{ $product['PRODUCT_ID'] }}"
-                                                                            data-type="{{ $product['CATEGORY_NAME'] }}"
-                                                                            data-category="{{ $product['CATEGORY_SLUG'] }}"
-                                                                            data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
-                                                                            data-name="{{ $product['SLUG'] }}"
-                                                                             >
+                                                                        <div class="card border-0">
                                                                             <div
                                                                                 class="position-relative hover-zoom-in">
-                                                                                <a href="javascript:;"
+                                                                                <a href="javascript:;" class="productdetail"
+                                                                                data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                data-type="{{ $product['CATEGORY_NAME'] }}"
+                                                                                data-category="{{ $product['CATEGORY_SLUG'] }}"
+                                                                                data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
+                                                                                data-name="{{ $product['SLUG'] }}"
                                                                                     class="d-block overflow-hidden">
                                                                                     <!-- {{ url('/product-detail') }} -->
                                                                                     <img src="{{ $product['primaryImage'] }}"
@@ -370,13 +375,18 @@ $userId = session('userId');
                                                                                 </div>
                                                                                 <div class="card-body pt-4 px-0 pb-0">
                                                                                     <a href="javascript:;"
-                                                                                        class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
+                                                                                        class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
+                                                                                        data-id="{{ $product['CATEGORY_ID'] }}" data-type="CATEGORY" data-categoryslug="{{ $product['CATEGORY_SLUG'] }}">
                                                                                         {{ $product['CATEGORY_NAME'] }}</a>
                                                                                     <!-- {{ url('/store') }} -->
                                                                                     <h3
                                                                                         class="card-title fs-16 font-weight-500 mb-1 lh-14375">
                                                                                         <a
-                                                                                            href="javascript:;">{{ $product['NAME'] }}</a>
+                                                                                            href="javascript:;" class="productdetail" data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                            data-type="{{ $product['CATEGORY_NAME'] }}"
+                                                                                            data-category="{{ $product['CATEGORY_SLUG'] }}"
+                                                                                            data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
+                                                                                            data-name="{{ $product['SLUG'] }}">{{ $product['NAME'] }}</a>
                                                                                         <!-- {{ url('/product-detail') }} -->
                                                                                     </h3>
                                                                                 </div>

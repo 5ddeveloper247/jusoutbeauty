@@ -3086,6 +3086,18 @@ class HomeController extends Controller
    				echo json_encode ( $arrRes );
    				die ();
    			}
+            if (ctype_digit($data['A_1'])) {
+                $arrRes ['done'] = false;
+                $arrRes ['msg'] = 'First Name must be alphabetic or alphanumeric';
+                echo json_encode ( $arrRes );
+                die ();
+            }
+            if (ctype_digit($data['A_2'])) {
+                $arrRes ['done'] = false;
+                $arrRes ['msg'] = 'Last Name must be alphabetic or alphanumeric';
+                echo json_encode ( $arrRes );
+                die ();
+            }
    			if ($data['A_3'] == '') {
    				$arrRes ['done'] = false;
    				$arrRes ['msg'] = 'Email is required.';

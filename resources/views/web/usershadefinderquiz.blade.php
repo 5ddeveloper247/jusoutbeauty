@@ -278,7 +278,11 @@ var site = '<?php echo session('site');?>';
 											</div>
 											<div class="card-body pt-4 px-0 pb-0">
 
-												<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 productdetail" data-id="@{{row.PRODUCT_ID}}" data-type="@{{row.CATEGORY_NAME}}">
+												<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 productdetail"
+                                                data-id="@{{row.PRODUCT_ID}}"
+                                                data-category="@{{ row.CATEGORY_SLUG }}"
+                                                data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                                data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
 													<a href="javascript:;">@{{row.NAME}}</a>
 												</h3>
 
@@ -358,12 +362,15 @@ var site = '<?php echo session('site');?>';
                                                     >Out Of Stock</a>
 											</div>
 										</div>
-										<div class="card-body pt-4 px-0 pb-0 text-left">
-											<a href="store.html"
+										<div class="card-body pt-4 px-0 pb-0 text-left productdetail" data-id="@{{row.PRODUCT_ID}}"
+                                        data-category="@{{ row.CATEGORY_SLUG }}"
+                                        data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                        data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
+											<a href="javascript:;"
 												class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
 												@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
 
-											<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375">
+											<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 cursor-pointer">
 												<a class="productdetail"
                                                 data-id="@{{row.PRODUCT_ID}}"
                                                 data-category="@{{ row.CATEGORY_SLUG }}"

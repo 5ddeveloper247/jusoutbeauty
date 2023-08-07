@@ -38,8 +38,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                          	<label><b>Order Status</b><span class="text-danger">*</span></label>
                                          	<select class="form-control" id="search_2" ng-model="search['S_2']" >
                                             	<option value="">--SELECT--</option>
-                                            	<option value="shipped">Shipped</option>
-                                            	<option value="delivered">Delivered</option>
+                                            	<option value="SHIPPED">SHIPPED</option>
+                                            	<option value="DELIVERED">DELIVERED</option>
                                          	</select>
                                      	</div>
                                    	</div>

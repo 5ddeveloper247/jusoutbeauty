@@ -11,7 +11,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 $( document ).ready(function() {
     // $(".slider").not('.instafeed_slider').slick();
 
-	fetch('https://graph.instagram.com/me/media?fields=media_count,media_type,permalink,media_url&&access_token=IGQVJYalJoQUpSc3JrcEE3elZAaRWRLdHNKQmZAPUlB1ZAVc1TGR4bDh2WV9aV0diTGtjQ0lPSGdkelVpSVNTSVhWQWg1UFRFbU8zRTJ5NmVxOWJkZAG5OSVNLb00wdUFaOG44WnpGSENiQ0N2MmtJUHllWAZDZD')
+	fetch('https://graph.instagram.com/me/media?fields=media_count,media_type,permalink,media_url&&access_token=IGQVJWcUdGSXZARM2ZAGN3pmU3hZARmVmTGJKTXdpOGxCRjM5RktFMUtBNzNuR0pHTGt6RTJ2ZAG5xN1IwbjNFbHR4b0pYMjAtT25vRG0taUxBcmtqY09fUlZAiVmE1UEFfUWFoU2xYODVfZAGxsa2hXZATl4bwZDZD')
     .then((res)=> res.json())
     .then((data) =>{
     	console.log(data);

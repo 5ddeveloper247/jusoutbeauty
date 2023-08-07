@@ -384,7 +384,11 @@ use Illuminate\Support\Str;
                                                     data-name="{{ $StepsName['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">Add To Cart</a>
                                             </div>
                                         </div>
-                                        <div class="card-body pt-4 px-0 pb-0 productdetail" data-id="{{ $StepsName['PRODUCT_ID'] }}">
+                                        <div class="card-body pt-4 px-0 pb-0 productdetail"
+                                                data-id="{{ $StepsName['PRODUCT_ID'] }}"
+                                                data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
+                                                data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
+                                                data-name="<?= $StepsName['SLUG'] ?>" data-type="<?= $StepsName['CATEGORY_NAME'] ?>" >
                                             <a href="javascript:;"
                                                 class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary ng-binding">
                                                 STEP {{ $i++ }} </a>

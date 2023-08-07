@@ -2205,9 +2205,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<i class="fas fa-star" style="<?= $recent['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
 													</li>
 												</ul>
-												<div class="d-flex align-items-center mb-2 productdetail" data-id="<?= $recent['PRODUCT_ID']?>">
+												<div class="d-flex align-items-center mb-2" data-id="<?= $recent['PRODUCT_ID']?>">
 													<h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-														<a href="javascript:;"><?= $recent['NAME'];?></a>
+														<a href="javascript:;" class="productdetail"
+                                                        data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                        data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                        data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                        data-name="<?= $recent['SLUG'] ?>"
+                                                        ><?= $recent['NAME'];?></a>
 													</h3>
 													<p class="fs-15 text-primary mb-0 ml-auto">
 														<span class="text-line-through text-body mr-1"></span>$<?= $recent['UNIT_PRICE'];?>
@@ -2456,10 +2461,15 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                                     style="<?= $recent['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
                                             </li>
                                         </ul>
-                                        <div class="d-flex align-items-center mb-2 productdetail"
+                                        <div class="d-flex align-items-center mb-2 "
                                             data-id="<?= $recent['PRODUCT_ID'] ?>">
                                             <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                <a href="javascript:;"><?= $recent['NAME'] ?></a>
+                                                <a href="javascript:;" class="productdetail"
+                                                data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                data-name="<?= $recent['SLUG'] ?>"
+                                                ><?= $recent['NAME'] ?></a>
                                             </h3>
                                             <p class="fs-15 text-primary mb-0 ml-auto">
                                                 <span

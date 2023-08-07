@@ -1805,13 +1805,13 @@
                                                     style="<?= $recommand['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
                                             </li>
                                         </ul>
-                                        <div class="d-flex align-items-center mb-2 productdetail"
-                                            data-id="<?= $recommand['PRODUCT_ID'] ?>"
-                                            data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
-                                            data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
-                                            data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATEGORY_NAME'] ?>">
+                                        <div class="d-flex align-items-center mb-2">
                                             <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                <a href="javascript:;"><?= $recommand['NAME'] ?></a>
+                                                <a href="javascript:;" class="productdetail"
+                                                data-id="<?= $recommand['PRODUCT_ID'] ?>"
+                                                data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
+                                                data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
+                                                data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATEGORY_NAME'] ?>"><?= $recommand['NAME'] ?></a>
                                             </h3>
                                             <p class="fs-15 text-primary mb-0 ml-auto">
                                                 <span
@@ -2078,14 +2078,15 @@
                                                     style="<?= $recent['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
                                             </li>
                                         </ul>
-                                        <div class="d-flex align-items-center mb-2 productdetail"
-                                            data-id="<?= $recent['PRODUCT_ID'] ?>"
-                                            data-category="<?= $recent['CATEGORY_SLUG'] ?>"
-                                           data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
-                                           data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>"
+                                        <div class="d-flex align-items-center mb-2"
                                             >
                                             <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                <a href="javascript:;"><?= $recent['NAME'] ?></a>
+                                                <a href="javascript:;" class="productdetail"
+                                                data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>"
+                                                ><?= $recent['NAME'] ?></a>
                                             </h3>
                                             <p class="fs-15 text-primary mb-0 ml-auto">
                                                 <span
@@ -2619,10 +2620,15 @@
                                                     style="<?= $recent['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
                                             </li>
                                         </ul>
-                                        <div class="d-flex align-items-center mb-2 productdetail"
+                                        <div class="d-flex align-items-center mb-2"
                                             data-id="<?= $recent['PRODUCT_ID'] ?>">
                                             <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                <a href="javascript:;"><?= $recent['NAME'] ?></a>
+                                                <a href="javascript:;" class="productdetail"
+                                                data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>"
+                                                ><?= $recent['NAME'] ?></a>
                                             </h3>
                                             <p class="fs-15 text-primary mb-0 ml-auto">
                                                 <span

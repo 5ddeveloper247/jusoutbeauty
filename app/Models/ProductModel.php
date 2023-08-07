@@ -379,7 +379,7 @@ class ProductModel extends Model
     public function checkDuplicateSlug($name, $id=''){
     	if($id != ''){
 	    	$result = DB::table('jb_product_tbl')->select('PRODUCT_ID')
-	    	->where('PRODUCT_ID', '!=', $id)
+	    	->whereNot('PRODUCT_ID', $id)
 	    	->where('NAME', "$name")
 	    	->get();
     	}else{
@@ -391,7 +391,6 @@ class ProductModel extends Model
     	foreach ($result as $row){
     		$productId = $row->PRODUCT_ID;
     	}
-
     	return isset($productId) ? $productId : '';
     }
     public function getSpecificProductData($id){
