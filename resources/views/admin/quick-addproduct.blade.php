@@ -1692,7 +1692,7 @@
                                                             <div class="col-md-6 px-6 px-md-0 pl-xl-7"
                                                                 style="height:30rem;overflow-y:auto"
                                                                 ng-show="clinicalNoteSection == '0'">
-                                                                <h3 class="mb-5">Clinical Note</h3>
+                                                                <h3 class="mb-5">Lustie's Hint</h3>
                                                                 <p id="p19"><span
                                                                         style="text-align: justify;">It is a long
                                                                         established fact that a reader will be

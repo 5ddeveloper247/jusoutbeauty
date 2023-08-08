@@ -770,6 +770,12 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.getSubCategoriesWrtCategory = function(){
 
 		if($scope.product.P_8 != null){
+            if($scope.product.P_8['name'] === 'Nutrition' || $scope.product.P_8['name'] === 'Make Up'){
+                $('#imageBox').addClass('d-none');
+            }else{
+                $('#imageBox').removeClass('d-none');
+            }
+
 			var data = {};
 		    data.category = $scope.product.P_8;
 		    data.userId = userId;
@@ -1302,8 +1308,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.uses.U_2 = "";
 		$scope.uses.U_3 = "";
 		$scope.uses.U_4 = "";
-		$("#u1").val($scope.uses.U_1).trigger('change');
 
+		$("#u1").val($scope.uses.U_1).trigger('change');
 		$("#usesStepsModal").modal("show");
 	}
 

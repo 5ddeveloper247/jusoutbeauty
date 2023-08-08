@@ -1007,6 +1007,8 @@ class ProductModel extends Model
 				$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
 				$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
 
+                $arrRes[$i]['shades'] = $ProductShade->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
+
 				$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
 
 				if(!empty($productShades)){

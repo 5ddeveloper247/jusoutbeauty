@@ -3702,7 +3702,7 @@ class HomeController extends Controller
             $width = $imageSize[0];
             $height = $imageSize[1];
 
-            if ($width >= 1000 && $height >= 600) {
+            // if ($width >= 1000 && $height >= 600) {
                 if (move_uploaded_file($file, $fullpath)) {
                     $result = DB::table('jb_shade_finder_selfie_tbl')->where('SELFIE_ID', $namefile)->update(
                         array(
@@ -3748,12 +3748,12 @@ class HomeController extends Controller
                    $arrRes ['msg'] = 'Selfie Data added successfully.';
                    echo json_encode ( $arrRes );
                    die ();
-            } else {
-                $arrRes ['done'] = false;
-                $arrRes ['msg'] = 'Selfie Image must be atleast 1000 by 600 pixels.';
-                echo json_encode ( $arrRes );
-                die ();
-            }
+            // } else {
+            //     $arrRes ['done'] = false;
+            //     $arrRes ['msg'] = 'Selfie Image must be atleast 1000 by 600 pixels.';
+            //     echo json_encode ( $arrRes );
+            //     die ();
+            // }
         }
 	}
 

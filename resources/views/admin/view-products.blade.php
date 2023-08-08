@@ -1109,7 +1109,7 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item"><a class="nav-link active" id="clinical_note_new"
-                                        data-toggle="tab" href="#clinical_note"> <span> Clinical Note </span>
+                                        data-toggle="tab" href="#clinical_note"> <span> Lustie's Hint </span>
                                     </a></li>
                                 {{-- <li class="nav-item"><a class="nav-link "
 										data-toggle="tab" href="#shipping_conf"> <span> Shipping
@@ -1533,7 +1533,7 @@
                                     placeholder="Enter Short Description..."></textarea>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
+                        <div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4" id="imageBox" >
                             <div class="row register-new-product-picture-para">
                                 <div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn"
                                     onclick="form4();" style="">

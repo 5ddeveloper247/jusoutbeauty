@@ -597,7 +597,7 @@ $userId = session('userId');
                                                 </div>
                                             </div>
                                             <div class="card-body pt-4 px-0 pb-0"
-                                          data-type="">
+                                                data-type="">
                                                 <a href="javascript:;"
                                                     class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
                                                     data-id="{{ $trend['CATEGORY_ID'] }}"
@@ -610,10 +610,46 @@ $userId = session('userId');
                                                     data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
                                                     data-name="{{ $trend['SLUG'] }}">{{ $trend['PRODUCT_NAME'] }}</a>
                                                 </h3>
-                                                <p class="text-primary mb-0 card-title lh-14375" style="height: 46px;">
+                                                <p class="text-primary mb-0 card-title lh-14375" style="height: 36px;">
                                                     {{ $trend['SUB_TITLE_TXT'] }}</p>
-                                                <p class="text-primary mb-2 card-title lh-14375">
-                                                    ${{ $trend['PRODUCT_PRICE'] }}</p>
+                                                    @if($trend['shades'])
+                                                    <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                        <?php
+                                                                    $shades = $trend['shades'];
+                                                                    if(isset($shades) && !empty($shades)){
+                                                                    foreach ($shades as $shade){
+
+                                                                ?>
+                                                        <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
+                                                            <a href="javascript:;" class="d-block swatches-item"
+                                                                style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
+                                                            </a>
+                                                        </li>
+                                                        <?php }?>
+                                                        <?php }?>
+                                                    </ul>
+                                                    @else
+                                                    <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                        <li class="list-inline-item" title="New shade">
+                                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                                </a>
+                                                                </li>
+                                                                                                            <li class="list-inline-item" title="Fair100">
+                                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                                </a>
+                                                                </li>
+                                                        </ul>
+                                                    @endif
+                                                {{-- <p class="text-primary mb-2 card-title lh-14375">
+                                                    ${{ $trend['PRODUCT_PRICE'] }}</p> --}}
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-7">
+                                                            <p class="text-primary mb-0 card-title lh-14375">{{ $trend['PRODUCT_PRICE'] }}</p>
+                                                        </div>
+                                                        <div class="col-sm-6 col-5">
+                                                            <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $trend['UNIT'] }}</p>
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -670,19 +706,19 @@ $userId = session('userId');
                                             <img src="{{ url('/assets-web') }}/images/test-img.jpg">
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                             </ul>
                                             <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto"
@@ -709,7 +745,7 @@ $userId = session('userId');
 
 
 
-        <section id="section-next" class="py-10 py-lg-13" style="background-color: #57813a ;">
+        <section id="section-next" class="py-10 py-lg-13" style="background-color: #94b73d ;">
             <h2 class="text-center mb-1  text-white">Created For You</h2>
             <br>
             <div class="container container-custom">
@@ -778,7 +814,7 @@ $userId = session('userId');
                                                 data-quantity='1'>+ Quick Add</a> -->
                                         </div>
                                     </div>
-                                    <div class="card-body pt-4 px-0 pb-0">
+                                    <div class="card-body pt-4 px-0 pb-0 d-flex flex-column">
                                         <a href="javascript:;"
                                             class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary" data-id="{{ $for['CATEGORY_ID'] }}" data-type="CATEGORY" data-categorySlug="{{ $for['CATEGORY_SLUG'] }}">
                                             {{ $for['CATEGORY_NAME'] }}</a>
@@ -787,7 +823,49 @@ $userId = session('userId');
                                             data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $for['SLUG'] }}" data-type="">{{ $for['PRODUCT_NAME'] }}</a>
                                         </h3>
-                                        <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }}
+                                        <p class="text-primary mb-0 card-title lh-14375" style="height: 36px;">
+                                            {{ $for['SUB_TITLE_TXT'] }}</p>
+                                        @if($for['shades'])
+                                            <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                <?php
+                                                            $shades = $for['shades'];
+                                                            if(isset($shades) && !empty($shades)){
+                                                            foreach ($shades as $shade){
+
+                                                        ?>
+                                                <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
+                                                    <a href="javascript:;" class="d-block swatches-item"
+                                                        style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
+                                                    </a>
+                                                </li>
+                                                <?php }?>
+                                                <?php }?>
+                                            </ul>
+                                        @else
+                                        {{-- <br> --}}
+                                        <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                            <li class="list-inline-item" title="New shade">
+                                                    <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                    </a>
+                                                    </li>
+                                                                                                <li class="list-inline-item" title="Fair100">
+                                                    <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                    </a>
+                                                    </li>
+                                            </ul>
+                                        @endif
+                                        <div class="mt-auto">
+                                            <div class="d-flex flex-row justify-content-between">
+                                                {{-- <div class="col-sm-6 col-6"> --}}
+                                                    <p class="text-primary mb-0 card-title lh-14375">{{ $for['PRODUCT_PRICE'] }}</p>
+                                                {{-- </div> --}}
+                                                {{-- <div class="col-sm-6 col-5"> --}}
+                                                    <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p>
+                                                {{-- </div> --}}
+                                            </div>
+                                        </div>
+                                        {{-- <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }} --}}
+
                                         </p>
                                     </div>
                                 </div>
@@ -963,7 +1041,7 @@ $userId = session('userId');
 
 
 
-        <section class="py-12 py-lg-12" style="background-color: #006f7a;">
+        <section class="py-12 py-lg-12" style="background-color: #3d94b7;">
             <div class="container container-custom container-xl">
                 <h2 class="text-center mb-8 lh-128 text-white">Our Blog
                 </h2>

@@ -165,11 +165,11 @@
                             <div class="card-body px-3 py-0 d-flex flex-column align-items-center text-center">
                                 <img src="{{ url('/assets-web') }}/images/test-img.jpg">
                                 <ul class="list-inline mb-5 d-flex fs-15">
-                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '1' ? 'color: #006f7a;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
-                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '2' ? 'color: #006f7a;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
-                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '3' ? 'color: #006f7a;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
-                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '4' ? 'color: #006f7a;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
-                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '5' ? 'color: #006f7a;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
+                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
+                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '2' ? 'color: #3d94b7;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
+                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '3' ? 'color: #3d94b7;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
+                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '4' ? 'color: #3d94b7;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
+                                    <li class="mr-0" style="{{$review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;'}}"><i class="fas fa-star"></i></li>
                                 </ul>
                                 <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto" style="min-height: 11vw;">{{$review['REVIEW_DESCRIPTION_TRIM']}}</p>
                                 <p class="text-primary fs-18 mb-0">

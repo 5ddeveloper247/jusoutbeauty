@@ -3714,7 +3714,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-primary:hover {
     color: white;
-    background-color: #006f7a ;
+    background-color: #3d94b7 ;
     border-color: #000
 }
 
@@ -27942,7 +27942,7 @@ section.pt-10.pt-lg-13.grey_back_inc {
 }
 
 .site_color {
-    background-color: #57813a;
+    background-color: #94b73d !important;
 }
 
 .color_white_inc {
@@ -28243,7 +28243,8 @@ img.prod_img {
 /*Homepage */
 section#section-next .card-body.pt-4.px-0.pb-0 {
     padding-left: 21px !important;
-    padding-bottom: 15px !important;
+    padding-right: 21px !important;
+    padding-bottom: 5px !important;
 }
 
 .insta_sec_home .slick-arrow.slick-next {
