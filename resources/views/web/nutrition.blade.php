@@ -117,16 +117,16 @@ $userId = session('userId');
 						<img src="{{url('/assets-web')}}/images/pro-gif.png" alt="" style="height
 						70;width:70px;"><br>
 
-						<h2 class="pro-col text-center mb-6 nu-cate" style="color:#57813a ">Products</h2>
+						<h2 class="pro-col text-center mb-6 nu-cate" style="color:#94b73d ">Products</h2>
 					</div>
 
 					<div class="row" style="padding:0 50px;">
                         <div ng-init="productsToShowForNutrition = 4"></div>
-						<div class="col-sm-6 mb-0 mb-sm-0 prod_card_inc m-5" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
+						<div class="col-sm-5 mb-0 mb-sm-0 prod_card_inc m-3" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
 								<div class="overflow-hidden">
 									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2 mt-3"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"><br>
-									<h5 class="text-center productdetail cursor-pointer product_image"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME}}</h5>
+									<h5 class="text-center productdetail cursor-pointer product_image text-capitalize"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME }}</h5>
 									<p class="text-center toShopListing cursor-pointer" data-id="@{{row.CATEGORY_ID}}" data-type="CATEGORY" data-categoryslug="@{{ row.CATEGORY_SLUG }}">@{{row.CATEGORY_NAME}}</p>
 									<h5 class="text-center productdetail cursor-pointer" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.SUB_TITLE}}</h5>
 

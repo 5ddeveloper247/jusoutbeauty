@@ -156,7 +156,7 @@ class UserdashboardModel extends Model
     	$ProductShade = new ProductShadeModel();
     	$userId = session('userId');
 
-    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.NAME as productName','jpt.SLUG as slug','jpt.SUB_CATEGORY_ID as subcategoryid','sbcat.NAME as subcategoryname','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
+    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.UNIT','jpt.NAME as productName','jpt.SLUG as slug','jpt.SUB_CATEGORY_ID as subcategoryid','sbcat.NAME as subcategoryname','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
         ->join ('jb_sub_category_tbl as sbcat','jpt.SUB_CATEGORY_ID','=','sbcat.SUB_CATEGORY_ID')
@@ -176,6 +176,7 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
             $arrRes[$i]['SLUG'] = $row->slug;
             $arrRes[$i]['SUB_CATEGORY_ID'] = $row->subcategoryid;
+            $arrRes[$i]['UNIT'] = $row->UNIT;
             $name = $row->categoryName;
             $words = explode(' ', $name);
             if (count($words) > 1 || strpos($name, ' ') !== false) {
@@ -205,6 +206,18 @@ class UserdashboardModel extends Model
 			$productImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['productSecondaryImg'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
+
+            $arrRes[$i]['shades'] = $ProductShade->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
+
+            // if(!empty($shades)){
+
+    		// 	$arrRes[$i]['shadesforProduct'] = 'shade';
+    		// 	$arrRes[$i]['INV_QUANTITY'] = '';
+    		// }
+            // else{
+    		// 	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+    		// 	$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+    		// }
 
     		$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
 
@@ -283,7 +296,7 @@ class UserdashboardModel extends Model
     		$arrRes['productId'] = $row->PRODUCT_ID;
     		$arrRes['offerEndTime'] = date ( "Y-m-d H:i:s", strtotime ( "$row->OFFER_END_DATE" ) );
     		$arrRes['description'] = $row->DESCRIPTION;
-    		
+
     		$arrRes['SLUG'] = $row->slug;
     		$arrRes['SUB_CATEGORY_ID'] = $row->subcategoryid;
     		$name = $row->categoryName;
@@ -294,7 +307,7 @@ class UserdashboardModel extends Model
     			$name = $row->categoryName;
     		}
     		$arrRes['CATEGORY_SLUG'] = $name;
-    		
+
     		$name = $row->subcategoryname;
     		$words = explode(' ', $name);
     		if (count($words) > 1 || strpos($name, ' ') !== false) {

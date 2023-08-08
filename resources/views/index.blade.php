@@ -625,19 +625,19 @@
                                             <img src="{{ url('/assets-web') }}/images/test-img.jpg">
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #006f7a;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
                                             </ul>
                                             <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto"
@@ -664,7 +664,7 @@
 
 
 
-        <section id="section-next" class="py-10 py-lg-13" style="background-color: #57813a ;">
+        <section id="section-next" class="py-10 py-lg-13" style="background-color: #94b73d ;">
             <h2 class="text-center fs-24 fs-md-42 mb-1 text-capitalize text-white">Created For You</h2>
             <br>
             <div class="container container-custom">
@@ -883,7 +883,7 @@
 
 
 
-        <section class="py-12 py-lg-12" style="background-color: #006f7a;">
+        <section class="py-12 py-lg-12" style="background-color: #3d94b7;">
             <div class="container container-custom container-xl">
                 <h2 class="text-center mb-8 lh-128 fs-24 fs-sm-37 text-white">Our Blog
                 </h2>

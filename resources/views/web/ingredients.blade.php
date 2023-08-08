@@ -114,7 +114,7 @@
     .card-ing .overlay-content {
         width: 100%;
         height: 100%;
-        background-color: #57813a;
+        background-color: #94b73d;
         cursor: pointer;
         color: #080808;
         display: flex;

@@ -137,10 +137,10 @@ $userId = session('userId');
     <header class="main-header navbar-light header-sticky header-sticky-smart position-absolute fixed-top home">
         <div id="topbar"
             class="d-none d-xl-flex align-items-center alert alert-dismissible fade show p-0 mb-0 rounded-0 border-0"
-            style="background: #006f7a !important;">
+            style="background: #3d94b7 !important;">
             <div class="container p-2">
                 <p class="mb-0 fs-14 letter-spacing-005 text-uppercase text-center font-weight-500"
-                    style="color: white;">COOL NEW COLOR: STERLING â˜�ï¸� SO WORTH IT</p>
+                    style="color: white;">COOL NEW COLOR: STERLING SO WORTH IT</p>
             </div>
             <button type="button" onclick="close_topbar()"
                 class="close text-dark p-2 pr-3 fs-18 font-weight-300 opacity-10">

@@ -12,7 +12,7 @@
 
     .recent_viewed:hover{
         text-decoration: underline;
-        text-decoration-color: #006f7a ;
+        text-decoration-color: #3d94b7 ;
     }
 
     .text .arrow-center {
@@ -107,7 +107,7 @@
     .ag-courses-item_bg {
         height: 128px;
         width: 128px;
-        background-color: #006f7a ;
+        background-color: #3d94b7 ;
         z-index: 1;
         position: absolute;
         top: -75px;
@@ -121,7 +121,7 @@
     .ag-courses-item_link:hover,
     .ag-courses-item_link:hover .ag-courses-item_date {
         text-decoration: none;
-        color: #006f7a ;
+        color: #3d94b7 ;
     }
 
     .ag-courses-item_link {
@@ -768,15 +768,15 @@
                                                 <section class="pb-10 pb-lg-0 mob_tab_sec">
                                                     <div class="">
                                                         <h2 class="text-center mb-3">Ingredients</h2>
-                                                        <h4 class="text-center mb-9">Backed by Science to Optimize
+                                                        <h4 class="text-center mb-3" style="font-size: 23px;">Backed by Science to Optimize
                                                             Skin Wellness</h4>
                                                         <ul class="nav nav-pills justify-content-center mb-lg-9 mb-6">
                                                             <li class="nav-item px-5"><a
-                                                                    class="pointer nav-link cursor-pointer ingredientTabBtn active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
-                                                                    id="spotlightTabBtn">Spotlight Ingredients</a></li>
+                                                                    class="pointer nav-link cursor-pointer ingredientTabBtn active text-gray-02 rounded-0 px-0 py-1 lh-1  bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
+                                                                    id="spotlightTabBtn" style="font-size: 23px;">Spotlight Ingredients</a></li>
                                                             <li class="nav-item px-5"><a
-                                                                    class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
-                                                                    id="formulatedTabBtn">Formulated Ingredients</a>
+                                                                    class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
+                                                                    id="formulatedTabBtn" style="font-size: 23px;">Formulated Ingredients</a>
                                                             </li>
                                                         </ul>
                                                         <div class="p-0 m-0" id="pills-tabContent">
@@ -788,7 +788,7 @@
                                                                             <?php if(isset($spotlightIngredients) && !empty($spotlightIngredients)){?>
                                                                             <?php foreach ($spotlightIngredients as $row){?>
                                                                             <div
-                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" style="background-color:#57813a96">
+                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section" style="background-color:#94b73d">
                                                                                 <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
@@ -975,7 +975,7 @@
                                                             </div>
                                                             <div class="col-md-6 px-6 px-md-0 pl-xl-7"
                                                                 style="height:30rem;overflow-y:auto">
-                                                                <h2 class="mb-5">Clinical Note</h2>
+                                                                <h2 class="mb-5">Lutie's Hint</h2>
                                                                 <p><?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>

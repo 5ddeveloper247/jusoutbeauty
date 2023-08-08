@@ -1373,7 +1373,7 @@ public function uploadPopupImage(Request $request) {
 	/*===================== admin Product Video Attachment code start ==========================*/
 
 	public function uploadProductImageVideoSelfi(Request $request) {
-
+        // dd('$downpath');
 		$allowed =  array('mp4','MP4','webm','WEBM','mov','MOV','wmv','WMV','html5','HTML5','mpeg-2', 'MPEG-2',
 		'png','jpg','jpeg','JPEG','PNG','JPG','jpe','jpge','JPGE','JPE','jfif', 'svg', 'SVG', 'gif', 'GIF', 'webp', 'WEBP');
 
@@ -1382,6 +1382,7 @@ public function uploadPopupImage(Request $request) {
 			$downpath= 	url('public')."/uploads/productselfie/images";
 
 			if(isset($_FILES['uploadatt6']) && $_FILES['uploadatt6']['error'] == 0){
+
 
 
 				$sourceId = isset($_REQUEST['sourceId'])?$_REQUEST['sourceId']:"";

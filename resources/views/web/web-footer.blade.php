@@ -59,7 +59,7 @@
             filter: invert(100%)
         }
         .back_cs{
-            background-color: #006f7a !important
+            background-color: #3d94b7 !important
         }
         form.footer-formm .fa-envelope:before {
             padding-left: unset
@@ -287,7 +287,7 @@
                         <li><a href="{{ session('site') }}/who-we-are" class="footer-text-white">Meet Founder</a></li>
                         <li><a href="{{ session('site') }}/who-we-are" class="footer-text-white">Our Story</a></li>
                         <!-- 						<li><a href="#">Careers</a></li> -->
-                        <li><a href="{{ session('site') }}/who-we-are" class="footer-text-white">Sustainability</a></li>
+                        <li><a href="{{ session('site') }}/eco-vibes" class="footer-text-white">Sustainability</a></li>
                         <li><a href="{{ session('site') }}/ingredients" class="footer-text-white">Ingredients</a></li>
                         <li><a href="{{ session('site') }}/blog-page" class="footer-text-white">Blogs</a></li>
 
@@ -384,7 +384,7 @@
         height:58px;
         bottom:86px;
         right:26px;
-        background-color:#006f7a;
+        background-color:#3d94b7;
         color:#FFF;
         border-radius:50px;
         text-align:center;
@@ -441,21 +441,21 @@
     }
     .btn-my {
     color: white !important;
-    border-color: #006f7a;
-	background-color:  #006f7a;
+    border-color: #3d94b7;
+	background-color:  #3d94b7;
 }
 
 .btn-my:hover {
     color: white;
-    background-color: #a72160;
-    border-color: #a72160;
-	outline: #a72160;
+    background-color: #b73d94;
+    border-color: #b73d94;
+	outline: #b73d94;
 }
 .btn-my:focus,.btn-my:active {
     color: white;
-    background-color: #a72160;
-    border-color: #a72160;
-	outline: #a72160;
+    background-color: #b73d94;
+    border-color: #b73d94;
+	outline: #b73d94;
 }
     @media (max-width: 174px) {
         /* Styles for mobile devices */
