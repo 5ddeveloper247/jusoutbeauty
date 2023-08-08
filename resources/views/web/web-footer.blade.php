@@ -347,7 +347,7 @@
 
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <p class="mb-0 text-uppercase text-left fs-14 letter-spacing-07px">
-                        Â© 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
+                        A© 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
                     </p>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset" >
