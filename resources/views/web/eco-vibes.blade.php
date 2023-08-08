@@ -21,13 +21,13 @@
         z-index: 2; /* Set text color to white to make it visible on the dark overlay */
     }
 
-    .giving-section2-img,
+    /* .giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
         width: 50rem;
         height: 64rem;
 
-    }
+    } */
 
     @media screen and (min-width: 0px) and (max-width: 614px) {
 
@@ -73,22 +73,48 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
+                    <img class="giving-section2-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Evo Vibes"</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
-                        perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
-                        accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut
-                        exercitationem. Molestias amet facilis aliquid cumque officiis nisi, consequatur sunt, voluptas,
-                        soluta inventore dignissimos? Cupiditate tenetur excepturi dolores, labore cumque aperiam eos
-                        dignissimos animi obcaecati atque delectus? Maxime alias, dignissimos eius tempore natus
-                        mollitia provident iste dolore sint veniam corrupti architecto dolorum, suscipit magnam. Impedit
-                        perspiciatis expedita neque, eveniet eos laborum non earum quae, alias repellat dicta fugit
-                        illum cupiditate porro odit suscipit voluptatum harum!
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.  nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,22 +126,48 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
+                    <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5 text-white">"Evo Vibes"</h2>
-                    <p class='text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
-                        perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
-                        accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut
-                        exercitationem. Molestias amet facilis aliquid cumque officiis nisi, consequatur sunt, voluptas,
-                        soluta inventore dignissimos? Cupiditate tenetur excepturi dolores, labore cumque aperiam eos
-                        dignissimos animi obcaecati atque delectus? Maxime alias, dignissimos eius tempore natus
-                        mollitia provident iste dolore sint veniam corrupti architecto dolorum, suscipit magnam. Impedit
-                        perspiciatis expedita neque, eveniet eos laborum non earum quae, alias repellat dicta fugit
-                        illum cupiditate porro odit suscipit voluptatum harum!
-                    </p>
+                    <div class="text-white" style="height: 75vh;overflow:auto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.  nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,21 +179,48 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
+                    <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Evo Vibes"</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
-                        perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
-                        accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut
-                        exercitationem. Molestias amet facilis aliquid cumque officiis nisi, consequatur sunt, voluptas,
-                        soluta inventore dignissimos? Cupiditate tenetur excepturi dolores, labore cumque aperiam eos
-                        dignissimos animi obcaecati atque delectus? Maxime alias, dignissimos eius tempore natus
-                        mollitia provident iste dolore sint veniam corrupti architecto dolorum, suscipit magnam. Impedit
-                        perspiciatis expedita neque, eveniet eos laborum non earum quae, alias repellat dicta fugit
-                        illum cupiditate porro odit suscipit voluptatum harum!
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.  nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -266,22 +345,48 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
+                    <img loading="lazy" class="last-section-giving" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/Red-lipstick-for-every-look.png" alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2 class=" mb-5 ">"Red Lips"</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus vitae voluptas, debitis
-                        perspiciatis inventore temporibus accusantium id sit voluptatem aliquam dolore, officia odit
-                        accusamus molestiae non, modi cupiditate placeat rerum fuga reiciendis provident qui ut
-                        exercitationem. Molestias amet facilis aliquid cumque officiis nisi, consequatur sunt, voluptas,
-                        soluta inventore dignissimos? Cupiditate tenetur excepturi dolores, labore cumque aperiam eos
-                        dignissimos animi obcaecati atque delectus? Maxime alias, dignissimos eius tempore natus
-                        mollitia provident iste dolore sint veniam corrupti architecto dolorum, suscipit magnam. Impedit
-                        perspiciatis expedita neque, eveniet eos laborum non earum quae, alias repellat dicta fugit
-                        illum cupiditate porro odit suscipit voluptatum harum!
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.  nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

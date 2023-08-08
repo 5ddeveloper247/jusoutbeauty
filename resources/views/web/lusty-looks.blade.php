@@ -20,12 +20,12 @@
         position: relative;
         z-index: 2;
     }
-    .giving-section2-img,
+    /* .giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
         width: 50rem;
         height: 64rem;
-    }
+    } */
     @media screen and (min-width: 0px) and (max-width: 614px) {
         .giving-section2-img,
         .giving-section3-img,
@@ -37,10 +37,10 @@
 
     @media screen and (min-width: 1650px) {
         .py-lg-18 {
-           padding-top: 358px !important;
-    padding-bottom: 358px !important;}
+            padding-top: 358px !important;
+            padding-bottom: 358px !important;}
 
-    }
+        }
 </style>
 <main id="content" style="padding-top: 111px">
 {{-- <section class="py-10  py-lg-18 rab" id="details-header"
@@ -69,23 +69,48 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
+                    <img class="giving-section2-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Beeswax"</h2>
-                    <p>Beeswax is commonly used in skincare
-                        products as it is a surfactant and
-                        forms a protective barrier on the surface
-                        of the skin. Beeswax is a naturally
-                        hydrating ingredient that increases essential
-                        moisture in skin and in the relief of itching
-                        from sensitive skin. It has an irritation potential
-                        of zero, so it will not cause irritation or clog pores,
-                        but rather provide a host of benefits such as general
-                        healing, antiseptic, antibacterial and antiviral.
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.  nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,28 +123,64 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
+                    <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5 text-white">"Aloe vera"</h2>
-                    <p class="text-white">Also known as nature’s first aid kit.
-                        Great for helping small cuts and burns to heal.
-                        It’s amazing as a toner to help soothe away razor burn,
-                        sunburn, and other small irritations.
-                        Contains over 200 active components,
-                        including minerals (calcium, magnesium,
-                        zinc, chromium, selenium, sodium, iron,
-                        potassium, copper and manganese),
-                        vitamins (A, C, E, folic acid, B1, B2, B3 and B6),
-                        amino acids, enzymes and fatty acids.
-                        When used externally it has a wide range of benefits,
-                        such as moisturizing and rejuvenating the skin, healing wounds,
-                        burns and abrasions, itch prevention, softens the skin, increases elasticity, reduces
-                        inflammation and helps supply oxygen to the skin cells. It is a disinfectant, antimicrobial,
-                        antibacterial, antiseptic, anti-fungal and antiviral.
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p class="text-white">Also known as nature’s first aid kit.
+                            Great for helping small cuts and burns to heal.
+                            It’s amazing as a toner to help soothe away razor burn,
+                            sunburn, and other small irritations.
+                            Contains over 200 active components,
+                            including minerals (calcium, magnesium,
+                            zinc, chromium, selenium, sodium, iron,
+                            potassium, copper and manganese),
+                            vitamins (A, C, E, folic acid, B1, B2, B3 and B6),
+                            amino acids, enzymes and fatty acids.
+                            When used externally it has a wide range of benefits,
+                            such as moisturizing and rejuvenating the skin, healing wounds,
+                            burns and abrasions, itch prevention, softens the skin, increases elasticity, reduces
+                            inflammation and helps supply oxygen to the skin cells. It is a disinfectant, antimicrobial,
+                            antibacterial, antiseptic, anti-fungal and antiviral.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.  nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.
+                        </p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -132,16 +193,59 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
+                    <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class=" mb-5">"Coconut Oil"</h2>
-                    <p>Coconut Oil is absolutely packed with nutrients.
-                        A perfectly natural way to nourish dry, unhappy skin.
-                        It infuses skin with moisture, enhancing shine,
-                        elasticity, and youthful glow to hair and skin.
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Coconut Oil is absolutely packed with nutrients. 
+                            A perfectly natural way to nourish dry, unhappy skin. 
+                            It infuses skin with moisture, enhancing shine, 
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients. 
+                            A perfectly natural way to nourish dry, unhappy skin. 
+                            It infuses skin with moisture, enhancing shine, 
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients. 
+                            A perfectly natural way to nourish dry, unhappy skin.
+                             It infuses skin with moisture, enhancing shine,
+                              elasticity, and youthful glow to hair and skin.
+                              Coconut Oil is absolutely packed with nutrients. 
+                              A perfectly natural way to nourish dry, unhappy skin. 
+                              It infuses skin with moisture, enhancing shine, 
+                              elasticity, and youthful glow to hair and skin.
+                              Coconut Oil is absolutely packed with nutrients. 
+                              A perfectly natural way to nourish dry, unhappy skin.
+                               It infuses skin with moisture, enhancing shine, 
+                               elasticity, and youthful glow to hair and skin.
+                               Coconut Oil is absolutely packed with nutrients. 
+                               A perfectly natural way to nourish dry, unhappy skin. 
+                               It infuses skin with moisture, enhancing shine, 
+                               elasticity, and youthful glow to hair and skin.
+                               Coconut Oil is absolutely packed with nutrients. 
+                               A perfectly natural way to nourish dry, unhappy skin. 
+                               It infuses skin with moisture, enhancing shine, 
+                               elasticity, and youthful glow to hair and skin.
+                               Coconut Oil is absolutely packed with nutrients. 
+                               A perfectly natural way to nourish dry, unhappy skin.
+                               It infuses skin with moisture, enhancing shine, 
+                               elasticity, and youthful glow to hair and skin.
+                               Coconut Oil is absolutely packed with nutrients. 
+                               A perfectly natural way to nourish dry, unhappy skin.
+                               It infuses skin with moisture, enhancing shine, 
+                               elasticity, and youthful glow to hair and skin.
+                               Coconut Oil is absolutely packed with nutrients. 
+                               A perfectly natural way to nourish dry, unhappy skin.
+                               It infuses skin with moisture, enhancing shine, 
+                               elasticity, and youthful glow to hair and skin.
+                               Coconut Oil is absolutely packed with nutrients. 
+                               A perfectly natural way to nourish dry, unhappy skin.
+                               
+                        </p>
+                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -264,15 +368,39 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Red-lipstick-for-every-look.png" alt="Our approach">
+                    <img loading="lazy" class="last-section-giving" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Red-lipstick-for-every-look.png" alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2>"Red Lips"</h2>
-                    <p>The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
-                        verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
-                        their names, and select one that has a little brown in it.
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p>The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                            The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                            The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                            The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                            The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                            The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                            The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                            The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
+                            verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
+                            their names, and select one that has a little brown in it.
+                        </p>
+                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -1,5 +1,19 @@
 @include('web.web-header')
 <style>
+     /* Add this style in your CSS file or inside the <style> tag of your HTML */
+    .rab {
+        position: relative;
+    }
+
+    .rab .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency (0.5 in this case) */
+     /* Place the overlay behind the content */
+    }
 
     @media screen and (min-width: 0px) and (max-width: 614px) {
         .giving-section2-img,
@@ -20,8 +34,9 @@
 
 </style>
 <main id="content" style="padding-top: 111px">
-    <section class="py-10  py-lg-18" id="details-header"
+    <section class="py-10  py-lg-18 rab" id="details-header"
         style="background-repeat: no-repeat; background-image: url('{{ url('assets-web') }}/images/best-banner.jpg'); background-size: cover;">
+        <div class="overlay"></div> <!-- Add the overlay div here -->
         <div class="container container-xl">
             <div class="row  no-gutters" style="justify-content: center">
 
@@ -41,7 +56,7 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" src="{{ url('/assets-web') }}/images/who_we_are.jpg"
+                    <img class="giving-section2-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/who_we_are.jpg"
                         alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
@@ -65,14 +80,14 @@
         </div>
     </section>
 
-    <div class="greygradientabove">
-    </div>
+    {{-- <div class="greygradientabove">
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10" style="background-color:#60686b;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/images.jpg"
+                    <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/images.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
@@ -99,15 +114,15 @@
             </div>
         </div>
     </section>
-
+{{-- 
     <div class="greygradientbelow">
-    </div>
+    </div> --}}
 
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" src="{{ url('/assets-web') }}/images/πρασινες-νότες-big.jpg"
+                    <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/πρασινες-νότες-big.jpg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7">
@@ -128,7 +143,7 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-discover" src="{{ url('/assets-web') }}/images/best-banner.jpg" alt="Our approach">
+                    <img loading="lazy" class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/best-banner.jpg" alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}

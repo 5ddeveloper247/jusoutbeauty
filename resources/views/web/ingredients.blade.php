@@ -24,13 +24,13 @@
     .font-size-banner {
         /* Add any other styles for the heading as needed */
     }
-    .giving-section2-img,
+    /* .giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
         width: 50rem;
         height: 64rem;
 
-    }
+    } */
 
     @media screen and (min-width: 0px) and (max-width: 614px) {
 
@@ -247,23 +247,48 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/giving-section2.jpg"
+                    <img class="giving-section2-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/giving-section2.jpg"
                         alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Beeswax"</h2>
-                    <p>Beeswax is commonly used in skincare
-                        products as it is a surfactant and
-                        forms a protective barrier on the surface
-                        of the skin. Beeswax is a naturally
-                        hydrating ingredient that increases essential
-                        moisture in skin and in the relief of itching
-                        from sensitive skin. It has an irritation potential
-                        of zero, so it will not cause irritation or clog pores,
-                        but rather provide a host of benefits such as general
-                        healing, antiseptic, antibacterial and antiviral.
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.  nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
+                            quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            nisi?.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -276,28 +301,61 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Aloe-vera.jpg"
+                    <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Aloe-vera.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Aloe vera"</h2>
-                    <p>Also known as nature’s first aid kit.
-                        Great for helping small cuts and burns to heal.
-                        It’s amazing as a toner to help soothe away razor burn,
-                        sunburn, and other small irritations.
-                        Contains over 200 active components,
-                        including minerals (calcium, magnesium,
-                        zinc, chromium, selenium, sodium, iron,
-                        potassium, copper and manganese),
-                        vitamins (A, C, E, folic acid, B1, B2, B3 and B6),
-                        amino acids, enzymes and fatty acids.
-                        When used externally it has a wide range of benefits,
-                        such as moisturizing and rejuvenating the skin, healing wounds,
-                        burns and abrasions, itch prevention, softens the skin, increases elasticity, reduces
-                        inflammation and helps supply oxygen to the skin cells. It is a disinfectant, antimicrobial,
-                        antibacterial, antiseptic, anti-fungal and antiviral.
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Also known as nature’s first aid kit.
+                            Great for helping small cuts and burns to heal.
+                            It’s amazing as a toner to help soothe away razor burn,
+                            sunburn, and other small irritations.
+                            Contains over 200 active components,
+                            including minerals (calcium, magnesium,
+                            zinc, chromium, selenium, sodium, iron,
+                            potassium, copper and manganese),
+                            vitamins (A, C, E, folic acid, B1, B2, B3 and B6),
+                            amino acids, enzymes and fatty acids.
+                            When used externally it has a wide range of benefits,
+                            such as moisturizing and rejuvenating the skin, healing wounds,
+                            burns and abrasions, itch prevention, softens the skin, increases elasticity, reduces
+                            inflammation and helps supply oxygen to the skin cells. It is a disinfectant, antimicrobial,
+                            antibacterial, antiseptic, anti-fungal and antiviral.
+                            Also known as nature’s first aid kit.
+                            Great for helping small cuts and burns to heal.
+                            It’s amazing as a toner to help soothe away razor burn,
+                            sunburn, and other small irritations.
+                            Contains over 200 active components,
+                            including minerals (calcium, magnesium,
+                            zinc, chromium, selenium, sodium, iron,
+                            potassium, copper and manganese),
+                            vitamins (A, C, E, folic acid, B1, B2, B3 and B6),
+                            amino acids, enzymes and fatty acids.
+                            When used externally it has a wide range of benefits,
+                            such as moisturizing and rejuvenating the skin, healing wounds,
+                            burns and abrasions, itch prevention, softens the skin, increases elasticity, reduces
+                            inflammation and helps supply oxygen to the skin cells. It is a disinfectant, antimicrobial,
+                            antibacterial, antiseptic, anti-fungal and antiviral.
+                            Also known as nature’s first aid kit.
+                            Great for helping small cuts and burns to heal.
+                            It’s amazing as a toner to help soothe away razor burn,
+                            sunburn, and other small irritations.
+                            Contains over 200 active components,
+                            including minerals (calcium, magnesium,
+                            zinc, chromium, selenium, sodium, iron,
+                            potassium, copper and manganese),
+                            vitamins (A, C, E, folic acid, B1, B2, B3 and B6),
+                            amino acids, enzymes and fatty acids.
+                            When used externally it has a wide range of benefits,
+                            such as moisturizing and rejuvenating the skin, healing wounds,
+                            burns and abrasions, itch prevention, softens the skin, increases elasticity, reduces
+                            inflammation and helps supply oxygen to the skin cells. It is a disinfectant, antimicrobial,
+                            antibacterial, antiseptic, anti-fungal and antiviral.
+                        </p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -310,16 +368,68 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Coconut-Oil.jpg"
+                    <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Coconut-Oil.jpg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class=" mb-5">"Coconut Oil"</h2>
-                    <p>Coconut Oil is absolutely packed with nutrients.
-                        A perfectly natural way to nourish dry, unhappy skin.
-                        It infuses skin with moisture, enhancing shine,
-                        elasticity, and youthful glow to hair and skin.
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                            Coconut Oil is absolutely packed with nutrients.
+                            A perfectly natural way to nourish dry, unhappy skin.
+                            It infuses skin with moisture, enhancing shine,
+                            elasticity, and youthful glow to hair and skin.
+                        </p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -444,16 +554,43 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving"  style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Rosemary.jpg"
+                    <img loading="lazy" class="last-section-giving"  style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Rosemary.jpg"
                         alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2 class='mb-5 '>"Rosemary"</h2>
-                    <p>Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
-                        redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
-                        rosemary carries will also help fight off acne and prevent breakouts.
-                    </p>
+                    <div style="height: 75vh;overflow:auto">
+                        <p>Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                            Rosemary can help lighten your skin and reduce dark spots. This leafy green helps reduce any
+                            redness or puffiness on the skin as it is packed with anti-inflammatory agents. The antioxidants
+                            rosemary carries will also help fight off acne and prevent breakouts.
+                        </p>
+                    </div>
+                  
                 </div>
             </div>
         </div>

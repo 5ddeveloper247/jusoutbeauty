@@ -492,8 +492,8 @@ hr {
 	.giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
-        width: 39rem;
-        height: 50rem;
+        width: 100%;
+        height: 90vh;
 
     }
 @media screen and (min-width: 0px) and (max-width: 614px) {
@@ -722,8 +722,8 @@ img.item.shop-shade {
 		width: 50px;
 	}
 	.giving-section2-img, .giving-section3-img, .last-section-giving {
-		width: 39rem;
-		height: 32rem;
+		width: 100%;
+		height: 90vh;
 	}
 	.product-hero__icons__text {
 		font-size: 16px ;
@@ -1114,8 +1114,8 @@ img.item.shop-shade {
 	}
 	
 	.clinical-note,.giving-section3-img,.giving-section2-img,.subs_img,.last-section-discover{
-		width: 71rem !important;
-		height: 60rem;
+		width: 100% !important;
+		height: 90vh;
 	}
 	.py-lg-18{
 		padding: 17rem 0 !important;
