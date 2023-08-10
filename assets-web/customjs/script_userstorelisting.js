@@ -304,7 +304,15 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		}).success(function(data, status, headers, config) {
             // alert('coming');
             // alert(data.products);
-			$scope.displayCollectionProducts = data.products;
+			// $scope.displayCollectionProducts = data.products;
+                // Assign products with shades to $scope.displayCollectionProducts
+                $scope.displayCollectionProducts = data.products.map(product => {
+                    // If the product has shades, include them in the product object
+                    if (product.shades && product.shades.length > 0) {
+                        product.hasShades = true; // You can use this flag to conditionally show shades
+                    }
+                    return product;
+                });
 
 			$scope.displayCollectionShadeFilter = data.list1;
 

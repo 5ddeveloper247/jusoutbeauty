@@ -1669,16 +1669,16 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                                         data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
                                                         data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATGORY_NAME'] ?>" data-quantity='1'>+ Quick Add</a> --}}
                                                         @if(isset($recommand['productShades']))
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recommand['PRODUCT_ID'];?>" data-category="<?= $recommand['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recommand['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recommand['PRODUCT_ID'];?>" data-category="<?= $recommand['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recommand['SLUG'] ?>" data-type="@{{catFlag}}" >+ Add To Cart</a>
                                                         @elseif($recommand['INV_QUANTITY_FLAG'] == 'inv' && $recommand['INV_QUANTITY'] > 0)
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recommand['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
+                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recommand['PRODUCT_ID'];?>" data-quantity='1' >+ Add To Cart</a>
                                                         @elseif($recommand['INV_QUANTITY'] <= 0)
                                                         <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
                                                         @endif
 												</div>
 											</div>
 											<div class="card-body pt-4 px-0 pb-0">
-												<ul class="list-inline fs-12 d-flex mb-1">
+												{{-- <ul class="list-inline fs-12 d-flex mb-1">
 													<li class="list-inline-item text-primary mr-0">
 														<i class="fas fa-star" style="<?= $recommand['averageRating'] >= '1' ? 'color:black;' : 'color:gray;' ?>"></i>
 													</li>
@@ -1694,7 +1694,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<li class="list-inline-item text-primary mr-0">
 														<i class="fas fa-star" style="<?= $recommand['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
 													</li>
-												</ul>
+												</ul> --}}
 												<div class="d-flex align-items-center mb-2 productdetail" data-id="<?= $recommand['PRODUCT_ID']?>">
 													<h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
 														<a href="javascript:;"><?= $recommand['NAME'];?></a>
@@ -2134,312 +2134,80 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 
 					</div>
-					<div class="tab-pane fade " id="pills-recently-viewed"
-						role="tabpanel" aria-labelledby="pills-recently-viewed-tab">
-						<div class="slick-slider "
-							data-slick-options='{"slidesToShow": 4, "autoplay":false,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+                    <div class="tab-pane fade" style="margin-bottom: 20px" id="pills-recently-viewed" role="tabpanel"
+                    aria-labelledby="pills-recommendations-tab">
+                    <div class="slick-slider "
+                        data-slick-options='{"slidesToShow": 4, "autoplay":false,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
 
-							<?php if(isset($recentViewedProducts) && !empty($recentViewedProducts)){?>
+                        <?php if(isset($recentViewedProducts) && !empty($recentViewedProducts)){?>
 
-								<?php foreach($recentViewedProducts as $recent){?>
+                        <?php foreach($recentViewedProducts as $recent){?>
 
-									<div class="box px-1" data-animate="fadeInUp">
-										<div class="card border-0 product px-2">
-											<div class="position-relative">
-												<a href="javascript:;" class="d-block overflow-hidden productdetail"
-                                                data-id="<?= $recent['PRODUCT_ID'] ?>"
-                                                data-category="<?= $recent['CATEGORY_SLUG'] ?>"
-                                                data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
-                                                data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>">
-													<img src="<?= $recent['primaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
-													<img src="<?= $recent['secondaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
-												</a>
-												<div class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-													<div></div>
-													<div class="content-change-vertical d-flex flex-column ml-auto">
-														<a href="javascript:;" data-toggle="tooltip"
-															data-placement="left" title="Add to wish list"
-															class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 addto-wishlist"
-															data-productId="<?= $recent['PRODUCT_ID']?>" data-type='single'>
-															<i class="fal fa-star wish_<?= $recent['PRODUCT_ID']?> <?= $recent['wishlistFlag'] == '1' ? 'activeWish' : ''?>"></i>
-														</a>
-														<!-- <a href="#" data-toggle="tooltip" data-placement="left"
-															title="Quick view"
-															class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-															<span data-toggle="modal"
-															data-target="#product-recommendations-1"> <i
-																class="fal fa-eye"></i>
-														</span>
-														</a> -->
-													</div>
-												</div>
-												<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-													{{-- <a href="javascript:;" class="btn btn-white btn-block @if(isset($userId)) productdetail @else addto-cart1 @endif" data-type="single" data-id="<?= $recent['PRODUCT_ID'];?>"
-                                                        data-category="<?= $recent['CATEGORY_SLUG'] ?>"
-                                                        data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
-                                                        data-name="<?= $recent['SLUG'] ?>" data-type="" data-quantity='1'>+ Quick Add</a> --}}
-                                                        @if(isset($recent['productShades']))
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recent['PRODUCT_ID'];?>" data-category="<?= $recent['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recent['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
-                                                        @elseif($recent['INV_QUANTITY_FLAG'] == 'inv' && $recent['INV_QUANTITY'] > 0)
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recent['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
-                                                        @elseif($recent['INV_QUANTITY'] <= 0)
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
-                                                        @endif
-												</div>
-											</div>
-											<div class="card-body pt-4 px-0 pb-0">
-												<ul class="list-inline fs-12 d-flex mb-1">
-													<li class="list-inline-item text-primary mr-0">
-														<i class="fas fa-star" style="<?= $recent['averageRating'] >= '1' ? 'color:black;' : 'color:gray;' ?>"></i>
-													</li>
-													<li class="list-inline-item text-primary mr-0">
-														<i class="fas fa-star" style="<?= $recent['averageRating'] >= '2' ? 'color:black;' : 'color:gray;' ?>"></i>
-													</li>
-													<li class="list-inline-item text-primary mr-0">
-														<i class="fas fa-star" style="<?= $recent['averageRating'] >= '3' ? 'color:black;' : 'color:gray;' ?>"></i>
-													</li>
-													<li class="list-inline-item text-primary mr-0">
-														<i class="fas fa-star" style="<?= $recent['averageRating'] >= '4' ? 'color:black;' : 'color:gray;' ?>"></i>
-													</li>
-													<li class="list-inline-item text-primary mr-0">
-														<i class="fas fa-star" style="<?= $recent['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
-													</li>
-												</ul>
-												<div class="d-flex align-items-center mb-2" data-id="<?= $recent['PRODUCT_ID']?>">
-													<h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-														<a href="javascript:;" class="productdetail"
-                                                        data-id="<?= $recent['PRODUCT_ID'] ?>"
-                                                        data-category="<?= $recent['CATEGORY_SLUG'] ?>"
-                                                        data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
-                                                        data-name="<?= $recent['SLUG'] ?>"
-                                                        ><?= $recent['NAME'];?></a>
-													</h3>
-													<p class="fs-15 text-primary mb-0 ml-auto">
-														<span class="text-line-through text-body mr-1"></span>$<?= $recent['UNIT_PRICE'];?>
-													</p>
-												</div>
-												<ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-													<?php
-														$shades1 = $recent['productShades'];
-														if(isset($shades1) && !empty($shades1)){
-														foreach ($shades1 as $shade){
+                        <div class="box px-1" data-animate="fadeInUp">
+                            <div class="card border-0 product px-2">
+                                <div class="position-relative">
 
-													?>
-													<li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
-														<a href="javascript:;" class="d-block swatches-item shade_chooser" style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;"> </a>
-														{{-- <a href="#" class="d-block swatches-item"  style="background-color: #A0ADBC;"> </a> --}}
-													</li>
-													<?php }?>
-													<?php }?>
-												</ul>
-
-
-											</div>
-										</div>
-									</div>
-
-								<?php }?>
-
-							<?php }?>
-						</div>
-						<div class="modal fade quick-view" id="product-recently-viewed-1"
-							tabindex="-1" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content p-0">
-									<div class="modal-body p-0">
-										<button type="button"
-											class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
-											data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-										</button>
-										<div class="row no-gutters">
-											<div class="col-sm-6">
-												<div style="background-image: url('images/product.jpg');"
-													class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-											</div>
-											<div class="col-sm-6">
-												<div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-													<a href="store.html"
-														class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-														Sweaters</a>
-													<div class="d-flex align-items-center">
-														<h2 class="mb-1">
-															<a href="product-detail-01.html">Hoodie with pouch pocket</a>
-														</h2>
-													</div>
-													<p class="mb-6 fs-20 text-primary lh-14">$79.00</p>
-													<div class="d-flex align-items-center flex-wrap">
-														<ul
-															class="list-inline d-flex justify-content-sm-end justify-content-center mb-0 rating-result">
-															<li class="list-inline-item"><span
-																class="text-primary fs-12 lh-2"><i class="fas fa-star"></i></span>
-															</li>
-															<li class="list-inline-item"><span
-																class="text-primary fs-12 lh-2"><i class="fas fa-star"></i></span>
-															</li>
-															<li class="list-inline-item"><span
-																class="text-primary fs-12 lh-2"><i class="fas fa-star"></i></span>
-															</li>
-															<li class="list-inline-item"><span
-																class="text-primary fs-12 lh-2"><i class="fas fa-star"></i></span>
-															</li>
-															<li class="list-inline-item"><span
-																class="text-primary fs-12 lh-2"><i class="fas fa-star"></i></span>
-															</li>
-														</ul>
-														<p class="text-primary mb-0 fs-14 lh-1 overflow-hidden pl-3">
-															<span class="pr-2">5.0</span><span
-																class="mr-2 border-right border-light-dark"></span><a
-																href="#">See 3 Reviews</a>
-														</p>
-													</div>
-													<p class="mt-2 mb-6">Posuere in netus a eu varius adipiscing
-														suspendisse elementum vitae tempor suspendisse ullamcorper
-														aenean taciti morbi potenti.</p>
-													<form>
-														<div
-															class="form-group shop-swatch-color shop-swatch-color-02 mb-6">
-															<label class="mb-2"><span
-																class="font-weight-500 text-primary mr-2">Color:</span> <span
-																class="var text-capitalize"></span></label>
-															<ul class="list-inline d-flex justify-content-start mb-0">
-																<li class="list-inline-item"><a href="#"
-																	class="d-block swatches-item"
-																	data-var="green-revitalizing" data-toggle="tooltip"
-																	data-placement="top" title="Korma"
-																	style="background-color: #903711;"> </a></li>
-																<li class="list-inline-item"><a href="#"
-																	class="d-block swatches-item" data-var="black"
-																	style="background-color: #000;"> </a></li>
-																<li class="list-inline-item"><a href="#"
-																	class="d-block swatches-item"
-																	data-var="green-revitalizing" data-toggle="tooltip"
-																	data-placement="top" title="Alto"
-																	style="background-color: #D8D8D8;"> </a></li>
-															</ul>
-															<input type="hidden" name="swatches-color"
-																class="swatches-select" value="min">
-														</div>
-														<div class="form-group shop-swatch swatch-size mb-7">
-															<label class="mb-2"><span
-																class="font-weight-500 text-primary mr-2">Select a Size:</span>
-																<span class="var text-uppercase">S</span></label>
-															<ul class="list-inline d-flex">
-																<li class="list-inline-item mr-2 selected"><a href="#"
-																	class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-																	data-var="xs">XS</a></li>
-																<li class="list-inline-item mr-2"><a href="#"
-																	class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-																	data-var="s">S</a></li>
-																<li class="list-inline-item mr-2"><a href="#"
-																	class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-																	data-var="M">M</a></li>
-																<li class="list-inline-item mr-2"><a href="#"
-																	class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-																	data-var="L">L</a></li>
-																<li class="list-inline-item mr-2"><a href="#"
-																	class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-																	data-var="XL">XL</a></li>
-																<li class="list-inline-item mr-2"><a href="#"
-																	class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-																	data-var="XXL">XXL</a></li>
-															</ul>
-															<input type="hidden" name="swatches-size"
-																class="swatches-select" value="xs">
-														</div>
-														<div class="row align-items-end no-gutters mx-n2">
-															<div class="col-sm-3 form-group px-2 mb-6 mb-sm-0">
-																<label class="text-primary fs-16 font-weight-bold mb-3">Quantity:
-																</label>
-																<div class="input-group position-relative w-100">
-																	<a href="#"
-																		class="down position-absolute pos-fixed-left-center pl-2 z-index-2"><i
-																		class="far fa-minus"></i></a> <input name="number"
-																		type="number"
-																		class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary"
-																		value="1" required> <a href="#"
-																		class="up position-absolute pos-fixed-right-center pr-2 z-index-2"><i
-																		class="far fa-plus"></i> </a>
-																</div>
-															</div>
-															<div class="col-sm-9 mb-6 mb-sm-0 px-2">
-																<button type="submit"
-																	class="btn btn-primary btn-block text-capitalize">add to
-																	cart</button>
-															</div>
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-                             <!---Handpicked Start -->
-                    <div class="tab-pane fade" style="margin-bottom: 20px" id="pills-hand-picked"
-                        role="tabpanel" aria-labelledby="pills-recommendations-tab">
-                        <div class="slick-slider "
-                            data-slick-options='{"slidesToShow": 4, "autoplay":false,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-
-                            <?php if(isset($handpicked) && !empty($handpicked)){?>
-
-                            <?php foreach($handpicked as $recent){?>
-
-                            <div class="box px-1" data-animate="fadeInUp">
-                                <div class="card border-0 product px-2">
-                                    <div class="position-relative">
-										<a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                    <a href="javascript:;" class="d-block overflow-hidden productdetail"
                                         data-id="<?= $recent['PRODUCT_ID'] ?>"
                                         data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                         data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
                                         data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>">
-                                            <img src="<?= $recent['primaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 img-h30-m image-active">
-                                            <img src="<?= $recent['secondaryImage'] ?>" alt="Product 01" class="card-img-top all-products img-h60 image-hover">
-                                        </a>
-                                        <div
-                                            class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-                                            <div></div>
-                                            <div class="content-change-vertical d-flex flex-column ml-auto">
-                                                <a href="javascript:;" data-toggle="tooltip" data-placement="left"
-                                                    title="Add to wish list"
-                                                    class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
-                                                    data-productId="<?= $recent['PRODUCT_ID'] ?>"
-                                                    data-type='single'>
-                                                    <i
-                                                        class="fal fa-star wish_<?= $recent['PRODUCT_ID'] ?> <?= $recent['wishlistFlag'] == '1' ? 'activeWish' : '' ?>"></i>
-                                                </a>
-                                                <!-- <a href="#" data-toggle="tooltip" data-placement="left"
-							title="Quick view"
-							class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-							<span data-toggle="modal"
-							data-target="#product-recommendations-1"> <i
-								class="fal fa-eye"></i>
-							</span>
-							</a> -->
-                                            </div>
-                                        </div>
-                                        <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                            {{-- <a href="javascript:;" class="btn btn-white btn-block @if(isset($userId)) productdetail @else addto-cart1 @endif"
-                                                data-type="single" data-id="<?= $recent['PRODUCT_ID'] ?>"  data-id="<?= $recommand['PRODUCT_ID'] ?>"
-                                                data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
-                                                data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
-                                                data-name="<?= $recommand['SLUG'] ?>" data-type="<?= $recommand['CATGORY_NAME'] ?>"
-                                                data-quantity='1'>+ Quick Add</a> --}}
-                                                @if(isset($recommand['productShades']))
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif" id="qckad" data-id="<?= $recommand['PRODUCT_ID'];?>" data-category="<?= $recommand['CATEGORY_SLUG'] ?>" data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>" data-name="<?= $recommand['SLUG'] ?>" data-type="@{{catFlag}}" >+ Quick Add</a>
-                                                        @elseif($recommand['INV_QUANTITY_FLAG'] == 'inv' && $recommand['INV_QUANTITY'] > 0)
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="<?= $recommand['PRODUCT_ID'];?>" data-quantity='1' >+ Quick Add</a>
-                                                        @elseif($recommand['INV_QUANTITY'] <= 0)
-                                                        <a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" disabled>+ Out of Stock</a>
-                                                        @endif
+                                        <img src="<?= $recent['primaryImage'] ?>" alt="Product 01"
+                                            class="card-img-top all-products img-h60 img-h30-m image-active">
+                                        <img src="<?= $recent['secondaryImage'] ?>" alt="Product 01"
+                                            class="card-img-top all-products img-h60 image-hover">
+                                    </a>
+                                    <div
+                                        class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                        <div></div>
+                                        <div class="content-change-vertical d-flex flex-column ml-auto">
+                                            <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+                                                title="Add to wish list"
+                                                class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
+                                                data-productId="<?= $recent['PRODUCT_ID'] ?>" data-type='single'>
+                                                <i
+                                                    class="icon fal fa-star wish_<?= $recent['PRODUCT_ID'] ?> <?= $recent['wishlistFlag'] == '1' ? 'activeWish' : '' ?>"></i>
+                                            </a>
+                                            <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+                                                title="Quick view"
+                                                ng-click="quickViewProductDetails({{ $recent['PRODUCT_ID'] }})"
+                                                class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
+                                                <span> <i class="icon fal fa-eye"></i> </span>
+                                            </a>
+                                            {{-- <a href="#" data-toggle="tooltip" data-placement="left"
+                                                title="Quick view" ng-click="quickViewProductDetails(<?= $recent['PRODUCT_ID'] ?>)"
+                                                class="preview d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle">
+                                                <span data-toggle="modal"
+                                                data-target="#product-recommendations-1"> <i
+                                                    class="fal fa-eye"></i>
+                                                </span>
+                                                </a> --}}
                                         </div>
                                     </div>
-                                    <div class="card-body pt-4 px-0 pb-0">
-                                        <ul class="list-inline fs-12 d-flex mb-1">
+                                    <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                        {{-- <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
+                                                data-type="single" data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                data-quantity='1'>+ Quick Add</a> --}}
+                                        @if(isset($recent['productShades']))
+                                        <a href="javascript:;"
+                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif"
+                                            id="qckad" data-id="<?= $recent['PRODUCT_ID'];?>"
+                                            data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                            data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                            data-name="<?= $recent['SLUG'] ?>" data-type="@{{catFlag}}">+ Add To Cart</a>
+                                        @elseif($recent['INV_QUANTITY_FLAG'] == 'inv' && $recent['INV_QUANTITY'] > 0)
+                                        <a href="javascript:;"
+                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1"
+                                            id="qckad" data-type="@{{productType}}"
+                                            data-id="<?= $recent['PRODUCT_ID'];?>" data-quantity='1'>+ Add To Cart</a>
+                                        @elseif($recent['INV_QUANTITY'] <= 0) <a href="javascript:;"
+                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
+                                            id="qckad" disabled>+ Out of Stock</a>
+                                            @endif
+                                    </div>
+                                </div>
+                                <div class="card-body pt-4 px-0 pb-0">
+                                    {{-- <ul class="list-inline fs-12 d-flex mb-1">
                                             <li class="list-inline-item text-primary mr-0">
                                                 <i class="fas fa-star"
                                                     style="<?= $recent['averageRating'] >= '1' ? 'color:black;' : 'color:gray;' ?>"></i>
@@ -2460,474 +2228,1270 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                                 <i class="fas fa-star"
                                                     style="<?= $recent['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
                                             </li>
-                                        </ul>
-                                        <div class="d-flex align-items-center mb-2 "
-                                            data-id="<?= $recent['PRODUCT_ID'] ?>">
-                                            <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                                <a href="javascript:;" class="productdetail"
+                                        </ul> --}}
+                                    <a href="javascript:;"
+                                        class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
+                                        data-id="{{ $recent['CATEGORY_ID'] }}" data-type="CATEGORY"
+                                        data-categorySlug="{{ $recent['CATEGORY_SLUG'] }}">
+                                        {{ $recent['CATEGORY_NAME'] }}</a>
+                                    <div class="d-flex flex-column mb-2">
+                                        <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
+                                            <a href="javascript:;" class="productdetail text-capitalize"
                                                 data-id="<?= $recent['PRODUCT_ID'] ?>"
                                                 data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
                                                 data-name="<?= $recent['SLUG'] ?>"
-                                                ><?= $recent['NAME'] ?></a>
-                                            </h3>
-                                            <p class="fs-15 text-primary mb-0 ml-auto">
-                                                <span
-                                                    class="text-line-through text-body mr-1"></span>$<?= $recent['UNIT_PRICE'] ?>
-                                            </p>
-                                        </div>
-                                        <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                            <?php
+                                                data-type="<?= $recent['CATEGORY_NAME'] ?>"><?= $recent['NAME'] ?></a>
+                                        </h3>
+                                        <p class="text-primary mb-0 shop-subtitle card-title lh-14375 d-block"
+                                            style="height: 26px;">
+                                            {{ $recent['SUB_TITLE'] }}</p>
+
+                                    </div>
+                                    <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                        <?php
                                                         $shades1 = $recent['productShades'];
                                                         if(isset($shades1) && !empty($shades1)){
                                                         foreach ($shades1 as $shade){
 
                                                     ?>
-                                            <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
-                                                <a href="javascript:;" class="d-block swatches-item"
-                                                    style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
-                                                </a>
-                                            </li>
-                                            <?php }?>
-                                            <?php }?>
-                                        </ul>
-
-
+                                        <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
+                                            <a href="javascript:;" class="d-block swatches-item"
+                                                style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
+                                            </a>
+                                        </li>
+                                        <?php }?>
+                                        <?php }?>
+                                    </ul>
+                                    <div class="mt-auto">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            {{-- <div class="col-sm-6 col-6"> --}}
+                                            <p class="text-primary mb-0 card-title lh-14375">{{ $recent['UNIT_PRICE'] }}
+                                            </p>
+                                            {{-- </div> --}}
+                                            {{-- <div class="col-sm-6 col-5"> --}}
+                                            <p
+                                                class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
+                                                {{ $recent['UNIT'] }}</p>
+                                            {{-- </div> --}}
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-
-                            <?php }?>
-
-                            <?php }?>
-
-                            <!-- <div class="box px-1" data-animate="fadeInUp">
-						<div class="card border-0 product px-2">
-						<div class="position-relative">
-						<a href="product-detail-01.html" class="d-block"> <img
-						src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
-						</a>
-						<div
-						class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-						<div></div>
-						<div class="content-change-vertical d-flex flex-column ml-auto">
-							<a href="wishlist.html" data-toggle="tooltip"
-							data-placement="left" title="Add to wish list"
-							class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
-							<i class="icon fal fa-star"></i>
-							</a> <a href="#" data-toggle="tooltip" data-placement="left"
-							title="Quick view"
-							class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-							<span data-toggle="modal"
-							data-target="#product-recommendations-1"> <i
-							class="fal fa-eye"></i>
-							</span>
-							</a>
-						</div>
-						</div>
-						<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-						<a href="#" class="btn btn-white btn-block" data-toggle="modal"
-							data-target="#product-1">+ Quick Add</a>
-						</div>
-						</div>
-						<div class="card-body pt-4 px-0 pb-0">
-						<ul class="list-inline fs-12 d-flex mb-1">
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						</ul>
-						<div class="d-flex align-items-center mb-2">
-						<h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
-							<a href="#">Hoodie with pouch pocket</a>
-						</h3>
-						<p class="fs-15 text-primary mb-0 ml-auto">
-							<span class="text-line-through text-body mr-1"></span>$79.00
-						</p>
-						</div>
-						<ul
-						class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="green-revitalizing"
-							data-toggle="tooltip" data-placement="top"
-							title="green-revitalizing" style="background-color: #903711;">
-						</a></li>
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="black"
-							data-toggle="tooltip" data-placement="top" title="black"
-							style="background-color: #000;"> </a></li>
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="green-revitalizing"
-							data-toggle="tooltip" data-placement="top"
-							title="green-revitalizing" style="background-color: #D8D8D8;">
-						</a></li>
-						</ul>
-						</div>
-						</div>
-					</div>
-					<div class="box px-1" data-animate="fadeInUp">
-						<div class="card border-0 product px-2">
-						<div class="position-relative">
-						<a href="product-detail.html" class="d-block"> <img
-						src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
-						</a>
-						<div
-						class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-						<div>
-							<span class="badge badge-pink rounded-pill">Hot</span>
-						</div>
-						<div class="content-change-vertical d-flex flex-column ml-auto">
-							<a href="wishlist.html" data-toggle="tooltip"
-							data-placement="left" title="Add to wish list"
-							class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
-							<i class="icon fal fa-star"></i>
-							</a> <a href="#" data-toggle="tooltip" data-placement="left"
-							title="Quick view"
-							class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-							<span data-toggle="modal"
-							data-target="#product-recommendations-2"> <i
-							class="fal fa-eye"></i>
-							</span>
-							</a>
-						</div>
-						</div>
-						<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-						<a href="#" class="btn btn-white btn-block" data-toggle="modal"
-							data-target="#product-2">+ Quick Add</a>
-						</div>
-						</div>
-						<div class="card-body pt-4 px-0 pb-0">
-						<ul class="list-inline fs-12 d-flex mb-1">
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fas fa-star"></i></li>
-						</ul>
-						<div class="d-flex align-items-center mb-2">
-						<h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
-							<a href="#">Ladder-Lace Linen Tank Top</a>
-						</h3>
-						<p class="fs-15 text-primary mb-0 ml-auto">
-							<span class="text-line-through text-body mr-1"></span>$79.00
-						</p>
-						</div>
-						<ul
-						class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-						</ul>
-						</div>
-						</div>
-					</div>
-					<div class="box px-1" data-animate="fadeInUp">
-						<div class="card border-0 product px-2">
-						<div class="position-relative">
-						<a href="product-detail.html" class="d-block"> <img
-						src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
-						</a>
-						<div
-						class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-						<div>
-							<span class="badge badge-green rounded-pill">Sale</span>
-						</div>
-						<div class="content-change-vertical d-flex flex-column ml-auto">
-							<a href="wishlist.html" data-toggle="tooltip"
-							data-placement="left" title="Add to wish list"
-							class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
-							<i class="icon fal fa-star"></i>
-							</a> <a href="#" data-toggle="tooltip" data-placement="left"
-							title="Quick view"
-							class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-							<span data-toggle="modal"
-							data-target="#product-recommendations-3"> <i
-							class="fal fa-eye"></i>
-							</span>
-							</a>
-						</div>
-						</div>
-						<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-						<a href="#" class="btn btn-white btn-block" data-toggle="modal"
-							data-target="#product-3">+ Quick Add</a>
-						</div>
-						</div>
-						<div class="card-body pt-4 px-0 pb-0">
-						<ul class="list-inline fs-12 d-flex mb-1">
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						</ul>
-						<div class="d-flex align-items-center mb-2">
-						<h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
-							<a href="#">Scoop-Back Cotton Cardigan</a>
-						</h3>
-						<p class="fs-15 text-primary mb-0 ml-auto">
-							<span class="text-line-through text-body mr-1">$39.00</span>$79.00
-						</p>
-						</div>
-						<ul
-						class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="green-revitalizing"
-							data-toggle="tooltip" data-placement="top"
-							title="green-revitalizing" style="background-color: #8C928F;">
-						</a></li>
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="black"
-							data-toggle="tooltip" data-placement="top" title="black"
-							style="background-color: #000;"> </a></li>
-						</ul>
-						</div>
-						</div>
-					</div>
-
-					<div class="box px-1" data-animate="fadeInUp">
-						<div class="card border-0 product px-2">
-						<div class="position-relative">
-						<a href="product-detail.html" class="d-block"> <img
-						src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
-						</a>
-						<div
-						class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-						<div></div>
-						<div class="content-change-vertical d-flex flex-column ml-auto">
-							<a href="wishlist.html" data-toggle="tooltip"
-							data-placement="left" title="Add to wish list"
-							class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
-							<i class="icon fal fa-star"></i>
-							</a> <a href="#" data-toggle="tooltip" data-placement="left"
-							title="Quick view"
-							class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-							<span data-toggle="modal"
-							data-target="#product-recommendations-4"> <i
-							class="fal fa-eye"></i>
-							</span>
-							</a>
-						</div>
-						</div>
-						<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-						<a href="#" class="btn btn-white btn-block" data-toggle="modal"
-							data-target="#product-4">+ Quick Add</a>
-						</div>
-						</div>
-						<div class="card-body pt-4 px-0 pb-0">
-						<ul class="list-inline fs-12 d-flex mb-1">
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						<li class="list-inline-item text-primary mr-0"><i
-							class="fal fa-star"></i></li>
-						</ul>
-						<div class="d-flex align-items-center mb-2">
-						<h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
-							<a href="#">Oversize Wool Coat</a>
-						</h3>
-						<p class="fs-15 text-primary mb-0 ml-auto">
-							<span class="text-line-through text-body mr-1"></span>$79.00
-						</p>
-						</div>
-						<ul
-						class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="green-revitalizing"
-							data-toggle="tooltip" data-placement="top"
-							title="green-revitalizing" style="background-color: #D7C09F;">
-						</a></li>
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="black"
-							data-toggle="tooltip" data-placement="top" title="black"
-							style="background-color: #000;"> </a></li>
-						<li class="list-inline-item"><a href="#"
-							class="d-block swatches-item" data-var="green-revitalizing"
-							data-toggle="tooltip" data-placement="top"
-							title="green-revitalizing" style="background-color: #B66262;">
-						</a></li>
-						</ul>
-						</div>
-						</div>
-					</div> -->
-
-
-
                         </div>
-                        <div class="modal fade quick-view" id="product-recommendations-1" tabindex="-1"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content p-0">
-                                    <div class="modal-body p-0">
-                                        <button type="button"
-                                            class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
-                                            data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" class="fs-20"><i
-                                                    class="fal fa-times"></i></span>
-                                        </button>
-                                        <div class="row no-gutters">
-                                            <div class="col-sm-6">
-                                                <div style="background-image: url('images/product.jpg');"
-                                                    class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-                                                    <a href="store.html"
-                                                        class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-                                                        Sweaters</a>
-                                                    <div class="d-flex align-items-center">
-                                                        <h2 class="mb-1">
-                                                            <a href="product-detail.html">Hoodie with pouch pocket</a>
-                                                        </h2>
-                                                    </div>
-                                                    <p class="mb-6 fs-20 text-primary lh-14">$79.00</p>
-                                                    <div class="d-flex align-items-center flex-wrap">
-                                                        <ul
-                                                            class="list-inline d-flex justify-content-sm-end justify-content-center mb-0 rating-result">
-                                                            <li class="list-inline-item"><span
-                                                                    class="text-primary fs-12 lh-2"><i
-                                                                        class="fas fa-star"></i></span>
-                                                            </li>
-                                                            <li class="list-inline-item"><span
-                                                                    class="text-primary fs-12 lh-2"><i
-                                                                        class="fas fa-star"></i></span>
-                                                            </li>
-                                                            <li class="list-inline-item"><span
-                                                                    class="text-primary fs-12 lh-2"><i
-                                                                        class="fas fa-star"></i></span>
-                                                            </li>
-                                                            <li class="list-inline-item"><span
-                                                                    class="text-primary fs-12 lh-2"><i
-                                                                        class="fas fa-star"></i></span>
-                                                            </li>
-                                                            <li class="list-inline-item"><span
-                                                                    class="text-primary fs-12 lh-2"><i
-                                                                        class="fas fa-star"></i></span>
-                                                            </li>
-                                                        </ul>
-                                                        <p class="text-primary mb-0 fs-14 lh-1 overflow-hidden pl-3">
-                                                            <span class="pr-2">5.0</span><span
-                                                                class="mr-2 border-right border-light-dark"></span><a
-                                                                href="#">See 3 Reviews</a>
-                                                        </p>
-                                                    </div>
-                                                    <p class="mt-2 mb-6">Posuere in netus a eu varius adipiscing
-                                                        suspendisse elementum vitae tempor suspendisse ullamcorper
-                                                        aenean taciti morbi potenti.</p>
-                                                    <form>
-                                                        <div
-                                                            class="form-group shop-swatch-color shop-swatch-color-02 mb-6">
-                                                            <label class="mb-2"><span
-                                                                    class="font-weight-500 text-primary mr-2">Color:</span>
-                                                                <span class="var text-capitalize"></span></label>
-                                                            <ul class="list-inline d-flex justify-content-start mb-0">
-                                                                <li class="list-inline-item"><a href="#"
-                                                                        class="d-block swatches-item"
-                                                                        data-var="green-revitalizing"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="Korma"
-                                                                        style="background-color: #903711;"> </a></li>
-                                                                <li class="list-inline-item"><a href="#"
-                                                                        class="d-block swatches-item"
-                                                                        data-var="black"
-                                                                        style="background-color: #000;"> </a></li>
-                                                                <li class="list-inline-item"><a href="#"
-                                                                        class="d-block swatches-item"
-                                                                        data-var="green-revitalizing"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="Alto"
-                                                                        style="background-color: #D8D8D8;"> </a></li>
-                                                            </ul>
-                                                            <input type="hidden" name="swatches-color"
-                                                                class="swatches-select" value="min">
-                                                        </div>
-                                                        <div class="form-group shop-swatch swatch-size mb-7">
-                                                            <label class="mb-2"><span
-                                                                    class="font-weight-500 text-primary mr-2">Select a
-                                                                    Size:</span>
-                                                                <span class="var text-uppercase">S</span></label>
-                                                            <ul class="list-inline d-flex">
-                                                                <li class="list-inline-item mr-2 selected"><a
-                                                                        href="#"
-                                                                        class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                        data-var="xs">XS</a></li>
-                                                                <li class="list-inline-item mr-2"><a href="#"
-                                                                        class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                        data-var="s">S</a></li>
-                                                                <li class="list-inline-item mr-2"><a href="#"
-                                                                        class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                        data-var="M">M</a></li>
-                                                                <li class="list-inline-item mr-2"><a href="#"
-                                                                        class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                        data-var="L">L</a></li>
-                                                                <li class="list-inline-item mr-2"><a href="#"
-                                                                        class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                        data-var="XL">XL</a></li>
-                                                                <li class="list-inline-item mr-2"><a href="#"
-                                                                        class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
-                                                                        data-var="XXL">XXL</a></li>
-                                                            </ul>
-                                                            <input type="hidden" name="swatches-size"
-                                                                class="swatches-select" value="xs">
-                                                        </div>
-                                                        <div class="row align-items-end no-gutters mx-n2">
-                                                            <div class="col-sm-3 form-group px-2 mb-6 mb-sm-0">
-                                                                <label
-                                                                    class="text-primary fs-16 font-weight-bold mb-3">Quantity:
-                                                                </label>
-                                                                <div class="input-group position-relative w-100">
-                                                                    <a href="#"
-                                                                        class="down position-absolute pos-fixed-left-center pl-2 z-index-2"><i
-                                                                            class="far fa-minus"></i></a> <input
-                                                                        name="number" type="number"
-                                                                        class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary"
-                                                                        value="1" required> <a href="#"
-                                                                        class="up position-absolute pos-fixed-right-center pr-2 z-index-2"><i
-                                                                            class="far fa-plus"></i> </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-9 mb-6 mb-sm-0 px-2">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary btn-block text-capitalize">add
-                                                                    to
-                                                                    cart</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+
+                        <?php }?>
+
+                        <?php }?>
+
+                                                    <!-- <div class="box px-1" data-animate="fadeInUp">
+                                    <div class="card border-0 product px-2">
+                                    <div class="position-relative">
+                                    <a href="product-detail-01.html" class="d-block"> <img
+                                    src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                    </a>
+                                    <div
+                                    class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                    <div></div>
+                                    <div class="content-change-vertical d-flex flex-column ml-auto">
+                                        <a href="wishlist.html" data-toggle="tooltip"
+                                        data-placement="left" title="Add to wish list"
+                                        class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                        <i class="icon fal fa-star"></i>
+                                        </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                        title="Quick view"
+                                        class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                        <span data-toggle="modal"
+                                        data-target="#product-recommendations-1"> <i
+                                        class="fal fa-eye"></i>
+                                        </span>
+                                        </a>
+                                    </div>
+                                    </div>
+                                    <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                    <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                        data-target="#product-1">+ Quick Add</a>
+                                    </div>
+                                    </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                    <ul class="list-inline fs-12 d-flex mb-1">
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    </ul>
+                                    <div class="d-flex align-items-center mb-2">
+                                    <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                        <a href="#">Hoodie with pouch pocket</a>
+                                    </h3>
+                                    <p class="fs-15 text-primary mb-0 ml-auto">
+                                        <span class="text-line-through text-body mr-1"></span>$79.00
+                                    </p>
+                                    </div>
+                                    <ul
+                                    class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="green-revitalizing"
+                                        data-toggle="tooltip" data-placement="top"
+                                        title="green-revitalizing" style="background-color: #903711;">
+                                    </a></li>
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="black"
+                                        data-toggle="tooltip" data-placement="top" title="black"
+                                        style="background-color: #000;"> </a></li>
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="green-revitalizing"
+                                        data-toggle="tooltip" data-placement="top"
+                                        title="green-revitalizing" style="background-color: #D8D8D8;">
+                                    </a></li>
+                                    </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="box px-1" data-animate="fadeInUp">
+                                    <div class="card border-0 product px-2">
+                                    <div class="position-relative">
+                                    <a href="product-detail.html" class="d-block"> <img
+                                    src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                    </a>
+                                    <div
+                                    class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                    <div>
+                                        <span class="badge badge-pink rounded-pill">Hot</span>
+                                    </div>
+                                    <div class="content-change-vertical d-flex flex-column ml-auto">
+                                        <a href="wishlist.html" data-toggle="tooltip"
+                                        data-placement="left" title="Add to wish list"
+                                        class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                        <i class="icon fal fa-star"></i>
+                                        </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                        title="Quick view"
+                                        class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                        <span data-toggle="modal"
+                                        data-target="#product-recommendations-2"> <i
+                                        class="fal fa-eye"></i>
+                                        </span>
+                                        </a>
+                                    </div>
+                                    </div>
+                                    <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                    <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                        data-target="#product-2">+ Quick Add</a>
+                                    </div>
+                                    </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                    <ul class="list-inline fs-12 d-flex mb-1">
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fas fa-star"></i></li>
+                                    </ul>
+                                    <div class="d-flex align-items-center mb-2">
+                                    <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                        <a href="#">Ladder-Lace Linen Tank Top</a>
+                                    </h3>
+                                    <p class="fs-15 text-primary mb-0 ml-auto">
+                                        <span class="text-line-through text-body mr-1"></span>$79.00
+                                    </p>
+                                    </div>
+                                    <ul
+                                    class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                    </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="box px-1" data-animate="fadeInUp">
+                                    <div class="card border-0 product px-2">
+                                    <div class="position-relative">
+                                    <a href="product-detail.html" class="d-block"> <img
+                                    src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                    </a>
+                                    <div
+                                    class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                    <div>
+                                        <span class="badge badge-green rounded-pill">Sale</span>
+                                    </div>
+                                    <div class="content-change-vertical d-flex flex-column ml-auto">
+                                        <a href="wishlist.html" data-toggle="tooltip"
+                                        data-placement="left" title="Add to wish list"
+                                        class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                        <i class="icon fal fa-star"></i>
+                                        </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                        title="Quick view"
+                                        class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                        <span data-toggle="modal"
+                                        data-target="#product-recommendations-3"> <i
+                                        class="fal fa-eye"></i>
+                                        </span>
+                                        </a>
+                                    </div>
+                                    </div>
+                                    <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                    <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                        data-target="#product-3">+ Quick Add</a>
+                                    </div>
+                                    </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                    <ul class="list-inline fs-12 d-flex mb-1">
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    </ul>
+                                    <div class="d-flex align-items-center mb-2">
+                                    <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                        <a href="#">Scoop-Back Cotton Cardigan</a>
+                                    </h3>
+                                    <p class="fs-15 text-primary mb-0 ml-auto">
+                                        <span class="text-line-through text-body mr-1">$39.00</span>$79.00
+                                    </p>
+                                    </div>
+                                    <ul
+                                    class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="green-revitalizing"
+                                        data-toggle="tooltip" data-placement="top"
+                                        title="green-revitalizing" style="background-color: #8C928F;">
+                                    </a></li>
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="black"
+                                        data-toggle="tooltip" data-placement="top" title="black"
+                                        style="background-color: #000;"> </a></li>
+                                    </ul>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="box px-1" data-animate="fadeInUp">
+                                    <div class="card border-0 product px-2">
+                                    <div class="position-relative">
+                                    <a href="product-detail.html" class="d-block"> <img
+                                    src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                    </a>
+                                    <div
+                                    class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                    <div></div>
+                                    <div class="content-change-vertical d-flex flex-column ml-auto">
+                                        <a href="wishlist.html" data-toggle="tooltip"
+                                        data-placement="left" title="Add to wish list"
+                                        class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                        <i class="icon fal fa-star"></i>
+                                        </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                        title="Quick view"
+                                        class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                        <span data-toggle="modal"
+                                        data-target="#product-recommendations-4"> <i
+                                        class="fal fa-eye"></i>
+                                        </span>
+                                        </a>
+                                    </div>
+                                    </div>
+                                    <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                    <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                        data-target="#product-4">+ Quick Add</a>
+                                    </div>
+                                    </div>
+                                    <div class="card-body pt-4 px-0 pb-0">
+                                    <ul class="list-inline fs-12 d-flex mb-1">
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    <li class="list-inline-item text-primary mr-0"><i
+                                        class="fal fa-star"></i></li>
+                                    </ul>
+                                    <div class="d-flex align-items-center mb-2">
+                                    <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                        <a href="#">Oversize Wool Coat</a>
+                                    </h3>
+                                    <p class="fs-15 text-primary mb-0 ml-auto">
+                                        <span class="text-line-through text-body mr-1"></span>$79.00
+                                    </p>
+                                    </div>
+                                    <ul
+                                    class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="green-revitalizing"
+                                        data-toggle="tooltip" data-placement="top"
+                                        title="green-revitalizing" style="background-color: #D7C09F;">
+                                    </a></li>
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="black"
+                                        data-toggle="tooltip" data-placement="top" title="black"
+                                        style="background-color: #000;"> </a></li>
+                                    <li class="list-inline-item"><a href="#"
+                                        class="d-block swatches-item" data-var="green-revitalizing"
+                                        data-toggle="tooltip" data-placement="top"
+                                        title="green-revitalizing" style="background-color: #B66262;">
+                                    </a></li>
+                                    </ul>
+                                    </div>
+                                    </div>
+                                </div> -->
+
+
+
+                    </div>
+                    <div class="modal fade quick-view" id="product-recommendations-1" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content p-0">
+                                <div class="modal-body p-0">
+                                    <button type="button"
+                                        class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
+                                        data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
+                                    </button>
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-6">
+                                            <div style="background-image: url('images/product.jpg');"
+                                                class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
+                                                <a href="store.html"
+                                                    class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
+                                                    Sweaters</a>
+                                                <div class="d-flex align-items-center">
+                                                    <h2 class="fs-30 mb-1">
+                                                        <a href="product-detail.html">Hoodie with pouch pocket</a>
+                                                    </h2>
                                                 </div>
+                                                <p class="mb-6 fs-20 text-primary lh-14">$79.00</p>
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    <ul
+                                                        class="list-inline d-flex justify-content-sm-end justify-content-center mb-0 rating-result">
+                                                        <li class="list-inline-item"><span
+                                                                class="text-primary fs-12 lh-2"><i
+                                                                    class="fas fa-star"></i></span>
+                                                        </li>
+                                                        <li class="list-inline-item"><span
+                                                                class="text-primary fs-12 lh-2"><i
+                                                                    class="fas fa-star"></i></span>
+                                                        </li>
+                                                        <li class="list-inline-item"><span
+                                                                class="text-primary fs-12 lh-2"><i
+                                                                    class="fas fa-star"></i></span>
+                                                        </li>
+                                                        <li class="list-inline-item"><span
+                                                                class="text-primary fs-12 lh-2"><i
+                                                                    class="fas fa-star"></i></span>
+                                                        </li>
+                                                        <li class="list-inline-item"><span
+                                                                class="text-primary fs-12 lh-2"><i
+                                                                    class="fas fa-star"></i></span>
+                                                        </li>
+                                                    </ul>
+                                                    <p class="text-primary mb-0 fs-14 lh-1 overflow-hidden pl-3">
+                                                        <span class="pr-2">5.0</span><span
+                                                            class="mr-2 border-right border-light-dark"></span><a
+                                                            href="#">See 3 Reviews</a>
+                                                    </p>
+                                                </div>
+                                                <p class="mt-2 mb-6">Posuere in netus a eu varius adipiscing
+                                                    suspendisse elementum vitae tempor suspendisse ullamcorper
+                                                    aenean taciti morbi potenti.</p>
+                                                <form>
+                                                    <div class="form-group shop-swatch-color shop-swatch-color-02 mb-6">
+                                                        <label class="mb-2"><span
+                                                                class="font-weight-500 text-primary mr-2">Color:</span>
+                                                            <span class="var text-capitalize"></span></label>
+                                                        <ul class="list-inline d-flex justify-content-start mb-0">
+                                                            <li class="list-inline-item"><a href="#"
+                                                                    class="d-block swatches-item"
+                                                                    data-var="green-revitalizing" data-toggle="tooltip"
+                                                                    data-placement="top" title="Korma"
+                                                                    style="background-color: #903711;"> </a></li>
+                                                            <li class="list-inline-item"><a href="#"
+                                                                    class="d-block swatches-item" data-var="black"
+                                                                    style="background-color: #000;"> </a></li>
+                                                            <li class="list-inline-item"><a href="#"
+                                                                    class="d-block swatches-item"
+                                                                    data-var="green-revitalizing" data-toggle="tooltip"
+                                                                    data-placement="top" title="Alto"
+                                                                    style="background-color: #D8D8D8;"> </a></li>
+                                                        </ul>
+                                                        <input type="hidden" name="swatches-color"
+                                                            class="swatches-select" value="min">
+                                                    </div>
+                                                    <div class="form-group shop-swatch swatch-size mb-7">
+                                                        <label class="mb-2"><span
+                                                                class="font-weight-500 text-primary mr-2">Select a
+                                                                Size:</span>
+                                                            <span class="var text-uppercase">S</span></label>
+                                                        <ul class="list-inline d-flex">
+                                                            <li class="list-inline-item mr-2 selected"><a href="#"
+                                                                    class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                    data-var="xs">XS</a></li>
+                                                            <li class="list-inline-item mr-2"><a href="#"
+                                                                    class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                    data-var="s">S</a></li>
+                                                            <li class="list-inline-item mr-2"><a href="#"
+                                                                    class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                    data-var="M">M</a></li>
+                                                            <li class="list-inline-item mr-2"><a href="#"
+                                                                    class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                    data-var="L">L</a></li>
+                                                            <li class="list-inline-item mr-2"><a href="#"
+                                                                    class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                    data-var="XL">XL</a></li>
+                                                            <li class="list-inline-item mr-2"><a href="#"
+                                                                    class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                    data-var="XXL">XXL</a></li>
+                                                        </ul>
+                                                        <input type="hidden" name="swatches-size"
+                                                            class="swatches-select" value="xs">
+                                                    </div>
+                                                    <div class="row align-items-end no-gutters mx-n2">
+                                                        <div class="col-sm-3 form-group px-2 mb-6 mb-sm-0">
+                                                            <label
+                                                                class="text-primary fs-16 font-weight-bold mb-3">Quantity:
+                                                            </label>
+                                                            <div class="input-group position-relative w-100">
+                                                                <a href="#"
+                                                                    class="down position-absolute pos-fixed-left-center pl-2 z-index-2"><i
+                                                                        class="far fa-minus"></i></a> <input
+                                                                    name="number" type="number"
+                                                                    class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary"
+                                                                    value="1" required> <a href="#"
+                                                                    class="up position-absolute pos-fixed-right-center pr-2 z-index-2"><i
+                                                                        class="far fa-plus"></i> </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-9 mb-6 mb-sm-0 px-2">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-block text-capitalize">add
+                                                                to
+                                                                cart</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
+
+
+
+                </div>
+
+                             <!---Handpicked Start -->
+                             <div class="tab-pane fade" style="margin-bottom: 20px" id="pills-hand-picked" role="tabpanel"
+                             aria-labelledby="pills-recommendations-tab">
+                             <div class="slick-slider "
+                                 data-slick-options='{"slidesToShow": 4, "autoplay":false,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+
+                                 <?php if(isset($handpicked) && !empty($handpicked)){?>
+
+                                 <?php foreach($handpicked as $recent){?>
+
+                                 <div class="box px-1" data-animate="fadeInUp">
+                                     <div class="card border-0 product px-2">
+                                         <div class="position-relative">
+                                             <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                                 data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                 data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                 data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                 data-name="<?= $recent['SLUG'] ?>" data-type="<?= $recent['CATEGORY_NAME'] ?>"
+                                                 data-type="@{{catFlag}}">
+                                                 <img src="<?= $recent['primaryImage'] ?>" alt="Product 01"
+                                                     class="card-img-top all-products img-h60 img-h30-m image-active">
+                                                 <img src="<?= $recent['secondaryImage'] ?>" alt="Product 01"
+                                                     class="card-img-top all-products img-h60 image-hover">
+                                             </a>
+                                             <div
+                                                 class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                                 <div></div>
+                                                 <div class="content-change-vertical d-flex flex-column ml-auto">
+                                                     <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+                                                         title="Add to wish list"
+                                                         class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
+                                                         data-productId="<?= $recent['PRODUCT_ID'] ?>" data-type='single'>
+                                                         <i
+                                                             class="icon fal fa-star wish_<?= $recent['PRODUCT_ID'] ?> <?= $recent['wishlistFlag'] == '1' ? 'activeWish' : '' ?>"></i>
+                                                     </a>
+                                                     <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+                                                         title="Quick view"
+                                                         ng-click="quickViewProductDetails({{ $recent['PRODUCT_ID'] }})"
+                                                         class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
+                                                         <span> <i class="icon fal fa-eye"></i> </span>
+                                                     </a>
+                                                     {{-- <a href="#" data-toggle="tooltip" data-placement="left"
+                                                         title="Quick view" ng-click="quickViewProductDetails(<?= $recent['PRODUCT_ID'] ?>)"
+                                                         class="preview d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle">
+                                                         <span data-toggle="modal"
+                                                         data-target="#product-recommendations-1"> <i
+                                                             class="fal fa-eye"></i>
+                                                         </span>
+                                                         </a> --}}
+                                                     <!-- <a href="#" data-toggle="tooltip" data-placement="left"
+                                                             title="Quick view"
+                                                             class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                                             <span data-toggle="modal"
+                                                             data-target="#product-recommendations-1"> <i
+                                                                 class="fal fa-eye"></i>
+                                                             </span>
+                                                             </a> -->
+                                                 </div>
+                                             </div>
+                                             <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                                 {{-- <a href="javascript:;" class="btn btn-white btn-block addto-cart1"
+                                                         data-type="single" data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                         data-quantity='1'>+ Quick Add</a> --}}
+                                                 @if(isset($recent['productShades']))
+                                                 <a href="javascript:;"
+                                                     class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart1 @endif"
+                                                     id="qckad" data-id="<?= $recent['PRODUCT_ID'];?>"
+                                                     data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                     data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                     data-name="<?= $recent['SLUG'] ?>" data-type="@{{catFlag}}">+ Add To Cart</a>
+                                                 @elseif($recent['INV_QUANTITY_FLAG'] == 'inv' && $recent['INV_QUANTITY'] > 0)
+                                                 <a href="javascript:;"
+                                                     class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1"
+                                                     id="qckad" data-type="@{{productType}}"
+                                                     data-id="<?= $recent['PRODUCT_ID'];?>" data-quantity='1'>+ Add To Cart</a>
+                                                 @elseif($recent['INV_QUANTITY'] <= 0) <a href="javascript:;"
+                                                     class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
+                                                     id="qckad" disabled>+ Out of Stock</a>
+                                                     @endif
+                                             </div>
+                                         </div>
+                                         <div class="card-body pt-4 px-0 pb-0">
+                                             {{-- <ul class="list-inline fs-12 d-flex mb-1">
+                                                     <li class="list-inline-item text-primary mr-0">
+                                                         <i class="fas fa-star"
+                                                             style="<?= $recent['averageRating'] >= '1' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                                     </li>
+                                                     <li class="list-inline-item text-primary mr-0">
+                                                         <i class="fas fa-star"
+                                                             style="<?= $recent['averageRating'] >= '2' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                                     </li>
+                                                     <li class="list-inline-item text-primary mr-0">
+                                                         <i class="fas fa-star"
+                                                             style="<?= $recent['averageRating'] >= '3' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                                     </li>
+                                                     <li class="list-inline-item text-primary mr-0">
+                                                         <i class="fas fa-star"
+                                                             style="<?= $recent['averageRating'] >= '4' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                                     </li>
+                                                     <li class="list-inline-item text-primary mr-0">
+                                                         <i class="fas fa-star"
+                                                             style="<?= $recent['averageRating'] == '5' ? 'color:black;' : 'color:gray;' ?>"></i>
+                                                     </li>
+                                                 </ul> --}}
+                                             <a href="javascript:;"
+                                                 class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
+                                                 data-id="{{ $recent['CATEGORY_ID'] }}" data-type="CATEGORY"
+                                                 data-categorySlug="{{ $recent['CATEGORY_SLUG'] }}">
+                                                 {{ $recent['CATEGORY_NAME'] }}</a>
+                                             <div class="d-flex flex-column mb-2" data-id="<?= $recent['PRODUCT_ID'] ?>">
+                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
+                                                     <a href="javascript:;" class="productdetail"
+                                                         data-id="<?= $recent['PRODUCT_ID'] ?>"
+                                                         data-category="<?= $recent['CATEGORY_SLUG'] ?>"
+                                                         data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
+                                                         data-name="<?= $recent['SLUG'] ?>"
+                                                         data-type="<?= $recent['CATEGORY_NAME'] ?>"><?= $recent['NAME'] ?></a>
+                                                 </h3>
+                                                 <p class="text-primary mb-0 shop-subtitle card-title lh-14375 d-block"
+                                                     style="height: 26px;">
+                                                     {{ $recent['SUB_TITLE'] }}</p>
+                                                 {{-- <p class="fs-15 text-primary mb-0 ml-auto">
+                                                         <span
+                                                             class="text-line-through text-body mr-1"></span>$<?= $recent['UNIT_PRICE'] ?>
+                                                     </p> --}}
+                                             </div>
+                                             <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                 <?php
+                                                                 $shades1 = $recent['productShades'];
+                                                                 if(isset($shades1) && !empty($shades1)){
+                                                                 foreach ($shades1 as $shade){
+
+                                                             ?>
+                                                 <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
+                                                     <a href="javascript:;" class="d-block swatches-item"
+                                                         style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
+                                                     </a>
+                                                 </li>
+                                                 <?php }?>
+                                                 <?php }?>
+                                             </ul>
+                                             <div class="mt-auto">
+                                                 <div class="d-flex flex-row justify-content-between">
+                                                     {{-- <div class="col-sm-6 col-6"> --}}
+                                                     <p class="text-primary mb-0 card-title lh-14375">{{ $recent['UNIT_PRICE'] }}
+                                                     </p>
+                                                     {{-- </div> --}}
+                                                     {{-- <div class="col-sm-6 col-5"> --}}
+                                                     <p
+                                                         class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
+                                                         {{ $recent['UNIT'] }}</p>
+                                                     {{-- </div> --}}
+                                                 </div>
+                                             </div>
+
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <?php }?>
+
+                                 <?php }?>
+
+                                 <!-- <div class="box px-1" data-animate="fadeInUp">
+                                                 <div class="card border-0 product px-2">
+                                                 <div class="position-relative">
+                                                 <a href="product-detail-01.html" class="d-block"> <img
+                                                 src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                                 </a>
+                                                 <div
+                                                 class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                                 <div></div>
+                                                 <div class="content-change-vertical d-flex flex-column ml-auto">
+                                                     <a href="wishlist.html" data-toggle="tooltip"
+                                                     data-placement="left" title="Add to wish list"
+                                                     class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                                     <i class="icon fal fa-star"></i>
+                                                     </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                                     title="Quick view"
+                                                     class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                                     <span data-toggle="modal"
+                                                     data-target="#product-recommendations-1"> <i
+                                                     class="fal fa-eye"></i>
+                                                     </span>
+                                                     </a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                                 <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                                     data-target="#product-1">+ Quick Add</a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="card-body pt-4 px-0 pb-0">
+                                                 <ul class="list-inline fs-12 d-flex mb-1">
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 </ul>
+                                                 <div class="d-flex align-items-center mb-2">
+                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                                     <a href="#">Hoodie with pouch pocket</a>
+                                                 </h3>
+                                                 <p class="fs-15 text-primary mb-0 ml-auto">
+                                                     <span class="text-line-through text-body mr-1"></span>$79.00
+                                                 </p>
+                                                 </div>
+                                                 <ul
+                                                 class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="green-revitalizing"
+                                                     data-toggle="tooltip" data-placement="top"
+                                                     title="green-revitalizing" style="background-color: #903711;">
+                                                 </a></li>
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="black"
+                                                     data-toggle="tooltip" data-placement="top" title="black"
+                                                     style="background-color: #000;"> </a></li>
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="green-revitalizing"
+                                                     data-toggle="tooltip" data-placement="top"
+                                                     title="green-revitalizing" style="background-color: #D8D8D8;">
+                                                 </a></li>
+                                                 </ul>
+                                                 </div>
+                                                 </div>
+                                             </div>
+                                             <div class="box px-1" data-animate="fadeInUp">
+                                                 <div class="card border-0 product px-2">
+                                                 <div class="position-relative">
+                                                 <a href="product-detail.html" class="d-block"> <img
+                                                 src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                                 </a>
+                                                 <div
+                                                 class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                                 <div>
+                                                     <span class="badge badge-pink rounded-pill">Hot</span>
+                                                 </div>
+                                                 <div class="content-change-vertical d-flex flex-column ml-auto">
+                                                     <a href="wishlist.html" data-toggle="tooltip"
+                                                     data-placement="left" title="Add to wish list"
+                                                     class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                                     <i class="icon fal fa-star"></i>
+                                                     </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                                     title="Quick view"
+                                                     class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                                     <span data-toggle="modal"
+                                                     data-target="#product-recommendations-2"> <i
+                                                     class="fal fa-eye"></i>
+                                                     </span>
+                                                     </a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                                 <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                                     data-target="#product-2">+ Quick Add</a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="card-body pt-4 px-0 pb-0">
+                                                 <ul class="list-inline fs-12 d-flex mb-1">
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fas fa-star"></i></li>
+                                                 </ul>
+                                                 <div class="d-flex align-items-center mb-2">
+                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                                     <a href="#">Ladder-Lace Linen Tank Top</a>
+                                                 </h3>
+                                                 <p class="fs-15 text-primary mb-0 ml-auto">
+                                                     <span class="text-line-through text-body mr-1"></span>$79.00
+                                                 </p>
+                                                 </div>
+                                                 <ul
+                                                 class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                 </ul>
+                                                 </div>
+                                                 </div>
+                                             </div>
+                                             <div class="box px-1" data-animate="fadeInUp">
+                                                 <div class="card border-0 product px-2">
+                                                 <div class="position-relative">
+                                                 <a href="product-detail.html" class="d-block"> <img
+                                                 src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                                 </a>
+                                                 <div
+                                                 class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                                 <div>
+                                                     <span class="badge badge-green rounded-pill">Sale</span>
+                                                 </div>
+                                                 <div class="content-change-vertical d-flex flex-column ml-auto">
+                                                     <a href="wishlist.html" data-toggle="tooltip"
+                                                     data-placement="left" title="Add to wish list"
+                                                     class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                                     <i class="icon fal fa-star"></i>
+                                                     </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                                     title="Quick view"
+                                                     class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                                     <span data-toggle="modal"
+                                                     data-target="#product-recommendations-3"> <i
+                                                     class="fal fa-eye"></i>
+                                                     </span>
+                                                     </a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                                 <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                                     data-target="#product-3">+ Quick Add</a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="card-body pt-4 px-0 pb-0">
+                                                 <ul class="list-inline fs-12 d-flex mb-1">
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 </ul>
+                                                 <div class="d-flex align-items-center mb-2">
+                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                                     <a href="#">Scoop-Back Cotton Cardigan</a>
+                                                 </h3>
+                                                 <p class="fs-15 text-primary mb-0 ml-auto">
+                                                     <span class="text-line-through text-body mr-1">$39.00</span>$79.00
+                                                 </p>
+                                                 </div>
+                                                 <ul
+                                                 class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="green-revitalizing"
+                                                     data-toggle="tooltip" data-placement="top"
+                                                     title="green-revitalizing" style="background-color: #8C928F;">
+                                                 </a></li>
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="black"
+                                                     data-toggle="tooltip" data-placement="top" title="black"
+                                                     style="background-color: #000;"> </a></li>
+                                                 </ul>
+                                                 </div>
+                                                 </div>
+                                             </div>
+
+                                             <div class="box px-1" data-animate="fadeInUp">
+                                                 <div class="card border-0 product px-2">
+                                                 <div class="position-relative">
+                                                 <a href="product-detail.html" class="d-block"> <img
+                                                 src="{{ url('assets-web') }}/images/product.jpg" alt="Product 01" class="card-img-top">
+                                                 </a>
+                                                 <div
+                                                 class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                                 <div></div>
+                                                 <div class="content-change-vertical d-flex flex-column ml-auto">
+                                                     <a href="wishlist.html" data-toggle="tooltip"
+                                                     data-placement="left" title="Add to wish list"
+                                                     class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2">
+                                                     <i class="icon fal fa-star"></i>
+                                                     </a> <a href="#" data-toggle="tooltip" data-placement="left"
+                                                     title="Quick view"
+                                                     class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                                     <span data-toggle="modal"
+                                                     data-target="#product-recommendations-4"> <i
+                                                     class="fal fa-eye"></i>
+                                                     </span>
+                                                     </a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                                 <a href="#" class="btn btn-white btn-block" data-toggle="modal"
+                                                     data-target="#product-4">+ Quick Add</a>
+                                                 </div>
+                                                 </div>
+                                                 <div class="card-body pt-4 px-0 pb-0">
+                                                 <ul class="list-inline fs-12 d-flex mb-1">
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 <li class="list-inline-item text-primary mr-0"><i
+                                                     class="fal fa-star"></i></li>
+                                                 </ul>
+                                                 <div class="d-flex align-items-center mb-2">
+                                                 <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375">
+                                                     <a href="#">Oversize Wool Coat</a>
+                                                 </h3>
+                                                 <p class="fs-15 text-primary mb-0 ml-auto">
+                                                     <span class="text-line-through text-body mr-1"></span>$79.00
+                                                 </p>
+                                                 </div>
+                                                 <ul
+                                                 class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="green-revitalizing"
+                                                     data-toggle="tooltip" data-placement="top"
+                                                     title="green-revitalizing" style="background-color: #D7C09F;">
+                                                 </a></li>
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="black"
+                                                     data-toggle="tooltip" data-placement="top" title="black"
+                                                     style="background-color: #000;"> </a></li>
+                                                 <li class="list-inline-item"><a href="#"
+                                                     class="d-block swatches-item" data-var="green-revitalizing"
+                                                     data-toggle="tooltip" data-placement="top"
+                                                     title="green-revitalizing" style="background-color: #B66262;">
+                                                 </a></li>
+                                                 </ul>
+                                                 </div>
+                                                 </div>
+                                             </div> -->
+
+
+
+                             </div>
+                             {{-- <div class="modal fade quick-view" id="product-recommendations-1" tabindex="-1"
+                                     aria-hidden="true">
+                                     <div class="modal-dialog">
+                                         <div class="modal-content p-0">
+                                             <div class="modal-body p-0">
+                                                 <button type="button"
+                                                     class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
+                                                     data-dismiss="modal" aria-label="Close">
+                                                     <span aria-hidden="true" class="fs-20"><i
+                                                             class="fal fa-times"></i></span>
+                                                 </button>
+                                                 <div class="row no-gutters">
+                                                     <div class="col-sm-6">
+                                                         <div style="background-image: url('images/product.jpg');"
+                                                             class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
+                                                     </div>
+                                                     <div class="col-sm-6">
+                                                         <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
+                                                             <a href="store.html"
+                                                                 class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
+                                                                 Sweaters</a>
+                                                             <div class="d-flex align-items-center">
+                                                                 <h2 class="fs-30 mb-1">
+                                                                     <a href="product-detail.html">Hoodie with pouch pocket</a>
+                                                                 </h2>
+                                                             </div>
+                                                             <p class="mb-6 fs-20 text-primary lh-14">$79.00</p>
+                                                             <div class="d-flex align-items-center flex-wrap">
+                                                                 <ul
+                                                                     class="list-inline d-flex justify-content-sm-end justify-content-center mb-0 rating-result">
+                                                                     <li class="list-inline-item"><span
+                                                                             class="text-primary fs-12 lh-2"><i
+                                                                                 class="fas fa-star"></i></span>
+                                                                     </li>
+                                                                     <li class="list-inline-item"><span
+                                                                             class="text-primary fs-12 lh-2"><i
+                                                                                 class="fas fa-star"></i></span>
+                                                                     </li>
+                                                                     <li class="list-inline-item"><span
+                                                                             class="text-primary fs-12 lh-2"><i
+                                                                                 class="fas fa-star"></i></span>
+                                                                     </li>
+                                                                     <li class="list-inline-item"><span
+                                                                             class="text-primary fs-12 lh-2"><i
+                                                                                 class="fas fa-star"></i></span>
+                                                                     </li>
+                                                                     <li class="list-inline-item"><span
+                                                                             class="text-primary fs-12 lh-2"><i
+                                                                                 class="fas fa-star"></i></span>
+                                                                     </li>
+                                                                 </ul>
+                                                                 <p class="text-primary mb-0 fs-14 lh-1 overflow-hidden pl-3">
+                                                                     <span class="pr-2">5.0</span><span
+                                                                         class="mr-2 border-right border-light-dark"></span><a
+                                                                         href="#">See 3 Reviews</a>
+                                                                 </p>
+                                                             </div>
+                                                             <p class="mt-2 mb-6">Posuere in netus a eu varius adipiscing
+                                                                 suspendisse elementum vitae tempor suspendisse ullamcorper
+                                                                 aenean taciti morbi potenti.</p>
+                                                             <form>
+                                                                 <div
+                                                                     class="form-group shop-swatch-color shop-swatch-color-02 mb-6">
+                                                                     <label class="mb-2"><span
+                                                                             class="font-weight-500 text-primary mr-2">Color:</span>
+                                                                         <span class="var text-capitalize"></span></label>
+                                                                     <ul class="list-inline d-flex justify-content-start mb-0">
+                                                                         <li class="list-inline-item"><a href="#"
+                                                                                 class="d-block swatches-item"
+                                                                                 data-var="green-revitalizing"
+                                                                                 data-toggle="tooltip" data-placement="top"
+                                                                                 title="Korma"
+                                                                                 style="background-color: #903711;"> </a></li>
+                                                                         <li class="list-inline-item"><a href="#"
+                                                                                 class="d-block swatches-item"
+                                                                                 data-var="black"
+                                                                                 style="background-color: #000;"> </a></li>
+                                                                         <li class="list-inline-item"><a href="#"
+                                                                                 class="d-block swatches-item"
+                                                                                 data-var="green-revitalizing"
+                                                                                 data-toggle="tooltip" data-placement="top"
+                                                                                 title="Alto"
+                                                                                 style="background-color: #D8D8D8;"> </a></li>
+                                                                     </ul>
+                                                                     <input type="hidden" name="swatches-color"
+                                                                         class="swatches-select" value="min">
+                                                                 </div>
+                                                                 <div class="form-group shop-swatch swatch-size mb-7">
+                                                                     <label class="mb-2"><span
+                                                                             class="font-weight-500 text-primary mr-2">Select a
+                                                                             Size:</span>
+                                                                         <span class="var text-uppercase">S</span></label>
+                                                                     <ul class="list-inline d-flex">
+                                                                         <li class="list-inline-item mr-2 selected"><a
+                                                                                 href="#"
+                                                                                 class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                                 data-var="xs">XS</a></li>
+                                                                         <li class="list-inline-item mr-2"><a href="#"
+                                                                                 class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                                 data-var="s">S</a></li>
+                                                                         <li class="list-inline-item mr-2"><a href="#"
+                                                                                 class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                                 data-var="M">M</a></li>
+                                                                         <li class="list-inline-item mr-2"><a href="#"
+                                                                                 class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                                 data-var="L">L</a></li>
+                                                                         <li class="list-inline-item mr-2"><a href="#"
+                                                                                 class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                                 data-var="XL">XL</a></li>
+                                                                         <li class="list-inline-item mr-2"><a href="#"
+                                                                                 class="fs-12 swatches-item w-40px h-40px d-flex align-items-center justify-content-center rounded-circle border text-primary"
+                                                                                 data-var="XXL">XXL</a></li>
+                                                                     </ul>
+                                                                     <input type="hidden" name="swatches-size"
+                                                                         class="swatches-select" value="xs">
+                                                                 </div>
+                                                                 <div class="row align-items-end no-gutters mx-n2">
+                                                                     <div class="col-sm-3 form-group px-2 mb-6 mb-sm-0">
+                                                                         <label
+                                                                             class="text-primary fs-16 font-weight-bold mb-3">Quantity:
+                                                                         </label>
+                                                                         <div class="input-group position-relative w-100">
+                                                                             <a href="#"
+                                                                                 class="down position-absolute pos-fixed-left-center pl-2 z-index-2"><i
+                                                                                     class="far fa-minus"></i></a> <input
+                                                                                 name="number" type="number"
+                                                                                 class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary"
+                                                                                 value="1" required> <a href="#"
+                                                                                 class="up position-absolute pos-fixed-right-center pr-2 z-index-2"><i
+                                                                                     class="far fa-plus"></i> </a>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-sm-9 mb-6 mb-sm-0 px-2">
+                                                                         <button type="submit"
+                                                                             class="btn btn-primary btn-block text-capitalize">add
+                                                                             to
+                                                                             cart</button>
+                                                                     </div>
+                                                                 </div>
+                                                             </form>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div> --}}
+                         </div>
 
 
                     <!-- Handpicked End -->
 
 
 				</div>
+
+                <div class="modal fade quick-view " id="productQuickView" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog quick_view_mbl modal-dialog-scrollable">
+                        <div class="modal-content p-0 quick_view_mbl_carousel_modal">
+                            <div class="modal-body p-0">
+                                <button type="button"
+                                    class="close fs-32 position-absolute pos-fixed-top-right z-index-10"
+                                    data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" class="fs-20"> <i class="fal fa-times"></i>
+                                    </span>
+                                </button>
+                                <div class="row no-gutters" id="quick_view_product_details">
+                                    <div class="col-sm-6">
+
+                                        <div id="carouselExampleControls" class="carousel slide quick_view_mbl_carousel" data-ride="carousel"
+                                            data-interval="2000">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item @{{ $first == '1' ? 'active' : '' }}"
+                                                    ng-repeat="row in productImagesLoop">
+                                                    <img class="d-block w-100 quick_view_mbl_carousel_img" style="height: 35rem"
+                                                        src="@{{ row.downPath }}" alt="First slide">
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                                data-slide="prev"> <span class="carousel-control-prev-icon"
+                                                    aria-hidden="true"></span> <span class="sr-only">Previous</span>
+                                            </a> <a class="carousel-control-next" href="#carouselExampleControls"
+                                                role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 primary-summary " style="padding: 15px;">
+                                        <div class="d-flex align-items-center">
+                                            <h2 class="mb-0">@{{ QuickView_name }}</h2>
+                                        </div>
+                                        <div class="primary-summary-inner" >
+                                            <p
+                                                class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1">
+                                                Petit
+                                                @{{ category_name }}, @{{ subCategory_name }}</p>
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <p class="mb-0 fs">$@{{ unit_price }}</p>
+                                                </div>
+                                            </div>
+                                            <p class="mb-3" style="max-height: 150px; overflow: auto">@{{ short_description }}
+                                            </p>
+
+                                            <div style="margin-bottom: 0px;" ng-if="displayCollectionProductShadesQuickView.length != null || displayCollectionProductShadesQuickView.length != undefined">
+                                                <button class="accordion_inc shadeAccord-btn" data-id="1">1.
+                                                    Choose Shade</button>
+                                                <div class="panel_inc" id="chooseShade_container_1">
+                                                    <div class="form-group shop-swatch-color shop-swatch-color-02 mb-1">
+                                                        <!-- </label> -->
+                                                        <img src="@{{ selectedShadeImg_p }}" alt="Product Image"
+                                                            class="var text-capitalize quick_view_product_image "
+                                                            ng-show="selectedShadeImg_p != ''"> <br> <label
+                                                            class="mb-2"><span
+                                                                class="font-weight-500 text-primary mr-2">Color:</span> <span
+                                                                class="var text-capitalize btn-shade">@{{ selectedShadeName }}</span></label>
+                                                        <ul class="list-inline d-flex justify-content-start mb-0">
+                                                            <li class="list-inline-item"
+                                                                ng-repeat="row in displayCollectionProductShadesQuickView"
+                                                                ng-click="chooseProdShade(row.PRODUCT_SHADE_ID, row.SHADE_ID, row.PRODUCT_ID, row.SHADE_NAME, row.prodShadeImag_p, row.prodShadeImag_s)"
+                                                                title="@{{ row.SHADE_NAME }}"><a href="javascript:;"
+                                                                    class="d-block swatches-item"
+                                                                    style="background-image: url('@{{ row.shadeprimaryImage }}'); background-repeat: no-repeat; background-position: center;">
+                                                                </a></li>
+
+                                                        </ul>
+
+                                                        <input type="hidden" id="shadeId" value=""> <input
+                                                            type="hidden" id="prodShadeId" value=""> <input
+                                                            type="hidden" id="shadeName" value=""> <input
+                                                            type="hidden" id="productId" value=""> <input
+                                                            type="hidden" id="shadeExistChk"
+                                                            value="@{{ (displayCollectionProductShadesQuickView.length == 0 || displayCollectionProductShadesQuickView.length == undefined) ? 'false' : 'true' }}">
+
+
+                                                    </div>
+                                                    <a href="javascript:;" class="btn btn-primary"
+                                                        ng-click="confirmProductShade();">Continue</a>
+                                                </div>
+
+                                                <!-- <button class="accordion_inc">2. Blow Gel - Choose Shade</button>
+                        <div class="panel_inc">
+                         <img src="{{ url('/assets-web') }}/images/glamorpic.webp" style="width: 250px;"><br>
+                                <div class="form-group shop-swatch-color shop-swatch-color-02 mb-0">
+                                <label class="mb-2">
+                                <span class="font-weight-500 text-primary mr-2">Color:</span>
+                                <span class="var text-capitalize">Gray Blue</span></label>
+                                <ul class="list-inline d-flex justify-content-start mb-1">
+                                <li class="list-inline-item selected">
+                                <a href="#" class="d-block swatches-item" data-var="gray blue" style="background-color: #A0ADBC;"> </a>
+                                </li>
+                                <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="black" style="background-color: #000;"></a></li>
+                                <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="gray blue" style="background-color: #A0ADBC;"> </a></li>
+                                <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="black" style="background-color: #000;"></a></li>
+                                </ul>
+                                <input type="hidden" name="swatches-color" class="swatches-select" value="purple">
+                                </div>
+                                <a href="store.html" class="btn btn-primary">Continue</a>
+                                </div> -->
+                                            </div>
+
+                                            <form>
+
+                                                <input type="radio" id="single-sub" name="subscriptioncheck"
+                                                    value="One-Time Purchase" checked> <label for="single-sub"
+                                                    class="cursor-pointer">One-Time Purchase</label><br> <input type="radio"
+                                                    id="multiple-sub" name="subscriptioncheck" value="subscription"> <label
+                                                    for="multiple-sub" class="cursor-pointer">Subscription</label><br>
+                                            </form>
+                                            <div class=" form-group mb-0 sub-form" style="display: none;">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <label class="text-primary fs-16 font-weight-bold mb-0"
+                                                        for="size">Subcription Option:
+                                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="#" data-toggle="tooltip" data-placement="top"
+                                                        title="Click to see more Ingredients" class="text-right"> <span
+                                                            ng-click="showSubscrptionDetailModal();">Learn More </span>
+                                                    </a>
+
+                                                    <div class="modal fade quick-view" id="learnmore_pop" tabindex="-1"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" style="max-width: 631px !important;">
+                                                            <div class="modal-content p-0">
+                                                                <div class="modal-body p-0">
+                                                                    <button type="button"
+                                                                        class="close fs-32 position-absolute pos-fixed-top-right z-index-10 close_learnmore_pop">
+                                                                        <span aria-hidden="true" class="fs-20"><i
+                                                                                class="fal fa-times"></i></span>
+                                                                    </button>
+                                                                    <div class="pop_content">
+
+                                                                        <div class="row">
+
+                                                                            <p class="col-lg-12">@{{ subscriptionDetails }}</p>
+                                                                        </div>
+                                                                        <div class="row">
+
+                                                                            <div class="col-lg-12 text-right">
+                                                                                <a style="text-decoration-line: underline;font"
+                                                                                    href="{{ url('subscription') }}"><em>Read
+                                                                                        More >></em></a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <select class="form-control w-100 cursor-pointer" id="subsOption"
+                                                    ng-model="subs_id" ng-change="fetchSubscriptionDetail();">
+                                                    <option value="" class="cursor-pointer">Choose an option</option>
+                                                    <option value="@{{ row.ID }}" class="select-subsoptn"
+                                                        ng-repeat="row in subscriptionLov">@{{ row.TITLE }}</option>
+                                                </select>
+                                            </div>
+                                            <form class="cart-roww">
+                                                <div class="row align-items-end no-gutters mx-n2 mb-1">
+                                                    <div class="col-sm-3 form-group px-2 mb-0">
+                                                        <label class="text-primary fs-16 font-weight-bold mb-1"
+                                                            for="number">Quantity: </label>
+
+                                                        <div class="input-group position-relative w-100">
+                                                            <a href="javascript:;"
+                                                                class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
+                                                                <i class="far fa-minus"></i>
+                                                            </a> <input name="number" type="number" id="quantity"
+                                                                class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput"
+                                                                value="1"> <a href="javascript:;"
+                                                                class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
+                                                                <i class="far fa-plus"></i>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-sm-8 mb-0 px-2">
+                                                        <button type="button"
+                                                            class="btn btn-primary btn-block text-capitalize quick-addto-cart"
+                                                            data-type="@{{ productType }}"
+                                                            data-id="@{{ QuickView_productId }}" data-quantity='1'
+                                                            data-subs='1'>Add to cart</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <p class="text-primary lh-14375 mb-0 sub-line" style="display: none;">
+                                                @{{ subscriptionNote1 }}</p>
+                                            <p class="text-primary lh-14375 mb-0 sub-below-line" style="display: none;">
+                                                @{{ subscriptionNote2 }}</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</section>
 

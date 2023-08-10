@@ -6,10 +6,6 @@
 var site = '<?php echo session('site');?>';
 </script>
 <style>
-	.product-right-side img {
-		width: 140px;
-		height: 140px;
-	}
 	@media screen and (min-width: 0px) and (max-width: 514px) {
 		.yes-lastscreen{
 			margin-top:unset !important;
@@ -278,7 +274,7 @@ var site = '<?php echo session('site');?>';
 											</div>
 											<div class="card-body pt-4 px-0 pb-0">
 
-												<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 productdetail"
+												<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 productdetail text-capitalize"
                                                 data-id="@{{row.PRODUCT_ID}}"
                                                 data-category="@{{ row.CATEGORY_SLUG }}"
                                                 data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
@@ -313,89 +309,110 @@ var site = '<?php echo session('site');?>';
 						<div class="container container-xl">
 							<h2 class="text-center pb-3">Other Products To Complete The Look</h2>
 
-							<div class="slick-slider2 shadefinder"
-							data-slick-options='{"slidesToShow": 1,"dots":true,"autoplay":true,"arrows":true,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":true}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":true}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":true}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":true}}]}'>
+							<div class="slick-slider2456 shadefinder"
+							{{-- data-slick-options='{"slidesToShow":4,"dots":true,"autoplay":true,"arrows":true,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":true}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":true}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":true}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":true}}]}' --}}
+                            >
+                                {{-- <div class="row"> --}}
+                                    <div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts"><!-- data-animate="fadeInUp" -->
+                                        <div class="card shadee border-0">
+                                            <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 mb-2 text-capitalize">
+                                                <a href="javascript:;">@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
+                                            </h3>
+                                            <div class="position-relative hover-zoom-in">
 
-								<div class="box shade product py-2"  ng-repeat="row in displayCollectionRecommandedProducts"><!-- data-animate="fadeInUp" -->
-									<div class="card shadee border-0>
-										<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 mb-2">
-											<a href="javascript:;">@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
-										</h3>
-										<div class="position-relative hover-zoom-in">
-
-											<a href="javascript:;" class="d-block overflow-hidden  productdetail"
-                                            data-id="@{{row.PRODUCT_ID}}"
-                                            data-category="@{{ row.CATEGORY_SLUG }}"
-                                            data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
-                                            data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
-												<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-active">
-												<img src="@{{row.secondaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-hover">
-											</a>
-											<div
-												class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
-												<div
-													class="content-change-vertical d-flex flex-column ml-auto">
-													<a href="javascript:;" data-toggle="tooltip"
-														data-placement="left" title="Add to wish list"
-														class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 addto-wishlist"
-														data-productId='@{{row.PRODUCT_ID}}' data-type='single'>
-														<i class="fas fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}" ></i>
-													</a>
-													{{-- <a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Quick view" ng-click="quickViewProductDetails(@{{row.PRODUCT_ID}})" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
-														// <span data-toggle="modal" data-target="#productQuickView">
-														<i class="icon fal fa-eye"></i>
-														// </span>
-													</a> --}}
-
-												</div>
-											</div>
-											<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-												<a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'shade'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addtocart addto-cart @endif "
-													id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}"
-                                                    		data-subcategory="@{{row.SUB_CATEGORY_SLUG}}"
-                                                    		data-name="@{{row.SLUG}}" data-type="" data-quickAdd="{{ session('userId') }}" data-quantity='1'>+ Quick Add</a>
-                                                <a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white  addtocart addto-cart"
-                                                    id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}"
-                                                        data-subcategory="@{{row.SUB_CATEGORY_SLUG}}"
-                                                        data-name="@{{row.SLUG}}" data-type="" data-quickAdd="{{ session('userId') }}" data-quantity='1'>+ Quick Add</a>
-                                                <a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white disabled"
-                                                    >Out Of Stock</a>
-											</div>
-										</div>
-										<div class="card-body pt-4 px-0 pb-0 text-left productdetail" data-id="@{{row.PRODUCT_ID}}"
-                                        data-category="@{{ row.CATEGORY_SLUG }}"
-                                        data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
-                                        data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
-											<a href="javascript:;"
-												class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary">
-												@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
-
-											<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 cursor-pointer">
-												<a class="productdetail"
+                                                <a href="javascript:;" class="d-block overflow-hidden  productdetail"
                                                 data-id="@{{row.PRODUCT_ID}}"
                                                 data-category="@{{ row.CATEGORY_SLUG }}"
                                                 data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
-                                                data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME}}</a>
-											</h3>
-											<p class="text-primary mb-0 card-title lh-14375">@{{row.SUB_TITLE_TXT}}</p>
-											<div class="row">
-												<div class="col-6">
-													<p class="text-primary mb-0 card-title lh-14375">
-														<span>$@{{row.UNIT_PRICE}}</span>
-													</p>
-												</div>
-												<div class="col-6">
-													<p class="text-primary mb-0 card-title text-right lh-14375">@{{row.UNIT | limitTo:8}}</p>
-												</div>
-											</div>
+                                                data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
+                                                    <img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-active">
+                                                    <img src="@{{row.secondaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-hover">
+                                                </a>
+                                                <div
+                                                    class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10">
+                                                    <div
+                                                        class="content-change-vertical d-flex flex-column ml-auto">
+                                                        {{-- <a href="javascript:;" data-toggle="tooltip"
+                                                            data-placement="left" title="Add to wish list"
+                                                            class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 addto-wishlist"
+                                                            data-productId='@{{row.PRODUCT_ID}}' data-type='single'>
+                                                            <i class="fas fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}" ></i>
+                                                        </a> --}}
+                                                        <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+                                                        title="Add to wish list"
+                                                        class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
+                                                        data-productId="@{{row.PRODUCT_ID}}" data-type='single'>
+                                                        <i
+                                                            class="icon fal fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}"></i>
+                                                        </a>
+                                                        <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+                                                        title="Quick view"
+                                                        ng-click="quickViewProductDetails(@{{row.PRODUCT_ID}})"
+                                                        class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
+                                                        <span> <i class="icon fal fa-eye"></i> </span>
+                                                        </a>
+                                                        {{-- <a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Quick view" ng-click="quickViewProductDetails(@{{row.PRODUCT_ID}})" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle">
+                                                            <span data-toggle="modal" data-target="#productQuickView">
+                                                            <i class="icon fal fa-eye"></i>
+                                                            </span>
+                                                        </a> --}}
+
+                                                    </div>
+                                                </div>
+                                                <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                                    <a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'shade'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addtocart addto-cart @endif "
+                                                        id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}"
+                                                                data-subcategory="@{{row.SUB_CATEGORY_SLUG}}"
+                                                                data-name="@{{row.SLUG}}" data-type="" data-quickAdd="{{ session('userId') }}" data-quantity='1'>+ Add To Cart</a>
+                                                    <a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white  addtocart addto-cart"
+                                                        id="qckad" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}"
+                                                            data-subcategory="@{{row.SUB_CATEGORY_SLUG}}"
+                                                            data-name="@{{row.SLUG}}" data-type="" data-quickAdd="{{ session('userId') }}" data-quantity='1'>+ Add To Cart</a>
+                                                    <a href="javascript:;" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white disabled"
+                                                        >Out Of Stock</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body pt-4 px-0 pb-0 text-left">
+                                                <a href="javascript:;"
+                                                    class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary productdetail" data-id="@{{row.PRODUCT_ID}}"
+                                                    data-category="@{{ row.CATEGORY_SLUG }}"
+                                                    data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                                    data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
+                                                    @{{row.CATEGORY_NAME ? row.CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
+
+                                                <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 cursor-pointer">
+                                                    <a class="productdetail text-capitalize"
+                                                    data-id="@{{row.PRODUCT_ID}}"
+                                                    data-category="@{{ row.CATEGORY_SLUG }}"
+                                                    data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
+                                                    data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME}}</a>
+                                                </h3>
+                                                <p class="text-primary mb-0 card-title lh-14375" style="height: 26px;">@{{row.SUB_TITLE_TXT}}</p>
+                                                 <!-- Display shades for each product -->
+                                                    <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                        <li class="list-inline-item" ng-repeat="shade in row.shades" title="@{{ shade.SHADE_NAME }}">
+                                                            <a href="javascript:;" class="d-block swatches-item"
+                                                                style="background-image: url('@{{ shade.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;">
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <p class="text-primary mb-0 card-title lh-14375">
+                                                            <span>$@{{row.UNIT_PRICE}}</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p class="text-primary mb-0 card-title text-right lh-14375">@{{row.UNIT | limitTo:8}}</p>
+                                                    </div>
+                                                </div>
 
 
 
-										</div>
-									</div>
-								</div>
-
-
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{-- </div> --}}
 							</div>
 
 						</div>
@@ -1230,7 +1247,7 @@ $("#yes_level_one_all").click(function(){
 			slidesToShow: 4,
 			"infinite":true,
 			"autoplay":true,
-            "autoplaySpeed": 5000,
+            "autoplaySpeed": 1000,
 			"dots":true,
 			"arrows":true,
 			"responsive":[{

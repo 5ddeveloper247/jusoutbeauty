@@ -382,14 +382,14 @@
         position:fixed;
         width:58px;
         height:58px;
-        bottom:86px;
-        right:26px;
+        bottom:140px;
+        right:10px;
         background-color:#3d94b7;
         color:#FFF;
         border-radius:50px;
         text-align:center;
         font-size:30px;
-        box-shadow: 2px 2px 3px #999;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15) !important;
         z-index:100;
     }
 

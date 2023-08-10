@@ -567,7 +567,7 @@ $userId = session('userId');
                                                             data-productId="{{ $trend['PRODUCT_ID'] }}"
                                                             data-type='single'>
                                                             <i
-                                                                class="icon fas fa-star wish_{{ $trend['PRODUCT_ID'] }} {{ $trend['wishlistFlag'] == '1' ? 'activeWish' : '' }}"  ></i>
+                                                                class="icon fal fa-star wish_{{ $trend['PRODUCT_ID'] }} {{ $trend['wishlistFlag'] == '1' ? 'activeWish' : '' }}"  ></i>
                                                         </a>
 
                                                         <a href="javascript:;" data-toggle="tooltip"
@@ -585,11 +585,11 @@ $userId = session('userId');
 	                                                        class="btn btn-white btn-block  border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif"
 	                                                        id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}" data-category="{{ $trend['CATEGORY_SLUG'] }}"
                                                     		data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
-                                                    		data-name="{{ $trend['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">+ Quick Add</a>
+                                                    		data-name="{{ $trend['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">+ Add To Cart</a>
                                                     @elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] > '0')
                                                     	<a href="javascript:;"
 	                                                        class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
-	                                                        id="qckad" data-type="single" data-id="{{ $trend['PRODUCT_ID'] }}" data-quantity='1'>+ Quick Add</a>
+	                                                        id="qckad" data-type="single" data-id="{{ $trend['PRODUCT_ID'] }}" data-quantity='1'>+ Add To Cart</a>
 	                                              	@elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] <= '0')
                                                     	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
                                                     		id="qckad" disabled>+ Out of Stock</a>
@@ -604,7 +604,7 @@ $userId = session('userId');
                                                     data-type="CATEGORY" data-categorySlug="{{ $trend['CATEGORY_SLUG'] }}"
                                                     >
                                                     {{ $trend['CATEGORY_NAME'] }}</a>
-                                                <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375">
+                                                <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 text-capitalize">
                                                     <a href="javascript:;" class="productdetail" data-id="{{ $trend['PRODUCT_ID'] }}"
                                                     data-category="{{ $trend['CATEGORY_SLUG'] }}"
                                                     data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
@@ -612,14 +612,14 @@ $userId = session('userId');
                                                 </h3>
                                                 <p class="text-primary mb-0 card-title lh-14375" style="height: 36px;">
                                                     {{ $trend['SUB_TITLE_TXT'] }}</p>
-                                                    @if($trend['shades'])
+                                                    {{-- @if($trend['shades']) --}}
                                                     <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                         <?php
-                                                                    $shades = $trend['shades'];
-                                                                    if(isset($shades) && !empty($shades)){
-                                                                    foreach ($shades as $shade){
+                                                                        $shades = $trend['shades'];
+                                                                        if(isset($shades) && !empty($shades)){
+                                                                        foreach ($shades as $shade){
 
-                                                                ?>
+                                                                    ?>
                                                         <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
                                                             <a href="javascript:;" class="d-block swatches-item"
                                                                 style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
@@ -628,8 +628,8 @@ $userId = session('userId');
                                                         <?php }?>
                                                         <?php }?>
                                                     </ul>
-                                                    @else
-                                                    <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                    {{-- @else --}}
+                                                    {{-- <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                         <li class="list-inline-item" title="New shade">
                                                                 <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
                                                                 </a>
@@ -638,8 +638,8 @@ $userId = session('userId');
                                                                 <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
                                                                 </a>
                                                                 </li>
-                                                        </ul>
-                                                    @endif
+                                                        </ul> --}}
+                                                    {{-- @endif --}}
                                                 {{-- <p class="text-primary mb-2 card-title lh-14375">
                                                     ${{ $trend['PRODUCT_PRICE'] }}</p> --}}
                                                     <div class="row">
@@ -774,7 +774,7 @@ $userId = session('userId');
                                                     class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist"
                                                     data-productId="{{ $for['PRODUCT_ID'] }}" data-type='single'>
                                                     <i
-                                                        class="icon fas fa-star wish_{{ $for['PRODUCT_ID'] }} {{ $for['wishlistFlag'] == '1' ? 'activeWish' : '' }}"></i>
+                                                        class="icon fal fa-star wish_{{ $for['PRODUCT_ID'] }} {{ $for['wishlistFlag'] == '1' ? 'activeWish' : '' }}"></i>
                                                 </a>
 
                                                 {{-- <a href="javascript:;" data-toggle="tooltip"
@@ -785,11 +785,11 @@ $userId = session('userId');
                                             Â Â Â Â </a> --}}
 
                                             <a href="javascript:;" data-toggle="tooltip"
-                                            data-placement="left" title="Quick view"
-                                            ng-click="quickViewProductDetails({{ $for['PRODUCT_ID'] }})"
-                                            class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
-                                            <span> <i class="icon fal fa-eye"></i> </span>
-                                        </a>
+                                                data-placement="left" title="Quick view"
+                                                ng-click="quickViewProductDetails({{ $for['PRODUCT_ID'] }})"
+                                                class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
+                                                <span> <i class="icon fal fa-eye"></i> </span>
+                                            </a>
 
                                             </div>
                                         </div>
@@ -799,11 +799,11 @@ $userId = session('userId');
 	                                            	class="btn btn-white btn-block  border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif"
 	                                                id="qckad" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
 		                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }} " data-quickAdd="{{ session('userId') }}"
-		                                            data-name="{{ $for['SLUG'] }}" data-quickAdd="{{ session('userId') }}" data-type="">+ Quick Add</a>
+		                                            data-name="{{ $for['SLUG'] }}" data-quickAdd="{{ session('userId') }}" data-type="">+ Add To Cart</a>
                                          	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] > '0')
                                             	<a href="javascript:;"
 	                                           		class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
-	                                             	id="qckad" data-type="single" data-id="{{ $for['PRODUCT_ID'] }}" data-quantity='1'>+ Quick Add</a>
+	                                             	id="qckad" data-type="single" data-id="{{ $for['PRODUCT_ID'] }}" data-quantity='1'>+ Add To Cart</a>
 	                                      	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] <= '0')
                                             	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
                                               		id="qckad" disabled>+ Out of Stock</a>
@@ -818,14 +818,14 @@ $userId = session('userId');
                                         <a href="javascript:;"
                                             class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary" data-id="{{ $for['CATEGORY_ID'] }}" data-type="CATEGORY" data-categorySlug="{{ $for['CATEGORY_SLUG'] }}">
                                             {{ $for['CATEGORY_NAME'] }}</a>
-                                        <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 ellipsis-m">
+                                        <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 ellipsis-m text-capitalize">
                                             <a href="javascript:;" class="productdetail" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
                                             data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $for['SLUG'] }}" data-type="">{{ $for['PRODUCT_NAME'] }}</a>
                                         </h3>
-                                        <p class="text-primary mb-0 card-title lh-14375" style="height: 36px;">
+                                        <p class="text-primary mb-0 shop-subtitle card-title lh-14375" style="height: 26px;">
                                             {{ $for['SUB_TITLE_TXT'] }}</p>
-                                        @if($for['shades'])
+                                        {{-- @if($for['shades']) --}}
                                             <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                 <?php
                                                             $shades = $for['shades'];
@@ -841,9 +841,9 @@ $userId = session('userId');
                                                 <?php }?>
                                                 <?php }?>
                                             </ul>
-                                        @else
+                                        {{-- @else --}}
                                         {{-- <br> --}}
-                                        <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                        {{-- <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                             <li class="list-inline-item" title="New shade">
                                                     <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
                                                     </a>
@@ -852,8 +852,8 @@ $userId = session('userId');
                                                     <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
                                                     </a>
                                                     </li>
-                                            </ul>
-                                        @endif
+                                            </ul> --}}
+                                        {{-- @endif --}}
                                         <div class="mt-auto">
                                             <div class="d-flex flex-row justify-content-between">
                                                 {{-- <div class="col-sm-6 col-6"> --}}
@@ -1379,22 +1379,22 @@ $userId = session('userId');
                                         <!-- <button class="accordion_inc">2. Blow Gel - Choose Shade</button>
                 <div class="panel_inc">
                  <img src="{{ url('/assets-web') }}/images/glamorpic.webp" style="width: 250px;"><br>
- <div class="form-group shop-swatch-color shop-swatch-color-02 mb-0">
- <label class="mb-2">
- <span class="font-weight-500 text-primary mr-2">Color:</span>
- <span class="var text-capitalize">Gray Blue</span></label>
- <ul class="list-inline d-flex justify-content-start mb-1">
- <li class="list-inline-item selected">
- <a href="#" class="d-block swatches-item" data-var="gray blue" style="background-color: #A0ADBC;"> </a>
- </li>
- <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="black" style="background-color: #000;"></a></li>
- <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="gray blue" style="background-color: #A0ADBC;"> </a></li>
- <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="black" style="background-color: #000;"></a></li>
- </ul>
- <input type="hidden" name="swatches-color" class="swatches-select" value="purple">
- </div>
- <a href="store.html" class="btn btn-primary">Continue</a>
- </div> -->
+                        <div class="form-group shop-swatch-color shop-swatch-color-02 mb-0">
+                        <label class="mb-2">
+                        <span class="font-weight-500 text-primary mr-2">Color:</span>
+                        <span class="var text-capitalize">Gray Blue</span></label>
+                        <ul class="list-inline d-flex justify-content-start mb-1">
+                        <li class="list-inline-item selected">
+                        <a href="#" class="d-block swatches-item" data-var="gray blue" style="background-color: #A0ADBC;"> </a>
+                        </li>
+                        <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="black" style="background-color: #000;"></a></li>
+                        <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="gray blue" style="background-color: #A0ADBC;"> </a></li>
+                        <li class="list-inline-item"><a href="#" class="d-block swatches-item" data-var="black" style="background-color: #000;"></a></li>
+                        </ul>
+                        <input type="hidden" name="swatches-color" class="swatches-select" value="purple">
+                        </div>
+                        <a href="store.html" class="btn btn-primary">Continue</a>
+                        </div> -->
                                     </div>
 
                                     <form>

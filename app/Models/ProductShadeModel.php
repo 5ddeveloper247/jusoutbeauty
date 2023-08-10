@@ -166,6 +166,7 @@ class ProductShadeModel extends Model
 		->where('jst.IS_DELETED', 0)
     	->where('a.PRODUCT_ID', $productId)
     	->get();
+        // dd($productId);
         // $arrRes['totalShades'] = $result->count();
     	$i=0;
     	foreach ($result as $row){

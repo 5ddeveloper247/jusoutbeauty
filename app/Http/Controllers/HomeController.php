@@ -342,6 +342,8 @@ class HomeController extends Controller
 
 		$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
 
+        // dd($data);
+
     	$data['page'] = 'store';
         // dd('ehllo');
        return view('web.store-all')->with ( $data );
@@ -613,11 +615,11 @@ class HomeController extends Controller
 					$_REQUEST['sourceId'] = $result->PRODUCT_ID;
 					$validated = $this->validateParameters($category, $subCategory, $slugByName);
 					if ($validated == false) {
-						dd('invalid parameters');
+						// dd('invalid parameters');
 						abort(404);
 					}
 				} else {
-					dd('invalid slug');
+					// dd('invalid slug');
 					abort(404);
 				}
             }

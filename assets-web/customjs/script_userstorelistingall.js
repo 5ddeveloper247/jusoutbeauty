@@ -289,8 +289,16 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-            // console.log(data.products);
-			$scope.displayCollectionProducts = data.products;
+            console.log(data.products);
+			// $scope.displayCollectionProducts = data.products;
+                    // Assign products with shades to $scope.displayCollectionProducts
+            $scope.displayCollectionProducts = data.products.map(product => {
+            // If the product has shades, include them in the product object
+            if (product.shades && product.shades.length > 0) {
+                product.hasShades = true; // You can use this flag to conditionally show shades
+            }
+            return product;
+        });
 
 			$scope.displayCollectionShadeFilter = data.list1;
 

@@ -315,7 +315,7 @@
  										<div class="content-change-vertical d-flex flex-column ml-auto">
 
  											<a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Add to wish list" class="add-to-wishlist d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle mb-2 addto-wishlist" data-productId='@{{row.PRODUCT_ID}}' data-type='@{{productType}}'>
- 												<i class="icon fas fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}"></i>
+ 												<i class="icon fal fa-star wish_@{{row.PRODUCT_ID}} @{{row.wishlistFlag == '1' ? 'activeWish' : ''}}"></i>
  											</a>
  											<a href="javascript:;" data-toggle="tooltip" data-placement="left" title="Quick view" ng-click="quickViewProductDetails(@{{row.PRODUCT_ID}})" class="preview d-flex align-items-center justify-content-center bgiconcolor w-45px h-45px rounded-circle">
  												<i class="icon fal fa-eye"></i>
@@ -323,8 +323,8 @@
  										</div>
  									</div>
  									<div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
- 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif" id="qckad" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">+ Quick Add</a>
- 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="@{{row.PRODUCT_ID}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'">+ Quick Add</a>
+ 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif" id="qckad" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">+ Add To Cart</a>
+ 										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1" id="qckad" data-type="@{{productType}}" data-id="@{{row.PRODUCT_ID}}" data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'">+ Add To Cart</a>
  										<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" id="qckad" ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled>+ Out of Stock</a>
  									</div>
  								</div>
@@ -332,10 +332,17 @@
  									<a href="javascript:;" class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary" data-id="@{{ row.CATEGORY_ID }}" data-type="CATEGORY" data-categoryslug="@{{ row.CATEGORY_SLUG }}"> @{{row.CATEGORY_NAME}} </a>
 
  									<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading ">
- 										<a href="javascript:;" class="productdetail" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" >@{{row.NAME}}</a>
+ 										<a href="javascript:;" class="productdetail text-capitalize" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" >@{{row.NAME}}</a>
  									</h3>
- 									<p class="text-primary mb-0 shop-subtitle card-title lh-14375 product-subtitle">@{{row.SUB_TITLE_TXT}}</p>
-
+ 									<p class="text-primary mb-0 shop-subtitle card-title lh-14375 product-subtitle text-capitalize" style="height: 26px;">@{{row.SUB_TITLE_TXT}}</p>
+                                        <!-- Display shades for each product -->
+                                        <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                            <li class="list-inline-item" ng-repeat="shade in row.shades" title="@{{ shade.SHADE_NAME }}">
+                                                <a href="javascript:;" class="d-block swatches-item"
+                                                    style="background-image: url('@{{ shade.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;">
+                                                </a>
+                                            </li>
+                                        </ul>
  									<div class="row">
  										<div class="col-sm-6 col-7">
  											<p class="text-primary mb-0 card-title lh-14375"> <span>$@{{row.UNIT_PRICE}}</span> </p>

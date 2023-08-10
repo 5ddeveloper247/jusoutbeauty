@@ -24481,7 +24481,7 @@ input.checkbox-primary[type=checkbox] {
 }
 
 .w-48px {
-    width: 48px !important
+    width: 58px !important
 }
 
 .w-50px {
@@ -24489,7 +24489,7 @@ input.checkbox-primary[type=checkbox] {
 }
 
 .h-48px {
-    height: 48px !important
+    height: 58px !important
 }
 
 .h-50px {
@@ -27838,11 +27838,15 @@ svg.icon {
 
 .gtf-back-to-top {
     opacity: 0;
-    transition: opacity .5s
+    transition: opacity .5s;
+    position: absolute !important;
+    bottom: 65px !important;
+    right: 10px !important;
 }
 
 .gtf-back-to-top.in {
-    opacity: 1
+    opacity: 1;
+
 }
 
 .sticky-area-wrap:hover {
@@ -28244,7 +28248,7 @@ img.prod_img {
 section#section-next .card-body.pt-4.px-0.pb-0 {
     padding-left: 21px !important;
     padding-right: 21px !important;
-    padding-bottom: 5px !important;
+    padding-bottom: 0px !important;
 }
 
 .insta_sec_home .slick-arrow.slick-next {
@@ -29217,7 +29221,8 @@ input.previous-ifnobeforesubmitscreen {
 }
 
 .product-right-side img {
-    width: 140px;
+    width: 140px !important;
+    height: 168px !important;
 }
 
 .box.shade:hover {

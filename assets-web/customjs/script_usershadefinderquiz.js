@@ -44,7 +44,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 	$scope.chooseOption = function(optionId, title){
 
-		
+
 		console.log('as');
 		var data = {};
 		data.optionId = optionId;
@@ -90,23 +90,35 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				setTimeout(function(){
 
 					$('.slick-slider1').slick({
-						slidesToShow: 2,
-						autoplaySpeed: 5000,
-						"infinite":true,
-						"autoplay":true,
-						"dots":false,
-						"arrows":true,
-						prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
-			            nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
-						"responsive":[{
-							"breakpoint": 1366,
-							"settings": {
-								"slidesToShow":2}},
-								{"breakpoint": 768,
-								"settings": {"slidesToShow": 1}},
-								{"breakpoint": 576,
-									"settings": {"slidesToShow": 1,"dots":false}
-								}]
+                        slidesToShow: 4,
+                        autoplaySpeed: 1500,
+                        "infinite":true,
+                        "autoplay":true,
+                        "dots":false,
+                        "arrows":true,
+                        prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+                        nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+                        "responsive":[
+
+                                    {"breakpoint": 1400,
+                                        "settings": {"slidesToShow": 4}},
+
+                                    {"breakpoint": 1366,
+                                    "settings": {"slidesToShow": 4}},
+
+                                    {"breakpoint": 1200,
+                                        "settings": {"slidesToShow": 3}},
+
+                                    {"breakpoint": 992,
+                                        "settings": {"slidesToShow": 3}},
+
+                                    {"breakpoint": 768,
+                                        "settings": {"slidesToShow": 2}},
+
+                                    {"breakpoint": 576,
+                                        "settings": {"slidesToShow": 1}}
+                                    ]
+
 
 						});
 //					"slidesToShow": 2,"infinite":true,"autoplay":true,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
@@ -143,29 +155,60 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 				$scope.displayCollectionPrimaryProducts = data.primaryProducts;
 				$scope.displayCollectionRecommandedProducts = data.recommandedProducts;
+                    // Assign products with shades to $scope.displayCollectionProducts
+                //     $scope.displayCollectionRecommandedProducts = data.recommandedProducts.map(product => {
+                //     // If the product has shades, include them in the product object
+                //     if (recommandedProducts.shades && recommandedProducts.shades.length > 0) {
+                //         recommandedProducts.hasShades = true; // You can use this flag to conditionally show shades
+                //     }
+                //     return recommandedProducts;
+                // });
+                $scope.displayCollectionRecommandedProducts = data.recommandedProducts.map(product => {
+                    // If the product has shades, include them in the product object
+                    if (product.shades && product.shades.length > 0) {
+                        product.hasShades = true; // You can use this flag to conditionally show shades
+                    }
+                    return product;
+                });
 				$scope.levelOneLatestImg = data.levelTypeImage.downPath;
 
 				$scope.viewFlag = 'YL';
 
-				if ($('.slick-slider2').hasClass('slick-initialized')) {
-				    $('.slick-slider2').slick('destroy');
+				if ($('.slick-slider2456').hasClass('slick-initialized')) {
+				    $('.slick-slider2456').slick('destroy');
 				}
 
 				setTimeout(function(){
+                    // alert('123');
+				$('.slick-slider2456').slick({
+                    slidesToShow: 4,
+					autoplaySpeed: 1500,
+					"infinite":true,
+					"autoplay":true,
+					"dots":false,
+					"arrows":true,
+					prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+					nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+					"responsive":[
 
-				$('.slick-slider2').slick({
-						"slidesToShow": 4,
-						autoplaySpeed: 5000,
-						"autoplay":true,
-						"dots":false,
-						"arrows":false,
-						"responsive":[{"breakpoint": 992,
-							"settings": {"slidesToShow":4}},
-							{"breakpoint": 768,
-								"settings": {"slidesToShow": 2}},
-								{"breakpoint": 400,
-									"settings": {"slidesToShow": 1}
-								}]
+								{"breakpoint": 1400,
+									"settings": {"slidesToShow": 4}},
+
+								{"breakpoint": 1366,
+								"settings": {"slidesToShow": 4}},
+
+								{"breakpoint": 1200,
+									"settings": {"slidesToShow": 3}},
+
+								{"breakpoint": 992,
+									"settings": {"slidesToShow": 3}},
+
+								{"breakpoint": 768,
+									"settings": {"slidesToShow": 2}},
+
+								{"breakpoint": 576,
+									"settings": {"slidesToShow": 1}}
+								]
 
 						});
 //					"slidesToShow": 4,"autoplay":true,"dots":false,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":4}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 400,"settings": {"slidesToShow": 1}}]
@@ -238,24 +281,41 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 			$scope.viewFlag = 'YL';
 
-			if ($('.slick-slider2').hasClass('slick-initialized')) {
-			    $('.slick-slider2').slick('destroy');
+			if ($('.slick-slider2456').hasClass('slick-initialized')) {
+			    $('.slick-slider2456').slick('destroy');
 			}
 
 			setTimeout(function(){
 
-				$('.slick-slider2').slick({
-					"slidesToShow": 4,
+				$('.slick-slider2456').slick({
+                    slidesToShow: 4,
+					autoplaySpeed: 2000,
+					"infinite":true,
 					"autoplay":true,
 					"dots":false,
-					"arrows":false,
-					"responsive":[{"breakpoint": 992,
-						"settings": {"slidesToShow":4}},
-						{"breakpoint": 768,
-							"settings": {"slidesToShow": 2}},
-							{"breakpoint": 400,
-								"settings": {"slidesToShow": 1}
-							}]
+					"arrows":true,
+					prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-arrow-left' aria-hidden='true'></i></button>",
+					nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-arrow-right' aria-hidden='true'></i></button>",
+					"responsive":[
+
+								{"breakpoint": 1400,
+									"settings": {"slidesToShow": 4}},
+
+								{"breakpoint": 1366,
+								"settings": {"slidesToShow": 4}},
+
+								{"breakpoint": 1200,
+									"settings": {"slidesToShow": 3}},
+
+								{"breakpoint": 992,
+									"settings": {"slidesToShow": 3}},
+
+								{"breakpoint": 768,
+									"settings": {"slidesToShow": 2}},
+
+								{"breakpoint": 576,
+									"settings": {"slidesToShow": 1}}
+								]
 
 					});
 //				"slidesToShow": 4,"autoplay":true,"dots":false,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":4}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 400,"settings": {"slidesToShow": 1}}]

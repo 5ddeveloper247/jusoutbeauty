@@ -547,6 +547,176 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
+	$scope.catFlag = '';
+	$scope.productType = 'single';
+
+	$scope.tokenHash = $("#csrf").val();
+
+	$scope.quickView_name = '';
+	$scope.category_name = '' ;
+	$scope.subCategory_name = '' ;
+	$scope.unit_price = '' ;
+	$scope.short_description = '' ;
+	$scope.productImagesLoop = '';
+	$scope.displayCollectionProductShadesQuickView = '';
+	$scope.ProductShadesNameQuickView = '';
+
+	$scope.resetQuickviewPopup = function(){
+		$scope.prodShadeId = '';
+        $scope.shadeId = '';
+        $scope.productId = '';
+        $scope.selectedShadeName = '';
+        $scope.selectedShadeImg_p = '';
+        $scope.selectedShadeImg_s = '';
+
+        $scope.subs_id = '';
+
+        $("#prodShadeId").val('');
+    	$("#shadeId").val('');
+    	$("#shadeName").val('');
+    	$("#productId").val('');
+
+    	$("#chooseShade_container_1").slideUp('slow');
+
+        $("#single-sub").click();
+	}
+
+	$scope.quickViewProductDetails = function(productId){
+
+		var data = {};
+	    data.productId = productId;
+
+	    data.productType = $scope.productType;
+
+	    var temp = $.param({details: data});
+
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+'/getQuickViewProductDetails',
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+
+			$scope.subscriptionLov = data.subscriptions;
+			var product_details = data.productDetails;
+			var product_shades_details = data.shades;
+
+			if(product_details != null && product_details != ''){
+
+				$scope.QuickView_productId = product_details['PRODUCT_ID'];
+				$scope.QuickView_name = product_details['NAME'];
+				$scope.category_name = product_details['CATEGORY_NAME'];
+				$scope.subCategory_name = product_details['SUB_CATEGORY_NAME'];
+				$scope.unit_price = product_details['UNIT_PRICE'];
+				$scope.short_description = product_details['SHORT_DESCRIPTION'] ;
+				$scope.productImagesLoop = product_details['images'];
+//				$scope.ProductShadesNameQuickView = product_shades_details['SHADE_NAME'];
+
+				$scope.displayCollectionProductShadesQuickView = product_shades_details;
+			}
+
+
+
+			setTimeout(function(){
+                // $scope.resetQuickviewPopup();
+
+			$("#productQuickView").modal('show');
+				$.LoadingOverlay("hide");
+			}, 500);
+
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+	$scope.chooseProdShade = function(prodShadeId, shadeId, productId, shadeName, primaryImg, secondaryImg){
+
+    	$scope.prodShadeId = prodShadeId;
+        $scope.shadeId = shadeId;
+        $scope.productId = productId;
+        $scope.selectedShadeName = shadeName;
+        $scope.selectedShadeImg_p = primaryImg;
+        $scope.selectedShadeImg_s = secondaryImg;
+
+	}
+
+	$scope.confirmProductShade = function(){
+
+    	if($scope.prodShadeId != ''){
+    		$("#prodShadeId").val($scope.prodShadeId);
+        	$("#shadeId").val($scope.shadeId);
+        	$("#shadeName").val($scope.selectedShadeName);
+        	$("#productId").val($scope.productId);
+
+        	$("#chooseShade_container_1").slideUp('slow');
+
+    	}else{
+    		toastr.error('Please choose shade first...', '', {timeOut: 3000})
+    	}
+    }
+
+    $scope.subs_id = '';
+
+	$(document).on("click", "#single-sub", function () {
+
+		$scope.$apply(function () {
+			$scope.subs_id = '';
+			$scope.subscriptionDetails = '';
+			$scope.subscriptionNote1 = '';
+			$scope.subscriptionNote2 = '';
+		});
+	});
+
+	$scope.showSubscrptionDetailModal = function(){
+		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
+			$('#learnmore_pop').modal('show');
+		}else{
+			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+		}
+	}
+	$scope.hideSubscrptionDetailModal = function(){
+		$('#learnmore_pop').modal('hide');
+	}
+    $scope.fetchSubscriptionDetail = function(){
+
+		var subscriptionId = $("#subsOption").val();
+
+		var data = {};
+	    data.userId = userId;
+	    data.subscriptionId = subscriptionId;
+
+	    var temp = $.param({details: data});
+
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+'/getSpecificSubscriptionDetail',
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+
+			var detail = data.details;
+
+			if(detail != '' && detail != null){
+
+				$scope.subscriptionDetails = detail['S_10'];
+				$scope.subscriptionNote1 = detail['S_5'];
+				$scope.subscriptionNote2 = detail['S_6'];
+
+			}else{
+				$scope.subscriptionDetails = '';
+				$scope.subscriptionNote1 = '';
+				$scope.subscriptionNote2 = '';
+			}
+
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
 	// $scope.makeImageAttachmentHtml = function(images){
 
 	// 	$("#p_att").html('');

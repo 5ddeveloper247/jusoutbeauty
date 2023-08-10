@@ -232,7 +232,7 @@ $(document).on("click", ".toShopListing", function () {
 										 html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 										 html +='</div>';
 										 html +='<div class="media-body">';
-										 html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="" data-placement="top" data-original-title="View Product Shades"></i></a>';
+										 html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
 										 html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
 										 html +='<div class="d-flex align-items-center">';
 										 html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
@@ -496,7 +496,7 @@ $(document).on("click", ".addto-cart", function () {
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			    		         	html +='</div>';
 			    		         	html +='<div class="media-body">';
-			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="" data-placement="top" data-original-title="View Product Shades"></i></a>';
+			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
 			    		         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
 			    		         	html +='<div class="d-flex align-items-center">';
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
@@ -687,7 +687,7 @@ $(document).on("click", ".addto-cart1", function () {
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			    		         	html +='</div>';
 			    		         	html +='<div class="media-body">';
-			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="" data-placement="top" data-original-title="View Product Shades"></i></a>';
+			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
 			    		         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
 			    		         	html +='<div class="d-flex align-items-center">';
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
@@ -885,7 +885,7 @@ $(document).on("click", ".quick-addto-cart", function () {
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			    		         	html +='</div>';
 			    		         	html +='<div class="media-body">';
-			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="" data-placement="top" data-original-title="View Product Shades"></i></a>';
+			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
 			    		         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
 			    		         	html +='<div class="d-flex align-items-center">';
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
@@ -982,7 +982,7 @@ $(document).on("click", ".quick-addto-cart", function () {
 			         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			         	html +='</div>';
 			         	html +='<div class="media-body">';
-			         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="" data-placement="top" data-original-title="View Product Shades"></i></a>';
+			         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
 			         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
 			         	html +='<div class="d-flex align-items-center">';
 			         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
@@ -1066,7 +1066,7 @@ $(document).on("click", ".quick-addto-cart", function () {
 			         	html +='<img src="'+list[i]['primaryImage']+'" style="height:100px" alt="High Ankle Jeans" class="border">';
 			         	html +='</div>';
 			         	html +='<div class="media-body">';
-			         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="" data-placement="top" data-original-title="View Product Shades"></i></a>';
+			         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
 			         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
 			         	html +='<div class="d-flex align-items-center">';
 			         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';

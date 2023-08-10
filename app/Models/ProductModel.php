@@ -645,6 +645,7 @@ class ProductModel extends Model
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
+            $arrRes[$i]['shades'] = $ProductShade->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
             $productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
             if(!empty($productShades)){
 
@@ -805,6 +806,8 @@ class ProductModel extends Model
     }
     public function getAllRecommandedProductsWrtCategoryIdForSite($categoryId){
 
+        $ProductShade =  new ProductShadeModel();
+
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
@@ -875,6 +878,9 @@ class ProductModel extends Model
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
 
+            $arrRes[$i]['shades'] = $ProductShade->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
+            // dd($arrRes[$i]['shades']);
+
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
@@ -884,6 +890,8 @@ class ProductModel extends Model
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
 
     		$i++;
+
+            // dd($arrRes[$i]['shades']);
     	}
 
     	return isset($arrRes) ? $arrRes : null;
@@ -1640,7 +1648,7 @@ class ProductModel extends Model
     		$arrRes[$i]['BARCODE'] = $row->BARCODE;
     		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
-
+            $arrRes[$i]['CATEGORY'] = $row->categoryName;
             if($row->categoryName != null || $row->categoryName != ''){
 
                 $name = $row->categoryName;
@@ -1659,6 +1667,7 @@ class ProductModel extends Model
 
     		// $arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
     		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+            $arrRes[$i]['SUB_CATEGORY'] = $row->subCategoryName;
 
             if($row->subCategoryName != null || $row->subCategoryName != ''){
 
@@ -1679,6 +1688,8 @@ class ProductModel extends Model
     		// $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
     		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
     		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
+
+            $arrRes[$i]['shades'] = $ProductShade->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
 			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
 
 				if(!empty($productShades)){
