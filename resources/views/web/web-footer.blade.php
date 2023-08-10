@@ -383,7 +383,7 @@
         width:58px;
         height:58px;
         bottom:140px;
-        right:10px;
+        right:26px;
         background-color:#3d94b7;
         color:#FFF;
         border-radius:50px;
