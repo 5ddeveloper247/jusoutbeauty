@@ -198,7 +198,7 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
     		$arrRes[$i]['PRODUCT_NAME'] = $row->productName;
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
-    		$arrRes[$i]['SUB_TITLE_TXT'] = strlen ( $row->SUB_TITLE ) > 40?substr ( $row->SUB_TITLE, 0, 40 )."..." :$row->SUB_TITLE;
+    		$arrRes[$i]['SUB_TITLE_TXT'] = strlen ( $row->SUB_TITLE ) > 65 ? substr ( $row->SUB_TITLE, 0, 65 )."..." :$row->SUB_TITLE;
     		$arrRes[$i]['PRODUCT_PRICE'] = number_format($row->productPrice,2);
     		$arrRes[$i]['productDescTxt'] = strlen ( $row->productDescription ) > 40?substr ( $row->productDescription, 0, 40 )."..." :$row->productDescription;
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);

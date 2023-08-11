@@ -387,7 +387,7 @@ var site = '<?php echo session('site');?>';
                                                     data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
                                                     data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME}}</a>
                                                 </h3>
-                                                <p class="text-primary mb-0 card-title lh-14375" style="height: 26px;">@{{row.SUB_TITLE_TXT}}</p>
+												<p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375 product-subtitle text-capitalize" style="height: 48px;">@{{row.SUB_TITLE}}</p>
                                                  <!-- Display shades for each product -->
                                                     <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                         <li class="list-inline-item" ng-repeat="shade in row.shades" title="@{{ shade.SHADE_NAME }}">

@@ -2,6 +2,15 @@
 	display: flex;
     width: 100px;
 }
+.cards_length{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+  }
+  .container-custom-2{
+  max-width: 1232px;
+}
 .required{
 	color:red;
 }

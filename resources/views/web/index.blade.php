@@ -610,16 +610,16 @@ $userId = session('userId');
                                                     data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
                                                     data-name="{{ $trend['SLUG'] }}">{{ $trend['PRODUCT_NAME'] }}</a>
                                                 </h3>
-                                                <p class="text-primary mb-0 card-title lh-14375" style="height: 36px;">
-                                                    {{ $trend['SUB_TITLE_TXT'] }}</p>
+                                                <p class="text-primary mb-0 card-title lh-14375 cards_length" style="height: 48px;">
+                                                    {{ $trend['SUB_TITLE'] }}</p>
                                                     {{-- @if($trend['shades']) --}}
                                                     <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                         <?php
-                                                                        $shades = $trend['shades'];
-                                                                        if(isset($shades) && !empty($shades)){
-                                                                        foreach ($shades as $shade){
+                                                            $shades = $trend['shades'];
+                                                            if(isset($shades) && !empty($shades)){
+                                                            foreach ($shades as $shade){
 
-                                                                    ?>
+                                                        ?>
                                                         <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
                                                             <a href="javascript:;" class="d-block swatches-item"
                                                                 style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
@@ -704,6 +704,9 @@ $userId = session('userId');
                                         <div
                                             class="card-body px-3 py-0 d-flex flex-column align-items-center text-center">
                                             <img src="{{ url('/assets-web') }}/images/test-img.jpg">
+                                            <p class="text-primary fs-18 mb-0">
+                                                <span class="font-weight-600">{{ $review['USERNAME'] }} </span>
+                                            </p>
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
@@ -720,12 +723,11 @@ $userId = session('userId');
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
+                                                    
                                             </ul>
                                             <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto"
-                                                style="min-height: 11vw;">{{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
-                                            <p class="text-primary fs-18 mb-0">
-                                                <span class="font-weight-600">{{ $review['USERNAME'] }} </span>
-                                            </p>
+                                                style="min-height: 6vw;">{{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -823,8 +825,8 @@ $userId = session('userId');
                                             data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $for['SLUG'] }}" data-type="">{{ $for['PRODUCT_NAME'] }}</a>
                                         </h3>
-                                        <p class="text-primary mb-0 shop-subtitle card-title lh-14375" style="height: 26px;">
-                                            {{ $for['SUB_TITLE_TXT'] }}</p>
+                                        <p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375" style="height: 48px;">
+                                            {{ $for['SUB_TITLE'] }}</p>
                                         {{-- @if($for['shades']) --}}
                                             <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                 <?php
@@ -889,13 +891,13 @@ $userId = session('userId');
 
         @if (isset($todayOffer) && !empty($todayOffer))
             <section class="pt-10 pt-lg-13 py-10 py-lg-13 box-shadow-bottom" id="to_day_offer">
-                <div class="container container-custom container-xl">
+                <div class="container container-custom-2">
                     <div class="row ">
                         <div class="col-md-7 mb-7 mb-md-0 " data-animate="fadeInLeft">
                             <img src="{{ $todayOffer['productPrimaryImg'] }}" alt="Poplin top with ruffle trim"
-                                class="w-100 img-home-pay">
+                                class="w-100 " style="height:91vh">
                         </div>
-                        <div class="col-md-5 my-auto" data-animate="fadeInRight">
+                        <div class="col-md-5 my-auto pl-10" data-animate="fadeInRight">
                             <h2 class="mb-1">
                                 Today Offer <br>
                             </h2>
@@ -1611,7 +1613,7 @@ $userId = session('userId');
 <div class="cookie-frame open">
     <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
         <div class="col-sm-8 text">
-            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking â€œAccept Cookiesâ€�, you agree to the storing of cookies on your device to enhance
+            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking Accept Cookies, you agree to the storing of cookies on your device to enhance
                 site navigation, analyze site usage, and assist in our marketing efforts.</p>
         </div>
         <div class="d-flex justify-content-center col-sm-4">

@@ -91,7 +91,6 @@ class HomeController extends Controller
    		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
    		$data ['homeBanner'] = $UserdashboardModel->getAllUserBanners();
    		$data ['trending'] = $UserdashboardModel->getAllUserHomeProductSectionData1('trending');
-
    		$data ['forYou'] = $UserdashboardModel->getAllUserHomeProductSectionData1('foryou');
    		$data ['reviews'] = $ReviewsModel->getAllEnableReviewsForWebsite();
    		$data ['todayOffer'] = $UserdashboardModel->getActiveTodayOfferRecordForWebsite();
