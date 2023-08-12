@@ -719,7 +719,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													</div>
 													<br>
 													<hr>
-													<section class="pt-10 pt-lg-8 py-8">
+													<section class="pt-10 pt-lg-8 py-5">
 														<div class="">
 															<div class="row no-gutters align-items-center">
 																<div class="col-md-8 mb-8 mb-md-0">
@@ -751,7 +751,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-4 pl-7 scroll-to-see" style="height:40rem;overflow-y:auto">
+																<div class="col-md-4 pl-7 scroll-to-see" style="height:30rem;overflow-y:auto">
 																	<h2 class="mb-5"><?= isset($line['videoDetails']['V_1']) ? $line['videoDetails']['V_1'] : '' ?></h2>
 																	<p><?= isset($line['videoDetails']['V_2']) ? $line['videoDetails']['V_2'] : '' ?></p>
 																</div>
