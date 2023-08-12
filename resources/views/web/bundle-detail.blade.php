@@ -141,14 +141,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 		font-size: 11px;
 	}
 	.card-img-overlay {
-		position: absolute;
-		top: 88px;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		padding: 1.25rem;
-		border-radius: 0;
-	}
+        position: absolute;
+        top: 88px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1.25rem;
+        border-radius: 0;
+    }
 	.home main#content {
     	padding-top: 111px !important;
 	}
@@ -156,7 +156,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         height: 28rem;
     }
 	.fix{
-        height: 579px;
+        height: 480px;
         overflow: hidden;
     }
 /* .list-inline-item{
