@@ -47,8 +47,11 @@ $userId = session('userId');
         height: 40px;
         z-index: 1;
         text-shadow: none;
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0);
+        color:white;
+        opacity: 0.75;
     }
+    
 
     .modal-content .modal-body .sale:after {
         position: absolute;
@@ -470,7 +473,21 @@ $userId = session('userId');
         }
 
     }
+    .cookies_blocker{
+    	height:100vh;
+    	 position: fixed;
+	  	top: 0;
+	  	left: 0;
+	  	width: 100%;
+	  	height: 100%;
+	  	background-color: rgba(0, 0, 0, 0.5); /* Change the last value for the opacity level */
+	  	z-index: 100000; 
+	  	display: flex;
+	  	justify-content: center;
+	  	align-items: center;
+    }
 </style>
+<div class="cookies_blocker" style="display: none;"></div>
 <main id="content" style="padding-top: 0px !important" ng-app="project1">
     <div ng-controller="projectinfo1">
         <section class="slick-slider custom-dots-01 mx-0 slider-home-08 d-none d-md-block"
@@ -1610,7 +1627,10 @@ $userId = session('userId');
 
 </main>
 
-<div class="cookie-frame open">
+
+@include('web.web-footer')
+
+<div class="cookie-frame open" style="display:none;z-index: 100001; ">
     <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
         <div class="col-sm-8 text">
             <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking Accept Cookies, you agree to the storing of cookies on your device to enhance
@@ -1622,7 +1642,6 @@ $userId = session('userId');
         </div>
     </div>
 </div>
-@include('web.web-footer')
 
 <script src="{{ url('/assets-web') }}/customjs/script_userhome.js?v={{ time() }}"></script>
 
@@ -1667,6 +1686,7 @@ $userId = session('userId');
 
 @if (!session()->has('homepopup'))
 	<script type="text/javascript">
+	console.log('yes');
 	$(window).on('load', function() {
         $('#exampleModalCenter').modal('show');
     });
@@ -1678,16 +1698,15 @@ $userId = session('userId');
 
 <script>
 $(document).ready(function() {
-    // Check if the user has accepted cookies
-    var cookieAccepted = localStorage.getItem('cookiesAccepted');
+	
+	var cookieAccepted = localStorage.getItem('cookiesAccepted');
 
-    if (cookieAccepted != 1 && cookieAccepted != '1') {
-        // alert('will show up')
-        $('.cookie-frame').slideDown(5000);
-
+	if (cookieAccepted == '') {//cookieAccepted != 1 && cookieAccepted != '1'
+    	$('.cookie-frame').slideDown(3000);
+    	$(".cookies_blocker").show();
     }else{
-        // alert('will not show up')
         $('.cookie-frame').hide();
+        $(".cookies_blocker").hide();
 
     }
 
@@ -1703,10 +1722,9 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': tokenHash
             },
             success: function(response) {
-                console.log(response.message);
                 localStorage.setItem('cookiesAccepted', '1');
                 $('.cookie-frame').slideUp(2000);
-                // $('.cookie-frame').addClass('hide');
+                $(".cookies_blocker").hide();
             },
             error: function(xhr, status, error) {
                 console.error(error);
@@ -1717,6 +1735,7 @@ $(document).ready(function() {
     $('#declineCookiesBtn').click(function() {
         localStorage.setItem('cookiesAccepted', '0');
         $('.cookie-frame').slideUp(2000);
+        $(".cookies_blocker").hide();
         // $('.cookie-frame').addClass('hide');
     });
 });
