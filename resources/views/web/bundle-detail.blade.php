@@ -679,7 +679,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											<div id="accordion-style-01" class="accordion accordion-01 border-md-0 border p-md-0">
 												<div class="card-body p-0">
 													<div class="row mb-10">
-														<h2 class="col-12 mb-2 pb-8 text-center" style="margin: 0 auto;"><?= $line['SUB_TITLE']; ?></h2>
+														<h2 class="col-12 mb-2 pb-8 text-center" style="margin: 0 auto;">About Product<?php //echo $line['SUB_TITLE']; ?></h2>
 														<div class="col-md-6 mb-6 mb-md-0">
 															<?php if(isset($images[0]['downPath'])){?>
 																<img src="<?= $images[0]['downPath']; ?>" alt="Image" class="prod_img_detail_acc img1-section2 fadeInLeft animated img-w25">

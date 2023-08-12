@@ -967,11 +967,13 @@
         }
     };
     APP.sidebarSticky = {
+    		
         init: function() {
             var header_sticky_height = 0;
             if (window.matchMedia('(max-width: 767px)').matches) {
                 return;
             }
+            
             if ($('#site-header.header-sticky').length > 0) {
                 header_sticky_height = 60;
             }

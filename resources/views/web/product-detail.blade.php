@@ -426,7 +426,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
-
+						
                         <div class="primary-summary-inner">
                             <h2 class="mb-0 text-capitalize"><?= $productDetails['NAME'] ?></h2>
                             <p
@@ -682,7 +682,7 @@
                                             <div class="card-body p-0">
                                                 <div class="row " style="">
                                                     <h2 class="col-12 mb-2 pb-8 text-center text-capitalize"
-                                                        style="margin: 0 auto;"><?= $productDetails['SUB_TITLE'] ?>
+                                                        style="margin: 0 auto;">About Product<?php //echo $productDetails['SUB_TITLE'] ?>
                                                     </h2>
                                                     <div class="col-md-6 mb-6 mb-md-0">
                                                         <?php if(isset($images[0]['downPath'])){?>
@@ -712,10 +712,10 @@
                                                         <p class="mb-6">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}</p>
 
-                                                        <a href="{{  $productDetails['SUBSCRIPTION_NOTE_LINK'] }}"
+                                                        <a href="javascript:;" data-link="<?php echo $productDetails['SUBSCRIPTION_NOTE_LINK'];?>"
                                                             data-toggle="tooltip" data-placement="left"
                                                             title="Click to see more Ingredients"
-                                                            class="preview btn btn-primary"> <span>Read More</span>
+                                                            class="preview btn btn-primary subscrReadMoreLink"> <span>Read More</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-6 mb-6 mb-md-0">
@@ -3490,6 +3490,14 @@
 
         $input.val($value);
     });
+    $('.subscrReadMoreLink').on('click', function (e) {
+        var link = $(this).attr('data-link');
+        if(link != ''){
+        	window.location.href = link;
+       	}
+    });
+
+    
 
 
     function showfileload() {
