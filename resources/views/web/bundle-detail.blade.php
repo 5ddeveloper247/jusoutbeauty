@@ -30,9 +30,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
     }
     .custom-h2{
-        font-size: 36px;
+        font-size: 18px;
         text-transform: capitalize;
     }
+    .mr-md-10, .mx-md-10 {
+	    margin-right: 2.375rem !important;
+	}
     .overlay {
         position: absolute;
         top: 0;
@@ -258,6 +261,9 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         font-size: 36px !important;
         text-transform: capitalize !important;
     }
+    .border-active-primary.active, .border-active-primary:hover.active, .border-active-primary:focus.active, .border-active-primary:hover {
+	    border-color: #b73d94 !important;
+	}
 	.uses_img{
 		width: 100% !important;
     	height: 32rem;
@@ -593,14 +599,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 		<section class="pb-11 pb-lg-6">
 			<div class="container container-custom">
 				<div class="collapse-tabs">
-					<ul class="nav nav-pills d-md-flex d-block border-bottom"
+					<ul class="nav nav-pills d-md-flex d-block "
 						id="pills-tab" role="tablist">
 
 						<?php if(isset($bundleLines) && $bundleLines != null){
 							$i=0;$firstTabId=''; ?>
 
 							<?php foreach ($bundleLines as $line){ ?>
-								<li class="nav-item"><a
+								<li class="nav-item border-bottom"><a
 									class="nav-link <?php echo $i == 0 ? 'active show': '';?> custom-h2 px-0 pb-3 mr-md-10 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
 									id="tab_<?= $line['BUNDLE_LINE_ID'];?>" data-toggle="pill"
 									href="#pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" role="tab"
