@@ -846,7 +846,7 @@ $userId = session('userId');
                                         <p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375" style="height: 48px;">
                                             {{ $for['SUB_TITLE'] }}</p>
                                         {{-- @if($for['shades']) --}}
-                                            <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center" style="min-height: 2vw;">
+                                            <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                 <?php
                                                             $shades = $for['shades'];
                                                             if(isset($shades) && !empty($shades)){
