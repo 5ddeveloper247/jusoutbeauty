@@ -1698,6 +1698,8 @@ $userId = session('userId');
 
 <script>
 $(document).ready(function() {
+
+	localStorage.setItem('cookiesAccepted', '');
 	
 	var cookieAccepted = localStorage.getItem('cookiesAccepted');
 
