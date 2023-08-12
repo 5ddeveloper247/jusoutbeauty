@@ -1373,7 +1373,7 @@ public function uploadPopupImage(Request $request) {
 	/*===================== admin Product Video Attachment code start ==========================*/
 
 	public function uploadProductImageVideoSelfi(Request $request) {
-        // dd('$downpath');
+        
 		$allowed =  array('mp4','MP4','webm','WEBM','mov','MOV','wmv','WMV','html5','HTML5','mpeg-2', 'MPEG-2',
 		'png','jpg','jpeg','JPEG','PNG','JPG','jpe','jpge','JPGE','JPE','jfif', 'svg', 'SVG', 'gif', 'GIF', 'webp', 'WEBP');
 
@@ -1382,14 +1382,12 @@ public function uploadPopupImage(Request $request) {
 			$downpath= 	url('public')."/uploads/productselfie/images";
 
 			if(isset($_FILES['uploadatt6']) && $_FILES['uploadatt6']['error'] == 0){
-
-
-
+// 				print_r($_FILES['uploadatt6']);exit;
 				$sourceId = isset($_REQUEST['sourceId'])?$_REQUEST['sourceId']:"";
 				$userId = isset($_REQUEST['userId'])?$_REQUEST['userId']:"0";
 				$pathInfo = pathinfo($_FILES['uploadatt6']['name']);
 				$ext = $pathInfo['extension'];
-				$size = filesize($_FILES['uploadatt6']['tmp_name']);//print_r($size);exit;
+				$size = filesize($_FILES['uploadatt6']['tmp_name']);
 				$fileName = $pathInfo['filename'];
 				$fileNameFull = $pathInfo['filename'].".".$ext;
 				$sourceCode = isset($_REQUEST['sourceCode'])?$_REQUEST['sourceCode']:"";
@@ -1429,15 +1427,13 @@ public function uploadPopupImage(Request $request) {
 
 						if(move_uploaded_file($_FILES['uploadatt6']['tmp_name'], $fullpath)){
 
-
-
-									$result = DB::table ( 'jb_product_selfi_images_tbl' ) ->where ( 'IMAGE_ID', $namefile ) ->update (
-										array ( 'PATH' => $fullpath,
-												'DOWN_PATH' => $downpath,
-												'UPDATED_BY' => '0',
-												'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-										)
-									);
+							$result = DB::table ( 'jb_product_selfi_images_tbl' ) ->where ( 'IMAGE_ID', $namefile ) ->update (
+								array ( 'PATH' => $fullpath,
+										'DOWN_PATH' => $downpath,
+										'UPDATED_BY' => '0',
+										'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+								)
+							);
 
 							print(json_encode(array(00, $namefile, $downpath, $_FILES['uploadatt6']['name'], '1')));
 							exit;

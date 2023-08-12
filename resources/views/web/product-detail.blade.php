@@ -1150,7 +1150,7 @@
                             </div>
                         </div>
 
-                        <form class="" id="uploadattch6" method="POST" action="uploadProductImageVideoSelfi"
+                        <form class="" id="uploadattch6" method="POST" action="{{url('/uploadProductImageVideoSelfi')}}"
                             enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="POST">
                             {{ csrf_field() }}
