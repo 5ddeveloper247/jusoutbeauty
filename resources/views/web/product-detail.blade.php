@@ -727,7 +727,7 @@
                                                 </div>
                                                 <br>
                                                 <hr>
-                                                <section class="pt-10 pt-lg-8 py-8">
+                                                <section class="pt-10 pt-lg-8 py-5">
                                                     <div class="">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col-md-8 mb-8 mb-md-0">
@@ -760,8 +760,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4 pl-xl-7 pl-7"
-                                                                style="height:40rem;overflow-y:auto">
-                                                                <h2 class="mb-5 text-capitalize">
+                                                                style="height:30rem;overflow-y:auto">
+                                                                <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
                                                                 </h2>
                                                                 <p><?= isset($productDetails['videoDetails']['V_2']) ? $productDetails['videoDetails']['V_2'] : '' ?>
