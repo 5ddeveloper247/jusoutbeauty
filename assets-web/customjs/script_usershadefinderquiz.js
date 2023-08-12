@@ -77,7 +77,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				    $('.slick-slider1').slick('destroy');
 				}
 
-//				setTimeout(function(){
+//				setTimeout(function(){ 
 //
 //					$('.slick-slider3').slick({
 //						"slidesToShow": 1,"infinite":false,"autoplay":false,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
