@@ -1686,7 +1686,7 @@ $userId = session('userId');
 
 @if (!session()->has('homepopup'))
 	<script type="text/javascript">
-	console.log('yes');
+	localStorage.setItem('cookiesAccepted', '');
 	$(window).on('load', function() {
         $('#exampleModalCenter').modal('show');
     });
@@ -1698,8 +1698,6 @@ $userId = session('userId');
 
 <script>
 $(document).ready(function() {
-
-	localStorage.setItem('cookiesAccepted', '');
 	
 	var cookieAccepted = localStorage.getItem('cookiesAccepted');
 
