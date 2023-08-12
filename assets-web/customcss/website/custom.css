@@ -758,7 +758,7 @@ img.item.shop-shade {
 	img.card-img-top.img-h60.trend_section_image.image-active,
 	img.card-img-top.img-h60.trend_section_image.image-hover,
 	img.card-img-top.recomendations-img.img-w30,
-	.slick-slider.shadefinder img,
+	/*.slick-slider.shadefinder img,*/
 	.created_section_img{
         height: 386px !important;
     }
