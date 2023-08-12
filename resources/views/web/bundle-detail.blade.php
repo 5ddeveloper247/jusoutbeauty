@@ -608,7 +608,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 							<?php $i++;}?>
 						<?php }?>
 
-					</ul>
+					</ul> 
 					<div class="tab-content bg-white-md shadow-none pt-md-2 px-0 m-0">
 						<div id="collapse-tabs-accordion-01">
 
