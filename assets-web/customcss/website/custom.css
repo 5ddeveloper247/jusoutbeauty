@@ -760,10 +760,10 @@ img.item.shop-shade {
 	img.card-img-top.recomendations-img.img-w30,
 	.slick-slider.shadefinder img,
 	.created_section_img{
-        height: 386px !important;
+/*         height: 386px !important; */
     }
 	.slick-slider.shadefinder img{
-		height: 386px !important;
+/* 		height: 386px !important; */
 	}
     .fort_box_home img {
         width: 209px!important;
@@ -794,7 +794,7 @@ img.item.shop-shade {
     }
 	.clinical-note{
 		width: 56rem;
-		height: 40rem;
+		height: 37rem;
 	}
 }
 @media screen and (min-width:1450px){

@@ -90,7 +90,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				setTimeout(function(){
 
 					$('.slick-slider1').slick({
-                        slidesToShow: 4,
+                        slidesToShow: 2,
                         autoplaySpeed: 1500,
                         "infinite":true,
                         "autoplay":true,

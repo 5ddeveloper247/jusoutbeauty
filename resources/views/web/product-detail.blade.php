@@ -983,10 +983,10 @@
                                                     </div>
                                                 </section>
 
-                                                <section class="pt-10 pt-lg-8 py-8">
+                                                <section class="pt-10 pt-lg-8">
                                                     <div class="">
                                                         <div class="row no-gutters align-items-center">
-                                                            <div class="col-md-6 mb-8 mb-md-0 hover-zoom-in">
+                                                            <div class="col-md-5 mb-8 mb-md-0 hover-zoom-in">
                                                                 <?php if(isset($productDetails['clinicalImage'][0]['downPath'])){?>
 
                                                                 <img class="clinical-note"
@@ -1001,9 +1001,9 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-6 px-6 px-md-0 pl-xl-7"
-                                                                style="height:30rem;overflow-y:auto">
-                                                                <h2 class="mb-5">Lutie's Hint</h2>
+                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7"
+                                                                style="height:37rem;overflow-y:auto">
+                                                                <h2 class="mb-2">Lutie's Hint</h2>
                                                                 <p><?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>
@@ -1023,7 +1023,7 @@
             </div>
         </section>
 
-        <section class="py-6 py-lg-10 insta_sec_home">
+        <section class="py-6 py-lg-6 insta_sec_home">
             <div class="container container-custom container-xl">
                 <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
                 <p class="text-center mb-3 mx-auto">
