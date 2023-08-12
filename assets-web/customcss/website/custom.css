@@ -712,6 +712,7 @@ img.item.shop-shade {
 /* .sticky-area .container.container-xxl {
     max-width: 1800px !important;
 } */
+
 @media (min-width: 1200px){
 	img.img-home-pay {
 		width: 28rem !important;
@@ -758,13 +759,14 @@ img.item.shop-shade {
 	img.card-img-top.img-h60.trend_section_image.image-active,
 	img.card-img-top.img-h60.trend_section_image.image-hover,
 	img.card-img-top.recomendations-img.img-w30,
-	/*.slick-slider.shadefinder img,*/
+	.slick-slider.shadefinder img,
 	.created_section_img{
-        height: 386px !important;
+        height: 386px;
     }
-	.slick-slider.shadefinder img{
-/* 		height: 386px !important; */
-	}
+/* 	.slick-slider.shadefinder img{ */
+/* 		height: 386px; */
+/* 	} */
+	
     .fort_box_home img {
         width: 209px!important;
         height: 181px!important;
@@ -1660,7 +1662,9 @@ p.text-center.mb-0.text-white.hoverimages-text{
 	}
 
 
-
+.slick-slider1 img{
+		height: 300px !important;
+	}
 
 
 

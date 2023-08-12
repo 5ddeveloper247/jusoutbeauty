@@ -3,6 +3,7 @@
 
 var site = '<?php echo session('site');?>';
 </script>
+
 <main id="content" ng-app="project1"> <!--<section class="py-lg-8 py-14 bg-img-cover-center" style="background-image: url('images/shadeimg.webp');background-color: #F2F2F2">-->
 <!--<div class="container container-xxl">--> <!--<p class="text-primary fs-18 font-weight-600 mb-4 lh-1444" data-animate="fadeInUp"></p>-->
 <!--<h1 class="fs-30 fs-lg-40" data-animate="fadeInUp">Let's Find Your Shade</h1>-->
