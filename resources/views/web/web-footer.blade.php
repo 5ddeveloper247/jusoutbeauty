@@ -398,9 +398,8 @@
     }
 
     .cookie-frame {
-        position: sticky;
-        bottom: 0%;
-        /* left: 0; */
+        position: fixed;
+        bottom: -85%;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.6);
@@ -414,14 +413,11 @@
 
     .cookie-frame.open {
         display: block;
-        bottom: 0%;
-        /* bottom: -90%; */
         transition: bottom 1s ease-out; /* Add transition effect */
         transition-delay: 1s; /* No delay when opening */
     }
 
     .cookie-frame.hide {
-        bottom: -100%; 
         /* Move to the original hidden position */
         transition: bottom 1s ease-out; /* Add transition effect */
         transition-delay: 1s; /* No delay when hiding */
@@ -460,11 +456,8 @@
 	outline: #b73d94;
 }
     @media (max-width: 174px) {
-        /* Styles for mobile devices */
         .cookie-frame.open {
-            /* bottom: -100%; */
-            /* display: none;  */
-            /* Adjust the bottom position for mobile devices */
+            
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -477,8 +470,7 @@
     @media (min-width: 174px) and (max-width: 200px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            /* bottom: -72%;  */
-            /* Adjust the bottom position for mobile devices */
+            
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -491,8 +483,7 @@
     @media (min-width: 200px) and (max-width: 252px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            /* bottom: -72%;  */
-            /* Adjust the bottom position for mobile devices */
+            
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -525,7 +516,6 @@
     @media (min-width: 300px) and (max-width: 438px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            /* bottom: -84%;  */
             /* Adjust the bottom position for mobile devices */
         }
         .cookie-content {
@@ -546,7 +536,6 @@
     @media (min-width: 438px) and (max-width: 576px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            /* bottom: -80%;  */
             /* Adjust the bottom position for mobile devices */
         }
         .cookie-content {
@@ -563,11 +552,11 @@
         padding-left: 30px;
     }
     }
+    
 
     @media (min-width: 577px) and (max-width: 992px) {
         /* Styles for tablets and smaller screens */
         .cookie-frame.open {
-            /* bottom: -87%;  */
             /* Adjust the bottom position for tablets and smaller screens */
         }
         .cookie-content .text {
@@ -579,12 +568,16 @@
     @media (min-width: 992px) {
         /* Styles for larger screens */
         .cookie-frame.open {
-            /* bottom: -88%; */
             /* Adjust the bottom position for larger screens */
         }
         .cookie-content .text {
         padding-left: 80px;
     }
+    }
+    @media screen and (min-width: 0px) and (max-width: 414px) {
+    	.cookie-frame {
+    		bottom:	-78% ;
+    	}
     }
 
 </style>
@@ -998,20 +991,7 @@
 
 
 
-<script>
-    var cookieAccepted = localStorage.getItem('cookiesAccepted');
-    // alert(cookieAccepted)
-    if (cookieAccepted != 1 && cookieAccepted != '1') {
-            // alert('will show up')
-            // $('.cookie-frame').fadeInUp(1000);
-            $('.cookie-frame').slideDown(5000)
 
-        }else{
-            $('.cookie-frame').hide();
-            // alert('will not show up')
-        }
-
-    </script>
 <div class="modal sign-in" id="sign-in" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

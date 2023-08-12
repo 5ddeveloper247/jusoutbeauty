@@ -486,6 +486,7 @@ $userId = session('userId');
 	  	justify-content: center;
 	  	align-items: center;
     }
+    
 </style>
 <div class="cookies_blocker" style="display: none;"></div>
 <main id="content" style="padding-top: 0px !important" ng-app="project1">
@@ -1630,7 +1631,7 @@ $userId = session('userId');
 
 @include('web.web-footer')
 
-<div class="cookie-frame open" style="display:none;z-index: 100001; ">
+<div class="cookie-frame open" style="display:none;z-index: 100000000;!important;">
     <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
         <div class="col-sm-8 text">
             <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking Accept Cookies, you agree to the storing of cookies on your device to enhance
@@ -1683,7 +1684,6 @@ $userId = session('userId');
 
 </script>
 
-
 @if (!session()->has('homepopup'))
 	<script type="text/javascript">
 	localStorage.setItem('cookiesAccepted', '');
@@ -1701,14 +1701,18 @@ $(document).ready(function() {
 	
 	var cookieAccepted = localStorage.getItem('cookiesAccepted');
 
-	if (cookieAccepted == '') {//cookieAccepted != 1 && cookieAccepted != '1'
-    	$('.cookie-frame').slideDown(3000);
-    	$(".cookies_blocker").show();
-    }else{
-        $('.cookie-frame').hide();
-        $(".cookies_blocker").hide();
-
-    }
+	setTimeout(function(){
+		if (cookieAccepted == '') {//cookieAccepted != 1 && cookieAccepted != '1'
+	    	$('.cookie-frame').slideDown(3000);
+	    	$(".cookies_blocker").show();
+	    }else{
+	        $('.cookie-frame').hide();
+	        $(".cookies_blocker").hide();
+	    }
+	}, 3000);
+		
+    
+	
 
     // Handle accept button click
     $('#acceptCookiesBtn').click(function() {
