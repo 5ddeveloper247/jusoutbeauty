@@ -101,16 +101,16 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
                         "responsive":[
 
                                     {"breakpoint": 1400,
-                                        "settings": {"slidesToShow": 4}},
+                                        "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 1366,
-                                    "settings": {"slidesToShow": 4}},
+                                    "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 1200,
-                                        "settings": {"slidesToShow": 3}},
+                                        "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 992,
-                                        "settings": {"slidesToShow": 3}},
+                                        "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 768,
                                         "settings": {"slidesToShow": 2}},
