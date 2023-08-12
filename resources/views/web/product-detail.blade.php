@@ -282,8 +282,16 @@
     #pills-recently-viewed {
         max-height: unset !important
     }
+    .uses_img{
+		width: 100% !important;
+    	height: 32rem;
+	}
 
     @media only screen and (max-width: 480px) {
+     	.uses_img{
+			width: 100% !important;
+	    	height: 25rem;
+		}
         .last-section-pro-detail {
             flex-direction: column !important;
             align-items: center !important;
@@ -937,10 +945,21 @@
                                                                 <?php if(isset($productUses) && !empty($productUses)){?>
                                                                 <?php foreach ($productUses as $row){ ?>
                                                                 <div
-                                                                    class="col-md-4 mb-6 mb-md-0 <?= $i == '2' ? 'pt-14 step_2' : '' ?>">
+                                                                    class="col-md-4 mb-6 mb-md-0 <?php //echo $i == '2' ? 'pt-14 step_2' : '' ?>">
                                                                     <div class="card border-0">
-                                                                        <img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web') . '/images/how-to-step-1.webp' ?>"
-                                                                            alt="Image" class="card-img h_to_use_img">
+                                                                        <?php if(isset($productDetails['CATEGORY_NAME'])){
+                                                                        	$catName = $productDetails['CATEGORY_NAME'];
+                                                                        	?>
+                                                                        
+                                                                        <?php if($catName == 'Nutrition' || $catName == 'Nutritions' || 
+                                                                        			$catName == 'MakeUp' || $catName == 'Make Up'){?>
+                                                                         	
+                                                                        	<?php }else{?>
+                                                                        		<img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web') . '/images/how-to-step-1.webp' ?>"
+                                                                            		alt="Image" class="card-img h_to_use_img uses_img">
+                                                                        <?php }}?>
+                                                                       
+                                                                        
                                                                         <div
                                                                             class="card-body pt-6 px-0 pb-0 text-center">
                                                                             <a href="#"

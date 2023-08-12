@@ -770,7 +770,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.getSubCategoriesWrtCategory = function(){
 
 		if($scope.product.P_8 != null){
-            if($scope.product.P_8['name'] === 'Nutrition' || $scope.product.P_8['name'] === 'Make Up'){
+            if($scope.product.P_8['name'] === 'Nutrition' || $scope.product.P_8['name'] === 'Nutritions' || 
+            		$scope.product.P_8['name'] === 'MakeUp' || $scope.product.P_8['name'] === 'Make Up'){
                 $('#imageBox').addClass('d-none');
             }else{
                 $('#imageBox').removeClass('d-none');
