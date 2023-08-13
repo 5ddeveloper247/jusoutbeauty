@@ -969,7 +969,7 @@
     APP.sidebarSticky = {
     		
         init: function() {
-            var header_sticky_height = 0;
+            var header_sticky_height = 80;
             if (window.matchMedia('(max-width: 767px)').matches) {
                 return;
             }
@@ -997,6 +997,7 @@
                 stickTo: '#form-review-sticky',
                 top: header_sticky_height
             });
+            
         }
     };
     APP.mapbox = {

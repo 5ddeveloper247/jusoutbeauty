@@ -359,8 +359,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						</div>
 					</div>
 					<div
-						class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky"
-						id="summary-sticky">
+						class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
 						<div class="primary-summary-inner">
 							<h2 class="mb-0 text-capitalize"><?= $bundleDetails['NAME']; ?></h2>
