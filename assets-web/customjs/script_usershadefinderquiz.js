@@ -5,10 +5,10 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 //	    $('#addCity_modal').modal('show');return false;
 //	});
 //
-	$(document).on('click','.shadeTypeImg',function(){
-	    var typeImage = $(".shadeTypeImg").attr('src');
-	    console.log(typeImage);
-	});
+//	$(document).on('click','.shadeTypeImg',function(){
+//	    var typeImage = $(".shadeTypeImg").attr('src');
+//	    console.log(typeImage);
+//	});
 
 	$scope.tokenHash = $("#csrf").val();
 
