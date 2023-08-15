@@ -2,6 +2,15 @@
 	display: flex;
     width: 100px;
 }
+.cards_length{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+  }
+  .container-custom-2{
+  max-width: 1232px;
+}
 .required{
 	color:red;
 }
@@ -283,7 +292,7 @@ hr {
 
 }
 .primary-summary-inner.sticky, .form-review-inner.sticky {
-    top: 133px !important;
+    top: 80px !important;
 }
 .box-shadow-bottom{
 
@@ -703,6 +712,7 @@ img.item.shop-shade {
 /* .sticky-area .container.container-xxl {
     max-width: 1800px !important;
 } */
+
 @media (min-width: 1200px){
 	img.img-home-pay {
 		width: 28rem !important;
@@ -751,11 +761,12 @@ img.item.shop-shade {
 	img.card-img-top.recomendations-img.img-w30,
 	.slick-slider.shadefinder img,
 	.created_section_img{
-        height: 386px !important;
+        height: 386px;
     }
-	.slick-slider.shadefinder img{
-		height: 386px !important;
-	}
+/* 	.slick-slider.shadefinder img{ */
+/* 		height: 386px; */
+/* 	} */
+	
     .fort_box_home img {
         width: 209px!important;
         height: 181px!important;
@@ -785,7 +796,7 @@ img.item.shop-shade {
     }
 	.clinical-note{
 		width: 56rem;
-		height: 40rem;
+		height: 37rem;
 	}
 }
 @media screen and (min-width:1450px){
@@ -1651,7 +1662,9 @@ p.text-center.mb-0.text-white.hoverimages-text{
 	}
 
 
-
+.slick-slider1 img{
+		height: 300px !important;
+	}
 
 
 

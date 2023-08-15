@@ -768,15 +768,20 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	}
 
 	$scope.getSubCategoriesWrtCategory = function(){
-
+		
+		if($scope.recallSubCatFunctionFlag == 0){
+			$scope.recallSubCatFunctionFlag = 1;
+			return;
+		}
 		if($scope.product.P_8 != null){
-            if($scope.product.P_8['name'] === 'Nutrition' || $scope.product.P_8['name'] === 'Make Up'){
+            if($scope.product.P_8['name'] === 'Nutrition' || $scope.product.P_8['name'] === 'Nutritions' || 
+            		$scope.product.P_8['name'] === 'MakeUp' || $scope.product.P_8['name'] === 'Make Up'){
                 $('#imageBox').addClass('d-none');
             }else{
                 $('#imageBox').removeClass('d-none');
             }
-
-			var data = {};
+            
+            var data = {};
 		    data.category = $scope.product.P_8;
 		    data.userId = userId;
 
@@ -796,6 +801,9 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			}).success(function(data, status, headers, config) {
 
 				$scope.subCategoryLov = data.subCategory;
+				
+				$scope.product.P_9 = '';
+				$scope.product.P_44 = '';
 
 				$scope.recommended=data.product;
 
@@ -819,7 +827,11 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}
 	}
 	$scope.getSubSubCategoriesWrtSubCategory = function(){
-
+		
+		if($scope.recallSubCatFunctionFlag == 0){
+			$scope.recallSubCatFunctionFlag = 1;
+			return;
+		}
 		if($scope.product.P_9 != null){
 			var data = {};
 		    data.subcategory = $scope.product.P_9;
@@ -838,6 +850,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 				$scope.subSubCategoryLov = data.subSubCategory;
 
+				$scope.product.P_44 = '';
 			})
 			.error(function(data, status, headers, config) {
 			});
@@ -873,6 +886,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}
 	}
 
+	$scope.recallSubCatFunctionFlag = 1;
 	$scope.continouRecord = function(id){
 
 		var data = {};
@@ -922,7 +936,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 						$("#video_description").summernote("code", $scope.video.V_2);
 					}, 500);
 				}
-
+				$scope.recallSubCatFunctionFlag = 0;
 				setTimeout(function(){
 					$("#p4").val($scope.product.P_4).trigger('change');
 					$("#p8").val($scope.product.P_8).trigger('change');

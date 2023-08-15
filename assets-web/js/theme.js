@@ -967,11 +967,13 @@
         }
     };
     APP.sidebarSticky = {
+    		
         init: function() {
             var header_sticky_height = 0;
             if (window.matchMedia('(max-width: 767px)').matches) {
                 return;
             }
+            
             if ($('#site-header.header-sticky').length > 0) {
                 header_sticky_height = 60;
             }
@@ -985,16 +987,17 @@
             });
             $('.primary-summary.summary-sticky > .primary-summary-inner').hcSticky({
                 stickTo: '#summary-sticky',
-                top: header_sticky_height
+                top: header_sticky_height + 80
             });
             $('.primary-gallery.summary-sticky > .primary-summary-inner').hcSticky({
                 stickTo: '#summary-sticky',
-                top: header_sticky_height
+                top: header_sticky_height + 80
             });
             $('.form-review-sticky.summary-sticky > .form-review-inner').hcSticky({
                 stickTo: '#form-review-sticky',
-                top: header_sticky_height
+                top: header_sticky_height + 80
             });
+            
         }
     };
     APP.mapbox = {

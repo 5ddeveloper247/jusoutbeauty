@@ -30,9 +30,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
     }
     .custom-h2{
-        font-size: 36px;
+        font-size: 18px;
         text-transform: capitalize;
     }
+    .mr-md-10, .mx-md-10 {
+	    margin-right: 2.375rem !important;
+	}
     .overlay {
         position: absolute;
         top: 0;
@@ -141,14 +144,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 		font-size: 11px;
 	}
 	.card-img-overlay {
-		position: absolute;
-		top: 88px;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		padding: 1.25rem;
-		border-radius: 0;
-	}
+        position: absolute;
+        top: 88px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1.25rem;
+        border-radius: 0;
+    }
 	.home main#content {
     	padding-top: 111px !important;
 	}
@@ -156,7 +159,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         height: 28rem;
     }
 	.fix{
-        height: 579px;
+        height: 480px;
         overflow: hidden;
     }
 /* .list-inline-item{
@@ -258,8 +261,18 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         font-size: 36px !important;
         text-transform: capitalize !important;
     }
-
+    .border-active-primary.active, .border-active-primary:hover.active, .border-active-primary:focus.active, .border-active-primary:hover {
+	    border-color: #b73d94 !important;
+	}
+	.uses_img{
+		width: 100% !important;
+    	height: 32rem;
+	}
     @media only screen and (max-width: 480px){
+    	.uses_img{
+			width: 100% !important;
+	    	height: 25rem;
+		}
 		a#writeQuestion_btn {
 		    position: absolute;
 			bottom: 160px;
@@ -346,8 +359,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						</div>
 					</div>
 					<div
-						class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky"
-						id="summary-sticky">
+						class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
 						<div class="primary-summary-inner">
 							<h2 class="mb-0 text-capitalize"><?= $bundleDetails['NAME']; ?></h2>
@@ -586,14 +598,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 		<section class="pb-11 pb-lg-6">
 			<div class="container container-custom">
 				<div class="collapse-tabs">
-					<ul class="nav nav-pills d-md-flex d-block border-bottom"
+					<ul class="nav nav-pills d-md-flex d-block "
 						id="pills-tab" role="tablist">
 
 						<?php if(isset($bundleLines) && $bundleLines != null){
 							$i=0;$firstTabId=''; ?>
 
 							<?php foreach ($bundleLines as $line){ ?>
-								<li class="nav-item"><a
+								<li class="nav-item border-bottom"><a
 									class="nav-link <?php echo $i == 0 ? 'active show': '';?> custom-h2 px-0 pb-3 mr-md-10 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
 									id="tab_<?= $line['BUNDLE_LINE_ID'];?>" data-toggle="pill"
 									href="#pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" role="tab"
@@ -601,8 +613,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 							<?php $i++;}?>
 						<?php }?>
 
-					</ul>
-					<div class="tab-content bg-white-md shadow-none pt-md-7 px-0 m-0">
+					</ul> 
+					<div class="tab-content bg-white-md shadow-none pt-md-2 px-0 m-0">
 						<div id="collapse-tabs-accordion-01">
 
 							{{-- features --}}
@@ -662,6 +674,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 								$productSelfiid = isset($line['productSelfi_id']) ? $line['productSelfi_id'] : '';
 
 								$productSelfiSliderArr = isset($line['productselfi']) ? $line['productselfi'] : '';
+								$productFeaturesArr = isset($line['productFeatures']) ? $line['productFeatures'] : '';
 
 								?>
 
@@ -678,8 +691,48 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											aria-labelledby="headingDetails-01" data-parent="#collapse-tabs-accordion-01" style="">
 											<div id="accordion-style-01" class="accordion accordion-01 border-md-0 border p-md-0">
 												<div class="card-body p-0">
+													<?php if(isset($productFeaturesArr) && !empty($productFeaturesArr)){?>
+											        <section class="pb-11 pb-lg-6">
+											            <div class="container container-custom container-xxl mt-8">
+											                <h2 class="text-center my-4">Features</h2>
+											                <div class="slick-slider " data-slick-options='{"slidesToShow": 5,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":false,"arrows":false,"responsive":[
+											                        {"breakpoint": 1400,"settings": {"slidesToShow": 5}},
+											                        {"breakpoint": 1200,"settings": {"slidesToShow": 3}},
+											                        {"breakpoint": 992,"settings": {"slidesToShow": 2}},
+											                        {"breakpoint": 768,"settings": {"slidesToShow": 1}},
+											                        {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+											
+											                    <?php foreach ($productFeaturesArr as $row){?>
+											
+											                    <div class="box px-1" data-animate="fadeInUp">
+											                        <div class="ag-courses_item">
+											                            <a href="#!" class="ag-courses-item_link">
+											                                <div class="ag-courses-item_bg"></div>
+											
+											                                <div class="ag-courses-item_title">
+											                                    <li class="product-hero__icons__item d-flex aic">
+											                                        <div class="product-hero__icons__image relative">
+											                                            <div class="img fit-contain is-loaded pos-center">
+											
+											                                                <div class="skeleton"></div>
+											                                                <img width="70" height="70" src="{{ $row['IMAGE_DOWN_PATH'] }}"
+											                                                    srcset="{{ $row['IMAGE_DOWN_PATH'] }}" alt="Clean" title="Clean"
+											                                                    data-fit="contain" class="img__el">
+											                                            </div>
+											                                        </div>
+											                                        <span class="product-hero__icons__text">{{ ucfirst($row['TITLE']) }}</span>
+											                                    </li>
+											                                </div>
+											                            </a>
+											                        </div>
+											                    </div>
+											                    <?php } ?>
+											                </div>
+											            </div>
+											        </section>
+											        <?php  } ?>
 													<div class="row mb-10">
-														<h2 class="col-12 mb-2 pb-8 text-center" style="margin: 0 auto;"><?= $line['SUB_TITLE']; ?></h2>
+														<h2 class="col-12 mb-2 pb-8 text-center" style="margin: 0 auto;">About Product<?php //echo $line['SUB_TITLE']; ?></h2>
 														<div class="col-md-6 mb-6 mb-md-0">
 															<?php if(isset($images[0]['downPath'])){?>
 																<img src="<?= $images[0]['downPath']; ?>" alt="Image" class="prod_img_detail_acc img1-section2 fadeInLeft animated img-w25">
@@ -719,7 +772,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													</div>
 													<br>
 													<hr>
-													<section class="pt-10 pt-lg-8 py-8">
+													<section class="pt-10 pt-lg-8 py-5">
 														<div class="">
 															<div class="row no-gutters align-items-center">
 																<div class="col-md-8 mb-8 mb-md-0">
@@ -751,7 +804,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-4 pl-7 scroll-to-see" style="height:40rem;overflow-y:auto">
+																<div class="col-md-4 pl-7 scroll-to-see" style="height:30rem;overflow-y:auto">
 																	<h2 class="mb-5"><?= isset($line['videoDetails']['V_1']) ? $line['videoDetails']['V_1'] : '' ?></h2>
 																	<p><?= isset($line['videoDetails']['V_2']) ? $line['videoDetails']['V_2'] : '' ?></p>
 																</div>
@@ -891,9 +944,20 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																	<?php $i=1 ?>
 																	<?php if(isset($productUses) && !empty($productUses) && $productUses != ''){?>
 																		<?php foreach ($productUses as $row){?>
-																			<div class="col-md-4 mb-6 mb-md-0 <?=  $i == '2' ? 'pt-14 step_2' : '' ?>">
+																			<div class="col-md-4 mb-6 mb-md-0 <?php //echo $i == '2' ? 'pt-14 step_2' : '' ?>">
 																				<div class="card border-0">
-																					<img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web').'/images/how-to-step-1.webp' ?>" alt="Image" class="card-img">
+																					
+																					<?php if(isset($line['CATEGORY_NAME'])){
+			                                                                        	$catName = $line['CATEGORY_NAME'];
+			                                                                        	?>
+			                                                                        
+			                                                                        <?php if($catName == 'Nutrition' || $catName == 'Nutritions' || 
+			                                                                        			$catName == 'MakeUp' || $catName == 'Make Up'){?>
+			                                                                         	
+			                                                                        	<?php }else{?>
+			                                                                        		<img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web').'/images/how-to-step-1.webp' ?>" alt="Image" class="card-img uses_img">
+			                                                                        <?php }}?>
+																					
 																					<div class="card-body pt-6 px-0 pb-0 text-center">
 																						<a href="#" class="fs-18 font-weight-500 lh-1444"><?= $row['USES_TITLE']; ?></a>
 																						<p class="mb-6"><?= $row['USES_DESCRIPTION']; ?></p>

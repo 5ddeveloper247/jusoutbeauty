@@ -95,7 +95,7 @@ $userId = session('userId');
                                 		data-categoryslug="<?= $filter['CATEGORY_SLUG'] ?>" data-subcategoryslug="<?= $filter['SUB_CATEGORY_SLUG'] ?>"
                                 		ng-click="filter(<?= $filter['SUB_CATEGORY_ID'];?>);">
                                     <div class="card border-0 hover-zoom-in" id="skin_health_col" style="background: transparent; border-radius: 10px;">
-                                        <img src="<?= $filter['image'];?>" style="border-radius: 10px;" alt="alt" class="card-img inr-img "
+                                        <img src="<?= $filter['image'];?>" style="border-radius: 10px;height: 17rem;" alt="alt" class="card-img inr-img "
                                         data-id="<?= $filter['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $filter['CATEGORY_SLUG'] ?>"><!-- toShopListing -->
                                     </div>
                                     <p class="nut_para"><?= $filter['NAME'];?></p>
@@ -122,7 +122,7 @@ $userId = session('userId');
 
 					<div class="row" style="padding:0 50px;">
                         <div ng-init="productsToShowForNutrition = 4"></div>
-						<div class="col-sm-5 mb-0 mb-sm-0 prod_card_inc m-3" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
+						<div class="col-sm-6 mb-2 mb-sm-2 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
 								<div class="overflow-hidden">
 									<img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top productdetail cursor-pointer nut-img-2 mt-3"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"><br>

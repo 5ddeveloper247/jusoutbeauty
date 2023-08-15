@@ -334,7 +334,7 @@
  									<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading ">
  										<a href="javascript:;" class="productdetail text-capitalize" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" >@{{row.NAME}}</a>
  									</h3>
- 									<p class="text-primary mb-0 shop-subtitle card-title lh-14375 product-subtitle text-capitalize" style="height: 26px;">@{{row.SUB_TITLE_TXT}}</p>
+ 									<p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375 product-subtitle text-capitalize" style="height: 48px;">@{{row.SUB_TITLE}}</p>
                                         <!-- Display shades for each product -->
                                         <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                             <li class="list-inline-item" ng-repeat="shade in row.shades" title="@{{ shade.SHADE_NAME }}">

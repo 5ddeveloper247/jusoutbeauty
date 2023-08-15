@@ -91,7 +91,6 @@ class HomeController extends Controller
    		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
    		$data ['homeBanner'] = $UserdashboardModel->getAllUserBanners();
    		$data ['trending'] = $UserdashboardModel->getAllUserHomeProductSectionData1('trending');
-
    		$data ['forYou'] = $UserdashboardModel->getAllUserHomeProductSectionData1('foryou');
    		$data ['reviews'] = $ReviewsModel->getAllEnableReviewsForWebsite();
    		$data ['todayOffer'] = $UserdashboardModel->getActiveTodayOfferRecordForWebsite();
@@ -635,7 +634,10 @@ class HomeController extends Controller
 			$data ['bundleDetails'] = $Bundle->getSpecificBundleProductDetails($sourceId);
 
 			$data ['bundleLines'] = $BundleLine->getAllBundleProductLinesForWebsite($sourceId);
-			// dd($data ['bundleLines']);
+// 			dd($data ['bundleLines']);
+// 			print_r('<pre>');
+// 			print_r($data['bundleLines']);
+// 			exit();
 			$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
   			$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
 

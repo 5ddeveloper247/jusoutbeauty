@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProductShadeModel;
+use App\Models\Feature;
 use DateTime;
 
 class BundleProductLineModel extends Model
@@ -97,6 +98,7 @@ class BundleProductLineModel extends Model
     	$ProductIngredient = new ProductIngredientModel();
     	$ProductUses = new ProductUsesModel();
 		$ProductSelfiModel = new ProductSelfiModel();
+		$features= new Feature();
     	
     	$result = DB::table('jb_bundle_product_line_tbl as a')->select('a.*','jpt.PRODUCT_ID' , 'jpt.*','a.STATUS as lineStatus','a.DATE as lineDate', 'jct.CATEGORY_NAME as categoryName')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
@@ -153,6 +155,8 @@ class BundleProductLineModel extends Model
     		$arrRes[$i]['allIngredients'] = $ProductIngredient->getAllProductIngredientByProduct($row->PRODUCT_ID);
     		$arrRes[$i]['productUses'] = $ProductUses->getAllProductUsesLimitedByProductId($row->PRODUCT_ID);
     		$arrRes[$i]['videoDetails'] = $this->getSpecificProductVideo($row->PRODUCT_ID);
+    		
+    		$arrRes[$i]['productFeatures'] = $features->getspecificproductdata($row->PRODUCT_ID);
     		
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;

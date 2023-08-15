@@ -817,8 +817,8 @@ class ProductModel extends Model
     	->where('a.CATEGORY_ID',$categoryId)
     	->where('a.STATUS','active')
     	->where('jct.STATUS','active')
-    	->where('jsct.STATUS','active')
-    	->where('jssct.STATUS','active')
+//     	->where('jsct.STATUS','active')
+//     	->where('jssct.STATUS','active')
     	->orderBy('a.PRODUCT_ID','desc')
     	->limit('3')
     	->get();
@@ -1102,7 +1102,7 @@ class ProductModel extends Model
     	}
 
     	$where = array_merge($where, array(['jct.STATUS','=','active']));
-    	$where = array_merge($where, array(['jsct.STATUS','=','active']));
+//     	$where = array_merge($where, array(['jsct.STATUS','=','active']));
 //     	$where = array_merge($where, array(['jssct.STATUS','=','active']));
 
     	$result = DB::table('jb_product_tbl as a')->where('a.IS_DELETED', 0)->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')

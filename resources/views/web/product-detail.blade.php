@@ -282,8 +282,16 @@
     #pills-recently-viewed {
         max-height: unset !important
     }
+    .uses_img{
+		width: 100% !important;
+    	height: 32rem;
+	}
 
     @media only screen and (max-width: 480px) {
+     	.uses_img{
+			width: 100% !important;
+	    	height: 25rem;
+		}
         .last-section-pro-detail {
             flex-direction: column !important;
             align-items: center !important;
@@ -426,7 +434,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
-
+						
                         <div class="primary-summary-inner">
                             <h2 class="mb-0 text-capitalize"><?= $productDetails['NAME'] ?></h2>
                             <p
@@ -682,7 +690,7 @@
                                             <div class="card-body p-0">
                                                 <div class="row " style="">
                                                     <h2 class="col-12 mb-2 pb-8 text-center text-capitalize"
-                                                        style="margin: 0 auto;"><?= $productDetails['SUB_TITLE'] ?>
+                                                        style="margin: 0 auto;">About Product<?php //echo $productDetails['SUB_TITLE'] ?>
                                                     </h2>
                                                     <div class="col-md-6 mb-6 mb-md-0">
                                                         <?php if(isset($images[0]['downPath'])){?>
@@ -712,10 +720,10 @@
                                                         <p class="mb-6">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}</p>
 
-                                                        <a href="{{  $productDetails['SUBSCRIPTION_NOTE_LINK'] }}"
+                                                        <a href="javascript:;" data-link="<?php echo $productDetails['SUBSCRIPTION_NOTE_LINK'];?>"
                                                             data-toggle="tooltip" data-placement="left"
                                                             title="Click to see more Ingredients"
-                                                            class="preview btn btn-primary"> <span>Read More</span>
+                                                            class="preview btn btn-primary subscrReadMoreLink"> <span>Read More</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-6 mb-6 mb-md-0">
@@ -727,7 +735,7 @@
                                                 </div>
                                                 <br>
                                                 <hr>
-                                                <section class="pt-10 pt-lg-8 py-8">
+                                                <section class="pt-10 pt-lg-8 py-5">
                                                     <div class="">
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col-md-8 mb-8 mb-md-0">
@@ -760,8 +768,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4 pl-xl-7 pl-7"
-                                                                style="height:40rem;overflow-y:auto">
-                                                                <h2 class="mb-5 text-capitalize">
+                                                                style="height:30rem;overflow-y:auto">
+                                                                <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
                                                                 </h2>
                                                                 <p><?= isset($productDetails['videoDetails']['V_2']) ? $productDetails['videoDetails']['V_2'] : '' ?>
@@ -937,10 +945,21 @@
                                                                 <?php if(isset($productUses) && !empty($productUses)){?>
                                                                 <?php foreach ($productUses as $row){ ?>
                                                                 <div
-                                                                    class="col-md-4 mb-6 mb-md-0 <?= $i == '2' ? 'pt-14 step_2' : '' ?>">
+                                                                    class="col-md-4 mb-6 mb-md-0 <?php //echo $i == '2' ? 'pt-14 step_2' : '' ?>">
                                                                     <div class="card border-0">
-                                                                        <img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web') . '/images/how-to-step-1.webp' ?>"
-                                                                            alt="Image" class="card-img h_to_use_img">
+                                                                        <?php if(isset($productDetails['CATEGORY_NAME'])){
+                                                                        	$catName = $productDetails['CATEGORY_NAME'];
+                                                                        	?>
+                                                                        
+                                                                        <?php if($catName == 'Nutrition' || $catName == 'Nutritions' || 
+                                                                        			$catName == 'MakeUp' || $catName == 'Make Up'){?>
+                                                                         	
+                                                                        	<?php }else{?>
+                                                                        		<img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web') . '/images/how-to-step-1.webp' ?>"
+                                                                            		alt="Image" class="card-img h_to_use_img uses_img">
+                                                                        <?php }}?>
+                                                                       
+                                                                        
                                                                         <div
                                                                             class="card-body pt-6 px-0 pb-0 text-center">
                                                                             <a href="#"
@@ -964,10 +983,10 @@
                                                     </div>
                                                 </section>
 
-                                                <section class="pt-10 pt-lg-8 py-8">
+                                                <section class="pt-10 pt-lg-8">
                                                     <div class="">
                                                         <div class="row no-gutters align-items-center">
-                                                            <div class="col-md-6 mb-8 mb-md-0 hover-zoom-in">
+                                                            <div class="col-md-5 mb-8 mb-md-0 hover-zoom-in">
                                                                 <?php if(isset($productDetails['clinicalImage'][0]['downPath'])){?>
 
                                                                 <img class="clinical-note"
@@ -982,9 +1001,9 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-6 px-6 px-md-0 pl-xl-7"
-                                                                style="height:30rem;overflow-y:auto">
-                                                                <h2 class="mb-5">Lutie's Hint</h2>
+                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7"
+                                                                style="height:37rem;overflow-y:auto">
+                                                                <h2 class="mb-2">Lutie's Hint</h2>
                                                                 <p><?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>
@@ -1004,7 +1023,7 @@
             </div>
         </section>
 
-        <section class="py-6 py-lg-10 insta_sec_home">
+        <section class="py-6 py-lg-6 insta_sec_home">
             <div class="container container-custom container-xl">
                 <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
                 <p class="text-center mb-3 mx-auto">
@@ -1131,7 +1150,7 @@
                             </div>
                         </div>
 
-                        <form class="" id="uploadattch6" method="POST" action="uploadProductImageVideoSelfi"
+                        <form class="" id="uploadattch6" method="POST" action="{{url('/uploadProductImageVideoSelfi')}}"
                             enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="POST">
                             {{ csrf_field() }}
@@ -3490,6 +3509,14 @@
 
         $input.val($value);
     });
+    $('.subscrReadMoreLink').on('click', function (e) {
+        var link = $(this).attr('data-link');
+        if(link != ''){
+        	window.location.href = link;
+       	}
+    });
+
+    
 
 
     function showfileload() {

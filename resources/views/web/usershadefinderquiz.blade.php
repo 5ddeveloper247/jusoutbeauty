@@ -116,15 +116,16 @@ var site = '<?php echo session('site');?>';
 
 																<div class="slick-slider1 shadefinder">
 
-																	<div class="px-1 div-boxx shade" ng-repeat="row in displayCollectionLevelOneTypes" ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}});">
-																		<p class="text-center mb-0 text-white hoverimages-text p-2 rose">@{{row.TITLE}}</p>
+																	<div class="px-1 div-boxx shade" ng-repeat="row in displayCollectionLevelOneTypes" >
+																		<p class="text-center mb-0 text-white hoverimages-text p-2 rose" >@{{row.TITLE}}</p>
 
 																		<a href="javascript:;" ng-repeat="image in row.images" class="card shadee border-0 hover-change-content insta-secc insta-section-image submit-btn">
-																			<img src="@{{image.downPath}}" alt="alt" class="card-img" width="445" height="411">
+																			<img src="@{{image.downPath}}" alt="alt" class="card-img"
+																				ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}},image.downPath);" width="445" height="411">
 																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img" width="445" height="411"> --}}
 																		</a>
 
-																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION | limitTo:60}}</p>
+																		<p class="text-center mb-0 text-white hoverimages-text p-2" >@{{row.DESCRIPTION | limitTo:60}}</p>
 																	</div>
 
 																</div>
@@ -172,15 +173,16 @@ var site = '<?php echo session('site');?>';
 
 																<div class=" shadefinder" >
 
-																	<div class="px-1 div-boxx shade single-tabss shade-type" ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}});">
-																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.TITLE}}</p>
+																	<div class="px-1 div-boxx shade single-tabss shade-type" >
+																		<p class="text-center mb-0 text-white hoverimages-text p-2" >@{{row.TITLE}}</p>
 
 																		<a href="javascript:;" ng-repeat="img in row.images" class="card shadee border-0 hover-change-content insta-secc insta_section_shade_finder insta-section-image submit-btn">
-																			<img src="@{{img.downPath}}" alt="alt" class="card-img objectfit-cover">
+																			<img src="@{{img.downPath}}" alt="alt" class="card-img objectfit-cover"
+																				ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}},img.downPath);">
 																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img objectfit-cover"> --}}
 																		</a>
 
-																		<p class="text-center mb-0 text-white hoverimages-text p-2">@{{row.DESCRIPTION | limitTo:60}}</p>
+																		<p class="text-center mb-0 text-white hoverimages-text p-2" >@{{row.DESCRIPTION | limitTo:60}}</p>
 																	</div>
 																</div>
 
@@ -387,7 +389,7 @@ var site = '<?php echo session('site');?>';
                                                     data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
                                                     data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME}}</a>
                                                 </h3>
-                                                <p class="text-primary mb-0 card-title lh-14375" style="height: 26px;">@{{row.SUB_TITLE_TXT}}</p>
+												<p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375 product-subtitle text-capitalize" style="height: 48px;">@{{row.SUB_TITLE}}</p>
                                                  <!-- Display shades for each product -->
                                                     <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                         <li class="list-inline-item" ng-repeat="shade in row.shades" title="@{{ shade.SHADE_NAME }}">

@@ -5,8 +5,9 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 //	    $('#addCity_modal').modal('show');return false;
 //	});
 //
-//	$(document).on('click','.modalClose',function(){
-//	    $('#addCity_modal').modal('hide');return false;
+//	$(document).on('click','.shadeTypeImg',function(){
+//	    var typeImage = $(".shadeTypeImg").attr('src');
+//	    console.log(typeImage);
 //	});
 
 	$scope.tokenHash = $("#csrf").val();
@@ -77,7 +78,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				    $('.slick-slider1').slick('destroy');
 				}
 
-//				setTimeout(function(){
+//				setTimeout(function(){ 
 //
 //					$('.slick-slider3').slick({
 //						"slidesToShow": 1,"infinite":false,"autoplay":false,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
@@ -90,7 +91,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				setTimeout(function(){
 
 					$('.slick-slider1').slick({
-                        slidesToShow: 4,
+                        slidesToShow: 2,
                         autoplaySpeed: 1500,
                         "infinite":true,
                         "autoplay":true,
@@ -101,16 +102,16 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
                         "responsive":[
 
                                     {"breakpoint": 1400,
-                                        "settings": {"slidesToShow": 4}},
+                                        "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 1366,
-                                    "settings": {"slidesToShow": 4}},
+                                    "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 1200,
-                                        "settings": {"slidesToShow": 3}},
+                                        "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 992,
-                                        "settings": {"slidesToShow": 3}},
+                                        "settings": {"slidesToShow": 2}},
 
                                     {"breakpoint": 768,
                                         "settings": {"slidesToShow": 2}},
@@ -133,7 +134,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		});
 	}
 
-	$scope.chooseOptionLevelTwo = function(id){
+	$scope.chooseOptionLevelTwo = function(id,typeImage=''){
 
 		var data = {};
 		data.recordId = id;
@@ -170,7 +171,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
                     }
                     return product;
                 });
-				$scope.levelOneLatestImg = data.levelTypeImage.downPath;
+               
+                $scope.levelOneLatestImg = typeImage != '' ? typeImage : data.levelTypeImage.downPath;
 
 				$scope.viewFlag = 'YL';
 
@@ -218,7 +220,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 				$scope.levelTwoQuestionId = data.levelTwo.LEVEL_TWO_ID;
 				$scope.levelTwoQuestionTitle = data.levelTwo.TITLE;
-				$scope.levelOneLatestImg = data.levelTypeImage.downPath;
+//				$scope.levelOneLatestImg = data.levelTypeImage.downPath;
+				$scope.levelOneLatestImg = typeImage != '' ? typeImage : data.levelTypeImage.downPath;
 
 				$scope.displayCollectionLevelTwoTypesOptions = data.levelTwoType;
 

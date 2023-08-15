@@ -380,9 +380,9 @@
 <style>
     .float{
         position:fixed;
-        width:58px;
-        height:58px;
-        bottom:140px;
+        width:44px;
+        height:44px;
+        bottom:155px;
         right:26px;
         background-color:#3d94b7;
         color:#FFF;
@@ -394,13 +394,12 @@
     }
 
     .my-float{
-        margin-top:16px;
+        margin-top:7px;
     }
 
     .cookie-frame {
         position: fixed;
-        bottom: -100%;
-        left: 0;
+        bottom: -85%;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.6);
@@ -414,13 +413,12 @@
 
     .cookie-frame.open {
         display: block;
-        bottom: -90%;
         transition: bottom 1s ease-out; /* Add transition effect */
         transition-delay: 1s; /* No delay when opening */
     }
 
     .cookie-frame.hide {
-        bottom: -100%; /* Move to the original hidden position */
+        /* Move to the original hidden position */
         transition: bottom 1s ease-out; /* Add transition effect */
         transition-delay: 1s; /* No delay when hiding */
     }
@@ -458,10 +456,8 @@
 	outline: #b73d94;
 }
     @media (max-width: 174px) {
-        /* Styles for mobile devices */
         .cookie-frame.open {
-            bottom: -100%;
-            display: none; /* Adjust the bottom position for mobile devices */
+            
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -474,7 +470,7 @@
     @media (min-width: 174px) and (max-width: 200px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            bottom: -72%; /* Adjust the bottom position for mobile devices */
+            
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -487,7 +483,7 @@
     @media (min-width: 200px) and (max-width: 252px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            bottom: -72%; /* Adjust the bottom position for mobile devices */
+            
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -500,7 +496,8 @@
     @media (min-width: 252px) and (max-width: 300px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            bottom: -72%; /* Adjust the bottom position for mobile devices */
+            /* bottom: -72%;  */
+            /* Adjust the bottom position for mobile devices */
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -519,7 +516,7 @@
     @media (min-width: 300px) and (max-width: 438px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            bottom: -84%; /* Adjust the bottom position for mobile devices */
+            /* Adjust the bottom position for mobile devices */
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -539,7 +536,7 @@
     @media (min-width: 438px) and (max-width: 576px) {
         /* Styles for mobile devices */
         .cookie-frame.open {
-            bottom: -80%; /* Adjust the bottom position for mobile devices */
+            /* Adjust the bottom position for mobile devices */
         }
         .cookie-content {
         background-color: #f9f9f9;
@@ -555,11 +552,12 @@
         padding-left: 30px;
     }
     }
+    
 
     @media (min-width: 577px) and (max-width: 992px) {
         /* Styles for tablets and smaller screens */
         .cookie-frame.open {
-            bottom: -87%; /* Adjust the bottom position for tablets and smaller screens */
+            /* Adjust the bottom position for tablets and smaller screens */
         }
         .cookie-content .text {
         padding-left: 50px;
@@ -570,12 +568,16 @@
     @media (min-width: 992px) {
         /* Styles for larger screens */
         .cookie-frame.open {
-            bottom: -88%;
             /* Adjust the bottom position for larger screens */
         }
         .cookie-content .text {
         padding-left: 80px;
     }
+    }
+    @media screen and (min-width: 0px) and (max-width: 414px) {
+    	.cookie-frame {
+    		bottom:	-78% ;
+    	}
     }
 
 </style>
@@ -722,8 +724,8 @@
 </svg>
 <div class="position-fixed pos-fixed-bottom-right p-6 z-index-10" data-toggle="tooltip" data-placement="left" title="Back To Top">
     <a href="{{ url('/store') }}"
-        class="gtf-back-to-top text-decoration-none hover-dark  shadow p-0 w-48px h-48px rounded-circle fs-20 d-flex align-items-center justify-content-center text-light uparrow"
-        ><i class="fal fa-arrow-up"></i></a>
+        class="gtf-back-to-top text-decoration-none hover-dark shadow p-0 rounded-circle fs-20 d-flex align-items-center justify-content-center text-light uparrow"
+       style="height: 44px;width: 44px" ><i class="fal fa-arrow-up"></i></a>
 </div>
 <div class="canvas-sidebar cart-canvas">
     <div class="canvas-overlay"></div>
@@ -989,20 +991,7 @@
 
 
 
-<script>
-    var cookieAccepted = localStorage.getItem('cookiesAccepted');
-    // alert(cookieAccepted)
-    if (cookieAccepted != 1 && cookieAccepted != '1') {
-            // alert('will show up')
-            // $('.cookie-frame').fadeInUp(1000);
-            $('.cookie-frame').slideDown(5000)
 
-        }else{
-            $('.cookie-frame').hide();
-            // alert('will not show up')
-        }
-
-    </script>
 <div class="modal sign-in" id="sign-in" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

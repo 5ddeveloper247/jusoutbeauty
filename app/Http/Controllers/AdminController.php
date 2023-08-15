@@ -4956,12 +4956,15 @@ class AdminController extends Controller
 			// 	echo json_encode ( $arrRes );
 			// 	die ();
 			// }
-			if ($data['P_17'] <= 0) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Discount must be greater then zero.';
-				echo json_encode ( $arrRes );
-				die ();
+			if($data['P_17'] != ''){
+				if ($data['P_17'] < 0) {
+					$arrRes ['done'] = false;
+					$arrRes ['msg'] = 'Discount must be greater then zero.';
+					echo json_encode ( $arrRes );
+					die ();
+				}
 			}
+			
 			// if ($data['P_18'] == '') {
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Discount type is required.';

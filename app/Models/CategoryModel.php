@@ -414,23 +414,31 @@ class CategoryModel extends Model
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
 
-    		$subCatProductImage = $this->getSpecificProductImageSubCategoryWise($row->SUB_CATEGORY_ID);
+//     		$subCatProductImage = $this->getSpecificProductImageSubCategoryWise($row->SUB_CATEGORY_ID);
 
 //     		if(isset($subCatProductImage['downPath']) && $subCatProductImage['downPath'] != ''){
 //     			$arrRes[$i]['image'] = $subCatProductImage['downPath'];
 //     		}else{
-    			if(strtoupper($row->NAME) == 'SKIN HEALTH'){
-    				$arrRes[$i]['image'] = url('/assets-web')."/images/skin4.jpg";
-    			}else if(strtoupper($row->NAME) == 'GUT HEALTH'){
-    				$arrRes[$i]['image'] = url('/assets-web')."/images/skin3.jpg";
-    			}else if(strtoupper($row->NAME) == 'MOOD'){
-    				$arrRes[$i]['image'] = url('/assets-web')."/images/skin2.jpg";
-    			}else if(strtoupper($row->NAME) == 'POWDERS'){
-    				$arrRes[$i]['image'] = url('/assets-web')."/images/skin1.jpg";
-    			}else{
-	    			$arrRes[$i]['image'] = url('/assets-web')."/images/skin-makeup.jpg";
-	    		}
+//     			if(strtoupper($row->NAME) == 'SKIN HEALTH'){
+//     				$arrRes[$i]['image'] = url('/assets-web')."/images/skin4.jpg";
+//     			}else if(strtoupper($row->NAME) == 'GUT HEALTH'){
+//     				$arrRes[$i]['image'] = url('/assets-web')."/images/skin3.jpg";
+//     			}else if(strtoupper($row->NAME) == 'MOOD'){
+//     				$arrRes[$i]['image'] = url('/assets-web')."/images/skin2.jpg";
+//     			}else if(strtoupper($row->NAME) == 'POWDERS'){
+//     				$arrRes[$i]['image'] = url('/assets-web')."/images/skin1.jpg";
+//     			}else{
+// 	    			$arrRes[$i]['image'] = url('/assets-web')."/images/skin-makeup.jpg";
+// 	    		}
 //     		}
+    		
+    		$subCatProductImage = $this->getSpecificProductImageSubCategoryWise($row->SUB_CATEGORY_ID);
+    		
+    		if(isset($subCatProductImage['downPath']) && $subCatProductImage['downPath'] != ''){
+    			$arrRes[$i]['image'] = $subCatProductImage['downPath'];
+    		}else{
+    			$arrRes[$i]['image'] = url('/assets-web')."/images/skin-makeup.jpg";
+    		}
 
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
@@ -447,6 +455,7 @@ class CategoryModel extends Model
     	->leftJoin ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->where('jpt.SUB_CATEGORY_ID', $id)
     	->where('a.PRIMARY_FLAG', '1')
+    	->where('jpt.STATUS','active')
     	->get();
 
     	$i=0;
