@@ -51,7 +51,7 @@ $userId = session('userId');
         color:white;
         opacity: 0.75;
     }
-    
+
 
     .modal-content .modal-body .sale:after {
         position: absolute;
@@ -254,7 +254,7 @@ $userId = session('userId');
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+        background-color: rgba(0, 0, 0, 0.3); /* You can adjust the transparency by changing the last value (0.6 in this case) */
     }
     .quick_view_product_image {
         width: 250px;
@@ -481,12 +481,12 @@ $userId = session('userId');
 	  	width: 100%;
 	  	height: 100%;
 	  	background-color: rgba(0, 0, 0, 0.5); /* Change the last value for the opacity level */
-	  	z-index: 100000; 
+	  	z-index: 100000;
 	  	display: flex;
 	  	justify-content: center;
 	  	align-items: center;
     }
-    
+
 </style>
 <div class="cookies_blocker" style="display: none;"></div>
 <main id="content" style="padding-top: 0px !important" ng-app="project1">
@@ -741,11 +741,11 @@ $userId = session('userId');
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
-                                                    
+
                                             </ul>
                                             <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto"
                                                 style="min-height: 6vw;">{{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -1021,8 +1021,11 @@ $userId = session('userId');
                                         <p class="mb-0 card-text font-weight-500 part_head text-uppercase">{{ $bestSeller['TITLE'] }}</p>
                                         <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">{{ $bestSeller['HEADING'] }}</h5>
                                         <div class="mt-auto">
-                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head toShopListing"
-                                            data-id="5" data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
+                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head productdetail"
+                                            data-id="{{ $bestSeller['PRODUCT_ID'] }}"
+                                            data-category="{{ $bestSeller['CATEGORY_SLUG'] }}"
+                                            data-subcategory="{{ $bestSeller['SUB_CATEGORY_SLUG'] }}"
+                                            data-name="{{ $bestSeller['SLUG'] }}">Shop Now</button>
                                         </div>
                                     </div>
                                 </a>
@@ -1047,8 +1050,11 @@ $userId = session('userId');
                                         {{-- <p><a href="">Shop Now</a></p> --}}
                                     <div class="mt-auto">
                                         <button type="button"
-                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head toShopListing"
-                                            data-id="5" data-type="CATEGORY" data-categorySlug="Shop">Shop Now</button>
+                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head productdetail"
+                                            data-id="{{ $onlineExclusive['PRODUCT_ID'] }}"
+                                            data-category="{{ $onlineExclusive['CATEGORY_SLUG'] }}"
+                                            data-subcategory="{{ $onlineExclusive['SUB_CATEGORY_SLUG'] }}"
+                                            data-name="{{ $onlineExclusive['SLUG'] }}">Shop Now</button>
                                     </div>
                                 </div>
                             </a>
@@ -1698,7 +1704,7 @@ $userId = session('userId');
 
 <script>
 $(document).ready(function() {
-	
+
 	var cookieAccepted = localStorage.getItem('cookiesAccepted');
 
 	setTimeout(function(){
@@ -1710,9 +1716,9 @@ $(document).ready(function() {
 	        $(".cookies_blocker").hide();
 	    }
 	}, 3000);
-		
-    
-	
+
+
+
 
     // Handle accept button click
     $('#acceptCookiesBtn').click(function() {

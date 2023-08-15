@@ -323,7 +323,7 @@
  								<div class="position-relative hover-zoom-in">
  									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
  										<img src="@{{row.primaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 img-h30-m image-active">
- 										<img src="@{{row.primaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 image-hover">
+ 										<img src="@{{row.secondaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 image-hover">
  									</a>
  									<div class="position-absolute pos-fixed-top-right d-inline-flex p-4 flex-column z-index-10 "><!-- productdetail data-id="@{{row.PRODUCT_ID}}"-->
  										<div class="content-change-vertical d-flex flex-column ml-auto">

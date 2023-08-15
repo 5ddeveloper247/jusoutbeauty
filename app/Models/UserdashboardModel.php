@@ -69,8 +69,11 @@ class UserdashboardModel extends Model
 
     public function getAllUserBestExcData(){
 
-    	$result = DB::table('jb_user_home_bestexclusive_tbl as a')->select('a.*')
-    	->get();
+    	$result = DB::table('jb_user_home_bestexclusive_tbl as a')->select('a.*','jpt.SLUG as slug','ctbl.CATEGORY_NAME as categoryName','sctbl.NAME as subCategoryName')
+            ->join('jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
+            ->join('jb_category_tbl as ctbl','jpt.CATEGORY_ID','=','ctbl.CATEGORY_ID')
+            ->join('jb_sub_category_tbl as sctbl','jpt.SUB_CATEGORY_ID','=','sctbl.SUB_CATEGORY_ID')
+    	    ->get();
 
     	$i=0;
     	foreach ($result as $row){
@@ -79,6 +82,24 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['TITLE'] = $row->TITLE;
     		$arrRes[$i]['HEADING'] = $row->HEADING;
     		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
+            $arrRes[$i]['SLUG'] = $row->slug;
+            $name = $row->categoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->categoryName;
+            }
+            $arrRes[$i]['CATEGORY_SLUG'] = $name;
+
+            $name = $row->subCategoryName;
+            $words = explode(' ', $name);
+            if (count($words) > 1 || strpos($name, ' ') !== false) {
+                $name = implode('-', $words);
+            } else {
+                $name = $row->subcategoryname;
+            }
+            $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
     		$arrRes[$i]['IMAGE_PATH'] = $row->IMAGE_PATH;
     		$arrRes[$i]['IMAGE_DOWNPATH'] = $row->IMAGE_DOWNPATH;
     		$arrRes[$i]['DATE'] = $row->DATE;

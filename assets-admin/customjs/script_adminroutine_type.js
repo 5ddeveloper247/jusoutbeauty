@@ -26,7 +26,7 @@ myApp.controller('projectinfo1', function ($scope, $compile, $rootScope, $timeou
         }).success(function (data, status, headers, config) {
 
             if (data.done == true || data.done == 'true') {
-                
+
                 $scope.getAllAdminRoutinenamelov();
                 toastr.success(data.msg, '', { timeOut: 3000 })
                 $('#alertroutinetypemodal').modal('hide');
@@ -124,6 +124,36 @@ myApp.controller('projectinfo1', function ($scope, $compile, $rootScope, $timeou
             });
     }
     $scope.getAllAdminRoutinenamelov();
+
+    $scope.activeInactivetypeName = function (id){
+        var data = {};
+        data.routineId = id;
+        data.userId = userId;
+        var temp = $.param({ details: data });
+
+        $http({
+            data: temp + "&" + $scope.tokenHash,
+            url: site + "/change_routine_type_status",
+            method: "POST",
+            async: false,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+
+        }).success(function (data, status, headers, config) {
+
+            if (data.done == true || data.done == 'true') {
+
+                // $scope.getTypeNameLov();
+                toastr.success(data.msg, '', { timeOut: 3000 })
+
+                $scope.getAllAdminRoutinenamelov();
+
+            } else {
+                toastr.error(data.msg, '', { timeOut: 3000 })
+            }
+        })
+            .error(function (data, status, headers, config) {
+            });
+    }
 
     $scope.saveTypename = function () {
 

@@ -34,13 +34,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                             <tr ng-repeat="row in displayCollectionEmailConfig">
                                                 <td>@{{row.seqNo}}</td>
                                                 <td>@{{row.MODULE_CODE}}</td>
                                                 <td>@{{row.TITLE}}</td>
                                                 <td>@{{row.MESSAGE_TRIM}}</td>
-                                                 
+
                                                 <td>
 													<div class="dropdown ml-auto text-right">
 														<div class="btn-link" data-toggle="dropdown">
@@ -51,9 +51,9 @@
 <!-- 															<a class="dropdown-item"  href="#"  data-toggle="modal" data-target=".send_repy">Reply</a> -->
 														</div>
 													</div>
-												</td>												
+												</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -62,7 +62,7 @@
                     </div>
 				</div>
             </div>
-            
+
             <div class="container-fluid" ng-show="editView == '1'">
                <div class="row">
 					<div class="col-xl-3 col-xxl-4">
@@ -74,20 +74,20 @@
 											<img src="@{{email.downpath}}" class="" alt=""><!-- rounded-circle -->
 										</div>
 										<h4 class="fs-22 text-black mb-1">Email Logo</h4>
-										<p class="fs-12" style="color:#c7c7c7;">170 X 70</p>										
+										<p class="fs-12" style="color:#c7c7c7;">170 X 70</p>
 									</div>
-									
+
 									<form class="" id="uploadattch" method="POST" action="uploadEmailConfigLogo" enctype="multipart/form-data">
 										<input type="hidden" name="_method" value="POST">
            								{{ csrf_field() }}
            								<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 										<input type="hidden" id="sourceId" name="sourceId" value="@{{email.ID}}">
-										<input type="hidden" id="sourceCode" name="sourceCode" value="EMAIL_LOGO"> 
+										<input type="hidden" id="sourceCode" name="sourceCode" value="EMAIL_LOGO">
 										<input type="file" id="uploadattl" name="uploadattl" class="file-input" style="display: none;">
 									</form>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 					<div class="col-xl-9 col-xxl-8">
@@ -97,7 +97,7 @@
 									<div class="card-header flex-wrap border-0 pb-0">
 										<h3 class="fs-24 text-black font-w600 mr-auto mb-2 pr-3">Email Settings</h3>
 										<div class="d-sm-flex d-block">
-											
+
 											<a  class="btn btn-dark light rounded mr-3 mb-2" href="javascript:;" ng-click="backToListing();">Cancel</a>
 											<a class="btn btn-primary rounded mb-2" href="javascript:;" ng-click="saveEmailConfigurations();">Save Changes</a>
 										</div>
@@ -121,14 +121,14 @@
 													<div class="col-xl-12 col-sm-12">
 														<div class="form-group">
 															<label>Email From</label>
-															<input type="text" class="form-control" ng-model="email['A_3']" placeholder="Type Email">
+															<input type="text" readonly class="form-control" ng-model="email['A_3']" placeholder="Type Email">
 														</div>
 													</div>
-													
+
 													<div class="col-xl-12 col-sm-12">
 														<div class="pt-4">
 															<div class="form-group mb-0">
-																<label id="desc_title">Message</label> 
+																<label id="desc_title">Message</label>
 															</div>
 															<div class="summernote" id="message_description"></div>
 														</div>
@@ -139,8 +139,8 @@
 													</div>
 												</div>
 											</div>
-											
-											
+
+
 										</form>
 									</div>
 								</div>
@@ -149,19 +149,19 @@
 					</div>
 				</div>
             </div>
-           
+
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
 
-       
+
 
     </div>
     @include('admin.admin-footer')
-    
+
     <script src="{{ url('/assets-admin') }}/customjs/script_adminemailconfig.js?v={{time()}}"></script>
-    
+
     <script>
 
     function form(){

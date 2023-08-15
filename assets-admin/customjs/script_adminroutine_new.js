@@ -448,7 +448,7 @@ $scope.getroutinetypes = function(){
 				$scope.routinename.ID = data.ID;
                 // setTimeout(function(){
                     // alert('working')
-                    $scope.backToListing();
+                    // $scope.backToListing();
 
 				// }, 500);
 

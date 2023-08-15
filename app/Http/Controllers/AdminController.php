@@ -1846,6 +1846,39 @@ class AdminController extends Controller
 		echo json_encode ( $arrRes );
 
 	}
+
+    public function change_routine_type_status(){
+
+        $RoutineType = new RoutineType();
+
+		$details = $_REQUEST ['details'];
+		$recordId = $details ['routineId'];
+		$userId = $details ['userId'];
+
+		$routineTypeDetail = $RoutineType->getSpecificRotineTypeDetail($recordId);
+        // dd($routineTypeDetail->STATUS);
+        // if(isset())
+		if(isset($routineTypeDetail->STATUS) && $routineTypeDetail->STATUS != 'active'){
+
+			$status = 'active';
+			$arrRes ['msg'] = 'Routine Type Activated Successfully...';
+		}else{
+			$status = 'inactive';
+			$arrRes ['msg'] = 'Routine Type Deactivated Successfully...';
+		}
+
+		$result = DB::table ( 'jb_routine_type_tbl' ) ->where ( 'ROUTINETYPE_ID', $recordId ) ->update (
+				array ( 'STATUS' => $status,
+						'UPDATED_BY' => $userId,
+						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+				)
+			);
+
+		$arrRes ['done'] = true;
+
+		echo json_encode ( $arrRes );
+
+    }
 	public function routine_type_name_edit(){
 
 		$ROUTINETYPE = new RoutineType();
@@ -4964,7 +4997,7 @@ class AdminController extends Controller
 					die ();
 				}
 			}
-			
+
 			// if ($data['P_18'] == '') {
 			// 	$arrRes ['done'] = false;
 			// 	$arrRes ['msg'] = 'Discount type is required.';

@@ -297,6 +297,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
             if (product.shades && product.shades.length > 0) {
                 product.hasShades = true; // You can use this flag to conditionally show shades
             }
+            // console.log(data.products);
             return product;
         });
 
@@ -407,6 +408,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		}).success(function(data, status, headers, config) {
 
 			$scope.displayCollectionProducts = data.products;
+            console.log(data.products);
 
 			setTimeout(function(){
 				if($('.filter-sidebarr').is(':visible')){

@@ -64,6 +64,13 @@
                                                         </svg>
                                                     </div>
                                                     <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item text-capitalize"
+                                                        ng-click="activeInactivetypeName(row.ROUTINETYPE_ID);"
+                                                        ng-if="row.STATUS === 'active'">Inactive</a>
+                                                     <a class="dropdown-item text-capitalize"
+                                                        ng-click="activeInactivetypeName(row.ROUTINETYPE_ID);"
+                                                        ng-if="row.STATUS === 'inactive'">Active</a>
+
                                                         <a class="dropdown-item"
                                                             ng-click="removetypenamemodal(@{{ row.ROUTINETYPE_ID }});">Remove</a>
                                                         <a class="dropdown-item"

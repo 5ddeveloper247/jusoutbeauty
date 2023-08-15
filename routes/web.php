@@ -443,6 +443,7 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/routine_type_add', [AdminController::class, 'routine_type_add']);
 	Route::post('/routine_type_edit', [AdminController::class, 'routine_type_edit']);
 	Route::post('/deleteRoutineTypeRecord', [AdminController::class, 'deleteRoutineTypeRecord']);
+    Route::post('/change_routine_type_status',[AdminController::class,'change_routine_type_status']);
 	Route::post('/changeStatusRoutineType', [AdminController::class, 'changeStatusRoutineType']);
 
 

@@ -313,6 +313,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
                     }
                     return product;
                 });
+                console.log(data.products);
 
 			$scope.displayCollectionShadeFilter = data.list1;
 
@@ -386,7 +387,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).success(function(data, status, headers, config) {
-
+            console.log(data.products);
 			$scope.displayCollectionProducts = data.products;
 
 			setTimeout(function(){

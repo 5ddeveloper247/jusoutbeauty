@@ -30,6 +30,10 @@ class RoutineType extends model
           'UPDATED_ON',
      ];
 
+     public function getSpecificRotineTypeDetail($id){
+        $result = DB::table('jb_routine_type_tbl')->select('*')->where('ROUTINETYPE_ID',$id)->first();
+        return $result;
+     }
      public function getRoutineTypeData(){
 
     	$result = DB::table('jb_routine_tbl as a')->select('a.*')
@@ -100,7 +104,7 @@ class RoutineType extends model
             foreach ($result as $row){
                 $arrRes[$i]['seqNo'] = $row->ROUTINE_ID;//$i+1;
                 $arrRes[$i]['IDENTIFY'] = $row->IDENTIFY;
-                $arrRes[$i]['DESCRIPTION'] = strip_tags($row->DESCRIPTION);
+                $arrRes[$i]['DESCRIPTION'] = $row->DESCRIPTION;
                 $arrRes[$i]['IMAGE'] = $row->IMAGE_PATH;
                 $arrRes[$i]['IMAGE_DOWNPATH'] = $row->IMAGE_DOWN_PATH;
                 $arrRes[$i]['USER_ID'] = $row->USER_ID;
@@ -114,7 +118,6 @@ class RoutineType extends model
 
                 $i++;
             }
-
             return isset($arrRes) ? $arrRes : null;
         }
 

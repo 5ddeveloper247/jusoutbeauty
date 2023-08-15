@@ -90,6 +90,8 @@ class BundleProductModel extends Model
 
     public function getAllRecommandedBundleProductsWrtCategoryIdForSite($categoryId){
 
+        $userDashboardModel = new UserdashboardModel();
+
     	$result = DB::table('jb_bundle_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
@@ -160,6 +162,8 @@ class BundleProductModel extends Model
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
     		$arrRes[$i]['primaryImage'] = isset($row->IMAGE_DOWN_PATH) != null ? $row->IMAGE_DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
+            $productImage = $userDashboardModel->getSpecificProductSecondaryImage($row->PRODUCT_ID);
+    		$arrRes[$i]['productSecondaryImg'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;

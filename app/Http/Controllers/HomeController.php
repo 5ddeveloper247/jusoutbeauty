@@ -106,6 +106,7 @@ class HomeController extends Controller
 //    		print_r('<pre>');
 //    		print_r($data ['todayOffer']);
 //    		exit();
+// dd($bestExc);
 		return view ( 'web.index' )->with ( $data );
 	}
 
