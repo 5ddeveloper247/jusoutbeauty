@@ -179,8 +179,8 @@ class UserdashboardModel extends Model
 
     	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.UNIT','jpt.NAME as productName','jpt.SLUG as slug','jpt.SUB_CATEGORY_ID as subcategoryid','sbcat.NAME as subcategoryname','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
-    	->join ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
-        ->join ('jb_sub_category_tbl as sbcat','jpt.SUB_CATEGORY_ID','=','sbcat.SUB_CATEGORY_ID')
+    	->leftjoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
+        ->leftjoin ('jb_sub_category_tbl as sbcat','jpt.SUB_CATEGORY_ID','=','sbcat.SUB_CATEGORY_ID')
 		->where('jpt.STATUS','active')
     	->where('a.BATCH_CODE', $code)
     	->orderBy('jpt.SEQ_NUM','asc')
