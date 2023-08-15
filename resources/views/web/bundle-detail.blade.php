@@ -613,7 +613,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 							<?php $i++;}?>
 						<?php }?>
 
-					</ul> 
+					</ul>
 					<div class="tab-content bg-white-md shadow-none pt-md-2 px-0 m-0">
 						<div id="collapse-tabs-accordion-01">
 
@@ -701,19 +701,19 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											                        {"breakpoint": 992,"settings": {"slidesToShow": 2}},
 											                        {"breakpoint": 768,"settings": {"slidesToShow": 1}},
 											                        {"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-											
+
 											                    <?php foreach ($productFeaturesArr as $row){?>
-											
+
 											                    <div class="box px-1" data-animate="fadeInUp">
 											                        <div class="ag-courses_item">
 											                            <a href="#!" class="ag-courses-item_link">
 											                                <div class="ag-courses-item_bg"></div>
-											
+
 											                                <div class="ag-courses-item_title">
 											                                    <li class="product-hero__icons__item d-flex aic">
 											                                        <div class="product-hero__icons__image relative">
 											                                            <div class="img fit-contain is-loaded pos-center">
-											
+
 											                                                <div class="skeleton"></div>
 											                                                <img width="70" height="70" src="{{ $row['IMAGE_DOWN_PATH'] }}"
 											                                                    srcset="{{ $row['IMAGE_DOWN_PATH'] }}" alt="Clean" title="Clean"
@@ -946,18 +946,18 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																		<?php foreach ($productUses as $row){?>
 																			<div class="col-md-4 mb-6 mb-md-0 <?php //echo $i == '2' ? 'pt-14 step_2' : '' ?>">
 																				<div class="card border-0">
-																					
+
 																					<?php if(isset($line['CATEGORY_NAME'])){
 			                                                                        	$catName = $line['CATEGORY_NAME'];
 			                                                                        	?>
-			                                                                        
-			                                                                        <?php if($catName == 'Nutrition' || $catName == 'Nutritions' || 
+
+			                                                                        <?php if($catName == 'Nutrition' || $catName == 'Nutritions' ||
 			                                                                        			$catName == 'MakeUp' || $catName == 'Make Up'){?>
-			                                                                         	
+
 			                                                                        	<?php }else{?>
 			                                                                        		<img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web').'/images/how-to-step-1.webp' ?>" alt="Image" class="card-img uses_img">
 			                                                                        <?php }}?>
-																					
+
 																					<div class="card-body pt-6 px-0 pb-0 text-center">
 																						<a href="#" class="fs-18 font-weight-500 lh-1444"><?= $row['USES_TITLE']; ?></a>
 																						<p class="mb-6"><?= $row['USES_DESCRIPTION']; ?></p>
@@ -2308,7 +2308,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                                 data-type="<?= $recent['CATEGORY_NAME'] ?>"><?= $recent['NAME'] ?></a>
                                         </h3>
                                         <p class="text-primary mb-0 shop-subtitle card-title lh-14375 d-block"
-                                            style="height: 26px;">
+                                            style="height: 48px;">
                                             {{ $recent['SUB_TITLE'] }}</p>
 
                                     </div>
@@ -2883,7 +2883,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                                          data-type="<?= $recent['CATEGORY_NAME'] ?>"><?= $recent['NAME'] ?></a>
                                                  </h3>
                                                  <p class="text-primary mb-0 shop-subtitle card-title lh-14375 d-block"
-                                                     style="height: 26px;">
+                                                     style="height: 48px;">
                                                      {{ $recent['SUB_TITLE'] }}</p>
                                                  {{-- <p class="fs-15 text-primary mb-0 ml-auto">
                                                          <span

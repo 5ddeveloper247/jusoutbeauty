@@ -97,7 +97,7 @@ class UserdashboardModel extends Model
             if (count($words) > 1 || strpos($name, ' ') !== false) {
                 $name = implode('-', $words);
             } else {
-                $name = $row->subcategoryName;
+                $name = $row->subCategoryName;
             }
             $arrRes[$i]['SUB_CATEGORY_SLUG'] = $name;
     		$arrRes[$i]['IMAGE_PATH'] = $row->IMAGE_PATH;
