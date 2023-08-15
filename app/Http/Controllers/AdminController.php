@@ -8257,6 +8257,22 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+            // dd('working');
+            // if($data['ID'] == ''){
+                $duplicate = DB::table ( 'jb_user_home_product_section_tbl')
+                    ->where('BATCH_CODE',$code)
+                    ->where('PRODUCT_ID',$data['T_2']['id'])->first();
+            // }
+            // dd($duplicate);
+            if(!empty($duplicate)){
+                $arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Product Already Added, Try Another One';
+				// $arrRes ['ID'] = $result;
+				// $arrRes ['list'] = $UserdashboardModel->getAllUserHomeProductSectionData($code);
+				echo json_encode ( $arrRes );
+				die ();
+            }
+
 
 			if ($data['ID'] == '') {
 

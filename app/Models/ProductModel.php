@@ -269,13 +269,13 @@ class ProductModel extends Model
     	DB::enableQueryLog();
         // dd($subCatIds);
     	$result = DB::table('jb_product_tbl as a')->select('a.*')
-        // ->where('a.QUANTITY','!=','0')
+        // ->where('a.QUANTITY','!=',0)
         // ->whereNotNull('a.QUANTITY')
     	->where('a.STATUS','active')
     	->where('a.CATEGORY_ID',$catId)
     	->where('a.IS_DELETED', 0)
-    	->orWhereIn('a.SUB_CATEGORY_ID',$subCatIds)
-    	->orWhereIn('a.SUB_CATEGORY_ID',$subSubCatIds)
+    	// ->orWhereIn('a.SUB_CATEGORY_ID',$subCatIds)
+    	// ->orWhereIn('a.SUB_SUB_CATEGORY_ID',$subSubCatIds)
     	->orderBy('a.PRODUCT_ID','desc')
     	->get();
         // foreach()
@@ -284,6 +284,8 @@ class ProductModel extends Model
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['id'] = $row->PRODUCT_ID;
+            $arrRes[$i]['Is_Deleted'] = $row->IS_DELETED;
+            $arrRes[$i]['Status']= $row->STATUS;
     		$arrRes[$i]['name'] = $row->NAME;
             $arrRes[$i]['Quantity'] = $row->QUANTITY;
     		$i++;
