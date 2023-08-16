@@ -75,59 +75,99 @@ class User extends Authenticatable
         return isset($totalOrders) ? $totalOrders : null;
     }
 
-    public function getTotalPayments(){
+    // public function getTotalPayments(){
 
-        $Payments=DB::table('jb_order_payment_tbl')->count();
-        $totalPayments=DB::table('jb_order_payment_tbl')
-                       ->where('PAYMENT_STATUS','paid')
-                       ->where('TRANSACTION_STATUS','succeeded')
-                       ->select('TRANSACTION_RESPONSE')
-                       ->get();
+    //     $Payments=DB::table('jb_order_payment_tbl')->count();
+    //     $totalPayments=DB::table('jb_order_payment_tbl')
+    //                    ->where('PAYMENT_STATUS','paid')
+    //                    ->where('TRANSACTION_STATUS','succeeded')
+    //                    ->select('TRANSACTION_RESPONSE')
+    //                    ->get();
 
-        $totalCost=0;
-        for($i=0;$i<$Payments;$i++){
-            $transactional_response=$totalPayments[$i]->TRANSACTION_RESPONSE;
-            $decode_transactional_response=json_decode($transactional_response);
-            $totalCost=$decode_transactional_response->amount + $totalCost;
-        }
+    //     $totalCost=0;
+    //     for($i=0;$i<$Payments;$i++){
+    //         $transactional_response=$totalPayments[$i]->TRANSACTION_RESPONSE;
+    //         $decode_transactional_response=json_decode($transactional_response);
+    //         $totalCost=$decode_transactional_response->amount + $totalCost;
+    //     }
+    //     dd($totalCost);
+    //     $totalCostInDollars=round($totalCost / 100);
 
-        $totalCostInDollars=round($totalCost / 100);
+    //     if ($totalCostInDollars < 900) {
+    //         // 0 - 900
+    //         $n_format = number_format($totalCostInDollars, 1);
+    //         $suffix = '';
+    //     } else if ($totalCostInDollars < 900000) {
+    //         // 0.9k-850k
+    //         $n_format = number_format($totalCostInDollars / 1000, 1);
+    //         $suffix = 'K';
+    //     } else if ($totalCostInDollars < 900000000) {
+    //         // 0.9m-850m
+    //         $n_format = number_format($totalCostInDollars / 1000000, 1);
+    //         $suffix = 'M';
+    //     } else if ($totalCostInDollars < 900000000000) {
+    //         // 0.9b-850b
+    //         $n_format = number_format($totalCostInDollars / 1000000000, 1);
+    //         $suffix = 'B';
+    //     } else {
+    //         // 0.9t+
+    //         $n_format = number_format($totalCostInDollars / 1000000000000, 1);
+    //         $suffix = 'T';
+    //     }
 
-        if ($totalCostInDollars < 900) {
-            // 0 - 900
-            $n_format = number_format($totalCostInDollars, 1);
-            $suffix = '';
-        } else if ($totalCostInDollars < 900000) {
-            // 0.9k-850k
-            $n_format = number_format($totalCostInDollars / 1000, 1);
-            $suffix = 'K';
-        } else if ($totalCostInDollars < 900000000) {
-            // 0.9m-850m
-            $n_format = number_format($totalCostInDollars / 1000000, 1);
-            $suffix = 'M';
-        } else if ($totalCostInDollars < 900000000000) {
-            // 0.9b-850b
-            $n_format = number_format($totalCostInDollars / 1000000000, 1);
-            $suffix = 'B';
-        } else {
-            // 0.9t+
-            $n_format = number_format($totalCostInDollars / 1000000000000, 1);
-            $suffix = 'T';
-        }
+    //     // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+    //     // Intentionally does not affect partials, eg "1.50" -> "1.50"
 
-        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
-        // Intentionally does not affect partials, eg "1.50" -> "1.50"
+    //     if ( 1 > 0 ) {
+    //         $dotzero = '.' . str_repeat( '0', 1 );
+    //         $n_format = str_replace( $dotzero, '', $n_format );
+    //     }
 
-        if ( 1 > 0 ) {
-            $dotzero = '.' . str_repeat( '0', 1 );
-            $n_format = str_replace( $dotzero, '', $n_format );
-        }
+    //     $totalCostInDollars=$n_format . $suffix;
 
-        $totalCostInDollars=$n_format . $suffix;
+    //     return isset($totalCostInDollars) ?  $totalCostInDollars :null;
 
-        return isset($totalCostInDollars) ?  $totalCostInDollars :null;
+    // }
+    public function getTotalPayments()
+{
+    $Payments = DB::table('jb_order_payment_tbl')->count();
 
+    $totalPayments = DB::table('jb_order_payment_tbl')
+                    ->where('PAYMENT_STATUS', 'paid')
+                    ->where('TRANSACTION_STATUS', 'succeeded')
+                    ->select('TRANSACTION_RESPONSE')
+                    ->get();
+
+    $totalCost = 0;
+
+    for ($i = 0; $i < $Payments; $i++) {
+        $transactional_response = $totalPayments[$i]->TRANSACTION_RESPONSE;
+        $decode_transactional_response = json_decode($transactional_response);
+        $totalCost = $decode_transactional_response->amount + $totalCost;
     }
+
+    // Debugging: Print the total cost
+    // dd($totalCost);
+
+    $totalCostInDollars = round($totalCost, 2);
+
+    $suffixes = ['', 'K', 'M', 'B', 'T'];
+    $suffixIndex = 0;
+
+    while ($totalCostInDollars >= 900 && $suffixIndex < count($suffixes)) {
+        $totalCostInDollars /= 1000;
+        $suffixIndex++;
+    }
+
+    if (intval($totalCostInDollars) == $totalCostInDollars) {
+        $totalCostInDollars = intval($totalCostInDollars);
+    }
+
+    $formattedValue = number_format($totalCostInDollars, 2) . $suffixes[$suffixIndex];
+
+    return isset($formattedValue) ? $formattedValue : null;
+}
+
 
     public function getTotalProducts(){
 
@@ -175,46 +215,72 @@ class User extends Authenticatable
         return isset($totalSubscriptions ) ? $totalSubscriptions :null;
     }
 
-    public function getTotalGivings(){
 
-        $totalGivings = DB:: table('jb_giving_tbl')
+    public function getTotalGivings()
+    {
+        $totalGivings = DB::table('jb_giving_tbl')
                         ->where('PAYMENT_STATUS', 'PAID')
                         ->sum('AMOUNT');
 
-        $totalCostInDollars=round($totalGivings / 100);
+        $totalCostInDollars = round($totalGivings, 2);
 
-        if ($totalCostInDollars < 900) {
-            // 0 - 900
-            $n_format = number_format($totalCostInDollars, 1);
-            $suffix = '';
-        } else if ($totalCostInDollars < 900000) {
-            // 0.9k-850k
-            $n_format = number_format($totalCostInDollars / 1000, 1);
-            $suffix = 'K';
-        } else if ($totalCostInDollars < 900000000) {
-            // 0.9m-850m
-            $n_format = number_format($totalCostInDollars / 1000000, 1);
-            $suffix = 'M';
-        } else if ($totalCostInDollars < 900000000000) {
-            // 0.9b-850b
-            $n_format = number_format($totalCostInDollars / 1000000000, 1);
-            $suffix = 'B';
-        } else {
-            // 0.9t+
-            $n_format = number_format($totalCostInDollars / 1000000000000, 1);
-            $suffix = 'T';
+        $suffixes = ['', 'K', 'M', 'B', 'T'];
+        $suffixIndex = 0;
+
+        while ($totalCostInDollars >= 900 && $suffixIndex < count($suffixes)) {
+            $totalCostInDollars /= 1000;
+            $suffixIndex++;
         }
 
-        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
-        // Intentionally does not affect partials, eg "1.50" -> "1.50"
+        $formattedValue = number_format($totalCostInDollars, 2) . $suffixes[$suffixIndex];
 
-        $dotzero = '.' . str_repeat( '0', 1 );
-        $n_format = str_replace( $dotzero, '', $n_format );
-        $totalCostInDollars=$n_format . $suffix;
-        $totalGivings=$totalCostInDollars;
-
-        return isset($totalGivings) ? $totalGivings :null;
+        return $formattedValue;
     }
+
+
+    // public function getTotalGivings(){
+
+    //     $totalGivings = DB:: table('jb_giving_tbl')
+    //                     ->where('PAYMENT_STATUS', 'PAID')
+    //                     ->sum('AMOUNT');
+
+
+    //     // $totalCostInDollars=round($totalGivings / 100);
+    //     $totalCostInDollars=round($totalGivings);
+
+    //     // dd($totalCostInDollars);
+    //     if ($totalCostInDollars < 900) {
+    //         // 0 - 900
+    //         $n_format = number_format($totalCostInDollars, 2);
+    //         $suffix = '';
+    //     } else if ($totalCostInDollars < 900000) {
+    //         // 0.9k-850k
+    //         $n_format = number_format($totalCostInDollars / 1000, 2);
+    //         $suffix = 'K';
+    //     } else if ($totalCostInDollars < 900000000) {
+    //         // 0.9m-850m
+    //         $n_format = number_format($totalCostInDollars / 1000000, 2);
+    //         $suffix = 'M';
+    //     } else if ($totalCostInDollars < 900000000000) {
+    //         // 0.9b-850b
+    //         $n_format = number_format($totalCostInDollars / 1000000000, 2);
+    //         $suffix = 'B';
+    //     } else {
+    //         // 0.9t+
+    //         $n_format = number_format($totalCostInDollars / 1000000000000, 2);
+    //         $suffix = 'T';
+    //     }
+
+    //     // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+    //     // Intentionally does not affect partials, eg "1.50" -> "1.50"
+
+    //     $dotzero = '.' . str_repeat( '0', 1 );
+    //     $n_format = str_replace( $dotzero, '', $n_format );
+    //     $totalCostInDollars=$n_format . $suffix;
+    //     $totalGivings=$totalCostInDollars;
+
+    //     return isset($totalGivings) ? $totalGivings :null;
+    // }
 
     public function getTotalReviews(){
 
