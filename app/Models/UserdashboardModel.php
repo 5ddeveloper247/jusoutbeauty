@@ -71,8 +71,8 @@ class UserdashboardModel extends Model
 
     	$result = DB::table('jb_user_home_bestexclusive_tbl as a')->select('a.*','jpt.SLUG as slug','ctbl.CATEGORY_NAME as categoryName','sctbl.NAME as subCategoryName')
             ->join('jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
-            ->join('jb_category_tbl as ctbl','jpt.CATEGORY_ID','=','ctbl.CATEGORY_ID')
-            ->join('jb_sub_category_tbl as sctbl','jpt.SUB_CATEGORY_ID','=','sctbl.SUB_CATEGORY_ID')
+            ->leftjoin('jb_category_tbl as ctbl','jpt.CATEGORY_ID','=','ctbl.CATEGORY_ID')
+            ->leftjoin('jb_sub_category_tbl as sctbl','jpt.SUB_CATEGORY_ID','=','sctbl.SUB_CATEGORY_ID')
     	    ->get();
 
     	$i=0;
