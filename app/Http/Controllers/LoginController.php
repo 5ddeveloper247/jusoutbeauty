@@ -91,7 +91,7 @@ class LoginController extends Controller
 
 		if(!$result){
 			$arrRes ['done'] = false;
-			$arrRes ['msg'] = 'Enter Valid Email!';
+			$arrRes ['msg'] = 'Email Address Not Registered In the System';
 			echo json_encode ( $arrRes );
 			die ();
 		}
