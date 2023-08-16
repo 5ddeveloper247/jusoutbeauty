@@ -5,21 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Mime\Part\HtmlPart;
 use DateTime;
 
 class EmailForwardModel extends Model
 {
     use HasFactory;
-    
-    
+
+
     public function getAllEmailsData(){
-    	 
-    	
+
+
     	$result = DB::table('sys_email_tbl as a')->select('a.*')
     	->orderBy('a.UPDATED_ON','desc')
     	->get();
-    	
-    	 
+
+
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->EMAIL_ID;
@@ -34,20 +36,20 @@ class EmailForwardModel extends Model
     		$arrRes[$i]['SENT_EMAIL'] = $row->SENT_EMAIL;
     		$arrRes[$i]['EMAIL_STATUS'] = strtoupper($row->EMAIL_STATUS);
     		$arrRes[$i]['MODULE_CODE'] = $row->MODULE_CODE;
-    		
+
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes[$i]['CREATED_ON'] = date('d-m-Y H:i a', strtotime($row->CREATED_ON));
     		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
     		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
-    
+
     		$i++;
     	}
-    
+
     	return isset($arrRes) ? $arrRes : null;
     }
     public function sendEmail($page_title,$email_html_body,$email_details){
-    
-    	
+
+
     	$to_id = $email_details['to_id'] != '' ? $email_details['to_id'] : '';
     	$to_email = $email_details['to_email'] != '' ? $email_details['to_email'] : '';
     	$from_id = $email_details['from_id'] != '' ? $email_details['from_id'] : '';
@@ -56,7 +58,7 @@ class EmailForwardModel extends Model
     	$message = $email_details['message'] != '' ? $email_details['message'] : '';
     	$logo = $email_details['logo'] != '' ? $email_details['logo'] : url('assets-web').'/images/logo-black.png';
     	$module_code = $email_details['module_code'] != '' ? $email_details['module_code'] : '';
-    	
+
     	$email_html =
     	'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<html xmlns="http://www.w3.org/1999/xhtml">
@@ -71,10 +73,10 @@ class EmailForwardModel extends Model
 					</style>
 				</head>
 				<body>
-					
+
     				<div style="background-color:rgb(244,244,244);margin:0px!important;padding:0px!important">
           				<table border="0" cellpadding="0" cellspacing="0" width="100%">
-   
+
         					<tbody>
           						<tr>
 						            <td bgcolor="#FFA73B" align="center" style="background:#05568c">
@@ -97,9 +99,9 @@ class EmailForwardModel extends Model
 						                </tbody></table>
 						            </td>
         						</tr>
-    			
+
         						'.$email_html_body.'
-        		
+
         						<tr>
 						            <td bgcolor="#f4f4f4" align="center" style="padding:30px 10px 0px 10px">
 						                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px">
@@ -114,19 +116,19 @@ class EmailForwardModel extends Model
 							          	</table>
 						            </td>
         						</tr>
-						        
+
     						</tbody>
 						</table>
-   
+
 					</div>
-    				
-  
+
+
 				</body>
 			</html>';
-    	
+
     	//email
-    	$url = 'https://api.sendgrid.com/';
-    	$sendgrid_apikey = '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';
+    	// $url = 'https://api.sendgrid.com/';
+    	// $sendgrid_apikey = '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';
     	$params = array(
     			'to'        => $to_email,
     			'from'      => $from_email,
@@ -136,31 +138,51 @@ class EmailForwardModel extends Model
     			'html'      => $email_html,
     			// 'files['.$file_name.']'      => $file,
     	);
-    	$request =  $url.'api/mail.send.json';
-    	// Generate curl request
-    	$session = curl_init($request);
-    	// Tell PHP not to use SSLv3 (instead opting for TLS)
-    	curl_setopt($session, CURLOPT_SSLVERSION, 'CURL_SSLVERSION_TLSv1_2');
-    	curl_setopt($session, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $sendgrid_apikey));
-    	// Tell curl to use HTTP POST
-    	curl_setopt ($session, CURLOPT_POST, true);
-    	// Tell curl that this is the body of the POST
-    	curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
-    	// Tell curl not to return headers, but do return the response
-    	curl_setopt($session, CURLOPT_HEADER, false);
-    	curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
-    	// obtain response
-    	$response = curl_exec($session);
-    	curl_close($session);
-    	json_decode($response);
-    	
+    	// $request =  $url.'api/mail.send.json';
+    	// // Generate curl request
+    	// $session = curl_init($request);
+    	// // Tell PHP not to use SSLv3 (instead opting for TLS)
+    	// curl_setopt($session, CURLOPT_SSLVERSION, 'CURL_SSLVERSION_TLSv1_2');
+    	// curl_setopt($session, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $sendgrid_apikey));
+    	// // Tell curl to use HTTP POST
+    	// curl_setopt ($session, CURLOPT_POST, true);
+    	// // Tell curl that this is the body of the POST
+    	// curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+    	// // Tell curl not to return headers, but do return the response
+    	// curl_setopt($session, CURLOPT_HEADER, false);
+    	// curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+    	// // obtain response
+    	// $response = curl_exec($session);
+    	// curl_close($session);
+    	// json_decode($response);
+
+        // Mail::send([], [], function ($message) use ($params) {
+        //     $message->to($params['to'])
+        //             ->from($params['from'], $params['fromname'])
+        //             ->subject($params['subject'])
+        //             ->setBody(new HtmlPart($params['html']), 'text/html');
+        // });
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $headers .= "From: $from_email\r\n";
+        $headers .= "Reply-To: $from_email\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
+        $toEmail = $to_email;
+        $subject = $subject;
+        $emailTemplate = $email_html;
+
+        mail($toEmail, $subject, $emailTemplate, $headers);
+
+
+
     	$this->saveEmail($page_title,$email_html,$email_details);
-    	
+
     	return true;
     }
-    
+
     public function saveEmail($page_title,$email_html,$email_details){
-    	
+
     	$to_id = $email_details['to_id'] != '' ? $email_details['to_id'] : '';
     	$to_email = $email_details['to_email'] != '' ? $email_details['to_email'] : '';
     	$from_id = $email_details['from_id'] != '' ? $email_details['from_id'] : '';
@@ -168,7 +190,7 @@ class EmailForwardModel extends Model
     	$subject = $email_details['subject'] != '' ? $email_details['subject'] : '';
     	$message = $email_details['message'] != '' ? $email_details['message'] : '';
     	$module_code = $email_details['module_code'] != '' ? $email_details['module_code'] : '';
-    	 
+
     	$result = DB::table ( 'sys_email_tbl' )->insertGetId (
     			array ( 'FROM_USER_ID' => $from_id,
     					'TO_USER_ID' => $to_id,
@@ -181,18 +203,18 @@ class EmailForwardModel extends Model
     					'SENT_EMAIL' => $email_html,
     					'EMAIL_STATUS' => 'sent',
     					'MODULE_CODE' => $module_code,
-    					
+
     					'CREATED_BY' => session('userId'),
     					'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
     					'UPDATED_BY' => session('userId'),
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     			);
-    	
+
     	return true;
-    	 
+
     }
-    
-    
-    
+
+
+
 }

@@ -641,7 +641,7 @@ class ProductModel extends Model
     		$arrRes[$i]['DATE'] = $row->DATE;
 
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
-    		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : '';
+    		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
 			$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";

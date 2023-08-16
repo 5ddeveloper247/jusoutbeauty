@@ -38,7 +38,7 @@ var site = '<?php echo session('site');?>';
 <main id="content" ng-app="project1">
 <div class="container container-customshadefinder container-xxl mb-2" ng-cloak ng-controller="projectinfo1" id="details-header">
 
-	<div class="row justify-content-center mt-5 mt-md-5 mt-xl-10">
+	<div class="row justify-content-center mt-5 mt-md-5">
 		<div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-12 text-center p-0 mt-5 mb-2 quiz-fomewhole" >
 			<div class="backto-previousstep second-step-previous" ng-click="backToPrevious();" ng-show="viewFlag == 'Y2' || viewFlag == 'Y3' || viewFlag == 'Y4'">
 				<span><i class="fa fa-arrow-left"></i></span><br> <span>Back</span>
@@ -270,7 +270,7 @@ var site = '<?php echo session('site');?>';
 												<div class="position-relative hover-zoom-in">
 													<a href="javascript:;" class="d-block overflow-hidden">
 													<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top img-h30">
-
+                                                    {{-- <img src="@{{row.secondaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-hover"> --}}
 													</a>
 												</div>
 											</div>
