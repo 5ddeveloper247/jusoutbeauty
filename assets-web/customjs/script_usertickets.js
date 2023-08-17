@@ -125,6 +125,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 			if(data.done == true || data.done == 'true'){
 
+                toastr.success(data.msg, '', {timeOut: 3000})
+
 				if ($.fn.DataTable.isDataTable("#ticketListing_table")) {
 					$('#ticketListing_table').DataTable().clear().destroy();
 				}
@@ -140,8 +142,6 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			                      ]
 					});
 				}, 500);
-
-				toastr.success(data.msg, '', {timeOut: 3000})
 
 				$scope.ticket.ID = data.ID;
 

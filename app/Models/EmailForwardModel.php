@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Log;
+use DateTime;
+use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Mime\Part\HtmlPart;
-use DateTime;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class EmailForwardModel extends Model
+class EmailForwardModel extends Mailable
 {
     use HasFactory;
 
@@ -47,97 +49,41 @@ class EmailForwardModel extends Model
 
     	return isset($arrRes) ? $arrRes : null;
     }
-    public function sendEmail($page_title,$email_html_body,$email_details){
-
-
-    	$to_id = $email_details['to_id'] != '' ? $email_details['to_id'] : '';
-    	$to_email = $email_details['to_email'] != '' ? $email_details['to_email'] : '';
-    	$from_id = $email_details['from_id'] != '' ? $email_details['from_id'] : '';
-    	$from_email = $email_details['from_email'] != '' ? $email_details['from_email'] : '';
-    	$subject = $email_details['subject'] != '' ? $email_details['subject'] : '';
-    	$message = $email_details['message'] != '' ? $email_details['message'] : '';
-    	$logo = $email_details['logo'] != '' ? $email_details['logo'] : url('assets-web').'/images/logo-black.png';
-    	$module_code = $email_details['module_code'] != '' ? $email_details['module_code'] : '';
-
-    	$email_html =
-    	'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml">
-				<head>
-					<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-					<title>Lead</title>
-					<style type="text/css">
-				        body {
-				            font-family: Arial, Verdana, Helvetica, sans-serif;
-				            font-size: 16px;
-				        }
-					</style>
-				</head>
-				<body>
-
-    				<div style="background-color:rgb(244,244,244);margin:0px!important;padding:0px!important">
-          				<table border="0" cellpadding="0" cellspacing="0" width="100%">
-
-        					<tbody>
-          						<tr>
-						            <td bgcolor="#FFA73B" align="center" style="background:#05568c">
-						                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px">
-						                    <tbody><tr>
-						                        <td align="center" valign="top" style="padding:40px 10px 40px 10px"> </td>
-						                    </tr>
-						                </tbody></table>
-						            </td>
-        						</tr>
-        						<tr>
-						            <td bgcolor="#FFA73B" align="center" style="padding:0px 10px 0px 10px;background:#05568c">
-						                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px">
-						                    <tbody><tr>
-						                        <td style="background: transparent;color: white;" align="center" valign="top">
-						                            <h1 style="font-size:48px;font-weight:400;margin:2">'.$page_title.'</h1>
-						                            <img src="'.$logo.'" width="200" height="190" style="display:block;border:0px;" class="CToWUd" jslog="138226; u014N:xr6bB; 53:W2ZhbHNlXQ..">
-						                        </td>
-						                    </tr>
-						                </tbody></table>
-						            </td>
-        						</tr>
-
-        						'.$email_html_body.'
-
-        						<tr>
-						            <td bgcolor="#f4f4f4" align="center" style="padding:30px 10px 0px 10px">
-						                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px">
-						                    <tbody>
-							                	<tr>
-						                        	<td bgcolor="#05568c" align="center">
-						                            	<h2 style="font-size:20px;font-weight:400;color:white;margin:0;display:none">Need more help?</h2>
-						                           	 	<p style="margin:0"><a style="color:white">admin@jusoutbeauty.com</a></p>
-						                        	</td>
-						                    	</tr>
-						                	</tbody>
-							          	</table>
-						            </td>
-        						</tr>
-
-    						</tbody>
-						</table>
-
-					</div>
-
-
-				</body>
-			</html>';
-
+    public function sendEmail($email_details){
+        $email_html = '';
+        try {
+            Mail::send('admin.emails.emailTemplate', $email_details, function ($message) use ($email_details) {
+               if (array_key_exists('from_email', $email_details)) {
+                   $message->from($email_details['from_email'], 'Jusoutbeauty');
+               } else {
+                    $message->from('noreply@jusoutbeauty.com', 'Jusoutbeauty');
+               }
+                if (array_key_exists('subject', $email_details)) {
+                    $message->subject($email_details['subject']);
+                } else {
+                    $message->subject("Welcome");
+                }
+                $message->to($email_details['to_email']);
+            });
+            $this->saveEmail($email_details['pageTitle'],$email_html,$email_details);
+            // echo 'mail sent';
+            return true;
+        } catch (\Throwable $e) {
+            // echo'<script>console.log("mail did not sent")</script>';
+            return false;
+        }
     	//email
     	// $url = 'https://api.sendgrid.com/';
     	// $sendgrid_apikey = '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';
-    	$params = array(
-    			'to'        => $to_email,
-    			'from'      => $from_email,
-    			'fromname'  => $from_email,
-    			'subject'   => $subject,
-    			'text'      => "",
-    			'html'      => $email_html,
-    			// 'files['.$file_name.']'      => $file,
-    	);
+    	// $params = array(
+    	// 		'to'        => $to_email,
+    	// 		'from'      => $from_email,
+    	// 		'fromname'  => $from_email,
+    	// 		'subject'   => $subject,
+    	// 		'text'      => "",
+    	// 		'html'      => $email_html,
+    	// 		// 'files['.$file_name.']'      => $file,
+    	// );
     	// $request =  $url.'api/mail.send.json';
     	// // Generate curl request
     	// $session = curl_init($request);
@@ -155,43 +101,6 @@ class EmailForwardModel extends Model
     	// $response = curl_exec($session);
     	// curl_close($session);
     	// json_decode($response);
-
-    //    $check =  Mail::send([], [], function ($message) use ($params) {
-    //         $message->to($params['to'])
-    //                 ->from($params['from'], $params['fromname'])
-    //                 ->subject($params['subject'])
-    //                 ->setBody(new HtmlPart($params['html']), 'text/html');
-    //     });
-
-
-        $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-        $headers .= "From: $from_email\r\n";
-        $headers .= "Reply-To: $from_email\r\n";
-        $headers .= "X-Mailer: PHP/" . phpversion();
-
-        $toEmail = $to_email;
-        $subject = $subject;
-        $emailTemplate = $email_html;
-    // $email_html = view('emails.custom_email', [
-    //     'page_title' => $page_title,
-    //     'email_html_body' => $email_html_body,
-    //     'logo' => $logo,
-    // ])->render();
-       $check =  mail($toEmail, $subject, $emailTemplate, $headers);
-//   $check =   Mail::send([], [], function ($mailer) use ($to_email, $from_email, $subject, $email_html) {
-//         $mailer->to($to_email);
-//         $mailer->from($from_email);
-//         $mailer->subject($subject);
-//         $mailer->setBody($email_html, 'text/html');
-//     });
-//         if($check){
-//             dd($check);
-//         }
-
-    	$this->saveEmail($page_title,$email_html,$email_details);
-
-    	return true;
     }
 
     public function saveEmail($page_title,$email_html,$email_details){

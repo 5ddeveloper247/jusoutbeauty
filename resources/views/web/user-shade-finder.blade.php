@@ -180,7 +180,7 @@
             success: function(data) {
 
                 if (data.done == true || data.done == 'true') {
-
+                    console.log(data);
                     toastr.success(data.msg, '', {
                         timeOut: 3000
                     })
@@ -201,7 +201,9 @@
                 $('.savebtn').show();
             },
             error: function(e) {
-
+                // toastr.error(data.msg, 'Something Went Wrong, Try Again later!!!', {
+                //         timeOut: 3000
+                //     })
                 $('.loaderbtn').hide();
                 $('.savebtn').show();
                 console.log(e);

@@ -1722,8 +1722,11 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "REVIEW";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -1733,8 +1736,11 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "REVIEW";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
    				$arrRes ['done'] = true;
    				$arrRes ['msg'] = 'Review Posted Successfully...';
@@ -1939,8 +1945,11 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "QUESTION";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -1950,8 +1959,11 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "QUESTION";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
    				$arrRes ['done'] = true;
    				$arrRes ['msg'] = 'Question Posted Successfully...';
@@ -3501,8 +3513,11 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -3512,8 +3527,11 @@ class HomeController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
    				$arrRes ['done'] = true;
    				$arrRes ['msg'] = 'Ticket Created Successfully';
@@ -3679,12 +3697,12 @@ class HomeController extends Controller
 		$username= $request->name;
 		$username_email= $request->email;
 
-		// $namefile = DB::table ( 'jb_shade_finder_selfie_tbl' )->insertGetId (
-		// 	array ( 'USER_ID' => session('userId'),
-		// 			'USERNAME' => $username,
-		// 			'USER_EMAIL' => $username_email,
-		// 	)
-		// );
+		$namefile = DB::table ( 'jb_shade_finder_selfie_tbl' )->insertGetId (
+			array ( 'USER_ID' => session('userId'),
+					'USERNAME' => $username,
+					'USER_EMAIL' => $username_email,
+			)
+		);
 
         $namefile = $username . "'s_Selfie_" . date('Ymd_His');
         // dd($namefile);
@@ -3718,6 +3736,7 @@ class HomeController extends Controller
                     );
                     // dd($result);
                 }
+
                 $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SHADEFINDERSELFI');
                 $message_username = str_replace("{User_Name}",$username,$emailConfigDetails['message']);
                 $htmlbody=	'<tr>
@@ -3736,8 +3755,11 @@ class HomeController extends Controller
                 $email_details['message'] = "";
                 $email_details['logo'] = $emailConfigDetails['logo'];
                 $email_details['module_code'] = "SHADEFINDERSELFI";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+                $EmailForwardModel->sendEmail($email_details);
 
                 $email_details['to_id'] = '';
                 $email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -3747,12 +3769,18 @@ class HomeController extends Controller
                 $email_details['message'] = "";
                 $email_details['logo'] = $emailConfigDetails['logo'];
                 $email_details['module_code'] = "SHADEFINDERSELFI";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+              $check =   $EmailForwardModel->sendEmail($email_details);
+
+              if($check == 'true' || $check == true){
                 $arrRes ['done'] = true;
-                   $arrRes ['msg'] = 'Selfie Data added successfully.';
-                   echo json_encode ( $arrRes );
-                   die ();
+                $arrRes ['msg'] = 'Selfie Data added successfully.';
+                echo json_encode( $arrRes );
+            }
+                // die ();
             // } else {
             //     $arrRes ['done'] = false;
             //     $arrRes ['msg'] = 'Selfie Image must be atleast 1000 by 600 pixels.';
@@ -3760,6 +3788,8 @@ class HomeController extends Controller
             //     die ();
             // }
         }
+
+
 	}
 
 	public function saveProductSelfie(Request $request){
@@ -3843,8 +3873,11 @@ class HomeController extends Controller
 			$email_details['message'] = "";
 			$email_details['logo'] = $emailConfigDetails['logo'];
 			$email_details['module_code'] = "SELFIPRODUCT";
+            $email_details['template'] = 'admin.emails.emailTemplate';
+            $email_details['htmlbody'] = $htmlbody;
+            $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-			$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+			$EmailForwardModel->sendEmail($email_details);
 
 			$email_details['to_id'] = '';
 			$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -3854,8 +3887,11 @@ class HomeController extends Controller
 			$email_details['message'] = "";
 			$email_details['logo'] = $emailConfigDetails['logo'];
 			$email_details['module_code'] = "SELFIPRODUCT";
+            $email_details['template'] = 'admin.emails.emailTemplate';
+            $email_details['htmlbody'] = $htmlbody;
+            $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-			$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+			$EmailForwardModel->sendEmail($email_details);
 
 			$arrRes ['done'] = true;
 			$arrRes ['ID'] = $selfielastID;
@@ -3946,8 +3982,11 @@ class HomeController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
 		$email_details['module_code'] = "SUBSCRIPTION";
+        $email_details['template'] = 'admin.emails.emailTemplate';
+        $email_details['htmlbody'] = $htmlbody;
+        $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+		$EmailForwardModel->sendEmail($email_details);
 
 		$email_details['to_id'] = '';
 		$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -3957,8 +3996,11 @@ class HomeController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
 		$email_details['module_code'] = "SUBSCRIPTION";
+        $email_details['template'] = 'admin.emails.emailTemplate';
+        $email_details['htmlbody'] = $htmlbody;
+        $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+		$EmailForwardModel->sendEmail($email_details);
 
 		$arrRes['done'] = true;
 		$arrRes['msg'] = 'Subscribed successfully.';

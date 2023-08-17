@@ -122,7 +122,7 @@ class CloverController extends Controller
 //             	exit();
 
             	if($_POST['paymentType'] == 'checkout'){
-                    dd('hello');
+                    // dd('hello');
             		$this->saveCheckout($request,$checkoutDetails,$response1);
             		//return redirect('home');// for success case
 					return redirect('success-message');
@@ -192,8 +192,11 @@ class CloverController extends Controller
     	$email_details['message'] = "";
     	$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "GIVING REGARDS";
+        $email_details['template'] = 'admin.emails.emailTemplate';
+        $email_details['htmlbody'] = $htmlbody;
+        $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-    	$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+    	$EmailForwardModel->sendEmail($email_details);
 
     	// to admin email push
     	$emailConfigDetails1 = $EmailConfigModel->getSpecificEmailConfigByCode('GIVING ALERT');
@@ -218,8 +221,11 @@ class CloverController extends Controller
     	$email_details['message'] = "";
     	$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "GIVING ALERT";
+        $email_details['template'] = 'admin.emails.emailTemplate';
+        $email_details['htmlbody'] = $htmlbody1;
+        $email_details['pageTitle'] = 'Received Donation';
 
-    	$EmailForwardModel->sendEmail('Received Donation',$htmlbody1,$email_details);
+    	$EmailForwardModel->sendEmail($email_details);
 
     	return true;
     }
@@ -456,8 +462,11 @@ class CloverController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "SUBSCRIPTION_ORDER";
+        $email_details['template'] = 'admin.emails.emailTemplate';
+        $email_details['htmlbody'] = $htmlbody;
+        $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-    	$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+    	$EmailForwardModel->sendEmail($email_details);
 
 
         $email_details['to_id'] = 1;
@@ -468,8 +477,11 @@ class CloverController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
     	$email_details['module_code'] = "SUBSCRIPTION_ORDER";
+        $email_details['template'] = 'admin.emails.emailTemplate';
+        $email_details['htmlbody'] = $htmlbody;
+        $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-    	$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+    	$EmailForwardModel->sendEmail($email_details);
 
     	return;
     }
@@ -882,9 +894,12 @@ class CloverController extends Controller
                 $email_details['message'] = $htmlbodyForSubs;
                 $email_details['logo'] = $emailConfigDetailsForSubs['logo'];
                 $email_details['module_code'] = 'SUBSCRIPTION';
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbodyForSubs;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
                 // Send the email
-                $EmailForwardModel->sendEmail($emailConfigDetailsForSubs['title'], $htmlbodyForSubs, $email_details);
+                $EmailForwardModel->sendEmail($email_details);
 
                 $email_details['to_id'] = 1;
                 $email_details['to_email'] = $emailConfigDetailsForSubs['fromEmail'];
@@ -894,9 +909,12 @@ class CloverController extends Controller
                 $email_details['message'] = $htmlbodyForSubs;
                 $email_details['logo'] = $emailConfigDetailsForSubs['logo'];
                 $email_details['module_code'] = 'SUBSCRIPTION';
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbodyForSubs;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
                 // Send the email
-                $EmailForwardModel->sendEmail($emailConfigDetailsForSubs['title'], $htmlbodyForSubs, $email_details);
+                $EmailForwardModel->sendEmail($email_details);
 
                 // dd('mails sent');
 
@@ -912,9 +930,12 @@ class CloverController extends Controller
                 $email_details['message'] = $htmlbody;
                 $email_details['logo'] = $emailConfigDetails['logo'];
                 $email_details['module_code'] = 'ORDER';
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
                 // Send the email
-                $EmailForwardModel->sendEmail($emailConfigDetails['title'], $htmlbody, $email_details);
+                $EmailForwardModel->sendEmail($email_details);
 
                 $email_details['to_id'] = 1;
                 $email_details['to_email'] = $emailConfigDetails['fromEmail'];
@@ -924,9 +945,12 @@ class CloverController extends Controller
                 $email_details['message'] = $htmlbody;
                 $email_details['logo'] = $emailConfigDetails['logo'];
                 $email_details['module_code'] = 'ORDER';
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
                 // Send the email
-                $EmailForwardModel->sendEmail($emailConfigDetails['title'], $htmlbody, $email_details);
+                $EmailForwardModel->sendEmail($email_details);
 
                 // dd('mails sent');
             }

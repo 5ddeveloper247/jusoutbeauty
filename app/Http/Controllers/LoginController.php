@@ -9,7 +9,7 @@ use App\Models\EmailConfigModel;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Mail;
 class LoginController extends Controller
 {
 	public function adminlogin(Request $r){
@@ -125,13 +125,28 @@ class LoginController extends Controller
 		$email_details['message'] = "";
 		$email_details['logo'] = $emailConfigDetails['logo'];
 		$email_details['module_code'] = "RESET_PASS_OTP";
+        $email_details['template'] = 'admin.emails.emailTemplate';
+        $email_details['htmlbody'] = $htmlbody;
+        $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-		$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+		$check = $EmailForwardModel->sendEmail($email_details);
+        if($check === 'true' || $check === true){
+            $arrRes ['done'] = true;
+            $arrRes ['user_id_otp'] = $user_id_otp;
+            $arrRes ['msg'] = 'OTP Sent Successfully. Please check your E-mail!';
+            echo json_encode ( $arrRes );
+        }else{
+            $arrRes ['done'] = false;
+            $arrRes ['msg'] = 'Something went wrong please try again later!!!';
+            echo json_encode ( $arrRes );
+        }
 
-		$arrRes ['done'] = true;
-		$arrRes ['user_id_otp'] = $user_id_otp;
-		$arrRes ['msg'] = 'OTP Sent Successfully. Please check your E-mail!';
-		echo json_encode ( $arrRes );
+        // $this->sendMail($data, 'admin.emails.emailTemplate');
+
+		// $arrRes ['done'] = true;
+		// $arrRes ['user_id_otp'] = $user_id_otp;
+		// $arrRes ['msg'] = 'OTP Sent Successfully. Please check your E-mail!';
+		// echo json_encode ( $arrRes );
 
 	}
 
@@ -381,13 +396,24 @@ class LoginController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "REGISTRATION";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+			    $check = $EmailForwardModel->sendEmail($email_details);
 
-				$arrRes ['done'] = true;
-				$arrRes ['msg'] = 'Account created successfully, kindly login with your email and password.';
-				echo json_encode ( $arrRes );
-				die ();
+                if($check === 'true' || $check === true){
+                    $arrRes ['done'] = true;
+                    $arrRes ['msg'] = 'Account created successfully, kindly login with your email and password.';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }else{
+                    $arrRes ['done'] = false;
+                    $arrRes ['msg'] = 'Something Went Wrong. Please Try Again Later!!!';
+                    echo json_encode ( $arrRes );
+                    die ();
+                }
+
 
 // 				return response()->json(['message' => $lastId], 200);
 

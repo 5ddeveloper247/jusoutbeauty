@@ -154,8 +154,11 @@ class AdminController extends Controller
                 $email_details['message'] = "";
                 $email_details['logo'] = $emailConfigDetails['logo'];
                 $email_details['module_code'] = "SELFIE REPLY";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+                $EmailForwardModel->sendEmail($email_details);
 
                 $email_details['to_id'] = '';
                 $email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -165,8 +168,11 @@ class AdminController extends Controller
                 $email_details['message'] = "";
                 $email_details['logo'] = $emailConfigDetails['logo'];
                 $email_details['module_code'] = "SELFIE REPLY";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-                $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+                $EmailForwardModel->sendEmail($email_details);
             }
 			return true;
         }
@@ -2595,8 +2601,11 @@ class AdminController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "SELFIE REPLY";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$check1 = $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$check1 = $EmailForwardModel->sendEmail($email_details);
                 // dd($check);
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -2606,8 +2615,11 @@ class AdminController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "SELFIE REPLY";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$check2 = $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$check2 = $EmailForwardModel->sendEmail($email_details);
                 if($check1 == true && $check2 == true){
                     $result = DB::table('jb_selfie_reply_tbl')->insertGetId(
                         array ( 'SNAP_ID' => $SnapId,
@@ -8731,8 +8743,11 @@ class AdminController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
 				$email_details['to_id'] = '';
 				$email_details['to_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -8742,8 +8757,11 @@ class AdminController extends Controller
 				$email_details['message'] = "";
 				$email_details['logo'] = $emailConfigDetails['logo'];
 				$email_details['module_code'] = "TICKET";
+                $email_details['template'] = 'admin.emails.emailTemplate';
+                $email_details['htmlbody'] = $htmlbody;
+                $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-				$EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
+				$EmailForwardModel->sendEmail($email_details);
 
 				$arrRes ['done'] = true;
 				$arrRes ['msg'] = 'Ticket Created Successfully';
