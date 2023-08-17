@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Log;
 use DateTime;
+use Illuminate\View\View;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -52,6 +53,7 @@ class EmailForwardModel extends Mailable
     public function sendEmail($email_details){
         $email_html = '';
         try {
+            $email_html = view('admin.emails.emailTemplate', $email_details)->render();
             Mail::send('admin.emails.emailTemplate', $email_details, function ($message) use ($email_details) {
                if (array_key_exists('from_email', $email_details)) {
                    $message->from($email_details['from_email'], 'Jusoutbeauty');
@@ -66,10 +68,9 @@ class EmailForwardModel extends Mailable
                 $message->to($email_details['to_email']);
             });
             $this->saveEmail($email_details['pageTitle'],$email_html,$email_details);
-            // echo 'mail sent';
             return true;
+
         } catch (\Throwable $e) {
-            // echo'<script>console.log("mail did not sent")</script>';
             return false;
         }
     	//email
