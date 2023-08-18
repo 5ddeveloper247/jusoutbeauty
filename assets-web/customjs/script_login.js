@@ -245,7 +245,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 			if(data.done == true ){
 
 				toastr.success(data.msg, '', {timeOut: 3000})
-
+                $scope.reset.R_3 = '';
 				$('#user_otp').val(data.user_id_otp);
 				$('#reset_email').hide();
 				$('#otp_num').show();

@@ -110,8 +110,8 @@ class LoginController extends Controller
 
 		$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-							<p>Hello '.$result->EMAIL.',</p><br>
-							<p>Your one-time code is: '.$otp_random_number.'.</p><br>
+							<p>Hello!!!  '.$result->FIRST_NAME .' '. $result->LAST_NAME.'</p>
+							<p>Your one-time Password is: '.$otp_random_number.'.</p>
 							'.$emailConfigDetails['message'].'
 						</td>
 	        		</tr>';
@@ -382,7 +382,7 @@ class LoginController extends Controller
 
 				$htmlbody=	'<tr>
 								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-									<p>Hello '.$email.',</p><br>
+									<p>Hello '.$data['A_1'] .' '.$data['A_2'].',</p>
 									'.$emailConfigDetails['message'].'
 								</td>
 			        		</tr>';

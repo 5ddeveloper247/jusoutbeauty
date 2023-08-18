@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Session;
 use DateTime;
+use Carbon\Carbon;
+use Mockery\Undefined;
 use App\Models\Feature;
 use App\Models\TypeName;
 use App\Models\UserModel;
@@ -24,8 +26,10 @@ use App\Models\EmailConfigModel;
 use App\Models\OrderDetailModel;
 use App\Models\ProductUsesModel;
 use App\Models\ShadeFinderModel;
+use PhpParser\Node\Stmt\Return_;
 use App\Models\EmailForwardModel;
 use App\Models\OrderPaymentModel;
+use App\Models\ProductImageModel;
 use App\Models\ProductSelfiModel;
 use App\Models\ProductShadeModel;
 use App\Models\ShoppingcartModel;
@@ -42,9 +46,6 @@ use App\Models\ShadeFinderSelfieModel;
 use App\Models\FooterSubscriptionModel;
 use App\Http\Controllers\CloverController;
 use App\Models\OrderShippingTrackingModel;
-use App\Models\ProductImageModel;
-use Mockery\Undefined;
-use PhpParser\Node\Stmt\Return_;
 
 // use Illuminate\Http\Request;
 class HomeController extends Controller
@@ -1708,7 +1709,6 @@ class HomeController extends Controller
 
 				$htmlbody=	'<tr>
 								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-									<p>Hello '.$data ['R_10'].',</p><br>
 									'.$message_username.'
 								</td>
 							</tr>';
@@ -1931,7 +1931,6 @@ class HomeController extends Controller
 
 				$htmlbody=	'<tr>
 								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-									<p>Hello '.$data ['Q_2'].',</p><br>
 									'.$message_username.'
 								</td>
 							</tr>';
@@ -3491,15 +3490,20 @@ class HomeController extends Controller
    								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
    						)
    						);
-
+                $result1 = DB::table('jb_user_tickets_tbl')->select('*')->where('TICKET_ID',$result)->first();
+                        // dd($result1);
 				// Getting data WRT MODULE_CODE
 				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('TICKET');
-
+                $createdOn = Carbon::parse($result1->CREATED_ON);
+                $formattedDate = $createdOn->format('F j, Y, g:i A');
 				$message_username = str_replace("{User_Name}",$data ['T_3'],$emailConfigDetails['message']);
-
+                $message_username = str_replace("{Ticket_ID}",$result1->TICKET_NUMBER,$message_username);
+                $message_username = str_replace("{Creation_Date}",$formattedDate,$message_username);
+                $message_username = str_replace("{Issue_Subject}",$result1->SUBJECT,$message_username);
+                $message_username = str_replace("{Issue_Description}",$result1->DESCRIPTION,$message_username);
+                // dd($message_username);
 				$htmlbody=	'<tr>
 								<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-									<p>Hello '.$data ['T_3'].',</p><br>
 									'.$message_username.'
 								</td>
 							</tr>';
@@ -3741,7 +3745,6 @@ class HomeController extends Controller
                 $message_username = str_replace("{User_Name}",$username,$emailConfigDetails['message']);
                 $htmlbody=	'<tr>
                                 <td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-                                    <p>Hello '.$username.',</p><br>
                                     '.$message_username.'
                                 </td>
                             </tr>';
@@ -3859,8 +3862,7 @@ class HomeController extends Controller
 
 			$htmlbody=	'<tr>
 							<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-								<p>Hello '.$name.',</p><br>
-								'.$emailConfigDetails['message'].'
+								'.$message_username.'
 							</td>
 						</tr>';
 
@@ -3965,11 +3967,11 @@ class HomeController extends Controller
    			);
 
 		$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('NEWS LATTER');
+        $message_username = str_replace("{User_Name}",$email,$emailConfigDetails['message']);
 
 		$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
-							<p>Hello '.$email.',</p><br>
-							'.$emailConfigDetails['message'].'
+							'.$message_username.'
 						</td>
 	        		</tr>';
 
