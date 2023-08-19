@@ -532,7 +532,7 @@
                 <div class="col-xl-12 col-xxl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Pricing & VAT</h4>
+                            <h4 class="card-title">Pricing</h4>
                         </div>
                         <div class="card-body">
                             <!-- Nav tabs -->
@@ -541,9 +541,9 @@
                                     <a class="nav-link active" data-toggle="tab" href="#pricing"> <span> Pricing
                                         </span> </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#VAT"> <span> VAT </span> </a>
-                                </li>
+                                </li> --}}
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content tabcontent-border">
@@ -559,19 +559,19 @@
                                                 </div>
                                             </div>
                                             <!-- <div class="col-sm-6">
-             <div class="form-group">
-              <label class="col-form-label" for="discount"><b>Discount date range</b> </label>
+                                                <div class="form-group">
+                                                <label class="col-form-label" for="discount"><b>Discount date range</b> </label>
 
-              <div class="row">
-               <div class="col-sm-6">
-                <input type="text" class="form-control" id="p15"  ng-model="product['P_15']" placeholder="Start Date" onfocus="(this.type='date')" >
-               </div>
-               <div class="col-sm-6">
-                <input type="text" class="form-control" id="p16" ng-model="product['P_16']" placeholder="End Date" onfocus="(this.type='date')" >
-               </div>
-              </div>
-             </div>
-            </div> -->
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" id="p15"  ng-model="product['P_15']" placeholder="Start Date" onfocus="(this.type='date')" >
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" id="p16" ng-model="product['P_16']" placeholder="End Date" onfocus="(this.type='date')" >
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div> -->
                                         </div>
 
                                         <div class="row">
@@ -648,10 +648,10 @@
            </div> -->
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="VAT" role="tabpanel">
+                                {{-- <div class="tab-pane fade" id="VAT" role="tabpanel">
                                     <div class="pt-4">
                                         <div class="row">
-                                            {{-- <div class="col-sm-6">
+                                            <div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-form-label" for="tax"><b>TAX</b> </label>
 
@@ -668,7 +668,7 @@
 															</div>
 														</div>
 													</div>
-												</div> --}}
+												</div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label" for="vat"><b>VAT</b> </label>
@@ -691,11 +691,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     <div class="col-12 pt-4">
                                         <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3"
-                                            ng-click="saveProductPricing();">Save Pricing / VAT</a>
+                                            ng-click="saveProductPricing();">Save Pricing</a>
                                     </div>
                                 </div>
                             </div>

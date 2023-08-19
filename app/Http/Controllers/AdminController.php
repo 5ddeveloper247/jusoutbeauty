@@ -6228,6 +6228,7 @@ class AdminController extends Controller
 		echo json_encode ( $arrRes );
 	}
 	public function deleteLevel1TypeImage(Request $request) {
+
 		$ShadeFinder = new ShadeFinderModel();
 
 		$details = $_REQUEST ['details'];

@@ -62,10 +62,10 @@
 										<span>Tax Amount:</span>
 										<span class="d-block ml-auto font-weight-500 text-primary">$@{{totalTax}}</span>
 									</div>
-									<div class="d-flex align-items-center mb-2">
+									{{-- <div class="d-flex align-items-center mb-2">
 										<span>Total Inc. Tax:</span>
 										<span class="d-block ml-auto font-weight-500 text-primary">$@{{totalIncVat}}</span>
-									</div>
+									</div> --}}
 									<div class="d-flex align-items-center">
 										<span>Discount:</span>
 										<span class="d-block ml-auto text-primary font-weight-500">$@{{totalDiscount}}</span>

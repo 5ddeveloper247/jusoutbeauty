@@ -10,6 +10,14 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 	$scope.submitProductSelfi = function(){
 
+		if($scope.selfi.name == ''){
+			toastr.error('Selfi Name Can`t be empty!', '', {timeOut: 3000});
+			return false;
+		}else if($scope.selfi.email == ''){
+			toastr.error('Selfi Email Can`t be empty!', '', {timeOut: 3000});
+			return false;
+		}
+
 		var data = {};
 
 	    data.selfi = $scope.selfi;
@@ -518,6 +526,10 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	});
 
 	$scope.closeProductSelfi = function(){
+
+		$scope.selfi.ID = '';
+		$scope.selfi.name = '';
+		$scope.selfi.email = '';
 		$('#productselfi').modal('hide');
 		$("#p_att").html('');
 

@@ -34,7 +34,7 @@ class IngredientModel extends Model
     	->orderBy('a.SEQ_NUM','asc')
     	// ->orderBy('a.CREATED_ON','desc')
     	->get();
-    	 
+    	
     	$i=0;
     	foreach ($result as $row){
     		$arrRes[$i]['seqNo'] = $row->INGREDIENT_ID;//$i+1;

@@ -852,7 +852,7 @@
                                                                             <?php if(isset($formulatedIngredients) && !empty($formulatedIngredients)){?>
                                                                             <?php foreach ($formulatedIngredients as $row){?>
                                                                             <div
-                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
+                                                                                class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"  style="background-color:#94b73d">
                                                                                 <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
@@ -1039,7 +1039,8 @@
                     </a>
                 </div>
                 <?php if(isset($productselfi) && !empty($productselfi)){?>
-                <div class="slick-slider slick-sliderproductselfi" id="instaFeed_html" data-slick-options='{"slidesToShow": 4,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":true,"arrows":false,"responsive":[
+                <div class="slick-slider slick-sliderproductselfi" id="instaFeed_html" 
+                data-slick-options='{"slidesToShow": 4,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":true,"arrows":false,"responsive":[
                     {"breakpoint": 1400,"settings": {"slidesToShow": 4}},
                     {"breakpoint": 1200,"settings": {"slidesToShow": 3}},
                     {"breakpoint": 992,"settings": {"slidesToShow": 2}},
@@ -1070,7 +1071,7 @@
                         <a target="_blank" href="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>"
                             class="card hover-zoom-in d-block border-0 hover-change-content insta-secc-home">
 
-                            <video width="400" controls>
+                            <video width="400" height="300" controls>
                                 <source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>"
                                     type="video/mp4">
                                 <source src="<?= isset($selfiimage['DOWN_PATH']) ? $selfiimage['DOWN_PATH'] :'' ?>"
@@ -1155,7 +1156,7 @@
                             <input type="hidden" name="_method" value="POST">
                             {{ csrf_field() }}
                             <input type="hidden" id="sourceId" name="sourceId" value="@{{ selfi.ID }}">
-                            <input type="file" id="uploadatt6" name="uploadatt6" class="file-input"
+                            <input type="file" id="uploadatt6" name="uploadatt6" class="file-input" multiple
                                 style="display: none;">
                         </form>
 

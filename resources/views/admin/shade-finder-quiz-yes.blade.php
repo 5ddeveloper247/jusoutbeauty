@@ -1,6 +1,6 @@
 @include('admin.admin-header');
 <script>
-var userId = <?php echo session('userId');?>;
+var userId = '<?php echo session('userId');?>';
 var site = '<?php echo session('site');?>';
 var baseurl = "<?php echo url('/assets-admin');?>";
 var optionId = '1';

@@ -178,6 +178,7 @@ class HomeController extends Controller
 		$data['routine'] = $this->getAllRouteByNameForWebiste();
 		$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
         $data['ingredients'] = $ProductIngredient->getIngredientsWithImags();
+		dd($data['ingredients']);
 
 		$data['page'] = 'Ingredients';
 		return view('web.ingredients')->with ( $data );
@@ -3695,20 +3696,21 @@ class HomeController extends Controller
    		echo json_encode ( $arrRes );
    	}
 	public function saveSelfie(Request $request){
+		// dd($request->all());
 		$EmailForwardModel = new EmailForwardModel();
 		$EmailConfigModel = new EmailConfigModel;
 
 		$username= $request->name;
 		$username_email= $request->email;
 
-		$namefile = DB::table ( 'jb_shade_finder_selfie_tbl' )->insertGetId (
+		$uploadFileId = DB::table ( 'jb_shade_finder_selfie_tbl' )->insertGetId (
 			array ( 'USER_ID' => session('userId'),
 					'USERNAME' => $username,
 					'USER_EMAIL' => $username_email,
 			)
 		);
 
-        $namefile = $username . "'s_Selfie_" . date('Ymd_His');
+         $namefile = $username . "'s_Selfie_" . date('Ymd_His');
         // dd($namefile);
         if ($request->file('file')) {
             $path = public_path() . "/uploads/beautyselfie";
@@ -3725,25 +3727,26 @@ class HomeController extends Controller
                 mkdir($path, 0777, true);
             }
 
-            $imageSize = getimagesize($file);
-            $width = $imageSize[0];
-            $height = $imageSize[1];
+            // $imageSize = getimagesize($file);
+			
+            // $width = $imageSize[0];
+            // $height = $imageSize[1];
 
             // if ($width >= 1000 && $height >= 600) {
                 if (move_uploaded_file($file, $fullpath)) {
-                    $result = DB::table('jb_shade_finder_selfie_tbl')->where('SELFIE_ID', $namefile)->update(
+                    DB::table('jb_shade_finder_selfie_tbl')->where('SELFIE_ID', $uploadFileId)->update(
                         array(
                             'PATH' => $fullpath,
                             'DOWNPATH' => $downpath,
                             'UPDATED_ON' => date('Y-m-d H:i:s')
                         )
                     );
-                    // dd($result);
+                   
                 }
 
                 $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SHADEFINDERSELFI');
                 $message_username = str_replace("{User_Name}",$username,$emailConfigDetails['message']);
-                $htmlbody=	'<tr>
+                $htmlbody =	'<tr>
                                 <td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
                                     '.$message_username.'
                                 </td>

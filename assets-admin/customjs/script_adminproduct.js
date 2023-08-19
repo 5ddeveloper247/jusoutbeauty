@@ -981,6 +981,13 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 			for(var i=0; i<images.length; i++){
 				var titletxt = images[i]["primFlag"] == 0 ? 'secondary' : 'primary';
+
+				// if(images[i]["primFlag"] == 1){
+				// 	titletxt = primary
+				// }else if(images[i]["secFlag"] == 1){
+				// 	titletxt = secondary
+				// }
+
 				var html = '<div class="col-2 image-overlay margin-r1" title="'+titletxt+'" id="img_file_'+images[i]["ID"]+'">'+
 								'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+
 								'<div class="overlay">'+

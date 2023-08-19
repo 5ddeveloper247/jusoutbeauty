@@ -17,7 +17,7 @@ class ShadeFinderSelfieModel extends Model
     public function getAllShadeFinderSelfieForAdmin(){
 
     	$result = DB::table('jb_shade_finder_selfie_tbl as a')->select('a.*')
-    	->orderBy('a.UPDATED_ON','desc')
+    	->orderBy('a.CREATED_ON','desc')
     	->get();
 
     	$i=0;
