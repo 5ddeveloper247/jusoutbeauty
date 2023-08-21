@@ -254,7 +254,7 @@ $userId = session('userId');
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.3); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+        background-color: rgba(0, 0, 0, 0.2); /* You can adjust the transparency by changing the last value (0.6 in this case) */
     }
     .quick_view_product_image {
         width: 250px;
@@ -662,7 +662,7 @@ $userId = session('userId');
                                                     ${{ $trend['PRODUCT_PRICE'] }}</p> --}}
                                                     <div class="row">
                                                         <div class="col-sm-6 col-7">
-                                                            <p class="text-primary mb-0 card-title lh-14375">{{ $trend['PRODUCT_PRICE'] }}</p>
+                                                            <p class="text-primary mb-0 card-title lh-14375">${{ $trend['PRODUCT_PRICE'] }}</p>
                                                         </div>
                                                         <div class="col-sm-6 col-5">
                                                             <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $trend['UNIT'] }}</p>
@@ -877,7 +877,7 @@ $userId = session('userId');
                                         <div class="mt-auto">
                                             <div class="d-flex flex-row justify-content-between">
                                                 {{-- <div class="col-sm-6 col-6"> --}}
-                                                    <p class="text-primary mb-0 card-title lh-14375">{{ $for['PRODUCT_PRICE'] }}</p>
+                                                    <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }}</p>
                                                 {{-- </div> --}}
                                                 {{-- <div class="col-sm-6 col-5"> --}}
                                                     <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p>

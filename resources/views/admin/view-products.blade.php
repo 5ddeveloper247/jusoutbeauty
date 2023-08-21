@@ -541,9 +541,9 @@
                                     <a class="nav-link active" data-toggle="tab" href="#pricing"> <span> Pricing
                                         </span> </a>
                                 </li>
-                                {{-- <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#VAT"> <span> VAT </span> </a>
-                                </li> --}}
+                                </li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content tabcontent-border">
@@ -648,7 +648,7 @@
            </div> -->
                                     </div>
                                 </div>
-                                {{-- <div class="tab-pane fade" id="VAT" role="tabpanel">
+                                <div class="tab-pane fade" id="VAT" role="tabpanel">
                                     <div class="pt-4">
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -669,7 +669,7 @@
 														</div>
 													</div>
 												</div>
-                                            <div class="col-sm-6">
+                                            {{-- <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label" for="vat"><b>VAT</b> </label>
 
@@ -688,10 +688,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="row">
                                     <div class="col-12 pt-4">
                                         <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3"

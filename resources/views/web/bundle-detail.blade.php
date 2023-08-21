@@ -2330,7 +2330,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                     <div class="mt-auto">
                                         <div class="d-flex flex-row justify-content-between">
                                             {{-- <div class="col-sm-6 col-6"> --}}
-                                            <p class="text-primary mb-0 card-title lh-14375">{{ $recent['UNIT_PRICE'] }}
+                                            <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}
                                             </p>
                                             {{-- </div> --}}
                                             {{-- <div class="col-sm-6 col-5"> --}}
@@ -2908,7 +2908,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                              <div class="mt-auto">
                                                  <div class="d-flex flex-row justify-content-between">
                                                      {{-- <div class="col-sm-6 col-6"> --}}
-                                                     <p class="text-primary mb-0 card-title lh-14375">{{ $recent['UNIT_PRICE'] }}
+                                                     <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}
                                                      </p>
                                                      {{-- </div> --}}
                                                      {{-- <div class="col-sm-6 col-5"> --}}

@@ -1039,7 +1039,7 @@
                     </a>
                 </div>
                 <?php if(isset($productselfi) && !empty($productselfi)){?>
-                <div class="slick-slider slick-sliderproductselfi" id="instaFeed_html" 
+                <div class="slick-slider slick-sliderproductselfi" id="instaFeed_html"
                 data-slick-options='{"slidesToShow": 4,"pauseOnHover":true, "autoplay":true,"infinite": true,"dots":true,"arrows":false,"responsive":[
                     {"breakpoint": 1400,"settings": {"slidesToShow": 4}},
                     {"breakpoint": 1200,"settings": {"slidesToShow": 3}},
@@ -1878,7 +1878,7 @@
                                         <div class="d-flex flex-row justify-content-between">
                                             {{-- <div class="col-sm-6 col-6"> --}}
                                             <p class="text-primary mb-0 card-title lh-14375">
-                                                {{ $recommand['UNIT_PRICE'] }}</p>
+                                                ${{ $recommand['UNIT_PRICE'] }}</p>
                                             {{-- </div> --}}
                                             {{-- <div class="col-sm-6 col-5"> --}}
                                             <p
@@ -1887,11 +1887,6 @@
                                             {{-- </div> --}}
                                         </div>
                                     </div>
-
-
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -2178,7 +2173,7 @@
                                     <div class="mt-auto">
                                         <div class="d-flex flex-row justify-content-between">
                                             {{-- <div class="col-sm-6 col-6"> --}}
-                                            <p class="text-primary mb-0 card-title lh-14375">{{ $recent['UNIT_PRICE'] }}
+                                            <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}
                                             </p>
                                             {{-- </div> --}}
                                             {{-- <div class="col-sm-6 col-5"> --}}
@@ -2757,7 +2752,7 @@
                                     <div class="mt-auto">
                                         <div class="d-flex flex-row justify-content-between">
                                             {{-- <div class="col-sm-6 col-6"> --}}
-                                            <p class="text-primary mb-0 card-title lh-14375">{{ $recent['UNIT_PRICE'] }}
+                                            <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}
                                             </p>
                                             {{-- </div> --}}
                                             {{-- <div class="col-sm-6 col-5"> --}}
