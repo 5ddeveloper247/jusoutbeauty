@@ -521,6 +521,8 @@ class CategoryModel extends Model
     	->where ('jct.STATUS','active')
     	->where ('jsct.STATUS','active')
     	->where ('jssct.STATUS','active')
+    	->where ('jct.CATEGORY_NAME', '!=', 'Nutrition')
+    	->where ('jct.CATEGORY_NAME', '!=', 'Nutritions')
 //     	->where('jssct.SUB_CATEGORY_ID', $subCatId)
     	->orderBy('jssct.SUB_SUB_CATEGORY_ID','desc')
     	->skip($skip)->take(10)

@@ -408,7 +408,10 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		}).success(function(data, status, headers, config) {
 
 			$scope.displayCollectionProducts = data.products;
-            console.log(data.products);
+            
+			$('html, body').animate({
+				scrollTop: $("#storeListingAll").offset().top-100
+			}, 1000);
 
 			setTimeout(function(){
 				if($('.filter-sidebarr').is(':visible')){

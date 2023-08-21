@@ -271,7 +271,7 @@
  					</div>
  				</div>
                 {{-- @dd('Working'); --}}
- 				<div class="col-xl-12 shop-listing-right-portion">
+ 				<div class="col-xl-12 shop-listing-right-portion" id="storeListingAll">
  					<div class="row">
  						<div class="col-sm-12 mb-4 mb-sm-0 pb-3 sort_inc_shop">
  							<div class="d-flex align-items-center d-xl-none text-primary font-weight-500 mr-6" data-canvas="true" data-canvas-options='{"container":".filter-canvas"}'>
