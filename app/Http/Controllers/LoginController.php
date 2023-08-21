@@ -265,7 +265,7 @@ class LoginController extends Controller
                     ]);
                     cookie()->queue(cookie()->make('loggedIn', $userKey,30 * 24 * 60));
                     cookie()->queue(cookie()->make('test', $userKey,30 * 24 * 60));
-					return back();
+					return redirect('/');
 
 				}else{
 

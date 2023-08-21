@@ -179,6 +179,7 @@ class BundleProductModel extends Model
 
     public function getAllBundleProductDetailsWrtCatSubCatIdForShopListing($catId, $flag, $subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
     	$WishlistModel = new WishlistModel();
+        $userDashboardModel = new UserdashboardModel();
     	DB::enableQueryLog();
     	$userId = session('userId');
 

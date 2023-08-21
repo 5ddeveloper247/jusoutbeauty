@@ -177,7 +177,7 @@ class UserdashboardModel extends Model
     	$ProductShade = new ProductShadeModel();
     	$userId = session('userId');
 
-    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.UNIT','jpt.NAME as productName','jpt.SLUG as slug','jpt.SUB_CATEGORY_ID as subcategoryid','sbcat.NAME as subcategoryname','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
+    	$result = DB::table('jb_user_home_product_section_tbl as a')->select('a.*','jct.CATEGORY_NAME as categoryName','jpt.UNIT','jpt.NAME as productName','jpt.DISCOUNT_TYPE','jpt.DISCOUNT','jpt.SLUG as slug','jpt.SUB_CATEGORY_ID as subcategoryid','sbcat.NAME as subcategoryname','jpt.SUB_TITLE','jpt.SHORT_DESCRIPTION as productDescription','jpt.UNIT_PRICE as productPrice','jpt.QUANTITY','jpt.SEQ_NUM')
     	->join ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
     	->leftjoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
         ->leftjoin ('jb_sub_category_tbl as sbcat','jpt.SUB_CATEGORY_ID','=','sbcat.SUB_CATEGORY_ID')
@@ -221,6 +221,9 @@ class UserdashboardModel extends Model
     		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
     		$arrRes[$i]['SUB_TITLE_TXT'] = strlen ( $row->SUB_TITLE ) > 65 ? substr ( $row->SUB_TITLE, 0, 65 )."..." :$row->SUB_TITLE;
     		$arrRes[$i]['PRODUCT_PRICE'] = number_format($row->productPrice,2);
+
+            $arrRes[$i]['DISC_AMOUNT'] = $this->get_discounted_value_of_product($row->productPrice, $row->DISCOUNT_TYPE, $row->DISCOUNT);
+
     		$arrRes[$i]['productDescTxt'] = strlen ( $row->productDescription ) > 40?substr ( $row->productDescription, 0, 40 )."..." :$row->productDescription;
     		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['productPrimaryImg'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
@@ -261,6 +264,22 @@ class UserdashboardModel extends Model
     	}
         // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
+    }
+
+    public function get_discounted_value_of_product($actualPrice, $discountType, $discountUnit){
+        if(isset($discountUnit) && $discountUnit > 0){
+            if($discountType == 'Flat'){
+                $discountedPrice = ($actualPrice - $discountUnit);
+            }
+            if($discountType == 'Percent'){
+                $discountedPrice = $actualPrice * (1 - ($discountUnit / 100));
+            }
+            $discountedPrice = number_format($discountedPrice,2);
+            return $discountedPrice;
+        }else{
+            $discountedPrice = 0;
+            return $discountedPrice;
+        }
     }
 
     public function getAllUserHomeOfferSectionData(){

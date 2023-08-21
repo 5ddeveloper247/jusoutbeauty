@@ -431,9 +431,9 @@ class CategoryModel extends Model
 // 	    			$arrRes[$i]['image'] = url('/assets-web')."/images/skin-makeup.jpg";
 // 	    		}
 //     		}
-    		
+
     		$subCatProductImage = $this->getSpecificProductImageSubCategoryWise($row->SUB_CATEGORY_ID);
-    		
+
     		if(isset($subCatProductImage['downPath']) && $subCatProductImage['downPath'] != ''){
     			$arrRes[$i]['image'] = $subCatProductImage['downPath'];
     		}else{

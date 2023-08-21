@@ -661,10 +661,15 @@ $userId = session('userId');
                                                 {{-- <p class="text-primary mb-2 card-title lh-14375">
                                                     ${{ $trend['PRODUCT_PRICE'] }}</p> --}}
                                                     <div class="row">
-                                                        <div class="col-sm-6 col-7">
+                                                        <div class="@if(strlen($trend['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
+                                                            @if($trend['DISC_AMOUNT'] > 0)
+                                                                <p class="text-primary mb-0 card-title lh-14375">${{ $trend['DISC_AMOUNT'] }}</p>
+                                                                <small class="ml-1 mt-1 lh-14375"><del> ${{ $trend['PRODUCT_PRICE'] }}</del></small>
+                                                            @else
                                                             <p class="text-primary mb-0 card-title lh-14375">${{ $trend['PRODUCT_PRICE'] }}</p>
+                                                            @endif
                                                         </div>
-                                                        <div class="col-sm-6 col-5">
+                                                        <div class="@if(strlen($trend['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
                                                             <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $trend['UNIT'] }}</p>
                                                         </div>
                                                     </div>
@@ -874,16 +879,28 @@ $userId = session('userId');
                                                     </li>
                                             </ul> --}}
                                         {{-- @endif --}}
-                                        <div class="mt-auto">
-                                            <div class="d-flex flex-row justify-content-between">
+                                        {{-- <div class="mt-auto"> --}}
+                                            {{-- <div class="d-flex flex-row justify-content-between"> --}}
                                                 {{-- <div class="col-sm-6 col-6"> --}}
-                                                    <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }}</p>
+                                                    <div class="row">
+                                                        <div class="@if(strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
+                                                            @if($for['DISC_AMOUNT'] > 0)
+                                                                <p class="text-primary mb-0 card-title lh-14375">${{ $for['DISC_AMOUNT'] }}</p>
+                                                                <small class="ml-1 mt-1 lh-14375"><del> ${{ $for['PRODUCT_PRICE'] }}</del></small>
+                                                            @else
+                                                            <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }}</p>
+                                                            @endif
+                                                        </div>
+                                                        <div class="@if(strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
+                                                            <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p>
+                                                        </div>
+                                                    </div>
                                                 {{-- </div> --}}
                                                 {{-- <div class="col-sm-6 col-5"> --}}
-                                                    <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p>
+                                                    {{-- <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p> --}}
                                                 {{-- </div> --}}
-                                            </div>
-                                        </div>
+                                            {{-- </div> --}}
+                                        {{-- </div> --}}
                                         {{-- <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }} --}}
 
                                         </p>

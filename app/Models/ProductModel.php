@@ -809,6 +809,7 @@ class ProductModel extends Model
     public function getAllRecommandedProductsWrtCategoryIdForSite($categoryId){
 
         $ProductShade =  new ProductShadeModel();
+        $userDashboardModel = new UserdashboardModel();
 
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
@@ -877,6 +878,7 @@ class ProductModel extends Model
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+            $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
 
@@ -895,12 +897,13 @@ class ProductModel extends Model
 
             // dd($arrRes[$i]['shades']);
     	}
-
+        // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getAllProductDetailsWrtCatSubCatIdForShopListing($catId, $flag, $subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
     	$WishlistModel = new WishlistModel();
     	$ProductShade = new ProductShadeModel();
+        $userDashboardModel = new UserdashboardModel();
 
     	DB::enableQueryLog();
     	$userId = session('userId');
@@ -1034,6 +1037,7 @@ class ProductModel extends Model
 				$descText = strip_tags(base64_decode($row->DESCRIPTION));
 				$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
 				$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+                $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
 				$arrRes[$i]['STATUS'] = $row->STATUS;
 				$arrRes[$i]['DATE'] = $row->DATE;
 
@@ -1560,6 +1564,7 @@ class ProductModel extends Model
     public function getAllProductDetailsForAllShopListing($subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
     	$WishlistModel = new WishlistModel();
 		$ProductShade = new ProductShadeModel();
+        $userDashboardModel = new UserdashboardModel();
     	DB::enableQueryLog();
     	$userId = session('userId');
 
@@ -1707,6 +1712,7 @@ class ProductModel extends Model
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+            $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
 

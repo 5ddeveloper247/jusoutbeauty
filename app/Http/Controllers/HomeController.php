@@ -111,6 +111,8 @@ class HomeController extends Controller
 		return view ( 'web.index' )->with ( $data );
 	}
 
+
+
     public function getPopupData(){
         $result = DB::table('jb_popup_tbl as a')->select('a.*')->where('ID','1')->first();
         return $result;
@@ -3728,7 +3730,7 @@ class HomeController extends Controller
             }
 
             // $imageSize = getimagesize($file);
-			
+
             // $width = $imageSize[0];
             // $height = $imageSize[1];
 
@@ -3741,7 +3743,7 @@ class HomeController extends Controller
                             'UPDATED_ON' => date('Y-m-d H:i:s')
                         )
                     );
-                   
+
                 }
 
                 $emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('SHADEFINDERSELFI');
