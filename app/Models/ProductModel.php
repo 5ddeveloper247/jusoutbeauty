@@ -170,7 +170,7 @@ class ProductModel extends Model
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-
+        
     	return isset($arrRes) ? $arrRes : null;
 	}
 		public function getProductImagesWrtProductID($PRODUCT_ID){
@@ -528,7 +528,7 @@ class ProductModel extends Model
 
     		$i++;
     	}
-
+        // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificImage($id){
@@ -583,6 +583,7 @@ class ProductModel extends Model
     	$WishlistModel = new WishlistModel();
     	$userId = session('userId');
         $ProductShade = new ProductShadeModel();
+        $userDashboardModel = new UserdashboardModel();
 
     	$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
@@ -637,6 +638,7 @@ class ProductModel extends Model
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+            $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
 
@@ -1225,6 +1227,7 @@ class ProductModel extends Model
 
     public function getSpecificProductDetails($productId){
     	$ProductShade = new ProductShadeModel();
+        $userDashboardModel = new UserdashboardModel();
     	DB::enableQueryLog();
 
     	$where =array(['a.PRODUCT_ID','=',$productId]);
@@ -1278,6 +1281,7 @@ class ProductModel extends Model
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+            $arrRes['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
     		$arrRes['unitPrice'] = $row->UNIT_PRICE != null ? $row->UNIT_PRICE : '0';
     		$arrRes['STATUS'] = $row->STATUS;
     		$arrRes['DISCOUNT'] = $row->DISCOUNT;
@@ -1300,7 +1304,7 @@ class ProductModel extends Model
 
     		$i++;
     	}
-
+        // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
     }
 
@@ -1429,6 +1433,7 @@ class ProductModel extends Model
     	$ProductShadeModel = new ProductShadeModel();
     	$WishlistModel = new WishlistModel();
     	$ReviewsModel = new ReviewsModel();
+        $userDashboardModel = new UserdashboardModel();
     	DB::enableQueryLog();
 
     	$userId = session('userId');
@@ -1484,6 +1489,7 @@ class ProductModel extends Model
     		$descText = strip_tags(base64_decode($row->DESCRIPTION));
     		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+            $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
     		$arrRes[$i]['unitPrice'] = $row->UNIT_PRICE != null ? $row->UNIT_PRICE : '0';
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DISCOUNT'] = $row->DISCOUNT;

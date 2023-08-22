@@ -97,6 +97,7 @@ class Handpicked extends Model
            $ProductShadeModel = new ProductShadeModel();
            $WishlistModel = new WishlistModel();
            $ReviewsModel = new ReviewsModel();
+           $userDashboardModel = new UserdashboardModel();
            $limit=4;
            $userId = session('userId');
 
@@ -157,6 +158,7 @@ class Handpicked extends Model
            $descText = strip_tags(base64_decode($row->DESCRIPTION));
            $arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
            $arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+           $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
            $arrRes[$i]['unitPrice'] = $row->UNIT_PRICE != null ? $row->UNIT_PRICE : '0';
            $arrRes[$i]['STATUS'] = $row->STATUS;
            $arrRes[$i]['DISCOUNT'] = $row->DISCOUNT;

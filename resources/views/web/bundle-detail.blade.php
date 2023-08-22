@@ -2327,19 +2327,32 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                         <?php }?>
                                         <?php }?>
                                     </ul>
-                                    <div class="mt-auto">
+                                    <div class="row">
+                                        <div class="@if(strlen($recent['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
+                                            @if($recent['DISC_AMOUNT'] > 0)
+                                                <p class="text-primary mb-0 card-title lh-14375">${{ $recent['DISC_AMOUNT'] }}</p>
+                                                <small class="ml-1 mt-1 lh-14375"><del> ${{ $recent['UNIT_PRICE'] }}</del></small>
+                                            @else
+                                            <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}</p>
+                                            @endif
+                                        </div>
+                                        <div class="@if(strlen($recent['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
+                                            <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $recent['UNIT'] }}</p>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="mt-auto">
                                         <div class="d-flex flex-row justify-content-between">
-                                            {{-- <div class="col-sm-6 col-6"> --}}
+                                            <div class="col-sm-6 col-6">
                                             <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}
                                             </p>
-                                            {{-- </div> --}}
-                                            {{-- <div class="col-sm-6 col-5"> --}}
+                                            </div>
+                                            <div class="col-sm-6 col-5">
                                             <p
                                                 class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
                                                 {{ $recent['UNIT'] }}</p>
-                                            {{-- </div> --}}
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                             </div>
@@ -2905,19 +2918,32 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                                  <?php }?>
                                                  <?php }?>
                                              </ul>
-                                             <div class="mt-auto">
+                                             <div class="row">
+                                                <div class="@if(strlen($recent['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
+                                                    @if($recent['DISC_AMOUNT'] > 0)
+                                                        <p class="text-primary mb-0 card-title lh-14375">${{ $recent['DISC_AMOUNT'] }}</p>
+                                                        <small class="ml-1 mt-1 lh-14375"><del> ${{ $recent['UNIT_PRICE'] }}</del></small>
+                                                    @else
+                                                    <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}</p>
+                                                    @endif
+                                                </div>
+                                                <div class="@if(strlen($recent['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
+                                                    <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $recent['UNIT'] }}</p>
+                                                </div>
+                                            </div>
+                                             {{-- <div class="mt-auto">
                                                  <div class="d-flex flex-row justify-content-between">
-                                                     {{-- <div class="col-sm-6 col-6"> --}}
+                                                     <div class="col-sm-6 col-6">
                                                      <p class="text-primary mb-0 card-title lh-14375">${{ $recent['UNIT_PRICE'] }}
                                                      </p>
-                                                     {{-- </div> --}}
-                                                     {{-- <div class="col-sm-6 col-5"> --}}
+                                                     </div>
+                                                     <div class="col-sm-6 col-5">
                                                      <p
                                                          class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
                                                          {{ $recent['UNIT'] }}</p>
-                                                     {{-- </div> --}}
+                                                     </div>
                                                  </div>
-                                             </div>
+                                             </div> --}}
 
                                          </div>
                                      </div>

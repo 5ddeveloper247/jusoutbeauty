@@ -768,19 +768,19 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	}
 
 	$scope.getSubCategoriesWrtCategory = function(){
-		
+
 		if($scope.recallSubCatFunctionFlag == 0){
 			$scope.recallSubCatFunctionFlag = 1;
 			return;
 		}
 		if($scope.product.P_8 != null){
-            if($scope.product.P_8['name'] === 'Nutrition' || $scope.product.P_8['name'] === 'Nutritions' || 
+            if($scope.product.P_8['name'] === 'Nutrition' || $scope.product.P_8['name'] === 'Nutritions' ||
             		$scope.product.P_8['name'] === 'MakeUp' || $scope.product.P_8['name'] === 'Make Up'){
                 $('#imageBox').addClass('d-none');
             }else{
                 $('#imageBox').removeClass('d-none');
             }
-            
+
             var data = {};
 		    data.category = $scope.product.P_8;
 		    data.userId = userId;
@@ -801,7 +801,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			}).success(function(data, status, headers, config) {
 
 				$scope.subCategoryLov = data.subCategory;
-				
+
 				$scope.product.P_9 = '';
 				$scope.product.P_44 = '';
 
@@ -827,7 +827,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}
 	}
 	$scope.getSubSubCategoriesWrtSubCategory = function(){
-		
+
 		if($scope.recallSubCatFunctionFlag == 0){
 			$scope.recallSubCatFunctionFlag = 1;
 			return;
@@ -980,13 +980,23 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		if(images != '' && images != null){
 
 			for(var i=0; i<images.length; i++){
-				var titletxt = images[i]["primFlag"] == 0 ? 'secondary' : 'primary';
 
-				// if(images[i]["primFlag"] == 1){
-				// 	titletxt = primary
-				// }else if(images[i]["secFlag"] == 1){
-				// 	titletxt = secondary
-				// }
+                var titletxt = '';
+
+                switch (true) {
+                    case images[i]["primFlag"] == 1:
+                        // console.log('Primary');
+                        titletxt = 'Primary';
+                        break;
+                    case images[i]["secFlag"] == 1:
+                        // console.log('Secondary');
+                        titletxt = 'Secondary';
+                        break;
+                    default:
+                        // console.log('none');
+                        titletxt = '';
+                        break;
+                }
 
 				var html = '<div class="col-2 image-overlay margin-r1" title="'+titletxt+'" id="img_file_'+images[i]["ID"]+'">'+
 								'<img src="'+images[i]["downPath"]+'" alt="" class="image-box">'+

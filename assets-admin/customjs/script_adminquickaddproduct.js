@@ -34,7 +34,6 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
     $scope.QuickProduct.P_31 = "";
     $scope.QuickProduct.P_32 = "";
     $scope.QuickProduct.P_33 = "";
-
     $scope.QuickProduct.P_46 = "";
     $scope.QuickProduct.P_46.id = "";
     $scope.QuickProduct.P_55 = '';
@@ -125,7 +124,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
             // $scope.subscription.S_2 = data.subscriptionDetails['SUBSCRIPTION_NOTE_LINK'];
             // $scope.subscription.S_3 = data.subscriptionDetails['SUBSCRIPTION_NOTE_DESCRIPTION'];
             $scope.subscription = data.subscriptionDetails;
-           
+
             // $scope.QuickProduct.P_20 = data.productDetails['P_20'];
 
             // $scope.video.V_3 = data.videoPro['V_3'];
@@ -1444,7 +1443,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 
     }
     $scope.markProductDetailImageFlag = function(flag){
-        
+
 		var data = {};
 	    data.imageId = $scope.tempProId;
 		data.flag = flag;
@@ -2247,6 +2246,7 @@ myApp.controller('projectinfo1', function ($scope,$compile, $rootScope, $timeout
 		// e.preventDefault();
 
 		if($scope.QuickProduct.P_31 != null){
+            console.log($scope.QuickProduct.P_31.name);
 			var data = {};
 		    data.category = $scope.QuickProduct.P_31;
             data.productId = $scope.QuickProduct.PRODUCT_ID;

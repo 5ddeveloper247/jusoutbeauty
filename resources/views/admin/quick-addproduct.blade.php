@@ -2556,13 +2556,13 @@
                                         placeholder="Enter Short Description..."></textarea>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4">
+                            <div class="col-sm-12 col-12 register-new-product-picture-para-box mt-4" ng-show="QuickProduct.P_31.name != 'Make Up' && QuickProduct.P_31.name != 'Nutrition'">
                                 <div class="row register-new-product-picture-para">
                                     <div class="col-sm-4 image-overlay upload-photo-box" id="imageAttach-btn"
                                         onclick="form4();" style="">
                                         <img src="{{ url('/assets-admin') }}/images/admin/upload.svg"
                                             alt="" width="50">
-                                        <p>360 X 450</p>
+                                        <p>Min : 360 X 450</p>
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="row" id="ps_att">
@@ -2600,10 +2600,10 @@
 
                                 </div>
                             </div>
-                            <small class="text-danger font-weight-bold"><span class="badge badge-info">*Note: Save
+                            <small class="text-danger font-weight-bold"><span class="badge badge-info" ng-show="QuickProduct.P_31.name != 'Make Up' && QuickProduct.P_31.name != 'Nutrition'">*Note: Save
                                     basic
                                     info then upload image</span></small><br>
-                            <small class="text-danger font-weight-bold"><span class="badge badge-danger">*Note:
+                            <small class="text-danger font-weight-bold"><span class="badge badge-danger" ng-show="QuickProduct.P_31.name != 'Make Up' && QuickProduct.P_31.name != 'Nutrition'">*Note:
                                     Image
                                     dimensions must be minimum 270 X 370</span></small>
                         </div>
