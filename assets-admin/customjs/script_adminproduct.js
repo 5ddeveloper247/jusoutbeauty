@@ -676,7 +676,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		$scope.shade.S_1 = "";
 		$scope.shade.S_2 = "";
 
-		$("#ps_att").html('');
+		$("#pss_att").html('');
 
 		setTimeout(function(){
 			$("#s1").val('').trigger('change');
@@ -974,8 +974,6 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	$scope.makeImageAttachmentHtml = function(images){
 
 		$("#p_att").html('');
-		var primary="Primary";
-		var secondary= "Secondary";
 
 		if(images != '' && images != null){
 
@@ -1004,7 +1002,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 									'<div class="text">'+
 										'<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteProductImage('+images[i]["ID"]+')" title="Delete Image">';
 
-											html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+images[i]["ID"]+')" title="Mark Primary">';
+										html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+images[i]["ID"]+')" title="Mark Primary">';
 
 									html +=
 									'</div>'+
@@ -1076,7 +1074,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	}
 	$scope.makeProductShadeImageHtml = function(images){
 
-		$("#ps_att").html('');
+		$("#pss_att").html('');
 
 		if(images != '' && images != null){
 
@@ -1097,7 +1095,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 								'</div>'+
 							'</div>';
 
-					$("#ps_att").append($compile(angular.element(html))($scope));
+					$("#pss_att").append($compile(angular.element(html))($scope));
 			}
 		}
 	}
@@ -1792,8 +1790,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 									'</div>'+
 								'</div>'+
 							'</div>';
-
-					$("#ps_att").append($compile(angular.element(html))($scope));
+				// console.log(html);
+					$("#pss_att").append($compile(angular.element(html))($scope));
  	      	}
  	   	}
  	});
