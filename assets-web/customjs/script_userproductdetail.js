@@ -53,10 +53,27 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 	});
 	$(document).on("click", ".shadeAccord-btn", function () {
+	
+		// initializeHcSticky()
 		var i = $(this).attr('data-id');
 		$("#chooseShade_container_"+i).slideToggle('slow');
 
 	});
+	
+	// function initializeHcSticky() {
+	// 	var header_sticky_height = 0;
+
+    //     $('.primary-summary.summary-sticky > .primary-summary-inner').hcSticky({
+    //         stickTo: '#summary-sticky',
+    //         top: header_sticky_height + 0
+    //     });
+    // }
+	// initializeHcSticky()
+	// $('.primary-summary.summary-sticky > .primary-summary-inner').hcSticky({
+	// 	stickTo: '#summary-sticky',
+	// 	top: header_sticky_height + 80
+	// });  
+
 	$(document).on("click", "#chooseShadeBtn2", function () {
 
 		$("#chooseShade2_container").slideToggle('slow');

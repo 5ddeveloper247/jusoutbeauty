@@ -11,6 +11,11 @@
 
 </script>
 <style>
+    .sticky {
+        position: sticky;
+        top: 0;
+        
+    }
     .recent_viewed:hover {
         text-decoration: underline;
         text-decoration-color: #3d94b7;
@@ -422,15 +427,30 @@
                                 <img src="@{{ selectedShadeImg_s }}" alt="Image"
                                     class="prod_img_detail img-w35 img-product-gall">
                             </div>
-
-                            <?php if(!empty($images)){?>
-                            <?php foreach($images as $image){?>
-                            <div class="col-sm-6 col-6 px-1 mb-2">
-                                <img src="<?= $image['downPath'] ?>" alt="Image"
-                                    class="prod_img_detail img-w35 img-product-gall">
-                            </div>
-                            <?php }?>
-                            <?php }?>
+                           
+                            @php
+                                $primaryImages = [];
+                                $secondaryImages = [];
+                                $otherImages = [];
+                            
+                                foreach ($images as $image) {
+                                    if ($image['primFlag'] == 1) {
+                                        $primaryImages[] = $image;
+                                    } elseif ($image['secFlag'] == 1) {
+                                        $secondaryImages[] = $image;
+                                    } else {
+                                        $otherImages[] = $image;
+                                    }
+                                }
+                            
+                                $finalImages = array_merge($primaryImages, $secondaryImages, $otherImages);
+                            @endphp
+                            
+                            @foreach ($finalImages as $image)
+                                <div class="col-sm-6 col-6 px-1 mb-2">
+                                    <img src="{{ $image['downPath'] }}" alt="Image" class="prod_img_detail img-w35 img-product-gall">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
