@@ -70,10 +70,10 @@ class ShoppingcartModel extends Model
     }
     public function getSpecificCartLineDetails($cartId){
     	$ProductModel = new ProductModel();
-
+        $userDashboardModel = new UserdashboardModel();
     	$result = DB::table('jb_shopping_cart_detail_tbl as a')->select('a.*','a.PRODUCT_TYPE','a.UNIT_PRICE','a.VAT_PERCENT','a.VAT_AMOUNT',
     																	'a.DISCOUNT_AMOUNT','a.TOTAL_AMOUNT_INC_VAT','jpt.NAME as productName',
-    																	'jpt.UNIT_PRICE as productPrice', 'jpt.UNIT as productUnit',
+    																	'jpt.UNIT_PRICE as productPrice', 'jpt.UNIT as productUnit','jpt.DISCOUNT_TYPE','jpt.DISCOUNT',
     																	'jbpt.NAME as bundleName', 'jbpt.DISCOUNTED_AMOUNT as bundlePrice',
     																	'jbpt.UNIT as bundleUnit','jbpt.IMAGE_DOWN_PATH as bundleImage')
     	->leftjoin ( 'jb_product_tbl as jpt', 'a.PRODUCT_ID', '=', 'jpt.PRODUCT_ID' )
@@ -90,6 +90,7 @@ class ShoppingcartModel extends Model
     		$arrRes[$i]['ADDED_EFFECTIVE_DATE'] = $row->ADDED_EFFECTIVE_DATE;
     		$arrRes[$i]['QUANTITY'] = $row->QUANTITY;
     		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+            $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
     		$arrRes[$i]['lineTotalAmount'] = number_format($row->TOTAL_AMOUNT,2);
 
     		$arrRes[$i]['vatPercent'] = $row->VAT_PERCENT;
@@ -126,7 +127,7 @@ class ShoppingcartModel extends Model
 
     		$i++;
     	}
-
+        // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
     }
     public function getSpecificCartLineForOrder($cartId){

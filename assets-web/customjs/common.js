@@ -232,8 +232,14 @@ $(document).on("click", ".toShopListing", function () {
 										 html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 										 html +='</div>';
 										 html +='<div class="media-body">';
-										 html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
-										 html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+										 html +='<a href="javascript:;" class="card-title font-weight-500 text-capitalize">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
+                                         if(list[i]['DISC_AMOUNT'] > '0'){
+                                            html +='<div class="d-flex justify-content-evenly>"';
+                                            html +='<p class="card-text mb-2 text-primary">$'+list[i]['DISC_AMOUNT']+'</p>';
+                                            html +='<p class="ml-1 card-text text-primary small" style="margin-top:2px;"><del>$'+list[i]['UNIT_PRICE']+'</del></p></div>';
+                                        }else{
+                                            html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+                                        }
 										 html +='<div class="d-flex align-items-center">';
 										 html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 										 //html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
@@ -496,8 +502,14 @@ $(document).on("click", ".addto-cart", function () {
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			    		         	html +='</div>';
 			    		         	html +='<div class="media-body">';
-			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
-			    		         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+			    		         	html +='<a href="javascript:;" class="card-title font-weight-500 text-capitalize">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
+                                     if(list[i]['DISC_AMOUNT'] > '0'){
+                                        html +='<div class="d-flex justify-content-evenly>"';
+                                        html +='<p class="card-text mb-2 text-primary">$'+list[i]['DISC_AMOUNT']+'</p>';
+                                        html +='<p class="ml-1 card-text text-primary small" style="margin-top:2px;"><del>$'+list[i]['UNIT_PRICE']+'</del></p></div>';
+                                    }else{
+                                        html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+                                    }
 			    		         	html +='<div class="d-flex align-items-center">';
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			    		         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
@@ -687,17 +699,23 @@ $(document).on("click", ".addto-cart1", function () {
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			    		         	html +='</div>';
 			    		         	html +='<div class="media-body">';
-			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
-			    		         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+			    		         	html +='<a href="javascript:;" class="card-title font-weight-500 text-capitalize">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
+                                     if(list[i]['DISC_AMOUNT'] > '0'){
+                                        html +='<div class="d-flex justify-content-evenly>"';
+                                        html +='<p class="card-text mb-2 text-primary">$'+list[i]['DISC_AMOUNT']+'</p>';
+                                        html +='<p class="ml-1 card-text text-primary small" style="margin-top:2px;"><del>$'+list[i]['UNIT_PRICE']+'</del></p></div>';
+                                    }else{
+                                        html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+                                    }
 			    		         	html +='<div class="d-flex align-items-center">';
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
-			    		         	html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
-			    		         	html +='<i class="far fa-minus"></i>';
-			    		         	html +='</a>';
+			    		         	// html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
+			    		         	// html +='<i class="far fa-minus"></i>';
+			    		         	// html +='</a>';
 			    		         	html +='<input name="number[]" disabled type="number" class="form-control form-control-sm w-100 px-6 fs-16 text-center input-quality bg-transparent h-35px border-0" value="'+list[i]['QUANTITY']+'" required>';
-			    		         	html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
-			    		         	html +='<i class="far fa-plus"></i> ';
-			    		         	html +='</a>';
+			    		         	// html +='<a href="javascript:;" disabled class="up position-absolute pos-fixed-right-center pr-2 z-index-2">';
+			    		         	// html +='<i class="far fa-plus"></i> ';
+			    		         	// html +='</a>';
 			    		         	html +='</div>';
 
 			    		         	html +='</div>';
@@ -885,8 +903,14 @@ $(document).on("click", ".quick-addto-cart", function () {
 			    		         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			    		         	html +='</div>';
 			    		         	html +='<div class="media-body">';
-			    		         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
-			    		         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+			    		         	html +='<a href="javascript:;" class="card-title font-weight-500 text-capitalize">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
+                                     if(list[i]['DISC_AMOUNT'] > '0'){
+                                        html +='<div class="d-flex justify-content-evenly>"';
+                                        html +='<p class="card-text mb-2 text-primary">$'+list[i]['DISC_AMOUNT']+'</p>';
+                                        html +='<p class="ml-1 card-text text-primary small" style="margin-top:2px;"><del>$'+list[i]['UNIT_PRICE']+'</del></p></div>';
+                                    }else{
+                                        html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+                                    }
 			    		         	html +='<div class="d-flex align-items-center">';
 			    		         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			    		         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
@@ -982,8 +1006,14 @@ $(document).on("click", ".quick-addto-cart", function () {
 			         	html +='<img src="'+list[i]['primaryImage']+'" alt="High Ankle Jeans" class="border">';
 			         	html +='</div>';
 			         	html +='<div class="media-body">';
-			         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
-			         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+			         	html +='<a href="javascript:;" class="card-title font-weight-500 text-capitalize">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
+                         if(list[i]['DISC_AMOUNT'] > '0'){
+                            html +='<div class="d-flex justify-content-evenly>"';
+                            html +='<p class="card-text mb-2 text-primary">$'+list[i]['DISC_AMOUNT']+'</p>';
+                            html +='<p class="ml-1 card-text text-primary small" style="margin-top:2px;"><del>$'+list[i]['UNIT_PRICE']+'</del></p></div>';
+                        }else{
+                            html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+                        }
 			         	html +='<div class="d-flex align-items-center">';
 			         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';
@@ -1066,8 +1096,14 @@ $(document).on("click", ".quick-addto-cart", function () {
 			         	html +='<img src="'+list[i]['primaryImage']+'" style="height:100px" alt="High Ankle Jeans" class="border">';
 			         	html +='</div>';
 			         	html +='<div class="media-body">';
-			         	html +='<a href="javascript:;" class="card-title font-weight-500">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
-			         	html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+			         	html +='<a href="javascript:;" class="card-title font-weight-500 text-capitalize">'+list[i]['productName']+'<i class="fa fa-info-circle p-1" onclick="getProductShadesRightSideBar('+list[i]['CART_LINE_ID']+')" data-toggle="tooltip" title="Info" data-placement="top" data-original-title="View Product Shades"></i></a>';
+                         if(list[i]['DISC_AMOUNT'] > '0'){
+                            html +='<div class="d-flex justify-content-evenly>"';
+                            html +='<p class="card-text mb-2 text-primary">$'+list[i]['DISC_AMOUNT']+'</p>';
+                            html +='<p class="ml-1 card-text text-primary small" style="margin-top:2px;"><del>$'+list[i]['UNIT_PRICE']+'</del></p></div>';
+                        }else{
+                            html +='<p class="card-text mb-2 text-primary">$'+list[i]['UNIT_PRICE']+'</p>';
+                        }
 			         	html +='<div class="d-flex align-items-center">';
 			         	html +='<div class="input-group position-relative w-100px bg-input rounded rounded">';
 			         	//html +='<a href="javascript:;" disabled class="down position-absolute pos-fixed-left-center pl-2 z-index-2">';

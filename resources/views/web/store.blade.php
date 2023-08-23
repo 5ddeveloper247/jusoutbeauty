@@ -345,7 +345,7 @@
                                         </ul>
                                         <div class="row">
                                             <div
-                                                 ng-class="{'col-sm-7': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6}">
+                                                 ng-class="{'col-sm-7': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= 0}">
                                                 <p class="text-primary mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT >'0'">
                                                     <span>$@{{ row.DISC_AMOUNT }}</span>
                                                     <span class="small"><del> $@{{ row.UNIT_PRICE }}</del></span>
@@ -356,7 +356,7 @@
                                                 </p>
                                             </div>
                                             <div
-                                                 ng-class="{'col-sm-5': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6}">
+                                                 ng-class="{'col-sm-5': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= 0}">
                                                 <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
                                                     @{{ row.UNIT }}
                                                 </p>

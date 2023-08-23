@@ -63,6 +63,7 @@ class WishlistModel extends Model
     public function getAllWishlistDataByUser($userId){
     	$ProductModel = new ProductModel();
     	$ProductShade = new ProductShadeModel();
+        $userDashboardModel = new UserdashboardModel();
 
     	// $result = DB::table('jb_user_wishlist_tbl as a')->select('a.*','a.PRODUCT_TYPE','jpt.NAME as productName',
 		//     			'jpt.UNIT_PRICE as productPrice', 'jpt.UNIT as productUnit','jpt.CATEGORY_ID',
@@ -81,7 +82,7 @@ class WishlistModel extends Model
     	// 		->orderBy('a.WISHLIST_ID', 'desc')
     	// 		->get();
         $result = DB::table('jb_user_wishlist_tbl as a')
-    ->select('a.*', 'a.PRODUCT_TYPE', 'jpt.NAME as productName','jpt.SLUG', 'jpt.UNIT_PRICE as productPrice', 'jpt.UNIT as productUnit', 'jpt.CATEGORY_ID',
+    ->select('a.*', 'a.PRODUCT_TYPE', 'jpt.NAME as productName','jpt.SLUG', 'jpt.UNIT_PRICE as productPrice', 'jpt.UNIT as productUnit', 'jpt.CATEGORY_ID','jpt.DISCOUNT_TYPE','jpt.DISCOUNT',
         'jpt.SUB_CATEGORY_ID', 'ctbl.CATEGORY_NAME as categoryname', 'sctbl.NAME as subcategoryname','jpt.QUANTITY',
         'jbpt.CATEGORY_ID as bctid', 'jbpt.SUB_CATEGORY_ID as bsctid', 'jbpt.NAME as bundleName', 'jbpt.DISCOUNTED_AMOUNT as bundlePrice',
         'jbpt.UNIT as bundleUnit', 'jbpt.IMAGE_DOWN_PATH as bundleImage')
@@ -129,11 +130,11 @@ class WishlistModel extends Model
                         } else {
                             $name = $row->subcategoryname;
                         }
-                        
+
                         $productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
-                        
+
                         if(!empty($productShades)){
-                        
+
                         	$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
                         	$arrRes[$i]['INV_QUANTITY'] = '';
                         }else{
@@ -143,6 +144,7 @@ class WishlistModel extends Model
 
     					$arrRes[$i]['productUnit'] = $row->productUnit;
     					$arrRes[$i]['unitPrice'] = number_format($row->productPrice,2);
+                        $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->productPrice,$row->DISCOUNT_TYPE,$row->DISCOUNT);
 
     					$productImage = $ProductModel->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     					$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";

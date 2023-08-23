@@ -40,27 +40,35 @@
                                             data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
                                             data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"
                                             >@{{row.productName}}</a>
-											<p class="card-text fs-14 mb-1 text-primary">
+											{{-- <p class="card-text fs-14 mb-1 text-primary">
 												<span>$@{{row.unitPrice}}</span>
-											</p>
+											</p> --}}
+                                           <p class="card-text fs-14 mb-1 text-primary" ng-show="row.DISC_AMOUNT >'0'">
+                                               <span>$@{{ row.DISC_AMOUNT }}</span>
+                                               <span class="small"><del> $@{{ row.unitPrice }}</del></span>
+                                           </p>
+                                           <p class="card-text fs-14 mb-1 text-primary" ng-show="row.DISC_AMOUNT <= '0'">
+                                               {{-- <span ng-if="row.DISC_AMOUNT > 0">$@{{ row.DISC_AMOUNT }}</span> --}}
+                                               <span>$@{{ row.unitPrice }}</span>
+                                           </p>
 											<p class="fs-12 mb-0">@{{row.DATE}}</p>
 										</div>
 									</div>
 								</td>
 								<td class="align-middle text-right pr-6">
 									<span class="mr-4">In stock</span>
-									
-									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 productdetail" 
+
+									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 productdetail"
 										data-id="@{{row.PRODUCT_ID}}" data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}"
 										data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}"
 										ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">Add To Cart</a>
-										
- 									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 addto-cart1" 
+
+ 									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 addto-cart1"
  										data-id="@{{row.PRODUCT_ID}}" data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}"
  										data-quantity='1' ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY > '0'">Add To Cart</a>
-									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3" 
+									<a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3"
 										ng-if="row.INV_QUANTITY_FLAG == 'inv' && row.INV_QUANTITY <= '0'" disabled>Out of Stock</a>
-									
+
 									<!-- <a href="javascript:;" class="btn btn-outline-primary py-1 w-150px px-0 my-3 addto-cart"
 										data-type="@{{row.flag == 'bundle' ? 'bundle' : 'single'}}" data-id="@{{row.PRODUCT_ID}}"
 										data-quantity='1'>Add To Cart</a> -->

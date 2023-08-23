@@ -2302,6 +2302,7 @@ class HomeController extends Controller
    	public function removeCartItem(Request $r) {
    		$ShoppingcartModel = new ShoppingcartModel();
    		$ProductModel = new ProductModel();
+        $userDashboardModel = new UserdashboardModel();
 
    		$userId = $r->input('userId');
    		$cartId = $r->input('cartId');
