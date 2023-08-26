@@ -257,7 +257,7 @@ var site = '<?php echo session('site');?>';
 									<p style="font-size:1rem !important;">Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
-								<div class="row d-flex" style="height: 65%; overflow:scroll;">
+								<div class="row d-flex" style="height: 66%; overflow:scroll;">
 									<div class="col-lg-4 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
 										<div class="box shade py-2 fadeInUp animated"
 											data-animate="fadeInUp">
