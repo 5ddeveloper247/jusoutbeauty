@@ -248,13 +248,13 @@ var site = '<?php echo session('site');?>';
 					</section>
 					<section class="pt-6 pt-lg-5">
 						<div class="row">
-							<div class="col-lg-6" style="height: 100%;">
-								<img id="take_a_q" src="@{{levelOneLatestImg}}" style="object-fit:cover; height:50%; width:100%;">
+							<div class="col-lg-6" style="height: 675px;">
+								<img id="take_a_q" src="@{{levelOneLatestImg}}" style=" height:520px !important;width:unset !important; ">
 							</div>
-							<div class="col-md-6">
+							<div class="col-lg-6" style="height: 675px;">
 								<div class="text-center">
-									<h2>Liquid Foundation Iconic Edition</h2>
-									<p>Invisible Touch Liquid Foundation. Foundation color suitable
+									<h2 style="font-size:2.5rem !important;">Liquid Foundation Iconic</h2>
+									<p style="font-size:1rem !important;">Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
 								<div class="row d-flex" style="height: 45%; overflow:scroll;">
