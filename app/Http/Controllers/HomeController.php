@@ -180,7 +180,7 @@ class HomeController extends Controller
 		$data['routine'] = $this->getAllRouteByNameForWebiste();
 		$data['routineformbl'] = $this->getAllRouteByNameForWebiste();
         $data['ingredients'] = $ProductIngredient->getIngredientsWithImags();
-		dd($data['ingredients']);
+		// dd($data['ingredients']);
 
 		$data['page'] = 'Ingredients';
 		return view('web.ingredients')->with ( $data );
