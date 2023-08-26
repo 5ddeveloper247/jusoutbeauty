@@ -525,7 +525,7 @@
  													</div>
  													<p class="mb-3" style="max-height:150px;overflow:auto">@{{ short_description }}</p>
 
- 													<div style="margin-bottom: 0px;" ng-if="displayCollectionProductShadesQuickView.length != null || displayCollectionProductShadesQuickView.length != undefined">
+ 													<div style="margin-bottom: 0px;" ng-if="displayCollectionProductShadesQuickView != ''">
  														<button class="accordion_inc shadeAccord-btn" data-id="1">1. Choose Shade</button>
  														<div class="panel_inc" id="chooseShade_container_1">
  															<div class="form-group shop-swatch-color shop-swatch-color-02 mb-1">
@@ -556,8 +556,8 @@
  													</div>
 
  													<div class="chooseShade-container" style="margin-bottom: 30px;" ng-if="displayCollectionBundleProductShadesQuickView != ''">
-														<div id="shadeBundlechooser_container_@{{row.BUNDLE_LINE_ID}}" ng-repeat="row in displayCollectionBundleProductShadesQuickView">
-															<button class="accordion_inc_prod_detail shadeAccord-btn" data-id="@{{row.BUNDLE_LINE_ID}}">@{{row.seqNo}}. Choose Shade Product @{{row.productName}}</button><!-- chooseShadeBtn -->
+														<div id="shadeBundlechooser_container_@{{row.BUNDLE_LINE_ID}}" ng-repeat="row in displayCollectionBundleProductShadesQuickView" ng-show='row.productShades != null'>
+															<button class="accordion_inc_prod_detail shadeAccord-btn" data-id="@{{row.BUNDLE_LINE_ID}}">@{{$index+1}}. Choose Shade Product @{{row.productName}}</button><!-- chooseShadeBtn -->
 															<div class="panel_inc_prod_detail" id="chooseShade_container_@{{row.BUNDLE_LINE_ID}}">
 																<div class="form-group shop-swatch-color shop-swatch-color-02 mb-6 widget-color">
 

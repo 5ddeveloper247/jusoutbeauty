@@ -353,9 +353,15 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 							<div class="col-sm-6 col-6 px-1 mb-2" ng-show="selectedShadeImg_s != ''" style="display:none;">
 								<img src="@{{selectedShadeImg_s}}" alt="Image" class="prod_img_detail img-w25 img-product-gall">
 							</div>
-							<div class="col-sm-6 col-6 px-1 mb-2">
-								<img src="<?= $bundleDetails['primaryImage']; ?>" alt="Image" class="prod_img_detail img-product-gall">
-							</div>
+							<?php 
+								$bundleImages = $bundleDetails['IMAGES'];
+								if(!empty($bundleImages)){
+									foreach ($bundleImages as $image){ ?>
+								<div class="col-sm-6 col-6 px-1 mb-2">
+									<img src="<?= $image->DOWN_PATH; ?>" alt="Image" class="prod_img_detail img-product-gall">
+								</div>
+							<?php }}?>
+							
 						</div>
 					</div>
 					<div
@@ -3429,8 +3435,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                             </p>
 
                                             <div style="margin-bottom: 0px;" ng-if="displayCollectionProductShadesQuickView.length != null || displayCollectionProductShadesQuickView.length != undefined">
-                                                <button class="accordion_inc shadeAccord-btn" data-id="1">1.
-                                                    Choose Shade</button>
+                                                <button class="accordion_inc shadeAccord-btn" data-id="1">1. Choose Shade</button>
                                                 <div class="panel_inc" id="chooseShade_container_1">
                                                     <div class="form-group shop-swatch-color shop-swatch-color-02 mb-1">
                                                         <!-- </label> -->

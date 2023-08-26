@@ -518,6 +518,8 @@ class BundleProductModel extends Model
         ->whereNot('DOWN_PATH',NULL)
         ->where('SOURCE_CODE','BUNDLE_IMG')
         ->where('PRODUCT_ID',$id)
+        ->orderBy('PRIMARY_FLAG','desc')
+        ->orderBy('SECONDARY_FLAG','desc')
         ->get();
 
         return $result;
