@@ -1056,7 +1056,7 @@ public function uploadPopupImage(Request $request) {
                 if (!file_exists($path)) {
                     mkdir($path, 0777, true);
                     // dd($namefile);
-                    dd($downpath);
+                    // dd($downpath);
                     if(move_uploaded_file($_FILES['uploadImage']['tmp_name'], $fullpath)){
 
                         $result = DB::table ( 'jb_popup_tbl' ) ->where ( 'ID', $sourceId ) ->update (
@@ -1066,13 +1066,13 @@ public function uploadPopupImage(Request $request) {
                                         'UPDATED_AT' => date ( 'Y-m-d H:i:s' )
                                 )
                                 );
-                                dd($result);
+                                // dd($result);
                         print(json_encode(array(00, $namefile, $downpath, $_FILES['uploadImage']['name'], '1')));
                         exit;
 
                     }else{
-                        // print(json_encode(array(02)));
-                        dd(json_encode(array(02)));
+                        print(json_encode(array(02)));
+                        // dd(json_encode(array(02)));
                         exit;
                     }
 
@@ -1091,22 +1091,22 @@ public function uploadPopupImage(Request $request) {
                         print(json_encode(array(00, $namefile, $downpath, $_FILES['uploadImage']['name'], '2')));
                         exit;
                     }else{
-                        // print(json_encode(array(02)));
-                        dd(json_encode(array(02)));
+                        print(json_encode(array(02)));
+                        // dd(json_encode(array(02)));
                         exit;
                     }
                 }
 
             }
         }else{
-            // print(json_encode(array(02)));
-            dd(json_encode(array(02)));
+            print(json_encode(array(02)));
+            // dd(json_encode(array(02)));
             exit;
         }
 
     }else{
-        // print(json_encode(array(02)));
-        dd(json_encode(array(02)));
+        print(json_encode(array(02)));
+        // dd(json_encode(array(02)));
         exit;
     }
 }
