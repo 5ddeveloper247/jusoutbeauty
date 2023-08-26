@@ -920,7 +920,7 @@ class HomeController extends Controller
                             // dd('sub category is missing');
                             // $productIdFromSlug = DB::table('jb_product_tbl')->select('PRODUCT_ID')->where('SLUG',$slug)->orWhere('NAME',$slugByName)->first();
                             if (isset($productIdFromSlug)) {
-                                dd($category);
+                                // dd($category);
                                 if (isset($category)) {
                                     // dd('slug and category');
                                     $CategoryIdFromSlug = DB::table('jb_product_tbl as prd')
