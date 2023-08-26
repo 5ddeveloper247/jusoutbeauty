@@ -223,7 +223,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																<input type="text" class="form-control" id="p10" ng-model="bundle['P_10']" placeholder="Slug">
 															</div>
 														</div> --}}
-														<div class="col-sm-6">
+														<div class="col-sm-6 d-none">
 															<div class="form-group">
 																<label class="col-form-label" for="p11"><b>Product Sub Sub Category</b></label>
 																<select class="form-control" id="p11" ng-model="bundle['P_11']"
