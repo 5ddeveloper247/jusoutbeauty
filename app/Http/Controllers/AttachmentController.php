@@ -1373,7 +1373,7 @@ public function uploadPopupImage(Request $request) {
 	/*===================== admin Product Video Attachment code start ==========================*/
 
 	public function uploadProductImageVideoSelfi(Request $request) {
-        
+
 		$allowed =  array('mp4','MP4','webm','WEBM','mov','MOV','wmv','WMV','html5','HTML5','mpeg-2', 'MPEG-2',
 		'png','jpg','jpeg','JPEG','PNG','JPG','jpe','jpge','JPGE','JPE','jfif', 'svg', 'SVG', 'gif', 'GIF', 'webp', 'WEBP');
 
@@ -1901,40 +1901,48 @@ public function uploadPopupImage(Request $request) {
 				}else{
 
 					//insert code here
-// 					$namefile = DB::table ( 'jb_product_images_tbl' )->insertGetId (
-// 							array ( 'USER_ID' => $userId,
-// 									'PRODUCT_ID' => $sourceId,
-// 									'SOURCE_CODE' => $sourceCode,
-// 									'FILE_TYPE' => $ext,
-// 									'FILE_NAME' => $fileName,
-// 									'FULL_NAME' => $fileNameFull,
-// 									'UPLOAD_DATE_TIME' => date ( 'Y-m-d H:i:s' ),
-// 									'PRIMARY_FLAG' => '0',
-// 									'SECONDARY_FLAG' => '0',
-// 									'CREATED_BY' => $userId,
-// 									'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
-// 									'UPDATED_BY' => $userId,
-// 									'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-// 							)
-// 						);
+					$namefile = DB::table ( 'jb_product_images_tbl' )->insertGetId (
+							array ( 'USER_ID' => $userId,
+									'PRODUCT_ID' => $sourceId,
+									'SOURCE_CODE' => $sourceCode,
+									'FILE_TYPE' => $ext,
+									'FILE_NAME' => $fileName,
+									'FULL_NAME' => $fileNameFull,
+									'UPLOAD_DATE_TIME' => date ( 'Y-m-d H:i:s' ),
+									'PRIMARY_FLAG' => '0',
+									'SECONDARY_FLAG' => '0',
+									'CREATED_BY' => $userId,
+									'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
+									'UPDATED_BY' => $userId,
+									'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+							)
+						);
 
-					$namefile = $sourceId;
+					// $namefile = $sourceId;
 
 					$fullpath = $path."/".time().'-'.$namefile.".".$ext;
 					$downpath = $downpath."/".time().'-'.$namefile.".".$ext;
+                    // dd($fullpath,$downpath );
 
 					if (!file_exists($path)) {
 						mkdir($path, 0777, true);
 
 						if(move_uploaded_file($_FILES['uploadattl']['tmp_name'], $fullpath)){
 
-							$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $namefile ) ->update (
-									array ( 'IMAGE_PATH' => $fullpath,
-											'IMAGE_DOWN_PATH' => $downpath,
-											'UPDATED_BY' => $userId,
-											'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-									)
-									);
+							// $result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $namefile ) ->update (
+							// 		array ( 'IMAGE_PATH' => $fullpath,
+							// 				'IMAGE_DOWN_PATH' => $downpath,
+							// 				'UPDATED_BY' => $userId,
+							// 				'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+							// 		)
+							// 		);
+                            $result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $namefile ) ->update (
+                                array ( 'PATH' => $fullpath,
+                                        'DOWN_PATH' => $downpath,
+                                        'UPDATED_BY' => $userId,
+                                        'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+                                )
+                                );
 
 							print(json_encode(array(00, $namefile, $downpath, $_FILES['uploadattl']['name'], '1')));
 							exit;
@@ -1947,13 +1955,20 @@ public function uploadPopupImage(Request $request) {
 					}else{
 						if(move_uploaded_file($_FILES['uploadattl']['tmp_name'], $fullpath)){
 
-							$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $namefile ) ->update (
-									array ( 'IMAGE_PATH' => $fullpath,
-											'IMAGE_DOWN_PATH' => $downpath,
-											'UPDATED_BY' => $userId,
-											'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-									)
-									);
+							// $result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $namefile ) ->update (
+							// 		array ( 'IMAGE_PATH' => $fullpath,
+							// 				'IMAGE_DOWN_PATH' => $downpath,
+							// 				'UPDATED_BY' => $userId,
+							// 				'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+							// 		)
+							// 		);
+                            $result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $namefile ) ->update (
+                                array ( 'PATH' => $fullpath,
+                                        'DOWN_PATH' => $downpath,
+                                        'UPDATED_BY' => $userId,
+                                        'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+                                )
+                                );
 
 							print(json_encode(array(00, $namefile, $downpath, $_FILES['uploadattl']['name'], '2')));
 							exit;

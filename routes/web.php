@@ -477,7 +477,9 @@ Route::group(['middleware' => ['AdminAuth']], function(){
 	Route::post('/editAdminProduct', [AdminController::class, 'editAdminProduct']);
 	Route::post('/saveAdminProductVideoDetails', [AdminController::class, 'saveAdminProductVideoDetails']);
 	Route::post('/markPrimaryProdImage', [AdminController::class, 'markPrimaryProdImage']);
+    Route::post('/markPrimaryBundleProdImage', [AdminController::class, 'markPrimaryBundleProdImage']);
 	Route::post('/deleteProductImage', [AdminController::class, 'deleteProductImage']);
+    Route::post('/deleteBundleProductImage', [AdminController::class, 'deleteBundleProductImage']);
 	Route::post('/saveAdminProductPricingVat', [AdminController::class, 'saveAdminProductPricingVat']);
 	Route::post('/getIngredientsWrtCategory', [AdminController::class, 'getIngredientsWrtCategory']);
 	Route::post('/saveAdminProductIngredient', [AdminController::class, 'saveAdminProductIngredient']);

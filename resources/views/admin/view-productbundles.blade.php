@@ -297,7 +297,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															<div class="col-sm-9">
 																<div class="row" id="p_att">
 
-																	<div class="col-2 image-overlay margin-r1" id="img_file_@{{bumdle.ID}}" ng-show="bundle.image != ''">
+																	{{-- <div class="col-2 image-overlay margin-r1" id="img_file_@{{bumdle.ID}}" ng-show="bundle.image != ''">
 
 																		<img src="@{{bundle.image}}" alt="" class="image-box">
 
@@ -305,13 +305,13 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 																			<div class="text">
 																				<img class="fa-trash-alt" src="{{url('/assets-admin')}}/images/admin/trash.svg" alt="" width="18" ng-click="deleteBundleImage()" title="Delete Image">
 
-																				{{-- <div class="arrow-icon-move-box">
+																				<div class="arrow-icon-move-box">
 																					<img class="arrow-center" src="{{url('/assets-admin')}}/images/admin/feather-move.svg" alt="">
 																					<p>Move Position</p>
-																				</div> --}}
+																				</div>
 																			</div>
 																		</div>
-																	</div>
+																	</div> --}}
 																</div>
 															</div>
 															<form class="" id="uploadattch" method="POST" action="uploadBundleProductImage" enctype="multipart/form-data">
@@ -320,7 +320,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 			           											<input type="hidden" id="userId" name="userId" value="<?php echo session('userId');?>">
 																<input type="hidden" id="sourceId" name="sourceId" value="@{{bundle.ID}}">
 																<input type="hidden" id="sourceCode" name="sourceCode" value="BUNDLE_IMG">
-																<input type="file" id="uploadattl" name="uploadattl" class="file-input" style="display: none;">
+																<input type="file" id="uploadattl" name="uploadattl" class="file-input" style="display: none;" multiple>
 															</form>
 
 														</div>
@@ -401,8 +401,51 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 				</div>
 
 
+                {{-- <div class="modal fade" id="alertDelProduct">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
 
+                            <div class="modal-body">
+                               <h4 style="text-align: center;">Are Your sure to delete?</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger light"
+                                    data-dismiss="modal" ng-click='closeDeleteConfirmModal()'>No</button>
+                                <button type="button" class="btn btn-primary" ng-click="deleteProductConfirmed()">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
 
+                <div class="modal fade" id="confirmBundleProdImageModal">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- 	<h5 class="modal-title">Change State</h5> -->
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label><b>Selected Image mark as primary or secondary!!!</b></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger light"
+                                    ng-click="closeProdImageModal();">Close</button>
+                                <button type="button" class="btn btn-warning"
+                                    ng-click="markBundleProductDetailImageFlag(1);">Mark Primary</button>
+                                <button type="button" class="btn btn-warning"
+                                    ng-click="markBundleProductDetailImageFlag(2);">Mark Secondary</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 

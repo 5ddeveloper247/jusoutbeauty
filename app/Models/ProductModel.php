@@ -170,7 +170,7 @@ class ProductModel extends Model
     		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
     		$i++;
     	}
-        
+
     	return isset($arrRes) ? $arrRes : null;
 	}
 		public function getProductImagesWrtProductID($PRODUCT_ID){
@@ -530,6 +530,38 @@ class ProductModel extends Model
     	}
         // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
+    }
+    public function getSpecificBundleProductImagesByCode($id, $code){
+
+    	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
+    	->where('a.PRODUCT_ID', $id)
+        ->whereNot('a.PATH',NULL)
+        ->whereNot('a.DOWN_PATH',NULL)
+    	->where('a.SOURCE_CODE', $code)
+    	->get();
+
+    	// $i=0;
+    	// foreach ($result as $row){
+    	// 	$arrRes[$i]['ID'] = $row->IMAGE_ID;
+    	// 	$arrRes[$i]['userId'] = $row->USER_ID;
+    	// 	$arrRes[$i]['productId'] = $row->PRODUCT_ID;
+    	// 	$arrRes[$i]['code'] = $row->SOURCE_CODE;
+    	// 	$arrRes[$i]['fileType'] = $row->FILE_TYPE;
+    	// 	$arrRes[$i]['fileName'] = $row->FILE_NAME;
+    	// 	$arrRes[$i]['fullName'] = $row->FULL_NAME;
+    	// 	$arrRes[$i]['path'] = $row->PATH;
+    	// 	$arrRes[$i]['downPath'] = $row->DOWN_PATH;
+    	// 	$arrRes[$i]['primFlag'] = $row->PRIMARY_FLAG;
+    	// 	$arrRes[$i]['secFlag'] = $row->SECONDARY_FLAG;
+    	// 	$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
+    	// 	$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
+    	// 	$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
+    	// 	$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
+
+    	// 	$i++;
+    	// }
+        // dd($arrRes);
+    	return isset($result) ? $result : null;
     }
     public function getSpecificImage($id){
 

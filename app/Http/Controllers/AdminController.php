@@ -4890,6 +4890,65 @@ class AdminController extends Controller
 
 		echo json_encode ( $arrRes );
 	}
+    public function markPrimaryBundleProdImage(Request $request) {
+        // dd('came here');
+		$Product = new ProductModel();
+
+		$details = $_REQUEST ['details'];
+        // dd($details);
+		$imageId = $details ['imageId'];
+		$flag = $details ['flag'];
+		$productId = $details ['productId'];
+		$userId = $details ['userId'];
+
+
+		if($flag == 1){
+
+			DB::table('jb_product_images_tbl')
+				->where ( 'PRODUCT_ID', $productId )
+				->where ( 'SOURCE_CODE', 'BUNDLE_IMG' )
+				->update (
+					array ( 'PRIMARY_FLAG' => '0')
+				);
+			// dd($checkprimaryflag);
+			// DB::table ( 'jb_product_images_tbl' )
+			// ->where ( 'SOURCE_CODE', 'PRODUCT_IMG' )
+			// ->update (array ( 'PRIMARY_FLAG' => '0'));
+
+			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
+				array ( 'PRIMARY_FLAG' => '1',
+						'SECONDARY_FLAG' => '0',
+						'UPDATED_BY' => $userId,
+						'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+				)
+				);
+
+			$arrRes ['msg'] = 'Bundle image marked primary successfully...';
+
+		}else{
+
+			DB::table ( 'jb_product_images_tbl' )
+			->where ( 'PRODUCT_ID', $productId )
+			->where ( 'SOURCE_CODE', 'BUNDLE_IMG' )
+			->update (
+				array ( 'SECONDARY_FLAG' => '0')
+				);
+
+			$result = DB::table ( 'jb_product_images_tbl' ) ->where ( 'IMAGE_ID', $imageId ) ->update (
+					array ( 'SECONDARY_FLAG' => '1',
+							'PRIMARY_FLAG' => '0',
+							'UPDATED_BY' => $userId,
+							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+					)
+					);
+			$arrRes ['msg'] = 'Bundle image marked Secondary successfully...';
+		}
+
+
+		$arrRes ['images'] = $Product->getSpecificBundleProductImagesByCode($productId, 'BUNDLE_IMG');
+		$arrRes ['done'] = true;
+		echo json_encode ( $arrRes );
+	}
 	public function markPrimaryClinicalNoteImage(Request $request) {
 		$Product = new ProductModel();
 
@@ -4934,6 +4993,28 @@ class AdminController extends Controller
 		$arrRes ['images'] = $Product->getSpecificProductImagesByCode($productId, 'PRODUCT_IMG');
 		$arrRes ['done'] = true;
 		$arrRes ['msg'] = 'Product image deleted successfully...';
+
+		echo json_encode ( $arrRes );
+	}
+    public function deleteBundleProductImage(Request $request) {
+		$Product = new ProductModel();
+
+		$details = $_REQUEST ['details'];
+		$imageId = $details ['imageId'];
+		$productId = $details ['productId'];
+		$userId = $details ['userId'];
+
+		$attDetail = $Product->getSpecificImage($imageId);
+
+		$delete = DB::table ( 'jb_product_images_tbl' )->where ( 'IMAGE_ID', $imageId )->delete ();
+
+		if(isset($attDetail['path']) && $attDetail['path'] != ''){
+			unlink($attDetail['path']);
+		}
+
+		$arrRes ['images'] = $Product->getSpecificBundleProductImagesByCode($productId, 'BUNDLE_IMG');
+		$arrRes ['done'] = true;
+		$arrRes ['msg'] = 'Bundle image deleted successfully...';
 
 		echo json_encode ( $arrRes );
 	}
@@ -7346,32 +7427,32 @@ class AdminController extends Controller
 		echo json_encode ( $arrRes );
 	}
 
-	public function deleteBundleProductImage(Request $request) {
-		$Bundle = new BundleProductModel();
+	// public function deleteBundleProductImage(Request $request) {
+	// 	$Bundle = new BundleProductModel();
 
-		$details = $_REQUEST ['details'];
-		$bundleId = $details ['bundleId'];
-		$userId = $details ['userId'];
+	// 	$details = $_REQUEST ['details'];
+	// 	$bundleId = $details ['bundleId'];
+	// 	$userId = $details ['userId'];
 
-		$attDetail = $Bundle->getSpecificBundleProductData($bundleId);
+	// 	$attDetail = $Bundle->getSpecificBundleProductData($bundleId);
 
-		$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $bundleId ) ->update (
-						array ( 'IMAGE_DOWN_PATH' => '',
-								'IMAGE_PATH' => '',
-								'UPDATED_BY' => $userId,
-								'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
-						)
-					);
+	// 	$result = DB::table ( 'jb_bundle_product_tbl' ) ->where ( 'BUNDLE_ID', $bundleId ) ->update (
+	// 					array ( 'IMAGE_DOWN_PATH' => '',
+	// 							'IMAGE_PATH' => '',
+	// 							'UPDATED_BY' => $userId,
+	// 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
+	// 					)
+	// 				);
 
-		if(isset($attDetail['path']) && $attDetail['path'] != ''){
-			unlink($attDetail['path']);
-		}
+	// 	if(isset($attDetail['path']) && $attDetail['path'] != ''){
+	// 		unlink($attDetail['path']);
+	// 	}
 
-		$arrRes ['done'] = true;
-		$arrRes ['msg'] = 'Bundle image deleted successfully...';
+	// 	$arrRes ['done'] = true;
+	// 	$arrRes ['msg'] = 'Bundle image deleted successfully...';
 
-		echo json_encode ( $arrRes );
-	}
+	// 	echo json_encode ( $arrRes );
+	// }
 
 	public function saveAdminBundleProductLine(Request $request) {
 		$Product = new ProductModel();

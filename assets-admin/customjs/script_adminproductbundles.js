@@ -250,6 +250,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}).success(function(data, status, headers, config) {
 
 			if(data.details != '' && data.details != null){
+                console.log(data);
 
 				if ($.fn.DataTable.isDataTable("#productsTable")) {
 					$('#productsTable').DataTable().clear().destroy();
@@ -261,7 +262,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				$scope.subSubCategoryLov = data.subSubCategory;
 
 				$scope.displayCollectionProducts = data.bundleLines;
-
+                console.log(data.details.images);
+                $scope.makeImageAttachment(data.details.images);
 				setTimeout(function(){
 					$("#productsTable").DataTable({
 						order: [],
@@ -623,7 +625,26 @@ $scope.getSubCategoriesWrtCategory = function(){
 
  	      	}else{
 
- 		  		toastr.success("Image Upload Successfully", '', {timeOut: 3000});
+ 		  		toastr.success("Image Uploaded Successfully", '', {timeOut: 3000});
+                titletxt = '';
+                // if(xhr.responseText[4])
+                console.log(xhr.responseText);
+                //    $scope.makeImageAttachment()
+                var html = '<div class="col-2 image-overlay margin-r1" title="'+titletxt+'" id="img_file_'+xhr.responseText[1]+'">'+
+                '<img src="'+xhr.responseText[2]+'" alt="" class="image-box">'+
+                '<div class="overlay">'+
+                    '<div class="text">'+
+                        '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteBundleProductImage('+xhr.responseText[1]+')" title="Delete Image">';
+
+                        html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+xhr.responseText[1]+')" title="Mark Primary">';
+
+                    html +=
+                    '</div>'+
+                '</div>'+
+            '</div>';
+ // console.log(html);
+
+            $("#p_att").append($compile(angular.element(html))($scope));
 
  		  		$scope.$apply(function() {
  		  			$scope.bundle.image = xhr.responseText[2];
@@ -631,6 +652,136 @@ $scope.getSubCategoriesWrtCategory = function(){
  		  	}
  	   	}
  	});
+
+    $scope.makeImageAttachment = function(images){
+
+        $("#p_att").html('');
+
+                   if(images != '' && images != null){
+                    // console.log(images);
+
+                       for(var i=0; i<images.length; i++){
+                            // console.log(images[i]['DOWN_PATH']);
+                           var titletxt = '';
+
+                           switch (true) {
+                               case images[i]["PRIMARY_FLAG"] == 1:
+                                   // console.log('Primary');
+                                   titletxt = 'Primary';
+                                   break;
+                               case images[i]["SECONDARY_FLAG"] == 1:
+                                   // console.log('Secondary');
+                                   titletxt = 'Secondary';
+                                   break;
+                               default:
+                                   // console.log('none');
+                                   titletxt = '';
+                                   break;
+                           }
+
+                           var html = '<div class="col-2 image-overlay margin-r1" title="'+titletxt+'" id="img_file_'+images[i]["IMAGE_ID"]+'">'+
+                                           '<img src="'+images[i]["DOWN_PATH"]+'" alt="" class="image-box">'+
+                                           '<div class="overlay">'+
+                                               '<div class="text">'+
+                                                   '<img class="fa-trash-alt" src="'+baseurl+'/images/admin/trash.svg" alt="" width="18" ng-click="deleteBundleProductImage('+images[i]["IMAGE_ID"]+')" title="Delete Image">';
+
+                                                   html += '<img class="fa-pencil-alt" src="'+baseurl+'/images/admin/pencil-solid.svg" alt="" width="18" ng-click="markProdImagePriSec('+images[i]["IMAGE_ID"]+')" title="Mark Primary">';
+
+                                               html +=
+                                               '</div>'+
+                                           '</div>'+
+                                       '</div>';
+                            // console.log(html);
+
+                               $("#p_att").append($compile(angular.element(html))($scope));
+                       }
+                   }
+    }
+
+    $scope.tempProId = '';
+	$scope.markProdImagePriSec = function(id){
+
+		$scope.tempProId = id;
+		// $("#shadesModal").modal('hide');
+		$("#confirmBundleProdImageModal").modal('show');
+	}
+	$scope.closeProdImageModal = function(id){
+		$scope.tempProId = '';
+		// $("#shadesModal").modal('show');
+		$("#confirmBundleProdImageModal").modal('hide');
+	}
+
+
+	$scope.markBundleProductDetailImageFlag = function(flag){
+
+		var data = {};
+	    data.imageId = $scope.tempProId;
+		data.flag = flag;
+	    data.productId = $scope.bundle.ID;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/markPrimaryBundleProdImage",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+            console.log(data.done);
+            console.log(data.images);
+
+			if(data.done == true || data.done == 'true'){
+				$scope.tempProId = '';
+				toastr.success(data.msg, '', {timeOut: 3000});
+				$scope.makeImageAttachment(data.images);
+				$("#confirmBundleProdImageModal").modal('hide');
+
+			}else{
+				$scope.tempProId = '';
+				toastr.error(data.msg, '', {timeOut: 3000})
+				$("#confirmBundleProdImageModal").modal('hide');
+
+			}
+
+
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+    $scope.deleteBundleProductImage = function(id){
+
+		var data = {};
+		data.imageId = id;
+	    data.productId = $scope.bundle.ID;
+	    data.userId = userId;
+    	var temp = $.param({details: data});
+
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+"/deleteBundleProductImage",
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+
+            if(data.done == 'true' ||data.done == true){
+
+                toastr.success(data.msg, '', {timeOut: 3000})
+
+                $scope.makeImageAttachment(data.images);
+            }else{
+                toastr.error(data.msg, '', {timeOut: 3000})
+            }
+
+
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
 
 
 })

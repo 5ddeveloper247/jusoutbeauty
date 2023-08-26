@@ -344,24 +344,40 @@
                                             </li>
                                         </ul>
                                         <div class="row">
-                                            <div
-                                                 ng-class="{'col-sm-7': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= 0}">
-                                                <p class="text-primary mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT >'0'">
+                                            <div ng-class="{'col-sm-7': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= 0 || row.INV_QUANTITY_FLAG == 'bundle'}">
+                                                <p class="text-primary mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT > 0">
                                                     <span>$@{{ row.DISC_AMOUNT }}</span>
                                                     <span class="small"><del> $@{{ row.UNIT_PRICE }}</del></span>
                                                 </p>
-                                                <p class="text-primary mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT <= '0'">
-                                                    {{-- <span ng-if="row.DISC_AMOUNT > 0">$@{{ row.DISC_AMOUNT }}</span> --}}
+                                                <p class="text-primary mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT <= 0 || row.INV_QUANTITY_FLAG == 'bundle'">
                                                     <span>$@{{ row.UNIT_PRICE }}</span>
                                                 </p>
                                             </div>
-                                            <div
-                                                 ng-class="{'col-sm-5': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= 0}">
+                                            <div ng-class="{'col-sm-5': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= 0 || row.INV_QUANTITY_FLAG == 'bundle'}">
                                                 <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
                                                     @{{ row.UNIT }}
                                                 </p>
                                             </div>
                                         </div>
+
+                                        {{-- <div class="row">
+                                            <div
+                                                 ng-class="{'col-sm-7': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= '0'}">
+                                                <p class="text-primary mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT >'0'">
+                                                    <span>$@{{ row.DISC_AMOUNT }}</span>
+                                                    <span class="small"><del> $@{{ row.UNIT_PRICE }}</del></span>
+                                                </p>
+                                                <p class="text-primary mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT <= '0'">
+                                                    <span>$@{{ row.UNIT_PRICE }}</span>
+                                                </p>
+                                            </div>
+                                            <div
+                                                 ng-class="{'col-sm-5': row.DISC_AMOUNT.length < 6, 'col-sm-6': row.DISC_AMOUNT.length >= 6 || row.UNIT_PRICE <= '0'}">
+                                                <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
+                                                    @{{ row.UNIT }}
+                                                </p>
+                                            </div>
+                                        </div> --}}
 
  									{{-- <div class="row">
  										<div class="col-sm-6 col-7">

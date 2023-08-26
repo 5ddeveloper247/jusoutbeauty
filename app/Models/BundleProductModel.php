@@ -61,7 +61,6 @@ class BundleProductModel extends Model
     	$result = DB::table('jb_bundle_product_tbl as a')->select('a.*')
     	->where('a.BUNDLE_ID',$id)
     	->get();
-
     	$i=0;
     	foreach ($result as $row){
     		$arrRes['ID'] = $row->BUNDLE_ID;
@@ -81,11 +80,23 @@ class BundleProductModel extends Model
     		$arrRes['P_14'] = $row->SHORT_DESCRIPTION != null ? $row->SHORT_DESCRIPTION : '';
     		$arrRes['P_15'] = $row->DISCOUNTED_AMOUNT != null ? $row->DISCOUNTED_AMOUNT : 0;
     		$arrRes['P_16'] = $row->QUANTITY != null ? $row->QUANTITY : 0;
-    		$arrRes['image'] = $row->IMAGE_DOWN_PATH != null ? $row->IMAGE_DOWN_PATH : '';
-    		$arrRes['path'] = $row->IMAGE_PATH != null ? $row->IMAGE_PATH : '';
+            $arrRes['images'] = $this->get_bundle_images($row->BUNDLE_ID);
+    		// $arrRes['image'] = $row->IMAGE_DOWN_PATH != null ? $row->IMAGE_DOWN_PATH : '';
+    		// $arrRes['path'] = $row->IMAGE_PATH != null ? $row->IMAGE_PATH : '';
     	}
-
+        // dd($arrRes);
     	return isset($arrRes) ? $arrRes : null;
+    }
+
+    public function get_bundle_images($id){
+            $result = DB::table('jb_product_images_tbl')->select('*')
+            ->where('PRODUCT_ID',$id)
+            ->where('SOURCE_CODE','BUNDLE_IMG')
+            ->whereNot('PATH',null)
+            ->whereNot('DOWN_PATH',NULL)
+            ->get();
+            // dd($result);
+            return $result;
     }
 
     public function getAllRecommandedBundleProductsWrtCategoryIdForSite($categoryId){
@@ -289,13 +300,13 @@ class BundleProductModel extends Model
 
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
-    		$arrRes[$i]['primaryImage'] = isset($row->IMAGE_DOWN_PATH) != null ? $row->IMAGE_DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
+    		// $arrRes[$i]['primaryImage'] = isset($row->IMAGE_DOWN_PATH) != null ? $row->IMAGE_DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
 
-			// $productImage = $this->getSpecificProductPrimaryImage($row->BUNDLE_ID);
-    		// $arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
+			$productImage = $this->getSpecificBundleProductPrimaryImage($row->BUNDLE_ID);
+    		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
-			// $productSecImage = $this->getSpecificProductSecondaryImage($row->BUNDLE_ID);
-    		// $arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
+			$productSecImage = $this->getSpecificBundleProductSecondaryImage($row->BUNDLE_ID);
+    		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
     		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->BUNDLE_ID, 2);
 
@@ -341,12 +352,74 @@ class BundleProductModel extends Model
 
     	return isset($arrRes) ? $arrRes : null;
     }
+    public function getSpecificBundleProductSecondaryImage($id){
+
+    	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
+    	->where('a.PRODUCT_ID', $id)
+    	->where('a.SOURCE_CODE', 'BUNDLE_IMG')
+    	->where('a.SECONDARY_FLAG', '1')
+    	->get();
+
+    	$i=0;
+    	foreach ($result as $row){
+    		$arrRes['ID'] = $row->IMAGE_ID;
+    		$arrRes['userId'] = $row->USER_ID;
+    		$arrRes['productId'] = $row->PRODUCT_ID;
+    		$arrRes['code'] = $row->SOURCE_CODE;
+    		$arrRes['fileType'] = $row->FILE_TYPE;
+    		$arrRes['fileName'] = $row->FILE_NAME;
+    		$arrRes['fullName'] = $row->FULL_NAME;
+    		$arrRes['path'] = $row->PATH;
+    		$arrRes['downPath'] = $row->DOWN_PATH;
+    		$arrRes['primFlag'] = $row->PRIMARY_FLAG;
+    		$arrRes['secFlag'] = $row->SECONDARY_FLAG;
+    		$arrRes['CREATED_BY'] = $row->CREATED_BY;
+    		$arrRes['CREATED_ON'] = $row->CREATED_ON;
+    		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
+    		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
+
+    		$i++;
+    	}
+
+    	return isset($arrRes) ? $arrRes : null;
+    }
 
 	public function getSpecificProductPrimaryImage($id){
 
     	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
     	->where('a.PRODUCT_ID', $id)
     	->where('a.SOURCE_CODE', 'PRODUCT_IMG')
+    	->where('a.PRIMARY_FLAG', '1')
+    	->get();
+
+    	$i=0;
+    	foreach ($result as $row){
+    		$arrRes['ID'] = $row->IMAGE_ID;
+    		$arrRes['userId'] = $row->USER_ID;
+    		$arrRes['productId'] = $row->PRODUCT_ID;
+    		$arrRes['code'] = $row->SOURCE_CODE;
+    		$arrRes['fileType'] = $row->FILE_TYPE;
+    		$arrRes['fileName'] = $row->FILE_NAME;
+    		$arrRes['fullName'] = $row->FULL_NAME;
+    		$arrRes['path'] = $row->PATH;
+    		$arrRes['downPath'] = $row->DOWN_PATH;
+    		$arrRes['primFlag'] = $row->PRIMARY_FLAG;
+    		$arrRes['secFlag'] = $row->SECONDARY_FLAG;
+    		$arrRes['CREATED_BY'] = $row->CREATED_BY;
+    		$arrRes['CREATED_ON'] = $row->CREATED_ON;
+    		$arrRes['UPDATED_BY'] = $row->UPDATED_BY;
+    		$arrRes['UPDATED_ON'] = $row->UPDATED_ON;
+
+    		$i++;
+    	}
+
+    	return isset($arrRes) ? $arrRes : null;
+    }
+    public function getSpecificBundleProductPrimaryImage($id){
+
+    	$result = DB::table('jb_product_images_tbl as a')->select('a.*')
+    	->where('a.PRODUCT_ID', $id)
+    	->where('a.SOURCE_CODE', 'BUNDLE_IMG')
     	->where('a.PRIMARY_FLAG', '1')
     	->get();
 
@@ -437,6 +510,7 @@ class BundleProductModel extends Model
 
     	return isset($arrRes) ? $arrRes : null;
     }
+
 
     public function getSpecificProductSubscriptionImage($id){
         $result = DB::table('jb_product_images_tbl')->select('*')->where('PRODUCT_ID',$id)->where('SOURCE_CODE','SUBSCRIPTION_IMAGE')->first();
