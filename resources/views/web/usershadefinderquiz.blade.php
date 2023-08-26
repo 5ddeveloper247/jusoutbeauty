@@ -248,8 +248,8 @@ var site = '<?php echo session('site');?>';
 					</section>
 					<section class="pt-6 pt-lg-5">
 						<div class="row">
-							<div class="col-lg-6" style="height: 100vh;">
-								<img id="take_a_q" src="@{{levelOneLatestImg}}" style="height: 93vh">
+							<div class="col-lg-6" style="height: 100%;">
+								<img id="take_a_q" src="@{{levelOneLatestImg}}" style="object-fit:cover; height:50%; width:100%;">
 							</div>
 							<div class="col-md-6">
 								<div class="text-center">
@@ -257,7 +257,7 @@ var site = '<?php echo session('site');?>';
 									<p>Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
-								<div class="row d-flex" style="height: 59.3vh; overflow:scroll;">
+								<div class="row d-flex" style="height: 45%; overflow:scroll;">
 									<div class="col-lg-6 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
 										<div class="box shade py-2 fadeInUp animated"
 											data-animate="fadeInUp">
