@@ -248,16 +248,16 @@ var site = '<?php echo session('site');?>';
 					</section>
 					<section class="pt-6 pt-lg-5">
 						<div class="row">
-							<div class="col-lg-4" style="height: 675px;">
-								<img id="take_a_q" src="@{{levelOneLatestImg}}" style=" height:625px !important;width:100% !important; ">
+							<div class="col-lg-5" style="height: 675px;">
+								<img id="take_a_q" src="@{{levelOneLatestImg}}" style=" height:655px !important;width:100% !important; ">
 							</div>
-							<div class="col-lg-8" style="height: 675px;">
+							<div class="col-lg-7" style="height: 675px;">
 								<div class="text-center">
 									<h2 style="font-size:2.5rem !important;">Liquid Foundation Iconic</h2>
 									<p style="font-size:1rem !important;">Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
-								<div class="row d-flex" style="height: 62%; overflow:scroll;">
+								<div class="row d-flex" style="height: 66%; overflow:scroll;">
 									<div class="col-lg-4 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
 										<div class="box shade py-2 fadeInUp animated"
 											data-animate="fadeInUp">
