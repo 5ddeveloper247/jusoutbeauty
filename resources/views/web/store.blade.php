@@ -460,17 +460,22 @@
  										<div class="row no-gutters" id="quick_view_product_details">
  											<div class="col-sm-6">
 
- 												<div id="carouselExampleControls " class="carousel slide quick_view_mbl_carousel" data-ride="carousel" data-interval="2000">
+ 												<div id="carouselExampleControls " class="carousel slide quick_view_mbl_carousel" data-ride="carousel" data-interval="1500" >
  													<div class="carousel-inner" ng-show="productImagesLoop != ''">
  														<div class="carousel-item @{{$first == '1' ? 'active' : ''}}" ng-repeat="row in productImagesLoop">
  															<img class="d-block w-100 quick_view_mbl_carousel_img" style="height:35rem" src="@{{row.downPath}}" alt="First slide">
  														</div>
  													</div>
- 													<div class="carousel-inner" ng-show="productImagesBundle != ''">
+ 													{{-- <div class="carousel-inner" ng-show="productImagesBundle != ''">
  														<div class="carousel-item active" >
  															<img class="d-block w-100 quick_view_mbl_carousel_img" style="height:35rem" src="@{{productImagesBundle}}" alt="First slide">
  														</div>
- 													</div>
+ 													</div> --}}
+                                                     <div class="carousel-inner" ng-show="productImagesBundle != ''">
+                                                        <div class="carousel-item @{{$first == '1' ? 'active' : ''}}" ng-repeat="row in productImagesBundle">
+                                                            <img class="d-block w-100 quick_view_mbl_carousel_img" style="height:35rem" src="@{{row.DOWN_PATH}}" alt="First slide">
+                                                        </div>
+                                                    </div>
  													<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
  														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
  														<span class="sr-only">Previous</span>
@@ -482,7 +487,7 @@
  												</div>
 
  											</div>
- 											<div class="col-sm-6 col-md-6 primary-summary " style="padding: 15px;">
+ 											<div class="col-sm-6 col-md-6 primary-summary " style="padding: 15px; height: 35rem; overflow:auto;">
  												<div class="d-flex align-items-center">
  													<h2 class="fs-24 mb-0">@{{ QuickView_name }}</h2>
  												</div>

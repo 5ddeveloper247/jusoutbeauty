@@ -117,7 +117,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				var product_shades_details = data.shades;
 
 				if(product_details != null && product_details != ''){
-
+                    console.log(product_details['IMAGES']);
 					console.log(product_details);
 					console.log(product_shades_details);
 
@@ -126,7 +126,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 					$scope.QuickView_name = product_details['NAME'];
 					$scope.unit_price = product_details['DISCOUNTED_AMOUNT'];
 					$scope.short_description = product_details['SHORT_DESCRIPTION'] ;
-					$scope.productImagesBundle = product_details['primaryImage'];
+					$scope.productImagesBundle = product_details['IMAGES'];
+                    // $scope.productImagesLoop = product_details['IMAGES'];
 
 					if(bundleLines != '' && bundleLines != null){
 						for(var i=0; i<bundleLines.length; i++){

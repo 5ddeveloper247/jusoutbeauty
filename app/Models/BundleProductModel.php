@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\WishlistModel;
 use DateTime;
+use PhpParser\Node\Stmt\Return_;
 
 class BundleProductModel extends Model
 {
@@ -497,8 +498,9 @@ class BundleProductModel extends Model
 				$arrRes['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
 			}
     		// $arrRes['INV_QUANTITY'] = $row->QUANTITY;
+            $arrRes['IMAGES'] = $this->get_all_images_of_bundle($row->BUNDLE_ID);
 
-    		$arrRes['primaryImage'] = isset($row->IMAGE_DOWN_PATH) != null ? $row->IMAGE_DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
+    		// $arrRes['primaryImage'] = isset($row->IMAGE_DOWN_PATH) != null ? $row->IMAGE_DOWN_PATH : url('assets-web')."/images/product_placeholder.png";
 
     		$arrRes['CREATED_BY'] = $row->CREATED_BY;
     		$arrRes['CREATED_ON'] = $row->CREATED_ON;
@@ -507,8 +509,18 @@ class BundleProductModel extends Model
 
     		$i++;
     	}
-
     	return isset($arrRes) ? $arrRes : null;
+    }
+
+    public function get_all_images_of_bundle($id){
+        $result = DB::table('jb_product_images_tbl')->select('*')
+        ->whereNot('PATH',NULL)
+        ->whereNot('DOWN_PATH',NULL)
+        ->where('SOURCE_CODE','BUNDLE_IMG')
+        ->where('PRODUCT_ID',$id)
+        ->get();
+
+        return $result;
     }
 
 
