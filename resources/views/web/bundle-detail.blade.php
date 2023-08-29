@@ -209,10 +209,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
     transition: all .3s linear;
     border: 1px solid #000;
 } */
-.scroll-to-see{
+/* .scroll-to-see{
 	max-height: 30rem;
 	overflow-y: auto
-}
+} */
 .img1-section2{
         height: 26rem;
     }
@@ -344,7 +344,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 		<section class="pt-5 sec_inc_1">
 			<div class="container container-custom container-xxl mt-5 mt-md-0 mt-xl-5 mt-xxl-5">
 				<div class="row no-gutters">
-					<div class="col-md-6 col-xl-8 mb-8 mb-md-0 pr-xl-0 pr-md-3">
+					<div class="col-md-6 col-xl-8 mb-8 mb-md-0 pr-xl-0 pr-md-3 pt-xxl-8">
 						<div class="row no-gutters mx-n1">
 
 							<div class="col-sm-6 col-6 px-1 mb-2" ng-show="selectedShadeImg_p != ''" style="display:none;">
@@ -353,7 +353,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 							<div class="col-sm-6 col-6 px-1 mb-2" ng-show="selectedShadeImg_s != ''" style="display:none;">
 								<img src="@{{selectedShadeImg_s}}" alt="Image" class="prod_img_detail img-w25 img-product-gall">
 							</div>
-							<?php 
+							<?php
 								$bundleImages = $bundleDetails['IMAGES'];
 								if(!empty($bundleImages)){
 									foreach ($bundleImages as $image){ ?>
@@ -361,14 +361,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									<img src="<?= $image->DOWN_PATH; ?>" alt="Image" class="prod_img_detail img-product-gall">
 								</div>
 							<?php }}?>
-							
+
 						</div>
 					</div>
 					<div
 						class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
 						<div class="primary-summary-inner">
-							<h2 class="mb-0 text-capitalize"><?= $bundleDetails['NAME']; ?></h2>
+							<h2 class="mb-0 text-capitalize productDetailHeading"><?= $bundleDetails['NAME']; ?></h2>
 							<p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
 								<?php $i=0; ?>
 								<?php foreach ($bundleLines as $line){ ?>
@@ -755,9 +755,9 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													</div>
 													<br>
 													<hr>
-													<div class="row pt-10 align-items-center subsc_ec">
+													<div class="row pt-10 subsc_ec">
 
-														<div class="col-md-6 ">
+														<div class="col-md-6 productDetailSubscriptionSection">
 															<h2 class="mb-2 font-weight-500">Subscription</h2>
 															<p class="mb-6">Indulge in the convenience and exclusive
 																benefits offered with our subscription service. Simply
@@ -780,7 +780,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<hr>
 													<section class="pt-10 pt-lg-8 py-5">
 														<div class="">
-															<div class="row no-gutters align-items-center">
+															<div class="row no-gutters">
 																<div class="col-md-8 mb-8 mb-md-0">
 																	<div class="fix">
 																		<div class=" hover-zoom-in">
@@ -810,7 +810,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-4 pl-7 scroll-to-see" style="height:30rem;overflow-y:auto">
+																<div class="col-md-4 pl-7 scroll-to-see bundleDetailVideoSection" style="">
 																	<h2 class="mb-5"><?= isset($line['videoDetails']['V_1']) ? $line['videoDetails']['V_1'] : '' ?></h2>
 																	<p><?= isset($line['videoDetails']['V_2']) ? $line['videoDetails']['V_2'] : '' ?></p>
 																</div>
@@ -821,16 +821,16 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<hr>
 													<section class="pb-10 pb-lg-0 mob_tab_sec">
 														<div class="container container-custom container-xxl">
-															<h2 class="text-center mb-3">Ingredients</h2>
-															<h2 class="text-center mb-9">Backed by Science to Optimize
+															<h2 class="text-center mb-3" >Ingredients</h2>
+															<h2 class="text-center mb-9" style="font-size: 23px !important;">Backed by Science to Optimize
 																Skin Wellness</h2>
 															<ul class="nav nav-pills justify-content-center mb-lg-9 mb-6">
 																<li class="nav-item px-5"><a
 																	class="cursor-pointer spotlightTabBtn spotlightTabBtn<?= $line['BUNDLE_LINE_ID']; ?> ingredientTabBtn ingredientTabBtn<?= $line['BUNDLE_LINE_ID']; ?> active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
-																	data-id="<?= $line['BUNDLE_LINE_ID']; ?>">Spotlight Ingredients</a></li>
+																	data-id="<?= $line['BUNDLE_LINE_ID']; ?>" style="font-size: 23px !important;">Spotlight Ingredients</a></li>
 																<li class="nav-item px-5"><a
 																	class="cursor-pointer formulatedTabBtn formulatedTabBtn<?= $line['BUNDLE_LINE_ID']; ?> ingredientTabBtn ingredientTabBtn<?= $line['BUNDLE_LINE_ID']; ?> text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
-																	data-id="<?= $line['BUNDLE_LINE_ID']; ?>">Formulated Ingredients</a></li>
+																	data-id="<?= $line['BUNDLE_LINE_ID']; ?>" style="font-size: 23px !important;">Formulated Ingredients</a></li>
 															</ul>
 															<div class="p-0 m-0" id="pills-tabContent">
 																<div class="tabbspotlight" id="tabbspotlight<?= $line['BUNDLE_LINE_ID']; ?>">
@@ -986,7 +986,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<hr>
 													<section class="pt-10 pt-lg-8 py-8">
 														<div class="container container-custom p-0">
-															<div class="row no-gutters align-items-center">
+															<div class="row no-gutters">
 																<div class="col-md-6 mb-8 mb-md-0 hover-zoom-in">
 																	<?php if(isset($line['clinicalImage'][0]['downPath'])){?>
 
@@ -998,8 +998,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 																	<?php }?>
 																</div>
-																<div class="col-md-6 px-md-6 pl-xl-7 pr-xl-7 scroll-to-see" style="">
-																	<h3 class="fs-42 mb-5">Clinical Note</h3>
+																<div class="col-md-6 px-md-6 pl-xl-7 pr-xl-7 scroll-to-see productDetailLutiesSection" style="">
+																	<h3 class="fs-42 mb-5">Lutie's Hint</h3>
 																	<?= $line['CLINICAL_NOTE']; ?>
 																</div>
 															</div>

@@ -14,7 +14,7 @@
     .sticky {
         position: sticky;
         top: 0;
-        
+
     }
     .recent_viewed:hover {
         text-decoration: underline;
@@ -411,10 +411,10 @@
 		$images = isset($productDetails['images']) ? $productDetails['images'] : '';
 		?>
 
-        <section class="pt-5 sec_inc_1">
-            <div class="container container-custom container-xxl mt-5 mt-md-0 mt-xl-5 mt-xxl-5">
+        <section class="pt-5 sec_inc_1 productDetailsection1">
+            <div class="container container-custom container-xxl mt-5 mt-md-0 mt-xl-5 mt-xxl-5 ">
                 <div class="row no-gutters">
-                    <div class="col-md-6 col-xl-8 mb-8 mb-md-0 pr-xl-0 pr-md-3">
+                    <div class="col-md-6 col-xl-8 mb-8 mb-md-0 pr-xl-0 pr-md-3 pt-xxl-8">
                         <div class="row no-gutters mx-n1">
 
                             <div class="col-sm-6 col-6 px-1 mb-2" ng-show="selectedShadeImg_p != ''"
@@ -427,12 +427,12 @@
                                 <img src="@{{ selectedShadeImg_s }}" alt="Image"
                                     class="prod_img_detail img-w35 img-product-gall">
                             </div>
-                           
+
                             @php
                                 $primaryImages = [];
                                 $secondaryImages = [];
                                 $otherImages = [];
-                            
+
                                 foreach ($images as $image) {
                                     if ($image['primFlag'] == 1) {
                                         $primaryImages[] = $image;
@@ -442,10 +442,10 @@
                                         $otherImages[] = $image;
                                     }
                                 }
-                            
+
                                 $finalImages = array_merge($primaryImages, $secondaryImages, $otherImages);
                             @endphp
-                            
+
                             @foreach ($finalImages as $image)
                                 <div class="col-sm-6 col-6 px-1 mb-2">
                                     <img src="{{ $image['downPath'] }}" alt="Image" class="prod_img_detail img-w35 img-product-gall">
@@ -456,7 +456,7 @@
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
                         <div class="primary-summary-inner">
-                            <h2 class="mb-0 text-capitalize"><?= $productDetails['NAME'] ?></h2>
+                            <h2 class="mb-0 text-capitalize productDetailHeading"><?= $productDetails['NAME'] ?></h2>
                             <p
                                 class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
@@ -737,27 +737,30 @@
 
                                                     </div>
                                                     <div class="col-md-6 pro-details"
-                                                        style="height: 32rem;overflow-y:auto">
+                                                        style="">
                                                         <h2 class="mb-2 text-capitalize">
                                                             <?= $productDetails['DESCRIPTION_TITLE'] ?></h2>
-                                                        <p><?= $productDetails['DESCRIPTION'] ?></p>
+                                                        <p class="productDetailAboutSection"><?= $productDetails['DESCRIPTION'] ?></p>
                                                     </div>
                                                 </div>
                                                 <br>
                                                 <hr>
 
-                                                <div class="row pt-10 align-items-center subsc_ec">
-                                                    <div class="col-md-6 ">
+                                                <div class="row pt-10 subsc_ec">
+                                                    <div class="col-md-6">
                                                         <h2 class="mb-2">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
-                                                        <p class="mb-6">
-                                                            {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}</p>
+                                                            <div class="productDetailSubscriptionSection">
+                                                                <p class="mb-6 ">
+                                                                    {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}</p>
 
-                                                        <a href="javascript:;" data-link="<?php echo $productDetails['SUBSCRIPTION_NOTE_LINK'];?>"
-                                                            data-toggle="tooltip" data-placement="left"
-                                                            title="Click to see more Ingredients"
-                                                            class="preview btn btn-primary subscrReadMoreLink"> <span>Read More</span>
-                                                        </a>
+                                                                <a href="javascript:;" data-link="<?php echo $productDetails['SUBSCRIPTION_NOTE_LINK'];?>"
+                                                                    data-toggle="tooltip" data-placement="left"
+                                                                    title="Click to see more Ingredients"
+                                                                    class="preview btn btn-primary subscrReadMoreLink"> <span>Read More</span>
+                                                                </a>
+                                                            </div>
+
                                                     </div>
                                                     <div class="col-md-6 mb-6 mb-md-0">
                                                         <img src="{{ $productDetails['SUBSCRIPTION_NOTE_IMAGE']->DOWN_PATH ?? '' }}                                                        "
@@ -770,7 +773,7 @@
                                                 <hr>
                                                 <section class="pt-10 pt-lg-8 py-5">
                                                     <div class="">
-                                                        <div class="row no-gutters align-items-center">
+                                                        <div class="row no-gutters">
                                                             <div class="col-md-8 mb-8 mb-md-0">
                                                                 <div class="fix">
                                                                     <div class=" hover-zoom-in">
@@ -800,8 +803,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4 pl-xl-7 pl-7"
-                                                                style="height:30rem;overflow-y:auto">
+                                                            <div class="col-md-4 pl-xl-7 pl-7 productDetailVideoSection"
+                                                                style="">
                                                                 <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
                                                                 </h2>
@@ -823,12 +826,12 @@
                                                             <li class="nav-item px-5"><a
                                                                     class="pointer nav-link cursor-pointer ingredientTabBtn active text-gray-02 rounded-0 px-0 py-1 lh-1  bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
                                                                     id="spotlightTabBtn"
-                                                                    style="font-size: 23px;">Spotlight Ingredients</a>
+                                                                    style="font-size: 23px !important;">Spotlight Ingredients</a>
                                                             </li>
                                                             <li class="nav-item px-5"><a
                                                                     class="pointer nav-link cursor-pointer ingredientTabBtn text-gray-02 rounded-0 px-0 py-1 lh-1 bg-transparent text-active-primary border-active-primary font-weight-300 font-weight-active-400"
                                                                     id="formulatedTabBtn"
-                                                                    style="font-size: 23px;">Formulated Ingredients</a>
+                                                                    style="font-size: 23px !important;">Formulated Ingredients</a>
                                                             </li>
                                                         </ul>
                                                         <div class="p-0 m-0" id="pills-tabContent">
@@ -1018,7 +1021,7 @@
 
                                                 <section class="pt-10 pt-lg-8">
                                                     <div class="">
-                                                        <div class="row no-gutters align-items-center">
+                                                        <div class="row no-gutters">
                                                             <div class="col-md-5 mb-8 mb-md-0 hover-zoom-in">
                                                                 <?php if(isset($productDetails['clinicalImage'][0]['downPath'])){?>
 
@@ -1034,10 +1037,10 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7"
-                                                                style="height:37rem;overflow-y:auto">
+                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7 productDetailLutiesSection"
+                                                                style="">
                                                                 <h2 class="mb-2">Lutie's Hint</h2>
-                                                                <p><?= $productDetails['CLINICAL_NOTE'] ?></p>
+                                                                <p class=""><?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>
                                                     </div>

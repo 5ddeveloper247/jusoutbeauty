@@ -437,12 +437,12 @@ $userId = session('userId');
                                                     <?php $routines = $routine;?>
                                                     @if (!empty($routines))
 
-                                                        <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 "
-                                                            style="display: block;">ROUTINE BY NEEDS</h4>
+                                                        <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0"
+                                                            style="display: block;">Routine By Needs</h4>
                                                         @foreach ($routines as $routine)
                                                         @if ($routine['IDENTIFY'] == 1)
                                                             <div class="dropdown-item ">
-                                                                <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
+                                                                <a class="dropdown-link" style="font-size: 14px !important;" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
                                                             </div>
                                                         @endif
                                                         @endforeach
@@ -453,11 +453,11 @@ $userId = session('userId');
                                                     @if (!empty($routines))
 
                                                         <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 "
-                                                            style="display: block;">ROUTINE BY AGE</h4>
+                                                            style="display: block;">Routine By Age</h4>
                                                         @foreach ($routines as $routine)
                                                         @if ($routine['IDENTIFY'] == 2)
                                                             <div class="dropdown-item ">
-                                                                <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
+                                                                <a class="dropdown-link" style="font-size: 14px !important;" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
                                                             </div>
                                                         @endif
                                                         @endforeach
