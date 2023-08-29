@@ -147,7 +147,7 @@
 									<li class="active dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="{{ url('/assets-admin') }}/images/admin/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="{{ url('/assets-admin') }}/images/admin/avatar/user.png" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -738,7 +738,7 @@
 										<span class="text-black"><strong>{{$result->FIRST_NAME ?? session('firstName')}} {{$result->LAST_NAME ?? session('lastName')}}</strong></span>
 										<p class="fs-12 mb-0">{{session('userSubType') == 'admin' ? 'Super Admin' : 'Admin'}}</p>
 									</div>
-                                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" width="20" alt=""/>
+                                    <img src="{{ url('/assets-admin') }}/images/admin/profile/user.png" width="20" alt=""/>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- <a href="{{session('site')}}/admin-users" class="dropdown-item ai-icon">

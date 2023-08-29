@@ -518,7 +518,7 @@
                 <div class="col-xl-2 col-xxl-3 col-lg-3 col-md-4 col-6 clickable-div " style="cursor: pointer;" onclick="showAdmin({{ $AdminUser->USER_ID }})">
                   <div class="card text-center">
                     <div class="card-body">
-                      <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" class="dashboard-users-img">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/user.png" class="dashboard-users-img">
                       <h6 class="font-w600 fs-16 mb-1"><a href="#" class="text-black">{{ $AdminUser->FIRST_NAME }} {{ $AdminUser->LAST_NAME }}</a></h6>
                       <span class="text-primary">3 Roles</span>
                     </div>

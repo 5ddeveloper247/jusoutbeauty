@@ -166,7 +166,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 				toastr.success(data.msg, '', {timeOut: 3000})
 				$scope.blogs.ID = data.ID;
-				$scope.editView = 0;
+				// $scope.editView = 0;
 				$scope.getAllAdminBlogslov();
 
 
@@ -198,6 +198,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 			var detailImage = details['detailImage'];
 
 			$("#p_att").html('');
+            $("#p_att1").html('');
 			if(details != '' && details != null){
 				$scope.editView = 1;
 				$scope.blogs.ID = details['BLOG_ID'];

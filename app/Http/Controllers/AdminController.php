@@ -8745,10 +8745,10 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
-			if (strlen($data ['T_5']) != 11) {
+			if (strlen($data ['T_5']) < 11 || strlen($data ['T_5']) > 14) {
 
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Phone number must be less then equal to 11 characters.';
+				$arrRes ['msg'] = 'Phone number must be between 11 to 14 digits.';
 				echo json_encode ( $arrRes );
 				die ();
 			}
