@@ -741,16 +741,19 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<h2 class="col-12 mb-2 pb-8 text-center" style="margin: 0 auto;">About Product<?php //echo $line['SUB_TITLE']; ?></h2>
 														<div class="col-md-6 mb-6 mb-md-0">
 															<?php if(isset($images[0]['downPath'])){?>
-																<img src="<?= $images[0]['downPath']; ?>" alt="Image" class="prod_img_detail_acc img1-section2 fadeInLeft animated img-w25">
+																<img src="<?= $images[0]['downPath']; ?>" alt="Image" class="prod_img_detail_acc img1-section2 fadeInLeft animated img-w25 aboutpicture1">
 															<?php }?>
 															<?php if(isset($images[1]['downPath'])){?>
-																<img src="<?= $images[1]['downPath']; ?>" alt="Image" class="prod_img_detail_acc_sec img2-section2 fadeInLeft animated img-w20">
+																<img src="<?= $images[1]['downPath']; ?>" alt="Image" class="prod_img_detail_acc_sec img2-section2 fadeInLeft animated img-w20 aboutpicture2">
 															<?php }?>
 
 														</div>
-														<div class="col-md-6 pt-10 scroll-to-see">
+														<div class="col-md-6 scroll-to-see bundleDetailAboutSection">
 														<h2 class="mb-2 font-weight-500 fs-20"><?= $line['DESCRIPTION_TITLE']; ?></h2>
-														<?= $line['DESCRIPTION']; ?>
+                                                        <p>
+                                                            <?= $line['DESCRIPTION']; ?>
+                                                        </p>
+
 														</div>
 													</div>
 													<br>

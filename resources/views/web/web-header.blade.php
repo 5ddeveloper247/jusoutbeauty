@@ -442,7 +442,7 @@ $userId = session('userId');
                                                         @foreach ($routines as $routine)
                                                         @if ($routine['IDENTIFY'] == 1)
                                                             <div class="dropdown-item ">
-                                                                <a class="dropdown-link" style="font-size: 14px !important;" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
+                                                                <a class="dropdown-link routinelinks" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
                                                             </div>
                                                         @endif
                                                         @endforeach
@@ -457,7 +457,7 @@ $userId = session('userId');
                                                         @foreach ($routines as $routine)
                                                         @if ($routine['IDENTIFY'] == 2)
                                                             <div class="dropdown-item ">
-                                                                <a class="dropdown-link" style="font-size: 14px !important;" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
+                                                                <a class="dropdown-link routinelinks" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
                                                             </div>
                                                         @endif
                                                         @endforeach
