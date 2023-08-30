@@ -356,8 +356,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
     $scope.selectedShadeImg_p = '';
     $scope.selectedShadeImg_s = '';
 
-    $scope.chooseProdShade = function(lineId, prodShadeId, shadeId, productId, shadeName, primaryImg, secondaryImg){
-
+    $scope.chooseBundleProdShade = function(lineId, prodShadeId, shadeId, productId, shadeName, primaryImg, secondaryImg){
+    	
     	$(".shade_chooser"+lineId).removeClass('shade-active');
     	$("#shadeAnchor_"+prodShadeId).addClass('shade-active');
 
@@ -371,7 +371,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
         $scope.selectedShadeImg_s = secondaryImg;
 
     }
-    $scope.confirmProductShade = function(lineId){
+    $scope.confirmBundleProductShade = function(lineId){
 
     	if($("#prodShadeId_"+lineId).val() != ''){
 
