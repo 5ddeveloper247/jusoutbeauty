@@ -28062,6 +28062,9 @@ button.accordion_inc {
 .menu_ul a.nav-link.dropdown-toggle.p-0 {
     font-size: 16px;
 }
+/* .routinelinks{
+    font-size: 14px;
+} */
 
 @media (max-width: 480px) {
     .mob_sec h2.text-center.font-weight-600.mb-3 {

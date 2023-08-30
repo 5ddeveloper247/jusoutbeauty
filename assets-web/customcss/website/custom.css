@@ -714,6 +714,29 @@ img.item.shop-shade {
 } */
 
 @media (min-width: 1200px){
+    .bundleDetailAboutSection{
+        height:81vh;
+        overflow-y:auto;
+    }
+    .routinelinks{
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .productDetailLutiesSection{
+        height:95vh;
+        overflow-y:auto;
+    }
+    .productDetailSubscriptionSection{
+        height:60vh;
+        overflow-y:auto;
+    }
+    .productDetailVideoSection,.bundleDetailVideoSection{
+        height:76vh;
+        overflow-y:auto;
+    }
+    /* .productDetailsection1{
+        margin-top: 42px;
+    } */
 	img.img-home-pay {
 		width: 28rem !important;
     	height: 28rem !important;
@@ -799,7 +822,49 @@ img.item.shop-shade {
 		height: 37rem;
 	}
 }
+@media screen and (min-width:1350px){
+    /* .productDetailSubscriptionSection{
+        height:81vh;
+        overflow-y:auto;
+    } */
+    .productDetailVideoSection{
+        height:75vh;
+        overflow-y:auto;
+    }
+}
 @media screen and (min-width:1450px){
+    /* .prod_img_detail_acc.img1-section2.fadeInLeft.animated.img-w25.aboutpicture1{
+        height: 25rem !important;
+    }
+    img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpicture2{
+        height: 20rem !important;
+        width: 53% !important;
+		margin-top: 216px !important;
+		margin-left: -212px !important;
+    } */
+    .bundleDetailAboutSection{
+        height:80vh;
+        overflow-y:auto;
+    }
+    .routinelinks{
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .productDetailLutiesSection{
+        height:90vh;
+        overflow-y:auto;
+    }
+    .productDetailSubscriptionSection{
+        height:55vh;
+        overflow-y:auto;
+    }
+    .productDetailVideoSection,.bundleDetailVideoSection{
+        height:69vh;
+        overflow-y:auto;
+    }
+    /* .productDetailHeading{
+        margin-top: 30px;
+    } */
 	input#quantity{
 		padding: 19px 10px;
 
@@ -894,7 +959,50 @@ img.item.shop-shade {
 		width: 56rem;
 	}
 }
+/* @media screen and (min-width: 1650px){
+    .productDetailHeading {
+        margin-top: 30px;
+    }
+} */
+/* @media screen and (min-width:1500px){
+    .productDetailSubscriptionSection{
+        height:70vh;
+        overflow-y:auto;
+    }
+
+} */
+@media screen and (min-width:1640px){
+    /* .bundleDetailAboutSection{
+        height:75vh;
+        overflow-y:auto;
+    } */
+}
+@media screen and (min-width:1600px){
+    /* .bundleDetailAboutSection{
+        height:75vh;
+        overflow-y:auto;
+    } */
+    .productDetailSubscriptionSection{
+        height:95vh;
+        overflow-y:auto;
+    }
+}
 @media screen and (min-width:1650px){
+    .bundleDetailAboutSection{
+        height:73vh;
+        overflow-y:auto;
+    }
+    .routinelinks{
+        font-size: 20px;
+    }
+    .productDetailSubscriptionSection{
+        height:90vh;
+        overflow-y:auto;
+    }
+    .productDetailVideoSection,.bundleDetailVideoSection{
+        height:80vh;
+        overflow-y:auto;
+    }
 	input#quantity{
 		padding: 26px 10px;
 
@@ -1017,7 +1125,8 @@ img.item.shop-shade {
 	#pillsQuestionsTab,
 	#pills-recommendations-tab,
 	#pills-recently-viewed-tab,
-	#spotlightTabBtn,#formulatedTabBtn,.spotlightTabBtn,.formulatedTabBtn{
+	#spotlightTabBtn,
+    #formulatedTabBtn,.spotlightTabBtn,.formulatedTabBtn{
 		font-size: 44px !important;
 	}
 
@@ -1048,7 +1157,9 @@ img.item.shop-shade {
 		margin-top: 208px !important;
 		margin-left: -123px;
 	} */
-
+    .productDetailHeading{
+        margin-top: 55px;
+    }
 	.pro-details{
 		height: 57rem !important;
 		overflow-y: auto;
@@ -1202,6 +1313,15 @@ img.item.shop-shade {
 		margin-top: 416px !important;
 		margin-left: -212px !important;
 	}
+    .prod_img_detail_acc.img1-section2.fadeInLeft.animated.img-w25.aboutpicture1{
+        height: 29rem !important;
+    }
+    img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpicture2{
+        height: 20rem !important;
+        width: 55% !important;
+		margin-top: 260px !important;
+		margin-left: -212px !important;
+    }
 	.fix {
 		height: 50rem !important;
     	overflow: hidden;
@@ -1227,7 +1347,22 @@ img.item.shop-shade {
         margin-right: 40px !important;
     } */
 }
+@media screen and (min-width:1750px){
+    .bundleDetailAboutSection{
+        height:69vh;
+        overflow-y:auto;
+    }
+}
 @media screen and (min-width:1851px){
+    .bundleDetailAboutSection{
+        height:63vh;
+        overflow-y:auto;
+    }
+    .productDetailSubscriptionSection{
+        height:78vh;
+        overflow-y: auto;
+    }
+
 	.container-custom-slider {
 		max-width: 1750px;
 	}

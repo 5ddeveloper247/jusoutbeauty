@@ -139,7 +139,7 @@
                 <div class="card d-flex flex-xl-column flex-sm-column flex-md-row flex-column">
                   <div class="card-body text-center border-bottom profile-bx">
                     <div class="profile-image mb-4">
-                      <img src="{{ url('/assets-admin') }}/images/admin/avatar/1.jpg" class="rounded-circle" alt="">
+                      <img src="{{ url('/assets-admin') }}/images/admin/profile/user.png" class="rounded-circle" alt="">
                     </div>
                     <h4 class="fs-22 text-black mb-1">{{session('firstName')}} {{session('lastName')}}</h4>
                     <p class="mb-4">User</p>

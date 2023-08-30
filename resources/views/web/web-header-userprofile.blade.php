@@ -710,7 +710,7 @@
 										<span class="text-black"><strong>{{$result->FIRST_NAME ?? session('firstName')}} {{$result->LAST_NAME ?? session('lastName')}}</strong></span>
 										<p class="fs-12 mb-0">User</p>
 									</div>
-                                    <img src="{{ url('/assets-admin') }}/images/admin/profile/17.jpg" width="20" alt=""/>
+                                    <img src="{{ url('/assets-admin') }}/images/admin/profile/user.png" width="20" alt=""/>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="{{session('site')}}/userlogout" class="dropdown-item ai-icon">
