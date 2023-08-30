@@ -406,7 +406,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											</label>
 											<ul class="list-inline d-flex justify-content-start mb-0">
 												<li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades"
-												ng-click="chooseProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
+												ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
 												title="@{{list.SHADE_NAME}}">
 													<a href="javascript:;" class="d-block swatches-item shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}" style="background-image: url('@{{list.shadeprimaryImage}}'); background-repeat:no-repeat;background-position: center;"> </a>
 													{{-- <a href="#" class="d-block swatches-item"  style="background-color: #A0ADBC;"> </a> --}}
@@ -438,7 +438,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											<input type="hidden" id="productId_@{{row.BUNDLE_LINE_ID}}" value="">
 											<input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">
 										</div>
-										<a href="javascript:;" class="btn btn-primary" ng-click="confirmProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
+										<a href="javascript:;" class="btn btn-primary" ng-click="confirmBundleProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
 									</div>
 								</div>
 
