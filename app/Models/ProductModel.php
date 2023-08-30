@@ -794,6 +794,7 @@ class ProductModel extends Model
 
 
     		$arrRes[$i]['NAME'] = $row->NAME;
+            $arrRes[$i]['DISPLAY_NAME'] = $row->DISPLAY_NAME;
 
     		$subCatProductImage = $this->getSpecificProductImageSubCategoryWise($row->SUB_CATEGORY_ID);
 

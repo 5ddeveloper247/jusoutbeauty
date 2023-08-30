@@ -2896,6 +2896,7 @@ class AdminController extends Controller
                                 'SEQ_NUM' => $getLastSeq,
 								'CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
 								'NAME' => $data['C_2'],
+                                'DISPLAY_NAME' => $data['C_2'],
 								'STATUS' => 'active',
 								'CREATED_BY' => $userId,
 								'CREATED_ON' => date ( 'Y-m-d H:i:s' ),
@@ -2926,7 +2927,7 @@ class AdminController extends Controller
 
 				$result = DB::table ( 'jb_sub_category_tbl' ) ->where ( 'SUB_CATEGORY_ID', $data ['ID'] ) ->update (
 					array ( 'CATEGORY_ID' => isset($data ['C_1']['id']) ? $data ['C_1']['id'] : '',
-							'NAME' => $data['C_2'],
+							'DISPLAY_NAME' => $data['C_2'],
 							'UPDATED_BY' => $userId,
 							'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
 					)

@@ -194,7 +194,7 @@ class CategoryModel extends Model
             $arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
     		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
     		$arrRes[$i]['CATEGORY_NAME'] = $row->catName;
-    		$arrRes[$i]['NAME'] = $row->NAME;
+    		$arrRes[$i]['NAME'] = $row->DISPLAY_NAME;
     		$arrRes[$i]['STATUS'] = $row->STATUS;
     		$arrRes[$i]['DATE'] = $row->DATE;
     		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;

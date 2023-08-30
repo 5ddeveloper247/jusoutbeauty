@@ -193,7 +193,7 @@ $userId = session('userId');
                                                                     data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
                                                                     data-type="SUB_CATEGORY"
                                                                     data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
-                                                                    data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">{{ $category['NAME'] }}</a>
+                                                                    data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">{{ $category['DISPLAY_NAME'] }}</a>
                                                             </div>
                                                         @endforeach
                                                     @endif
@@ -302,7 +302,7 @@ $userId = session('userId');
 
                                                                         <h4 class=" fs-14 mb-3 lh-1 font-weight-500 p-0 text-center ellipsis"
                                                                             style="display: block;">
-                                                                            {{ $category['NAME'] }}</h4>
+                                                                            {{ $category['DISPLAY_NAME'] }}</h4>
                                                                         <!-- dropdown-header -->
                                                                         <div class="card border-0">
                                                                             <div
