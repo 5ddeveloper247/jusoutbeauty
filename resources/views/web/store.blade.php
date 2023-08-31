@@ -167,7 +167,7 @@
  			<nav aria-label="breadcrumb">
  				<ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3">
  					<li class="breadcrumb-item"><a class="text-decoration-none" href="{{session('site')}}/home" style="color: white; font-size: 30px">Home</a></li>
- 					<li class="breadcrumb-item d-flex align-items-center"><a class="text-decoration-none" style="color: white; font-size: 30px"><?php echo isset($subCategoryName['NAME']) && $subCategoryName['NAME'] != '' ? $subCategoryName['NAME'] : $categoryName['NAME']; ?></a>
+ 					<li class="breadcrumb-item d-flex align-items-center"><a class="text-decoration-none" style="color: white; font-size: 30px"><?php echo isset($subCategoryName['DISPLAY_NAME']) && $subCategoryName['DISPLAY_NAME'] != '' ? $subCategoryName['DISPLAY_NAME'] : $categoryName['NAME']; ?></a>
  					</li>
  				</ol>
  			</nav>

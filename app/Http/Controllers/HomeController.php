@@ -453,6 +453,7 @@ class HomeController extends Controller
             else
             {
             $data['page'] = 'store';
+            // dd($data['subCategoryName']);
             return view('web.store')->with ( $data );
             }
         }
