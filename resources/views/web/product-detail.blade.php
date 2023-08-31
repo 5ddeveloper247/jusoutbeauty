@@ -432,14 +432,16 @@
                                 $primaryImages = [];
                                 $secondaryImages = [];
                                 $otherImages = [];
-
-                                foreach ($images as $image) {
-                                    if ($image['primFlag'] == 1) {
-                                        $primaryImages[] = $image;
-                                    } elseif ($image['secFlag'] == 1) {
-                                        $secondaryImages[] = $image;
-                                    } else {
-                                        $otherImages[] = $image;
+                                // dd($images);
+                                if (is_array($images) || is_object($images)) {
+                                    foreach ($images as $image) {
+                                        if ($image['primFlag'] == 1) {
+                                            $primaryImages[] = $image;
+                                        } elseif ($image['secFlag'] == 1) {
+                                            $secondaryImages[] = $image;
+                                        } else {
+                                            $otherImages[] = $image;
+                                        }
                                     }
                                 }
 
@@ -1783,7 +1785,8 @@
                         <div class="box px-1" data-animate="fadeInUp">
                             <div class="card border-0 product px-2">
                                 <div class="position-relative">
-                                    <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                    {{-- productdetail --> removed after made url with href --}}
+                                    <a href="{{ url('/') }}/Products/{{ $recommand['CATEGORY_SLUG'] }}/{{ $recommand['SUB_CATEGORY_SLUG'] ? $recommand['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recommand['SLUG'] }}" class="d-block overflow-hidden"
                                         data-id="<?= $recommand['PRODUCT_ID'] ?>"
                                         data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
                                         data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
@@ -1874,7 +1877,8 @@
                                         {{ $recommand['CATEGORY_NAME'] }}</a>
                                     <div class="d-flex flex-column mb-2">
                                         <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                            <a href="javascript:;" class="productdetail text-capitalize"
+                                            {{-- productdetail --> removed after made url with href --}}
+                                            <a href="{{ url('/') }}/Products/{{ $recommand['CATEGORY_SLUG'] }}/{{ $recommand['SUB_CATEGORY_SLUG'] ? $recommand['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recommand['SLUG'] }}" class="text-capitalize"
                                                 data-id="<?= $recommand['PRODUCT_ID'] ?>"
                                                 data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
@@ -2102,8 +2106,8 @@
                         <div class="box px-1" data-animate="fadeInUp">
                             <div class="card border-0 product px-2">
                                 <div class="position-relative">
-
-                                    <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                    {{-- productdetail --> removed after made url with href --}}
+                                    <a href="{{ url('/') }}/Products/{{ $recent['CATEGORY_SLUG'] }}/{{ $recent['SUB_CATEGORY_SLUG'] ? $recent['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recent['SLUG'] }}" class="d-block overflow-hidden"
                                         data-id="<?= $recent['PRODUCT_ID'] ?>"
                                         data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                         data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
@@ -2192,7 +2196,8 @@
                                         {{ $recent['CATEGORY_NAME'] }}</a>
                                     <div class="d-flex flex-column mb-2">
                                         <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                            <a href="javascript:;" class="productdetail"
+                                            {{-- productdetail --> removed after made url with href --}}
+                                            <a href="{{ url('/') }}/Products/{{ $recent['CATEGORY_SLUG'] }}/{{ $recent['SUB_CATEGORY_SLUG'] ? $recent['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recent['SLUG'] }}" class=""
                                                 data-id="<?= $recent['PRODUCT_ID'] ?>"
                                                 data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
@@ -2683,7 +2688,8 @@
                         <div class="box px-1" data-animate="fadeInUp">
                             <div class="card border-0 product px-2">
                                 <div class="position-relative">
-                                    <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                    {{-- productdetail --> removed after made url with href --}}
+                                    <a href="{{ url('/') }}/Products/{{ $recent['CATEGORY_SLUG'] }}/{{ $recent['SUB_CATEGORY_SLUG'] ? $recent['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recent['SLUG'] }}" class="d-block overflow-hidden"
                                         data-id="<?= $recent['PRODUCT_ID'] ?>"
                                         data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                         data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
@@ -2781,7 +2787,8 @@
                                         {{ $recent['CATEGORY_NAME'] }}</a>
                                     <div class="d-flex flex-column mb-2" data-id="<?= $recent['PRODUCT_ID'] ?>">
                                         <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                            <a href="javascript:;" class="productdetail"
+                                            {{-- productdetail --> removed after made url with href --}}
+                                            <a href="{{ url('/') }}/Products/{{ $recent['CATEGORY_SLUG'] }}/{{ $recent['SUB_CATEGORY_SLUG'] ? $recent['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recent['SLUG'] }}" class=""
                                                 data-id="<?= $recent['PRODUCT_ID'] ?>"
                                                 data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"

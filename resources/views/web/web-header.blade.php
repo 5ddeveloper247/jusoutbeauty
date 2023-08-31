@@ -165,7 +165,8 @@ $userId = session('userId');
 
                                 <li aria-haspopup="true" aria-expanded="false"
                                     class="nav-item dropdown-item-shop dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5">
-                                    <a class="nav-link dropdown-toggle p-0 toShopListing" href="javascript:;"
+                                    {{-- toShopListing --> removed after made url with href --}}
+                                    <a class="nav-link dropdown-toggle p-0 " href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>"
                                         data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
                                         <!-- {{ session('site') }}/store -->
                                         <?= $value['NAME'] ?> <span class="caret"></span>
@@ -189,7 +190,8 @@ $userId = session('userId');
                                                     @if (!empty($subCategories))
                                                         @foreach ($subCategories as $category)
                                                             <div class="dropdown-item">
-                                                                <a class="dropdown-link toShopListing" href="javascript:;"
+                                                                {{-- toShopListing  ---> removed after made url href --}}
+                                                                <a class="dropdown-link " href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
                                                                     data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
                                                                     data-type="SUB_CATEGORY"
                                                                     data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
@@ -216,8 +218,9 @@ $userId = session('userId');
                                                                         <div class="card border-0">
                                                                             <div
                                                                                 class="position-relative hover-zoom-in ">
-                                                                                <a href="javascript:;"
-                                                                                    class="d-block overflow-hidden productdetail"
+                                                                                {{-- productdetail ---> removed after made url with href --}}
+                                                                                <a href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}"
+                                                                                    class="d-block overflow-hidden "
                                                                                     data-id="{{ $product['PRODUCT_ID'] }}"
                                                                                     data-type="{{ $product['CATEGORY_NAME'] }}"
                                                                                     data-category="{{ $product['CATEGORY_SLUG'] }}"
@@ -254,12 +257,13 @@ $userId = session('userId');
                                                                                     <!-- {{ url('/store') }} -->
                                                                                     <h3
                                                                                         class="card-title fs-16 font-weight-500 mb-1 lh-14375">
+                                                                                        {{-- productdetail ---> removed after made url with href --}}
                                                                                         <a
-                                                                                            href="javascript:;" class="productdetail" data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                            href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}" class="" data-id="{{ $product['PRODUCT_ID'] }}"
                                                                                             data-type="{{ $product['CATEGORY_NAME'] }}"
                                                                                             data-category="{{ $product['CATEGORY_SLUG'] }}"
                                                                                             data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
-                                                                                            data-name="{{ $product['SLUG'] }}">{{ $product['NAME'] }}</a>
+                                                                                            data-name="{{ $product['SLUG'] }}">{{ ucWords($product['NAME']) }}</a>
                                                                                         <!-- {{ url('/product-detail') }} -->
                                                                                     </h3>
                                                                                 </div>
@@ -293,37 +297,41 @@ $userId = session('userId');
 
                                                         @if (!empty($subCategories))
                                                             @foreach ($subCategories as $category)
-                                                                <div class="col-4 h-100 toShopListing"
-                                                                    data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
-                                                                    data-type="SUB_CATEGORY"
-                                                                    data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
-                                                                    data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
-                                                                    <div class="col-12 col-lg-12 product mb-2 ">
+                                                            <a href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>/<?= $category['SUB_CATEGORY_SLUG'] ?>">
+                                                                {{-- toShopListing ---> removed after made url with href --}}
+                                                                <div class="col-4 h-100"
+                                                                data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
+                                                                data-type="SUB_CATEGORY"
+                                                                data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                                                data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
+                                                                <div class="col-12 col-lg-12 product mb-2 ">
 
-                                                                        <h4 class=" fs-14 mb-3 lh-1 font-weight-500 p-0 text-center ellipsis"
-                                                                            style="display: block;">
-                                                                            {{ $category['DISPLAY_NAME'] }}</h4>
-                                                                        <!-- dropdown-header -->
-                                                                        <div class="card border-0">
-                                                                            <div
-                                                                                class="position-relative hover-zoom-in">
-                                                                                <a href="javascript:;"
-                                                                                    class="d-block overflow-hidden">
-                                                                                    <img src="{{ $category['prodImg'] }}"
-                                                                                        alt="alt"
-                                                                                        class="card-img-top img-header-left-7 image-active"
-                                                                                        style="">
-                                                                                    <img src="{{ $category['prodImg'] }}"
-                                                                                        alt="alt"
-                                                                                        class="card-img-top img-header-left-7 image-hover"
-                                                                                        style="">
-                                                                                </a>
-
-                                                                            </div>
+                                                                    <h4 class=" fs-14 mb-3 lh-1 font-weight-500 p-0 text-center ellipsis"
+                                                                        style="display: block;">
+                                                                        {{ $category['DISPLAY_NAME'] }}</h4>
+                                                                    <!-- dropdown-header -->
+                                                                    <div class="card border-0">
+                                                                        <div
+                                                                            class="position-relative hover-zoom-in">
+                                                                            <a href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                                                                class="d-block overflow-hidden">
+                                                                                <img src="{{ $category['prodImg'] }}"
+                                                                                    alt="alt"
+                                                                                    class="card-img-top img-header-left-7 image-active"
+                                                                                    style="">
+                                                                                <img src="{{ $category['prodImg'] }}"
+                                                                                    alt="alt"
+                                                                                    class="card-img-top img-header-left-7 image-hover"
+                                                                                    style="">
+                                                                            </a>
 
                                                                         </div>
+
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            </a>
+
                                                             @endforeach
                                                         @endif
                                                     </div>
@@ -344,7 +352,8 @@ $userId = session('userId');
                                                                         <div class="card border-0">
                                                                             <div
                                                                                 class="position-relative hover-zoom-in">
-                                                                                <a href="javascript:;" class="productdetail"
+                                                                                {{-- productdetail --> removed after made url with href --}}
+                                                                                <a href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}" class=""
                                                                                 data-id="{{ $product['PRODUCT_ID'] }}"
                                                                                 data-type="{{ $product['CATEGORY_NAME'] }}"
                                                                                 data-category="{{ $product['CATEGORY_SLUG'] }}"
@@ -381,8 +390,9 @@ $userId = session('userId');
                                                                                     <!-- {{ url('/store') }} -->
                                                                                     <h3
                                                                                         class="card-title fs-16 font-weight-500 mb-1 lh-14375">
+                                                                                        {{-- productdetail ---> removed after made url with href --}}
                                                                                         <a
-                                                                                            href="javascript:;" class="productdetail" data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                            href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}" class="" data-id="{{ $product['PRODUCT_ID'] }}"
                                                                                             data-type="{{ $product['CATEGORY_NAME'] }}"
                                                                                             data-category="{{ $product['CATEGORY_SLUG'] }}"
                                                                                             data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"

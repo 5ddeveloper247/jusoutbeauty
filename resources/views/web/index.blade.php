@@ -566,7 +566,8 @@ $userId = session('userId');
                                     <div class="box product py-2" data-animate="fadeInUp">
                                         <div class="card border-0">
                                             <div class="position-relative hover-zoom-in">
-                                                <a href="javascript:;" class="d-block overflow-hidden productdetail "
+                                                {{-- productdetail ---> removed after made href url --}}
+                                                <a href="{{ url('/') }}/Products/{{ $trend['CATEGORY_SLUG'] }}/{{ $trend['SUB_CATEGORY_SLUG'] ? $trend['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $trend['SLUG'] }}" class="d-block overflow-hidden"
                                                     data-id="{{ $trend['PRODUCT_ID'] }}"
                                                     data-category="{{ $trend['CATEGORY_SLUG'] }}"
                                                     data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
@@ -623,7 +624,8 @@ $userId = session('userId');
                                                     >
                                                     {{ $trend['CATEGORY_NAME'] }}</a>
                                                 <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 text-capitalize">
-                                                    <a href="javascript:;" class="productdetail" data-id="{{ $trend['PRODUCT_ID'] }}"
+                                                    {{-- productdetail ---> removed after made url with href --}}
+                                                    <a href="{{ url('/') }}/Products/{{ $trend['CATEGORY_SLUG'] }}/{{ $trend['SUB_CATEGORY_SLUG'] ? $trend['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $trend['SLUG'] }}" class="" data-id="{{ $trend['PRODUCT_ID'] }}"
                                                     data-category="{{ $trend['CATEGORY_SLUG'] }}"
                                                     data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
                                                     data-name="{{ $trend['SLUG'] }}">{{ $trend['PRODUCT_NAME'] }}</a>
@@ -782,7 +784,8 @@ $userId = session('userId');
                             <div class="col-6 col-lg-3 product mb-8" data-animate="fadeInUp">
                                 <div class="card border-0">
                                     <div class="position-relative hover-zoom-in">
-                                        <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                    {{-- productdetail ---> removed after made url with href --}}
+                                        <a href="{{ url('/') }}/Products/{{ $for['CATEGORY_SLUG'] }}/{{ $for['SUB_CATEGORY_SLUG'] ? $for['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $for['SLUG'] }}" class="d-block overflow-hidden"
                                             data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
                                           	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $for['SLUG'] }}" data-type="">
@@ -844,7 +847,8 @@ $userId = session('userId');
                                             class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary" data-id="{{ $for['CATEGORY_ID'] }}" data-type="CATEGORY" data-categorySlug="{{ $for['CATEGORY_SLUG'] }}">
                                             {{ $for['CATEGORY_NAME'] }}</a>
                                         <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 ellipsis-m text-capitalize">
-                                            <a href="javascript:;" class="productdetail" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
+                                            {{-- productdetail ---> removed after made url with href --}}
+                                            <a href="{{ url('/') }}/Products/{{ $for['CATEGORY_SLUG'] }}/{{ $for['SUB_CATEGORY_SLUG'] ? $for['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $for['SLUG'] }}" class="" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
                                             data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $for['SLUG'] }}" data-type="">{{ $for['PRODUCT_NAME'] }}</a>
                                         </h3>
@@ -1028,7 +1032,7 @@ $userId = session('userId');
                         <div class="col-sm-6 mb-0 mb-sm-0 product-inclusive" data-animate="fadeInUp"
                                 style="background-image: url('{{ $bestSeller['IMAGE_DOWNPATH'] }}');">
                                 <div class="overlay"></div>
-                                <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in" style="background-color: unset !important; height: 600px;">
+                                <a href="{{ url('/') }}/Products/{{ $bestSeller['CATEGORY_SLUG'] }}/{{ $bestSeller['SUB_CATEGORY_SLUG'] ? $bestSeller['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $bestSeller['SLUG'] }}" class="card border-0 banner-03 hover-zoom-in" style="background-color: unset !important; height: 600px;">
                                     <!-- Add the black overlay here -->
 
 
@@ -1038,7 +1042,8 @@ $userId = session('userId');
                                         <p class="mb-0 card-text font-weight-500 part_head text-uppercase">{{ $bestSeller['TITLE'] }}</p>
                                         <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">{{ $bestSeller['HEADING'] }}</h5>
                                         <div class="mt-auto">
-                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head productdetail"
+                                            {{-- productdetail --> removed after made url with href --}}
+                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head"
                                             data-id="{{ $bestSeller['PRODUCT_ID'] }}"
                                             data-category="{{ $bestSeller['CATEGORY_SLUG'] }}"
                                             data-subcategory="{{ $bestSeller['SUB_CATEGORY_SLUG'] }}"
@@ -1054,7 +1059,7 @@ $userId = session('userId');
                         <div class="col-sm-6 mb-0 product-inclusive" data-animate="fadeInUp"
                             style="background-image: url('{{ $onlineExclusive['IMAGE_DOWNPATH'] }}');">
                             <div class="overlay"></div>
-                            <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in"
+                            <a href="{{ url('/') }}/Products/{{ $onlineExclusive['CATEGORY_SLUG'] }}/{{ $onlineExclusive['SUB_CATEGORY_SLUG'] ? $onlineExclusive['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $onlineExclusive['SLUG'] }}" class="card border-0 banner-03 hover-zoom-in"
                                 style="background-color: unset !important; height: 600px;">
 
 
@@ -1066,8 +1071,9 @@ $userId = session('userId');
                                             {{ $onlineExclusive['HEADING'] }}</h5>
                                         {{-- <p><a href="">Shop Now</a></p> --}}
                                     <div class="mt-auto">
+                                        {{-- productdetail --> removed after made url with href --}}
                                         <button type="button"
-                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head productdetail"
+                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head"
                                             data-id="{{ $onlineExclusive['PRODUCT_ID'] }}"
                                             data-category="{{ $onlineExclusive['CATEGORY_SLUG'] }}"
                                             data-subcategory="{{ $onlineExclusive['SUB_CATEGORY_SLUG'] }}"

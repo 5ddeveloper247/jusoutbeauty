@@ -1209,8 +1209,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									<span class="d-inline-block border-right pr-1 mr-1">5.0</span>See @{{ratingfive}} Reviews
 								</p>
 							</div>
-							<div class="mt-6 mt-md-10">
-								<a href="javascript:;" style="font-size: .8rem;" class="btn btn-outline-primary rev-btnns" id="writeReview_btn">Write a Review</a>
+							<div class="mt-6 mt-md-9">
+								<a href="javascript:;" style="font-size: 11px;" class="btn btn-outline-primary rev-btnns" id="writeReview_btn">Write a Review</a>
 			<!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
 							</div>
 						</div>
@@ -1709,7 +1709,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									<div class="box px-1" data-animate="fadeInUp">
 										<div class="card border-0 product px-2">
 											<div class="position-relative">
-												<a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                                {{-- productdetail --> removed after made url with href --}}
+												<a href="{{ url('/') }}/Products/{{ $recommand['CATEGORY_SLUG'] }}/{{ $recommand['SUB_CATEGORY_SLUG'] ? $recommand['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recommand['SLUG'] }}" class="d-block overflow-hidden"
                                                 data-id="<?= $recommand['PRODUCT_ID'] ?>"
                                                 data-category="<?= $recommand['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $recommand['SUB_CATEGORY_SLUG'] ?>"
@@ -2219,8 +2220,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                         <div class="box px-1" data-animate="fadeInUp">
                             <div class="card border-0 product px-2">
                                 <div class="position-relative">
-
-                                    <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                    {{-- productdetail --> removed after made url with href --}}
+                                    <a href="{{ url('/') }}/Products/{{ $recent['CATEGORY_SLUG'] }}/{{ $recent['SUB_CATEGORY_SLUG'] ? $recent['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recent['SLUG'] }}" class="d-block overflow-hidden"
                                         data-id="<?= $recent['PRODUCT_ID'] ?>"
                                         data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                         data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"
@@ -2309,7 +2310,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
                                         {{ $recent['CATEGORY_NAME'] }}</a>
                                     <div class="d-flex flex-column mb-2">
                                         <h3 class="card-title fs-16 font-weight-500 mb-0 lh-14375 ellipsis">
-                                            <a href="javascript:;" class="productdetail text-capitalize"
+                                            {{-- productdetail --> removed after made url with href --}}
+                                            <a href="{{ url('/') }}/Products/{{ $recent['CATEGORY_SLUG'] }}/{{ $recent['SUB_CATEGORY_SLUG'] ? $recent['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $recent['SLUG'] }}" class=" text-capitalize"
                                                 data-id="<?= $recent['PRODUCT_ID'] ?>"
                                                 data-category="<?= $recent['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $recent['SUB_CATEGORY_SLUG'] ?>"

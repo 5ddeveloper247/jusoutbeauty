@@ -26,16 +26,17 @@
 							<tr class="position-relative ng-cloak" ng-repeat="row in displayCollectionWishlist">
 								<td class="pl-xl-6 py-4 d-flex align-items-center">
 									<a href="javascript:;" class="d-block" ng-click="removeWishlist(row.WISHLIST_ID);"><i class="fal fa-times"></i></a>
-
-									<div class="media align-items-center productdetail"
+                                    {{-- productdetail --> removed after made url with href --}}
+									<div class="media align-items-center"
                                     data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}"
                                     data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
                                     data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}" >
-										<a href="javascript:;" class="ml-3 mr-4 d-block" >
+										<a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}" class="ml-3 mr-4 d-block" >
 											<img src="@{{row.primaryImage}}" alt="Image" class="mw-75px">
 										</a>
 										<div class="media-body mw-210">
-											<a href="javascript:;" class="font-weight-500 text-primary mb-2 lh-13 productdetail"
+                                            {{-- productdetail --> removed after made url with href --}}
+											<a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}" class="font-weight-500 text-primary mb-2 lh-13"
                                             data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}"
                                             data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
                                             data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"

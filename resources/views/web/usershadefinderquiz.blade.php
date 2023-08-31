@@ -259,29 +259,30 @@ var site = '<?php echo session('site');?>';
 								</div>
 								<div class="row d-flex" style="height: 66%; overflow:scroll;">
 									<div class="col-lg-4 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
+                                        {{-- productdetail --> removed after made url with href --}}
 										<div class="box shade py-2 fadeInUp animated"
 											data-animate="fadeInUp">
-											<div class="card shadee border-0 product-right-side productdetail"
+											<div class="card shadee border-0 product-right-side "
                                             data-id="@{{row.PRODUCT_ID}}"
                                             data-category="@{{ row.CATEGORY_SLUG }}"
                                             data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
                                             data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"
                                             >
 												<div class="position-relative hover-zoom-in">
-													<a href="javascript:;" class="d-block overflow-hidden">
+													<a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}" class="d-block overflow-hidden">
 													<img src="@{{row.primaryImage}}" alt="@{{row.NAME}}" class="card-img-top img-h30">
                                                     {{-- <img src="@{{row.secondaryImage}}" alt="@{{row.NAME}}" class="card-img-top image-hover"> --}}
 													</a>
 												</div>
 											</div>
 											<div class="card-body pt-4 px-0 pb-0">
-
-												<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 productdetail text-capitalize"
+                                                {{-- productdetail --> removed after made url with href --}}
+												<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 text-capitalize"
                                                 data-id="@{{row.PRODUCT_ID}}"
                                                 data-category="@{{ row.CATEGORY_SLUG }}"
                                                 data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
                                                 data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
-													<a href="javascript:;">@{{row.NAME}}</a>
+													<a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}">@{{row.NAME}}</a>
 												</h3>
 
 												<a href="javascript:;" class="btn btn-primary mt-2 addto-cart" data-type="single" data-id="@{{row.PRODUCT_ID}}" data-quantity='1'>Add To Bag</a>
@@ -321,8 +322,8 @@ var site = '<?php echo session('site');?>';
                                                 <a href="javascript:;">@{{row.SUB_CATEGORY_NAME ? row.SUB_CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
                                             </h3>
                                             <div class="position-relative hover-zoom-in">
-
-                                                <a href="javascript:;" class="d-block overflow-hidden  productdetail"
+                                                {{-- productdetail --> removed after made url with href --}}
+                                                <a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}" class="d-block overflow-hidden "
                                                 data-id="@{{row.PRODUCT_ID}}"
                                                 data-category="@{{ row.CATEGORY_SLUG }}"
                                                 data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"
@@ -383,7 +384,8 @@ var site = '<?php echo session('site');?>';
                                                     @{{row.CATEGORY_NAME ? row.CATEGORY_NAME : '&nbsp;&nbsp;'}}</a>
 
                                                 <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 cursor-pointer">
-                                                    <a class="productdetail text-capitalize"
+                                                    {{-- productdetail --> removed after made url with href --}}
+                                                    <a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}" class="text-capitalize"
                                                     data-id="@{{row.PRODUCT_ID}}"
                                                     data-category="@{{ row.CATEGORY_SLUG }}"
                                                     data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}"

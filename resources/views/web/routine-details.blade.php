@@ -365,7 +365,8 @@ use Illuminate\Support\Str;
                                 <div class="col-6 col-lg-3 product productshop-listing mb-8 col-xl-3">
                                     <div class="card border-0">
                                         <div class="position-relative hover-zoom-in">
-                                            <a href="javascript:;" class="d-block overflow-hidden productdetail"
+                                            {{-- productdetail --> removed after made url with href --}}
+                                            <a href="{{ url('/') }}/Products/{{ $StepsName['CATEGORY_SLUG'] }}/{{ $StepsName['SUB_CATEGORY_SLUG'] ? $StepsName['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $StepsName['SLUG'] }}" class="d-block overflow-hidden"
                                                data-id="{{ $StepsName['PRODUCT_ID'] }}"
                                                data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
@@ -385,7 +386,8 @@ use Illuminate\Support\Str;
                                                     data-name="{{ $StepsName['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">Add To Cart</a>
                                             </div>
                                         </div>
-                                        <div class="card-body pt-4 px-0 pb-0 productdetail"
+                                        {{-- productdetail --> removed after made url with href --}}
+                                        <div class="card-body pt-4 px-0 pb-0"
                                                 data-id="{{ $StepsName['PRODUCT_ID'] }}"
                                                 data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
                                                 data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
@@ -395,7 +397,7 @@ use Illuminate\Support\Str;
                                                 STEP {{ $i++ }} </a>
 
                                             <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                                <a href="javascript:;" >{{ $StepsName['NAME'] }}</a>
+                                                <a href="{{ url('/') }}/Products/{{ $StepsName['CATEGORY_SLUG'] }}/{{ $StepsName['SUB_CATEGORY_SLUG'] ? $StepsName['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $StepsName['SLUG'] }}" >{{ $StepsName['NAME'] }}</a>
                                             </h3>
 
                                             {{-- <div class="row">

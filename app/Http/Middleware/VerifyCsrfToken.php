@@ -12,7 +12,9 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        '/storeListing',
-    	'/productDetail',
+        // '/storeListing',
+    	// '/productDetail',
+        'Store/*', // Disable CSRF for all routes matching this pattern
+        'Products/*', // Disable CSRF for all routes matching this pattern
     ];
 }

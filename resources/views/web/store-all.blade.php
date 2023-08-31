@@ -321,7 +321,8 @@
                         <div class="col-6 col-lg-3 product productshop-listing mb-8" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)">
                             <div class="card border-0">
  								<div class="position-relative hover-zoom-in">
- 									<a href="javascript:;" class="d-block overflow-hidden productdetail" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
+                                    {{-- productdetail --> removed after made url href --}}
+ 									<a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}" class="d-block overflow-hidden" data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">
  										<img src="@{{row.primaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 img-h30-m image-active">
  										<img src="@{{row.secondaryImage}}" alt="@{{ row.NAME }}" class="card-img-top all-products img-h60 image-hover">
  									</a>
@@ -346,7 +347,8 @@
  									<a href="javascript:;" class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary" data-id="@{{ row.CATEGORY_ID }}" data-type="CATEGORY" data-categoryslug="@{{row.CATEGORY_SLUG}}"> @{{row.CATEGORY}} </a>
 
  									<h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading">
- 										<a href="javascript:;" class="productdetail text-capitalize" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}" data-subCategory="@{{row.SUB_CATEGORY_SLUG}}" data-name="@{{row.SLUG}}" data-type="@{{catFlag}}">@{{row.NAME}}</a>
+                                        {{-- productdetail --> removed after made url with href --}}
+ 										<a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}" class="text-capitalize" data-id="@{{row.PRODUCT_ID}}" data-category="@{{row.CATEGORY_SLUG}}" data-subCategory="@{{row.SUB_CATEGORY_SLUG}}" data-name="@{{row.SLUG}}" data-type="@{{catFlag}}">@{{row.NAME}}</a>
  									</h3>
 									 <p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375 product-subtitle text-capitalize" style="height: 48px;">@{{row.SUB_TITLE}}</p>
                                          <!-- Display shades for each product -->
