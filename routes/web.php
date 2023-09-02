@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-session()->put('site', '/site');
+session()->put('site', '/5d/jusoutbeauty');
 
 
 
@@ -45,10 +45,14 @@ Route::post('/UserValidatePass', [LoginController::class, 'userValidatePass']);
 
 Route::post('/UserReg', [LoginController::class, 'UserReg1']);
 Route::get('/userlogout', [HomeController::class, 'logout']);
-//web routs
+
+
+//web routes
+
+
+
 
 Route::get('/subscription-crone-job',[AdminController::class,'subscriptionCroneJob']);
-
 Route::get('/testing/{id}', function($id){
     $result = DB::table('jb_shopping_cart_detail_tbl as a')->select('a.*',  'a.UNIT_PRICE','prd.NAME as productName','bprd.NAME as bundleName','ctbl.CATEGORY_NAME as productCName','bprd.NAME as bundleCName','sctbl.USER_ID as userId')
     ->leftJoin('jb_product_tbl as prd','a.PRODUCT_ID','=','prd.PRODUCT_ID')
@@ -101,6 +105,10 @@ Route::middleware(['CheckLoggedInStatus'])->group(function () {
     Route::get('/shipping-step', [HomeController::class, 'shippingStep']);
 
     Route::match(['get', 'post'],'/Store/{category}/{subcategory?}', [HomeController::class, 'storeListing']);
+
+
+
+
 
     Route::get('/storeListing', function () {
         return redirect('/home');

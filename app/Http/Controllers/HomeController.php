@@ -88,7 +88,10 @@ class HomeController extends Controller
 
 
    		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
-        // dd($data['categoryProducts']);
+        
+		
+		//dd($data['categoryProducts'][0]['CATEGORY_SLUG']);
+
    		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
    		$data ['homeBanner'] = $UserdashboardModel->getAllUserBanners();
    		$data ['trending'] = $UserdashboardModel->getAllUserHomeProductSectionData1('trending');

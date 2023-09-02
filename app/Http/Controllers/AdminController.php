@@ -6275,6 +6275,9 @@ class AdminController extends Controller
 
 		echo json_encode ( $arrRes );
 	}
+
+
+	
 	public function deleteShadeFinderLevel1Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
 
@@ -6309,6 +6312,13 @@ class AdminController extends Controller
 
 		echo json_encode ( $arrRes );
 	}
+
+
+
+
+
+
+
 	public function deleteLevel1TypeImage(Request $request) {
 
 		$ShadeFinder = new ShadeFinderModel();
@@ -6324,15 +6334,19 @@ class AdminController extends Controller
 
 		if(isset($attDetail['path']) && $attDetail['path'] != '' ){
 			unlink($attDetail['path']);
+			$arrRes ['done'] = true;
+		    $arrRes ['msg'] = 'Type Image deleted successfully...';
+		    $arrRes ['images'] = $ShadeFinder->getSpecificShadeFinderLevel1TypeImages($level1TypeId);
 		}
 
-		$arrRes ['done'] = true;
-		$arrRes ['msg'] = 'Type Image deleted successfully...';
-		$arrRes ['images'] = $ShadeFinder->getSpecificShadeFinderLevel1TypeImages($level1TypeId);
+		else{
+			$arrRes ['msg']="An error has occured";
+		}
 
 		echo json_encode ( $arrRes );
 	}
 
+	
 
 
 	public function saveAdminShadeFinderLevel2Info(Request $request) {

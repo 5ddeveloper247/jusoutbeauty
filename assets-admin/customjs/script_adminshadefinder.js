@@ -869,6 +869,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		});
 	}
 
+	
 	$('#uploadattch').fileupload({
 
  		add: function (e, data) {
@@ -880,6 +881,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
  			}else{
  				$.LoadingOverlay("show");
+
  				var jqXHR = data.submit();
  			}
  	    },
