@@ -107,6 +107,7 @@ class LoginController extends Controller
 		// To send HTML mail, the Content-type header must be set
 
 		$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('OTP');
+		dd($emailConfigDetails);
 
 		$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">

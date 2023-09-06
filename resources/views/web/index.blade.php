@@ -562,8 +562,10 @@ $userId = session('userId');
                             data-slick-options='{"slidesToShow": 3,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 400,"settings": {"slidesToShow": 1}}]}'>
 
                             @if (isset($trending) && !empty($trending))
+                            
                                 @foreach ($trending as $trend)
-                                    <div class="box product py-2" data-animate="fadeInUp">
+                               
+                                                                                                       <div class="box product py-2" data-animate="fadeInUp">
                                         <div class="card border-0">
                                             <div class="position-relative hover-zoom-in">
                                                 {{-- productdetail ---> removed after made href url --}}

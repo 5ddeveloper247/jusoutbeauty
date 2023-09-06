@@ -500,7 +500,7 @@
                     <div class="col-lg-3">
 
 
-                        <h2 class="mb-5">Trending items</h2>
+                        <h2 class="mb-5">Trending</h2>
                         <p class="text-primary fs-20 mb-5 ">Made using clean, non-toxic
                             ingredients, our products are designed for everyone.</p>
                         <a href="{{session('site')}}/store" class="btn btn-outline-primary">Shop</a>

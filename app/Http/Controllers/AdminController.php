@@ -5863,7 +5863,7 @@ class AdminController extends Controller
 	}
 
 
-	public function saveAdminProductOtherInfo(Request $request) {  
+	public function saveAdminProductOtherInfo(Request $request) {
 		$Product = new ProductModel();
 
 		$details = $_REQUEST ['details'];
