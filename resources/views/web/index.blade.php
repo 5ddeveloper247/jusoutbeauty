@@ -983,7 +983,7 @@ $userId = session('userId');
         @endif
 
         <section class="box-shadow-bottom py-10 py-lg-13"
-            style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover;">
+            style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover; background-color:#3d94b7">
 
             <div class="container container-custom container-xl">
                 <h2 class="mb-0 text-center lh-13 text-center-mbl" data-animate="fadeInUp">Are You
@@ -995,11 +995,11 @@ $userId = session('userId');
                             Find Your Shade <br>
                         </h2>
 
-                        <p class="mb-7 mb-8 text-color-subtext">Discover your Perfect Match</p>
+                        <p class="mb-7 mb-8 " style="color:#fff">Discover your Perfect Match</p>
                         <a href="{{ session('site') }}/user-shade-finder" class="btn btn-outline-primary">Take A
                             Quiz</a>
                     </div>
-                    <div class="col-md-7 px-7 mb-7 mb-md-0 inc_cont hover-zoom-in" data-animate="fadeInLeft">
+                    <div class="col-md-7 px-7 mb-7 mb-md-0 inc_cont hover-zoom-in" data-animate="fadeInRight">
                         <img src="{{ url('/assets-web') }}/images/product.png" alt="Poplin top with ruffle trim"
                             class="img-home-pay">
                     </div>

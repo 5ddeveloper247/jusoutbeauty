@@ -627,7 +627,7 @@ hr {
 		color:#60686b;
 		padding: 0px;
 		margin:0px;
-		font-size: 32px;
+		font-size: inherit;
 	}
 
 	.slick-slide img {
@@ -1295,10 +1295,10 @@ img.item.shop-shade {
         border-radius: 2%;
     }
     .h-45px{
-		height: 70px!important;
+		height: 44px!important;
 	}
 	.w-45px {
-		width: 70px!important;
+		width: 44px!important;
 	}
 	/* .fa-star:before,.fa-eye:before {
 
