@@ -54,6 +54,7 @@ class EmailForwardModel extends Mailable
         $email_html = '';
         try {
             $email_html = view('admin.emails.emailTemplate', $email_details)->render();
+			
             Mail::send('admin.emails.emailTemplate', $email_details, function ($message) use ($email_details) {
                if (array_key_exists('from_email', $email_details)) {
                    $message->from($email_details['from_email'], 'Jusoutbeauty');

@@ -101,6 +101,7 @@ class LoginController extends Controller
 
 		$d=array();
 		$d['ONE_TIME_PASSWORD'] = $otp_random_number;
+		
 
 		$qry = DB::table('fnd_user_tbl')->where('EMAIL',$result->EMAIL)->update($d);
 
@@ -379,6 +380,8 @@ class LoginController extends Controller
 				$lastId=DB::table('fnd_user_tbl')->insertGetId($d);
 
 				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('REGISTER');
+				//dd($emailConfigDetails);
+				
 				$email = $data['A_3'];
 
 				$htmlbody=	'<tr>

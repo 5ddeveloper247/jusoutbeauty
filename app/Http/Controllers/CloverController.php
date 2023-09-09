@@ -486,6 +486,27 @@ class CloverController extends Controller
     	return;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function saveCheckout(Request $request,$checkoutDetails,$response1){
 
     	$ShoppingcartModel = new ShoppingcartModel();
@@ -500,6 +521,7 @@ class CloverController extends Controller
 
     	$cart = $ShoppingcartModel->getSpecificCartDetails($cartId);
     	$cartDetails = $ShoppingcartModel->getSpecificCartLineForOrder($cartId);
+	 
 
     	$orderStatus = 'placed';
 
@@ -514,6 +536,8 @@ class CloverController extends Controller
     					'UPDATED_ON' => date ( 'Y-m-d H:i:s' )
     			)
     			);
+
+			
 
     	if(isset($cartDetails) && !empty($cartDetails)){
     		foreach ($cartDetails as $line){
@@ -733,15 +757,22 @@ class CloverController extends Controller
 
 
     	$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('ORDER');
+		
+
         $emailConfigDetailsForSubs = $EmailConfigModel->getSpecificEmailConfigByCode('SUBSCRIPTION');
+		//dd($emailConfigDetailsForSubs);
+
+
         $htmlbody = null;
         $htmlbodyForSubs = null;
         $htmlbodyForSubsRow = null;
         $htmlbodyRow = null;
         $subscriptionTotalAmount = 0;
         $orderTotalAmount = 0;
-
+       
         if (isset($cartDetails) && !empty($cartDetails)) {
+		
+
             $sequence = 0;
             $sequenceForSubs = 0;
             foreach ($cartDetails as $row) {
@@ -794,8 +825,11 @@ class CloverController extends Controller
                     </tr>';
                     // dd($htmlbodyForSubsRow);
                 }else if($subscriptionCheck == 'One-Time Purchase'){
+				
                     $sequence = $sequence+1;
                     $orderTotalAmount += $totalAmount ?: ($totalAmountIncVat ?: 0);
+					
+					
                     $htmlbodyRow .= '
                     <tr>
                         <td style="padding: 10px; text-align: left;">'.$sequence.'</td>
@@ -805,10 +839,16 @@ class CloverController extends Controller
                         <td style="padding: 10px; text-align: left;">'.$quantity.'</td>
                         <td style="padding: 10px; text-align: left;">'.($totalAmount ?: ($totalAmountIncVat ?: '')).'</td>
                     </tr>';
-                    // dd($htmlbodyRow);
+
+                     
                 }
 
+				
+
             }
+
+
+		
 
             $htmlbodyForSubsRow .= '
             <tr>
@@ -850,6 +890,10 @@ class CloverController extends Controller
                         </div>
                     </body>
                     </html>';
+				// clear data receiving in htmlbody	
+               // dd( $htmlbody);
+
+
 
                 $htmlbodyForSubs = '
                     <div bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
@@ -882,6 +926,7 @@ class CloverController extends Controller
                     </body>
                     </html>';
             // dd($htmlbody);
+
             if($htmlbodyForSubsRow != null){
                 // dd($htmlbodyForSubs);
                 // dd($htmlbodyForSubs);
@@ -901,20 +946,20 @@ class CloverController extends Controller
                 // Send the email
                 $EmailForwardModel->sendEmail($email_details);
 
-                $email_details['to_id'] = 1;
-                $email_details['to_email'] = $emailConfigDetailsForSubs['fromEmail'];
-                $email_details['from_id'] = 1;
-                $email_details['from_email'] = $cartDetails[0]['UserEmail'];
-                $email_details['subject'] = $emailConfigDetailsForSubs['subject'];
-                $email_details['message'] = $htmlbodyForSubs;
-                $email_details['logo'] = $emailConfigDetailsForSubs['logo'];
-                $email_details['module_code'] = 'SUBSCRIPTION';
-                $email_details['template'] = 'admin.emails.emailTemplate';
-                $email_details['htmlbody'] = $htmlbodyForSubs;
-                $email_details['pageTitle'] = $emailConfigDetails['title'];
+                // $email_details['to_id'] = 1;
+                // $email_details['to_email'] = $emailConfigDetailsForSubs['fromEmail'];
+                // $email_details['from_id'] = 1;
+                // $email_details['from_email'] = $cartDetails[0]['UserEmail'];
+                // $email_details['subject'] = $emailConfigDetailsForSubs['subject'];
+                // $email_details['message'] = $htmlbodyForSubs;
+                // $email_details['logo'] = $emailConfigDetailsForSubs['logo'];
+                // $email_details['module_code'] = 'SUBSCRIPTION';
+                // $email_details['template'] = 'admin.emails.emailTemplate';
+                // $email_details['htmlbody'] = $htmlbodyForSubs;
+                // $email_details['pageTitle'] = $emailConfigDetails['title'];
 
-                // Send the email
-                $EmailForwardModel->sendEmail($email_details);
+                // // Send the email
+                // $EmailForwardModel->sendEmail($email_details);
 
                 // dd('mails sent');
 
@@ -933,9 +978,12 @@ class CloverController extends Controller
                 $email_details['template'] = 'admin.emails.emailTemplate';
                 $email_details['htmlbody'] = $htmlbody;
                 $email_details['pageTitle'] = $emailConfigDetails['title'];
+				
 
                 // Send the email
-                $EmailForwardModel->sendEmail($email_details);
+				//dd($email_details);
+               $emaildata= $EmailForwardModel->sendEmail($email_details);
+			  // dd($emaildata);
 
                 $email_details['to_id'] = 1;
                 $email_details['to_email'] = $emailConfigDetails['fromEmail'];
@@ -952,7 +1000,7 @@ class CloverController extends Controller
                 // Send the email
                 $EmailForwardModel->sendEmail($email_details);
 
-                // dd('mails sent');
+             //dd('mails sent');
             }
         }
     	// $EmailForwardModel->sendEmail($emailConfigDetails['title'],$htmlbody,$email_details);
@@ -968,6 +1016,26 @@ class CloverController extends Controller
 //         $checkout_info->save();
         return;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function saveCloverResponce($user_id,$response,$type){
 
