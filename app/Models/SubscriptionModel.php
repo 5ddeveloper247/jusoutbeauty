@@ -260,6 +260,12 @@ class SubscriptionModel extends Model
     				$arrRes['PAYMENT_STATUS'] = strtoupper($row->PAYMENT_STATUS);
     				$arrRes['SUBSCRIPTION_STATUS'] = strtoupper($row->SUBSCRIPTION_STATUS);
 
+    				if($row->NEXT_PAYMENT_DATE == date('Y-m-d')){
+    					$arrRes['SUBSCRIPTION_PAYMENT'] = '1';
+    				}else{
+    					$arrRes['SUBSCRIPTION_PAYMENT'] = '0';
+    				}
+    				
     				$arrRes['CREATED_BY'] = $row->CREATED_BY;
     				$arrRes['CREATED_ON'] = $row->CREATED_ON;
     				$arrRes['UPDATED_BY'] = $row->UPDATED_BY;

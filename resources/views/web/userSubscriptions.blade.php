@@ -176,7 +176,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-8 col-sm-7">
-                                    	<div ng-show="paymentStatus == 'PENDING' && subsStatus == 'ACTIVE'">
+                                    	<div ng-show="paymentStatus == 'PENDING' && subsStatus == 'ACTIVE' && subsPaymentFlag == '1'">
                                     		<div class="mb-3 mb-5">
 												<h4 class="fs-24 mb-5 payment">Payment Infomation</h4>
 											</div>

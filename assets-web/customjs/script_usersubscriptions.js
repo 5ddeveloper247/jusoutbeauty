@@ -62,6 +62,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	$scope.paymentStatus = '';
 	$scope.subsDate = '';
 	$scope.nextPayDate = '';
+	$scope.subsPaymentFlag = '';
 	$scope.productName = '';
 	$scope.productPrimaryImage = '';
 	$scope.productDesc = '';
@@ -105,6 +106,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				$scope.paymentStatus = detail['PAYMENT_STATUS'];
 				$scope.subsDate = detail['SUBSCRIPTION_DATE'];
 				$scope.nextPayDate = detail['NEXT_PAYMENT_DATE'];
+				$scope.subsPaymentFlag = detail['SUBSCRIPTION_PAYMENT'];
 				
 				$scope.productName = detail['productName'];
 				$scope.productPrimaryImage = detail['primaryImage'];
