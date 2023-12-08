@@ -718,8 +718,8 @@ $userId = session('userId');
                     <br>
                     <div class="slick-slider custom-slider-03"
                         data-slick-options='{"slidesToShow": 3,"dots":true,"autoplay":true,"arrows":false,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[
-								{"breakpoint": 560,"settings": {"slidesToShow": 1,"centerMode":false,"arrows":false}},
-								{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
+								{"breakpoint": 768,"settings": {"slidesToShow": 1,"centerMode":false,"arrows":false}},
+								{"breakpoint": 1200,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},
 								{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},
 								{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},
 								{"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
@@ -731,10 +731,10 @@ $userId = session('userId');
                                         <div
                                             class="card-body px-3 py-0 d-flex flex-column align-items-center text-center">
                                             <img src="{{ url('/assets-web') }}/images/test-img.jpg">
-                                            <p class="text-primary fs-18 mb-0">
+                                            <p class="text-primary fs-24 mb-0">
                                                 <span class="font-weight-600">{{ $review['USERNAME'] }} </span>
                                             </p>
-                                            <ul class="list-inline mb-5 d-flex fs-15">
+                                            <ul class="list-inline mb-3 d-flex fs-15">
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i></li>
@@ -752,7 +752,7 @@ $userId = session('userId');
                                                     <i class="fas fa-star"></i></li>
 
                                             </ul>
-                                            <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto"
+                                            <p class="card-text px-7 text-center mb-0 text-primary lh-1444 mw-750 mx-auto"
                                                 style="min-height: 6vw;">{{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
 
                                         </div>
