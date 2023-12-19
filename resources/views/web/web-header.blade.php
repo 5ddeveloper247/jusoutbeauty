@@ -78,6 +78,7 @@ $userId = session('userId');
             border-radius: 50%;
             text-align: center;
         }
+
         .main-header .dropdown-menu-listing {
             top: 60px;
         }
@@ -108,12 +109,19 @@ $userId = session('userId');
         body::-webkit-scrollbar-thumb:hover {
             background: #909090;
         }
+
         li.nav-item.dropdown.header-profile {
             list-style-type: none;
         }
-        [ng-cloak], [ng\:cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-		  	display: none !important;
-		}
+
+        [ng-cloak],
+        [ng\:cloak],
+        [data-ng-cloak],
+        [x-ng-cloak],
+        .ng-cloak,
+        .x-ng-cloak {
+            display: none !important;
+        }
     </style>
     <style>
         @media only screen and (min-width: 1749px) {
@@ -121,14 +129,14 @@ $userId = session('userId');
                 padding: 20px 10px !important;
             }
         }
-        .cursor-pointer{
+
+        .cursor-pointer {
             cursor: pointer;
         }
-
     </style>
 </head>
 <script>
-    var baseUrl = "<?php echo url('/');?>";
+    var baseUrl = "<?php echo url('/'); ?>";
     var userId = "<?php echo session('userId'); ?>";
     var cartId = "<?php echo session('cartid'); ?>";
 </script>
@@ -153,7 +161,7 @@ $userId = session('userId');
                     <nav class="navbar navbar-expand-xl px-0 py-2 py-xl-0 row no-gutters">
                         <div class="col-xl-2">
                             <a class="navbar-brand mr-0" href="{{ url('/home') }}">
-                                <img src="{{ url('/assets-web') }}/images/logo-black.png" alt="Jusout"
+                                <img src="{{ url('/assets-web') }}/images/logo-pink.png" alt="Jusout"
                                     style="position: relative;z-index: 999999">
                             </a>
                         </div>
@@ -166,8 +174,10 @@ $userId = session('userId');
                                 <li aria-haspopup="true" aria-expanded="false"
                                     class="nav-item dropdown-item-shop dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5">
                                     {{-- toShopListing --> removed after made url with href --}}
-                                    <a class="nav-link dropdown-toggle p-0 " href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>"
-                                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY" data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
+                                    <a class="nav-link dropdown-toggle p-0 "
+                                        href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>"
+                                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY"
+                                        data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
                                         <!-- {{ session('site') }}/store -->
                                         <?= $value['NAME'] ?> <span class="caret"></span>
                                     </a>
@@ -184,14 +194,16 @@ $userId = session('userId');
 
                                                     <?php $subCategories = $value['subCategories']; ?>
 
-														<div class="dropdown-item">
-                                                         	<a class="dropdown-link" href="{{session('site')}}/Shop-All">Shop All</a>
-                                                      	</div>
+                                                    <div class="dropdown-item">
+                                                        <a class="dropdown-link"
+                                                            href="{{ session('site') }}/Shop-All">Shop All</a>
+                                                    </div>
                                                     @if (!empty($subCategories))
                                                         @foreach ($subCategories as $category)
                                                             <div class="dropdown-item">
                                                                 {{-- toShopListing  ---> removed after made url href --}}
-                                                                <a class="dropdown-link " href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                                                <a class="dropdown-link "
+                                                                    href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
                                                                     data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
                                                                     data-type="SUB_CATEGORY"
                                                                     data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
@@ -225,8 +237,7 @@ $userId = session('userId');
                                                                                     data-type="{{ $product['CATEGORY_NAME'] }}"
                                                                                     data-category="{{ $product['CATEGORY_SLUG'] }}"
                                                                                     data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
-                                                                                    data-name="{{ $product['SLUG'] }}"
-                                                                                    >
+                                                                                    data-name="{{ $product['SLUG'] }}">
                                                                                     <!-- {{ url('/product-detail') }} -->
                                                                                     <img src="{{ $product['primaryImage'] }}"
                                                                                         alt="Product 01"
@@ -252,14 +263,17 @@ $userId = session('userId');
                                                                                 <div class="card-body pt-4 px-0 pb-0">
                                                                                     <a href="javascript:;"
                                                                                         class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
-                                                                                        data-id="{{ $product['CATEGORY_ID'] }}" data-type="CATEGORY" data-categoryslug="{{ $product['CATEGORY_SLUG'] }}">
+                                                                                        data-id="{{ $product['CATEGORY_ID'] }}"
+                                                                                        data-type="CATEGORY"
+                                                                                        data-categoryslug="{{ $product['CATEGORY_SLUG'] }}">
                                                                                         {{ $product['CATEGORY_NAME'] }}</a>
                                                                                     <!-- {{ url('/store') }} -->
                                                                                     <h3
                                                                                         class="card-title fs-16 font-weight-500 mb-1 lh-14375">
                                                                                         {{-- productdetail ---> removed after made url with href --}}
-                                                                                        <a
-                                                                                            href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}" class="" data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                        <a href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}"
+                                                                                            class=""
+                                                                                            data-id="{{ $product['PRODUCT_ID'] }}"
                                                                                             data-type="{{ $product['CATEGORY_NAME'] }}"
                                                                                             data-category="{{ $product['CATEGORY_SLUG'] }}"
                                                                                             data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
@@ -297,41 +311,41 @@ $userId = session('userId');
 
                                                         @if (!empty($subCategories))
                                                             @foreach ($subCategories as $category)
-                                                            <a href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>/<?= $category['SUB_CATEGORY_SLUG'] ?>">
-                                                                {{-- toShopListing ---> removed after made url with href --}}
-                                                                <div class="col-4 h-100"
-                                                                data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
-                                                                data-type="SUB_CATEGORY"
-                                                                data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
-                                                                data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
-                                                                <div class="col-12 col-lg-12 product mb-2 ">
+                                                                <a
+                                                                    href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>/<?= $category['SUB_CATEGORY_SLUG'] ?>">
+                                                                    {{-- toShopListing ---> removed after made url with href --}}
+                                                                    <div class="col-4 h-100"
+                                                                        data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
+                                                                        data-type="SUB_CATEGORY"
+                                                                        data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                                                        data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">
+                                                                        <div class="col-12 col-lg-12 product mb-2 ">
 
-                                                                    <h4 class=" fs-14 mb-3 lh-1 font-weight-500 p-0 text-center ellipsis"
-                                                                        style="display: block;">
-                                                                        {{ $category['DISPLAY_NAME'] }}</h4>
-                                                                    <!-- dropdown-header -->
-                                                                    <div class="card border-0">
-                                                                        <div
-                                                                            class="position-relative hover-zoom-in">
-                                                                            <a href="<?=url('/')?>/Store/<?=$value['CATEGORY_SLUG']?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
-                                                                                class="d-block overflow-hidden">
-                                                                                <img src="{{ $category['prodImg'] }}"
-                                                                                    alt="alt"
-                                                                                    class="card-img-top img-header-left-7 image-active"
-                                                                                    style="">
-                                                                                <img src="{{ $category['prodImg'] }}"
-                                                                                    alt="alt"
-                                                                                    class="card-img-top img-header-left-7 image-hover"
-                                                                                    style="">
-                                                                            </a>
+                                                                            <h4 class=" fs-14 mb-3 lh-1 font-weight-500 p-0 text-center ellipsis"
+                                                                                style="display: block;">
+                                                                                {{ $category['DISPLAY_NAME'] }}</h4>
+                                                                            <!-- dropdown-header -->
+                                                                            <div class="card border-0">
+                                                                                <div
+                                                                                    class="position-relative hover-zoom-in">
+                                                                                    <a href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                                                                        class="d-block overflow-hidden">
+                                                                                        <img src="{{ $category['prodImg'] }}"
+                                                                                            alt="alt"
+                                                                                            class="card-img-top img-header-left-7 image-active"
+                                                                                            style="">
+                                                                                        <img src="{{ $category['prodImg'] }}"
+                                                                                            alt="alt"
+                                                                                            class="card-img-top img-header-left-7 image-hover"
+                                                                                            style="">
+                                                                                    </a>
 
+                                                                                </div>
+
+                                                                            </div>
                                                                         </div>
-
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            </a>
-
+                                                                </a>
                                                             @endforeach
                                                         @endif
                                                     </div>
@@ -348,17 +362,19 @@ $userId = session('userId');
                                                             @foreach ($products as $product)
                                                                 <div class="col-4 h-100">
 
-                                                                    <div class="col-12 col-lg-12 product mb-8" data-animate="fadeInUp">
+                                                                    <div class="col-12 col-lg-12 product mb-8"
+                                                                        data-animate="fadeInUp">
                                                                         <div class="card border-0">
                                                                             <div
                                                                                 class="position-relative hover-zoom-in">
                                                                                 {{-- productdetail --> removed after made url with href --}}
-                                                                                <a href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}" class=""
-                                                                                data-id="{{ $product['PRODUCT_ID'] }}"
-                                                                                data-type="{{ $product['CATEGORY_NAME'] }}"
-                                                                                data-category="{{ $product['CATEGORY_SLUG'] }}"
-                                                                                data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
-                                                                                data-name="{{ $product['SLUG'] }}"
+                                                                                <a href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}"
+                                                                                    class=""
+                                                                                    data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                    data-type="{{ $product['CATEGORY_NAME'] }}"
+                                                                                    data-category="{{ $product['CATEGORY_SLUG'] }}"
+                                                                                    data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
+                                                                                    data-name="{{ $product['SLUG'] }}"
                                                                                     class="d-block overflow-hidden">
                                                                                     <!-- {{ url('/product-detail') }} -->
                                                                                     <img src="{{ $product['primaryImage'] }}"
@@ -385,14 +401,17 @@ $userId = session('userId');
                                                                                 <div class="card-body pt-4 px-0 pb-0">
                                                                                     <a href="javascript:;"
                                                                                         class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
-                                                                                        data-id="{{ $product['CATEGORY_ID'] }}" data-type="CATEGORY" data-categoryslug="{{ $product['CATEGORY_SLUG'] }}">
+                                                                                        data-id="{{ $product['CATEGORY_ID'] }}"
+                                                                                        data-type="CATEGORY"
+                                                                                        data-categoryslug="{{ $product['CATEGORY_SLUG'] }}">
                                                                                         {{ $product['CATEGORY_NAME'] }}</a>
                                                                                     <!-- {{ url('/store') }} -->
                                                                                     <h3
                                                                                         class="card-title fs-16 font-weight-500 mb-1 lh-14375">
                                                                                         {{-- productdetail ---> removed after made url with href --}}
-                                                                                        <a
-                                                                                            href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}" class="" data-id="{{ $product['PRODUCT_ID'] }}"
+                                                                                        <a href="{{ url('/') }}/Products/{{ $product['CATEGORY_SLUG'] }}/{{ $product['SUB_CATEGORY_SLUG'] ? $product['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $product['SLUG'] }}"
+                                                                                            class=""
+                                                                                            data-id="{{ $product['PRODUCT_ID'] }}"
                                                                                             data-type="{{ $product['CATEGORY_NAME'] }}"
                                                                                             data-category="{{ $product['CATEGORY_SLUG'] }}"
                                                                                             data-subCategory="{{ $product['SUB_CATEGORY_SLUG'] }}"
@@ -434,8 +453,9 @@ $userId = session('userId');
 
                                 </li>
                                 <li aria-haspopup="true" aria-expanded="false"
-                                    class="nav-item dropdown-item-shop dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5" >
-                                    <a class="nav-link dropdown-toggle p-0" href="#" onclick="menutoggleRoutine();">Routine
+                                    class="nav-item dropdown-item-shop dropdown py-2 py-xl-4 px-0 px-xl-2 px-xxl-5">
+                                    <a class="nav-link dropdown-toggle p-0" href="#"
+                                        onclick="menutoggleRoutine();">Routine
                                         <span class="caret"></span>
                                     </a>
                                     <div
@@ -444,17 +464,18 @@ $userId = session('userId');
                                             <div class="row">
                                                 <div class="col-4 h-100"></div>
                                                 <div class="col-2 h-100">
-                                                    <?php $routines = $routine;?>
+                                                    <?php $routines = $routine; ?>
                                                     @if (!empty($routines))
 
                                                         <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0"
                                                             style="display: block;">Routine By Needs</h4>
                                                         @foreach ($routines as $routine)
-                                                        @if ($routine['IDENTIFY'] == 1)
-                                                            <div class="dropdown-item ">
-                                                                <a class="dropdown-link routinelinks" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
-                                                            </div>
-                                                        @endif
+                                                            @if ($routine['IDENTIFY'] == 1)
+                                                                <div class="dropdown-item ">
+                                                                    <a class="dropdown-link routinelinks"
+                                                                        href="{{ url('routine-detail') . '/' . $routine['seqNo'] }}">{{ $routine['NAME'] }}</a>
+                                                                </div>
+                                                            @endif
                                                         @endforeach
                                                     @endif
                                                 </div>
@@ -465,11 +486,12 @@ $userId = session('userId');
                                                         <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 "
                                                             style="display: block;">Routine By Age</h4>
                                                         @foreach ($routines as $routine)
-                                                        @if ($routine['IDENTIFY'] == 2)
-                                                            <div class="dropdown-item ">
-                                                                <a class="dropdown-link routinelinks" href="{{ url('routine-detail').'/'.$routine['seqNo']}}">{{ $routine['NAME'] }}</a>
-                                                            </div>
-                                                        @endif
+                                                            @if ($routine['IDENTIFY'] == 2)
+                                                                <div class="dropdown-item ">
+                                                                    <a class="dropdown-link routinelinks"
+                                                                        href="{{ url('routine-detail') . '/' . $routine['seqNo'] }}">{{ $routine['NAME'] }}</a>
+                                                                </div>
+                                                            @endif
                                                         @endforeach
                                                     @endif
 
@@ -506,28 +528,32 @@ $userId = session('userId');
                                                 <div class="col-2 h-100">
 
                                                     <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 text-center"
-                                                        style="display: block;"><a href="{{ url('who-we-are') }}">Who we are</a></h4>
+                                                        style="display: block;"><a href="{{ url('who-we-are') }}">Who
+                                                            we are</a></h4>
 
 
                                                 </div>
                                                 <div class="col-2 h-100">
 
                                                     <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 text-center"
-                                                        style="display: block;"><a href="{{ url('ingredients') }}">Ingredients</a></h4>
+                                                        style="display: block;"><a
+                                                            href="{{ url('ingredients') }}">Ingredients</a></h4>
 
 
                                                 </div>
                                                 <div class="col-2 h-100">
 
                                                     <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 text-center"
-                                                        style="display: block;"><a href="{{ url('eco-vibes') }}">Eco vibes</a></h4>
+                                                        style="display: block;"><a href="{{ url('eco-vibes') }}">Eco
+                                                            vibes</a></h4>
 
 
                                                 </div>
                                                 <div class="col-2 h-100">
 
                                                     <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 text-center"
-                                                        style="display: block;"><a href="{{ url('lusty-looks') }}">Lusty's Looks</a></h4>
+                                                        style="display: block;"><a
+                                                            href="{{ url('lusty-looks') }}">Lusty's Looks</a></h4>
 
 
                                                 </div>
@@ -637,59 +663,71 @@ $userId = session('userId');
                         </a>
 
                         <li class="nav-item dropdown header-profile">
-                            <a class="nav-link px-3 py-0" href="javascript:void(0)" role="button" data-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link px-3 py-0" href="javascript:void(0)" role="button"
+                                data-toggle="dropdown" aria-expanded="false">
                                 <i class="far fa-user-alt"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                            <?php if(session()->has('userId')){?>
+                                <?php if(session()->has('userId')){?>
 
-                                    <a href="/site/userDashboard" class="dropdown-item ai-icon">
-                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                        </svg>
-                                        <span class="ml-2">Dashboard </span>
-                                    </a>
+                                <a href="/site/userDashboard" class="dropdown-item ai-icon">
+                                    <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
+                                        width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    <span class="ml-2">Dashboard </span>
+                                </a>
 
-                            <?php } ?>
+                                <?php } ?>
 
                                 <a class="dropdown-item ai-icon" href="{{ url('/wishlist') }}">
                                     <i class="far fa-star"></i>
                                     <span class="ml-2">Wishlist</span>
                                     <span class="numbermbl ml-2" id="wishlistHeaderCountMbl">0</span>
                                 </a>
-                                <a class="dropdown-item ai-icon" data-canvas="true" data-canvas-options='{"container":".cart-canvas"}'>
+                                <a class="dropdown-item ai-icon" data-canvas="true"
+                                    data-canvas-options='{"container":".cart-canvas"}'>
                                     <i class="far fa-shopping-bag"></i>
                                     <span class="ml-2">Checkout</span>
                                     <span class="numbermbl ml-1" id="cartHeaderCountMbl">0</span>
                                 </a>
                                 <?php if(session()->has('userId')){?>
 
-                                        <a href="/site/userlogout" class="dropdown-item ai-icon">
-                                            <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                                <polyline points="16 17 21 12 16 7"></polyline>
-                                                <line x1="21" y1="12" x2="9" y2="12"></line>
-                                            </svg>
-                                            <span class="ml-2">Logout </span>
-                                        </a>
+                                <a href="/site/userlogout" class="dropdown-item ai-icon">
+                                    <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
+                                        width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                                    </svg>
+                                    <span class="ml-2">Logout </span>
+                                </a>
 
                                 <?php }else{ ?>
-                                    <a href="{{ session('site') }}/login" class="dropdown-item ai-icon">
-                                        <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                            <polyline points="16 17 21 12 16 7"></polyline>
-                                            <line x1="21" y1="12" x2="9" y2="12"></line>
-                                        </svg>
-                                        <span class="ml-2">Login </span>
-                                    </a>
+                                <a href="{{ session('site') }}/login" class="dropdown-item ai-icon">
+                                    <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-success"
+                                        width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                                    </svg>
+                                    <span class="ml-2">Login </span>
+                                </a>
 
-                                    <?php  } ?>
+                                <?php  } ?>
                             </div>
                         </li>
                         <a href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
                             data-mfp-options='{"type":"inline","focus": "#keyword","mainClass": "mfp-search-form mfp-move-from-top mfp-align-top"}'
-                            class="nav-search d-block py-0" title="Search"><i class="far fa-search d-block d-xl-none"></i></a>
+                            class="nav-search d-block py-0" title="Search"><i
+                                class="far fa-search d-block d-xl-none"></i></a>
                     </nav>
                 </div>
             </div>

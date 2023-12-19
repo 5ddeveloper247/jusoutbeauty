@@ -1,8 +1,6 @@
-
 <footer class="footer back_cs pt-10">
     <style>
-
-    /* #cookieModal {
+        /* #cookieModal {
         position: fixed;
         left: -20%;
         top: 30%;
@@ -23,50 +21,56 @@
 
     /* Media Queries for Responsiveness */
 
-    /* Small devices (up to 576px) */
-    @media (max-width: 576px) {
-        #cookieModal {
-            left: 4%;
-            top: 0;
+        /* Small devices (up to 576px) */
+        @media (max-width: 576px) {
+            #cookieModal {
+                left: 4%;
+                top: 0;
+            }
+
+            .modal-dialog.modal-sm.custom-max-width {
+                max-width: 90%;
+            }
         }
 
-        .modal-dialog.modal-sm.custom-max-width {
-            max-width: 90%;
+        /* Medium devices (576px - 768px) */
+        @media (min-width: 576px) and (max-width: 768px) {
+            .modal-dialog.modal-sm.custom-max-width {
+                max-width: 300px;
+            }
         }
-    }
 
-    /* Medium devices (576px - 768px) */
-    @media (min-width: 576px) and (max-width: 768px) {
-        .modal-dialog.modal-sm.custom-max-width {
-            max-width: 300px;
+        /* Large devices (768px - 992px) */
+        @media (min-width: 768px) and (max-width: 992px) {
+            .modal-dialog.modal-sm.custom-max-width {
+                max-width: 400px;
+            }
         }
-    }
 
-    /* Large devices (768px - 992px) */
-    @media (min-width: 768px) and (max-width: 992px) {
-        .modal-dialog.modal-sm.custom-max-width {
-            max-width: 400px;
+        /* Extra-large devices (992px and above) */
+        @media (min-width: 992px) {
+            .modal-dialog.modal-sm.custom-max-width {
+                max-width: 500px;
+            }
         }
-    }
 
-    /* Extra-large devices (992px and above) */
-    @media (min-width: 992px) {
-        .modal-dialog.modal-sm.custom-max-width {
-            max-width: 500px;
-        }
-    }
-        #tictk:hover{
+        #tictk:hover {
             filter: invert(100%)
         }
-        .back_cs{
-            background-color: #3d94b7 !important
+
+        .back_cs {
+            background: linear-gradient(to right, #F7EFED, #F9A7A9, #F7EFED);
+
         }
+
         form.footer-formm .fa-envelope:before {
             padding-left: unset
         }
-        .text-black{
+
+        .text-black {
             color: #000;
         }
+
         @media screen and (min-width: 0px) and (max-width: 614px) {
             .d-sm-unset {
                 display: unset !important;
@@ -85,20 +89,20 @@
                 padding-left: unset
             }
 
-            h2{
+            h2 {
                 font-size: 36px;
                 text-transform: capitalize;
             }
-        } */
+        }
 
-
+        */
     </style>
 
     <div class="py-4">
         <div class="container container-xxl container-footer">
             <div class="row align-items-center first-rw">
                 <div class="col-lg-12 mb-4 mb-lg-0 text-center footer-links-account">
-                    <h2 class="mb-4 footer-text-white" >Yu Jus Enough and Let's Be
+                    <h2 class="mb-4 footer-text-white">Yu Jus Enough and Let's Be
                         Bestie</h2>
                     <p class="lh-2 mb-4 fs-14 footer-text-white">Don't Mis Out-All the exclusives' events,
                         skincare tips, Special Offers straight to yur inbox</p>
@@ -112,8 +116,7 @@
                             <input type="email" class="form-control border-0 bg-transparent pl-7 m-0"
                                 id="footerEmailSubs" placeholder="Enter your email" style="z-index: 1;">
 
-                            <span class="d-inline-flex align-items-center z-index-2"
-                                style="margin-right: -45px;">
+                            <span class="d-inline-flex align-items-center z-index-2" style="margin-right: -45px;">
                                 <i class="fal fa-phone"></i>
                             </span>
                             <input type="number" class="form-control border-0 bg-transparent pl-7" id="footerPhoneSubs"
@@ -141,11 +144,15 @@
 
 
             <!--</div>-->
-            <p class="text-align-sm text-subs fs-14 footer-text-white">By subscribing to JusOut Beauty you consent to receive recurring
+            <p class="text-align-sm text-subs fs-14 footer-text-white">By subscribing to JusOut Beauty you consent to
+                receive recurring
                 automated promotional and personalized marketing messages (e.g.,
                 cart reminders) via automated technology including email and text
-                messages. Consent is not a condition of any purchase. View <a class="footer-text-white" href="{{ url('/customer-help') }}" onclick="informationflag('term of use')" > <u>Terms of
-                    Use</u> </a>  & <a class="footer-text-white" href="{{ url('/customer-help') }}" onclick="informationflag('privacy policy')"> <u>Privacy Policy</u></a>. Message and data rates may apply.
+                messages. Consent is not a condition of any purchase. View <a class="footer-text-white"
+                    href="{{ url('/customer-help') }}" onclick="informationflag('term of use')"> <u>Terms of
+                        Use</u> </a> & <a class="footer-text-white" href="{{ url('/customer-help') }}"
+                    onclick="informationflag('privacy policy')"> <u>Privacy Policy</u></a>. Message and data rates may
+                apply.
                 Reply HELP for help or STOP to opt-out.</p>
             <br>
             <div class="row align-items-center first-rw">
@@ -176,9 +183,11 @@
                                 <li class="list-inline-item mr-1"><a href="{{ $footerSocialIcons['twitterLink'] }}"
                                         class="text-body social-media" id="tictk" target="_blank">
                                         {{-- <i class="social-media footer-text-white fab fa-tiktok"></i> --}}
-                                        <img  style="width: 25px;
+                                        <img style="width: 25px;
                                         padding: 0px;
-                                        margin-bottom: 6px;" src="{{ url('/assets-admin') }}/images/admin/tictok.png" class="rounded-circle user_img social-media" alt=""/>
+                                        margin-bottom: 6px;"
+                                            src="{{ url('/assets-admin') }}/images/admin/tictok.png"
+                                            class="rounded-circle user_img social-media" alt="" />
                                     </a>
                                 </li>
                             @endif
@@ -258,7 +267,7 @@
                 </div>
                 <div class="col-lg-3 mb-4 mb-lg-0">
                     <p class="mb-0 text-left fs-14  letter-spacing-07px text-center">
-                        <a href="tel:+92 866 848 2168"  class="footer-text-white">
+                        <a href="tel:+92 866 848 2168" class="footer-text-white">
                             <i class="fa fa-phone"> </i> 866-848-2168
                         </a>
                     </p>
@@ -274,7 +283,7 @@
             <br>
             <div class="row first-rw footer-aboutus">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white" >ABOUT US</p>
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white">ABOUT US</p>
                     <p class="mb-0 text-left fs-14  letter-spacing-07px footer-text-white">Welcome
                         to JusOut Beauty, all inclusive, high performance, natural
                         skincare, and makeup - Yur Jus Enough beauty products to glow from
@@ -287,8 +296,10 @@
                         <li><a href="{{ session('site') }}/who-we-are" class="footer-text-white">Meet Founder</a></li>
                         <li><a href="{{ session('site') }}/who-we-are" class="footer-text-white">Our Story</a></li>
                         <!-- 						<li><a href="#">Careers</a></li> -->
-                        <li><a href="{{ session('site') }}/eco-vibes" class="footer-text-white">Sustainability</a></li>
-                        <li><a href="{{ session('site') }}/ingredients" class="footer-text-white">Ingredients</a></li>
+                        <li><a href="{{ session('site') }}/eco-vibes" class="footer-text-white">Sustainability</a>
+                        </li>
+                        <li><a href="{{ session('site') }}/ingredients" class="footer-text-white">Ingredients</a>
+                        </li>
                         <li><a href="{{ session('site') }}/blog-page" class="footer-text-white">Blogs</a></li>
 
                     </ul>
@@ -297,32 +308,41 @@
                     <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">CUSTOMER
                         CARE</p>
                     <ul>
-                        <li><a href="{{ url('/customer-help') }}" onclick="informationflag('customer')" class="footer-text-white">Customer Service</a></li>
-                        <li><a href="{{ url('/customer-help') }}" onclick="informationflag('contact')" class="footer-text-white">Contact Us</a> </li>
-                        <li><a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-5" class="footer-text-white" onclick="informationflag('track order')">Track Order</a></li>
-                        <li><a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-4" class="footer-text-white" onclick="informationflag('shipping')">Shipping & Returns</a></li>
-                        <li><a href="{{ session('site') }}/subscription" class="footer-text-white">Subscribe + Save</a></li>
+                        <li><a href="{{ url('/customer-help') }}" onclick="informationflag('customer')"
+                                class="footer-text-white">Customer Service</a></li>
+                        <li><a href="{{ url('/customer-help') }}" onclick="informationflag('contact')"
+                                class="footer-text-white">Contact Us</a> </li>
+                        <li><a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-5"
+                                class="footer-text-white" onclick="informationflag('track order')">Track Order</a>
+                        </li>
+                        <li><a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-4"
+                                class="footer-text-white" onclick="informationflag('shipping')">Shipping & Returns</a>
+                        </li>
+                        <li><a href="{{ session('site') }}/subscription" class="footer-text-white">Subscribe +
+                                Save</a></li>
                         <!-- 						<li><a href="#">FAQs</a></li> -->
                         <?php if(session()->has('userId')){?>
                         <li><a href="{{ url('/user-login') }}" class="footer-text-white">My Account</a></li>
                         <?php }else{?>
-                        <li><a href="{{ url('/user-login') }}" class="footer-text-white" >My Accounts</a></li>
+                        <li><a href="{{ url('/user-login') }}" class="footer-text-white">My Accounts</a></li>
                         <?php }?>
-                        <li><a href="{{ url('/customer-help') }}" class="footer-text-white" onclick="informationflag('faq')">FAQs</a></li>
+                        <li><a href="{{ url('/customer-help') }}" class="footer-text-white"
+                                onclick="informationflag('faq')">FAQs</a></li>
 
                     </ul>
                 </div>
-                <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white"  >
+                <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
                     <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">BEAUTY
                         & SKIN</p>
                     <ul>
-                        <li><a href="{{session('site')}}/Shop-All" class="footer-text-white"
+                        <li><a href="{{ session('site') }}/Shop-All" class="footer-text-white"
                                 data-type="SUB_CATEGORY">Shop Products</a></li>
-                        <li><a href="{{session('site')}}/Shop-All"
-                                data-type="SUB_CATEGORY" class="footer-text-white">Shop Subscription</a></li>
-                        <li><a href="{{ session('site') }}/user-shade-finder" class="footer-text-white">Shade Finder</a></li>
+                        <li><a href="{{ session('site') }}/Shop-All" data-type="SUB_CATEGORY"
+                                class="footer-text-white">Shop Subscription</a></li>
+                        <li><a href="{{ session('site') }}/user-shade-finder" class="footer-text-white">Shade
+                                Finder</a></li>
                         <li><a href="javascript:;" class="toShopListing footer-text-white" data-id="6"
-                                data-type="CATEGORY"  data-categoryslug="Skincare">Skincare</a></li>
+                                data-type="CATEGORY" data-categoryslug="Skincare">Skincare</a></li>
                         <li><a href="javascript:;" class="toShopListing footer-text-white" data-id="7"
                                 data-type="CATEGORY" data-categoryslug="Makeup">Makeup</a></li>
                         <li><a href="javascript:;" class="toShopListing footer-text-white" data-id="8"
@@ -336,9 +356,12 @@
                         {{-- <li><a href="{{ session('site') }}/user-login">Student Discount</a></li> --}}
                         {{-- <li><a href="{{ session('site') }}/reward">Beauty Rewards</a></li> --}}
                         {{-- <li><a href="{{ session('site') }}/user-login">Refer a Friend</a></li> --}}
-                        <li><a href="{{ url('/home') }}#bestSelOnlineExc_section" class="refferAfrieend footer-text-white" >Online Exclusive</a></li>
-                        <li><a href="{{ url('/home') }}#bestSelOnlineExc_section" class="refferAfrieend footer-text-white" >Best Of Month</a></li>
-                        <li><a href="{{ url('/home') }}#to_day_offer" class="refferAfrieend1 footer-text-white">Today Offer</a></li>
+                        <li><a href="{{ url('/home') }}#bestSelOnlineExc_section"
+                                class="refferAfrieend footer-text-white">Online Exclusive</a></li>
+                        <li><a href="{{ url('/home') }}#bestSelOnlineExc_section"
+                                class="refferAfrieend footer-text-white">Best Of Month</a></li>
+                        <li><a href="{{ url('/home') }}#to_day_offer"
+                                class="refferAfrieend1 footer-text-white">Today Offer</a></li>
                     </ul>
                 </div>
             </div>
@@ -350,10 +373,18 @@
                         A© 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
                     </p>
                 </div>
-                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset" >
-                    <a href="{{ url('/customer-help') }}" id="v-pills-home-tab" onclick="informationflag('term of use')"  class="footer-text-white">Terms of
-                        Use</a> &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-profile-tab-1" id="v-pills-home-tab" onclick="informationflag('privacy policy')" class="footer-text-white">Privacy Policy</a>&nbsp; |&nbsp; <a href="{{ url('/customer-help') }}" class="footer-text-white" id="v-pills-messages-tab-2" id="v-pills-home-tab"onclick="informationflag('accessibility')" class="footer-text-white">Accessibility</a>
-                    &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-3" id="v-pills-home-tab"onclick="informationflag('cookies settings/policy')" class="footer-text-white">Cookies Settings/Policy</a>
+                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset">
+                    <a href="{{ url('/customer-help') }}" id="v-pills-home-tab"
+                        onclick="informationflag('term of use')" class="footer-text-white">Terms of
+                        Use</a> &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-profile-tab-1"
+                        id="v-pills-home-tab" onclick="informationflag('privacy policy')"
+                        class="footer-text-white">Privacy Policy</a>&nbsp; |&nbsp; <a
+                        href="{{ url('/customer-help') }}" class="footer-text-white" id="v-pills-messages-tab-2"
+                        id="v-pills-home-tab"onclick="informationflag('accessibility')"
+                        class="footer-text-white">Accessibility</a>
+                    &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-3"
+                        id="v-pills-home-tab"onclick="informationflag('cookies settings/policy')"
+                        class="footer-text-white">Cookies Settings/Policy</a>
                     <!--<ul class="list-inline fs-18 ml-3 mb-0">-->
                     <!--<li class="list-inline-item mr-6">-->
                     <!--<a href="#" class="text-body hover-primary"><i class="fab fa-facebook-f"></i></a>-->
@@ -378,23 +409,23 @@
 </footer>
 <!-- wathsapp -->
 <style>
-    .float{
-        position:fixed;
-        width:44px;
-        height:44px;
-        bottom:155px;
-        right:26px;
-        background-color:#3d94b7;
-        color:#FFF;
-        border-radius:50px;
-        text-align:center;
-        font-size:30px;
+    .float {
+        position: fixed;
+        width: 44px;
+        height: 44px;
+        bottom: 155px;
+        right: 26px;
+        background-color: #3d94b7;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15) !important;
-        z-index:100;
+        z-index: 100;
     }
 
-    .my-float{
-        margin-top:7px;
+    .my-float {
+        margin-top: 7px;
     }
 
     .cookie-frame {
@@ -407,20 +438,26 @@
         display: none;
         align-items: center;
         justify-content: center;
-        transition: bottom 2s ease-out; /* Add transition effect */
-        transition-delay: 1s; /* Add delay */
+        transition: bottom 2s ease-out;
+        /* Add transition effect */
+        transition-delay: 1s;
+        /* Add delay */
     }
 
     .cookie-frame.open {
         display: block;
-        transition: bottom 1s ease-out; /* Add transition effect */
-        transition-delay: 1s; /* No delay when opening */
+        transition: bottom 1s ease-out;
+        /* Add transition effect */
+        transition-delay: 1s;
+        /* No delay when opening */
     }
 
     .cookie-frame.hide {
         /* Move to the original hidden position */
-        transition: bottom 1s ease-out; /* Add transition effect */
-        transition-delay: 1s; /* No delay when hiding */
+        transition: bottom 1s ease-out;
+        /* Add transition effect */
+        transition-delay: 1s;
+        /* No delay when hiding */
     }
 
 
@@ -434,152 +471,176 @@
     .cookie-content .text {
         padding-left: 80px;
     }
+
     .btn {
         margin-top: 10px;
     }
-    .btn-my {
-    color: white !important;
-    border-color: #3d94b7;
-	background-color:  #3d94b7;
-}
 
-.btn-my:hover {
-    color: white;
-    background-color: #b73d94;
-    border-color: #b73d94;
-	outline: #b73d94;
-}
-.btn-my:focus,.btn-my:active {
-    color: white;
-    background-color: #b73d94;
-    border-color: #b73d94;
-	outline: #b73d94;
-}
+    .btn-my {
+        color: white !important;
+        border-color: #3d94b7;
+        background-color: #3d94b7;
+    }
+
+    .btn-my:hover {
+        color: white;
+        background-color: #b73d94;
+        border-color: #b73d94;
+        outline: #b73d94;
+    }
+
+    .btn-my:focus,
+    .btn-my:active {
+        color: white;
+        background-color: #b73d94;
+        border-color: #b73d94;
+        outline: #b73d94;
+    }
+
     @media (max-width: 174px) {
-        .cookie-frame.open {
-            
-        }
+        .cookie-frame.open {}
+
         .cookie-content {
-        background-color: #f9f9f9;
-        padding: 5px;
-        padding-bottom: 10px;
-        text-align: center;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            background-color: #f9f9f9;
+            padding: 5px;
+            padding-bottom: 10px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
     }
-}
+
     @media (min-width: 174px) and (max-width: 200px) {
+
         /* Styles for mobile devices */
-        .cookie-frame.open {
-            
-        }
+        .cookie-frame.open {}
+
         .cookie-content {
-        background-color: #f9f9f9;
-        padding: 5px;
-        padding-bottom: 10px;
-        text-align: center;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            background-color: #f9f9f9;
+            padding: 5px;
+            padding-bottom: 10px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
     }
-}
+
     @media (min-width: 200px) and (max-width: 252px) {
+
         /* Styles for mobile devices */
-        .cookie-frame.open {
-            
-        }
+        .cookie-frame.open {}
+
         .cookie-content {
-        background-color: #f9f9f9;
-        padding: 5px;
-        padding-bottom: 10px;
-        text-align: center;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            background-color: #f9f9f9;
+            padding: 5px;
+            padding-bottom: 10px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
     }
-}
+
     @media (min-width: 252px) and (max-width: 300px) {
+
         /* Styles for mobile devices */
         .cookie-frame.open {
             /* bottom: -72%;  */
             /* Adjust the bottom position for mobile devices */
         }
+
         .cookie-content {
-        background-color: #f9f9f9;
-        padding: 5px;
-        padding-bottom: 10px;
-        text-align: center;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            background-color: #f9f9f9;
+            padding: 5px;
+            padding-bottom: 10px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            margin-top: 0;
+        }
+
+        .cookie-content .text {
+            padding-left: 0px;
+        }
     }
-    .btn {
-        margin-top: 0;
-    }
-    .cookie-content .text {
-        padding-left: 0px;
-    }
-    }
+
     @media (min-width: 300px) and (max-width: 438px) {
+
         /* Styles for mobile devices */
         .cookie-frame.open {
             /* Adjust the bottom position for mobile devices */
         }
+
         .cookie-content {
-        background-color: #f9f9f9;
-        padding: 5px;
-        padding-bottom: 10px;
-        text-align: center;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    }
-    .btn {
-        margin-top: 0;
-    }
-    .cookie-content .text {
-        padding-left: 10px;
-    }
+            background-color: #f9f9f9;
+            padding: 5px;
+            padding-bottom: 10px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            margin-top: 0;
+        }
+
+        .cookie-content .text {
+            padding-left: 10px;
+        }
     }
 
     @media (min-width: 438px) and (max-width: 576px) {
+
         /* Styles for mobile devices */
         .cookie-frame.open {
             /* Adjust the bottom position for mobile devices */
         }
+
         .cookie-content {
-        background-color: #f9f9f9;
-        padding: 5px;
-        padding-bottom: 10px;
-        text-align: center;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            background-color: #f9f9f9;
+            padding: 5px;
+            padding-bottom: 10px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            margin-top: 0;
+        }
+
+        .cookie-content .text {
+            padding-left: 30px;
+        }
     }
-    .btn {
-        margin-top: 0;
-    }
-    .cookie-content .text {
-        padding-left: 30px;
-    }
-    }
-    
+
 
     @media (min-width: 577px) and (max-width: 992px) {
+
         /* Styles for tablets and smaller screens */
         .cookie-frame.open {
             /* Adjust the bottom position for tablets and smaller screens */
         }
+
         .cookie-content .text {
-        padding-left: 50px;
-    }
+            padding-left: 50px;
+        }
     }
 
 
     @media (min-width: 992px) {
+
         /* Styles for larger screens */
         .cookie-frame.open {
             /* Adjust the bottom position for larger screens */
         }
+
         .cookie-content .text {
-        padding-left: 80px;
-    }
-    }
-    @media screen and (min-width: 0px) and (max-width: 414px) {
-    	.cookie-frame {
-    		bottom:	-78% ;
-    	}
+            padding-left: 80px;
+        }
     }
 
+    @media screen and (min-width: 0px) and (max-width: 414px) {
+        .cookie-frame {
+            bottom: -78%;
+        }
+    }
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <a href="https://api.whatsapp.com/send?phone=19142991742" class="float" target="_blank">
@@ -722,17 +783,17 @@
         </symbol>
     </defs>
 </svg>
-<div class="position-fixed pos-fixed-bottom-right p-6 z-index-10" data-toggle="tooltip" data-placement="left" title="Back To Top">
+<div class="position-fixed pos-fixed-bottom-right p-6 z-index-10" data-toggle="tooltip" data-placement="left"
+    title="Back To Top">
     <a href="{{ url('/store') }}"
         class="gtf-back-to-top text-decoration-none hover-dark shadow p-0 rounded-circle fs-20 d-flex align-items-center justify-content-center text-light uparrow"
-       style="height: 44px;width: 44px" ><i class="fal fa-arrow-up"></i></a>
+        style="height: 44px;width: 44px"><i class="fal fa-arrow-up"></i></a>
 </div>
 <div class="canvas-sidebar cart-canvas">
     <div class="canvas-overlay"></div>
     <div class="card border-0 pt-4 h-100">
         <div class="px-6 text-right">
-            <span class="canvas-close d-inline-block fs-14 mb-1 ml-auto lh-1 "><i
-                    class="fal fa-times"></i></span>
+            <span class="canvas-close d-inline-block fs-14 mb-1 ml-auto lh-1 "><i class="fal fa-times"></i></span>
         </div>
         <div class="card-header bg-transparent border-0 p-0 mx-6">
             <h3 class="fs-14 mb-1 font-weight-500">Shopping cart</h3>
@@ -753,11 +814,11 @@
 
             <div>
                 <div class="d-flex align-items-center mb-0 fs-14 font-weight-500">
-                    <span >Subtotal</span>
+                    <span>Subtotal</span>
                     <span class="d-block ml-auto" id="cartSubTotal">$0.00</span>
 
                 </div>
-                <div  class="mb-1 fs-14">Taxes and shipping calculated at checkout</div> <br>
+                <div class="mb-1 fs-14">Taxes and shipping calculated at checkout</div> <br>
                 <a href="javascript:;" class="btn btn-primary btn-block mb-3 checkout-btn fs-14">Check Out</a>
                 <!-- {{ url('/checkout') }} -->
                 <input type="hidden" id="cartCount" value="0">
@@ -849,7 +910,7 @@
                     style="display:none;">
                     <?php $subCategories = $value['subCategories']; ?>
                     <li>
-                        <a class="dropdown-link" href="{{session('site')}}/store">Shop All</a>
+                        <a class="dropdown-link" href="{{ session('site') }}/store">Shop All</a>
                     </li>
                     @if (!empty($subCategories))
                         @foreach ($subCategories as $category)
@@ -878,93 +939,95 @@
      class="nav-link dropdown-toggle p-0" href="{{ url('/nutrition') }}">
       Nutrition </a></li> -->
                 <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
-                        class="nav-link dropdown-toggle p-0 footer-text-white" href="{{ session('site') }}/user-shade-finder" style="color:white;"> Shade
+                        class="nav-link dropdown-toggle p-0 footer-text-white"
+                        href="{{ session('site') }}/user-shade-finder" style="color:white;"> Shade
                         Finder </a></li>
                 {{-- <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
                         class="nav-link dropdown-toggle p-0" href="{{ url('become_a_partner') }}"> Partner </a></li> --}}
-                <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0 d-flex justify-content-between">
+                <li aria-haspopup="true" aria-expanded="false"
+                    class="nav-item dropdown py-1 px-0 d-flex justify-content-between">
                     <a class="nav-link dropdown-toggle p-0" href="#!">
                         Routine
                     </a>
                     <i class="fas fa-plus list-sub-cate-icon " id="menuicon_routine"
-                    onclick="menutoggleRoutine();"></i>
+                        onclick="menutoggleRoutine();"></i>
 
                 </li>
-                <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_routine"
-                        style="display:none;">
+                <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_routine" style="display:none;">
 
 
 
                     @if (!empty($routineformbl))
 
-                        <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 "
-                            style="display: block;">ROUTINE BY NEEDS</h4>
+                        <h4 class="dropdown-header fs-16 mb-3 lh-1 font-weight-500 p-0 " style="display: block;">
+                            ROUTINE BY NEEDS</h4>
 
                         @foreach ($routineformbl as $routinembl)
-                           {{-- @dd($key,$routinembl) --}}
+                            {{-- @dd($key,$routinembl) --}}
                             {{-- @if (count($routinembl) && isset($routinembl)) --}}
-                                {{-- @foreach ($routinembl as $key => $routinembllist) --}}
-                                {{-- @dd($routines[0]['IDENTIFY']) --}}
-                                    @if ($routinembl['IDENTIFY'] == 1)
-
-                                        <li class="">
-                                            <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routinembl['seqNo']}}">{{ $routinembl['NAME'] }}</a>
-                                        </li>
-                                    @endif
-                                {{-- @endforeach  --}}
-                                {{-- @else
+                            {{-- @foreach ($routinembl as $key => $routinembllist) --}}
+                            {{-- @dd($routines[0]['IDENTIFY']) --}}
+                            @if ($routinembl['IDENTIFY'] == 1)
+                                <li class="">
+                                    <a class="dropdown-link"
+                                        href="{{ url('routine-detail') . '/' . $routinembl['seqNo'] }}">{{ $routinembl['NAME'] }}</a>
+                                </li>
+                            @endif
+                            {{-- @endforeach  --}}
+                            {{-- @else
                                 <li class="">
                                     <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routinembl['seqNo']}}">{{ $routinembl['NAME'] }}</a>
                                 </li> --}}
-                                {{-- @endif --}}
+                            {{-- @endif --}}
                         @endforeach
 
 
-                        <h4 class="dropdown-header fs-16 mb-3 mt-3 lh-1 font-weight-500 p-0 "
-                            style="display: block;">ROUTINE BY AGE</h4>
+                        <h4 class="dropdown-header fs-16 mb-3 mt-3 lh-1 font-weight-500 p-0 " style="display: block;">
+                            ROUTINE BY AGE</h4>
 
                         @foreach ($routineformbl as $routinembl)
                             @if ($routinembl['IDENTIFY'] == 2)
-                            <li class="">
-                                <a class="dropdown-link" href="{{ url('routine-detail').'/'.$routinembl['seqNo']}}">{{ $routinembl['NAME'] }}</a>
-                            </li>
+                                <li class="">
+                                    <a class="dropdown-link"
+                                        href="{{ url('routine-detail') . '/' . $routinembl['seqNo'] }}">{{ $routinembl['NAME'] }}</a>
+                                </li>
                             @endif
                         @endforeach
                     @endif
 
                 </ul>
 
-                <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0 d-flex justify-content-between"><a
+                <li aria-haspopup="true" aria-expanded="false"
+                    class="nav-item dropdown py-1 px-0 d-flex justify-content-between"><a
                         class="nav-link dropdown-toggle p-0" href="{{ url('/discover') }}">
                         Discover </a>
-                        <i class="fas fa-plus list-sub-cate-icon " id="menuicon_discover"
-                            onclick="menutogglediscover();"></i>
+                    <i class="fas fa-plus list-sub-cate-icon " id="menuicon_discover"
+                        onclick="menutogglediscover();"></i>
+                </li>
+                <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_discover" style="display:none;">
+
+                    <li>
+                        <a class="" href="{{ url('/who-we-are') }}">
+                            Who We Are
+                        </a>
                     </li>
-                    <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_discover"
-                        style="display:none;">
+                    <li>
+                        <a class="" href="{{ url('/ingredients') }}">
+                            Ingredients
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="{{ url('/eco-vibes') }}">
+                            Eco Vibes
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="{{ url('/lusty-looks') }}">
+                            Lusty's Looks
+                        </a>
+                    </li>
 
-                            <li>
-                                <a class="" href="{{ url('/who-we-are') }}">
-                                    Who We Are
-                                </a>
-                            </li>
-                            <li>
-                                <a class="" href="{{ url('/ingredients') }}">
-                                    Ingredients
-                                </a>
-                            </li>
-                            <li>
-                                <a class="" href="{{ url('/eco-vibes') }}">
-                                    Eco Vibes
-                                </a>
-                            </li>
-                            <li>
-                                <a class="" href="{{ url('/lusty-looks') }}">
-                                    Lusty's Looks
-                                </a>
-                            </li>
-
-                    </ul>
+                </ul>
                 <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
                         class="nav-link dropdown-toggle p-0" href="{{ url('/giving') }}">
                         Giving </a></li>
@@ -1063,7 +1126,8 @@
                             <div class="custom-control custom-checkbox mt-4 mb-5 mr-xl-6">
                                 <input name="agree" type="checkbox" class="custom-control-input" id="termsOfUse">
                                 <label class="custom-control-label " for="termsOfUse">
-                                    Yes, I agree with Grace <a href="{{ url('customer-help#v-pills-profile') }}">Privacy
+                                    Yes, I agree with Grace <a
+                                        href="{{ url('customer-help#v-pills-profile') }}">Privacy
                                         Policy</a> and <a href="{{ url('/store') }}">Terms of Use</a>
                                 </label>
                             </div>
@@ -1281,8 +1345,8 @@
     <input type="hidden" class="category" id="category" name="category" value="">
     <input type="hidden" class="subcategory" id="subcategory" name="subcategory" value="">
 </form>
-<form class="" id="productDetailRedirectForm" method="POST" action=""
-    enctype="multipart/form-data" style="display:none;">
+<form class="" id="productDetailRedirectForm" method="POST" action="" enctype="multipart/form-data"
+    style="display:none;">
     @method('POST')
     {{-- <input type="hidden" name="_method" value="POST"> --}}
     {{-- {{ csrf_field() }} --}}
@@ -1314,7 +1378,7 @@
     var site = "<?php echo session('site'); ?>";
     var checkoutUrl = "<?php echo url('/checkout'); ?>";
 </script>
-<script src="{{ url('/assets-web') }}/customjs/common.js?v={{time()}}"></script>
+<script src="{{ url('/assets-web') }}/customjs/common.js?v={{ time() }}"></script>
 <script>
     function menutoggle(i) {
 
@@ -1333,7 +1397,8 @@
 
 
     }
-    function menutogglediscover(){
+
+    function menutogglediscover() {
         if ($("#menuicon_discover").hasClass('fa-plus')) {
             $('.ulMblSite').hide(1000);
             $(".list-sub-cate-icon").addClass('fa-plus');
@@ -1345,9 +1410,9 @@
 
         $("#menuicon_discover").toggleClass('fa-minus', 500);
         $("#menuicon_discover").toggleClass('fa-plus', 500);
-     }
+    }
 
-     function menutoggleRoutine(){
+    function menutoggleRoutine() {
         if ($("#menuicon_routine").hasClass('fa-plus')) {
             $('.ulMblSite').hide(1000);
             $(".list-sub-cate-icon").addClass('fa-plus');
@@ -1359,12 +1424,11 @@
 
         $("#menuicon_routine").toggleClass('fa-minus', 500);
         $("#menuicon_routine").toggleClass('fa-plus', 500);
-     }
-
+    }
 </script>
 
 <script>
-    function informationflag($text){
+    function informationflag($text) {
         localStorage.setItem("information", $text);
     }
 
@@ -1377,15 +1441,16 @@
 <script>
     window.fbAsyncInit = function() {
         FB.init({
-            xfbml            : true,
-            version          : 'v16.0'
+            xfbml: true,
+            version: 'v16.0'
         });
     };
 
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         js.style.zIndex = "-1";
         fjs.parentNode.insertBefore(js, fjs);

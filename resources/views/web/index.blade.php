@@ -11,12 +11,13 @@ $userId = session('userId');
     var instagram_feed = '';
 </script>
 <style>
-    .flower-icon{
+    .flower-icon {
         font-size: 40px;
         position: absolute;
         left: 15px;
 
     }
+
     /* h2{
         font-size: 36px;
         text-transform: capitalize;
@@ -48,7 +49,7 @@ $userId = session('userId');
         z-index: 1;
         text-shadow: none;
         background: rgba(0, 0, 0);
-        color:white;
+        color: white;
         opacity: 0.75;
     }
 
@@ -243,9 +244,10 @@ $userId = session('userId');
 
 } */
 
-.product-inclusive {
+    .product-inclusive {
         position: relative;
-        overflow: hidden; /* Make sure the overlay doesn't overflow outside the parent container */
+        overflow: hidden;
+        /* Make sure the overlay doesn't overflow outside the parent container */
     }
 
     .product-inclusive .overlay {
@@ -254,8 +256,10 @@ $userId = session('userId');
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.2); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+        background-color: rgba(0, 0, 0, 0.2);
+        /* You can adjust the transparency by changing the last value (0.6 in this case) */
     }
+
     .quick_view_product_image {
         width: 250px;
         height: 250px;
@@ -320,6 +324,7 @@ $userId = session('userId');
         .popup-dialog {
             max-width: 1100px;
         }
+
         .modal-content .modal-body .icon {
             font-size: 50px;
             position: absolute;
@@ -333,9 +338,9 @@ $userId = session('userId');
     }
 
     @media screen and (min-width: 768px) {
-		.popup-padding {
-			padding: 41px 24px !important;
-		}
+        .popup-padding {
+            padding: 41px 24px !important;
+        }
 
         .mt-20 {
             margin-top: 20.5rem !important;
@@ -381,15 +386,16 @@ $userId = session('userId');
         .mt-20 {
             margin-top: 22.5rem !important;
         }
-		.popup-dialog {
-			max-width: 822px;
-		}
+
+        .popup-dialog {
+            max-width: 822px;
+        }
 
 
     }
 
     @media screen and (min-width: 1200px) {
-		.modal-content .modal-body .icon {
+        .modal-content .modal-body .icon {
             font-size: 79px;
             position: absolute;
             top: 0;
@@ -398,6 +404,7 @@ $userId = session('userId');
             z-index: 1;
             color: #fff;
         }
+
         .modal-content .modal-body h2 span {
             font-size: 36PX;
             font-weight: 700;
@@ -412,18 +419,20 @@ $userId = session('userId');
         .mt-20 {
             margin-top: 24.5rem !important;
         }
-		.modal-content .modal-body .sale {
-				font-size: 138px !important;
-				font-family: "Pacifico", cursive;
-				color: #000;
-				position: relative;
-				margin-bottom: 30px;
-				z-index: 0;
-			}
+
+        .modal-content .modal-body .sale {
+            font-size: 138px !important;
+            font-family: "Pacifico", cursive;
+            color: #000;
+            position: relative;
+            margin-bottom: 30px;
+            z-index: 0;
+        }
 
     }
-	@media screen and (min-width: 1400px) {
-		.modal-content .modal-body .icon {
+
+    @media screen and (min-width: 1400px) {
+        .modal-content .modal-body .icon {
             font-size: 79px;
             position: absolute;
             top: 0;
@@ -432,6 +441,7 @@ $userId = session('userId');
             z-index: 1;
             color: #fff;
         }
+
         .modal-content .modal-body h2 span {
             font-size: 36PX;
             font-weight: 700;
@@ -446,19 +456,22 @@ $userId = session('userId');
         .mt-20 {
             margin-top: 24.5rem !important;
         }
-		.modal-content .modal-body .sale {
-				font-size: 150px !important;
-				font-family: "Pacifico", cursive;
-				color: #000;
-				position: relative;
-				margin-bottom: 30px;
-				z-index: 0;
-			}
-			.popup-dialog {
-				max-width: 1139px;
-			}
+
+        .modal-content .modal-body .sale {
+            font-size: 150px !important;
+            font-family: "Pacifico", cursive;
+            color: #000;
+            position: relative;
+            margin-bottom: 30px;
+            z-index: 0;
+        }
+
+        .popup-dialog {
+            max-width: 1139px;
+        }
 
     }
+
     @media screen and (min-width: 1650px) {
         .popup-padding {
             padding: 150px 100px;
@@ -473,20 +486,21 @@ $userId = session('userId');
         }
 
     }
-    .cookies_blocker{
-    	height:100vh;
-    	 position: fixed;
-	  	top: 0;
-	  	left: 0;
-	  	width: 100%;
-	  	height: 100%;
-	  	background-color: rgba(0, 0, 0, 0.5); /* Change the last value for the opacity level */
-	  	z-index: 100000;
-	  	display: flex;
-	  	justify-content: center;
-	  	align-items: center;
-    }
 
+    .cookies_blocker {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Change the last value for the opacity level */
+        z-index: 100000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 <div class="cookies_blocker" style="display: none;"></div>
 <main id="content" style="padding-top: 0px !important" ng-app="project1">
@@ -555,21 +569,21 @@ $userId = session('userId');
                         <h2 class="mb-5">Trending items</h2>
                         <p class="text-primary fs-20 mb-5 ">Made using clean, non-toxic
                             ingredients, our products are designed for everyone.</p>
-                        <a href="{{session('site')}}/Shop-All" class="btn btn-outline-primary">Shop</a>
+                        <a href="{{ session('site') }}/Shop-All" class="btn btn-outline-primary">Shop</a>
                     </div>
                     <div class="col-lg-9">
                         <div class="slick-slider"
                             data-slick-options='{"slidesToShow": 3,"dots":true,"arrows":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 400,"settings": {"slidesToShow": 1}}]}'>
 
                             @if (isset($trending) && !empty($trending))
-                            
+
                                 @foreach ($trending as $trend)
-                               
-                                                                                                       <div class="box product py-2" data-animate="fadeInUp">
+                                    <div class="box product py-2" data-animate="fadeInUp">
                                         <div class="card border-0">
                                             <div class="position-relative hover-zoom-in">
                                                 {{-- productdetail ---> removed after made href url --}}
-                                                <a href="{{ url('/') }}/Products/{{ $trend['CATEGORY_SLUG'] }}/{{ $trend['SUB_CATEGORY_SLUG'] ? $trend['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $trend['SLUG'] }}" class="d-block overflow-hidden"
+                                                <a href="{{ url('/') }}/Products/{{ $trend['CATEGORY_SLUG'] }}/{{ $trend['SUB_CATEGORY_SLUG'] ? $trend['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $trend['SLUG'] }}"
+                                                    class="d-block overflow-hidden"
                                                     data-id="{{ $trend['PRODUCT_ID'] }}"
                                                     data-category="{{ $trend['CATEGORY_SLUG'] }}"
                                                     data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
@@ -588,7 +602,7 @@ $userId = session('userId');
                                                             data-productId="{{ $trend['PRODUCT_ID'] }}"
                                                             data-type='single'>
                                                             <i
-                                                                class="icon fal fa-star wish_{{ $trend['PRODUCT_ID'] }} {{ $trend['wishlistFlag'] == '1' ? 'activeWish' : '' }}"  ></i>
+                                                                class="icon fal fa-star wish_{{ $trend['PRODUCT_ID'] }} {{ $trend['wishlistFlag'] == '1' ? 'activeWish' : '' }}"></i>
                                                         </a>
 
                                                         <a href="javascript:;" data-toggle="tooltip"
@@ -602,56 +616,63 @@ $userId = session('userId');
                                                 </div>
                                                 <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                                     @if ($trend['INV_QUANTITY_FLAG'] == 'shade')
-                                                    	<a href="javascript:;"
-	                                                        class="btn btn-white btn-block  border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif"
-	                                                        id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}" data-category="{{ $trend['CATEGORY_SLUG'] }}"
-                                                    		data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
-                                                    		data-name="{{ $trend['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">+ Add To Cart</a>
+                                                        <a href="javascript:;"
+                                                            class="btn btn-white btn-block  border-hover-primary hover-white @if (isset($userId)) productdetail @else addto-cart @endif"
+                                                            id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}"
+                                                            data-category="{{ $trend['CATEGORY_SLUG'] }}"
+                                                            data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
+                                                            data-name="{{ $trend['SLUG'] }}" data-type=""
+                                                            data-quickAdd="{{ session('userId') }}">+ Add To Cart</a>
                                                     @elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] > '0')
-                                                    	<a href="javascript:;"
-	                                                        class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
-	                                                        id="qckad" data-type="single" data-id="{{ $trend['PRODUCT_ID'] }}" data-quantity='1'>+ Add To Cart</a>
-	                                              	@elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] <= '0')
-                                                    	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
-                                                    		id="qckad" disabled>+ Out of Stock</a>
+                                                        <a href="javascript:;"
+                                                            class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
+                                                            id="qckad" data-type="single"
+                                                            data-id="{{ $trend['PRODUCT_ID'] }}" data-quantity='1'>+
+                                                            Add To Cart</a>
+                                                    @elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] <= '0')
+                                                        <a href="javascript:;"
+                                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
+                                                            id="qckad" disabled>+ Out of Stock</a>
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="card-body pt-4 px-0 pb-0"
-                                                data-type="">
+                                            <div class="card-body pt-4 px-0 pb-0" data-type="">
                                                 <a href="javascript:;"
                                                     class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
-                                                    data-id="{{ $trend['CATEGORY_ID'] }}"
-                                                    data-type="CATEGORY" data-categorySlug="{{ $trend['CATEGORY_SLUG'] }}"
-                                                    >
+                                                    data-id="{{ $trend['CATEGORY_ID'] }}" data-type="CATEGORY"
+                                                    data-categorySlug="{{ $trend['CATEGORY_SLUG'] }}">
                                                     {{ $trend['CATEGORY_NAME'] }}</a>
-                                                <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 text-capitalize">
+                                                <h3
+                                                    class="card-title fs-16 font-weight-500 mb-1 lh-14375 text-capitalize">
                                                     {{-- productdetail ---> removed after made url with href --}}
-                                                    <a href="{{ url('/') }}/Products/{{ $trend['CATEGORY_SLUG'] }}/{{ $trend['SUB_CATEGORY_SLUG'] ? $trend['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $trend['SLUG'] }}" class="" data-id="{{ $trend['PRODUCT_ID'] }}"
-                                                    data-category="{{ $trend['CATEGORY_SLUG'] }}"
-                                                    data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
-                                                    data-name="{{ $trend['SLUG'] }}">{{ $trend['PRODUCT_NAME'] }}</a>
+                                                    <a href="{{ url('/') }}/Products/{{ $trend['CATEGORY_SLUG'] }}/{{ $trend['SUB_CATEGORY_SLUG'] ? $trend['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $trend['SLUG'] }}"
+                                                        class="" data-id="{{ $trend['PRODUCT_ID'] }}"
+                                                        data-category="{{ $trend['CATEGORY_SLUG'] }}"
+                                                        data-subcategory="{{ $trend['SUB_CATEGORY_SLUG'] }}"
+                                                        data-name="{{ $trend['SLUG'] }}">{{ $trend['PRODUCT_NAME'] }}</a>
                                                 </h3>
-                                                <p class="text-primary mb-0 card-title lh-14375 cards_length" style="height: 48px;">
+                                                <p class="text-primary mb-0 card-title lh-14375 cards_length"
+                                                    style="height: 48px;">
                                                     {{ $trend['SUB_TITLE'] }}</p>
-                                                    {{-- @if($trend['shades']) --}}
-                                                    <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                                        <?php
+                                                {{-- @if ($trend['shades']) --}}
+                                                <ul
+                                                    class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                    <?php
                                                             $shades = $trend['shades'];
                                                             if(isset($shades) && !empty($shades)){
                                                             foreach ($shades as $shade){
 
                                                         ?>
-                                                        <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
-                                                            <a href="javascript:;" class="d-block swatches-item"
-                                                                style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
-                                                            </a>
-                                                        </li>
-                                                        <?php }?>
-                                                        <?php }?>
-                                                    </ul>
-                                                    {{-- @else --}}
-                                                    {{-- <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                                    <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
+                                                        <a href="javascript:;" class="d-block swatches-item"
+                                                            style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
+                                                        </a>
+                                                    </li>
+                                                    <?php }?>
+                                                    <?php }?>
+                                                </ul>
+                                                {{-- @else --}}
+                                                {{-- <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                         <li class="list-inline-item" title="New shade">
                                                                 <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
                                                                 </a>
@@ -661,22 +682,29 @@ $userId = session('userId');
                                                                 </a>
                                                                 </li>
                                                         </ul> --}}
-                                                    {{-- @endif --}}
+                                                {{-- @endif --}}
                                                 {{-- <p class="text-primary mb-2 card-title lh-14375">
                                                     ${{ $trend['PRODUCT_PRICE'] }}</p> --}}
-                                                    <div class="row">
-                                                        <div class="@if(strlen($trend['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
-                                                            @if($trend['DISC_AMOUNT'] > 0)
-                                                                <p class="text-primary mb-0 card-title lh-14375">${{ $trend['DISC_AMOUNT'] }}</p>
-                                                                <small class="ml-1 mt-1 lh-14375"><del> ${{ $trend['PRODUCT_PRICE'] }}</del></small>
-                                                            @else
-                                                            <p class="text-primary mb-0 card-title lh-14375">${{ $trend['PRODUCT_PRICE'] }}</p>
-                                                            @endif
-                                                        </div>
-                                                        <div class="@if(strlen($trend['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
-                                                            <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $trend['UNIT'] }}</p>
-                                                        </div>
+                                                <div class="row">
+                                                    <div
+                                                        class="@if (strlen($trend['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
+                                                        @if ($trend['DISC_AMOUNT'] > 0)
+                                                            <p class="text-primary mb-0 card-title lh-14375">
+                                                                ${{ $trend['DISC_AMOUNT'] }}</p>
+                                                            <small class="ml-1 mt-1 lh-14375"><del>
+                                                                    ${{ $trend['PRODUCT_PRICE'] }}</del></small>
+                                                        @else
+                                                            <p class="text-primary mb-0 card-title lh-14375">
+                                                                ${{ $trend['PRODUCT_PRICE'] }}</p>
+                                                        @endif
                                                     </div>
+                                                    <div
+                                                        class="@if (strlen($trend['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
+                                                        <p
+                                                            class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
+                                                            {{ $trend['UNIT'] }}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -703,7 +731,7 @@ $userId = session('userId');
                         <h2 class="mb-7 text-center part_head text-capitalize">Pay less, stay
                             in fashion!</h3>
 
-                        <a href="{{session('site')}}/Shop-All" class="btn btn-primary">All Products</a>
+                            <a href="{{ session('site') }}/Shop-All" class="btn btn-primary">All Products</a>
 
                     </div>
                 </div>
@@ -737,23 +765,29 @@ $userId = session('userId');
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '2' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '3' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '4' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
 
                                             </ul>
-                                            <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto"
-                                                style="min-height: 6vw;">{{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
+                                            <p
+                                                class="card-text our-reviews-card-text fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto">
+                                                {{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
 
                                         </div>
                                     </div>
@@ -786,10 +820,11 @@ $userId = session('userId');
                             <div class="col-6 col-lg-3 product mb-8" data-animate="fadeInUp">
                                 <div class="card border-0">
                                     <div class="position-relative hover-zoom-in">
-                                    {{-- productdetail ---> removed after made url with href --}}
-                                        <a href="{{ url('/') }}/Products/{{ $for['CATEGORY_SLUG'] }}/{{ $for['SUB_CATEGORY_SLUG'] ? $for['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $for['SLUG'] }}" class="d-block overflow-hidden"
-                                            data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
-                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
+                                        {{-- productdetail ---> removed after made url with href --}}
+                                        <a href="{{ url('/') }}/Products/{{ $for['CATEGORY_SLUG'] }}/{{ $for['SUB_CATEGORY_SLUG'] ? $for['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $for['SLUG'] }}"
+                                            class="d-block overflow-hidden" data-id="{{ $for['PRODUCT_ID'] }}"
+                                            data-category="{{ $for['CATEGORY_SLUG'] }}"
+                                            data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $for['SLUG'] }}" data-type="">
                                             <img src="{{ $for['productPrimaryImg'] }}" alt="Product"
                                                 class="card-img-top created_section_img img-h45 image-active">
@@ -814,30 +849,37 @@ $userId = session('userId');
                                                             <span> <i class="icon fal fa-eye"></i> </span>
                                             Â Â Â Â </a> --}}
 
-                                            <a href="javascript:;" data-toggle="tooltip"
-                                                data-placement="left" title="Quick view"
-                                                ng-click="quickViewProductDetails({{ $for['PRODUCT_ID'] }})"
-                                                class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
-                                                <span> <i class="icon fal fa-eye"></i> </span>
-                                            </a>
+                                                <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+                                                    title="Quick view"
+                                                    ng-click="quickViewProductDetails({{ $for['PRODUCT_ID'] }})"
+                                                    class="preview d-flex align-items-center justify-content-center text-primary  bgiconcolor  w-45px h-45px rounded-circle">
+                                                    <span> <i class="icon fal fa-eye"></i> </span>
+                                                </a>
 
                                             </div>
                                         </div>
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                             @if ($for['INV_QUANTITY_FLAG'] == 'shade')
-                                         		<a href="javascript:;"
-	                                            	class="btn btn-white btn-block  border-hover-primary hover-white @if(isset($userId)) productdetail @else addto-cart @endif"
-	                                                id="qckad" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
-		                                          	data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }} " data-quickAdd="{{ session('userId') }}"
-		                                            data-name="{{ $for['SLUG'] }}" data-quickAdd="{{ session('userId') }}" data-type="">+ Add To Cart</a>
-                                         	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] > '0')
-                                            	<a href="javascript:;"
-	                                           		class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
-	                                             	id="qckad" data-type="single" data-id="{{ $for['PRODUCT_ID'] }}" data-quantity='1'>+ Add To Cart</a>
-	                                      	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] <= '0')
-                                            	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
-                                              		id="qckad" disabled>+ Out of Stock</a>
-                                          	@endif
+                                                <a href="javascript:;"
+                                                    class="btn btn-white btn-block  border-hover-primary hover-white @if (isset($userId)) productdetail @else addto-cart @endif"
+                                                    id="qckad" data-id="{{ $for['PRODUCT_ID'] }}"
+                                                    data-category="{{ $for['CATEGORY_SLUG'] }}"
+                                                    data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }} "
+                                                    data-quickAdd="{{ session('userId') }}"
+                                                    data-name="{{ $for['SLUG'] }}"
+                                                    data-quickAdd="{{ session('userId') }}" data-type="">+ Add To
+                                                    Cart</a>
+                                            @elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] > '0')
+                                                <a href="javascript:;"
+                                                    class="btn btn-white btn-block  border-hover-primary hover-white addto-cart"
+                                                    id="qckad" data-type="single"
+                                                    data-id="{{ $for['PRODUCT_ID'] }}" data-quantity='1'>+ Add To
+                                                    Cart</a>
+                                            @elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] <= '0')
+                                                <a href="javascript:;"
+                                                    class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
+                                                    id="qckad" disabled>+ Out of Stock</a>
+                                            @endif
                                             <!-- <a href="javascript:;"
                                                 class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white  addto-cart"
                                                 id="qckad" data-type="single" data-id="{{ $for['PRODUCT_ID'] }}"
@@ -846,32 +888,39 @@ $userId = session('userId');
                                     </div>
                                     <div class="card-body pt-4 px-0 pb-0 d-flex flex-column">
                                         <a href="javascript:;"
-                                            class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary" data-id="{{ $for['CATEGORY_ID'] }}" data-type="CATEGORY" data-categorySlug="{{ $for['CATEGORY_SLUG'] }}">
+                                            class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary"
+                                            data-id="{{ $for['CATEGORY_ID'] }}" data-type="CATEGORY"
+                                            data-categorySlug="{{ $for['CATEGORY_SLUG'] }}">
                                             {{ $for['CATEGORY_NAME'] }}</a>
-                                        <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 ellipsis-m text-capitalize">
+                                        <h3
+                                            class="card-title fs-16 font-weight-500 mb-1 lh-14375 ellipsis-m text-capitalize">
                                             {{-- productdetail ---> removed after made url with href --}}
-                                            <a href="{{ url('/') }}/Products/{{ $for['CATEGORY_SLUG'] }}/{{ $for['SUB_CATEGORY_SLUG'] ? $for['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $for['SLUG'] }}" class="" data-id="{{ $for['PRODUCT_ID'] }}" data-category="{{ $for['CATEGORY_SLUG'] }}"
-                                            data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
-                                            data-name="{{ $for['SLUG'] }}" data-type="">{{ $for['PRODUCT_NAME'] }}</a>
+                                            <a href="{{ url('/') }}/Products/{{ $for['CATEGORY_SLUG'] }}/{{ $for['SUB_CATEGORY_SLUG'] ? $for['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $for['SLUG'] }}"
+                                                class="" data-id="{{ $for['PRODUCT_ID'] }}"
+                                                data-category="{{ $for['CATEGORY_SLUG'] }}"
+                                                data-subcategory="{{ $for['SUB_CATEGORY_SLUG'] }}"
+                                                data-name="{{ $for['SLUG'] }}"
+                                                data-type="">{{ $for['PRODUCT_NAME'] }}</a>
                                         </h3>
-                                        <p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375" style="height: 48px;">
+                                        <p class="text-primary mb-0 shop-subtitle card-title cards_length lh-14375"
+                                            style="height: 48px;">
                                             {{ $for['SUB_TITLE'] }}</p>
-                                        {{-- @if($for['shades']) --}}
-                                            <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
-                                                <?php
+                                        {{-- @if ($for['shades']) --}}
+                                        <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                            <?php
                                                             $shades = $for['shades'];
                                                             if(isset($shades) && !empty($shades)){
                                                             foreach ($shades as $shade){
 
                                                         ?>
-                                                <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
-                                                    <a href="javascript:;" class="d-block swatches-item"
-                                                        style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
-                                                    </a>
-                                                </li>
-                                                <?php }?>
-                                                <?php }?>
-                                            </ul>
+                                            <li class="list-inline-item" title="<?= $shade['SHADE_NAME'] ?>">
+                                                <a href="javascript:;" class="d-block swatches-item"
+                                                    style="background-image: url('<?= $shade['shadeprimaryImage'] ?>'); background-repeat:no-repeat;background-position: center;">
+                                                </a>
+                                            </li>
+                                            <?php }?>
+                                            <?php }?>
+                                        </ul>
                                         {{-- @else --}}
                                         {{-- <br> --}}
                                         {{-- <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
@@ -886,26 +935,33 @@ $userId = session('userId');
                                             </ul> --}}
                                         {{-- @endif --}}
                                         {{-- <div class="mt-auto"> --}}
-                                            {{-- <div class="d-flex flex-row justify-content-between"> --}}
-                                                {{-- <div class="col-sm-6 col-6"> --}}
-                                                    <div class="row">
-                                                        <div class="@if(strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
-                                                            @if($for['DISC_AMOUNT'] > 0)
-                                                                <p class="text-primary mb-0 card-title lh-14375">${{ $for['DISC_AMOUNT'] }}</p>
-                                                                <small class="ml-1 mt-1 lh-14375"><del> ${{ $for['PRODUCT_PRICE'] }}</del></small>
-                                                            @else
-                                                            <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }}</p>
-                                                            @endif
-                                                        </div>
-                                                        <div class="@if(strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
-                                                            <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p>
-                                                        </div>
-                                                    </div>
-                                                {{-- </div> --}}
-                                                {{-- <div class="col-sm-6 col-5"> --}}
-                                                    {{-- <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p> --}}
-                                                {{-- </div> --}}
-                                            {{-- </div> --}}
+                                        {{-- <div class="d-flex flex-row justify-content-between"> --}}
+                                        {{-- <div class="col-sm-6 col-6"> --}}
+                                        <div class="row">
+                                            <div
+                                                class="@if (strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
+                                                @if ($for['DISC_AMOUNT'] > 0)
+                                                    <p class="text-primary mb-0 card-title lh-14375">
+                                                        ${{ $for['DISC_AMOUNT'] }}</p>
+                                                    <small class="ml-1 mt-1 lh-14375"><del>
+                                                            ${{ $for['PRODUCT_PRICE'] }}</del></small>
+                                                @else
+                                                    <p class="text-primary mb-0 card-title lh-14375">
+                                                        ${{ $for['PRODUCT_PRICE'] }}</p>
+                                                @endif
+                                            </div>
+                                            <div
+                                                class="@if (strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
+                                                <p
+                                                    class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
+                                                    {{ $for['UNIT'] }}</p>
+                                            </div>
+                                        </div>
+                                        {{-- </div> --}}
+                                        {{-- <div class="col-sm-6 col-5"> --}}
+                                        {{-- <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">{{ $for['UNIT'] }}</p> --}}
+                                        {{-- </div> --}}
+                                        {{-- </div> --}}
                                         {{-- </div> --}}
                                         {{-- <p class="text-primary mb-0 card-title lh-14375">${{ $for['PRODUCT_PRICE'] }} --}}
 
@@ -924,7 +980,7 @@ $userId = session('userId');
 
                 </div>
                 <div class="text-center pt-2">
-                    <a href="{{session('site')}}/Store/Shop" class="btn btn-outline-primary"
+                    <a href="{{ session('site') }}/Store/Shop" class="btn btn-outline-primary"
                         data-type="SUB_CATEGORY"> Shop More </a>
                 </div>
             </div>
@@ -985,9 +1041,9 @@ $userId = session('userId');
 
 
 
-        
 
-        
+
+
 
         <section class="box-shadow-bottom py-10 py-lg-13"
             style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover; background-color:#fffff">
@@ -1006,9 +1062,9 @@ $userId = session('userId');
                         <a href="{{ session('site') }}/user-shade-finder" class="btn btn-outline-primary">Take A
                             Quiz</a>
                     </div>
-                    <div class="col-md-7 px-7 mb-7 mb-md-0 inc_cont hover-zoom-in" data-animate="fadeInRight">
-                        <img src="{{ url('/assets-web') }}/images/product.png" alt="Poplin top with ruffle trim"
-                            class="img-home-pay">
+                    <div class="col-md-7 px-7 mb-7 mb-md-0 inc_cont hover-zoom-in " data-animate="fadeInRight">
+                        <img src="{{ url('/assets-web') }}/images/product-img-2.png"
+                            alt="Poplin top with ruffle trim" class="img-home-pay">
                     </div>
                 </div>
             </div>
@@ -1048,46 +1104,50 @@ $userId = session('userId');
                             </a>
                         </div> --}}
                         <div class="col-sm-6 mb-0 mb-sm-0 product-inclusive" data-animate="fadeInUp"
-                                style="background-image: url('{{ $bestSeller['IMAGE_DOWNPATH'] }}');">
-                                <div class="overlay"></div>
-                                <a href="{{ url('/') }}/Products/{{ $bestSeller['CATEGORY_SLUG'] }}/{{ $bestSeller['SUB_CATEGORY_SLUG'] ? $bestSeller['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $bestSeller['SLUG'] }}" class="card border-0 banner-03 hover-zoom-in" style="background-color: unset !important; height: 600px;">
-                                    <!-- Add the black overlay here -->
+                            style="background-image: url('{{ $bestSeller['IMAGE_DOWNPATH'] }}');">
+                            <div class="overlay"></div>
+                            <a href="{{ url('/') }}/Products/{{ $bestSeller['CATEGORY_SLUG'] }}/{{ $bestSeller['SUB_CATEGORY_SLUG'] ? $bestSeller['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $bestSeller['SLUG'] }}"
+                                class="card border-0 banner-03 hover-zoom-in"
+                                style="background-color: unset !important; height: 600px;">
+                                <!-- Add the black overlay here -->
 
 
-                                    <!-- Rest of the content -->
-                                    <div class="card-img bg-img-cover-center"></div>
-                                    <div class="card-img-overlay d-flex flex-column p-2">
-                                        <p class="mb-0 card-text font-weight-500 part_head text-uppercase">{{ $bestSeller['TITLE'] }}</p>
-                                        <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">{{ $bestSeller['HEADING'] }}</h5>
-                                        <div class="mt-auto">
-                                            {{-- productdetail --> removed after made url with href --}}
-                                            <button type="button" class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head"
+                                <!-- Rest of the content -->
+                                <div class="card-img bg-img-cover-center"></div>
+                                <div class="card-img-overlay d-flex flex-column p-2">
+                                    <p class="mb-0 card-text font-weight-500 part_head text-uppercase">
+                                        {{ $bestSeller['TITLE'] }}</p>
+                                    <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">
+                                        {{ $bestSeller['HEADING'] }}</h5>
+                                    <div class="mt-auto">
+                                        {{-- productdetail --> removed after made url with href --}}
+                                        <button type="button"
+                                            class="btn-link-custom btn-link-custom-02 p-0 bg-transparent part_head"
                                             data-id="{{ $bestSeller['PRODUCT_ID'] }}"
                                             data-category="{{ $bestSeller['CATEGORY_SLUG'] }}"
                                             data-subcategory="{{ $bestSeller['SUB_CATEGORY_SLUG'] }}"
                                             data-name="{{ $bestSeller['SLUG'] }}">Shop Now</button>
-                                        </div>
                                     </div>
-                                </a>
-                            </div>
-
-
+                                </div>
+                            </a>
+                        </div>
                     @endif
                     @if (isset($onlineExclusive) && !empty($onlineExclusive))
                         <div class="col-sm-6 mb-0 product-inclusive" data-animate="fadeInUp"
                             style="background-image: url('{{ $onlineExclusive['IMAGE_DOWNPATH'] }}');">
                             <div class="overlay"></div>
-                            <a href="{{ url('/') }}/Products/{{ $onlineExclusive['CATEGORY_SLUG'] }}/{{ $onlineExclusive['SUB_CATEGORY_SLUG'] ? $onlineExclusive['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $onlineExclusive['SLUG'] }}" class="card border-0 banner-03 hover-zoom-in"
+                            <a href="{{ url('/') }}/Products/{{ $onlineExclusive['CATEGORY_SLUG'] }}/{{ $onlineExclusive['SUB_CATEGORY_SLUG'] ? $onlineExclusive['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $onlineExclusive['SLUG'] }}"
+                                class="card border-0 banner-03 hover-zoom-in"
                                 style="background-color: unset !important; height: 600px;">
 
 
                                 <div class="card-img bg-img-cover-center"></div>
                                 <div class="card-img-overlay d-flex flex-column p-2">
-                                        <p class="mb-0 card-text font-weight-500 part_head text-uppercase">
-                                            {{ $onlineExclusive['TITLE'] }}</p>
-                                        <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">
-                                            {{ $onlineExclusive['HEADING'] }}</h5>
-                                        {{-- <p><a href="">Shop Now</a></p> --}}
+                                    <p class="mb-0 card-text font-weight-500 part_head text-uppercase">
+                                        {{ $onlineExclusive['TITLE'] }}</p>
+                                    <h5 class="card-title fs-36 lh-128 mb-0 part_head text-capitalize">
+                                        {{ $onlineExclusive['HEADING'] }}</h5>
+                                    {{-- <p><a href="">Shop Now</a></p> --}}
                                     <div class="mt-auto">
                                         {{-- productdetail --> removed after made url with href --}}
                                         <button type="button"
@@ -1147,7 +1207,8 @@ $userId = session('userId');
                                                 <img src="{{ $blogs[0]['image'] }}" class="inc_image_blog_1_home"
                                                     alt="How to care for your cotton.">
                                                 <div class="middle_cont_blog_home">
-                                                    <div class="blog_text_1_home text-capitalize">{{ $blogs[0]['TITLE'] }}</div>
+                                                    <div class="blog_text_1_home text-capitalize">
+                                                        {{ $blogs[0]['TITLE'] }}</div>
                                                 </div>
                                             </a>
                                         </div>
@@ -1164,7 +1225,8 @@ $userId = session('userId');
                                                     class="card-img-top inc_image_blog_1_home"
                                                     alt="How to care for your cotton.">
                                                 <div class="middle_cont_blog_home">
-                                                    <div class="blog_text_1_home text-capitalize">{{ $blogs[1]['TITLE'] }}</div>
+                                                    <div class="blog_text_1_home text-capitalize">
+                                                        {{ $blogs[1]['TITLE'] }}</div>
                                                 </div>
                                             </a>
                                         </div>
@@ -1184,7 +1246,8 @@ $userId = session('userId');
                                                     class="inc_image_blog_1_home inc_image_blog_3"
                                                     alt="How to care for your cotton.">
                                                 <div class="middle_cont_blog_home">
-                                                    <div class="blog_text_1_home text-capitalize">{{ $blogs[2]['TITLE'] }}</div>
+                                                    <div class="blog_text_1_home text-capitalize">
+                                                        {{ $blogs[2]['TITLE'] }}</div>
                                                 </div>
                                             </a>
                                         </div>
@@ -1339,8 +1402,7 @@ $userId = session('userId');
             <div class="modal-dialog quick_view_mbl modal-dialog-scrollable">
                 <div class="modal-content p-0 quick_view_mbl_carousel_modal">
                     <div class="modal-body p-0">
-                        <button type="button"
-                            class="close fs-32 position-absolute pos-fixed-top-right z-index-10"
+                        <button type="button" class="close fs-32 position-absolute pos-fixed-top-right z-index-10"
                             data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="fs-20"> <i class="fal fa-times"></i>
                             </span>
@@ -1348,13 +1410,13 @@ $userId = session('userId');
                         <div class="row no-gutters" id="quick_view_product_details">
                             <div class="col-sm-6">
 
-                                <div id="carouselExampleControls" class="carousel slide quick_view_mbl_carousel" data-ride="carousel"
-                                    data-interval="2000">
+                                <div id="carouselExampleControls" class="carousel slide quick_view_mbl_carousel"
+                                    data-ride="carousel" data-interval="2000">
                                     <div class="carousel-inner">
                                         <div class="carousel-item @{{ $first == '1' ? 'active' : '' }}"
                                             ng-repeat="row in productImagesLoop">
-                                            <img class="d-block w-100 quick_view_mbl_carousel_img" style="height: 35rem"
-                                                src="@{{ row.downPath }}" alt="First slide">
+                                            <img class="d-block w-100 quick_view_mbl_carousel_img"
+                                                style="height: 35rem" src="@{{ row.downPath }}" alt="First slide">
                                         </div>
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
@@ -1372,7 +1434,7 @@ $userId = session('userId');
                                 <div class="d-flex align-items-center">
                                     <h2 class="mb-0">@{{ QuickView_name }}</h2>
                                 </div>
-                                <div class="primary-summary-inner" >
+                                <div class="primary-summary-inner">
                                     <p
                                         class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1">
                                         Petit
@@ -1407,7 +1469,8 @@ $userId = session('userId');
                                     <p class="mb-3" style="max-height: 150px; overflow: auto">@{{ short_description }}
                                     </p>
 
-                                    <div style="margin-bottom: 0px;" ng-if="displayCollectionProductShadesQuickView.length != null || displayCollectionProductShadesQuickView.length != undefined">
+                                    <div style="margin-bottom: 0px;"
+                                        ng-if="displayCollectionProductShadesQuickView.length != null || displayCollectionProductShadesQuickView.length != undefined">
                                         <button class="accordion_inc shadeAccord-btn" data-id="1">1.
                                             Choose Shade</button>
                                         <div class="panel_inc" id="chooseShade_container_1">
@@ -1632,43 +1695,48 @@ $userId = session('userId');
                 </div>
             </div>
         </div> --}}
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered popup-dialog" role="document">
-              <div class="modal-content modalcontent-popup">
-                <div class="modal-header p-0 border-0">
-                  <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="ion-ios-close"></span>
-                  </button>
-                </div>
-                <div class="row no-gutters text-center">
-                  <div class="col-lg-5 col-md-6 col-6 d-flex">
-                    <div class="modal-body popup-padding color-1 d-flex" style="background-color:{{ $popupData->BACKGROUND_COLOR }}">
-                      <span class="icon-2 flaticon-snowflake"></span>
-                      <p class="text-white upper" >
-                        <span class="icon flaticon-snowflake text-white"></span>
-                      </p>
-                      <div class="w-100 d-flex flex-column justify-content-center align-items-center">
-                        <p class="text-white upper mb-3">{{ $popupData->FIRST_TITLE }}</p>
-                        <h2 class="mt-5 mb-5 text-center text-white font-weight-700">
-                          {{ $popupData->MAIN_TITLE }}
-                          {{-- <sup>%</sup>
+                <div class="modal-content modalcontent-popup">
+                    <div class="modal-header p-0 border-0">
+                        <button type="button" class="close d-flex align-items-center justify-content-center"
+                            data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="ion-ios-close"></span>
+                        </button>
+                    </div>
+                    <div class="row no-gutters text-center">
+                        <div class="col-lg-5 col-md-6 col-6 d-flex">
+                            <div class="modal-body popup-padding color-1 d-flex"
+                                style="background-color:{{ $popupData->BACKGROUND_COLOR }}">
+                                <span class="icon-2 flaticon-snowflake"></span>
+                                <p class="text-white upper">
+                                    <span class="icon flaticon-snowflake text-white"></span>
+                                </p>
+                                <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                                    <p class="text-white upper mb-3">{{ $popupData->FIRST_TITLE }}</p>
+                                    <h2 class="mt-5 mb-5 text-center text-white font-weight-700">
+                                        {{ $popupData->MAIN_TITLE }}
+                                        {{-- <sup>%</sup>
                           <sub>off</sub> --}}
-                        </h2>
-                        <p class="upper mt-3">{{ $popupData->SECOND_TITLE }}</p>
-                      </div>
+                                    </h2>
+                                    <p class="upper mt-3">{{ $popupData->SECOND_TITLE }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-6 d-flex">
+                            <div class="modal-body p-5 img d-flex align-items-center"
+                                style="background-image: url('{{ url($popupData->DOWN_PATH) }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+                                <div class="text w-100 mt-20">
+                                    <a href="{{ $popupData->BUTTON_LINK }}"
+                                        class="btn btn-primary d-block py-3 px-0 px-md-4">{{ $popupData->BUTTON_TEXT }}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-lg-7 col-md-6 col-6 d-flex">
-                    <div class="modal-body p-5 img d-flex align-items-center" style="background-image: url('{{ url($popupData->DOWN_PATH) }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
-                      <div class="text w-100 mt-20">
-                        <a href="{{ $popupData->BUTTON_LINK }}" class="btn btn-primary d-block py-3 px-0 px-md-4">{{ $popupData->BUTTON_TEXT }}</a>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
 
     </div>
 
@@ -1681,12 +1749,13 @@ $userId = session('userId');
 <div class="cookie-frame open" style="display:none;z-index: 100000000;!important;">
     <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
         <div class="col-sm-8 text">
-            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking Accept Cookies, you agree to the storing of cookies on your device to enhance
+            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking
+                Accept Cookies, you agree to the storing of cookies on your device to enhance
                 site navigation, analyze site usage, and assist in our marketing efforts.</p>
         </div>
         <div class="d-flex justify-content-center col-sm-4">
-          	<button class="btn btn-outline-primary mr-2" id="acceptCookiesBtn">Accept</button>
-			<button class="btn btn-my" id="declineCookiesBtn">Decline</button>
+            <button class="btn btn-outline-primary mr-2" id="acceptCookiesBtn">Accept</button>
+            <button class="btn btn-my" id="declineCookiesBtn">Decline</button>
         </div>
     </div>
 </div>
@@ -1728,67 +1797,65 @@ $userId = session('userId');
     $(".close_learnmore_pop").click(function() {
         $("#learnmore_pop").modal('hide');
     });
-
 </script>
 
 @if (!session()->has('homepopup'))
-	<script type="text/javascript">
-	localStorage.setItem('cookiesAccepted', '');
-	$(window).on('load', function() {
-        $('#exampleModalCenter').modal('show');
-    });
-	</script>
-	@php
-	session()->put('homepopup',1);
-	@endphp
+    <script type="text/javascript">
+        localStorage.setItem('cookiesAccepted', '');
+        $(window).on('load', function() {
+            $('#exampleModalCenter').modal('show');
+        });
+    </script>
+    @php
+        session()->put('homepopup', 1);
+    @endphp
 @endif
 
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
-	var cookieAccepted = localStorage.getItem('cookiesAccepted');
+        var cookieAccepted = localStorage.getItem('cookiesAccepted');
 
-	setTimeout(function(){
-		if (cookieAccepted == '') {//cookieAccepted != 1 && cookieAccepted != '1'
-	    	$('.cookie-frame').slideDown(3000);
-	    	$(".cookies_blocker").show();
-	    }else{
-	        $('.cookie-frame').hide();
-	        $(".cookies_blocker").hide();
-	    }
-	}, 3000);
-
-
-
-
-    // Handle accept button click
-    $('#acceptCookiesBtn').click(function() {
-        var tokenHash = $('#csrf').val();
-
-        $.ajax({
-            url: baseUrl + '/cookies/accept',
-            type: 'POST',
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': tokenHash
-            },
-            success: function(response) {
-                localStorage.setItem('cookiesAccepted', '1');
-                $('.cookie-frame').slideUp(2000);
+        setTimeout(function() {
+            if (cookieAccepted == '') { //cookieAccepted != 1 && cookieAccepted != '1'
+                $('.cookie-frame').slideDown(3000);
+                $(".cookies_blocker").show();
+            } else {
+                $('.cookie-frame').hide();
                 $(".cookies_blocker").hide();
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
             }
+        }, 3000);
+
+
+
+
+        // Handle accept button click
+        $('#acceptCookiesBtn').click(function() {
+            var tokenHash = $('#csrf').val();
+
+            $.ajax({
+                url: baseUrl + '/cookies/accept',
+                type: 'POST',
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': tokenHash
+                },
+                success: function(response) {
+                    localStorage.setItem('cookiesAccepted', '1');
+                    $('.cookie-frame').slideUp(2000);
+                    $(".cookies_blocker").hide();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+        $('#declineCookiesBtn').click(function() {
+            localStorage.setItem('cookiesAccepted', '0');
+            $('.cookie-frame').slideUp(2000);
+            $(".cookies_blocker").hide();
+            // $('.cookie-frame').addClass('hide');
         });
     });
-
-    $('#declineCookiesBtn').click(function() {
-        localStorage.setItem('cookiesAccepted', '0');
-        $('.cookie-frame').slideUp(2000);
-        $(".cookies_blocker").hide();
-        // $('.cookie-frame').addClass('hide');
-    });
-});
-
 </script>

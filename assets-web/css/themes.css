@@ -10852,7 +10852,7 @@ button.bg-green-dark:focus {
 
 .pb-10,
 .py-10 {
-    padding-bottom: 4.375rem !important
+    padding-bottom: 0.375rem !important
 }
 
 .pl-10,
@@ -15239,7 +15239,7 @@ button.bg-green-dark:focus {
 
     .pt-lg-13,
     .py-lg-13 {
-        padding-top: 6.25rem !important
+        padding-top: 2.25rem !important
     }
 
     .pr-lg-13,
@@ -15249,7 +15249,7 @@ button.bg-green-dark:focus {
 
     .pb-lg-13,
     .py-lg-13 {
-        padding-bottom: 6.25rem !important
+        /* padding-bottom: 6.25rem !important */
     }
 
     .pl-lg-13,
@@ -19272,7 +19272,7 @@ a.text-green-dark:focus {
 }
 
 .fs-20 {
-    font-size: 20px !important
+    /* font-size: 20px !important */
 }
 
 .fs-22 {
@@ -19405,7 +19405,7 @@ a.text-green-dark:focus {
     }
 
     .fs-sm-24 {
-        font-size: 24px !important
+        font-size: 16px !important
     }
 
     .fs-sm-26 {
@@ -21043,7 +21043,9 @@ a.text-green-dark:focus {
 }
 
 .hover-zoom-in {
-    overflow: hidden
+    overflow: hidden;
+    display:flex;
+    justify-content: center !important;
 }
 
 .hover-zoom-in img,
@@ -25761,7 +25763,7 @@ input.checkbox-primary[type=checkbox] {
     list-style: none;
     padding: 0;
     margin-bottom: 0;
-    margin-top: 30px
+    /* margin-top: 30px */
 }
 
 .slick-dots li {

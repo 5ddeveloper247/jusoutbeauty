@@ -296,9 +296,9 @@
     }
 
     @media screen and (min-width: 768px) {
-		.popup-padding {
-			padding: 41px 24px !important;
-		}
+        .popup-padding {
+            padding: 41px 24px !important;
+        }
 
         .mt-20 {
             margin-top: 20.5rem !important;
@@ -344,14 +344,15 @@
         .mt-20 {
             margin-top: 22.5rem !important;
         }
-		.popup-dialog {
-			max-width: 822px;
-		}
+
+        .popup-dialog {
+            max-width: 822px;
+        }
 
     }
 
     @media screen and (min-width: 1200px) {
-		.modal-content .modal-body .sale .icon {
+        .modal-content .modal-body .sale .icon {
             font-size: 79px;
             position: absolute;
             top: 0;
@@ -360,6 +361,7 @@
             z-index: 1;
             color: #fff;
         }
+
         .modal-content .modal-body h2 span {
             font-size: 185px;
             font-weight: 700;
@@ -374,18 +376,20 @@
         .mt-20 {
             margin-top: 24.5rem !important;
         }
-		.modal-content .modal-body .sale {
-				font-size: 138px !important;
-				font-family: "Pacifico", cursive;
-				color: #000;
-				position: relative;
-				margin-bottom: 30px;
-				z-index: 0;
-			}
+
+        .modal-content .modal-body .sale {
+            font-size: 138px !important;
+            font-family: "Pacifico", cursive;
+            color: #000;
+            position: relative;
+            margin-bottom: 30px;
+            z-index: 0;
+        }
 
     }
-	@media screen and (min-width: 1400px) {
-		.modal-content .modal-body .sale .icon {
+
+    @media screen and (min-width: 1400px) {
+        .modal-content .modal-body .sale .icon {
             font-size: 79px;
             position: absolute;
             top: 0;
@@ -394,6 +398,7 @@
             z-index: 1;
             color: #fff;
         }
+
         .modal-content .modal-body h2 span {
             font-size: 228px;
             font-weight: 700;
@@ -408,19 +413,22 @@
         .mt-20 {
             margin-top: 24.5rem !important;
         }
-		.modal-content .modal-body .sale {
-				font-size: 150px !important;
-				font-family: "Pacifico", cursive;
-				color: #000;
-				position: relative;
-				margin-bottom: 30px;
-				z-index: 0;
-			}
-			.popup-dialog {
-				max-width: 1139px;
-			}
+
+        .modal-content .modal-body .sale {
+            font-size: 150px !important;
+            font-family: "Pacifico", cursive;
+            color: #000;
+            position: relative;
+            margin-bottom: 30px;
+            z-index: 0;
+        }
+
+        .popup-dialog {
+            max-width: 1139px;
+        }
 
     }
+
     @media screen and (min-width: 1650px) {
         .popup-padding {
             padding: 150px 100px;
@@ -502,7 +510,7 @@
                         <h2 class="mb-5">Trending items</h2>
                         <p class="text-primary fs-20 mb-5 ">Made using clean, non-toxic
                             ingredients, our products are designed for everyone.</p>
-                        <a href="{{session('site')}}/store" class="btn btn-outline-primary">Shop</a>
+                        <a href="{{ session('site') }}/store" class="btn btn-outline-primary">Shop</a>
                     </div>
                     <div class="col-lg-9">
                         <div class="slick-slider"
@@ -543,16 +551,20 @@
                                                 </div>
                                                 <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                                     @if ($trend['INV_QUANTITY_FLAG'] == 'shade')
-                                                    	<a href="javascript:;"
-	                                                        class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white productdetail"
-	                                                        id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}" data-type="">+ Quick Add</a>
+                                                        <a href="javascript:;"
+                                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white productdetail"
+                                                            id="qckad" data-id="{{ $trend['PRODUCT_ID'] }}"
+                                                            data-type="">+ Quick Add</a>
                                                     @elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] > '0')
-                                                    	<a href="javascript:;"
-	                                                        class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart"
-	                                                        id="qckad" data-type="single" data-id="{{ $trend['PRODUCT_ID'] }}" data-quantity='1'>+ Quick Add</a>
-	                                              	@elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] <= '0')
-                                                    	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" 
-                                                    		id="qckad" disabled>+ Out of Stock</a>
+                                                        <a href="javascript:;"
+                                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart"
+                                                            id="qckad" data-type="single"
+                                                            data-id="{{ $trend['PRODUCT_ID'] }}" data-quantity='1'>+
+                                                            Quick Add</a>
+                                                    @elseif($trend['INV_QUANTITY_FLAG'] == 'inv' && $trend['INV_QUANTITY'] <= '0')
+                                                        <a href="javascript:;"
+                                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
+                                                            id="qckad" disabled>+ Out of Stock</a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -564,7 +576,8 @@
                                                 <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375">
                                                     <a href="javascript:;">{{ $trend['PRODUCT_NAME'] }}</a>
                                                 </h3>
-                                                <p class="text-primary mb-0 card-title lh-14375" style="height: 46px;">
+                                                <p class="text-primary mb-0 card-title lh-14375"
+                                                    style="height: 46px;">
                                                     {{ $trend['SUB_TITLE_TXT'] }}</p>
                                                 <p class="text-primary mb-2 card-title lh-14375">
                                                     ${{ $trend['PRODUCT_PRICE'] }}</p>
@@ -594,7 +607,7 @@
                         <h3 class="fs-24 fs-md-36 mb-7 text-center part_head">Pay less, stay
                             in fashion!</h3>
 
-                        <a href="{{session('site')}}/store" class="btn btn-primary">All Products</a>
+                        <a href="{{ session('site') }}/store" class="btn btn-primary">All Products</a>
 
                     </div>
                 </div>
@@ -625,19 +638,24 @@
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '1' ? 'color: #F89880;' : 'color: #000;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '2' ? 'color: #F89880;' : 'color: #000;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '3' ? 'color: #F89880;' : 'color: #000;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '4' ? 'color: #F89880;' : 'color: #000;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                                 <li class="mr-0"
                                                     style="{{ $review['STAR_RATING'] >= '5' ? 'color: #F89880;' : 'color: #000;' }}">
-                                                    <i class="fas fa-star"></i></li>
+                                                    <i class="fas fa-star"></i>
+                                                </li>
                                             </ul>
                                             <p class="card-text mb-7 fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto"
                                                 style="min-height: 11vw;">{{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
@@ -704,17 +722,21 @@
                                         </div>
                                         <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
                                             @if ($for['INV_QUANTITY_FLAG'] == 'shade')
-                                         		<a href="javascript:;"
-	                                            	class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white productdetail"
-	                                                id="qckad" data-id="{{ $for['PRODUCT_ID'] }}" data-type="">+ Quick Add</a>
-                                         	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] > '0')
-                                            	<a href="javascript:;"
-	                                           		class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart"
-	                                             	id="qckad" data-type="single" data-id="{{ $for['PRODUCT_ID'] }}" data-quantity='1'>+ Quick Add</a>
-	                                      	@elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] <= '0')
-                                            	<a href="javascript:;" class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white" 
-                                              		id="qckad" disabled>+ Out of Stock</a>
-                                          	@endif
+                                                <a href="javascript:;"
+                                                    class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white productdetail"
+                                                    id="qckad" data-id="{{ $for['PRODUCT_ID'] }}"
+                                                    data-type="">+ Quick Add</a>
+                                            @elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] > '0')
+                                                <a href="javascript:;"
+                                                    class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart"
+                                                    id="qckad" data-type="single"
+                                                    data-id="{{ $for['PRODUCT_ID'] }}" data-quantity='1'>+ Quick
+                                                    Add</a>
+                                            @elseif($for['INV_QUANTITY_FLAG'] == 'inv' && $for['INV_QUANTITY'] <= '0')
+                                                <a href="javascript:;"
+                                                    class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white"
+                                                    id="qckad" disabled>+ Out of Stock</a>
+                                            @endif
                                             <!-- <a href="javascript:;"
                                                 class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white  addto-cart"
                                                 id="qckad" data-type="single" data-id="{{ $for['PRODUCT_ID'] }}"
@@ -745,8 +767,8 @@
 
                 </div>
                 <div class="text-center pt-2">
-                    <a href="{{session('site')}}/store" class="btn btn-outline-primary" 
-                        data-type="SUB_CATEGORY"> Shop More </a>
+                    <a href="{{ session('site') }}/store" class="btn btn-outline-primary" data-type="SUB_CATEGORY">
+                        Shop More </a>
                 </div>
             </div>
         </section>
@@ -1112,8 +1134,7 @@
             <div class="modal-dialog quick_view_mbl modal-dialog-scrollable">
                 <div class="modal-content p-0 quick_view_mbl_carousel_modal">
                     <div class="modal-body p-0">
-                        <button type="button"
-                            class="close fs-32 position-absolute pos-fixed-top-right z-index-10"
+                        <button type="button" class="close fs-32 position-absolute pos-fixed-top-right z-index-10"
                             data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="fs-20"> <i class="fal fa-times"></i>
                             </span>
@@ -1121,13 +1142,13 @@
                         <div class="row no-gutters" id="quick_view_product_details">
                             <div class="col-sm-6">
 
-                                <div id="carouselExampleControls" class="carousel slide quick_view_mbl_carousel" data-ride="carousel"
-                                    data-interval="2000">
+                                <div id="carouselExampleControls" class="carousel slide quick_view_mbl_carousel"
+                                    data-ride="carousel" data-interval="2000">
                                     <div class="carousel-inner">
                                         <div class="carousel-item @{{ $first == '1' ? 'active' : '' }}"
                                             ng-repeat="row in productImagesLoop">
-                                            <img class="d-block w-100 quick_view_mbl_carousel_img" style="height: 35rem"
-                                                src="@{{ row.downPath }}" alt="First slide">
+                                            <img class="d-block w-100 quick_view_mbl_carousel_img"
+                                                style="height: 35rem" src="@{{ row.downPath }}" alt="First slide">
                                         </div>
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
@@ -1145,7 +1166,7 @@
                                 <div class="d-flex align-items-center">
                                     <h2 class="fs-24 mb-0">@{{ QuickView_name }}</h2>
                                 </div>
-                                <div class="primary-summary-inner" >
+                                <div class="primary-summary-inner">
                                     <p
                                         class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1">
                                         Petit
@@ -1180,7 +1201,8 @@
                                     <p class="mb-3" style="max-height: 150px; overflow: auto">@{{ short_description }}
                                     </p>
 
-                                    <div style="margin-bottom: 0px;" ng-if="displayCollectionProductShadesQuickView.length != null || displayCollectionProductShadesQuickView.length != undefined">
+                                    <div style="margin-bottom: 0px;"
+                                        ng-if="displayCollectionProductShadesQuickView.length != null || displayCollectionProductShadesQuickView.length != undefined">
                                         <button class="accordion_inc shadeAccord-btn" data-id="1">1.
                                             Choose Shade</button>
                                         <div class="panel_inc" id="chooseShade_container_1">
@@ -1424,12 +1446,12 @@
 
 
 @if (!session()->has('homepopup'))
-	<script type="text/javascript">
-	$(window).on('load', function() {
-        $('#exampleModalCenter').modal('show');
-    });
-	</script>
-	@php
-	session()->put('homepopup',1);
-	@endphp
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#exampleModalCenter').modal('show');
+        });
+    </script>
+    @php
+        session()->put('homepopup', 1);
+    @endphp
 @endif

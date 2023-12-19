@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-session()->put('site', '/site');
+session()->put('site', '/jusoutbeauty');//site
 
 
 
@@ -660,4 +660,3 @@ Route::get('runCommand', function () {
 // 	\Artisan::call('cache:clear');//route:cache
 //  $exitCode =Artisan ::call('key:generate');
 });
-

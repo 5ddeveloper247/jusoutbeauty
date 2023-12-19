@@ -1147,7 +1147,15 @@ img.item.shop-shade {
 	}
 
 	.fs-15,.fs-20 {
-		font-size: 23px!important;
+		font-size: 20px!important;
+	}
+	.our-reviews-card-text{
+		display: -webkit-box!important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 	}
 	.accordion_inc_prod_detail,label{
 		font-size: 22px;
@@ -1544,7 +1552,7 @@ img.item.shop-shade {
 
 /* change footer color to white */
 .footer-text-white{
-	color:white;
+	color:black;
 }
 
 
