@@ -187,7 +187,7 @@
                                         padding: 0px;
                                         margin-bottom: 6px;"
                                             src="{{ url('/assets-admin') }}/images/admin/tictok.png"
-                                            class="rounded-circle  user_img social-media" alt="" />
+                                            class="rounded-circle user_img social-media" alt="" />
                                     </a>
                                 </li>
                             @endif
