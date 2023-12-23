@@ -1,8 +1,7 @@
 @include('web.web-header')
 <style>
-
     /* Add this style in your CSS file or inside the <style> tag of your HTML */
-        .rab {
+    .rab {
         position: relative;
     }
 
@@ -13,18 +12,21 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.2); /* You can adjust the transparency by changing the last value (0.6 in this case) */
+        background-color: rgba(0, 0, 0, 0.2);
+        /* You can adjust the transparency by changing the last value (0.6 in this case) */
     }
 
     .container-xl {
         position: relative;
-        z-index: 1; /* Make sure the content is above the overlay */
+        z-index: 1;
+        /* Make sure the content is above the overlay */
     }
 
     /* Add any additional styles for the content or adjust existing styles as needed */
     .font-size-banner {
         /* Add any other styles for the heading as needed */
     }
+
     /* .giving-section2-img,
     .giving-section3-img,
     .last-section-giving {
@@ -46,70 +48,86 @@
 
     @media screen and (min-width: 1650px) {
         .py-lg-18 {
-    padding-top: 358px !important;
-    padding-bottom: 358px !important;}
+            padding-top: 358px !important;
+            padding-bottom: 358px !important;
+        }
     }
-
-
 </style>
 <main id="content" style="padding-top: 111px">
-<section class="py-10  py-lg-18 rab" id="details-header"
+    <section class="py-10  py-lg-18 rab" id="details-header"
         style="background-repeat: no-repeat; background-image: url('{{ url('assets-web') }}/images/who_we_are.jpg'); background-size: cover;">
-    <div class="container container-xl">
+        <div class="container container-xl">
 
-        <div class=" no-gutters" style="justify-content: center">
-            <h2 class="mb-2 text-center font-size-banner" data-animate="fadeInRight" style="color: white;">Who We Are
-            </h2>
+            <div class=" no-gutters" style="justify-content: center">
+                <h2 class="mb-2 text-center font-size-banner" data-animate="fadeInRight" style="color: white;">Who We Are
+                </h2>
+            </div>
+
         </div>
 
-    </div>
-
-</section>
+    </section>
     <section class="pt-10 pt-lg-10 pb-10">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section2-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/about-us.jpg"
-                        alt="Beeswax">
+                    <img class="giving-section2-img"
+                        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
+                        src="{{ url('/assets-web') }}/images/about-us.jpg" alt="Beeswax">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
                     {{-- <h5>Ingredient</h5> --}}
-                    
+
                     <h2 class="mb-5">"About Us"</h2>
                     <div style="height: 75vh;overflow:auto">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
-                            nisi?.eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
+                            nisi?.eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.
                         </p>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -118,12 +136,13 @@
     {{-- <div class="bluegradientabove">
     </div> --}}
 
-    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#3d94b7;">
+    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#cbc0eb;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
-                    <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/our-story.jpg"
-                        alt="Our approach">
+                    <img class="giving-section3-img"
+                        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
+                        src="{{ url('/assets-web') }}/images/our-story.jpg" alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
                     {{-- <h5>Our Story</h5> --}}
@@ -132,27 +151,39 @@
                         <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.
                         </p>
                     </div>
@@ -168,7 +199,9 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 fadeInLeft animated">
-                    <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/businessman-hand-holding-blocks.jpeg"
+                    <img class="giving-section3-img"
+                        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
+                        src="{{ url('/assets-web') }}/images/businessman-hand-holding-blocks.jpeg"
                         alt="Designed to last">
                 </div>
                 <div class="col-md-6 pl-xl-7 ">
@@ -178,27 +211,39 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.
                         </p>
                     </div>
@@ -326,7 +371,8 @@
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
-                    <img loading="lazy" class="last-section-giving" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
+                    <img loading="lazy" class="last-section-giving"
+                        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/our-services.jpg" alt="Our approach">
                 </div>
                 <div class="col-md-6 pr-xl-7 order-1 order-md-first">
@@ -336,27 +382,39 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
-                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id maiores
-                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse possimus
-                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga voluptatem
+                            ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
+                            maiores
+                            explicabo quod eveniet excepturi dolore soluta nam? Iusto, aliquam! Cum non nam esse
+                            possimus
+                            ipsam laborum voluptate repudiandae quos numquam. Deserunt blanditiis laudantium fuga
+                            voluptatem
                             aut odit excepturi repudiandae in molestiae consequuntur eligendi, dolorem, quibusdam magni
-                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore saepe
+                            veniam, sunt esse! Vitae id dolores reprehenderit aliquid quisquam, at distinctio tempore
+                            saepe
                             nisi?.
                         </p>
                     </div>

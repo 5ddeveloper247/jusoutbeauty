@@ -194,6 +194,30 @@ $userId = session('userId');
         position: relative;
         z-index: 2;
     }
+
+    .breadcrumb-site {
+        position: absolute !important;
+        top: 50%;
+        bottom: 50%;
+        left: 35%
+    }
+
+    @media (max-width: 767px) {
+        .breadcrumb-site {
+            position: static !important;
+            top: auto;
+            bottom: auto;
+            left: auto;
+            text-align: center;
+            /* Center the breadcrumb on small screens */
+        }
+
+        .breadcrumb-item {
+            display: block;
+            margin: 0 auto;
+            /* Center the breadcrumb items individually */
+        }
+    }
 </style>
 <main ng-app="project1">
     <?php $routineId = $routineById; ?>
@@ -238,7 +262,7 @@ $userId = session('userId');
                         {!! $routineId[0]['DESCRIPTION'] !!}
                     </div>
                 </section>
-                <section class="col-md-6  hero-section"
+                <section class="col-md-6  hero-section hero-image"
                     style="background-image: url(<?= $routineId[0]['IMAGE_DOWNPATH'] ?>);
                         background-repeat: no-repeat;
                         background-size: cover;
@@ -247,9 +271,10 @@ $userId = session('userId');
                         padding-bottom: 100px !important;
                         background-color: unset !important;
                         /* background-attachment:fixed; */
-                        height:80vh;">
+                        height:65vh; position:relative">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3">
+                        <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3"
+                            style="">
                             <li class="breadcrumb-item"><a class="text-decoration-none"
                                     href="{{ session('site') }}/home" style="color: white; font-size: 30px">Home</a>
                             </li>

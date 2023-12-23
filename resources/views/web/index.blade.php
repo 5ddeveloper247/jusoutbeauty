@@ -747,7 +747,7 @@ $userId = session('userId');
                     <div class="slick-slider custom-slider-03"
                         data-slick-options='{"slidesToShow": 3,"dots":true,"autoplay":true,"arrows":false,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[
 								{"breakpoint": 560,"settings": {"slidesToShow": 1,"centerMode":false,"arrows":false}},
-								{"breakpoint": 1120,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
+								{"breakpoint": 1024,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
 								{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},
 								{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},
 								{"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
@@ -785,8 +785,8 @@ $userId = session('userId');
                                                 </li>
 
                                             </ul>
-                                            <p
-                                                class="card-text our-reviews-card-text fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto">
+                                            <p class="card-text our-reviews-card-text text-primary lh-1444 mw-750 mx-auto"
+                                                style="font-size: 17px !important">
                                                 {{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
 
                                         </div>
@@ -1168,7 +1168,7 @@ $userId = session('userId');
 
 
 
-        <section class="py-12 py-lg-12" style="background-color: #3d94b7;">
+        <section class="py-12 py-lg-12" style="background-color: #cbc0eb;">
             <div class="container container-custom container-xl">
                 <h2 class="text-center mb-8 lh-128 text-white">Our Blog
                 </h2>
