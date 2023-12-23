@@ -2,7 +2,7 @@
 <?php $userId = session('userId'); ?>
 <script>
     var site = '<?php echo session('
-                                                                                    site '); ?>';
+                                                                                                                                    site '); ?>';
 
     var bundleId = "";
     var productId = "<?php echo isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : ''; ?>";
@@ -459,13 +459,15 @@
                     </div>
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
-                        <div class="primary-summary-inner" style="width:380px">
+                        <div class="primary-summary-inner" style="padding-right:60px">
                             <h2 class="mb-0 text-capitalize productDetailHeading"><?= $productDetails['NAME'] ?></h2>
-                            <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 py-2">
+                            <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 py-2"
+                                style="padding-right:0px;
+                            text-align: justify;">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="row" style="width:380px">
+                                    <div class="row" style="padding-right:0px">
                                         <div
                                             class="@if (strlen($productDetails['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
                                             @if ($productDetails['DISC_AMOUNT'] > 0)
@@ -480,8 +482,8 @@
                                         </div>
                                         <div
                                             class="@if (strlen($productDetails['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
-                                            <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis"
-                                                style="margin-right:-10px">
+                                            <p
+                                                class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
                                                 {{ $productDetails['UNIT'] }}</p>
                                         </div>
                                     </div>
@@ -497,7 +499,7 @@
 
                                 </div>
                             </div>
-                            <p class="mb-3" style="width:370px; text-align: justify;">
+                            <p class="mb-3" style="padding-right:0px; text-align: justify;">
                                 <?= $productDetails['SHORT_DESCRIPTION'] ?></p>
 
                             <div class="chooseShade-container" style="margin-bottom: 30px;"
@@ -583,13 +585,13 @@
 
                                 </div>
                                 <select class="form-control w-100 cursor-pointer" id="subsOption" ng-model="subs_id"
-                                    ng-change="fetchSubscriptionDetail();" style="width:370px !important">
+                                    ng-change="fetchSubscriptionDetail();" style="padding-right:60px !important">
                                     <option value="" class="cursor-pointer">Choose an option</option>
                                     <option value="@{{ row.ID }}" class="select-subsoptn"
                                         ng-repeat="row in subscriptionLov">@{{ row.TITLE }}</option>
                                 </select>
                             </div>
-                            <form class="cart-roww">
+                            <form class="cart-roww" style="padding-right:0px">
                                 <div class="row align-items-end no-gutters mx-n2">
                                     <?php if( $productDetails['INV_QUANTITY'] > 0){?>
                                     <div class="col-sm-4 form-group px-2 mb-6">
@@ -622,13 +624,13 @@
                                             ?>
                                         <button type="button"
                                             class="btn btn-primary btn-block text-capitalize addto-cart"
-                                            style="width:370px !important" data-type="single"
+                                            style="padding-right:60px !important" data-type="single"
                                             data-id="<?= isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : '' ?>"
                                             data-quantity='1' data-subs='1'>Add to cart</button>
 
                                         <?php }
                                         else{
-                                            echo'<button type="button" style="width:370px !important"
+                                            echo'<button type="button" style="padding-right:60px !important"
 	                                            class="btn btn-primary btn-block text-capitalize" disabled>Out of Stock</button>';
                                         }
                                     }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] > 0){?>
@@ -1087,13 +1089,20 @@
 
         <section class="py-6 py-lg-6 insta_sec_home">
             <div class="container container-custom container-xl">
-                <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
-                <p class="text-center mb-3 mx-auto" style="padding-right:60px; text-align:justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a tempore?
-                    Obcaecati voluptatem pariatur ab dolor laborum, a incidunt quisquam illo accusantium alias hic
-                    molestiae eius quasi, fugit expedita ut minus, delectus animi vero magnam accusamus numquam ipsum
-                    atque. Fugiat hic,
-                </p>
+                <div class="d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
+                        <p class="text-center mb-3 mx-auto" style="padding-right:60px; text-align:justify">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a
+                            tempore?
+                            Obcaecati voluptatem pariatur ab dolor laborum, a incidunt quisquam illo accusantium alias
+                            hic
+                            molestiae eius quasi, fugit expedita ut minus, delectus animi vero magnam accusamus numquam
+                            ipsum
+                            atque. Fugiat hic,
+                        </p>
+                    </div>
+                </div>
                 <div class="text-center mb-9">
                     <a href="javascript:;" class="preview btn btn-primary" data-toggle="modal"
                         data-target="#productselfi">
@@ -3549,7 +3558,7 @@
                                                 </div>
                                                 <select class="form-control w-100 cursor-pointer" id="subsOption"
                                                     ng-model="subs_id" ng-change="fetchSubscriptionDetail();"
-                                                    style="width:370px !important">
+                                                    style="padding-right:60px !important">
                                                     <option value="" class="cursor-pointer">Choose an option
                                                     </option>
                                                     <option value="@{{ row.ID }}" class="select-subsoptn"
@@ -3557,7 +3566,7 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <form class="cart-roww">
+                                            <form class="cart-roww" style="padding-right:60px">
                                                 <div class="row align-items-end no-gutters mx-n2 mb-1">
                                                     <div class="col-sm-3 form-group px-2 mb-0">
                                                         <label class="text-primary fs-16 font-weight-bold mb-1"

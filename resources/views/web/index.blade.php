@@ -747,7 +747,7 @@ $userId = session('userId');
                     <div class="slick-slider custom-slider-03"
                         data-slick-options='{"slidesToShow": 3,"dots":true,"autoplay":true,"arrows":false,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[
 								{"breakpoint": 560,"settings": {"slidesToShow": 1,"centerMode":false,"arrows":false}},
-								{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
+								{"breakpoint": 1120,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
 								{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},
 								{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},
 								{"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
