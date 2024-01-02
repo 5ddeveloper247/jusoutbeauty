@@ -415,7 +415,7 @@
         height: 44px;
         bottom: 155px;
         right: 26px;
-        background-color: #cbc0eb;
+        background-color: #f9a7a9;
         color: #FFF;
         border-radius: 50px;
         text-align: center;

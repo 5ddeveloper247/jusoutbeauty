@@ -114,7 +114,7 @@
     .card-ing .overlay-content {
         width: 100%;
         height: 100%;
-        background-color: #94b73d;
+        background-color: #8ed1c9;
         cursor: pointer;
         color: #080808;
         display: flex;
@@ -297,7 +297,7 @@
     {{-- <div class="peachgradientabove">
     </div> --}}
 
-    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#f3c9b3 ;">
+    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#f9a7a9;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">

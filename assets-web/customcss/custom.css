@@ -900,6 +900,9 @@ img.item.shop-shade {
 		flex: 0 0 auto;
 		z-index: 1;
 	}
+	.site_color {
+		background-color: #8ed1c9 !important;
+	}
 	.ag-courses-item_link {
 		display: block;
 		padding: 56px 26px !important;
@@ -1227,7 +1230,7 @@ img.item.shop-shade {
 	.yesno h2 {
 		padding: 7px;
 		text-align: center;
-		background-color: #FFF5EE;
+		background-color: #8ed1c9;
 		font-size: 18px;
 	}
 	.container-custom-slider{
@@ -1377,7 +1380,7 @@ img.item.shop-shade {
 
 
 .lustylooks{
-	background-color: #f38c7b ;
+	background-color: #c0a9bd ;
 }
 
 .evo_vibes_bgcolor{

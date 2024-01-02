@@ -116,7 +116,7 @@
     .ag-courses-item_bg {
         height: 128px;
         width: 128px;
-        background-color: #3d94b7;
+        background-color: #8ed1c9;
         z-index: 1;
         position: absolute;
         top: -75px;
@@ -136,7 +136,7 @@
     .ag-courses-item_link {
         display: block;
         padding: 30px 20px;
-        background-color: #f3c9b3;
+        background-color: #f9a7a9;
         overflow: hidden;
         position: relative;
     }

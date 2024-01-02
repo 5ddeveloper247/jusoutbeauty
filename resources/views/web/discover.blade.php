@@ -89,7 +89,7 @@
     {{-- <div class="greygradientabove">
     </div> --}}
 
-    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#60686b;">
+    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#f9a7a9;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">

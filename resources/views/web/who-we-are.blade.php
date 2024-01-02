@@ -136,7 +136,7 @@
     {{-- <div class="bluegradientabove">
     </div> --}}
 
-    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#cbc0eb;">
+    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#f4f2f3;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">

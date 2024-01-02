@@ -145,7 +145,7 @@ $userId = session('userId');
     <header class="main-header navbar-light header-sticky header-sticky-smart position-absolute fixed-top home">
         <div id="topbar"
             class="d-none d-xl-flex align-items-center alert alert-dismissible fade show p-0 mb-0 rounded-0 border-0"
-            style="background: #cbc0eb !important;">
+            style="background: #8ed1c9 !important;">
             <div class="container p-2">
                 <p class="mb-0 fs-14 letter-spacing-005 text-uppercase text-center font-weight-500"
                     style="color: white;">COOL NEW COLOR: STERLING SO WORTH IT</p>
@@ -161,7 +161,7 @@ $userId = session('userId');
                     <nav class="navbar navbar-expand-xl px-0 py-2 py-xl-0 row no-gutters">
                         <div class="col-xl-2">
                             <a class="navbar-brand mr-0" href="{{ url('/home') }}">
-                                <img src="{{ url('/assets-web') }}/images/logo-pink.png" alt="Jusout"
+                                <img src="{{ url('/assets-web') }}/images/Logo1.png" alt="Jusout"
                                     style="position: relative;z-index: 999999">
                             </a>
                         </div>

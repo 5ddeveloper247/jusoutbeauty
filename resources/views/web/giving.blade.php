@@ -122,7 +122,7 @@
                 </div>
             </div>
         </section>
-        <section class="pt-10 pt-lg-10 mt-10 pb-10" style="background-color:#cbc0eb;">
+        <section class="pt-10 pt-lg-10 mt-10 pb-10" style="background-color:#8ed1c9;">
             <div class="container container-custom">
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-6 mb-8 mb-md-0 inc-sec-img">

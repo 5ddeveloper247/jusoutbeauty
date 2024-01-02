@@ -808,7 +808,7 @@ $userId = session('userId');
 
 
 
-        <section id="section-next" class="py-10 py-lg-13" style="background-color: #94b73d ;">
+        <section id="section-next" class="py-10 py-lg-13" style="background-color: #8ed1c9 ;">
             <h2 class="text-center mb-1  text-white">Created For You</h2>
             <br>
             <div class="container container-custom">
@@ -1046,7 +1046,7 @@ $userId = session('userId');
 
 
         <section class="box-shadow-bottom py-10 py-lg-13"
-            style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover; background-color:#fffff">
+            style="background-image: url('{{ url('/assets-web') }}/images/brownBg.jpeg'); background-repeat: no-repeat; background-size: cover; background-color:#fffff">
 
             <div class="container container-custom container-xl">
                 <h2 class="mb-0 text-center lh-13 text-center-mbl" data-animate="fadeInUp">Are You
@@ -1168,7 +1168,7 @@ $userId = session('userId');
 
 
 
-        <section class="py-12 py-lg-12" style="background-color: #cbc0eb;">
+        <section class="py-12 py-lg-12" style="background-color: #c0a9bd">
             <div class="container container-custom container-xl">
                 <h2 class="text-center mb-8 lh-128 text-white">Our Blog
                 </h2>

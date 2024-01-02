@@ -1508,12 +1508,12 @@ img.item.shop-shade {
 /*---Button Color Change----*/
 .btn-white {
     color: #fff !important;
-	background-color:  #b73d94 !important;
+	background-color:  #c0a9bd !important;
 }
 
 .btn-white:hover {
-    color: white !important;
-    background-color: #3d94b7 !important;
+    color: #0e0d21 !important;
+    background-color: #f4f2f3 !important;
     border-color: #000 !important;
 }
 
@@ -1527,12 +1527,12 @@ img.item.shop-shade {
 
 .btn-outline-primary {
     color: white !important;
-	background-color:  #b73d94 !important;
+	background-color:  #c0a9bd !important;
 }
 
 .btn-outline-primary:hover {
-    color: white !important;
-    background-color: #60686b !important;
+    color: #0e0d21 !important;
+    background-color: #f4f2f3 !important;
 }
 
 /* .btn-outline-primary:focus,.btn-outline-primary:active {
@@ -1546,7 +1546,7 @@ img.item.shop-shade {
 
 /* change uparrow key to blue */
 .uparrow{
-	background-color: #cbc0eb
+	background-color: #f9a7a9;
 }
 
 
@@ -1566,11 +1566,11 @@ img.item.shop-shade {
 
 
 .lustylooks{
-	background-color: #f38c7b ;
+	background-color: #c0a9bd ;
 }
 
 .evo_vibes_bgcolor{
-	background-color: #94b73d;
+	background-color: #bfe4e0;
 }
 
 
@@ -1588,8 +1588,8 @@ img.item.shop-shade {
 }
 
 .btn-outline-primary:hover {
-    color: white !important;
-    background-color: #3d94b7 !important;
+    color: #0e0d21 !important;
+    background-color: #f4f2f3 !important;
     border-color: #000 !important;
 }
 
@@ -1603,12 +1603,12 @@ img.item.shop-shade {
 
 .btn-primary {
 	color: white !important;
-	background-color:  #b73d94 !important;
+	background-color:  #c0a9bd !important;
 }
 
 .btn-primary:hover {
-    color: white !important;
-    background-color: #3d94b7 !important;
+    color: #0e0d21 !important;
+    background-color: #f4f2f3 !important;
     border-color: #000 !important;
 }
 
@@ -1619,7 +1619,7 @@ img.item.shop-shade {
 
 .how_to_user{
 	color:white !important;
-	background-color: #b73d94 !important;
+	background-color: #c0a9bd !important;
 }
 
 /* .icon{
@@ -1715,7 +1715,7 @@ a.text-primary:focus {
 
 .bgiconcolor{
 	color:#f3c9b3 ;
-	background-color: #f3c9b3 ;
+	background-color: #8ed1c9 ;
 }
 
 .bgiconcolor:hover{
@@ -1761,29 +1761,54 @@ a.text-primary:focus {
 .yesno h2 {
     padding: 55px !important;
     text-align: center !important;
-    background-color: #f38c7b !important;
+    background-color: #8ed1c9 !important;
     /* width: 45% !important; */
 }
 
+
 .quiz_nav_links{
-	background-color:  #f3c9b3 !important;
+	background-color:  #8ed1c9 !important;
+	/* opacity: 0.4; */
 }
 
 
 .quiz-fomewhole li.nav-item a{
-	background-color: #f3c9b3 !important;
+	background-color: #b6d4d1 !important;
+	
 }
 
 .quiz-fomewhole li.nav-item a.active{
-	background-color: #f38c7b !important;
+	background-color: #8ed1c9 !important;
 }
 
 
 p.text-center.mb-0.text-white.hoverimages-text{
-	background-color: #f38c7b !important;
+	background-color: #8ed1c9 !important;
 }
 
-
+.noboxes h2 {
+    padding: 55px;
+    text-align: center;
+    /* margin: 8px; */
+    background-color: #8ed1c9;
+	opacity: 0.4;
+}
+.noboxes h2:hover {
+    color: white;
+    padding: 55px;
+    text-align: center;
+    /* margin: 8px; */
+    background-color: #8ed1c9 !important;
+	opacity: 1;
+	
+}
+.fs-title-shade-find {
+    font-size: 25px;
+    color: #0e0d21;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left;
+}
 
 	@media only screen and (max-width :500px) {
 
@@ -1823,10 +1848,10 @@ p.text-center.mb-0.text-white.hoverimages-text{
 		border:none !important;
 	}
 	.menu_ul .border-left:hover {
-		border-left: 3px solid #3d94b7 !important;
+		border-left: 3px solid #f9a7a9 !important;
 	}
 	a.bg-hover-primary:hover {
-		background-color: #3d94b7 !important;
+		background-color: #f4f2f3 !important;
 	}
 
 
