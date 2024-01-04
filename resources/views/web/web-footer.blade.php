@@ -479,12 +479,12 @@
     .btn-my {
         color: white !important;
         border-color: #3d94b7;
-        background-color: #3d94b7;
+        background-color: #f4f2f3;
     }
 
     .btn-my:hover {
         color: white;
-        background-color: #b73d94;
+        background-color: #c0a9bd;
         border-color: #b73d94;
         outline: #b73d94;
     }

@@ -764,23 +764,23 @@ $userId = session('userId');
                                             </p>
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #f9a7a9;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #f9a7a9;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
 
