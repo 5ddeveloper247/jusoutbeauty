@@ -294,7 +294,7 @@ var site = '<?php echo session('site');?>';
 									</div>
 								</div>
 								<div class="row mt-2 mb-2 pt-2 pb-2"
-									style="background-color: #8ed1c9; color: black;">
+									style="background-color: #fff0f3; color: black;">
 									<div class="col-lg-6" style="align-self: center;">
 										<h5>Compact & Contrast</h5>
 										<p class="mb-0">Not Satisfied with your match?</p>

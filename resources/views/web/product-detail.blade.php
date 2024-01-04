@@ -866,7 +866,7 @@
                                                                             <?php if(isset($spotlightIngredients) && !empty($spotlightIngredients)){?>
                                                                             <?php foreach ($spotlightIngredients as $row){?>
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                style="background-color:#94b73d">
+                                                                                style="background-color:#8ed1c9">
                                                                                 <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
@@ -995,7 +995,7 @@
                                                 </section>
                                                 <br>
 
-                                                <section style="background-color: #f38c7b;">
+                                                <section style="background-color: #f9a7a9;">
                                                     <div class="pb-10 pb-lg-8 py-8">
                                                         <div class="container container-xl">
                                                             <h2 class="text-center mb-9" style="color: #fff;">How To
