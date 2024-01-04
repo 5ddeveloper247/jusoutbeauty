@@ -483,7 +483,7 @@
     }
 
     .btn-my:hover {
-        color: white;
+        color: #0e0d21 !important;
         background-color: #c0a9bd;
         border-color: #b73d94;
         outline: #b73d94;

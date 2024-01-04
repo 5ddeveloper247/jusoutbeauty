@@ -65,7 +65,7 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/who_we_are.jpg" alt="Beeswax">
                 </div>
-                <div class="col-md-6 pl-xl-7 ">
+                <div class="col-md-6 pl-xl-7" style="padding-right:60px">
                     {{-- <h3><b>Who We Are</b></h3> --}}
                     <h2 class="mb-5">"Who We Are"</h2>
                     <p>Beeswax is commonly used in skincare

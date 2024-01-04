@@ -824,7 +824,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4 pl-xl-7 pl-7 productDetailVideoSection"
-                                                                style="padding-right:60px; text-align:justify">
+                                                                style="padding-right:60px; text-align:justify;">
                                                                 <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
                                                                 </h2>

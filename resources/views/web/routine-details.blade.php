@@ -258,7 +258,7 @@ $userId = session('userId');
                     <h2 class="mb-2 text-centert" data-animate="fadeInRight">
                         <?= $routineId[0]['NAME'] ?>
                     </h2>
-                    <div class="text-center text-black mx-4">
+                    <div class="text-justify text-black mx-4">
                         {!! $routineId[0]['DESCRIPTION'] !!}
                     </div>
                 </section>
@@ -266,12 +266,13 @@ $userId = session('userId');
                     style="background-image: url(<?= $routineId[0]['IMAGE_DOWNPATH'] ?>);
                         background-repeat: no-repeat;
                         background-size: cover;
-                        background-position: center center;
+                        object-fit: cover;
+                        background-position: center !important;
                         padding-top: 100px !important;
                         padding-bottom: 100px !important;
                         background-color: unset !important;
                         /* background-attachment:fixed; */
-                        height:65vh; position:relative">
+                        height:75vh; position:relative">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3"
                             style="">
