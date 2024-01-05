@@ -54,7 +54,7 @@ class EmailForwardModel extends Mailable
         $email_html = '';
         try {
             $email_html = view('admin.emails.emailTemplate', $email_details)->render();
-			
+
             Mail::send('admin.emails.emailTemplate', $email_details, function ($message) use ($email_details) {
                if (array_key_exists('from_email', $email_details)) {
                    $message->from($email_details['from_email'], 'Jusoutbeauty');
@@ -68,10 +68,12 @@ class EmailForwardModel extends Mailable
                 }
                 $message->to($email_details['to_email']);
             });
+
             $this->saveEmail($email_details['pageTitle'],$email_html,$email_details);
             return true;
 
-        } catch (\Throwable $e) {
+        }
+        catch (\Throwable $e) {
             return false;
         }
     	//email
