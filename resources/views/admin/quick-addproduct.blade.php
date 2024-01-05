@@ -1126,7 +1126,7 @@
                                                             </div>
                                                             <div class="col-md-8 mb-8 mb-md-0">
                                                                 <small class="text-danger font-weight-bold"><span
-                                                                        class="badge badge-danger">*Note: Image
+                                                                        class="badge badge-danger">*Note: vedeo
                                                                         dimensions must be minimum 270 X
                                                                         370</span></small>
 
@@ -1145,7 +1145,7 @@
                                                                             class="card-img"></video>
                                                                         <div
                                                                             class="card-img-overlay d-flex flex-column align-items-center justify-content-center p-4">
-                                                                            <a href="@{{ video.V_3 }}"
+                                                                            <a href="@{{ video.V_4 }}"
                                                                                 data-gtf-mfp="true"
                                                                                 data-mfp-options='{"type":"iframe","preloader":false}'
                                                                                 class="mb-3 mb-sm-7 w-45px h-45px w-sm-65 h-sm-65 d-flex justify-content-center align-items-center rounded-circle fs-sm-20 border border-white text-white bg-hover-primary border-hover-primary"><i
@@ -1156,27 +1156,14 @@
                                                                                 video</p>
                                                                         </div>
                                                                     </div>
-                                                                    <form class="" id="uploadattch2"
-                                                                        method="POST"
-                                                                        action="uploadProductVideoAttachment"
-                                                                        enctype="multipart/form-data">
-                                                                        <input type="hidden" name="_method"
-                                                                            value="POST">
+                                                                    <form class="" id="uploadattch2"  method="POST"action="uploadProductVideoAttachment" enctype="multipart/form-data">
+                                                                        <input type="hidden" name="_method" value="POST">
                                                                         {{ csrf_field() }}
-                                                                        <input type="hidden" id="userId"
-                                                                            name="userId"
-                                                                            value="<?php echo session('userId'); ?>">
-                                                                        <input type="hidden" id="sourceId"
-                                                                            name="sourceId"
-                                                                            value="@{{ QuickProduct.PRODUCT_ID }}">
-                                                                        <input type="hidden" id="videoId"
-                                                                            name="videoId"
-                                                                            value="@{{ video.ID }}">
-                                                                        <input type="hidden" id="sourceCode"
-                                                                            name="sourceCode" value="PRODUCT_VIDEO">
-                                                                        <input type="file" id="uploadatt2"
-                                                                            name="uploadattl" class="file-input"
-                                                                            style="display: none;">
+                                                                        <input type="hidden" id="userId" name="userId" value="<?php echo session('userId'); ?>">
+                                                                        <input type="hidden" id="sourceId"  name="sourceId" value="@{{ QuickProduct.PRODUCT_ID }}">
+                                                                        <input type="hidden" id="videoId" name="videoId" value="@{{ video.ID }}">
+                                                                        <input type="hidden" id="sourceCode" name="sourceCode" value="PRODUCT_VIDEO">
+                                                                        <input type="file" id="uploadatt2" name="uploadattl" class="file-input" style="display: none;">
                                                                     </form>
 
                                                                 </div>
@@ -1856,8 +1843,8 @@
                         <li class="nav-item px-5"><a
                                 class="pointer nav-link active text-gray-02 rounded-0 px-0 py-1 lh-1 fs-36 bg-transparent text-active-primary font-weight-300 font-weight-active-400 recent_viewed"
                                 id="pills-recommendations-tab" data-toggle="pill" href="#pills-recommendations"
-                                role="tab" aria-controls="pills-recommendations" aria-selected="true">Complete
-                                Your JusOGlow<span style="padding:10px;"><i
+                                role="tab" aria-controls="pills-recommendations" aria-selected="true">
+                                CompletYour JusOGlow<span style="padding:10px;"><i
                                         class="fa fa-pencil-square-o cursor-pointer" style="font-size:1.875rem;"
                                         ng-click="addJusOFlowModal()"></i></span></a>
 
