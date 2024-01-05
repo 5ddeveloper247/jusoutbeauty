@@ -1,12 +1,5 @@
 body {
-    margin: 0;
-    font-family: jost, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 400;
     line-height: 1.4;
-    color: #0e0d21;
-    text-align: left;
-    background-color: #fff
 }
 .pref-lang > div{
 	display: flex;
@@ -1404,25 +1397,28 @@ color: #f9a7a9;
 	height: 75vh !important;
 	overflow: auto;
 }
+.pro-details{
+	height: 115vh !important;
+}
 .productDetailAboutSection{
-	height: 85vh !important ;
+	height: 109vh !important ;
 	overflow: auto;
 }
 .productDetailVideoSection,.bundleDetailVideoSection{
-	height: 58vh !important;
+	height: 78vh !important;
 	overflow-y: auto;
 }
 .productDetailLutiesSection{
-	height: 80vh !important;
+	height: 99vh !important;
 	overflow: auto;
 }
 @media screen and (min-width:1851px){
     .productDetailAboutSection{
-        height:180vh !important; /*ch*/
+        height:95vh !important; /*ch*/
         overflow-y:auto;
     }
 	.productDetailVideoSection,.bundleDetailVideoSection{
-		height: 117vh !important;
+		height: 80vh !important;
 		overflow-y: auto;
 	}
     .bundleDetailAboutSection{
@@ -1646,7 +1642,7 @@ color: #f9a7a9;
 .btn-primary:focus,
 .btn-primary.focus {
     color: #fff !important;
-    background-color: #3d94b7 !important;
+    /* background-color: #3d94b7 !important; */
     border-color: #000 !important;
 }
 
@@ -1664,7 +1660,7 @@ color: #f9a7a9;
 
 .hover-pick:hover{
 	color: white;
-    background-color: #3d94b7 ;
+    /* background-color: #3d94b7 ; */
 }
 
 .how_to_user{
