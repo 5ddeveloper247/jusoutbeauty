@@ -1326,6 +1326,7 @@ img.item.shop-shade {
 
 		font-size: 28px;
 	} */
+
 	.tooltip{
 		font-size: 1rem;
 	 }
@@ -1396,9 +1397,24 @@ img.item.shop-shade {
         overflow-y:auto;
     } */
 }
+.fa-star:hover{
+color: #f9a7a9;
+}
+.routinetxt{
+	height: 75vh !important;
+	overflow: auto;
+}
+.productDetailAboutSection{
+	height: 85vh !important ;
+	overflow: auto;
+}
 .productDetailVideoSection,.bundleDetailVideoSection{
-	height: 117vh !important;
+	height: 58vh !important;
 	overflow-y: auto;
+}
+.productDetailLutiesSection{
+	height: 80vh !important;
+	overflow: auto;
 }
 @media screen and (min-width:1851px){
     .productDetailAboutSection{
@@ -1553,7 +1569,7 @@ img.item.shop-shade {
 
 .btn-white:active,.btn-white:focus {
     color: white !important;
-	background-color: #3d94b7 !important;
+	/* background-color: #3d94b7 !important; */
     border-color: #000 !important;
 }
 

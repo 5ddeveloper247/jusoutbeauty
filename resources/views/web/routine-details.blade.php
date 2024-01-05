@@ -255,11 +255,13 @@ $userId = session('userId');
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;">
-                    <h2 class="mb-2 text-centert" data-animate="fadeInRight">
+                    <div class="routinetxt ">
+                    <h2 class="mb-2 text-center" data-animate="fadeInRight">
                         <?= $routineId[0]['NAME'] ?>
                     </h2>
                     <div class="text-justify text-black mx-4">
                         {!! $routineId[0]['DESCRIPTION'] !!}
+                    </div>
                     </div>
                 </section>
                 <section class="col-md-6  hero-section hero-image"

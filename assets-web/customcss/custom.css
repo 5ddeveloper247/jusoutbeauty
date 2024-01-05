@@ -1,3 +1,7 @@
+.routinetxt{
+	height: 57vh;
+	overflow: auto;
+}
 .pref-lang > div{
 	display: flex;
     width: 100px;

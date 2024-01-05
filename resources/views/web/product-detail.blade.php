@@ -756,7 +756,7 @@
                                                         <h2 class="mb-2 text-capitalize">
                                                             <?= $productDetails['DESCRIPTION_TITLE'] ?></h2>
                                                         <p class="productDetailAboutSection"
-                                                            style="padding-right: 60px;
+                                                            style="padding-right: 30px;
                                                         text-align: justify;">
                                                             <?= $productDetails['DESCRIPTION'] ?></p>
                                                     </div>
@@ -824,7 +824,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4 pl-xl-7 pl-7 productDetailVideoSection"
-                                                                style="padding-right:60px; text-align:justify;">
+                                                                style="padding-right:30px; text-align:justify;">
                                                                 <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
                                                                 </h2>
@@ -1067,7 +1067,7 @@
                                                                 style="">
                                                                 <h2 class="mb-2">Lutie's Hint</h2>
                                                                 <p class=""
-                                                                    style="padding-right:60px; text-align:justify">
+                                                                    style="padding-right:30px; text-align:justify">
                                                                     <?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>
