@@ -1,7 +1,4 @@
-.routinetxt{
-	height: 57vh;
-	overflow: auto;
-}
+
 .pref-lang > div{
 	display: flex;
     width: 100px;
@@ -1029,10 +1026,10 @@ img.item.shop-shade {
 		margin-left: -123px;
 	} */
 
-	.pro-details{
+	/* .pro-details{
 		height: 57rem !important;
 		overflow-y: auto;
-	}
+	} */
 
 	.header-hidden {
 		top: 125px !important;

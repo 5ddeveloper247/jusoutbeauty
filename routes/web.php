@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-session()->put('site', '/site');//site
+session()->put('site', '/jusoutbeauty');//site
 
 
 

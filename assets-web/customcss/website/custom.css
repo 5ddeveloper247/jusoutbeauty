@@ -193,7 +193,7 @@ input[type=number] {
 }
 
 .pro-details{
-	height: 47rem ;
+	height: 45rem ;
 }
 
 .img-w10{
@@ -1192,8 +1192,8 @@ img.item.shop-shade {
         margin-top: 55px;
     }
 	.pro-details{
-		height: 57rem !important; /*ch*/
-		overflow-y: auto;
+		height: 56rem !important; /*ch*/
+		/* overflow-y: auto; */
 	}
 
 	.header-hidden {
@@ -1394,35 +1394,50 @@ img.item.shop-shade {
 color: #f9a7a9;
 }
 .routinetxt{
-	height: 75vh !important;
+	/* height: 75vh !important; */
 	overflow: auto;
 }
-.pro-details{
+/* .pro-details{
 	height: 115vh !important;
-}
+} */
 .productDetailAboutSection{
-	height: 109vh !important ;
+	height: 75vh !important ;
 	overflow: auto;
 }
 .productDetailVideoSection,.bundleDetailVideoSection{
-	height: 78vh !important;
+	height: 54vh !important;
 	overflow-y: auto;
 }
 .productDetailLutiesSection{
 	height: 99vh !important;
 	overflow: auto;
 }
+@media screen and (min-width:1439px){
+	.productDetailAboutSection{
+		height:75vh !important; /*ch*/
+		overflow-y:auto;
+	}
+	.productDetailLutiesSection{
+		height: 68vh !important;
+		overflow: auto;
+	}
+}
+
 @media screen and (min-width:1851px){
     .productDetailAboutSection{
-        height:95vh !important; /*ch*/
+        height:87vh !important; /*ch*/
         overflow-y:auto;
     }
 	.productDetailVideoSection,.bundleDetailVideoSection{
-		height: 80vh !important;
+		height: 73vh !important;
 		overflow-y: auto;
 	}
+	.productDetailLutiesSection{
+		height: 89vh !important;
+		overflow: auto;
+	}
     .bundleDetailAboutSection{
-        height:63vh;
+        height:78vh;
         overflow-y:auto;
     }
     .productDetailSubscriptionSection{
@@ -1434,18 +1449,33 @@ color: #f9a7a9;
 		max-width: 1750px;
 	}
 }
-/* @media screen and (min-width:1900px){
+@media screen and (min-width:2400px) {
 	.productDetailVideoSection,.bundleDetailVideoSection{
-		height: 114vh;
+		height: 64vh !important;
 		overflow-y: auto;
 	}
-} */
-/* @media screen and (min-width:2000px){
-	.productDetailVideoSection,.bundleDetailVideoSection{
-		height: 115vh;
-		overflow-y: auto;
-	}} */
+	.productDetailAboutSection{
+		height:78vh;
+        overflow-y:auto;
+	}
+}
 
+
+	
+	@media screen and (min-width:1023) {
+		.productDetailAboutSection{
+			height:67vh !important; /*ch*/
+			overflow-y:auto;
+		}
+		.productDetailVideoSection,.bundleDetailVideoSection{
+			height: 54vh !important;
+			overflow: auto;
+		}
+		.productDetailLutiesSection{
+			height: 20vh !important;
+			overflow: auto;
+		}
+	}
 @media screen and (min-width: 0px) and (max-width: 614px){
 	.quick-addto-cart{
 		margin-top: 10px;
