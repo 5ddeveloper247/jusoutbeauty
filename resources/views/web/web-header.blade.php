@@ -627,12 +627,27 @@ $userId = session('userId');
                                         </a></li>
                                     <?php }?>
 
-                                    {{-- <li class="nav-item" data-toggle="tooltip" title="Search"><a
-                                            href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
-                                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass": "mfp-search-form mfp-move-from-top mfp-align-top"}'
-                                            class="nav-link nav-search d-flex align-items-center px-3"> <i
-                                                class="far fa-search"></i>
-                                        </a></li> --}}
+
+
+                                        {{-- saerch icon on pc --}}
+                                     <li class="nav-item" data-toggle="tooltip" title="Search">
+
+                                    <a href="javascript:;"  data-toggle="modal" data-target="#productselfi"
+                                    data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                                    "mfp-search-form mfp-move-from-top mfp-align-top"}'
+                                        class="nav-link nav-search d-flex align-items-center px-3">
+                                        <i class="far fa-search"></i>  </a>
+
+                                        {{--   <a href="{{ session('site') }}/Search-All"
+                                        {{-- data-gtf-mfp="true"
+                                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                                             "mfp-search-form mfp-move-from-top mfp-align-top"}'
+                                            class="nav-link nav-search d-flex align-items-center px-3">
+                                            <i  class="far fa-search"></i>
+                                        </a> --}}
+
+                                    </li>
+
                                     <li class="nav-item" data-toggle="tooltip" title="Wishlist">
                                         <a class="nav-link position-relative px-3 py-0"
                                             href="{{ url('/wishlist') }}">
@@ -683,6 +698,7 @@ $userId = session('userId');
 
                                 <?php } ?>
 
+
                                 <a class="dropdown-item ai-icon" href="{{ url('/wishlist') }}">
                                     <i class="far fa-star"></i>
                                     <span class="ml-2">Wishlist</span>
@@ -724,13 +740,59 @@ $userId = session('userId');
                                 <?php  } ?>
                             </div>
                         </li>
-                        <a href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
-                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass": "mfp-search-form mfp-move-from-top mfp-align-top"}'
+
+                        {{-- search button on mobile  --}}
+                        <a href="javascript:;"  data-toggle="modal" data-target="#productselfi"
+                        data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                        "mfp-search-form mfp-move-from-top mfp-align-top"}'
+
+                        class="nav-search d-block py-0" title="Search"><i
+                        class="far fa-search d-block d-xl-block"></i></a> </a>
+
+
+                         {{-- <a href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
+                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                            "mfp-search-form mfp-move-from-top mfp-align-top"}'
+
                             class="nav-search d-block py-0" title="Search"><i
-                                class="far fa-search d-block d-xl-none"></i></a>
+                            class="far fa-search d-block d-xl-block"></i></a> --}}
+
+
                     </nav>
                 </div>
             </div>
         </div>
     </header>
+
+
+    {{-- model for the search icon  --}}
+
     <input type="hidden" name="_token" id="csrf" value="{{ csrf_token() }}">
+
+         <div class="modal fade selfi-view" id="productselfi" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content p-0">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Search Your Desire Product </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body ">
+                          <div ng-show="selfi.ID == ''">
+                                <label style=" display: block !important;text-align:left;">Enter your Product name</label>
+                                <input type="text" id="name" name="name" ng-model="selfi['name']"
+                                    class="form-control mb-3" placeholder="Search in jusoutbeauty">
+                            </div>
+
+                                <a href="{{ session('site') }}/Search-All">   <button type="submit" class="btn btn-primary btn-block savebtn" ng-show="selfi.ID == ''"
+                                    ng-click="submitProductSelfi();">Search</button></a>
+
+
+                            <button type="button" class="btn btn-primary btn-block loaderbtn" disabled
+                                style="display: none"><i class="ft-rotate-cw spinner"></i> Processing</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>

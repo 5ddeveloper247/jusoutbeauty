@@ -106,7 +106,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 		}).success(function(data, status, headers, config) {
 
-			$scope.categoryLov = data.list1;
+		    $scope.categoryLov = data.list1;
 			$scope.shadesLov = data.list2;
 			$scope.featurelov=data.features;
 			$scope.subCategoryLov = {};
@@ -805,6 +805,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				$scope.product.P_9 = '';
 				$scope.product.P_44 = '';
 
+
 				$scope.recommended=data.product;
 
 				$scope.handpickedlov=data.product;
@@ -923,6 +924,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 				$scope.displayCollectionProdIngredients = data.ingredients;
 				$scope.displayCollectionProdShades = data.shades;
 				$scope.displayCollectionProdUses = data.productUses;
+                $scope.recommended=data.product;
+                $scope.handpickedlov=data.product;
 
 				setTimeout(function(){
 					$("#productIngredientsTable").DataTable();
@@ -955,6 +958,8 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 					$("#p37").val($scope.product.P_37).trigger('change');
 					$("#p42").val($scope.product.P_42).trigger('change');
 					$("#p45").val($scope.product.P_45).trigger('change');
+					$("#p46").val($scope.product.P_46).trigger('change');
+                    $("#p47").val($scope.product.P_47).trigger('change');
 
 
 

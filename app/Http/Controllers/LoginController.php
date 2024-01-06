@@ -6,10 +6,12 @@ use Illuminate\Support\Facades\DB;
 use App\Models\UserModel;
 use App\Models\EmailForwardModel;
 use App\Models\EmailConfigModel;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\password;
 class LoginController extends Controller
 {
 	public function adminlogin(Request $r){
@@ -101,14 +103,16 @@ class LoginController extends Controller
 
 		$d=array();
 		$d['ONE_TIME_PASSWORD'] = $otp_random_number;
-		
+
 
 		$qry = DB::table('fnd_user_tbl')->where('EMAIL',$result->EMAIL)->update($d);
+
+
 
 		// To send HTML mail, the Content-type header must be set
 
 		$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('OTP');
-		dd($emailConfigDetails);
+		//dd($emailConfigDetails);
 
 		$htmlbody=	'<tr>
 						<td bgcolor="#f4f4f4" style="padding:0px 10px 0px 10px">
@@ -120,6 +124,7 @@ class LoginController extends Controller
 
 
 		$email_details['to_id'] = '';
+
 		$email_details['to_email'] = $result->EMAIL;
 		$email_details['from_id'] = 1;
 		$email_details['from_email'] = $emailConfigDetails['fromEmail'];//"admin@jusoutbeauty.com";
@@ -131,13 +136,17 @@ class LoginController extends Controller
         $email_details['htmlbody'] = $htmlbody;
         $email_details['pageTitle'] = $emailConfigDetails['title'];
 
+
 		$check = $EmailForwardModel->sendEmail($email_details);
+
+
         if($check === 'true' || $check === true){
             $arrRes ['done'] = true;
             $arrRes ['user_id_otp'] = $user_id_otp;
             $arrRes ['msg'] = 'OTP Sent Successfully. Please check your E-mail!';
             echo json_encode ( $arrRes );
-        }else{
+        }
+        else{
             $arrRes ['done'] = false;
             $arrRes ['msg'] = 'Something went wrong please try again later!!!';
             echo json_encode ( $arrRes );
@@ -276,8 +285,12 @@ class LoginController extends Controller
 				}
 			}else{
 				$r->session()->flash('error', 'User is not active, kindly contact admin. Thanks');
+
+
 				return redirect('user-login');
 			}
+
+
 
 		}else{
 				$r->session()->flash('error', 'Please enter valid Email Address');
@@ -286,6 +299,7 @@ class LoginController extends Controller
 	}
 	// DDDDD
 	public function UserReg1(Request $r){
+
 		$EmailForwardModel = new EmailForwardModel();
 		$EmailConfigModel = new EmailConfigModel;
 		$UserModel=new UserModel();
@@ -342,6 +356,8 @@ class LoginController extends Controller
     			echo json_encode ( $arrRes );
     			die ();
     		}
+
+
 			if ($data['A_5'] == '') {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'Password is required.';
@@ -360,12 +376,32 @@ class LoginController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+
+
 			if ($data['A_7'] =='0' ) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'first agree to terms and conditions';
 				echo json_encode ( $arrRes );
 				die ();
 			}
+
+            // validate the password to check
+
+            $uppercase = preg_match('@[A-Z]@', $data['A_5'] );
+            $lowercase = preg_match('@[a-z]@', $data['A_5'] );
+            $number    = preg_match('@[0-9]@', $data['A_5'] );
+            if(!$uppercase || !$lowercase || !$number || strlen($data['A_5'] ) < 8) {
+
+                $r->session()->flash('passfail','');
+
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Must contain at least one number and one uppercase and lowercase letter and minimum 8 characters ';
+				echo json_encode ( $arrRes );
+				die ();
+
+            }
+
+
 				$username=$data['A_1']."_".$data['A_2'].rand(100,999);
 				$d=array();
 				$d['EMAIL']=$data['A_3'];
@@ -381,7 +417,7 @@ class LoginController extends Controller
 
 				$emailConfigDetails = $EmailConfigModel->getSpecificEmailConfigByCode('REGISTER');
 				//dd($emailConfigDetails);
-				
+
 				$email = $data['A_3'];
 
 				$htmlbody=	'<tr>
