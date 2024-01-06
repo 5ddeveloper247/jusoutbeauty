@@ -10,7 +10,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid pt-0">
-                <div class="page-titles mb-0 pt-0">
+                <div class="page-titles mb-0 pt-0 mt-3">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Update Profile</a></li>
 					</ol>

@@ -15,7 +15,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
 				<div class="row">
 					<div class="col-10">
-						<div class="page-titles pt-0 pb-0 mb-0">
+						<div class="page-titles pt-0 pb-0 mb-0 mt-1">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="javascript:void(0)">Ingredients</a></li>
 								<li class="breadcrumb-item active"><a href="javascript:void(0)">View All</a></li>
