@@ -30,7 +30,7 @@
 
         <tbody>
             <tr>
-                <td bgcolor="#FFA73B" align="center" style="background:#e4c8f6">
+                <td bgcolor="#FFA73B" align="center" style="background:#e4c8f6" >
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px">
                         <tbody><tr>
                             <td align="center" valign="top" style="padding:40px 10px 40px 10px"> </td>
