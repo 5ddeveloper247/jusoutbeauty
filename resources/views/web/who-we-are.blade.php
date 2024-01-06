@@ -74,7 +74,7 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/about-us.jpg" alt="Beeswax">
                 </div>
-                <div class="col-md-6 pl-xl-7 ">
+                <div class="col-md-6 pl-xl-7 whoweare">
                     {{-- <h5>Ingredient</h5> --}}
 
                     <h2 class="mb-5">"About Us"</h2>
@@ -144,11 +144,11 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/our-story.jpg" alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first ourstory whoweare">
                     {{-- <h5>Our Story</h5> --}}
-                    <h2 class="text-white mb-5">"Our Story"</h2>
+                    <h2 class="mb-5">"Our Story"</h2>
                     <div style="height: 75vh;overflow:auto">
-                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Sunt voluptates libero ea ex, similique rerum illum tempora nesciunt
                             quaerat blanditiis corporis, ipsa accusamus. Nesciunt aspernatur voluptatem
                             ex, eos neque provident beatae natus ea eius, obcaecati aperiam quaerat tempora fuga id
@@ -204,7 +204,7 @@
                         src="{{ url('/assets-web') }}/images/businessman-hand-holding-blocks.jpeg"
                         alt="Designed to last">
                 </div>
-                <div class="col-md-6 pl-xl-7 ">
+                <div class="col-md-6 pl-xl-7 whoweare">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class=" mb-5">"Our Mission"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -375,7 +375,7 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/our-services.jpg" alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first whoweare">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2 class="mb-5">"Lusty looks"</h2>
                     <div style="height: 75vh;overflow:auto">

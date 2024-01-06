@@ -76,7 +76,7 @@
                     <img class="giving-section2-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Beeswax">
                 </div>
-                <div class="col-md-6 pl-xl-7">
+                <div class="col-md-6 pl-xl-7 ecovibes">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Evo Vibes"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -129,7 +129,7 @@
                     <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first ecovibes">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5 text-white">"Evo Vibes"</h2>
                     <div class="text-white" style="height: 75vh;overflow:auto">
@@ -182,7 +182,7 @@
                     <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Designed to last">
                 </div>
-                <div class="col-md-6 pl-xl-7">
+                <div class="col-md-6 pl-xl-7 ecovibes">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Evo Vibes"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -348,7 +348,7 @@
                     <img loading="lazy" class="last-section-giving" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/Red-lipstick-for-every-look.png" alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first ecovibes">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2 class=" mb-5 ">"Red Lips"</h2>
                     <div style="height: 75vh;overflow:auto">
