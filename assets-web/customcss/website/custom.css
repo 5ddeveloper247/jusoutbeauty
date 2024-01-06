@@ -555,16 +555,13 @@ hr {
 	color:grey;
 }
 
-
 .lustylooks{
-	background-color: #c0a9bd ;
+	background-color: #c0a9bd ;   /*section lusty*/
 }
 
 .evo_vibes_bgcolor{
 	background-color: #bfe4e0;
 }
-
-
 .who_we_are_lustylooks_section{
 	background-color: #3d94b7 ;
 }
@@ -1195,7 +1192,7 @@ p.text-center.mb-0.text-white.hoverimages-text{
 			overflow-y:auto;
 		}
 		.productDetailAboutSection{
-			height:110vh;
+			height:127vh;
 			overflow-y:auto;
 		}
 		.routinelinks{
@@ -1203,7 +1200,7 @@ p.text-center.mb-0.text-white.hoverimages-text{
 			font-weight: 500;
 		}
 		.productDetailLutiesSection{
-			height:100vh;
+			height:118vh;
 			overflow-y:auto;
 		}
 		.productDetailSubscriptionSection{
@@ -1211,7 +1208,7 @@ p.text-center.mb-0.text-white.hoverimages-text{
 			overflow-y:auto;
 		}
 		.productDetailVideoSection,.bundleDetailVideoSection{
-			height:78vh;
+			height:92vh;
 			overflow-y:auto;
 		}
 		/* .productDetailsection1{
@@ -1308,7 +1305,7 @@ p.text-center.mb-0.text-white.hoverimages-text{
 			overflow-y:auto;
 		} */
 		.productDetailVideoSection{
-			height:95vh;
+			height:82vh;
 			overflow-y:auto;
 		}
 		/* .productDetailAboutSection{
@@ -1337,7 +1334,7 @@ p.text-center.mb-0.text-white.hoverimages-text{
 			margin-left: -212px !important;
 		} */
 		.productDetailAboutSection{
-			height:70vh;
+			height:43vh;
 			overflow-y:auto;
 		}
 		.bundleDetailAboutSection{
@@ -1349,7 +1346,7 @@ p.text-center.mb-0.text-white.hoverimages-text{
 			font-weight: 500;
 		}
 		.productDetailLutiesSection{
-			height:90vh;
+			height:52vh;
 			overflow-y:auto;
 		}
 		.productDetailSubscriptionSection{
@@ -1901,15 +1898,15 @@ p.text-center.mb-0.text-white.hoverimages-text{
 	}
 	@media screen and (min-width:1851px){
 		.productDetailAboutSection{
-			height:87vh ; /*ch*/
+			height:90vh ; /*ch*/
 			overflow-y:auto;
 		}
 		.productDetailVideoSection,.bundleDetailVideoSection{
-			height: 73vh;
+			height: 79vh;
 			overflow-y: auto;
 		}
 		.productDetailLutiesSection{
-			height: 89vh;
+			height: 90vh;
 			overflow: auto;
 		}
 		.bundleDetailAboutSection{
