@@ -260,7 +260,7 @@ $userId = session('userId');
                         <?= $routineId[0]['NAME'] ?>
                     </h2>
                     <div class="text-justify text-black mx-4">
-                        {!! $routineId[0]['DESCRIPTION'] !!}
+                        {!! $routineId[0]['DESCRIPTION'] !!} 
                     </div>
                     </div>
                 </section>
@@ -273,7 +273,7 @@ $userId = session('userId');
                         padding-top: 100px !important;
                         padding-bottom: 100px !important;
                         background-color: unset !important;
-                        /* background-attachment:fixed; */
+                        
                         height:75vh; position:relative">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3"

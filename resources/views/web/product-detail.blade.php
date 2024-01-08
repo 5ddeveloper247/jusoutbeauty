@@ -910,7 +910,7 @@
                                                                             <?php if(isset($formulatedIngredients) && !empty($formulatedIngredients)){?>
                                                                             <?php foreach ($formulatedIngredients as $row){?>
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                style="background-color:#94b73d">
+                                                                                style="background-color:#8ed1c9">
                                                                                 <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
@@ -1025,7 +1025,7 @@
                                                                             class="card-body pt-6 px-0 pb-0 text-center">
                                                                             <a href="#"
                                                                                 class="fs-18 font-weight-500 lh-1444"><?= $row['USES_TITLE'] ?></a>
-                                                                            <p class="mb-6">
+                                                                            <p class="mb-6 px-2">
                                                                                 <?= $row['USES_DESCRIPTION'] ?></p>
                                                                         </div>
                                                                     </div>
