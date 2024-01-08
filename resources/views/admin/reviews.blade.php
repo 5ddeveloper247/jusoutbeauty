@@ -3,6 +3,11 @@
 var userId = <?php echo session('userId');?>;
 var site = '<?php echo session('site');?>';
 </script>
+<style>
+table.dataTable thead .sorting {
+    background-position: center right 0px;
+}
+</style>
 
 	<div ng-app="project1">
         <!--**********************************
