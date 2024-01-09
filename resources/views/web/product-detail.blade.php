@@ -463,8 +463,7 @@
                             <h2 class="mb-0 text-capitalize productDetailHeading"><?= $productDetails['NAME'] ?></h2>
                             <p class="text-muted fs-11 font-weight-500 text-uppercase mb-1 py-2"
                                 style="padding-right:0px;
-                            text-align: justify;
-                            letter-spacing:0px !important">
+                            text-align: justify;">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -500,7 +499,7 @@
 
                                 </div>
                             </div>
-                            <p class="mb-3" style="padding-right:0px; text-align: justify;  letter-spacing: -2px !important">
+                            <p class="mb-3" style="padding-right:0px; text-align: left;">
                                 <?= $productDetails['SHORT_DESCRIPTION'] ?></p>
 
                             <div class="chooseShade-container" style="margin-bottom: 30px;"
