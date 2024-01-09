@@ -576,13 +576,14 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <label class="text-primary fs-16 font-weight-bold mb-0 " for="size">Subcription
                                         Option: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+
+                                        <a
+                                        href="javascript:;"
+                                        data-toggle="tooltip " data-placement="left"
                                         title="Click to see more" class="text-right">
-                                        <span ng-click="showSubscrptionDetailModal();">Learn More </span>
-                                        <!-- data-toggle="modal" data-target="#learnmore_pop" -->
+                                        <span ng-click="showSubscrptionDetailModal();">.Learn More.... </span>
+                                        {{-- <!-- data-toggle="modal" data-target="#learnmore_pop" --> --}}
                                     </a>
-
-
                                 </div>
                                 <select class="form-control w-100 cursor-pointer" id="subsOption" ng-model="subs_id"
                                     ng-change="fetchSubscriptionDetail();" style="padding-right:60px !important">
@@ -3517,11 +3518,11 @@
                                                     </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <a href="#" data-toggle="tooltip" data-placement="top"
                                                         title="Click to see more Ingredients" class="text-right">
-                                                        <span ng-click="showSubscrptionDetailModal();">Learn More
+                                                        <span ng-click="showSubscrptionDetailModal();">Learn More..
                                                         </span>
                                                     </a>
 
-                                                    <div class="modal fade quick-view" id="learnmore_pop"
+                                                    {{-- <div class="modal fade quick-view" id="learnmore_pop"
                                                         tabindex="-1" aria-hidden="true">
                                                         <div class="modal-dialog"
                                                             style="max-width: 631px !important;">
@@ -3552,7 +3553,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <select class="form-control w-100 cursor-pointer" id="subsOption"
                                                     ng-model="subs_id" ng-change="fetchSubscriptionDetail();"
@@ -3631,7 +3632,6 @@
                                     style="max-height: 500px;
                             overflow: auto;">
                                     @{{ subscriptionDetails }}</p>
-
                             </div>
                             <div class="row">
 

@@ -78,7 +78,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				    $('.slick-slider1').slick('destroy');
 				}
 
-//				setTimeout(function(){ 
+//				setTimeout(function(){
 //
 //					$('.slick-slider3').slick({
 //						"slidesToShow": 1,"infinite":false,"autoplay":false,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
@@ -171,7 +171,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
                     }
                     return product;
                 });
-               
+
                 $scope.levelOneLatestImg = typeImage != '' ? typeImage : data.levelTypeImage.downPath;
 
 				$scope.viewFlag = 'YL';
@@ -565,7 +565,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
-			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			toastr.error('...Choose subscription first...', '', {timeOut: 3000})
 		}
 	}
 	$scope.hideSubscrptionDetailModal = function(){
