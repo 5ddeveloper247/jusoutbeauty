@@ -767,32 +767,34 @@ $userId = session('userId');
 
     {{-- model for the search icon  --}}
 
-    <input type="hidden" name="_token" id="csrf" value="{{ csrf_token() }}">
 
-         <div class="modal fade selfi-view" id="productselfi" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content p-0">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Search Your Desire Product </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body ">
-                          <div ng-show="selfi.ID == ''">
-                                <label style=" display: block !important;text-align:left;">Enter your Product name</label>
-                                <input type="text" id="name" name="name" ng-model="selfi['name']"
-                                    class="form-control mb-3" placeholder="Search in jusoutbeauty">
-                            </div>
+            <form action="{{ route('search') }}" method="post">
 
-                                <a href="{{ session('site') }}/Search-All">   <button type="submit" class="btn btn-primary btn-block savebtn" ng-show="selfi.ID == ''"
-                                    ng-click="submitProductSelfi();">Search</button></a>
+                <input type="hidden" name="_token" id="csrf" value="{{ csrf_token() }}">
+                <div class="modal fade selfi-view" id="productselfi" tabindex="-1" aria-hidden="true">
+                       <div class="modal-dialog">
+                           <div class="modal-content p-0">
+                               <div class="modal-header">
+                                   <h5 class="modal-title">Search Your Desire Product </h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                   </button>
+                               </div>
+                               <div class="modal-body ">
+                                 <div >
+                                       <label style=" display: block !important;text-align:left;">Enter your Product name</label>
+                                       <input type="text" id="name" name="name" ng-model="selfi['name']"
+                                           class="form-control mb-3" placeholder="Search in jusoutbeauty">
+                                   </div>
 
+                                       <a href="">  <button type="submit" class="btn btn-primary btn-block savebtn"
+                                          >Search</button></a>
+                                   <button type="button" class="btn btn-primary btn-block loaderbtn" disabled
+                                       style="display: none"><i class="ft-rotate-cw spinner"></i> Processing</button>
 
-                            <button type="button" class="btn btn-primary btn-block loaderbtn" disabled
-                                style="display: none"><i class="ft-rotate-cw spinner"></i> Processing</button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>

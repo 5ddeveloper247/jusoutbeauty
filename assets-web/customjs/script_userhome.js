@@ -357,7 +357,7 @@ $( document ).ready(function() {
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
-			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			toastr.error('.Choose subscription first....', '', {timeOut: 3000})
 		}
 	}
 	$scope.hideSubscrptionDetailModal = function(){

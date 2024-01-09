@@ -356,23 +356,40 @@ class HomeController extends Controller
        return view('web.store-all')->with ( $data );
    	}
 
-    //search
-    public function search() {
+  //search
+  public function search(Request $request) {
 
-        $data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
-
-        $data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
-
-     $data['routine'] = $this->getAllRouteByNameForWebiste();
-
-     $data['routineformbl'] = $this->getAllRouteByNameForWebiste();
-
-     // dd($data);
-
-     $data['page'] = 'search';
-     // dd('ehllo');
+    $data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
+    $data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
+    $data['routine'] = $this->getAllRouteByNameForWebiste();
+    $data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+    $data['page'] = 'search';
+    $data['searchProduct'] = $request->name;
     return view('web.search-all')->with ( $data );
-    }
+}
+
+
+public function getSearchAll (Request $request) {
+    $ShadeModel = new ShadesModel();
+    $ProductModel = new ProductModel();
+    $BundleModel = new BundleProductModel();
+    $CategoryModel = new CategoryModel();
+
+    $details = $_REQUEST ['details'];
+    $userId = $details ['userId'];
+    $lowerlimit = $details ['lowerlimit'];
+    $search = $details ['searchProduct'];
+    $arrRes ['searchProduct'] =  $search;
+
+    $arrRes ['products'] = $ProductModel->getAllProductDetailsForAllSearchListing($search);
+    $arrRes ['list1'] = $ShadeModel->getAllActiveShadesListing();
+     $arrRes ['list2'] = $CategoryModel->getAllSubSubCategoryDetailsForFilter($lowerlimit);
+
+    //   $arrRes['products'] =DB::table('jb_product_tbl')->where('NAME','LIKE','%'.$search.'%')
+    //   ->where('IS_DELETED', 0)->get();
+
+    echo json_encode ( $arrRes );
+}
 
 
 
@@ -3168,15 +3185,12 @@ class HomeController extends Controller
    				echo json_encode ( $arrRes );
    				die ();
    			}
-
-
-            if (!preg_match('/^[0-9]{9,16}$/',$data['A_4']) ) {
-				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Phone Number Must Be Between 10 to 14';
-				echo json_encode ( $arrRes );
-				die ();
-			}
-
+            if (strlen($data['A_4']) < 11 || strlen($data['A_4']) > 14 ) {
+                $arrRes ['done'] = false;
+                $arrRes ['msg'] = 'Phone Number must be between 11 to 14 digits';
+                echo json_encode ( $arrRes );
+                die ();
+            }
    			$userphone = $UserModel->getspecificUserByPhone1($data ['A_4'],$userId);
    			if(!empty($userphone)){
    				$arrRes['done'] = false;

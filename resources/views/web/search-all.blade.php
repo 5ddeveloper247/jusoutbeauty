@@ -1,6 +1,9 @@
-<?php //print_r('<pre>');
-    // print_r($categoryName);
-    // exit();
+<?php
+
+// print_r('<pre>');
+//      print_r($data);
+//  exit();
+
     // dd('ehllo');
     $userId = session('userId');
     ?>
@@ -8,15 +11,10 @@
     @include('web.web-header')
     <script>
         var site = '<?php echo session('site'); ?>';
-        //var sourceId = "<?php //echo isset($sourceId) ? $sourceId : '';
-        ?>";
-        //var flag = "<?php //echo isset($flag) ? $flag : '';
-        ?>";
-        //var categoryName = "<?php //echo isset($categoryName['NAME']) ? $categoryName['NAME'] : 'Store';
-        ?>"
-        //var subCategoryName = "<?php //echo isset($subCategoryName['NAME']) ? $subCategoryName['NAME'] : '';
-        ?>
+            var searchProduct = @json($searchProduct);
+            // console.log(searchProduct)
     </script>
+
     <style>
         .filter-sidebarr {
             -webkit-transition: all 0.5s ease;
@@ -199,9 +197,10 @@
                                 <li class="breadcrumb-item"><a class="text-decoration-none"
                                         href="{{ session('site') }}/home" style="color: white; font-size: 30px">Home</a>
                                 </li>
-                                <li class="breadcrumb-item d-flex align-items-center"><a class="text-decoration-none"
-                                        style="color: white; font-size: 30px">Search All</a>
+                                <li class="breadcrumb-item d-flex align-items-center">
+                                    <a class="text-decoration-none" style="color: white; font-size: 30px">Search  : <span  id='namesearchtxt'></span></a>
                                 </li>
+
                             </ol>
                         </nav>
                     </section>
@@ -1251,11 +1250,17 @@
     </main>
 
     @include('web.web-footer')
-    <script src="{{ url('/assets-web') }}/customjs/script_userstorelistingall.js?v={{ time() }}"></script>
+    <script src="{{ url('/assets-web') }}/customjs/script_search.js?v={{ time() }}"></script>
+    {{-- <script src="{{ url('/assets-web') }}/customjs/script_userstorelistingall.js?v={{ time() }}"></script> --}}
 
 
     <script>
+
+
+    namesearchtxt
+
         $(document).ready(function() {
+$("#namesearchtxt").text(searchProduct);
 
             $("#filtersiderbar-leftn").click(function() {
                 //$(".filter-sidebarr").toggle();

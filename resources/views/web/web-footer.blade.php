@@ -1373,7 +1373,7 @@
 <!-- jquery file upload plugin  -->
 <script src="{{ url('/public') }}/third_party/file-upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="{{ url('/public') }}/third_party/file-upload/js/jquery.fileupload.js"></script>
-
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     var site = "<?php echo session('site'); ?>";
     var checkoutUrl = "<?php echo url('/checkout'); ?>";
@@ -1456,5 +1456,35 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
+<script>
+    $( function() {
+      var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+      ];
+      $( ".tags" ).autocomplete({
+        source: availableTags
+      });
+    } );
+    </script>
 </html>

@@ -12,8 +12,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 	$(document).on("click", ".shadeAccord-btn", function () {
 		var i = $(this).attr('data-id');
 		$("#chooseShade_container_"+i).slideToggle('slow');
-
 	});
+
 
 	$(document).on('click','.shade_filter',function(){
 		$(".shade_filter").removeClass('shade-active');
@@ -225,7 +225,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
-			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			toastr.error('.Choose subscription first...', '', {timeOut: 3000})
 		}
 	}
 	$scope.hideSubscrptionDetailModal = function(){
@@ -408,7 +408,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		}).success(function(data, status, headers, config) {
 
 			$scope.displayCollectionProducts = data.products;
-            
+
 			$('html, body').animate({
 				scrollTop: $("#storeListingAll").offset().top-100
 			}, 1000);

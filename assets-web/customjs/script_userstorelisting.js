@@ -239,7 +239,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
-			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			toastr.error('..Choose subscription first...', '', {timeOut: 3000})
 		}
 	}
 	$scope.hideSubscrptionDetailModal = function(){
