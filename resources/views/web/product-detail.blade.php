@@ -461,17 +461,18 @@
 
                         <div class="primary-summary-inner" style="padding-right:60px">
                             <h2 class="mb-0 text-capitalize productDetailHeading"><?= $productDetails['NAME'] ?></h2>
-                            <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 py-2"
+                            <p class="text-muted fs-11 font-weight-500 text-uppercase mb-1 py-2"
                                 style="padding-right:0px;
-                            text-align: justify;">
+                            text-align: justify;
+                            letter-spacing:0px !important">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="row" style="padding-right:0px">
+                                    <div class="row lh-14375-2" style="padding-right:0px">
                                         <div
                                             class="@if (strlen($productDetails['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
                                             @if ($productDetails['DISC_AMOUNT'] > 0)
-                                                <p class="text-primary mb-0 card-title lh-14375">
+                                                <p class=" mb-0 card-title lh-14375 ">
                                                     ${{ $productDetails['DISC_AMOUNT'] }}</p>
                                                 <small class="ml-1 mt-1 lh-14375"><del>
                                                         ${{ $productDetails['UNIT_PRICE'] }}</del></small>
@@ -499,7 +500,7 @@
 
                                 </div>
                             </div>
-                            <p class="mb-3" style="padding-right:0px; text-align: justify;">
+                            <p class="mb-3" style="padding-right:0px; text-align: justify;  letter-spacing: -2px !important">
                                 <?= $productDetails['SHORT_DESCRIPTION'] ?></p>
 
                             <div class="chooseShade-container" style="margin-bottom: 30px;"
@@ -1284,18 +1285,12 @@
                                         <i class="fas fa-star" style="color: @{{ averageRatingRound >= '5' ? 'black' : 'gray' }};"></i>
                                     </li>
                                 </ul>
-                                <p class="text-center mb-0 fs-15 text-primary lh-1">
+                                <p class="text-center mb-0 fs-15 text-primary lh-1 btnrow">
                                     <span class="d-inline-block border-right pr-1 mr-1">5.0</span>See
                                     @{{ ratingfive }} Reviews
                                 </p>
                             </div>
-                            <div class="mt-6 mt-md-10">
-                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
-                                    id="writeReview_btn">Write
-                                    a Review</a>
-                                <!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
-                            </div>
-                        </div>
+        </div>
 
                         <div class="col-3 question_sec">
                             <div class="row" style="">
@@ -1355,15 +1350,24 @@
                                     <div>@{{ ratingone }}</div>
                                 </div>
                             </div>
-
-                            <div class=" mt-6 mt-md-9 mt-786-100">
-                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
-                                    id="writeQuestion_btn">Write Your Question</a>
-                            </div>
                         </div>
                         <div class="col-3 d-none d-md-block d-lg-block d-xl-block d-xxl-block"></div>
                     </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-3"><div class="mt-9 mt-md-9 mt-786-100">
+                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
+                                    id="writeReview_btn">Write
+                                    a Review</a>
+                                <!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
+                            </div></div> 
+                            <div class="col-3">    <div class=" mt-6 mt-md-9 mt-786-100">
+                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
+                                    id="writeQuestion_btn">Write Your Question</a>
+                            </div></div>
+                            <div class="col-3"></div>
                 </div>
                 <div class="p-0 m-0" id="">
                     <div class="" id="pillsReviews_container">

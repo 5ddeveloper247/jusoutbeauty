@@ -1,7 +1,9 @@
 body {
 	line-height: 1.2;
 }
-
+/* .pro{
+	height:44px !important;
+} */
 .whoweare {
 	padding-right: 60px !important;
 	text-align: justify;
@@ -1392,7 +1394,7 @@ p.text-center.mb-0.text-white.hoverimages-text {
 	}
 
 	.mt-786-100 {
-		margin-top: 4.5rem !important;
+		margin-top: 4.5rem;
 	}
 
 	.icon {
@@ -1568,6 +1570,9 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		width: 56rem;
 		height: 37rem;
 	}
+	/* .btnrow{
+		margin-bottom: 0px;
+	} */
 }
 
 @media screen and (min-width:1350px) {
@@ -1598,6 +1603,7 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		height: 99vh;
 		overflow: auto;
 	}
+	
 }
 
 @media screen and (min-width:1450px) {
@@ -1898,7 +1904,7 @@ p.text-center.mb-0.text-white.hoverimages-text {
 	}
 
 	.mt-786-100 {
-		margin-top: 4rem !important;
+		margin-top: 3rem;
 	}
 
 	.part_head {
@@ -2366,4 +2372,8 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		height: 74vh;
 		overflow-y: auto;
 	}
+	
+}
+.lh-14375-2{
+	height: 44px;
 }
