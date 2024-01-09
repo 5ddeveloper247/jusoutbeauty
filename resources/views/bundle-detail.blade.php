@@ -386,7 +386,7 @@
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky"
                         style="width: 400px">
 
-                        <div class="primary-summary-inner">
+                        <div class="primary-summary-inner" style="padding-right:60px">
                             <h2 class="fs-30 mb-0"><?= $bundleDetails['NAME'] ?></h2>
                             <p
                                 class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 pt-4 pb-4">
