@@ -702,7 +702,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	});
 
 	$scope.showSubscrptionDetailModal = function(){
-        alert('i am ')
+        // alert('i am ')
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
