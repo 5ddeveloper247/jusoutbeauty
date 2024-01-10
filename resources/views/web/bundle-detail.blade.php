@@ -603,9 +603,10 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						</div>
 					</div>
 				</div>
-			</div>
+				<hr>
+			</div>		
 		</section>
-<hr>
+
 
 		<section class="pb-11 pb-lg-6 mt-8">
 			<div class="container container-custom">
@@ -754,7 +755,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															<?php }?>
 
 														</div>
-														<div class="col-md-6 scroll-to-see bundleDetailAboutSection text-justify" style="padding-right:70px">
+														<div class="col-md-6 scroll-to-see bundleDetailAboutSection text-justify" style="padding-right:75px">
 														<h2 class="mb-2 font-weight-500 fs-20"><?= $line['DESCRIPTION_TITLE']; ?></h2>
                                                         <p>
                                                             <?= $line['DESCRIPTION']; ?>
@@ -995,8 +996,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<hr>
 													<section class="pt-10 pt-lg-8 py-8">
 														<div class="container container-custom p-0">
-															<div class="row no-gutters">
-																<div class="col-md-6 mb-8 mb-md-0 hover-zoom-in">
+															<div class="row align-items-start">
+																<div class="col hover-zoom-in">
 																	<?php if(isset($line['clinicalImage'][0]['downPath'])){?>
 
 																		<img id="clinical-image" src="<?= $line['clinicalImage'][0]['downPath']; ?>" alt="Clinical Note">
@@ -1007,7 +1008,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 																	<?php }?>
 																</div>
-																<div class="col-md-6 px-md-6 pl-xl-7 pr-xl-7 text-justify scroll-to-see productDetailLutiesSection" style="padding-right:65px !important">
+																<div class="col text-justify bundleDetailLutiesSection pr-11">
 																	<h3 class="fs-42 mb-5">Lutie's Hint</h3>
 																	<?= $line['CLINICAL_NOTE']; ?>
 																</div>
@@ -1019,6 +1020,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											</div>
 											<section class="py-6 py-lg-10 insta_sec_home">
 												<div class="container container-custom container-xl">
+													<div class="d-flex justify-content-center">
+													<div class="col-md-6">
 													<h2 class="mb-3 text-center">Snap a selfi</h2>
 													<p class="text-center mb-3 mx-auto">
 														Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a tempore?
@@ -1026,6 +1029,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														molestiae eius quasi, fugit expedita ut minus, delectus animi vero magnam accusamus numquam ipsum
 														atque. Fugiat hic,
 													</p>
+													</div>
+													</div>
 													<div class="text-center mb-9">
 														<a href="javascript:;" class="preview btn btn-primary" data-toggle="modal"
 															data-target="#productselfi">
