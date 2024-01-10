@@ -747,7 +747,7 @@ $userId = session('userId');
                     <div class="slick-slider custom-slider-03"
                         data-slick-options='{"slidesToShow": 3,"dots":true,"autoplay":true,"arrows":false,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[
 								{"breakpoint": 560,"settings": {"slidesToShow": 1,"centerMode":false,"arrows":false}},
-								{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
+								{"breakpoint": 1024,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
 								{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},
 								{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},
 								{"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
@@ -764,29 +764,29 @@ $userId = session('userId');
                                             </p>
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #f9a7a9;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #f9a7a9;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
 
                                             </ul>
-                                            <p
-                                                class="card-text our-reviews-card-text fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto">
+                                            <p class="card-text our-reviews-card-text text-primary lh-1444 mw-750 mx-auto"
+                                                style="font-size: 17px !important">
                                                 {{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
 
                                         </div>
@@ -808,7 +808,7 @@ $userId = session('userId');
 
 
 
-        <section id="section-next" class="py-10 py-lg-13" style="background-color: #94b73d ;">
+        <section id="section-next" class="py-10 py-lg-13" style="background-color: #8ed1c9 ;">
             <h2 class="text-center mb-1  text-white">Created For You</h2>
             <br>
             <div class="container container-custom">
@@ -1046,7 +1046,7 @@ $userId = session('userId');
 
 
         <section class="box-shadow-bottom py-10 py-lg-13"
-            style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover; background-color:#fffff">
+            style="background-image: url('{{ url('/assets-web') }}/images/brownBg.jpeg'); background-repeat: no-repeat; background-size: cover; background-color:#fffff">
 
             <div class="container container-custom container-xl">
                 <h2 class="mb-0 text-center lh-13 text-center-mbl" data-animate="fadeInUp">Are You
@@ -1168,7 +1168,7 @@ $userId = session('userId');
 
 
 
-        <section class="py-12 py-lg-12" style="background-color: #3d94b7;">
+        <section class="py-12 py-lg-12" style="background-color: #c0a9bd">
             <div class="container container-custom container-xl">
                 <h2 class="text-center mb-8 lh-128 text-white">Our Blog
                 </h2>

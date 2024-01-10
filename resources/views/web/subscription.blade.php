@@ -33,7 +33,7 @@
                     <img src="" style="height: 400px;">
                 </div>
                 <div class="col-lg-4 subs_pag_subs">
-                    <div class="text-center subs-heading" style="background-color: rgba(0, 111, 122, 1); ">
+                    <div class="text-center subs-heading" style="background-color: #8ed1c9; ">
                         <h2 class="fs-24 fs-sm-36 text-center mb-8 text-white">
                             Subscribe + Save 10% Off
                         </h2>
@@ -81,7 +81,7 @@
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
             </div>
         </section>
-        <section class="pt-8 pb-8 " style="background-color:#f38c7b;">
+        <section class="pt-8 pb-8 " style="background-color:#c0a9bd;">
             <h2 class="fs-24 fs-sm-36 text-center mb-8 text-white" >
                 Keep It Simple</h2>
 

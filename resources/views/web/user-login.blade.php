@@ -93,15 +93,16 @@
                             <div class="modal-dialog login_modal" style="opacity: 1;">
                                 <div class="modal-content p-0">
                                     <div class="modal-body">
+                                        {{-- cross set krrna ha  --}}
                                         <button type="button"
                                             class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
                                             data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
+                                            <span aria-hidden="true" class="btn btn-primary"><i class="fal fa-times"></i></span>
                                         </button>
                                         <div class="row" id="reset_email">
                                             {{-- <div class="col-lg-1 mb-8 mb-lg-0 pr-xl-2"></div> --}}
                                             <div class="col-lg-12 mb-8 mb-lg-8 mt-lg-8 pr-xl-2">
-                                                <h3 class="fs-24 mb-6">Reset Password</h3>
+                                                <h3 class="fs-24 mb-6">Reset Password :</h3>
                                                 <form action="" method="POST">
                                                     <div class="form-group mb-4">
                                                         <label for="exampleInputEmail1" class="sr-only">Email
@@ -109,8 +110,10 @@
 															<input ng-model="reset['R_3']" type="email" id="reset_email"
 															class="form-control mb-3" id="reset_user_pass" placeholder="Your email">
                                                     </div>
+                                                    {{-- reseet password here  --}}
 
                                                     <button type="submit" ng-click="resetPassFunction()"
+
                                                         class="btn btn-primary btn-block mb-3">Submit</button>
 
                                                 </form>
@@ -215,6 +218,12 @@
                                     </a>
                                     <div class="text-center">
                                         <span class="error-msg" style="margin-top:1vw;">{{ session('error') }}</span>
+                                     {{-- flash data  --}}
+
+                                     @if (session()->has('error'))
+                                     <script>window.scrollTo(0, 400); </script>
+                                     @endif
+
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-block mb-3">Submit</button>
                                 </form>
@@ -286,15 +295,17 @@
                         <div class="modal-dialog login_modal">
                             <div class="modal-content create_account">
                                 <div class="modal-body ">
-                                    <button type="button"
-                                        class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
-                                        data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-                                    </button>
+
                                     <div class="row">
+
                                         {{-- <div class="col-lg-1 mb-8 mb-lg-0 pr-xl-2"></div> --}}
                                         <div class="col-lg-12 mb-8 mb-lg-8 mt-lg-8 pr-xl-2">
                                             <h2 class=" mb-6">Create New Account</h2>
+                                            <button type="button"
+                                            class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
+                                            data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" class="btn btn-primary"><i class="fal fa-times"></i></span>
+                                        </button>
                                             <form>
                                                 <input ng-model="store['A_1']" type="text"
                                                     class="form-control mb-3" placeholder="First name" required>
@@ -304,20 +315,20 @@
                                                     class="form-control mb-3" placeholder="Your email" required>
                                                 <input ng-model="store['A_4']" type="phone" minlength="11" maxlength="14"
                                                     class="form-control  mb-3" placeholder="Phone Number" required>
-                                                <input ng-model="store['A_5']" type="password"
-                                                    class="form-control mb-3" placeholder="Password" required>
-                                                <input ng-model="store['A_6']" type="password"
-                                                    class="form-control mb-3" placeholder="Confirm Password" required>
+                                                <input ng-model="store['A_5']"  type="password"
+                                                    class="form-control mb-3"
+                                    placeholder=" Password" required>
+
+
+                                    <input ng-model="store['A_6']"  type="password" class="form-control mb-3" placeholder="Confirm Password" required>
                                                 <div class="custom-control custom-checkbox mt-4 mb-5 mr-xl-6">
 
                                                     <input type="checkbox" id="termsOfUse1"
                                                         class="custom-control-input">
                                                     <label class="custom-control-label  text-primary"
                                                         for="termsOfUse1"> Yes, I agree with Grace
-                                                        <a href="#" class="text-decoration-underline">Privacy
-                                                            Policy</a> and
-                                                        <a href="#" class="text-decoration-underline">Terms of
-                                                            Use</a>
+                                                        <a class="text-decoration-underline" href="{{ url('/customer-help') }}" onclick="informationflag('privacy policy')">Privacy Policy </a> and
+                                                        <a class="text-decoration-underline" href="{{ url('/customer-help') }}" onclick="informationflag('term of use')">   Terms of Use</a>
                                                     </label>
                                                 </div>
                                                 <button type="button" ng-click="zakana()" value="Login"

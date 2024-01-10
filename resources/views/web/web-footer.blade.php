@@ -183,10 +183,10 @@
                                 <li class="list-inline-item mr-1"><a href="{{ $footerSocialIcons['twitterLink'] }}"
                                         class="text-body social-media" id="tictk" target="_blank">
                                         {{-- <i class="social-media footer-text-white fab fa-tiktok"></i> --}}
-                                        <img style="width: 25px;
+                                        <img style="width: 35px;
                                         padding: 0px;
                                         margin-bottom: 6px;"
-                                            src="{{ url('/assets-admin') }}/images/admin/tictok.png"
+                                            src="{{ url('/assets-admin') }}/images/admin/tiktok-black.png"
                                             class="rounded-circle  user_img social-media" alt="" />
                                     </a>
                                 </li>
@@ -415,7 +415,7 @@
         height: 44px;
         bottom: 155px;
         right: 26px;
-        background-color: #3d94b7;
+        background-color: #f9a7a9;
         color: #FFF;
         border-radius: 50px;
         text-align: center;
@@ -479,12 +479,12 @@
     .btn-my {
         color: white !important;
         border-color: #3d94b7;
-        background-color: #3d94b7;
+        background-color: #f4f2f3;
     }
 
     .btn-my:hover {
-        color: white;
-        background-color: #b73d94;
+        color: #0e0d21 !important;
+        background-color: #c0a9bd;
         border-color: #b73d94;
         outline: #b73d94;
     }

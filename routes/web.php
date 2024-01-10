@@ -74,6 +74,7 @@ Route::middleware(['CheckLoggedInStatus'])->group(function () {
     Route::get('/home', [HomeController::class, 'index']);
 
     Route::get('/Shop-All', [HomeController::class, 'store']);
+    Route::get('/Search-All', [HomeController::class, 'search']);
 
     Route::get('/blog-page', [HomeController::class, 'blogPage']);
     Route::get('/blog-detail/{slug}', [HomeController::class, 'blogDetails']);

@@ -88,8 +88,8 @@ class HomeController extends Controller
 
 
    		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
-        
-		
+
+
 		//dd($data['categoryProducts'][0]['CATEGORY_SLUG']);
 
    		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
@@ -355,6 +355,24 @@ class HomeController extends Controller
         // dd('ehllo');
        return view('web.store-all')->with ( $data );
    	}
+
+    //search
+    public function search() {
+
+        $data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
+
+        $data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
+
+     $data['routine'] = $this->getAllRouteByNameForWebiste();
+
+     $data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+
+     // dd($data);
+
+     $data['page'] = 'search';
+     // dd('ehllo');
+    return view('web.search-all')->with ( $data );
+    }
 
 
 
@@ -3150,12 +3168,15 @@ class HomeController extends Controller
    				echo json_encode ( $arrRes );
    				die ();
    			}
-            if (strlen($data['A_4']) < 11 || strlen($data['A_4']) > 14 ) {
-                $arrRes ['done'] = false;
-                $arrRes ['msg'] = 'Phone Number must be between 11 to 14 digits';
-                echo json_encode ( $arrRes );
-                die ();
-            }
+
+
+            if (!preg_match('/^[0-9]{9,16}$/',$data['A_4']) ) {
+				$arrRes ['done'] = false;
+				$arrRes ['msg'] = 'Phone Number Must Be Between 10 to 14';
+				echo json_encode ( $arrRes );
+				die ();
+			}
+
    			$userphone = $UserModel->getspecificUserByPhone1($data ['A_4'],$userId);
    			if(!empty($userphone)){
    				$arrRes['done'] = false;

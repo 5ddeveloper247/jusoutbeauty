@@ -1,3 +1,4 @@
+
 .pref-lang > div{
 	display: flex;
     width: 100px;
@@ -900,6 +901,9 @@ img.item.shop-shade {
 		flex: 0 0 auto;
 		z-index: 1;
 	}
+	.site_color {
+		background-color: #8ed1c9 !important;
+	}
 	.ag-courses-item_link {
 		display: block;
 		padding: 56px 26px !important;
@@ -1022,10 +1026,10 @@ img.item.shop-shade {
 		margin-left: -123px;
 	} */
 
-	.pro-details{
+	/* .pro-details{
 		height: 57rem !important;
 		overflow-y: auto;
-	}
+	} */
 
 	.header-hidden {
 		top: 125px !important;
@@ -1227,7 +1231,7 @@ img.item.shop-shade {
 	.yesno h2 {
 		padding: 7px;
 		text-align: center;
-		background-color: #FFF5EE;
+		background-color: #8ed1c9;
 		font-size: 18px;
 	}
 	.container-custom-slider{

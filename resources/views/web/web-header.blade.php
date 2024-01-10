@@ -145,7 +145,7 @@ $userId = session('userId');
     <header class="main-header navbar-light header-sticky header-sticky-smart position-absolute fixed-top home">
         <div id="topbar"
             class="d-none d-xl-flex align-items-center alert alert-dismissible fade show p-0 mb-0 rounded-0 border-0"
-            style="background: #3d94b7 !important;">
+            style="background: #8ed1c9 !important;">
             <div class="container p-2">
                 <p class="mb-0 fs-14 letter-spacing-005 text-uppercase text-center font-weight-500"
                     style="color: white;">COOL NEW COLOR: STERLING SO WORTH IT</p>
@@ -161,7 +161,7 @@ $userId = session('userId');
                     <nav class="navbar navbar-expand-xl px-0 py-2 py-xl-0 row no-gutters">
                         <div class="col-xl-2">
                             <a class="navbar-brand mr-0" href="{{ url('/home') }}">
-                                <img src="{{ url('/assets-web') }}/images/logo-pink.png" alt="Jusout"
+                                <img src="{{ url('/assets-web') }}/images/Logo1.png" alt="Jusout"
                                     style="position: relative;z-index: 999999">
                             </a>
                         </div>
@@ -627,12 +627,27 @@ $userId = session('userId');
                                         </a></li>
                                     <?php }?>
 
-                                    {{-- <li class="nav-item" data-toggle="tooltip" title="Search"><a
-                                            href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
-                                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass": "mfp-search-form mfp-move-from-top mfp-align-top"}'
-                                            class="nav-link nav-search d-flex align-items-center px-3"> <i
-                                                class="far fa-search"></i>
-                                        </a></li> --}}
+
+
+                                        {{-- saerch icon on pc --}}
+                                     <li class="nav-item" data-toggle="tooltip" title="Search">
+
+                                    <a href="javascript:;"  data-toggle="modal" data-target="#productselfi"
+                                    data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                                    "mfp-search-form mfp-move-from-top mfp-align-top"}'
+                                        class="nav-link nav-search d-flex align-items-center px-3">
+                                        <i class="far fa-search"></i>  </a>
+
+                                        {{--   <a href="{{ session('site') }}/Search-All"
+                                        {{-- data-gtf-mfp="true"
+                                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                                             "mfp-search-form mfp-move-from-top mfp-align-top"}'
+                                            class="nav-link nav-search d-flex align-items-center px-3">
+                                            <i  class="far fa-search"></i>
+                                        </a> --}}
+
+                                    </li>
+
                                     <li class="nav-item" data-toggle="tooltip" title="Wishlist">
                                         <a class="nav-link position-relative px-3 py-0"
                                             href="{{ url('/wishlist') }}">
@@ -683,6 +698,7 @@ $userId = session('userId');
 
                                 <?php } ?>
 
+
                                 <a class="dropdown-item ai-icon" href="{{ url('/wishlist') }}">
                                     <i class="far fa-star"></i>
                                     <span class="ml-2">Wishlist</span>
@@ -724,13 +740,59 @@ $userId = session('userId');
                                 <?php  } ?>
                             </div>
                         </li>
-                        <a href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
-                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass": "mfp-search-form mfp-move-from-top mfp-align-top"}'
+
+                        {{-- search button on mobile  --}}
+                        <a href="javascript:;"  data-toggle="modal" data-target="#productselfi"
+                        data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                        "mfp-search-form mfp-move-from-top mfp-align-top"}'
+
+                        class="nav-search d-block py-0" title="Search"><i
+                        class="far fa-search d-block d-xl-block"></i></a> </a>
+
+
+                         {{-- <a href="{{ url('/assets-web') }}/#search-popup" data-gtf-mfp="true"
+                            data-mfp-options='{"type":"inline","focus": "#keyword","mainClass":
+                            "mfp-search-form mfp-move-from-top mfp-align-top"}'
+
                             class="nav-search d-block py-0" title="Search"><i
-                                class="far fa-search d-block d-xl-none"></i></a>
+                            class="far fa-search d-block d-xl-block"></i></a> --}}
+
+
                     </nav>
                 </div>
             </div>
         </div>
     </header>
+
+
+    {{-- model for the search icon  --}}
+
     <input type="hidden" name="_token" id="csrf" value="{{ csrf_token() }}">
+
+         <div class="modal fade selfi-view" id="productselfi" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content p-0">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Search Your Desire Product </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body ">
+                          <div ng-show="selfi.ID == ''">
+                                <label style=" display: block !important;text-align:left;">Enter your Product name</label>
+                                <input type="text" id="name" name="name" ng-model="selfi['name']"
+                                    class="form-control mb-3" placeholder="Search in jusoutbeauty">
+                            </div>
+
+                                <a href="{{ session('site') }}/Search-All">   <button type="submit" class="btn btn-primary btn-block savebtn" ng-show="selfi.ID == ''"
+                                    ng-click="submitProductSelfi();">Search</button></a>
+
+
+                            <button type="button" class="btn btn-primary btn-block loaderbtn" disabled
+                                style="display: none"><i class="ft-rotate-cw spinner"></i> Processing</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>

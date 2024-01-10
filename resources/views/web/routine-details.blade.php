@@ -8,7 +8,7 @@
 $userId = session('userId');
 ?>
 @php
-use Illuminate\Support\Str;
+    use Illuminate\Support\Str;
 @endphp
 @include('web.web-header')
 <script>
@@ -19,10 +19,11 @@ use Illuminate\Support\Str;
     var subCategoryName = "<?php echo isset($subCategoryName['NAME']) ? $subCategoryName['NAME'] : ''; ?>"
 </script>
 <style>
-    .read-more-btn{
+    .read-more-btn {
         max-height: 18rem;
         overflow: hidden;
     }
+
     .accordion>.card>.card-header {
         border-radius: 0;
         margin-bottom: -1px;
@@ -33,24 +34,29 @@ use Illuminate\Support\Str;
         flex-wrap: wrap;
         border-radius: 5px;
     }
+
     .card-header.after-coll.collapsed {
         background-color: #F89880;
         color: white;
 
     }
+
     .card-header.after-coll {
         background-color: #000000;
         color: white;
 
     }
-    h4.card-title.border-0{
+
+    h4.card-title.border-0 {
         font-weight: 600;
-        color:white;
+        color: white;
         font-size: 1rem
     }
+
     .accordion .card-header a {
         border-bottom: 0px solid transparent !important;
     }
+
     .accordion .card-header:after {
         font-family: 'FontAwesome';
         content: "-";
@@ -58,12 +64,14 @@ use Illuminate\Support\Str;
         font-size: 26px;
         font-weight: bold
     }
+
     .accordion .card-header.collapsed:after {
         /* symbol for "collapsed" panels */
         content: "+";
         font-size: 26px;
         font-weight: bold
     }
+
     .filter-sidebarr {
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
@@ -113,17 +121,20 @@ use Illuminate\Support\Str;
     .all-products {
         height: 22rem
     }
-    p{
+
+    p {
         text-align: center
     }
 
-    .banner-font{
-		font-size: 100px
-	}
+    .banner-font {
+        font-size: 100px
+    }
+
     @media screen and (min-width: 0px) and (max-width: 614px) {
-        .banner-font{
+        .banner-font {
             font-size: 51px
         }
+
         .w-45px {
             width: 35px !important
         }
@@ -162,32 +173,56 @@ use Illuminate\Support\Str;
             /* background-size: 100% 100%; */
         }
     }
+
     .overlay {
-    position: relative;
-}
+        position: relative;
+    }
 
-.overlay::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
-    z-index: 1;
-}
+    .overlay::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Adjust the opacity as needed */
+        z-index: 1;
+    }
 
-.overlay-content {
-    position: relative;
-    z-index: 2;
-}
+    .overlay-content {
+        position: relative;
+        z-index: 2;
+    }
 
+    .breadcrumb-site {
+        position: absolute !important;
+        top: 50%;
+        bottom: 50%;
+        left: 35%
+    }
 
+    @media (max-width: 767px) {
+        .breadcrumb-site {
+            position: static !important;
+            top: auto;
+            bottom: auto;
+            left: auto;
+            text-align: center;
+            /* Center the breadcrumb on small screens */
+        }
+
+        .breadcrumb-item {
+            display: block;
+            margin: 0 auto;
+            /* Center the breadcrumb items individually */
+        }
+    }
 </style>
 <main ng-app="project1">
-    <?php $routineId = $routineById ;?>
+    <?php $routineId = $routineById; ?>
     {{-- <section class="py-10 mt-15 mt-15-67 bg-gray hero-section"
-        style="background-image: url(<?=$routineId[0]['IMAGE_DOWNPATH']?>) !important;
+        style="background-image: url(<?= $routineId[0]['IMAGE_DOWNPATH'] ?>) !important;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: 50%;
@@ -197,8 +232,8 @@ use Illuminate\Support\Str;
             ">
         <div class="container">
 
-            <h1 class=" mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
-            <p class="text-center text-white"><?=$routineId[0]['DESCRIPTION']?></p>
+            <h1 class=" mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?= $routineId[0]['NAME'] ?></h1>
+            <p class="text-center text-white"><?= $routineId[0]['DESCRIPTION'] ?></p>
             <p class="text-center text-white mx-4">{!! Str::limit($routineId[0]['DESCRIPTION'], 1100,false) !!}</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center align-items-center fs-15 mb-3">
@@ -211,33 +246,51 @@ use Illuminate\Support\Str;
         </div>
     </section> --}}
 
-    <section class="py-10 mt-15 mt-15-67 bg-gray hero-section overlay d-flex justify-content-center align-content-center"
-    style="background-image: url(<?=$routineId[0]['IMAGE_DOWNPATH']?>);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-        padding-top: 100px !important;
-        padding-bottom: 100px !important;
-        background-color: unset !important;
-        /* background-attachment:fixed; */
-        height:80vh;
-        ">
-    <div class="overlay-content container">
-        <h1 class="mb-2 text-center text-white banner-font" data-animate="fadeInRight"><?=$routineId[0]['NAME']?></h1>
-        {{-- <p class="text-center text-white"><?=$routineId[0]['DESCRIPTION']?></p> --}}
-        <div class="text-center text-white mx-4">
-            {!! $routineId[0]['DESCRIPTION'] !!}
+
+    <section class="py-10 mt-15 ">
+        <div class="container">
+            <div class="row">
+                <section class="col-md-6"
+                    style="display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;">
+                    <div class="routinetxt ">
+                    <h2 class="mb-2 text-center" data-animate="fadeInRight">
+                        <?= $routineId[0]['NAME'] ?>
+                    </h2>
+                    <div class="text-justify text-black mx-4">
+                        {!! $routineId[0]['DESCRIPTION'] !!}
+                    </div>
+                    </div>
+                </section>
+                <section class="col-md-6  hero-section hero-image"
+                    style="background-image: url(<?= $routineId[0]['IMAGE_DOWNPATH'] ?>);
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        object-fit: cover;
+                        background-position: center !important;
+                        padding-top: 100px !important;
+                        padding-bottom: 100px !important;
+                        background-color: unset !important;
+                        /* background-attachment:fixed; */
+                        height:75vh; position:relative">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3"
+                            style="">
+                            <li class="breadcrumb-item"><a class="text-decoration-none"
+                                    href="{{ session('site') }}/home" style="color: white; font-size: 30px">Home</a>
+                            </li>
+                            <li class="breadcrumb-item d-flex align-items-center"><a class="text-decoration-none"
+                                    style="color: white; font-size: 30px">Routine</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </section>
+            </div>
         </div>
-        {{-- <nav aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center align-items-center fs-15 mb-3">
-                <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ session('site') }}/routine">Routine</a>
-                </li>
-                <li class="breadcrumb-item d-flex align-items-center"><a class="text-decoration-none"></a>
-                </li>
-            </ol>
-        </nav> --}}
-    </div>
-</section>
+    </section>
+
 
 
     <section class="pb-6 inc_sec" ng-controller="projectinfo1">
@@ -350,57 +403,61 @@ use Illuminate\Support\Str;
                     </div> --}}
                     @if (!empty($getTypeNameLov))
 
-                    <div class="row">
+                        <div class="row">
 
-                        @foreach ($getTypeNameLov as $TypeName)
+                            @foreach ($getTypeNameLov as $TypeName)
+                                @if ($TypeName->steps != '')
+                                    <div class="col-12 text-center mb-8">
+                                        <h1 class="heading-font-routine text-uppercase">{{ $TypeName->TYPE_NAME }}</h1>
+                                    </div>
+                                    @php $i=1 @endphp
+                                    @foreach ($TypeName->steps as $StepsName)
+                                        <div class="col-6 col-lg-3 product productshop-listing mb-8 col-xl-3">
+                                            <div class="card border-0">
+                                                <div class="position-relative hover-zoom-in">
+                                                    {{-- productdetail --> removed after made url with href --}}
+                                                    <a href="{{ url('/') }}/Products/{{ $StepsName['CATEGORY_SLUG'] }}/{{ $StepsName['SUB_CATEGORY_SLUG'] ? $StepsName['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $StepsName['SLUG'] }}"
+                                                        class="d-block overflow-hidden"
+                                                        data-id="{{ $StepsName['PRODUCT_ID'] }}"
+                                                        data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
+                                                        data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
+                                                        data-name="<?= $StepsName['SLUG'] ?>"
+                                                        data-type="<?= $StepsName['CATEGORY_NAME'] ?>">
+                                                        <img src="{{ $StepsName['primaryImage'] }}" alt="Product 01"
+                                                            class="card-img-top all-products img-h60 img-h30-m image-active">
+                                                        <img src="{{ $StepsName['secondaryImage'] }}" alt="Product 01"
+                                                            class="card-img-top all-products img-h60 image-hover">
+                                                    </a>
 
-                        @if($TypeName->steps != '')
+                                                    <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
+                                                        <a href="javascript:;"
+                                                            class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-pick @if (isset($userId)) productdetail @else addto-cart @endif"
+                                                            data-id="{{ $StepsName['PRODUCT_ID'] }}" id="qckad"
+                                                            data-id="{{ $StepsName['PRODUCT_ID'] }}"
+                                                            data-category="{{ $StepsName['CATEGORY_SLUG'] }}"
+                                                            data-subcategory="{{ $StepsName['SUB_CATEGORY_SLUG'] }}"
+                                                            data-name="{{ $StepsName['SLUG'] }}" data-type=""
+                                                            data-quickAdd="{{ session('userId') }}">Add To Cart</a>
+                                                    </div>
+                                                </div>
+                                                {{-- productdetail --> removed after made url with href --}}
+                                                <div class="card-body pt-4 px-0 pb-0"
+                                                    data-id="{{ $StepsName['PRODUCT_ID'] }}"
+                                                    data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
+                                                    data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
+                                                    data-name="<?= $StepsName['SLUG'] ?>"
+                                                    data-type="<?= $StepsName['CATEGORY_NAME'] ?>">
+                                                    <a href="javascript:;"
+                                                        class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary ng-binding">
+                                                        STEP {{ $i++ }} </a>
 
-                            <div class="col-12 text-center mb-8">
-                                <h1 class="heading-font-routine text-uppercase">{{ $TypeName->TYPE_NAME }}</h1>
-                            </div>
-                            @php $i=1 @endphp
-                            @foreach ($TypeName->steps as $StepsName)
+                                                    <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading"
+                                                        style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                                        <a
+                                                            href="{{ url('/') }}/Products/{{ $StepsName['CATEGORY_SLUG'] }}/{{ $StepsName['SUB_CATEGORY_SLUG'] ? $StepsName['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $StepsName['SLUG'] }}">{{ $StepsName['NAME'] }}</a>
+                                                    </h3>
 
-                                <div class="col-6 col-lg-3 product productshop-listing mb-8 col-xl-3">
-                                    <div class="card border-0">
-                                        <div class="position-relative hover-zoom-in">
-                                            {{-- productdetail --> removed after made url with href --}}
-                                            <a href="{{ url('/') }}/Products/{{ $StepsName['CATEGORY_SLUG'] }}/{{ $StepsName['SUB_CATEGORY_SLUG'] ? $StepsName['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $StepsName['SLUG'] }}" class="d-block overflow-hidden"
-                                               data-id="{{ $StepsName['PRODUCT_ID'] }}"
-                                               data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
-                                                data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
-                                                data-name="<?= $StepsName['SLUG'] ?>" data-type="<?= $StepsName['CATEGORY_NAME'] ?>">
-                                                <img src="{{ $StepsName['primaryImage'] }}"
-                                                    alt="Product 01"
-                                                    class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="{{ $StepsName['secondaryImage'] }}"
-                                                    alt="Product 01" class="card-img-top all-products img-h60 image-hover">
-                                            </a>
-
-                                            <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                                <a href="javascript:;"
-                                                    class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-pick @if(isset($userId)) productdetail @else addto-cart @endif"  data-id="{{ $StepsName['PRODUCT_ID'] }}"
-                                                    id="qckad" data-id="{{ $StepsName['PRODUCT_ID'] }}" data-category="{{ $StepsName['CATEGORY_SLUG'] }}"
-                                                    data-subcategory="{{ $StepsName['SUB_CATEGORY_SLUG'] }}"
-                                                    data-name="{{ $StepsName['SLUG'] }}" data-type="" data-quickAdd="{{ session('userId') }}">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                        {{-- productdetail --> removed after made url with href --}}
-                                        <div class="card-body pt-4 px-0 pb-0"
-                                                data-id="{{ $StepsName['PRODUCT_ID'] }}"
-                                                data-category="<?= $StepsName['CATEGORY_SLUG'] ?>"
-                                                data-subCategory="<?= $StepsName['SUB_CATEGORY_SLUG'] ?>"
-                                                data-name="<?= $StepsName['SLUG'] ?>" data-type="<?= $StepsName['CATEGORY_NAME'] ?>" >
-                                            <a href="javascript:;"
-                                                class="text-muted fs-12 font-weight-500 text-uppercase mb-1 card-title lh-14 hover-primary ng-binding">
-                                                STEP {{ $i++ }} </a>
-
-                                            <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375 product-heading" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                                <a href="{{ url('/') }}/Products/{{ $StepsName['CATEGORY_SLUG'] }}/{{ $StepsName['SUB_CATEGORY_SLUG'] ? $StepsName['SUB_CATEGORY_SLUG'] . '/' : '' }}{{ $StepsName['SLUG'] }}" >{{ $StepsName['NAME'] }}</a>
-                                            </h3>
-
-                                            {{-- <div class="row">
+                                                    {{-- <div class="row">
                                                 <div class="col-sm-6 col-7">
                                                     <p class="text-primary mb-0 card-title lh-14375"> <span
                                                             class="ng-binding">$123.00</span> </p>
@@ -412,47 +469,56 @@ use Illuminate\Support\Str;
                                                 </div>
                                             </div> --}}
 
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12 col-12">
-                                                <div id="accordion_{{ $StepsName['PRODUCT_ID'] }}" class="accordion">
-                                                    <div class="card mb-0 rounded">
-                                                        <div class="card-header after-coll collapsed how_to_user" data-toggle="collapse" href="#collapse_{{ $StepsName['STEP_ID'] }}">
-                                                            <h4 class="card-title m-0 border-0" style="display: inline-block;">
-                                                                HOW TO USE
-                                                            </h4>
-                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-12">
+                                                        <div id="accordion_{{ $StepsName['PRODUCT_ID'] }}"
+                                                            class="accordion">
+                                                            <div class="card mb-0 rounded">
+                                                                <div class="card-header after-coll collapsed how_to_user"
+                                                                    data-toggle="collapse"
+                                                                    href="#collapse_{{ $StepsName['STEP_ID'] }}">
+                                                                    <h4 class="card-title m-0 border-0"
+                                                                        style="display: inline-block;">
+                                                                        HOW TO USE
+                                                                    </h4>
+                                                                </div>
 
-                                                        <div id="collapse_{{ $StepsName['STEP_ID'] }}" class="card-body collapse how_to_user" data-parent="#accordion_{{ $StepsName['PRODUCT_ID'] }}" >
-                                                            <p class="align-items-center read-more read-more-btn">{{ $StepsName['DESCRIPTION'] }}
-                                                            </p>
-                                                            <a  id="remove_{{ $StepsName['PRODUCT_ID'] }}" class="read-more-click-btn" style="float:right;cursor: pointer;" onclick="readmore('remove_{{ $StepsName['PRODUCT_ID'] }}')">Read more >></a>
-                                                        </div>
+                                                                <div id="collapse_{{ $StepsName['STEP_ID'] }}"
+                                                                    class="card-body collapse how_to_user"
+                                                                    data-parent="#accordion_{{ $StepsName['PRODUCT_ID'] }}">
+                                                                    <p
+                                                                        class="align-items-center read-more read-more-btn">
+                                                                        {{ $StepsName['DESCRIPTION'] }}
+                                                                    </p>
+                                                                    <a id="remove_{{ $StepsName['PRODUCT_ID'] }}"
+                                                                        class="read-more-click-btn"
+                                                                        style="float:right;cursor: pointer;"
+                                                                        onclick="readmore('remove_{{ $StepsName['PRODUCT_ID'] }}')">Read
+                                                                        more >></a>
+                                                                </div>
 
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
+                                    @endforeach
+                                @endif
                             @endforeach
 
-                        @endif
-                        @endforeach
-
-                        @endif
-                        @if(!isset($i))
+                    @endif
+                    @if (!isset($i))
                         <div class="col-md-12 ">
                             <p class="text-center read-more read-more-btn">NO ROUTINE ADDED ...
                             </p>
                         </div>
+                    @endif
 
-                        @endif
-
-                    </div>
                 </div>
             </div>
+        </div>
         </div>
 
         {{-- <div class="canvas-sidebar filter-canvas">
@@ -572,18 +638,19 @@ use Illuminate\Support\Str;
     });
 </script>
 <script>
-    function readmore($id){
-        if($("#read-more_"+$id).hasClass('read-more-btn')){
+    function readmore($id) {
+        if ($("#read-more_" + $id).hasClass('read-more-btn')) {
 
             $(".read-more-click-btn").text('Read Less <<');
-            $("#read-more_"+$id).removeClass('read-more-btn');
-        }else{
+            $("#read-more_" + $id).removeClass('read-more-btn');
+        } else {
             $(".read-more-click-btn").text('Read More >>');
-            $("#read-more_"+$id).addClass('read-more-btn');
+            $("#read-more_" + $id).addClass('read-more-btn');
         }
 
 
     }
+
     function close_topbar() {
 
         $("#topbar").removeClass('d-xl-flex');
