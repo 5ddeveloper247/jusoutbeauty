@@ -29,6 +29,11 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         width: 6vw;
 
     }
+	.nav-pills .nav-link.active{
+		background-color: #f9a7a9;
+		
+	}
+	
     .custom-h2{
         font-size: 18px;
         text-transform: capitalize;
@@ -262,12 +267,13 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         text-transform: capitalize !important;
     }
     .border-active-primary.active, .border-active-primary:hover.active, .border-active-primary:focus.active, .border-active-primary:hover {
-	    border-color: #b73d94 !important;
+	    border-color: #8ed1c9 !important;
 	}
 	.uses_img{
 		width: 100% !important;
     	height: 32rem;
 	}
+	
     @media only screen and (max-width: 480px){
     	.uses_img{
 			width: 100% !important;
@@ -599,12 +605,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 				</div>
 			</div>
 		</section>
+<hr>
 
-
-		<section class="pb-11 pb-lg-6">
+		<section class="pb-11 pb-lg-6 mt-8">
 			<div class="container container-custom">
 				<div class="collapse-tabs">
-					<ul class="nav nav-pills d-md-flex d-block "
+					<ul class="nav nav-pills d-md-flex d-block px-8 text-center"
 						id="pills-tab" role="tablist">
 
 						<?php if(isset($bundleLines) && $bundleLines != null){
@@ -612,7 +618,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 							<?php foreach ($bundleLines as $line){ ?>
 								<li class="nav-item border-bottom"><a
-									class="nav-link <?php echo $i == 0 ? 'active show': '';?> custom-h2 px-0 pb-3 mr-md-10 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
+									class="nav-link <?php echo $i == 0 ? 'active show': '';?> custom-h2 px-5 pb-3 mr-md-10 mr-4 text-active-primary border-active-primary rounded-0 lh-14375"
 									id="tab_<?= $line['BUNDLE_LINE_ID'];?>" data-toggle="pill"
 									href="#pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" role="tab"
 									aria-controls="pills-tabs-<?= $line['BUNDLE_LINE_ID'];?>" aria-selected="false"><?= $line['NAME']; ?></a></li>
@@ -620,7 +626,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						<?php }?>
 
 					</ul>
-					<div class="tab-content bg-white-md shadow-none pt-md-2 px-0 m-0">
+					<div class="tab-content bg-white-md shadow-none px-0 m-0">
 						<div id="collapse-tabs-accordion-01">
 
 							{{-- features --}}
@@ -748,7 +754,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 															<?php }?>
 
 														</div>
-														<div class="col-md-6 scroll-to-see bundleDetailAboutSection">
+														<div class="col-md-6 scroll-to-see bundleDetailAboutSection text-justify" style="padding-right:70px">
 														<h2 class="mb-2 font-weight-500 fs-20"><?= $line['DESCRIPTION_TITLE']; ?></h2>
                                                         <p>
                                                             <?= $line['DESCRIPTION']; ?>
@@ -813,7 +819,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-4 pl-7 scroll-to-see bundleDetailVideoSection" style="">
+																<div class="col-md-4 pl-7 text-justify scroll-to-see bundleDetailVideoSection" style="padding-right: 65px !important">
 																	<h2 class="mb-5"><?= isset($line['videoDetails']['V_1']) ? $line['videoDetails']['V_1'] : '' ?></h2>
 																	<p><?= isset($line['videoDetails']['V_2']) ? $line['videoDetails']['V_2'] : '' ?></p>
 																</div>
@@ -967,7 +973,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 			                                                                        		<img src="<?= $row['DOWN_PATH'] != '' ? $row['DOWN_PATH'] : url('assets-web').'/images/how-to-step-1.webp' ?>" alt="Image" class="card-img uses_img">
 			                                                                        <?php }}?>
 
-																					<div class="card-body pt-6 px-0 pb-0 text-center">
+																					<div class="card-body pt-6 px-0 pb-0 text-center bg-white px-2" style="color:#0e0d21">
 																						<a href="#" class="fs-18 font-weight-500 lh-1444"><?= $row['USES_TITLE']; ?></a>
 																						<p class="mb-6"><?= $row['USES_DESCRIPTION']; ?></p>
 																					</div>
@@ -1001,7 +1007,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 
 																	<?php }?>
 																</div>
-																<div class="col-md-6 px-md-6 pl-xl-7 pr-xl-7 scroll-to-see productDetailLutiesSection" style="">
+																<div class="col-md-6 px-md-6 pl-xl-7 pr-xl-7 text-justify scroll-to-see productDetailLutiesSection" style="padding-right:65px !important">
 																	<h3 class="fs-42 mb-5">Lutie's Hint</h3>
 																	<?= $line['CLINICAL_NOTE']; ?>
 																</div>
@@ -1183,7 +1189,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 						id="pillsQuestionsTab">Questions</a></li>
 				</ul>
 				<div class="container container-custom rating-cont-prod-detail" id="">
-					<div class="row">
+			<!-- row -->
+				<div class="row">
 						<div class="col-3 d-none d-md-block d-lg-block d-xl-block d-xxl-block"></div>
 						<div class="col-3 review_sec p-0">
 							<div class="border-right" style="">
@@ -1209,10 +1216,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									<span class="d-inline-block border-right pr-1 mr-1">5.0</span>See @{{ratingfive}} Reviews
 								</p>
 							</div>
-							<div class="mt-6 mt-md-9">
-								<a href="javascript:;" style="font-size: 11px;" class="btn btn-outline-primary rev-btnns" id="writeReview_btn">Write a Review</a>
-			<!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
-							</div>
+							
 						</div>
 
 						<div class="col-3 question_sec">
@@ -1273,15 +1277,22 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 									<div>@{{ratingone}}</div>
 								</div>
 							</div>
-
-							<div class="text-center mt-6 mt-md-9">
-								<a href="javascript:;" class="btn btn-outline-primary rev-btnns" id="writeQuestion_btn">Write Your Question</a>
-							</div>
 						</div>
 						<div class="col-3 d-none d-md-block d-lg-block d-xl-block d-xxl-block"></div>
 					</div>
-
 				</div>
+<!-- row -->
+<div class="row">
+	<div class="col-3"></div>
+	<div class=" col-3 mt-6 mt-md-9">
+								<a href="javascript:;" style="font-size: 11px;" class="btn btn-outline-primary rev-btnns" id="writeReview_btn">Write a Review</a>
+			<!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
+							</div>
+							<div class="col-3 text-center mt-6 mt-md-9">
+								<a href="javascript:;" class="btn btn-outline-primary rev-btnns" id="writeQuestion_btn">Write Your Question</a>
+							</div>
+							<div col-3></div>
+</div>
 				<div class="p-0 m-0" id="">
 					<div class="" id="pillsReviews_container">
 						<div class="card border-0 mt-9 form-revieww mw-900 mx-auto" id="writeReview_container" style="display: none;">
