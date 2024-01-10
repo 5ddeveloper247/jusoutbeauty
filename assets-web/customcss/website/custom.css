@@ -4,6 +4,10 @@ body {
 /* .pro{
 	height:44px !important;
 } */
+a{
+	color: #0e0d21;
+}
+
 .whoweare {
 	padding-right: 60px !important;
 	text-align: justify;
@@ -393,10 +397,6 @@ input[type=number] {
 .box.shade:hover {
 	transform: unset !important;
 }
-
-/* #pills-recently-viewed{
-	max-height: 475px;
-} */
 .font-size-banner {
 	font-size: 100px;
 }
@@ -411,6 +411,9 @@ hr {
 .primary-summary-inner.sticky,
 .form-review-inner.sticky {
 	top: 80px !important;
+}
+.primary-summary-inner{
+	padding-right:60px;
 }
 
 .box-shadow-bottom {
@@ -597,7 +600,6 @@ a.bg-hover-primary:hover {
 	/* height: 75vh !important; */
 	overflow: auto;
 }
-
 /* .pro-details{
 		height: 115vh !important;
 	} */
@@ -606,8 +608,7 @@ a.bg-hover-primary:hover {
 	overflow: auto;
 }
 
-.productDetailVideoSection,
-.bundleDetailVideoSection {
+.productDetailVideoSection{
 	height: 78vh;
 	overflow-y: auto;
 }
@@ -616,30 +617,10 @@ a.bg-hover-primary:hover {
 	height: 99vh;
 	overflow: auto;
 }
-
-/* home new css */
-/* /////////////////new////////////////////////////////////// */
-
-/* .sticky-area .container.container-xxl {
-    max-width: 1800px !important;
-} */
-/* @media screen and (min-width: 1650px){
-    .productDetailHeading {
-        margin-top: 30px;
-    }
-} */
-/* @media screen and (min-width:1500px){
-    .productDetailSubscriptionSection{
-        height:70vh;
-        overflow-y:auto;
-    }
-
-} */
-
-/* .slick-slider {
-    margin-left: 40px !important;
-    margin-right: 40px !important;
-} */
+.bundleDetailVideoSection {
+	height: 70vh;
+	overflow: auto;
+}
 /*---Button Color Change----*/
 .btn-white {
 	color: #fff !important;
@@ -668,15 +649,6 @@ a.bg-hover-primary:hover {
 	color: #0e0d21 !important;
 	background-color: #f4f2f3 !important;
 }
-
-/* .btn-outline-primary:focus,.btn-outline-primary:active {
-    color: white;
-    background-color: #60686b;
-} */
-
-/* .border-left:hover{
-	background-color: #3d94b7;
-} */
 
 /* change uparrow key to blue */
 .uparrow {
@@ -754,15 +726,6 @@ a.bg-hover-primary:hover {
 	background-color: #c0a9bd !important;
 }
 
-/* .icon{
-	color:#60686b;
-}
-
-.icon:hover{
-	color:white;
-} */
-
-
 .iconbg {
 	background-color: #f3c9b3;
 }
@@ -837,16 +800,6 @@ a.bg-hover-primary:hover {
 .border-left:hover {
 	color: #3d94b7;
 }
-
-
-/* .text-primary {
-	color:#60686b;
-}
-
-a.text-primary:hover,
-a.text-primary:focus {
-    color: white;
-} */
 
 .bgiconcolor {
 	color: #f3c9b3;
@@ -967,7 +920,25 @@ p.text-center.mb-0.text-white.hoverimages-text {
 	font-weight: normal;
 	text-align: left;
 }
-
+img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpicture2{
+	height:26rem !important;
+}
+.bundleDetailAboutSection{         /*for product bundle section*/
+	height: 75vh;
+}
+.productDetailSubscriptionSection{
+	height: 70vh;
+	overflow: auto;
+}
+.ag-courses-item_link{
+	background-color: #f9a7a9 !important;
+}
+.ag-courses-item_bg{
+	background-color: #8ed1c9 !important;
+}
+.inc_dark_prod_detail{
+	background-color: #f9a7a9 !important;
+} /*for product bundle section*/
 @media screen and (min-width: 0px) and (max-width: 414px) {
 
 	.img-h10 {
@@ -1420,14 +1391,17 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		overflow-y: auto;
 	}
 
-	.productDetailVideoSection,
-	.bundleDetailVideoSection {
+	.productDetailVideoSection {
 		height: 54vh;
 		overflow: auto;
 	}
 
 	.productDetailLutiesSection {
 		height: 20vh;
+		overflow: auto;
+	}
+	.bundleDetailVideoSection{
+		height: 79vh;
 		overflow: auto;
 	}
 }
@@ -1458,10 +1432,13 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		overflow-y: auto;
 	}
 
-	.productDetailVideoSection,
-	.bundleDetailVideoSection {
+	.productDetailVideoSection {
 		height: 92vh;
 		overflow-y: auto;
+	}
+	.bundleDetailVideoSection{
+		height: 70vh;
+		overflow: auto;
 	}
 
 	/* .productDetailsection1{
@@ -1603,7 +1580,18 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		height: 99vh;
 		overflow: auto;
 	}
-	
+	.bundleDetailAboutSection{
+		height:119vh;
+		overflow: auto;
+	}
+	.bundleDetailVideoSection{
+		height: 80vh;
+		overflow: auto;
+	}
+	.productDetailSubscriptionSection{
+		height: 100vh;
+		overflow: auto;
+	}
 }
 
 @media screen and (min-width:1450px) {
@@ -1642,8 +1630,7 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		overflow-y: auto;
 	}
 
-	.productDetailVideoSection,
-	.bundleDetailVideoSection {
+	.productDetailVideoSection {
 		height: 76vh;
 		overflow-y: auto;
 	}
@@ -1654,6 +1641,10 @@ p.text-center.mb-0.text-white.hoverimages-text {
 	input#quantity {
 		padding: 19px 10px;
 
+	}
+	.bundleDetailVideoSection{
+		height: 75vh;
+		overflow: auto;
 	}
 
 	img.img-home-pay {
@@ -1817,10 +1808,14 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		overflow-y: auto;
 	}
 
-	.productDetailVideoSection,
-	.bundleDetailVideoSection {
+	.productDetailVideoSection
+	 {
 		height: 98vh;
 		overflow-y: auto;
+	}
+	.bundleDetailVideoSection{
+		height:90vh;
+		overflow: auto;
 	}
 
 	input#quantity {
@@ -2243,8 +2238,8 @@ p.text-center.mb-0.text-white.hoverimages-text {
 	}
 
 	img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpicture2 {
-		height: 20rem !important;
-		width: 55% !important;
+		height: 29rem !important;
+		width: 52% !important;
 		margin-top: 260px !important;
 		margin-left: -212px !important;
 	}
@@ -2334,24 +2329,27 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		overflow-y: auto;
 	}
 
-	.productDetailVideoSection,
-	.bundleDetailVideoSection {
+	.productDetailVideoSection {
 		height: 79vh;
 		overflow-y: auto;
 	}
+	.bundleDetailVideoSection{
+		height: 79vh;
+		overflow: auto;
+	}
 
 	.productDetailLutiesSection {
-		height: 90vh;
+		height: 91vh;
 		overflow: auto;
 	}
 
 	.bundleDetailAboutSection {
-		height: 78vh;
+		height: 81vh;
 		overflow-y: auto;
 	}
 
 	.productDetailSubscriptionSection {
-		height: 78vh;
+		height: 93vh;
 		overflow-y: auto;
 	}
 
@@ -2362,8 +2360,7 @@ p.text-center.mb-0.text-white.hoverimages-text {
 
 @media screen and (min-width:2400px) {
 
-	.productDetailVideoSection,
-	.bundleDetailVideoSection {
+	.productDetailVideoSection{
 		height: 71vh;
 		overflow-y: auto;
 	}
@@ -2372,8 +2369,23 @@ p.text-center.mb-0.text-white.hoverimages-text {
 		height: 74vh;
 		overflow-y: auto;
 	}
+	.bundleDetailAboutSection{
+		height: 64vh;
+		overflow: auto;
+	}
+	.bundleDetailVideoSection {
+		height: 70vh;
+		overflow: auto;
+	}
+	.productDetailSubscriptionSection{
+		height: 74vh;
+		overflow: auto;
+	}
 	
 }
 .lh-14375-2{
 	height: 41px;
+}
+.spot-section{
+	background-color: #8ed1c9;
 }
