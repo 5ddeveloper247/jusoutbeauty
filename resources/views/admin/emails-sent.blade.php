@@ -11,7 +11,7 @@
         ***********************************-->
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid">
-                <div class="page-titles">
+                <div class="page-titles mb-0">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Sent Email</a></li>
 					</ol>

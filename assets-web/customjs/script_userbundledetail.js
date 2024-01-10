@@ -357,7 +357,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
     $scope.selectedShadeImg_s = '';
 
     $scope.chooseBundleProdShade = function(lineId, prodShadeId, shadeId, productId, shadeName, primaryImg, secondaryImg){
-    	
+
     	$(".shade_chooser"+lineId).removeClass('shade-active');
     	$("#shadeAnchor_"+prodShadeId).addClass('shade-active');
 
@@ -400,7 +400,7 @@ $scope.subs_id = '';
 		 if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			 $('#learnmore_pop').modal('show');
 		 }else{
-			 toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			 toastr.error('..Choose subscription first.....', '', {timeOut: 3000})
 		 }
 
 	 }
@@ -676,7 +676,7 @@ $scope.subs_id = '';
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
-			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			toastr.error('..Choose subscription first......', '', {timeOut: 3000})
 		}
 	}
 	$scope.hideSubscrptionDetailModal = function(){

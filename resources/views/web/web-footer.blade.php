@@ -477,13 +477,13 @@
     }
 
     .btn-my {
-        color: white !important;
+        color: #0e0d21 !important;
         border-color: #3d94b7;
         background-color: #f4f2f3;
     }
 
     .btn-my:hover {
-        color: #0e0d21 !important;
+        color: white !important;
         background-color: #c0a9bd;
         border-color: #b73d94;
         outline: #b73d94;
@@ -492,7 +492,7 @@
     .btn-my:focus,
     .btn-my:active {
         color: white;
-        background-color: #b73d94;
+        /* background-color: #b73d94; */
         border-color: #b73d94;
         outline: #b73d94;
     }
@@ -1373,7 +1373,7 @@
 <!-- jquery file upload plugin  -->
 <script src="{{ url('/public') }}/third_party/file-upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="{{ url('/public') }}/third_party/file-upload/js/jquery.fileupload.js"></script>
-
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     var site = "<?php echo session('site'); ?>";
     var checkoutUrl = "<?php echo url('/checkout'); ?>";
@@ -1456,5 +1456,35 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
+<script>
+    $( function() {
+      var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+      ];
+      $( ".tags" ).autocomplete({
+        source: availableTags
+      });
+    } );
+    </script>
 </html>

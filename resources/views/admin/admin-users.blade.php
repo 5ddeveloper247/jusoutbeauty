@@ -13,7 +13,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                 <!-- row -->
 				<div class="row mt-4">
                 	<div class="col-6 ">
-                		<div class="page-titles pt-0 pb-0 mb-0">
+                		<div class="page-titles pt-0 pb-0 mb-0 mt-1">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item active"><a href="javascript:void(0)">Admin Users</a></li>
 							</ol>
@@ -23,7 +23,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 
                     </div>
                    	<div class="col-3">
-                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3 float-left" href="javascript:void(0)" ng-click="addNew();">Add new Admin</a>
+                       <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3" href="javascript:void(0)" ng-click="addNew();">Add new Admin</a>
                    	</div>
                 </div>
 
