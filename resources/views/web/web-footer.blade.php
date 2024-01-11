@@ -1361,6 +1361,10 @@
 </form>
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
 <!-- angular files -->
 <script src="{{ url('/public') }}/third_party/angular/angular.min.js"></script>
 <script src="{{ url('/public') }}/third_party/angular/drag.js"></script>
@@ -1380,6 +1384,29 @@
 </script>
 <script src="{{ url('/assets-web') }}/customjs/common.js?v={{ time() }}"></script>
 <script>
+
+    // function searchAllNames(){
+
+    //     $.ajax({
+    //         method  : "GET",
+    //         url: site+"/search-all-names",
+    //         success: function(response){
+    //             // data =[];
+    //             // $.each( response, function( index, value ){
+    //             //     data.push(value.NAME);
+    //                 console.log(response);
+    //                  startautosuggestion(response);
+    //         }
+    //     });
+    // }
+
+    //         function startautosuggestion(availableTags){
+
+    //             $( ".tags" ).autocomplete({
+    //                 source: availableTags
+    //             });
+    //         }
+
     function menutoggle(i) {
 
         if ($("#menuicon_" + i).hasClass('fa-plus')) {
@@ -1456,35 +1483,4 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<script>
-    $( function() {
-      var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-      ];
-      $( ".tags" ).autocomplete({
-        source: availableTags
-      });
-    } );
-    </script>
-</html>
+

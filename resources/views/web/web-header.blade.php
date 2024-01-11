@@ -43,10 +43,16 @@ $userId = session('userId');
     <link href="{{ url('/assets-web') }}/customcss/website/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('/assets-web') }}/customcss/website/flaticon.css">
     <link rel="stylesheet" href="{{ url('/assets-web') }}/customcss/website/ionicons.min.css">
-
     <link rel="stylesheet" href="{{ url('/public') }}/third_party/toastr/css/toastr.min.css" />
-
     <link rel="icon" href="{{ url('/assets-web') }}/images/favicon.png">
+
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https:/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@">
@@ -783,8 +789,8 @@ $userId = session('userId');
                                <div class="modal-body ">
                                  <div >
                                        <label style=" display: block !important;text-align:left;">Enter your Product name</label>
-                                       <input type="text" id="name" name="name" ng-model="selfi['name']"
-                                           class="form-control mb-3" placeholder="Search in jusoutbeauty">
+                                       <input type="search"  id="name" name="name" ng-model="selfi['name']"
+                                           class="form-control tags mb-3" placeholder="Search in jusoutbeauty">
                                    </div>
 
                                        <a href="">  <button type="submit" class="btn btn-primary btn-block savebtn"

@@ -171,6 +171,8 @@
             }
         }
     </style>
+
+
     {{-- @dd('after style tag') --}}
     <main ng-app="project1">
         <section class="py-10 mt-15 ">
@@ -199,6 +201,8 @@
                                 </li>
                                 <li class="breadcrumb-item d-flex align-items-center">
                                     <a class="text-decoration-none" style="color: white; font-size: 30px">Search  : <span  id='namesearchtxt'></span></a>
+
+
                                 </li>
 
                             </ol>
