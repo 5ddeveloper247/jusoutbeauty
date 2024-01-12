@@ -1,5 +1,7 @@
+
 @include('web.web-header')
 <style>
+   
     @media only screen and (max-width: 599px) {
         .subs_pag_subs {
             height: 350px;
@@ -20,6 +22,12 @@
             background-color: #f9f9f9;
             padding-top:183px;
             padding-bottom:183px
+        }
+        .subs_pag_subs {
+            height: 80vh;
+        }
+        .subs-heading{
+            height:80vh;
         }
 
 </style>
@@ -836,6 +844,42 @@
     </div>
     </div>
 </main>
+
+<section>
+<div class="container mt-5">
+ 
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div class="">
+   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+   </div>
+    <!-- Carousel -->
+ 
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets-web/images/about-us-01.jpg" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="assets-web/images/about-us-02.jpg" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="assets-web/images/about-us-03.jpg" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="assets-web/images/about-us-04.jpg" class="d-block w-100" alt="Slide 2">
+      </div>
+    </div>
+   
+  </div>
+</div>
+</section>
+<br>
 @include('web.web-footer')
 {{-- <script src="{{ url('/assets-web') }}/customjs/script_userhome.js?v={{time()}}"></script> --}}
 <script src="{{ url('/assets-web') }}/customjs/script_subscription.js?v={{time()}}"></script>
@@ -846,6 +890,5 @@
         $("#content").css('padding-top','77px');
         // $("#details-header").removeClass('mt-15');
         // $("#details-header").addClass('mt-11');
-
     }
 </script>
