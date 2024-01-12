@@ -768,7 +768,7 @@
                                                     <div class="col-md-6">
                                                         <h2 class="mb-2">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
-                                                        <div class="productDetailSubscriptionSection">
+                                                        <div class="text-justify productDetailSubscriptionSection">
                                                             <p class="mb-6 ">
                                                                 {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}
                                                             </p>
@@ -1063,8 +1063,8 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7 productDetailLutiesSection"
-                                                                style="padding-right:60px !important;">
+                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7 text-justify productDetailLutiesSection"
+                                                                style="padding-right:60px !important; ">
                                                                 <h2 class="mb-2">Lutie's Hint</h2>
                                                                 <p class="">
                                                                     <?= $productDetails['CLINICAL_NOTE'] ?></p>
