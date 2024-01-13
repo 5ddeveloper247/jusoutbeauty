@@ -455,19 +455,16 @@ $userId = session('userId');
 
 
 
+$(document).on('mouseover', '.imghov', function() {
 
-// // 112233
+$(this).find(".imghov1").addClass('d-none');
+$(this).find(".imghov2").removeClass('d-none')
 
-// $(document).on('mouseover', '.imghov', function() {
-
-//     $(".imghov1").addClass('d-none');
-//     $(".imghov2").removeClass('d-none')
-
-// });
-// $(document).on('mouseout', '.imghov', function() {
-//     $(".imghov1").removeClass('d-none');
-//     $(".imghov2").addClass('d-none')
-// });
+});
+$(document).on('mouseout', '.imghov', function() {
+$(this).find(".imghov1").removeClass('d-none');
+$(this).find(".imghov2").addClass('d-none')
+});
 
 
 
