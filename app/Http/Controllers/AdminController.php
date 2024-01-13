@@ -1042,6 +1042,7 @@ class AdminController extends Controller
 		// print_r('<pre>');
         // print_r($data['adminMenu']);
         // exit();
+        // dd($data['adminMenu']);
    		return view('admin.dashboard')->with($data);
    	}
 

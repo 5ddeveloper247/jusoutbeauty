@@ -503,7 +503,13 @@
               </div>
             </div>
           </div>
-          <div class="row">
+
+
+            @php
+                $check = '';
+            @endphp
+{{-- 112233 --}}
+          <div class="row <?php echo $check ?>">
             <div class="col-xl-12">
               <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
                 <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Admin Users</h4>

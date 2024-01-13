@@ -357,6 +357,26 @@ class HomeController extends Controller
    	}
 
   //search
+
+
+//   public function searchalistjax(){
+//     $result = DB::table('jb_product_tbl')->select('NAME')->where(['STATUS'=>'active','IS_DELETED'=>'0'])->get();
+
+//     return response()->json($result);
+// }
+    // public function searchalistjax(){
+
+
+    //     $result = DB::table('jb_product_tbl')->select('NAME')->where('status','0')->get();
+    //     $data =  [];
+    //     foreach($result as $item){
+    //         $data[] =$item['name'];
+    //     }
+    //     return $data;
+    // }
+
+
+
   public function search(Request $request) {
 
     $data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();

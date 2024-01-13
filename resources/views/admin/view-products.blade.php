@@ -1,4 +1,10 @@
 @include('admin.admin-header')
+<style>
+    ul.note-dropdown-menu.dropdown-menu.note-check.dropdown-fontsize.show{
+        max-height: 200px;
+        overflow: auto
+    }
+</style>
 <script>
     var userId = '<?php echo session('userId'); ?>';
     var site = '<?php echo session('site'); ?>';
@@ -1347,8 +1353,7 @@
                                         <div class="row">
 
                                             <div class="col-sm-12 mb-2">
-                                                <label class="col-form-label"><b>Description</b> </label>
-
+                                                <label class="col-form-label"><b>Description.</b> </label>
                                                 <div class="summernote" id="p43"></div>
                                             </div>
                                         </div>

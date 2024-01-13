@@ -1140,16 +1140,16 @@ class ProductModel extends Model
     		$where =array(['a.CATEGORY_ID','=',$catId]);
     	}
 
-    	$where = array_merge($where, array(['jct.STATUS','=','active']));
-//     	$where = array_merge($where, array(['jsct.STATUS','=','active']));
-//     	$where = array_merge($where, array(['jssct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jsct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jssct.STATUS','=','active']));
 
     	$result = DB::table('jb_product_tbl as a')->where('a.IS_DELETED', 0)->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     	->leftJoin ( 'jb_product_shades_tbl as jpst', 'a.PRODUCT_ID', '=', 'jpst.PRODUCT_ID' )
     	->leftJoin ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
-    	->where($where)
+    	->where('a.STATUS', 'active')->where('a.CATEGORY_ID', 8)
     	->orderBy('a.PRODUCT_ID','asc')->groupBy('a.PRODUCT_ID')->get();
 
 //     	    	$query = DB::getQueryLog(); dd($query);
@@ -1241,8 +1241,10 @@ class ProductModel extends Model
     			$k = 1;
     		}
     		$k++;
+            $productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
+            $arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
-    		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
+            $productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
     		$arrRes[$i]['images'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "PRODUCT_IMG");
 
@@ -1785,23 +1787,23 @@ class ProductModel extends Model
     	DB::enableQueryLog();
     	$userId = session('userId');
 
-		$where =array(['a.CATEGORY_ID','!=', '8']); // for nutrition check
+		// $where =array(['a.CATEGORY_ID','!=', '8']); // for nutrition check
 
-    	$where = array_merge($where, array(['a.STATUS','=','active']));
-    	$where = array_merge($where, array(['jct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['a.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jct.STATUS','=','active']));
 
-    	// $where = array_merge($where, array(['jsct.STATUS','=','active']));
-    	// $where = array_merge($where, array(['jssct.STATUS','=','active']));
+    	// // $where = array_merge($where, array(['jsct.STATUS','=','active']));
+    	// // $where = array_merge($where, array(['jssct.STATUS','=','active']));
 
 
-    	if($shadeId != ''){
-    		$where = array_merge($where, array(['jpst.SHADE_ID','=',$shadeId]));
-    	}
+    	// if($shadeId != ''){
+    	// 	$where = array_merge($where, array(['jpst.SHADE_ID','=',$shadeId]));
+    	// }
 
-    	if($minRange != '' && $maxRange != ''){
-    		$where = array_merge($where, array(['a.UNIT_PRICE','>=',$minRange]));
-    		$where = array_merge($where, array(['a.UNIT_PRICE','<=',$maxRange]));
-    	}
+    	// if($minRange != '' && $maxRange != ''){
+    	// 	$where = array_merge($where, array(['a.UNIT_PRICE','>=',$minRange]));
+    	// 	$where = array_merge($where, array(['a.UNIT_PRICE','<=',$maxRange]));
+    	// }
 
     	if($sortingType == 1){
     		$orderByCol = "a.UNIT_PRICE";
@@ -1824,7 +1826,7 @@ class ProductModel extends Model
     		->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     		->leftJoin ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
     		->leftJoin ( 'jb_product_shades_tbl as jpst', 'a.PRODUCT_ID', '=', 'jpst.PRODUCT_ID' )
-    		->where($where)
+    		// ->where($where)
             ->whereIn('a.SUB_SUB_CATEGORY_ID',$subSubCategoryIds)
     		->orderBy("$orderByCol", "$orderBy")
     		->groupBy('a.PRODUCT_ID')->get();
@@ -1837,7 +1839,7 @@ class ProductModel extends Model
     		->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     		->leftJoin ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
     		->leftJoin ( 'jb_product_shades_tbl as jpst', 'a.PRODUCT_ID', '=', 'jpst.PRODUCT_ID' )
-    		->where($where)
+    		// ->where($where)
             ->where('a.NAME', 'LIKE', "%{$search}%")
     		->orderBy("$orderByCol", "$orderBy")->groupBy('a.PRODUCT_ID')->get();
     	}

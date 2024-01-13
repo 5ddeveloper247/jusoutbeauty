@@ -124,10 +124,21 @@ $userId = session('userId');
                         <div ng-init="productsToShowForNutrition = 4"></div>
 						<div class="col-sm-6 mb-2 mb-sm-2 prod_card_inc" ng-repeat="row in displayCollectionProducts.slice(0, productsToShow)"  style="@{{row.styleBgColor}}; border-radius:10px;">
 							<div class="card border-0 hover-zoom-in" style="background-color: unset !important;">
-								<div class="overflow-hidden">
-                                    <a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}">
+								<div class="overflow-hidden " >
+                                    <a class="imghov" href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}">
                                         {{-- productdetail ---> removed from both img and h5 after made url with href --}}
-                                        <img src="@{{row.primaryImage}}" alt="The new - season shoes edit" class="card-img-top cursor-pointer nut-img-2 mt-3"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}"><br>
+                                        <img src="@{{row.primaryImage}}" alt="The new - season shoes edit"
+                                        class="card-img-top imghov1 cursor-pointer nut-img-2 mt-3"
+                                        data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}"
+                                        data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}"
+                                        data-type="@{{catFlag}}">
+
+                                        <img src="@{{row.secondaryImage}}" alt="The new - season shoes edit"
+                                        class="card-img-top imghov2 cursor-pointer d-none nut-img-2 mt-3 "
+                                        data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}"
+                                        data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}"
+                                        data-type="@{{catFlag}}">
+                                        <br>
                                         <h5 class="text-center  cursor-pointer product_image text-capitalize"  data-id="@{{row.PRODUCT_ID}}" data-category="@{{ row.CATEGORY_SLUG }}" data-subCategory="@{{ row.SUB_CATEGORY_SLUG }}" data-name="@{{ row.SLUG }}" data-type="@{{catFlag}}">@{{row.NAME }}</h5>
                                     </a>
 									<p class="text-center cursor-pointer" data-id="@{{row.CATEGORY_ID}}" data-type="CATEGORY" data-categoryslug="@{{ row.CATEGORY_SLUG }}">@{{row.CATEGORY_NAME}}</p>
@@ -438,6 +449,26 @@ $userId = session('userId');
 </main>
 @include('web.web-footer')
 <script>
+
+
+
+
+
+
+$(document).on('mouseover', '.imghov', function() {
+
+$(this).find(".imghov1").addClass('d-none');
+$(this).find(".imghov2").removeClass('d-none')
+
+});
+$(document).on('mouseout', '.imghov', function() {
+$(this).find(".imghov1").removeClass('d-none');
+$(this).find(".imghov2").addClass('d-none')
+});
+
+
+
+
 	function close_topbar(){
         $("#topbar").removeClass('d-xl-flex');
 
