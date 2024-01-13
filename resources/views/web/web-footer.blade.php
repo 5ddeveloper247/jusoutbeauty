@@ -477,13 +477,13 @@
     }
 
     .btn-my {
-        color: white !important;
+        color: #0e0d21 !important;
         border-color: #3d94b7;
         background-color: #f4f2f3;
     }
 
     .btn-my:hover {
-        color: #0e0d21 !important;
+        color: white !important;
         background-color: #c0a9bd;
         border-color: #b73d94;
         outline: #b73d94;
@@ -492,7 +492,7 @@
     .btn-my:focus,
     .btn-my:active {
         color: white;
-        background-color: #b73d94;
+        /* background-color: #b73d94; */
         border-color: #b73d94;
         outline: #b73d94;
     }

@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 overflow-auto" style="padding-right: 65px;">
+            <div class="col-lg-6 overflow-auto" style="padding-right: 65px; text-align:justify;">
                 <h2 class="text-capitalize mb-0 mt-1">
                     <?php echo isset($blogDetail['TITLE']) ? $blogDetail['TITLE'] : '';?>
                 </h2>

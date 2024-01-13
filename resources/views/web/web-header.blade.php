@@ -20,6 +20,7 @@ $userId = session('userId');
     <meta name="viewport" content="width=device-width,initial-scale=0.7,minimum-scale=1.0,maximum-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ isset($page) ? ucfirst($page) : 'Home' }}</title>
+    
 
     <!-- <script src="{{ url('/assets-web') }}/../cdn-cgi/apps/head/2oc_RD5SS6wgN5SiQnSEnWVNHg8.js"></script> -->
     <link

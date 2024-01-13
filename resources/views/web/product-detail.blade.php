@@ -461,17 +461,17 @@
 
                         <div class="primary-summary-inner" style="padding-right:60px">
                             <h2 class="mb-0 text-capitalize productDetailHeading"><?= $productDetails['NAME'] ?></h2>
-                            <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 py-2"
+                            <p class="text-muted fs-11 font-weight-500 text-uppercase mb-1 py-2"
                                 style="padding-right:0px;
                             text-align: justify;">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="row" style="padding-right:0px">
+                                    <div class="row lh-14375-2" style="padding-right:0px">
                                         <div
                                             class="@if (strlen($productDetails['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
                                             @if ($productDetails['DISC_AMOUNT'] > 0)
-                                                <p class="text-primary mb-0 card-title lh-14375">
+                                                <p class=" mb-0 card-title lh-14375 ">
                                                     ${{ $productDetails['DISC_AMOUNT'] }}</p>
                                                 <small class="ml-1 mt-1 lh-14375"><del>
                                                         ${{ $productDetails['UNIT_PRICE'] }}</del></small>
@@ -499,7 +499,7 @@
 
                                 </div>
                             </div>
-                            <p class="mb-3" style="padding-right:0px; text-align: justify;">
+                            <p class="mb-3" style="padding-right:0px; text-align: left;">
                                 <?= $productDetails['SHORT_DESCRIPTION'] ?></p>
 
                             <div class="chooseShade-container" style="margin-bottom: 30px;"
@@ -768,7 +768,7 @@
                                                     <div class="col-md-6">
                                                         <h2 class="mb-2">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
-                                                        <div class="productDetailSubscriptionSection">
+                                                        <div class="text-justify productDetailSubscriptionSection">
                                                             <p class="mb-6 ">
                                                                 {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}
                                                             </p>
@@ -911,7 +911,7 @@
                                                                             <?php if(isset($formulatedIngredients) && !empty($formulatedIngredients)){?>
                                                                             <?php foreach ($formulatedIngredients as $row){?>
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                style="background-color:#94b73d">
+                                                                                style="background-color:#8ed1c9">
                                                                                 <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
@@ -1026,7 +1026,7 @@
                                                                             class="card-body pt-6 px-0 pb-0 text-center">
                                                                             <a href="#"
                                                                                 class="fs-18 font-weight-500 lh-1444"><?= $row['USES_TITLE'] ?></a>
-                                                                            <p class="mb-6">
+                                                                            <p class="mb-6 px-2">
                                                                                 <?= $row['USES_DESCRIPTION'] ?></p>
                                                                         </div>
                                                                     </div>
@@ -1063,8 +1063,8 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7 productDetailLutiesSection"
-                                                                style="padding-right:60px !important;">
+                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7 text-justify productDetailLutiesSection"
+                                                                style="padding-right:60px !important; ">
                                                                 <h2 class="mb-2">Lutie's Hint</h2>
                                                                 <p class="">
                                                                     <?= $productDetails['CLINICAL_NOTE'] ?></p>
@@ -1285,18 +1285,12 @@
                                         <i class="fas fa-star" style="color: @{{ averageRatingRound >= '5' ? 'black' : 'gray' }};"></i>
                                     </li>
                                 </ul>
-                                <p class="text-center mb-0 fs-15 text-primary lh-1">
+                                <p class="text-center mb-0 fs-15 text-primary lh-1 btnrow">
                                     <span class="d-inline-block border-right pr-1 mr-1">5.0</span>See
                                     @{{ ratingfive }} Reviews
                                 </p>
                             </div>
-                            <div class="mt-6 mt-md-10">
-                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
-                                    id="writeReview_btn">Write
-                                    a Review</a>
-                                <!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
-                            </div>
-                        </div>
+        </div>
 
                         <div class="col-3 question_sec">
                             <div class="row" style="">
@@ -1356,15 +1350,24 @@
                                     <div>@{{ ratingone }}</div>
                                 </div>
                             </div>
-
-                            <div class=" mt-6 mt-md-9 mt-786-100">
-                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
-                                    id="writeQuestion_btn">Write Your Question</a>
-                            </div>
                         </div>
                         <div class="col-3 d-none d-md-block d-lg-block d-xl-block d-xxl-block"></div>
                     </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-3"><div class="mt-9 mt-md-9 mt-786-100">
+                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
+                                    id="writeReview_btn">Write
+                                    a Review</a>
+                                <!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
+                            </div></div> 
+                            <div class="col-3">    <div class=" mt-6 mt-md-9 mt-786-100">
+                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
+                                    id="writeQuestion_btn">Write Your Question</a>
+                            </div></div>
+                            <div class="col-3"></div>
                 </div>
                 <div class="p-0 m-0" id="">
                     <div class="" id="pillsReviews_container">

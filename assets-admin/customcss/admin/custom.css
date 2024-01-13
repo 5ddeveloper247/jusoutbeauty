@@ -218,4 +218,7 @@
   background: #fff;
   color: #2d2d2d;
 }
+table.dataTable thead .sorting {
+  background-position: center right 0px;
+}
 
