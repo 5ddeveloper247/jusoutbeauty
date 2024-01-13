@@ -228,8 +228,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<div class="pt-4">
 											<!-- Setting Permissions To User -->
 											<div class="form-validation">
-												<form class="form-valide" action="#" method="post">
 
+												<form class="form-valide" action="#" method="post">
 													<div class="row">
 														<div class="col-4" ng-repeat="row in allNavLinks" id="menu_list_@{{row.MENU_ID}}" >
 															<div class="form-group">
@@ -238,8 +238,9 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															</div>
 														</div>
 													</div>
-
 												</form>
+
+
 											</div>
 										</div>
 									</div>

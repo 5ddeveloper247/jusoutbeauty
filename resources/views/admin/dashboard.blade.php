@@ -1,12 +1,4 @@
-<?php
-// try {
-// 	\DB::connection()->getPDO();
-// 	echo \DB::connection()->getDatabaseName();
-// } catch (\Exception $e) {
-// 	echo 'None';
-// }
 
-?>
 
   @include('admin.admin-header');
         <!--**********************************
@@ -65,7 +57,12 @@
                 </div>
               </div>
           </div>
-          <div class="row">
+
+          @php
+          $checkOrderStats = '';
+      @endphp
+
+          <div class="row <?php echo $checkOrderStats ?>">
             <div class="col-xl-12">
             <div class="card">
               <div class="card-header border-0 pb-0 flex-wrap">
@@ -120,6 +117,8 @@
             </div>
             </div>
           </div>
+
+
           <div class="row">
             <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
@@ -175,7 +174,21 @@
               </div>
             </div>
           </div>
-          <div class="row">
+
+
+          @php
+          $checkproducts = '';
+         @endphp
+{{--
+      @foreach ($adminMenu as $item)
+              @if ($item['MENU_NAME'] == 'Dashboard products')
+              @php
+              $checkproducts = '';
+              @endphp
+              @endif
+      @endforeach  --}}
+
+          <div class="row <?php echo $checkproducts ?>" >
             <div class="col-xl-12">
               <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
                 <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Products</h4>
@@ -453,6 +466,7 @@
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
@@ -506,10 +520,21 @@
 
 
             @php
-                $check = '';
+                $checkusers = '';
             @endphp
-{{-- 112233 --}}
-          <div class="row <?php echo $check ?>">
+
+             {{--  @foreach ($adminMenu as $item)
+
+                    @if ($item['MENU_NAME'] == 'Dashboard Users')
+
+                    @php
+                    $checkusers = '';
+                    @endphp
+                    @endif
+            @endforeach  --}}
+
+
+          <div class="row <?php echo $checkusers ?>">
             <div class="col-xl-12">
               <div class="d-sm-flex align-items-center mb-sm-3 mt-sm-2 mt-2  mb-2">
                 <h4 class="fs-20 text-black mr-auto mb-sm-0 mb-2">Admin Users</h4>
