@@ -7,11 +7,13 @@ body {
 	margin: auto; /* Center the container horizontally */
 	padding: 0 15px; /* Optional: Add some padding to the container */
   }
-
+  .carousel{
+	width: 100%; max-width: 600px; margin: auto;
+  }
   /* Custom CSS for hover effect */
   .carousel-item {
 	position: relative;
-	height: 500px; /* Adjust this to your preferred fixed height */
+	height: 520px; /* Adjust this to your preferred fixed height */
   }
 
   .overlay {
@@ -251,12 +253,12 @@ input[type=number] {
 	margin: 2vw;
 }
 
-.main-categories {
+/* .main-categories {
 
 	/*     display: flex; */
 	/*     place-content: center; */
-	/*     padding-top: 3vw */
-}
+	/*     padding-top: 3vw 
+} */
 
 .active-category {
 	background: white;
@@ -1568,55 +1570,13 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 }
 
 @media only screen and (min-width:1023px) {
-	/* .footer-txt{
-		font-size: 15px !important;
-	}
-	.fs-14{
-		font-size: 12px !important;
-	}
-	.productDetailAboutSection{
-		height: 129vh;
-		overflow: auto;
-	}
-	.productDetailVideoSection {
-		height: 69vh;
-		overflow: auto;
-	}
-	.productDetailLutiesSection{
-        height: 114vh;
-		overflow: auto;
-		padding-left: 30px !important;
-	} 
-	.side{
-		font-size: 14px;
-	}
-	.btn{
-		font-size: 12px;
-	}
+	/*
+	
 	.store1{
 		padding-top: 0px;
 	}
-	.bundleDetailAboutSection {
-		height: 141vh;
-		overflow: auto;
-	}
-	.productDetailSubscriptionSection {
-		height: 88vh;
-		overflow: auto;
-	}
-	.bundleDetailVideoSection {
-		height: 70vh;
-		overflow: auto;
-	}
-	.bundleDetailLutiesSection {
-		height: 124vh;
-		overflow: auto;
-	}
 	.clinical-note{
 		height: 100%;
-	}
-	h2{
-		font-size: 1.25rem;
 	}
 	.yesno h2{
 		padding: 30px;
@@ -1652,14 +1612,77 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	.shadefinderquiz-col{
 		height: 24%;
 		 overflow:scroll;
-	}  */
+	} 
+	*/
+	.productDetailAboutSection{
+		height: 129vh;
+		overflow: auto;
+	}
+	.productDetailVideoSection {
+		height: 69vh;
+		overflow: auto;
+	}
+	.productDetailLutiesSection{
+        height: 114vh;
+		overflow: auto;
+		padding-left: 30px !important;
+	} 
+	
+	.bundleDetailAboutSection {
+		height: 141vh;
+		overflow: auto;
+	}
+	.productDetailSubscriptionSection {
+		height: 88vh;
+		overflow: auto;
+	}
+	.bundleDetailVideoSection {
+		height: 70vh;
+		overflow: auto;
+	}
+	.bundleDetailLutiesSection {
+		height: 124vh;
+		overflow: auto;
+	}
+	.blog_text_home {
+		color: #0e0d21;
+	}
+	.part_head{
+		color: #0e0d21;
+	}
+	.rating-cont-prod-detail .side{
+		width: 16%;
+		font-size: 15px;
+	}
+	.rating-cont-prod-detail .middle{
+		width: 68%;
+	}
+	.rev-btnns{
+		font-size: 12px;
+	}
+	.carousel{
+		max-width: 435px;
+	}
+	 .carousel-item {
+	   
+	   height: 410px; 
+	 }
+	 
 	 
 }
 
 @media only screen and (min-width: 1200px) {
 	.bundleDetailAboutSection {
-		height: 81vh;
+		height: 120vh;
 		overflow-y: auto;
+	}
+	.bundleDetailLutiesSection{
+		height: 145vh;
+		overflow: auto;
+	}
+	.bundleDetailVideoSection{
+		height: 79vh;
+		overflow: auto;
 	}
 
 	.productDetailAboutSection {
@@ -1678,17 +1701,13 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailSubscriptionSection {
-		height: 60vh;
+		height: 66vh;
 		overflow-y: auto;
 	}
 
 	.productDetailVideoSection {
 		height: 79vh;
 		overflow-y: auto;
-	}
-	.bundleDetailVideoSection{
-		height: 70vh;
-		overflow: auto;
 	}
 
 	img.img-home-pay {
@@ -1794,9 +1813,9 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		width: 56rem;
 		height: 37rem;
 	}
-	/* .btnrow{
-		margin-bottom: 0px;
-	} */
+    .carousel-item{
+		height: 507px;
+	}
 }
 
 @media screen and (min-width:1350px) {
@@ -1892,7 +1911,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailSubscriptionSection {
-		height: 55vh;
+		height: 76vh;
 		overflow-y: auto;
 	}
 
@@ -2007,14 +2026,19 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		top: 292px !important;
 		left: 284px !important;
 		color: #0e0d21;
-		/*ch*/
 		font-size: 40px !important;
 	}
-
 	.clinical-note,
 	.giving-section3-img {
 		width: 56rem;
 	}
+	.rev-btnns {
+		font-size: 1rem;
+	}
+	.carousel-item {
+	   
+	   height: 520px; 
+	 }
 }
 
 @media only screen and (max-width :1500px) {
@@ -2343,7 +2367,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 63px !important;
 	}
 
-	.col-lg-6.d-flex.justify-content-lg-end.justify-content-center.d-sm-unset a {
+	.footer-txt{
 		font-size: 22px;
 	}
 
@@ -2618,17 +2642,22 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailSubscriptionSection {
-		height: 93vh;
+		height:87vh;
 		overflow-y: auto;
 	}
 	.bundleDetailLutiesSection{
 		height:93vh;
         overflow: auto;
 	}
-
 	.container-custom-slider {
 		max-width: 1750px;
 	}
+	.carousel{
+		max-width: 600px;
+	}
+	  .carousel-item {
+		height: 750px; 
+	  }
 }
 
 @media screen and (min-width:2400px) {
@@ -2662,6 +2691,12 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 74vh;
 		overflow: auto;
 	}
+	.carousel{
+		max-width: 850px;
+	 }
+	 .carousel-item {
+	   height: 970px; 
+	 }
 	
 }
 .lh-14375-2{

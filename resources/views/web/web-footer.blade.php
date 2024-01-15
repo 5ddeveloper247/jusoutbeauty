@@ -265,14 +265,14 @@
                         </a>
                     </p>
                 </div>
-                <div class="col-lg-3 mb-4 mb-lg-0">
+                <div class="col-lg-2 mb-4 mb-lg-0">
                     <p class="mb-0 text-left fs-14  letter-spacing-07px text-center">
                         <a href="tel:+92 866 848 2168" class="footer-text-white">
                             <i class="fa fa-phone"> </i> 866-848-2168
                         </a>
                     </p>
                 </div>
-                <div class="col-lg-5 mb-4 mb-lg-0">
+                <div class="col-lg-6 mb-4 mb-lg-0">
                     <p class="mb-0 text-left fs-14 letter-spacing-07px text-right footer-text-white">
                         <i class="fa fa-clock"> </i> Operating Hours: 6am-1am EST Mon-Sat,
                         excluding holidays
@@ -366,14 +366,14 @@
                 </div>
             </div>
             <br>
-            <div class="row align-items-center first-rw footer-text-white">
+            <div class="row first-rw footer-text-white">
 
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <p class="mb-0 text-uppercase text-left fs-14 letter-spacing-07px">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-lg-0 ">
+                    <p class="mb-0 text-uppercase text-left fs-14 letter-spacing-07px text-center">
                         A© 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
                     </p>
                 </div>
-                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset footer-txt">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 text-center d-sm-unset footer-txt">
                     <a href="{{ url('/customer-help') }}" id="v-pills-home-tab"
                         onclick="informationflag('term of use')" class="footer-text-white">Terms of
                         Use</a> &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-profile-tab-1"
