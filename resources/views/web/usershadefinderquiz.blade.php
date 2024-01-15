@@ -248,16 +248,17 @@ var site = '<?php echo session('site');?>';
 					</section>
 					<section class="pt-6 pt-lg-5">
 						<div class="row">
-							<div class="col-lg-5" style="height: 675px;">
-								<img id="take_a_q" src="@{{levelOneLatestImg}}" style=" height:655px !important;width:100% !important; ">
+							<div class="col-lg-5 shadefinderquiz" style="">
+								<img id="take_a_q" src="@{{levelOneLatestImg}}" style=" ">
 							</div>
-							<div class="col-lg-7" style="height: 675px;">
+							<div class="col-lg-7">
+							<div class=" shadefinderquiz" style="">
 								<div class="text-center">
-									<h2 style="font-size:2.5rem !important;">Liquid Foundation Iconic</h2>
-									<p style="font-size:1rem !important;">Invisible Touch Liquid Foundation. Foundation color suitable
+									<h2 class="shadefinderquiz-h" style="">Liquid Foundation Iconic</h2>
+									<p class="shadefinderquiz-p" style="">Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
-								<div class="row d-flex" style="height: 66%; overflow:scroll;">
+								<div class="row d-flex shadefinderquiz-col" style="">
 									<div class="col-lg-4 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
                                         {{-- productdetail --> removed after made url with href --}}
 										<div class="box shade py-2 fadeInUp animated"
@@ -296,13 +297,14 @@ var site = '<?php echo session('site');?>';
 								<div class="row mt-2 mb-2 pt-2 pb-2"
 									style="background-color: #fff0f3; color: black;">
 									<div class="col-lg-6" style="align-self: center;">
-										<h5>Compact & Contrast</h5>
-										<p class="mb-0">Not Satisfied with your match?</p>
+										<h5 class="shadefinderquiz-h">Compact & Contrast</h5>
+										<p class="mb-0 shadefinderquiz-p">Not Satisfied with your match?</p>
 									</div>
 									<div class="col-lg-6" style="align-self: center;">
 										<a href="{{session('site')}}/user-shade-finder" class="btn btn-primary">Back to shade finder</a>
 									</div>
 								</div>
+							</div>
 							</div>
 						</div>
 

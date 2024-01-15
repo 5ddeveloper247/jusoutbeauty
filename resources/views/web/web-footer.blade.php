@@ -373,7 +373,7 @@
                         A© 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
                     </p>
                 </div>
-                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset">
+                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset footer-txt">
                     <a href="{{ url('/customer-help') }}" id="v-pills-home-tab"
                         onclick="informationflag('term of use')" class="footer-text-white">Terms of
                         Use</a> &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-profile-tab-1"
