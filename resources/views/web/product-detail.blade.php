@@ -823,7 +823,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4 pl-xl-7 pl-7 productDetailVideoSection"
+                                                            <div class="col-md-4 pl-xl-7 pl-6 productDetailVideoSection"
                                                                 style="padding-right:60px; text-align:justify;">
                                                                 <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
@@ -1292,8 +1292,8 @@
                             </div>
         </div>
 
-                        <div class="col-3 question_sec">
-                            <div class="row" style="">
+                        <div class="col-3 question_sec justify-content-between">
+                            <div class="row " style="">
                                 <div class="side">
                                     <div>5 star</div>
                                 </div>

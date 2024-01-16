@@ -142,12 +142,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
         overflow: hidden;
         border-radius: 28px;
     }
-	a#writeQuestion_btn {
+	/* a#writeQuestion_btn {
 		position: absolute;
-		/* bottom: 159px; */
+		/* bottom: 159px; 
 		left: 0px;
 		font-size: 11px;
-	}
+	} */
 	.card-img-overlay {
         position: absolute;
         top: 88px;
@@ -279,12 +279,12 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 			width: 100% !important;
 	    	height: 25rem;
 		}
-		a#writeQuestion_btn {
+		/* a#writeQuestion_btn {
 		    position: absolute;
 			bottom: 160px;
 			left: 215px;
 			font-size: 11px;
-	}
+	} */
         .recently-view-mbl{
             padding-left: 5rem!important;
         }
@@ -1290,7 +1290,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 <div class="row">
 	<div class="col-3"></div>
 	<div class=" col-3 mt-6 mt-md-9">
-								<a href="javascript:;" style="font-size: 11px;" class="btn btn-outline-primary rev-btnns" id="writeReview_btn">Write a Review</a>
+								<a href="javascript:;" style="" class="btn btn-outline-primary rev-btnns" id="writeReview_btn">Write a Review</a>
 			<!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
 							</div>
 							<div class="col-3 text-center mt-6 mt-md-9">

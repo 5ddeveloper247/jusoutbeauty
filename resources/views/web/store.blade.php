@@ -163,7 +163,7 @@
  </style>
  <main ng-app="project1">
 
-     <section class="py-10 mt-15 ">
+     <section class="py-8 mt-15 store1">
          <div class="container">
              <div class="row">
                  <section class="col-md-6"

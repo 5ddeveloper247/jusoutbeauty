@@ -658,12 +658,6 @@
         </section>
 
 
-
-
-
-
-
-
         <section id="section-next" class="py-10 py-lg-13" style="background-color: #8ed1c9 ;">
             <h2 class="text-center fs-24 fs-md-42 mb-1 text-capitalize text-white">Created For You</h2>
             <br>
