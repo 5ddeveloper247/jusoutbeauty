@@ -59,8 +59,17 @@
           </div>
 
           @php
-          $checkOrderStats = '';
-      @endphp
+          $checkOrderStats = 'd-none';
+          @endphp
+
+
+         @foreach ($adminMenu as $item)
+            @if ($item['MENU_NAME'] == 'Dashboard Order Stats')
+                @php
+                $checkOrderStats = '';
+                @endphp
+            @endif
+        @endforeach
 
           <div class="row <?php echo $checkOrderStats ?>">
             <div class="col-xl-12">
@@ -120,7 +129,20 @@
 
 
           <div class="row">
-            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
+
+            @php
+            $checkDashboardPayments = 'd-none';
+            @endphp
+
+
+        @foreach ($adminMenu as $item)
+            @if ($item['MENU_NAME'] == 'Dashboard payments')
+                @php
+                $checkDashboardPayments = '';
+                @endphp
+            @endif
+        @endforeach
+            <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6 <?php echo $checkDashboardPayments ?>">
               <div class="card border-card">
                 <div class="card-body">
                   <div class="media">
@@ -137,6 +159,7 @@
                 <span class="line bg-success"></span>
               </div>
             </div>
+
             <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">
                 <div class="card-body">
@@ -177,16 +200,16 @@
 
 
           @php
-          $checkproducts = '';
+          $checkproducts = 'd-none';
          @endphp
-{{--
+
       @foreach ($adminMenu as $item)
-              @if ($item['MENU_NAME'] == 'Dashboard products')
-              @php
-              $checkproducts = '';
-              @endphp
-              @endif
-      @endforeach  --}}
+            @if ($item['MENU_NAME'] == 'Dashboard products')
+                @php
+                $checkproducts = '';
+                @endphp
+            @endif
+      @endforeach
 
           <div class="row <?php echo $checkproducts ?>" >
             <div class="col-xl-12">
@@ -520,18 +543,16 @@
 
 
             @php
-                $checkusers = '';
+                $checkusers = 'd-none';
             @endphp
 
-             {{--  @foreach ($adminMenu as $item)
-
-                    @if ($item['MENU_NAME'] == 'Dashboard Users')
-
+            @foreach ($adminMenu as $item)
+                @if ($item['MENU_NAME'] == 'Dashboard Users')
                     @php
                     $checkusers = '';
                     @endphp
-                    @endif
-            @endforeach  --}}
+                @endif
+            @endforeach
 
 
           <div class="row <?php echo $checkusers ?>">
@@ -562,6 +583,9 @@
               </div>
             </div>
           </div>
+
+
+
           <div class="row">
             <div class="col-xl-4 col-xxl-4 col-lg-4 col-sm-6">
               <div class="card border-card">

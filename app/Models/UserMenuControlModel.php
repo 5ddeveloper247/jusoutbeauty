@@ -60,6 +60,15 @@ class UserMenuControlModel extends Authenticatable
         return isset($result) ? $result :null;
     }
 
+    public function getDashboardNavLinks(){
+
+        $result = DB :: table('fnd_user_menu_tbl')
+                 ->select('MENU_NAME','MENU_ID')
+                 ->where('MENU_TYPE', '=', 'Dashboard')
+                 ->get();
+
+         return isset($result) ? $result :null;
+     }
     public function getSpecificAdminStatus($recordId){
 
         $user_id = $recordId;
