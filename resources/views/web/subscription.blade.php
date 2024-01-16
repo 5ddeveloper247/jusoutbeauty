@@ -29,11 +29,17 @@
             padding-bottom:183px;
         }
     }
+    @media only screen and (min-width: 768px) {
+        .subs-heading{
+		padding-top: 113px;
+	}
+    }
     @media only screen and (min-width:1023px) {
         .subs-heading {
 		padding-top: 16vh;
 	 }
     }
+   
   
 
 </style>

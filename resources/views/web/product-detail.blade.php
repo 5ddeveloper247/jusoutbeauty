@@ -1063,7 +1063,7 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7 text-justify productDetailLutiesSection"
+                                                            <div class="col-md-7 px-6 pl-xl-7 text-justify productDetailLutiesSection"
                                                                 style="padding-right:60px !important; ">
                                                                 <h2 class="mb-2">Lutie's Hint</h2>
                                                                 <p class="">
@@ -1091,7 +1091,7 @@
                 <div class="d-flex justify-content-center">
                     <div class="col-md-6">
                         <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
-                        <p class="text-center mb-3 mx-auto" style="padding-right:60px; text-align:justify">
+                        <p class="text-center mb-3 mx-auto" style="">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a
                             tempore?
                             Obcaecati voluptatem pariatur ab dolor laborum, a incidunt quisquam illo accusantium alias

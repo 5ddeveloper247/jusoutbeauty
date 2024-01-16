@@ -820,7 +820,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																		</div>
 																	</div>
 																</div>
-																<div class="col-md-4 pl-7 text-justify scroll-to-see bundleDetailVideoSection" style="padding-right: 65px !important">
+																<div class="col-md-4 pl-5 text-justify scroll-to-see bundleDetailVideoSection" style="padding-right: 65px !important">
 																	<h2 class="mb-5"><?= isset($line['videoDetails']['V_1']) ? $line['videoDetails']['V_1'] : '' ?></h2>
 																	<p><?= isset($line['videoDetails']['V_2']) ? $line['videoDetails']['V_2'] : '' ?></p>
 																</div>

@@ -144,7 +144,7 @@
 
 
             <!--</div>-->
-            <p class="text-align-sm text-subs fs-14 footer-text-white">By subscribing to JusOut Beauty you consent to
+            <p class="text-align-sm  text-subs fs-14 footer-text-white">By subscribing to JusOut Beauty you consent to
                 receive recurring
                 automated promotional and personalized marketing messages (e.g.,
                 cart reminders) via automated technology including email and text
@@ -159,11 +159,11 @@
                 <div class="col-lg-4 mb-4 mb-lg-0 footer_sec"></div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer_sec">
                     <p
-                        class="mb-0 text-uppercase text-left font_size_cl letter-spacing-07px font-weight-600 footer-text-white">
+                        class="mb-0 text-uppercase text-left font_size_cl letter-spacing-07px font-weight-600 footer-text-white ptag">
                         @jusOSkin
                     </p>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-lg-start justify-content-center">
+                <div class="col-lg-3 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
                     <ul class="list-inline icon_size_cl ml-3 mb-0">
 
                         @if (isset($footerSocialIcons))
@@ -207,8 +207,7 @@
                     </ul>
                 </div>
                 {{-- <div class="col-lg-2 mb-4 mb-lg-0 footer_sec">
-                    <p
-                        class="mb-0 text-uppercase text-left font_size_cl text-primary letter-spacing-07px font-weight-600">
+                    <p class="mb-0 text-uppercase text-left font_size_cl text-primary letter-spacing-07px font-weight-600">
                         @JUSOUTBEAUTY
                     </p>
                 </div>
@@ -253,27 +252,27 @@
             <br>
             <div class="row align-items-center first-rw" style="padding-bottom: 0px !important;">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white">CONTACT
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white ptag">CONTACT
                         US</p>
                 </div>
             </div>
             <div class="row align-items-center first-rw">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px ">
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px ptag ">
                         <a href="mailto:clientservices@jusoutbeauty.com" class="footer-text-white">
                             <i class="fa fa-envelope"> </i> clientservices@jusoutbeauty.com
                         </a>
                     </p>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px text-center">
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px text-lg-center ">
                         <a href="tel:+92 866 848 2168" class="footer-text-white">
                             <i class="fa fa-phone"> </i> 866-848-2168
                         </a>
                     </p>
                 </div>
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px text-right footer-text-white">
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px text-lg-right footer-text-white ptag">
                         <i class="fa fa-clock"> </i> Operating Hours: 6am-1am EST Mon-Sat,
                         excluding holidays
 
@@ -283,14 +282,14 @@
             <br>
             <div class="row first-rw footer-aboutus">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white">ABOUT US</p>
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px footer-text-white">Welcome
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 footer-text-white ptag">ABOUT US</p>
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px footer-text-white ptag">Welcome
                         to JusOut Beauty, all inclusive, high performance, natural
                         skincare, and makeup - Yur Jus Enough beauty products to glow from
                         within.</p>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white">COMPANY
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white ptag">COMPANY
                     </p>
                     <ul>
                         <li><a href="{{ session('site') }}/who-we-are" class="footer-text-white">Meet Founder</a></li>
@@ -305,7 +304,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">CUSTOMER
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">CUSTOMER
                         CARE</p>
                     <ul>
                         <li><a href="{{ url('/customer-help') }}" onclick="informationflag('customer')"
@@ -332,7 +331,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">BEAUTY
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">BEAUTY
                         & SKIN</p>
                     <ul>
                         <li><a href="{{ session('site') }}/Shop-All" class="footer-text-white"
@@ -350,7 +349,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">OFFERS
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">OFFERS
                     </p>
                     <ul>
                         {{-- <li><a href="{{ session('site') }}/user-login">Student Discount</a></li> --}}
@@ -641,6 +640,7 @@
             bottom: -78%;
         }
     }
+  
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <a href="https://api.whatsapp.com/send?phone=19142991742" class="float" target="_blank">
