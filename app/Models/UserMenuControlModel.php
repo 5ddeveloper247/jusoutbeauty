@@ -54,19 +54,29 @@ class UserMenuControlModel extends Authenticatable
 
        $result = DB :: table('fnd_user_menu_tbl')
                 ->select('MENU_NAME','MENU_ID')
-                ->get(); 
+                ->where('MENU_TYPE', '!=', 'Dashboard')
+                ->get();
 
         return isset($result) ? $result :null;
     }
 
+    public function getDashboardNavLinks(){
+
+        $result = DB :: table('fnd_user_menu_tbl')
+                 ->select('MENU_NAME','MENU_ID')
+                 ->where('MENU_TYPE', '=', 'Dashboard')
+                 ->get();
+
+         return isset($result) ? $result :null;
+     }
     public function getSpecificAdminStatus($recordId){
 
         $user_id = $recordId;
-    
+
         $result = DB::table('fnd_user_tbl')
                   ->where('USER_ID','=', $user_id)
                   ->first();
-    
+
         return isset( $result) ?  $result :null;
     }
 
@@ -105,7 +115,7 @@ class UserMenuControlModel extends Authenticatable
             $enable = 'inactive';
         }
 
-        $record = array ( 
+        $record = array (
             'FIRST_NAME' => $details['user']['FirstName'] ,
             'LAST_NAME' => $details['user']['LastName'] ,
             'USER_ROLE' => $details['user']['UserRole'],
@@ -120,7 +130,7 @@ class UserMenuControlModel extends Authenticatable
             'CREATED_ON' => date ( 'Y-m-d H:i:s' )
         );
 
-		//Inserting the Record 
+		//Inserting the Record
 	    $result = DB::table ( 'fnd_user_tbl' )->insertGetId( $record );
         $arrRes ['id'] = $result;
 		$arrRes['done'] = true;
@@ -133,7 +143,7 @@ class UserMenuControlModel extends Authenticatable
     public function checkEmailAddressExists($emailaddress,$userid = ''){
 
         if($userid == '') {
-            
+
             $result = DB :: table('fnd_user_tbl')
                      ->where('EMAIL',$emailaddress)
                      ->get();
@@ -145,13 +155,13 @@ class UserMenuControlModel extends Authenticatable
                     ->whereNot('USER_ID',$userid)
                     ->get();
         }
-        
+
         return count($result) == 0 ? true : false;
 
     }
 
     public function checkPhoneNumberExists($phoneNumber,$userid = ''){
-        
+
         if($userid == '') {
 
             $result = DB :: table('fnd_user_tbl')
@@ -171,20 +181,20 @@ class UserMenuControlModel extends Authenticatable
     }
 
     public function deleteSpecificAdmin($recordId){
-        
+
 		// $result_fnd_user_tbl_tbl = DB::table('fnd_user_tbl as a')->where('a.USER_ID', $recordId )->get();
-		
+
 		// if(sizeof($result_fnd_user_tbl_tbl) != null){
 			$result = DB::table('fnd_user_tbl')->where('USER_ID', $recordId )->delete();
 			return isset( $result ) ? $result :null;
 		// }else{
 		// 	$arrRes ['done'] = false;
 		// 	$arrRes ['msg'] = 'Admin failed to delete';
-	
+
 		// 	return isset( $arrRes )  ? $arrRes :null;
 		// }
     }
-   
+
     public function getAdminUserDetails($id){
 
         $user_id = $id;
@@ -201,17 +211,17 @@ class UserMenuControlModel extends Authenticatable
         $result = DB::table('fnd_user_menu_control_tbl')
                   ->where('USER_ID','=',$userid)
                   ->delete();
-        
-       return isset( $result) ? $result : null; 
+
+       return isset( $result) ? $result : null;
     }
 
     public function grantUserControl($optionsSelected){
-  
+
         $result = DB::table('fnd_user_menu_tbl as a')
                   ->whereIn('MENU_ID',$optionsSelected)
                   ->select('a.*')
                   ->get();
-    
+
 
         return isset($result) ? $result : null;
 
@@ -236,12 +246,12 @@ class UserMenuControlModel extends Authenticatable
     }
 
     public function getAllSubMenuWrtAdmin($menu_id){
-        
+
         $result = DB::table('fnd_user_submenu_tbl')
                   ->where('MENU_ID',$menu_id)
                   ->select('SUB_MENU_ID','MENU_NAME','MENU_DESCRIPTION','SYSTEM_CALL','MENU_ICON')
                   ->get();
-        
+
         for($i=0 ;$i<count($result);$i++){
                 $arrRes[$i]['SUB_MENU_ID'] = $result[$i]->SUB_MENU_ID;
                 $arrRes[$i]['MENU_NAME'] = $result[$i]->MENU_NAME;
@@ -249,7 +259,7 @@ class UserMenuControlModel extends Authenticatable
                 $arrRes[$i]['SYSTEM_CALL'] = $result[$i]->SYSTEM_CALL;
                 $arrRes[$i]['MENU_ICON'] = $result[$i]->MENU_ICON;
         }
-        
+
         return isset($arrRes) ? $arrRes : '';
 
     }
@@ -287,6 +297,6 @@ class UserMenuControlModel extends Authenticatable
         return isset($arrRes) ? $arrRes : '';
     }
 
-    
-   
+
+
 }

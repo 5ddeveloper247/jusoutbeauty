@@ -228,8 +228,8 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 										<div class="pt-4">
 											<!-- Setting Permissions To User -->
 											<div class="form-validation">
-												<form class="form-valide" action="#" method="post">
 
+												<form class="form-valide" action="#" method="post">
 													<div class="row">
 														<div class="col-4" ng-repeat="row in allNavLinks" id="menu_list_@{{row.MENU_ID}}" >
 															<div class="form-group">
@@ -238,12 +238,32 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 															</div>
 														</div>
 													</div>
-
 												</form>
 											</div>
 										</div>
 									</div>
+								</div>
+                                <hr>
+                                <!-- Tab panes -->
+								<div class="tab-content tabcontent-border">
+									<div class="tab-pane fade show active" id="basic_info" role="tabpanel">
+										<div class="pt-4">
+											<!-- Setting Permissions To User -->
+											<div class="form-validation">
 
+												<form class="form-valide" action="#" method="post">
+													<div class="row">
+														<div class="col-4" ng-repeat="row in getDashboardNavLinks" id="menu_list_@{{row.MENU_ID}}" >
+															<div class="form-group">
+																<input type="checkbox" id="menu_@{{row.MENU_ID}}" class="m-1 menu_check" value=@{{row.MENU_ID}}>
+																<label for="menu_@{{row.MENU_ID}}"><b> @{{row.MENU_NAME}} </b> </label><br>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="row">
                 	               	<div class="col-12 pt-4">

@@ -1042,7 +1042,8 @@ class AdminController extends Controller
 		// print_r('<pre>');
         // print_r($data['adminMenu']);
         // exit();
-        // dd($data['adminMenu']);
+
+        // ($data['adminMenu']);
    		return view('admin.dashboard')->with($data);
    	}
 
@@ -10242,6 +10243,8 @@ class AdminController extends Controller
 		$UserMenuControl = new UserMenuControlModel();
 
 		$arrRes['allNavLinks'] = $UserMenuControl->getAllNavLinks();
+        $arrRes['getDashboardNavLinks'] = $UserMenuControl->getDashboardNavLinks();
+
 
 		echo json_encode($arrRes);
 	}

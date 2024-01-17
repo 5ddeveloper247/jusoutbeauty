@@ -789,13 +789,16 @@
 							</a>
 							<ul aria-expanded="false">
 
-								@foreach ($menu['SUB_MENU'] as $sub)
-									@if(session('userSubType') == 'admin')
-										<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
-									@elseif(session('userSubType') == 'subadmin' && $sub['SUB_MENU_ID'] != 3 )
-										<li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
-									@endif
-								@endforeach
+                                @if(is_array($menu['SUB_MENU']) || is_object($menu['SUB_MENU']))
+                                @foreach ($menu['SUB_MENU'] as $sub)
+                                    @if(session('userSubType') == 'admin')
+                                        <li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
+                                    @elseif(session('userSubType') == 'subadmin' && $sub['SUB_MENU_ID'] != 3)
+                                        <li><a href="{{ url('').$sub['SYSTEM_CALL'] }}"> {{ $sub['MENU_NAME'] }}</a></li>
+                                    @endif
+                                @endforeach
+                            @endif
+
 							</ul>
                     	</li>
 

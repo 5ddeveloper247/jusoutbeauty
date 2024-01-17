@@ -81,6 +81,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		}).success(function(data, status, headers, config) {
 
 			$scope.allNavLinks = data.allNavLinks;
+            $scope.getDashboardNavLinks = data.getDashboardNavLinks;
 
 		})
 		.error(function(data, status, headers, config) {
