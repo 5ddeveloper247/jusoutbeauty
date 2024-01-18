@@ -82,7 +82,7 @@
             }
 
             ul.ul-mbl-site {
-                list-style-type: "â–º ";
+                list-style-type:  circle;
             }
 
             form.footer-formm .fa-envelope:before {

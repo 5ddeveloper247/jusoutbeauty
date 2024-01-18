@@ -130,7 +130,7 @@
                             style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                             alt="OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.">
                     </div>
-                    <div class="col-md-6 pl-xl-7" style="padding-right: 60px">
+                    <div class="col-md-6 pl-7" style="padding-right: 60px">
                         <h2 class="text-white mb-5 text-uppercase">OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.
                         </h2>
                         <p class="text-white text-justify">We strongly believe that by supporting the most vulnerable in society -

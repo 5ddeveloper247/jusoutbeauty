@@ -65,7 +65,7 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/who_we_are.jpg" alt="Beeswax">
                 </div>
-                <div class="col-md-6 pl-xl-7" style="padding-right:60px">
+                <div class="col-md-6 pl-6 text-justify" style="padding-right:60px">
                     {{-- <h3><b>Who We Are</b></h3> --}}
                     <h2 class="mb-5">"Who We Are"</h2>
                     <p>Beeswax is commonly used in skincare
@@ -97,7 +97,7 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/images.jpg" alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-7 order-1 order-md-first text-justify">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5 text-white">Ingredient</h2>
                     <p class="text-white">Also known as nature’s first aid kit.
@@ -133,7 +133,7 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/πρασινες-νότες-big.jpg" alt="Designed to last">
                 </div>
-                <div class="col-md-6 pl-xl-7">
+                <div class="col-md-6 pl-7 text-justify" style="padding-right:60px">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class=" mb-5">"Eco-Vibes"</h2>
                     <p>Coconut Oil is absolutely packed with nutrients.
@@ -155,7 +155,7 @@
                         style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                         src="{{ url('/assets-web') }}/images/best-banner.jpg" alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-7 order-1 order-md-first text-justify">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2 class=" mb-5">"Lusty Looks"</h2>
                     <p>The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can

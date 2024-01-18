@@ -767,7 +767,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 													<hr>
 													<div class="row pt-10 subsc_ec">
 
-														<div class="col-md-6 productDetailSubscriptionSection">
+														<div class="col-md-6 bundleDetailSubscriptionSection">
 															<h2 class="mb-2 font-weight-500">Subscription</h2>
 															<p class="mb-6">Indulge in the convenience and exclusive
 																benefits offered with our subscription service. Simply

@@ -294,6 +294,7 @@
     }
 
     @media only screen and (max-width: 480px) {
+     
         .uses_img {
             width: 100% !important;
             height: 25rem;
@@ -308,14 +309,17 @@
         a#pills-recommendations-tab,
         #pills-recently-viewed-tab,
         #pills-recently-viewed-tab {
-            font-size: 14px !important
+            font-size: 11px !important;
+            padding: 2px;
+
         }
 
         a#writeQuestion_btn {
             position: absolute;
-            bottom: 159px;
-            left: 179px;
-            font-size: 11px
+            bottom: 0px;
+            left: 25px;
+            font-size: 11px;
+            padding: 2px;
         }
 
         .card-img-overlay {
@@ -399,6 +403,7 @@
         .spot-section {
             height: unset !important;
         }
+     
     }
 
     .cursor-pointer {
@@ -753,7 +758,7 @@
                                                         <?php }?>
 
                                                     </div>
-                                                    <div class="col-md-6 pro-details" style="padding-right: 75px">
+                                                    <div class="col-md-6 pro-details pl-6" style="padding-right: 75px">
                                                         <h2 class="mb-2 text-capitalize">
                                                             <?= $productDetails['DESCRIPTION_TITLE'] ?></h2>
                                                         <p class="productDetailAboutSection"
@@ -768,7 +773,7 @@
                                                     <div class="col-md-6">
                                                         <h2 class="mb-2">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
-                                                        <div class="text-justify productDetailSubscriptionSection">
+                                                        <div class="text-justify productDetailSubscriptionSection pr-9 pr-md-0" >
                                                             <p class="mb-6 ">
                                                                 {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}
                                                             </p>

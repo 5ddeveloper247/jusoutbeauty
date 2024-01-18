@@ -76,7 +76,7 @@
                     <img class="giving-section2-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Beeswax">
                 </div>
-                <div class="col-md-6 pl-xl-7 ecovibes">
+                <div class="col-md-6 pl-7 ecovibes">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Evo Vibes"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -182,7 +182,7 @@
                     <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/evovibes-1.jpg"
                         alt="Designed to last">
                 </div>
-                <div class="col-md-6 pl-xl-7 ecovibes">
+                <div class="col-md-6 pl-7 ecovibes">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Evo Vibes"</h2>
                     <div style="height: 75vh;overflow:auto">

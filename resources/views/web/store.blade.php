@@ -182,7 +182,7 @@
                          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
                          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                  </section>
-                 <section class="col-md-6 bg-gray-1 hero-section" style="height:75vh">
+                 <section class="col-md-6 bg-gray-1 hero-section" style="height:86vh">
                      <nav aria-label="breadcrumb">
                          <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3">
                              <li class="breadcrumb-item"><a class="text-decoration-none"
