@@ -758,7 +758,7 @@
                                                         <?php }?>
 
                                                     </div>
-                                                    <div class="col-md-6 pro-details pl-6" style="padding-right: 75px">
+                                                    <div class="col-md-6 pro-details pl-6" style="padding-right: 75px; overflow:auto !important">
                                                         <h2 class="mb-2 text-capitalize">
                                                             <?= $productDetails['DESCRIPTION_TITLE'] ?></h2>
                                                         <p class="productDetailAboutSection"
@@ -790,7 +790,7 @@
                                                     <div class="col-md-6 mb-6 mb-md-0">
                                                         <img src="{{ $productDetails['SUBSCRIPTION_NOTE_IMAGE']->DOWN_PATH ?? '' }}                                                        "
                                                             alt="The Iconic Silhouette "
-                                                            class="fadeInRight animated subs_img">
+                                                            class="fadeInRight animated subs_img product_img">
 
                                                     </div>
                                                 </div>
@@ -1058,7 +1058,7 @@
 
                                                                 <img class="clinical-note"
                                                                     src="<?= $productDetails['clinicalImage'][0]['downPath'] ?>"
-                                                                    alt="Clinical Note">
+                                                                    alt="Clinical Note" >
 
                                                                 <?php }else{?>
 

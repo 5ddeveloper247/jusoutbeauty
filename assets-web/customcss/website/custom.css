@@ -11,14 +11,14 @@ body {
 	/* Optional: Add some padding to the container */
 }
 
-.carousel {
+.carslider {
 	width: 100%;
 	max-width: 600px;
 	margin: auto;
 }
 
 /* Custom CSS for hover effect */
-.carousel-item {
+.car1 {
 	position: relative;
 	height: 520px;
 	/* Adjust this to your preferred fixed height */
@@ -36,7 +36,7 @@ body {
 	transition: height 0.5s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.carousel-caption {
+.caption {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -48,26 +48,26 @@ body {
 	text-align: center;
 }
 
-.carousel-item img {
+.car1 img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
 }
 
-.carousel-item:hover .overlay {
+.car1:hover .overlay {
 	height: 100%;
 	opacity: 1;
 }
 
-.carousel-item:hover .carousel-caption {
+.car1:hover .caption {
 	opacity: 1;
 }
 
-.carousel-control-prev {
+.subprev {
 	left: -10rem;
 }
 
-.carousel-control-next {
+.subnxt {
 	right: -10rem;
 }
 
@@ -76,6 +76,14 @@ body {
 	width: 16px;
 	height: 16px;
 	filter: invert(1);
+}
+.shadeprev{
+	left: -97px;
+    right: auto;
+}
+.shadenxt{
+	left: auto;
+    right: -97px;
 }
 
 a {
@@ -1051,11 +1059,17 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 .part_head {
 	color: #0e0d21;
 }
+
 .rev-btnns {
-    max-width: 85%;
+	max-width: 85%;
 	font-size: 1.5rem;
 }
-
+.product_img{
+	height: 33rem !important;
+}
+.clinical-note{
+	height: 33rem !important;
+}
 
 
 @media screen and (min-width: 0px) and (max-width: 414px) {
@@ -1261,6 +1275,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	
 			overflow-y: hidden;
 		} */
+
 	.quick-addto-cart {
 		margin-top: 10px;
 	}
@@ -1281,6 +1296,17 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	.fix {
 		height: 222px !important;
 		overflow: hidden;
+	}
+	.pro-details {
+		height: 22rem;
+	}
+	.productDetailVideoSection {
+		height: 71vh;
+		overflow-y: auto;
+	}
+	.productDetailLutiesSection {
+		height: 82vh;
+		overflow: auto;
 	}
 
 	.yesno h2 {
@@ -1465,22 +1491,25 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		width: 326px !important;
 		margin-left: 0.3rem !important;
 	}
+
 	.carousel-control-prev {
 		left: 0rem !important;
 	}
-	
+
 	.carousel-control-next {
 		right: 0rem !important;
 	}
-	.start-fromscratch.back-to-shadefinderpage{
+
+	.start-fromscratch.back-to-shadefinderpage {
 		top: 0px;
 		font-size: 10px;
 	}
-	.backto-previousstep.second-step-previous{
+
+	.backto-previousstep.second-step-previous {
 		top: 0px;
 		font-size: 10px;
 	}
-	
+
 
 }
 
@@ -1631,7 +1660,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailLutiesSection {
-		height: 87vh;
+		height: 79vh;
 		overflow: auto;
 	}
 
@@ -1639,7 +1668,8 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 71vh;
 		overflow: auto;
 	}
-	.bundleDetailSubscriptionSection{
+
+	.bundleDetailSubscriptionSection {
 		height: 67vh;
 		overflow: auto;
 	}
@@ -1648,39 +1678,55 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		width: 22%;
 
 	}
+
 	.rating-cont-prod-detail .middle {
 		width: 56%;
 	}
-	.rev-btnns{
+
+	.rev-btnns {
 		font-size: 7px;
 	}
+
 	.bundleDetailAboutSection {
 		height: 141vh;
 		overflow: auto;
 	}
+
 	.bundleDetailVideoSection {
 		height: 55vh;
 		overflow: auto;
 	}
+
 	.bundleDetailLutiesSection {
 		height: 91vh;
 		overflow: auto;
 	}
-	.carousel{
+
+	.carslider {
 		max-width: 360px;
 	}
-	.carousel-item{
+
+	.car1 {
 		height: 438px;
 	}
-	.start-fromscratch.back-to-shadefinderpage{
+
+	.start-fromscratch.back-to-shadefinderpage {
 		right: -110px;
 		font-size: 12px;
 	}
-	.backto-previousstep.second-step-previous{
+
+	.backto-previousstep.second-step-previous {
 		font-size: 12px;
 	}
-	
-	
+	.clinical-note {
+		height: 25rem !important;
+	}
+	.fix {
+		height: 266px !important;
+		overflow: hidden;
+	}
+
+
 }
 
 @media only screen and (min-width :992px) {
@@ -1713,50 +1759,13 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 
 @media only screen and (min-width:1023px) {
 
-	/*
-	
-	.store1{
-		padding-top: 0px;
+	.slick-slide {
+
+		padding-left: 0px;
+		padding-right: 0px;
+		height: fit-content;
 	}
-	.clinical-note{
-		height: 100%;
-	}
-	.yesno h2{
-		padding: 30px;
-	}
-	.back-to-shadefinderpage span:nth-child(1){
-		font-size: 12px;
-		padding: 0px 6px
-	}
-	.back-to-shadefinderpage{
-		font-size: 10px;
-	}
-	.backto-previousstep.second-step-previous i{
-		font-size: 12px;
-		padding: 3px 5px
-	}
-	.backto-previousstep.second-step-previous {
-		font-size: 10px;
-	}
-	.noboxes h2{
-		font-size: 15px;
-		padding: 20px;
-	}
-	.shadefinderquiz{
-		height: 210px;
-	}
-	.shadefinderquiz-h{
-		height: 20px;
-		font-size:14px ;
-	}
-	.shadefinderquiz-p{
-		font-size: 9px;
-	}
-	.shadefinderquiz-col{
-		height: 24%;
-		 overflow:scroll;
-	} 
-	*/
+
 	.productDetailAboutSection {
 		height: 129vh;
 		overflow: auto;
@@ -1768,7 +1777,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailLutiesSection {
-		height: 115vh;
+		height: 104vh;
 		overflow: auto;
 		padding-left: 30px !important;
 	}
@@ -1779,7 +1788,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailSubscriptionSection {
-		height: 70vh;
+		height: 92vh;
 		overflow: auto;
 	}
 
@@ -1792,7 +1801,8 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 124vh;
 		overflow: auto;
 	}
-	.bundleDetailSubscriptionSection{
+
+	.bundleDetailSubscriptionSection {
 		height: 89vh;
 		overflow: auto;
 	}
@@ -1815,16 +1825,22 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		width: 68%;
 	}
 
-	.rev-btnns{
+	.rev-btnns {
 		font-size: 12px;
 	}
-	.carousel {
+
+	.carslider {
 		max-width: 435px;
 	}
 
-	.carousel-item {
+	.car1 {
 
 		height: 410px;
+	}
+
+	.start-fromscratch.back-to-shadefinderpage {
+		right: 0px;
+		font-size: 12px;
 	}
 
 
@@ -1857,12 +1873,12 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailLutiesSection {
-		height: 100vh;
+		height: 89vh;
 		overflow-y: auto;
 	}
 
 	.productDetailSubscriptionSection {
-		height: 84vh;
+		height: 79vh;
 		overflow-y: auto;
 	}
 
@@ -1870,7 +1886,8 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 79vh;
 		overflow-y: auto;
 	}
-	.bundleDetailSubscriptionSection{
+
+	.bundleDetailSubscriptionSection {
 		height: 101vh;
 		overflow: auto;
 	}
@@ -1979,11 +1996,18 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 37rem;
 	}
 
-	.carousel-item {
+	.car1 {
 		height: 507px;
 	}
-	.rev-btnns{
+
+	.rev-btnns {
 		font-size: 1rem;
+	}
+
+	.start-fromscratch.back-to-shadefinderpage {
+		right: 0px;
+		font-size: 15px;
+
 	}
 }
 
@@ -2050,7 +2074,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailLutiesSection {
-		height: 99vh;
+		height: 88vh;
 		overflow: auto;
 	}
 
@@ -2078,6 +2102,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 119vh;
 		overflow-y: auto;
 	}
+
 	.bundleDetailSubscriptionSection {
 		height: 101vh;
 		overflow: auto;
@@ -2212,11 +2237,22 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		width: 56rem;
 	}
 
-	.carousel-item {
+	.car1 {
 		height: 520px;
 	}
-	.rev-btnns{
+
+	.rev-btnns {
 		font-size: 1rem;
+	}
+
+	.start-fromscratch.back-to-shadefinderpage {
+		right: 45px;
+		font-size: 15px;
+	}
+
+	.backto-previousstep.second-step-previous {
+		font-size: 15px;
+		left: 45px;
 	}
 }
 
@@ -2814,7 +2850,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailLutiesSection {
-		height: 90vh;
+		height: 84vh;
 		overflow: auto;
 	}
 
@@ -2822,10 +2858,12 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 81vh;
 		overflow-y: auto;
 	}
-	.bundleDetailSubscriptionSection{
+
+	.bundleDetailSubscriptionSection {
 		height: 93vh;
 		overflow: auto;
 	}
+
 	.productDetailSubscriptionSection {
 		height: 86vh;
 		overflow-y: auto;
@@ -2840,15 +2878,26 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		max-width: 1750px;
 	}
 
-	.carousel {
+	.carslider {
 		max-width: 600px;
 	}
 
-	.carousel-item {
+	.car1 {
 		height: 750px;
 	}
-	.rev-btnns{
+
+	.rev-btnns {
 		font-size: 1.5rem;
+	}
+
+	.start-fromscratch.back-to-shadefinderpage {
+		right: 0px;
+		font-size: 15px;
+
+	}
+	.clinical-note {
+		height: 47rem
+	 !important;
 	}
 }
 
@@ -2865,14 +2914,15 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailSubscriptionSection {
-		height: 74vh;
+		height: 69vh;
 		overflow: auto;
 	}
 
 	.productDetailLutiesSection {
-		height: 90vh;
+		height: 71vh;
 		overflow: auto;
 	}
+
 	.bundleDetailAboutSection {
 		height: 64vh;
 		overflow: auto;
@@ -2882,25 +2932,32 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 		height: 70vh;
 		overflow: auto;
 	}
+
 	.bundleDetailLutiesSection {
 		height: 74vh;
 		overflow: auto;
 	}
+
 	.bundleDetailSubscriptionSection {
 		height: 74vh;
 		overflow: auto;
 	}
-	.carousel {
+
+	.carslider {
 		max-width: 850px;
 	}
 
-	.carousel-item {
+	.car1 {
 		height: 970px;
 	}
-	.rev-btnns{
+
+	.rev-btnns {
 		font-size: 1.5rem;
 	}
-	
+	.clinical-note {
+		height: 50rem !important;
+	}
+
 
 }
 

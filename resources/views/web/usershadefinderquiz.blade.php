@@ -6,6 +6,7 @@
 var site = '<?php echo session('site');?>';
 </script>
 <style>
+
 	@media screen and (min-width: 0px) and (max-width: 514px) {
 		.yes-lastscreen{
 			margin-top:unset !important;
@@ -88,11 +89,51 @@ var site = '<?php echo session('site');?>';
 									<h2 class="fs-title-shade-find text-center">@{{levelOneQuestionTitle}}</h2>
 								</div>
 							</div>
+
 							<section class="pb-11 pb-lg-0">
 								<div class="container container-custom border-bottom pb-2 pb-lg-1 pl-0 pr-0">
-									<div class="collapse-tabs">
+									<div class=" collapse-tabs">
+									
+									
+									
+  <div id="navPillsSlider" class="carousel slide" data-ride="carousel">
 
-										<ul class="nav nav-pills d-md-flex border-bottom" id="pills-tab">
+    <div class="carousel-inner">
+      <!-- First slide (All 100-498) -->
+      <div class="carousel-item active">
+        <ul class="nav nav-pills d-flex flex-nowrap border-bottom" id="pills-tab">
+          <li class="nav-item quiz_nav_links m-2">
+            <a class="nav-link cursor-pointer yeslevelonetabs active show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
+              id="yes_level_one_all" ng-click="levelOneTabsSwitch('all');">All 100-498</a>
+          </li>
+          <!-- Add more nav items as needed for the first slide -->
+          <li class="nav-item quiz_nav_links m-2" ng-repeat="row in displayCollectionLevelOneTypesOptions">
+            <a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
+              id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
+          </li>
+
+		  <li class="nav-item quiz_nav_links m-2" ng-repeat="row in displayCollectionLevelOneTypesOptions">
+            <a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
+              id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Navigation controls -->
+    <a class="carousel-control-prev" href="#navPillsSlider" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#navPillsSlider" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+
+  </div>
+</div>
+                               <!-- <ul class="nav nav-pills d-md-flex border-bottom" id="pills-tab">
 
 											<li class="nav-item quiz_nav_links mb-4" >
 												<a class="nav-link cursor-pointer yeslevelonetabs active show font-weight-600 px-0 pb-3 mr-md-6 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
@@ -103,7 +144,7 @@ var site = '<?php echo session('site');?>';
 												id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
 											</li>
 
-										</ul>
+										</ul> -->
 
 										<div class="bg-white-md shadow-none pt-md-6 pt-lg-1 px-0 mt-4">
 
@@ -1283,4 +1324,6 @@ $("#yes_level_one_all").click(function(){
 
 			});
 	});
+
+	
   </script>
