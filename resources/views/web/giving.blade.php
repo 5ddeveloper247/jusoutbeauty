@@ -126,7 +126,7 @@
             <div class="container container-custom">
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-6 mb-8 mb-md-0 inc-sec-img">
-                        <img src="{{ url('/assets-web') }}/images/Picture8.jpg"
+                        <img src="{{ url('/assets-web') }}/images/Picture8.jpg" class="giving-img"
                             style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                             alt="OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.">
                     </div>

@@ -163,10 +163,11 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 	.img-product-gall{
         height: 28rem;
     }
-	.fix{
-        height: 480px;
+	
+	/* .bundle-fix{
+        height: 370px;
         overflow: hidden;
-    }
+    } */
 /* .list-inline-item{
 	padding: 4px;
     width: 40px;
@@ -339,6 +340,8 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 			width: 100% !important
 		}
     }
+
+	
 </style>
 <main id="content" ng-app="project1">
 	<div ng-controller="projectinfo1">
@@ -744,7 +747,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 											            </div>
 											        </section>
 											        <?php  } ?>
-													<div class="row mb-10">
+													<div class="row mb-6">
 														<h2 class="col-12 mb-2 pb-8 text-center" style="margin: 0 auto;">About Product<?php //echo $line['SUB_TITLE']; ?></h2>
 														<div class="col-md-6 mb-6 mb-md-0">
 															<?php if(isset($images[0]['downPath'])){?>
@@ -792,14 +795,14 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 														<div class="">
 															<div class="row no-gutters">
 																<div class="col-md-8 mb-8 mb-md-0">
-																	<div class="fix">
+																	<div class="bundle-fix">
 																		<div class=" hover-zoom-in">
 																			<?php
 																				if(isset($line['videoDetails']['V_3'])){?>
 																			<video
 																				src="<?= isset($line['videoDetails']['V_3']) ? $line['videoDetails']['V_3'] : '' ?>"
 																				alt="Video background"
-																				class="card-img"></video>
+																				class="bundle-card-img"></video>
 																			<?php }else{?>
 																			<img class="card-img_if"
 																				src="{{ url('assets-web') }}/images/img-video.jpg"
@@ -1000,7 +1003,7 @@ var cartId = "<?php echo session('cartId') ? session('cartId') : ''; ?>";
 																<div class="col hover-zoom-in">
 																	<?php if(isset($line['clinicalImage'][0]['downPath'])){?>
 
-																		<img id="clinical-image" src="<?= $line['clinicalImage'][0]['downPath']; ?>" alt="Clinical Note">
+																		<img id="clinical-image" class="bundle-img" src="<?= $line['clinicalImage'][0]['downPath']; ?>" alt="Clinical Note">
 
 																	<?php }else{?>
 

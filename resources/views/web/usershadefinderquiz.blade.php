@@ -6,7 +6,23 @@
 var site = '<?php echo session('site');?>';
 </script>
 <style>
+ .carousel-inner {
+      overflow-x: auto;
+    }
 
+    #pills-tab {
+      display: flex;
+      white-space: nowrap;
+    }
+
+    .carousel-item {
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-link {
+      white-space: nowrap;
+    }
 	@media screen and (min-width: 0px) and (max-width: 514px) {
 		.yes-lastscreen{
 			margin-top:unset !important;
@@ -93,45 +109,31 @@ var site = '<?php echo session('site');?>';
 							<section class="pb-11 pb-lg-0">
 								<div class="container container-custom border-bottom pb-2 pb-lg-1 pl-0 pr-0">
 									<div class=" collapse-tabs">
-									
-									
-									
-  <div id="navPillsSlider" class="carousel slide" data-ride="carousel">
 
-    <div class="carousel-inner">
-      <!-- First slide (All 100-498) -->
-      <div class="carousel-item active">
-        <ul class="nav nav-pills d-flex flex-nowrap border-bottom" id="pills-tab">
-          <li class="nav-item quiz_nav_links m-2">
-            <a class="nav-link cursor-pointer yeslevelonetabs active show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
-              id="yes_level_one_all" ng-click="levelOneTabsSwitch('all');">All 100-498</a>
-          </li>
-          <!-- Add more nav items as needed for the first slide -->
-          <li class="nav-item quiz_nav_links m-2" ng-repeat="row in displayCollectionLevelOneTypesOptions">
-            <a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
-              id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
-          </li>
-
-		  <li class="nav-item quiz_nav_links m-2" ng-repeat="row in displayCollectionLevelOneTypesOptions">
-            <a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
-              id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
-          </li>
-        </ul>
-      </div>
-
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <ul class="nav nav-pills d-flex flex-nowrap border-bottom" id="pills-tab">
+        <li class="nav-item quiz_nav_links m-2">
+          <a class="nav-link cursor-pointer yeslevelonetabs active show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
+            id="yes_level_one_all" ng-click="levelOneTabsSwitch('all');">All 100-498</a>
+        </li>
+        <li class="nav-item quiz_nav_links m-2" ng-repeat="row in displayCollectionLevelOneTypesOptions">
+          <a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
+            id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
+        </li>
+      </ul>
     </div>
-
-    <!-- Navigation controls -->
-    <a class="carousel-control-prev" href="#navPillsSlider" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#navPillsSlider" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-
   </div>
+
+  <a class="carousel-control-prev" href="#" data-target="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#" data-target="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
                                <!-- <ul class="nav nav-pills d-md-flex border-bottom" id="pills-tab">
 
@@ -1325,5 +1327,5 @@ $("#yes_level_one_all").click(function(){
 			});
 	});
 
-	
+
   </script>

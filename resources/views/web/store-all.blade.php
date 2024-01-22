@@ -175,7 +175,7 @@
  </style>
  {{-- @dd('after style tag') --}}
  <main ng-app="project1">
-     <section class="py-10 mt-15 ">
+     <section class="py-10 mt-10">
          <div class="container">
              <div class="row">
                  <section class="col-md-6"
@@ -193,7 +193,7 @@
                          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
                          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                  </section>
-                 <section class="col-md-6 bg-gray-1 hero-section">
+                 <section class="col-md-6 bg-gray-1 shopall">
                      <nav aria-label="breadcrumb">
                          <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3">
                              <li class="breadcrumb-item"><a class="text-decoration-none"

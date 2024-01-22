@@ -1047,7 +1047,7 @@
                                                             <div class="col-md-6 mb-8 mb-md-0 hover-zoom-in">
                                                                 <?php if(isset($line['clinicalImage'][0]['downPath'])){?>
 
-                                                                <img id="clinical-image"
+                                                                <img id="clinical-image" 
                                                                     src="<?= $line['clinicalImage'][0]['downPath'] ?>"
                                                                     alt="Clinical Note">
 

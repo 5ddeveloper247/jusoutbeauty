@@ -247,7 +247,7 @@ $userId = session('userId');
     </section> --}}
 
 
-    <section class="py-10 mt-15 ">
+    <section class="py-10 mt-10 ">
         <div class="container">
             <div class="row">
                 <section class="col-md-6"
@@ -264,7 +264,7 @@ $userId = session('userId');
                     </div>
                     </div>
                 </section>
-                <section class="col-md-6  hero-section hero-image"
+                <section class="col-md-6 hero-section hero-image"
                     style="background-image: url(<?= $routineId[0]['IMAGE_DOWNPATH'] ?>);
                         background-repeat: no-repeat;
                         background-size: cover;
@@ -272,9 +272,7 @@ $userId = session('userId');
                         background-position: center !important;
                         padding-top: 100px !important;
                         padding-bottom: 100px !important;
-                        background-color: unset !important;
-                        
-                        height:75vh; position:relative">
+                        background-color: unset !important; position:relative">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-site py-0 d-flex justify-content-center fs-15 mb-3"
                             style="">

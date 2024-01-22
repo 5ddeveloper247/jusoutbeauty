@@ -217,14 +217,14 @@
     .img-product-gall {
         height: 28rem;
     }
-
+/* 
     .img1-section2 {
         height: 26rem;
     }
 
     .img2-section2 {
-        height: 13rem;
-    }
+        height: 23rem;
+    } */
 
     /* width */
     .spot-section {
@@ -240,11 +240,11 @@
         padding: 1.25rem;
         border-radius: 0;
     }
-
+/* 
     .fix {
-        height: 480px;
+        height: 46rem;
         overflow: hidden;
-    }
+    } */
 
     /* ::-webkit-scrollbar {
         width: 5px;
@@ -288,17 +288,17 @@
         max-height: unset !important
     }
 
-    .uses_img {
+    /* .uses_img {
         width: 100% !important;
         height: 32rem;
-    }
+    } */
 
     @media only screen and (max-width: 480px) {
-     
+/*      
         .uses_img {
             width: 100% !important;
             height: 25rem;
-        }
+        } */
 
         .last-section-pro-detail {
             flex-direction: column !important;
@@ -405,7 +405,6 @@
         }
      
     }
-
     .cursor-pointer {
         cursor: pointer;
     }
@@ -807,7 +806,7 @@
                                                                         <video
                                                                             src="<?= isset($productDetails['videoDetails']['V_3']) ? $productDetails['videoDetails']['V_3'] : '' ?>"
                                                                             alt="Video background"
-                                                                            class="card-img"></video>
+                                                                            class="card-img product-video"></video>
                                                                         <?php }else{?>
                                                                         <img class="card-img_if"
                                                                             src="{{ url('assets-web') }}/images/img-video.jpg"
@@ -1691,7 +1690,7 @@
                                                                     class="fs-12 text-primary font-italic">@{{ row.DATE }}</span>
                                                             </div>
                                                         </div>
-                                                        <p class="mb-6 text-justify">@{{ row.REVIEW_DESCRIPTION }}</p>
+                                                        <p class="mb-6 text-justify product-p">@{{ row.REVIEW_DESCRIPTION }}</p>
 
                                                         <!-- <br><br>
                                                          <div>
