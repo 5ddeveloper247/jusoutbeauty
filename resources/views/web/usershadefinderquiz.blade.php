@@ -110,7 +110,7 @@ var site = '<?php echo session('site');?>';
 								<div class="container container-custom border-bottom pb-2 pb-lg-1 pl-0 pr-0">
 									<div class=" collapse-tabs">
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <ul class="nav nav-pills d-flex flex-nowrap border-bottom" id="pills-tab">
@@ -122,6 +122,7 @@ var site = '<?php echo session('site');?>';
           <a class="nav-link yeslevelonetabs cursor-pointer show font-weight-600 px-3 pb-3 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
             id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
         </li>
+	
       </ul>
     </div>
   </div>
@@ -134,8 +135,8 @@ var site = '<?php echo session('site');?>';
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
-                               <!-- <ul class="nav nav-pills d-md-flex border-bottom" id="pills-tab">
+</div> -->
+                               <ul class="nav nav-pills d-md-flex border-bottom" id="pills-tab">
 
 											<li class="nav-item quiz_nav_links mb-4" >
 												<a class="nav-link cursor-pointer yeslevelonetabs active show font-weight-600 px-0 pb-3 mr-md-6 mr-4 text-active-primary border-active-primary bg-transparent rounded-0 lh-14375"
@@ -146,7 +147,7 @@ var site = '<?php echo session('site');?>';
 												id="yes_level_one_@{{row.LEVEL_ONE_TYPE_ID}}" ng-click="levelOneTabsSwitch(@{{row.LEVEL_ONE_TYPE_ID}})">@{{row.TITLE}}</a>
 											</li>
 
-										</ul> -->
+										</ul>
 
 										<div class="bg-white-md shadow-none pt-md-6 pt-lg-1 px-0 mt-4">
 

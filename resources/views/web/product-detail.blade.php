@@ -279,7 +279,7 @@
     }
 
     img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20 {
-        width: 53% !important;
+        width: 53% ;
         margin-top: 298px;
         margin-left: -123px;
     }
@@ -386,6 +386,10 @@
         .img1-section2 {
             height: 17rem;
         }
+        .img2-section2 {
+    height: 17rem;
+    width: 100%
+}
 
         .ingredientTabBtn,
         .revque_btn {
@@ -403,7 +407,7 @@
         .spot-section {
             height: unset !important;
         }
-     
+ 
     }
     .cursor-pointer {
         cursor: pointer;
@@ -669,7 +673,7 @@
         </section>
 
         <?php if(isset($features) && !empty($features)){?>
-        <section class="pb-11 pb-lg-6">
+        <section class="pb-8 pb-lg-6">
             <div class="container container-custom container-xxl mt-8">
                 <h2 class="text-center my-4">Features</h2>
                 <div class="slick-slider "
@@ -710,7 +714,7 @@
             </div>
         </section>
         <?php  } ?>
-        <section class="pb-11 pb-lg-6">
+        <section class="pb-8 pb-lg-6">
             <div class="container container-custom container-xxl">
                 <div class="collapse-tabs">
                     <ul class="nav nav-pills d-md-flex d-block border-bottom" style="display: none !important;"
@@ -757,7 +761,7 @@
                                                         <?php }?>
 
                                                     </div>
-                                                    <div class="col-md-6 pro-details pl-6" style="padding-right: 75px; overflow:auto !important">
+                                                    <div class="col-md-6 pro-details pl-6 pl-md-2 pl-lg-4 pl-xl-4" style="padding-right: 75px; overflow:auto !important">
                                                         <h2 class="mb-2 text-capitalize">
                                                             <?= $productDetails['DESCRIPTION_TITLE'] ?></h2>
                                                         <p class="productDetailAboutSection"
@@ -769,7 +773,7 @@
                                                 <hr>
 
                                                 <div class="row pt-10 subsc_ec">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 px-6 pl-xl-7">
                                                         <h2 class="mb-2">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
                                                         <div class="text-justify productDetailSubscriptionSection pr-9 pr-md-0" >
@@ -780,7 +784,7 @@
                                                             <a href="javascript:;" data-link="<?php echo $productDetails['SUBSCRIPTION_NOTE_LINK']; ?>"
                                                                 data-toggle="tooltip" data-placement="left"
                                                                 title="Click to see more Ingredients"
-                                                                class="preview btn btn-primary subscrReadMoreLink">
+                                                                class="preview btn btn-primary subscrReadMoreLink mx-1">
                                                                 <span>Read More</span>
                                                             </a>
                                                         </div>
@@ -795,10 +799,10 @@
                                                 </div>
                                                 <br>
                                                 <hr>
-                                                <section class="pt-10 pt-lg-8 py-5">
+                                                <section class="pt-8 pt-lg-8 py-5">
                                                     <div class="">
                                                         <div class="row no-gutters">
-                                                            <div class="col-md-8 mb-8 mb-md-0">
+                                                            <div class="col-md-8 mb-4 mb-md-0">
                                                                 <div class="fix">
                                                                     <div class=" hover-zoom-in">
                                                                         <?php
@@ -827,7 +831,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4 pl-xl-7 pl-6 productDetailVideoSection"
+                                                            <div class="col-md-4 pl-xl-5 pl-5 productDetailVideoSection"
                                                                 style="padding-right:60px; text-align:justify;">
                                                                 <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
@@ -1067,7 +1071,7 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-7 px-6 pl-xl-7 text-justify productDetailLutiesSection"
+                                                            <div class="col-md-7 px-4 pl-xl-7 text-justify productDetailLutiesSection"
                                                                 style="padding-right:60px !important; ">
                                                                 <h2 class="mb-2">Lutie's Hint</h2>
                                                                 <p class="">
