@@ -578,7 +578,7 @@ $userId = session('userId');
                             @if (isset($trending) && !empty($trending))
 
                                 @foreach ($trending as $trend)
-                                    <div class="box product py-2" data-animate="fadeInUp">
+                                    <div class="box product py-2 px-2" data-animate="fadeInUp">
                                         <div class="card border-0">
                                             <div class="position-relative hover-zoom-in">
                                                 {{-- productdetail ---> removed after made href url --}}
