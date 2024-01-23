@@ -280,8 +280,8 @@
 
     img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20 {
         width: 53% ;
-        margin-top: 298px;
-        margin-left: -123px;
+        margin-top: 239px;
+    margin-left: -133px;
     }
 
     #pills-recently-viewed {
@@ -773,7 +773,7 @@
                                                 <hr>
 
                                                 <div class="row pt-10 subsc_ec">
-                                                    <div class="col-md-6 px-6 pl-xl-7">
+                                                    <div class="col-md-6 px-6 pl-xl-5">
                                                         <h2 class="mb-2">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
                                                         <div class="text-justify productDetailSubscriptionSection pr-9 pr-md-0" >
