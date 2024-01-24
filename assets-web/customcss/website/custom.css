@@ -2511,7 +2511,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.productDetailVideoSection {
-		height: 65vh;
+		height: 67vh;
 		overflow-y: auto;
 	}
 
@@ -2548,6 +2548,12 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20 {
 		
 		height: 26rem;
+	}
+	.product-video {
+		height: 69vh;
+	}
+	.fix {
+		height: 31rem;
 	}
 }
 
@@ -3036,7 +3042,7 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	}
 
 	.fix {
-		height: 44rem;
+		height: 40rem;
 		overflow: hidden;
 	}
 
