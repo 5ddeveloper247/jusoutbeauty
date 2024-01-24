@@ -415,7 +415,8 @@
                                          </div>
                                      </div>
                                      <div class="position-absolute pos-fixed-bottom pb-4 px-4 w-100">
-                                         <a href="javascript:;"
+                                        {{--  add to cart  --}}
+                                        <a href="javascript:;"
                                              class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white @if (isset($userId)) productdetail @else addto-cart1 @endif"
                                              id="qckad" data-id="@{{ row.PRODUCT_ID }}"
                                              data-category="@{{ row.CATEGORY_SLUG }}"
@@ -423,6 +424,7 @@
                                              data-name="@{{ row.SLUG }}" data-type="@{{ catFlag }}"
                                              ng-if="row.INV_QUANTITY_FLAG == 'shade' || row.INV_QUANTITY_FLAG == 'bundle'">+
                                              Add To Cart</a>
+
                                          <a href="javascript:;"
                                              class="btn btn-white btn-block bg-hover-primary border-hover-primary hover-white addto-cart1"
                                              id="qckad" data-type="@{{ productType }}"

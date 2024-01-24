@@ -900,8 +900,14 @@
 
                 <li aria-haspopup="true" aria-expanded="false"
                     class="nav-item dropdown py-1 px-0 d-flex justify-content-between">
-                    <a class="nav-link dropdown-toggle p-0 toShopListing" href="javascript:;"
-                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY"> <?= $value['NAME'] ?> </a>
+
+
+                    <a class="nav-link dropdown-toggle p-0 "
+                        href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>"
+                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY"
+                        data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>" data-type="CATEGORY"> <?= $value['NAME'] ?>
+                    </a>
+
                     <i class="fas fa-plus list-sub-cate-icon " id="menuicon_<?= $value['CATEGORY_ID'] ?>"
                         onclick="menutoggle(<?= $value['CATEGORY_ID'] ?>);"></i>
 
@@ -909,15 +915,21 @@
                 <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_<?= $value['CATEGORY_ID'] ?>"
                     style="display:none;">
                     <?php $subCategories = $value['subCategories']; ?>
-                    <li>
-                        <a class="dropdown-link" href="{{ session('site') }}/store">Shop All</a>
-                    </li>
+                    {{-- <li>
+
+
+                        <a class="dropdown-link" href="{{ session('site') }}/Shop-All">Shop All</a>
+                    </li> --}}
                     @if (!empty($subCategories))
                         @foreach ($subCategories as $category)
-                            <li><a class="toShopListing" href="javascript:;"
-                                    data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
-                                    data-type="SUB_CATEGORY">{{ $category['NAME'] }}</a>
-                            </li>
+                            <div class="dropdown-item">
+                                {{-- toShopListing  ---> removed after made url href --}}
+                                <a class="dropdown-link "
+                                    href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                    data-id="<?= $category['SUB_CATEGORY_ID'] ?>" data-type="SUB_CATEGORY"
+                                    data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                    data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">{{ $category['DISPLAY_NAME'] }}</a>
+                            </div>
                         @endforeach
                     @endif
 
@@ -1381,7 +1393,6 @@
 </script>
 <script src="{{ url('/assets-web') }}/customjs/common.js?v={{ time() }}"></script>
 <script>
-
     // function searchAllNames(){
 
     //     $.ajax({
@@ -1480,4 +1491,3 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
