@@ -15,11 +15,17 @@ var site = '<?php echo session('site');?>';
     .nav-link {
       white-space: nowrap;
     }
+	@media only screen and (max-width: 320px) {
+		#pills-tab {
+    width: 15rem !important;
+    
+}
+	}
 	
 	@media screen and (min-width: 0px) and (max-width: 514px) {
-		.yes-lastscreen{
+		/* .yes-lastscreen{
 			margin-top:unset !important;
-		}
+		} */
 		.insta-section-image img {
 			object-fit: cover;
 			height: 300px;
@@ -39,26 +45,27 @@ var site = '<?php echo session('site');?>';
 			margin-left: -8% !important
 		}
 		#pills-tab {
-    width: 21rem;
-    justify-content: center;
-    align-items: center;
-    margin-left: 23px;
+    width: 19rem;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-left: 25px;
 }
-.nav-item{
+/* .nav-item{
 	width: 20px;
-}
+} */
 .slick-arrow {
-	
 	width: 33px;
     height:33px;
 }
 .slick-arrow.slick-prev{
-	left: -34px !important;
-    right: auto;
+	/* left: -34px !important;
+    right: auto; */
+	display:none;
 }
 .slick-arrow.slick-next {
-	right: -34px !important;
-	left: auto;
+	/* right: -34px !important;
+	left: auto; */
+	display:none;
 }
 	}
     /* Hide elements with ng-cloak attribute */
@@ -84,7 +91,7 @@ var site = '<?php echo session('site');?>';
 			<div class="card shadee px-0 pt-2 pb-0 mt-8 mb-3">
 
 				<form id="">
-					<h2 class="mb-3">Take A Quiz</h2>
+					<h2 class="mb-3 shade-heading">Take A Quiz</h2>
 					<!-- progressbar -->
 
 					<div class="progress progbar">
@@ -145,7 +152,7 @@ var site = '<?php echo session('site');?>';
 												<div class="yestabs" id="yes_tab_all">
 													<div class="card shadee border-0 bg-transparent">
 
-														<section class="py-6 py-lg-0 insta_section firsttabb">
+														<section class="py-4 py-lg-0 insta_section firsttabb">
 															<div class="container container-custom-slider container-xl">
 
 																<div class="slick-slider1 shadefinder">
@@ -244,7 +251,7 @@ var site = '<?php echo session('site');?>';
 							</div>
 							<div class="container">
 								<div class="row">
-									<div class="col-3 noboxes nofour-boxes" ng-repeat="row in displayCollectionLevelTwoTypesOptions" ng-click="chooseOptionLevelThree(@{{row.LEVEL_TWO_TYPE_ID}});">
+									<div class="col-3 col-md-6 col-lg-6 col-xl-3 noboxes nofour-boxes" ng-repeat="row in displayCollectionLevelTwoTypesOptions" ng-click="chooseOptionLevelThree(@{{row.LEVEL_TWO_TYPE_ID}});">
 
 										<h2 class="fs-title-shade-find">@{{row.TITLE}}</h2>
 
@@ -264,7 +271,7 @@ var site = '<?php echo session('site');?>';
 							</div>
 							<div class="container">
 								<div class="row">
-									<div class="col-4 noboxes if-nolaststp" ng-repeat="row in displayCollectionLevelThreeTypesOptions" ng-click="chooseOptionLevelLast(@{{row.LEVEL_THREE_TYPE_ID}});">
+									<div class="col-4 col-md-12 col-lg-12 col-xl-4 noboxes if-nolaststp" ng-repeat="row in displayCollectionLevelThreeTypesOptions" ng-click="chooseOptionLevelLast(@{{row.LEVEL_THREE_TYPE_ID}});">
 										<h2 class="fs-title-shade-find">@{{row.TITLE}}</h2>
 									</div>
 								</div>
@@ -274,7 +281,7 @@ var site = '<?php echo session('site');?>';
 				</form>
 
 				<div class="yes-lastscreen" ng-show="viewFlag == 'YL'"  style="margin-top: -64px;">
-					<section class="pt-10 pt-lg-4">
+					<section class="pt-8 pt-lg-8">
 						<div class="text-center align-items-center">
 							<h4>Meet Your Match</h4>
 							<p>The best shade, based your answer</p>
@@ -282,17 +289,17 @@ var site = '<?php echo session('site');?>';
 					</section>
 					<section class="pt-6 pt-lg-5">
 						<div class="row">
-							<div class="col-lg-5 " style="height: 675px;">
-								<img id="take_a_q" src="@{{levelOneLatestImg}}" style="height: 655px !important; width: 100% !important;">
+							<div class="col-lg-5 shade-quizno-area" style="height: 675px;">
+								<img id="take_a_q" src="@{{levelOneLatestImg}}" style="height: 655px; width: 100% !important;">
 							</div>
-							<div class="col-lg-7" style="height: 675px;">
+							<div class="col-lg-7 shade-no-last" style="height: 675px;">
 							<!-- <div class="" style=""> -->
 								<div class="text-center">
-									<h2 class="" style="font-size:2.5rem !important;">Liquid Foundation Iconic</h2>
+									<h2 class="shade-heading" style="">Liquid Foundation Iconic</h2>
 									<p class="" style="font-size:1rem !important;">Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
-								<div class="row d-flex" style="height: 66%; overflow:scroll;">
+								<div class="row d-flex shade-finder-last" style="height: 66%; overflow:scroll;">
 									<div class="col-lg-4 mb-0 fadeInUp animated" ng-repeat="row in displayCollectionPrimaryProducts">
                                         {{-- productdetail --> removed after made url with href --}}
 										<div class="box shade py-2 fadeInUp animated"
@@ -344,9 +351,9 @@ var site = '<?php echo session('site');?>';
 
 					</section>
 
-					<section class="pt-10 pt-lg-8 pb-8">
+					<section class="pt-8 pt-lg-8 pb-8">
 						<div class="container container-xl">
-							<h2 class="text-center pb-3">Other Products To Complete The Look</h2>
+							<h2 class="text-center pb-3 shade-heading">Other Products To Complete The Look</h2>
 
 							<div class="slick-slider2456 shadefinder"
 							{{-- data-slick-options='{"slidesToShow":4,"dots":true,"autoplay":true,"arrows":true,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":true}},{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":true}},{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":true}},{"breakpoint": 992,"settings": {"centerMode":false,"arrows":true}}]}' --}}

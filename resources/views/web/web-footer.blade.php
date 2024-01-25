@@ -89,8 +89,8 @@
                 padding-left: unset
             }
 
-            h2 {
-                font-size: 36px;
+            .footer-heading {
+                font-size: 25px;
                 text-transform: capitalize;
             }
         }
@@ -102,7 +102,7 @@
         <div class="container container-xxl container-footer">
             <div class="row align-items-center first-rw">
                 <div class="col-lg-12 mb-4 mb-lg-0 text-center footer-links-account">
-                    <h2 class="mb-4 footer-text-white">Yu Jus Enough and Let's Be
+                    <h2 class="mb-4 footer-text-white footer-heading">Yu Jus Enough and Let's Be
                         Bestie</h2>
                     <p class="lh-2 mb-4 fs-14 footer-text-white">Don't Mis Out-All the exclusives' events,
                         skincare tips, Special Offers straight to yur inbox</p>
@@ -940,7 +940,7 @@
       Nutrition </a></li> -->
                 <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
                         class="nav-link dropdown-toggle p-0 footer-text-white"
-                        href="{{ session('site') }}/user-shade-finder" style="color:white;"> Shade
+                        href="{{ session('site') }}/user-shade-finder" style=""> Shade
                         Finder </a></li>
                 {{-- <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
                         class="nav-link dropdown-toggle p-0" href="{{ url('become_a_partner') }}"> Partner </a></li> --}}

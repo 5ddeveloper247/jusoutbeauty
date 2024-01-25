@@ -135,8 +135,8 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 							"autoplay":false,
 							"dots":false,
 							"arrows":true,
-							prevArrow:"<button type='button' class='slick-prev pull-left nav-btn-prev' style='left:-20px; right: auto; top:21px'><i class='fas fa-angle-left'></i></button>",
-							nextArrow:"<button type='button' class='slick-next pull-right nav-btn-nxt'style='right:-20px; left: auto;top:21px'><i class='fas fa-angle-right'></i></button>",
+							prevArrow:"<button type='button' class='slick-prev pull-left nav-btn-prev' style='left:-30px; right: auto; top:21px'><i class='fas fa-angle-left'></i></button>",
+							nextArrow:"<button type='button' class='slick-next pull-right nav-btn-nxt'style='right:-30px; left: auto;top:21px'><i class='fas fa-angle-right'></i></button>",
 							"responsive":[
 								{
 									breakpoint: 1030, // 800x600
@@ -157,7 +157,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 								  },
 								  {
 									breakpoint: 480, // 320x480
-									settings: { slidesToShow: 2 }
+									settings: { slidesToShow: 1 }
 								  }
 										]
 	

@@ -505,7 +505,7 @@ $userId = session('userId');
 <div class="cookies_blocker" style="display: none;"></div>
 <main id="content" style="padding-top: 0px !important" ng-app="project1">
     <div ng-controller="projectinfo1">
-        <section class="slick-slider custom-dots-01 mx-0 slider-home-08 d-none d-md-block"
+        <section class="slick-slider custom-dots-01 mx-0 slider-home-08 d-md-block"
             data-slick-options='{"slidesToShow": 1,"infinite":true,"autoplay":true,"dots":true,"arrows":false,"fade":true,"cssEase":"ease-in-out","speed":600,"responsive":[{"breakpoint": 576,"settings": {"dots": false}}]}'>
 
             @if (isset($homeBanner) && !empty($homeBanner))
@@ -691,7 +691,7 @@ $userId = session('userId');
                                                         @if ($trend['DISC_AMOUNT'] > 0)
                                                             <p class="text-primary mb-0 card-title lh-14375">
                                                                 ${{ $trend['DISC_AMOUNT'] }}</p>
-                                                            <small class="ml-1 mt-1 lh-14375"><del>
+                                                            <small class="ml-1 mt-1 lh-14375 del"><del>
                                                                     ${{ $trend['PRODUCT_PRICE'] }}</del></small>
                                                         @else
                                                             <p class="text-primary mb-0 card-title lh-14375">
@@ -943,7 +943,7 @@ $userId = session('userId');
                                                 @if ($for['DISC_AMOUNT'] > 0)
                                                     <p class="text-primary mb-0 card-title lh-14375">
                                                         ${{ $for['DISC_AMOUNT'] }}</p>
-                                                    <small class="ml-1 mt-1 lh-14375"><del>
+                                                    <small class="ml-1 mt-1 lh-14375 del"><del>
                                                             ${{ $for['PRODUCT_PRICE'] }}</del></small>
                                                 @else
                                                     <p class="text-primary mb-0 card-title lh-14375">
@@ -1088,7 +1088,7 @@ $userId = session('userId');
                     @if (isset($bestSeller) && !empty($bestSeller))
                         {{-- <div class="col-sm-6 mb-0 mb-sm-0 product-inclusive" data-animate="fadeInUp"
                             style="background-image: url('{{ $bestSeller['IMAGE_DOWNPATH'] }}');">
-                            <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in"
+                            <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in main-page"
                                 style="background-color: unset !important; height: 600px;">
                                 <div class="card-img bg-img-cover-center"></div>
                                 <div class="card-img-overlay d-flex flex-column p-2">
