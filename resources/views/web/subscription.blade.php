@@ -655,9 +655,9 @@
                                     class="d-block w-100">
                                 <div class="overlay">
                                 <div class="carousel-caption caption">
-                                    <h5 class="text-gray"> @{{ row.CATEGORY }}</h5>
-                                    <p class="text-white">@{{ row.NAME }}</p>
-                                    <p class="text-white">@{{ row.SUB_TITLE }}</p>
+                                    <h5 class="text-gray font-weight-500 text-capitalize "> @{{ row.CATEGORY }}</h5>
+                                    <p class="text-white text-capitalize">@{{ row.NAME }}</p>
+                                    <p class="text-white mb-0 shop-subtitle card-title cards_length lh-14375 product-subtitle text-capitalize" style="height:48px">@{{ row.SUB_TITLE }}</p>
                                     <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center text-white">
                                         <li class="list-inline-item" ng-repeat="shade in row.shades"
                                             title="@{{ shade.SHADE_NAME }}">
