@@ -133,6 +133,46 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		.error(function(data, status, headers, config) {
 		});
 	}
+    $scope.getAllUserStoreListingAllLov = function(){
+
+		$scope.lowerlimit = 0;
+		var data = {};
+	    data.userId = userId;
+	    data.lowerlimit = $scope.lowerlimit;
+
+	    var temp = $.param({details: data});
+		$http({
+			data: temp+"&"+$scope.tokenHash,
+			url : site+'/getAllUserStoreListingAllLov',
+			method: "POST",
+			async: false,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+		}).success(function(data, status, headers, config) {
+            // console.log(data.products);
+			// $scope.displayCollectionProducts = data.products;
+                    // Assign products with shades to $scope.displayCollectionProducts
+            $scope.displayCollectionProductssss = data.products.map(product => {
+            // If the product has shades, include them in the product object
+            if (product.shades && product.shades.length > 0) {
+                product.hasShades = true; // You can use this flag to conditionally show shades
+            }
+            // console.log(data.products);
+            return product;
+        });
+
+			$scope.displayCollectionShadeFilter = data.list1;
+
+			$scope.displayCollectionSubCategoryFilter = data.list2;
+
+			$scope.lowerlimit = $scope.lowerlimit + data.list2.length;
+
+		})
+		.error(function(data, status, headers, config) {
+		});
+	}
+
+    $scope.getAllUserStoreListingAllLov();
 
 	$scope.chooseProdShade = function(prodShadeId, shadeId, productId, shadeName, primaryImg, secondaryImg){
 
