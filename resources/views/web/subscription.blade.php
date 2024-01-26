@@ -644,21 +644,21 @@
         </section>
 
         <section>
-            <div class="container mt-5 custom">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="">
+            <div class="container mt-5 custom custom-sub">
+                <div id="myCarousel" class="carousel slide carslider" data-ride="carousel" style="">
                     <div class="carousel-inner">
-                        <div class="carousel-item" ng-repeat="row in displayCollectionProductssss track by $index"
+                        <div class="carousel-item car1" ng-repeat="row in displayCollectionProductssss track by $index"
                             ng-class="{ 'active': $index === 0 }">
                             <a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}"
                                 data-id="@{{ row.PRODUCT_ID }}">
                                 <img src="@{{ row.primaryImage }}" alt="@{{ row.NAME }}"
                                     class="d-block w-100">
-                                <div class="overlay"></div>
-                                <div class="carousel-caption">
-                                    <h5> @{{ row.CATEGORY }}</h5>
-                                    <p>@{{ row.NAME }}</p>
-                                    <p>@{{ row.SUB_TITLE }}</p>
-                                    <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
+                                <div class="overlay">
+                                <div class="carousel-caption caption">
+                                    <h5 class="text-gray"> @{{ row.CATEGORY }}</h5>
+                                    <p class="text-white">@{{ row.NAME }}</p>
+                                    <p class="text-white">@{{ row.SUB_TITLE }}</p>
+                                    <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center text-white">
                                         <li class="list-inline-item" ng-repeat="shade in row.shades"
                                             title="@{{ shade.SHADE_NAME }}">
                                             <a href="javascript:;" class="d-block swatches-item"
@@ -666,27 +666,30 @@
                                             </a>
                                         </li>
                                     </ul>
-                                    <p ng-show="row.DISC_AMOUNT > '0'">
+                                 
+                                 <!-- <p class="text-white mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT > '0'">
                                         <span>$@{{ row.DISC_AMOUNT }}</span>
                                         <span class="small"><del> $@{{ row.UNIT_PRICE }}</del></span>
-                                    </p>
-                                    <p ng-show="row.DISC_AMOUNT <= '0'">
+                                    </p> -->
+                                    <p  class="text-white mb-0 card-title lh-14375 d-flex justify-content-between" ng-show="row.DISC_AMOUNT <= '0'">
                                         {{-- <span ng-if="row.DISC_AMOUNT > 0">$@{{ row.DISC_AMOUNT }}</span> --}}
                                         <span>$@{{ row.UNIT_PRICE }}</span>
+                                        <span> @{{ row.UNIT }}</span>
                                     </p>
-                                    <p>
-                                        @{{ row.UNIT }}
-                                    </p>
-
+                                    <!-- <p>
+                                         @{{ row.UNIT }} 
+                                    </p> -->
+                                
+                                    </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <a class="carousel-control-prev subprev" href="#myCarousel" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                    <a class="carousel-control-next subnxt" href="#myCarousel" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>

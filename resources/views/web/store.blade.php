@@ -455,8 +455,10 @@
                                                  <span class="small"><del> $@{{ row.UNIT_PRICE }}</del></span>
                                              </p>
                                              <p class="text-primary mb-0 card-title lh-14375"
-                                                 ng-show="row.DISC_AMOUNT <= 0 || row.INV_QUANTITY_FLAG == 'bundle'">
-                                                 <span>$@{{ row.UNIT_PRICE }}</span>
+                                                 ng-show="row.DISC_AMOUNT <= 0 || row.INV_QUANTITY_FLAG == 'bundle'" >
+                                                 
+                                                 <span class="ml-2"> $@{{ row.UNIT_PRICE }}</span>
+                                                 
                                              </p>
                                          </div>
                                          <div
@@ -544,7 +546,7 @@
 
  									<div class="row">
  										<div class="col-sm-6 col-7">
- 											<p class="text-primary mb-0 card-title lh-14375"> <span>$@{{ row.UNIT_PRICE }}</span> </p>
+ 											<p class="text-primary mb-0 card-title lh-14375"> <span>$@{{ row.UNIT_PRICE }}</span></p>
  										</div>
  										<div class="col-sm-6 col-5">
  											<p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">@{{ row.UNIT }}</p>

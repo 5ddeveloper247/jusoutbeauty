@@ -723,12 +723,12 @@ $userId = session('userId');
 
 
 
-        <section class="bg-img-cover-center h-100 py-16 py-lg-19 d-none d-sm-block pay-section"
+        <section class="bg-img-cover-center h-100 py-16 py-lg-19  d-sm-block pay-section"
             style="background-image: url('{{ url('/assets-web') }}/images/shopnow-ban.jpg');" data-animated-id="4">
             <div class="container container-xl">
                 <div class="d-flex">
                     <div class="ml-auto d-flex flex-column align-items-center" style="margin: 0 auto !important;">
-                        <h2 class="mb-7 text-center part_head text-capitalize">Pay less, stay
+                        <h2 class="index-product mb-7 text-center part_head text-capitalize">Pay less, stay
                             in fashion!</h3>
 
                             <a href="{{ session('site') }}/Shop-All" class="btn btn-primary">All Products</a>
@@ -941,7 +941,7 @@ $userId = session('userId');
                                             <div
                                                 class="@if (strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
                                                 @if ($for['DISC_AMOUNT'] > 0)
-                                                    <p class="text-primary mb-0 card-title lh-14375">
+                                                    <p class="p-index text-primary mb-0 card-title lh-14375">
                                                         ${{ $for['DISC_AMOUNT'] }}</p>
                                                     <small class="ml-1 mt-1 lh-14375 del"><del>
                                                             ${{ $for['PRODUCT_PRICE'] }}</del></small>

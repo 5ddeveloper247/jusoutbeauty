@@ -304,8 +304,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">CUSTOMER
-                        CARE</p>
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">CUSTOMER CARE</p>
                     <ul>
                         <li><a href="{{ url('/customer-help') }}" onclick="informationflag('customer')"
                                 class="footer-text-white">Customer Service</a></li>
@@ -317,7 +316,7 @@
                         <li><a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-4"
                                 class="footer-text-white" onclick="informationflag('shipping')">Shipping & Returns</a>
                         </li>
-                        <li><a href="{{ session('site') }}/subscription" class="footer-text-white">Subscribe +
+                        <li><a href="{{ url('/subscription') }}" class="footer-text-white">Subscribe +
                                 Save</a></li>
                         <!-- 						<li><a href="#">FAQs</a></li> -->
                         <?php if(session()->has('userId')){?>

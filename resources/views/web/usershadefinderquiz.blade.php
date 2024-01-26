@@ -296,7 +296,7 @@ var site = '<?php echo session('site');?>';
 							<!-- <div class="" style=""> -->
 								<div class="text-center">
 									<h2 class="shade-heading" style="">Liquid Foundation Iconic</h2>
-									<p class="" style="font-size:1rem !important;">Invisible Touch Liquid Foundation. Foundation color suitable
+									<p class="" style="font-size:1rem;">Invisible Touch Liquid Foundation. Foundation color suitable
 										for medium, neutral olive undertones</p>
 								</div>
 								<div class="row d-flex shade-finder-last" style="height: 66%; overflow:scroll;">

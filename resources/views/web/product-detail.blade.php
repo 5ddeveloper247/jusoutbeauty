@@ -317,7 +317,7 @@
         a#writeQuestion_btn {
             position: absolute;
             bottom: 0px;
-            left: 25px;
+            left: 15px;
             font-size: 11px;
             padding: 2px;
         }
