@@ -475,7 +475,7 @@
                                              <p class="text-primary mb-0 card-title lh-14375"
                                                  ng-show="row.DISC_AMOUNT <= '0'">
                                                  {{-- <span ng-if="row.DISC_AMOUNT > 0">$@{{ row.DISC_AMOUNT }}</span> --}}
-                                                 <span>$@{{ row.UNIT_PRICE }}</span>
+                                                 <span class=""> $@{{ row.UNIT_PRICE }}</span>
                                              </p>
                                          </div>
                                          <div

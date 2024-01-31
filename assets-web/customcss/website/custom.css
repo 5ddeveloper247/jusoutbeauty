@@ -2312,7 +2312,7 @@ a.card.border-0.banner-03.hover-zoom-in{
 		font-size: 25px !important;
 	}
 	.hero-section {
-		height: 76vh;
+		height: 78vh;
 	}
 
 	.fix {
@@ -2465,6 +2465,9 @@ a.card.border-0.banner-03.hover-zoom-in{
 	.backto-previousstep.second-step-previous i {
 		font-size: 17px;
 		padding: 5px 6px;
+	}
+	.hero-section {
+		height: 80vh;
 	}
 }
 

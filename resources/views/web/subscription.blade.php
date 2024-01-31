@@ -644,7 +644,7 @@
         </section>
 
         <section>
-            <div class="container mt-5 custom custom-sub">
+            <div class="container mt-2 custom custom-sub">
                 <div id="myCarousel" class="carousel slide carslider" data-ride="carousel" style="">
                     <div class="carousel-inner">
                         <div class="carousel-item car1" ng-repeat="row in displayCollectionProductssss track by $index"
