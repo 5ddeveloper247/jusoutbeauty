@@ -494,6 +494,10 @@
         border-color: #b73d94;
         outline: #b73d94;
     }
+    .cookie-txt{
+    font-size: 12px;
+    text-align: left;
+    }
 
     @media (max-width: 174px) {
         .cookie-frame.open {}
@@ -547,7 +551,7 @@
             background-color: #f9f9f9;
             padding: 5px;
             padding-bottom: 10px;
-            text-align: center;
+            /* text-align: center; */
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
 
@@ -580,7 +584,7 @@
         }
 
         .cookie-content .text {
-            padding-left: 10px;
+            padding-left: 5px;
         }
     }
 
@@ -604,7 +608,7 @@
         }
 
         .cookie-content .text {
-            padding-left: 30px;
+            padding-left: 10px;
         }
     }
 
@@ -634,10 +638,11 @@
         }
     }
 
-    @media screen and (min-width: 0px) and (max-width: 414px) {
+    @media screen and (min-width: 0px) and (max-width: 425px) {
         .cookie-frame {
             bottom: -78%;
         }
+     
     }
   
 </style>

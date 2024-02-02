@@ -270,7 +270,7 @@ $userId = session('userId');
     .sticky-area {
         background-color: transparent;
     }
-
+   
     @media screen and (min-width: 0px) and (max-width: 575px) {
         #instaFeed_html {
             width: 371px;
@@ -310,6 +310,16 @@ $userId = session('userId');
             margin-left: -40px;
             color: #fff;
         }
+        .cookie-txt{
+    font-size: 10.5px !important;
+    
+    }
+    #acceptCookiesBtn, #declineCookiesBtn{
+        font-size: 10.5px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    
     }
 
     @media screen and (min-width: 576px) {
@@ -1748,12 +1758,12 @@ $userId = session('userId');
 
 <div class="cookie-frame open" style="display:none;z-index: 100000000;!important;">
     <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
-        <div class="col-sm-8 text">
-            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking
+        <div class="col-6 col-sm-8 text">
+            <p class="cookie-txt text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="">By clicking
                 Accept Cookies, you agree to the storing of cookies on your device to enhance
                 site navigation, analyze site usage, and assist in our marketing efforts.</p>
         </div>
-        <div class="d-flex justify-content-center col-sm-4">
+        <div class="d-flex justify-content-center col-6 col-sm-4">
             <button class="btn btn-outline-primary mr-2" id="acceptCookiesBtn">Accept</button>
             <button class="btn btn-my" id="declineCookiesBtn">Decline</button>
         </div>
