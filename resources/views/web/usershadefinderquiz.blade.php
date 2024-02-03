@@ -335,14 +335,14 @@ var site = '<?php echo session('site');?>';
 
 									</div>
 								</div>
-								<div class="row mt-2 mb-2 pt-2 pb-2"
+								<div class="row mt-2 mb-2 pt-2 pb-2 box-shade-finder"
 									style="background-color: #fff0f3; color: black;">
 									<div class="col-lg-6" style="align-self: center;">
 										<h5 class="">Compact & Contrast</h5>
 										<p class="mb-0">Not Satisfied with your match?</p>
 									</div>
 									<div class="col-lg-6" style="align-self: center;">
-										<a href="{{session('site')}}/user-shade-finder" class="btn btn-primary">Back to shade finder</a>
+										<a href="{{session('site')}}/user-shade-finder" class="btn btn-primary btn-shade-finder">Back to shade finder</a>
 									</div>
 								</div>
 							
@@ -672,7 +672,7 @@ var site = '<?php echo session('site');?>';
 											   <input type="hidden" id="productId_@{{row.BUNDLE_LINE_ID}}" value="">
 											   <input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">
 										   </div>
-										   <a href="javascript:;" class="btn btn-primary" ng-click="confirmBundleProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
+										   <a href="javascript:;" class="btn btn-primary " ng-click="confirmBundleProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
 									   </div>
 								   </div>
 							   </div>

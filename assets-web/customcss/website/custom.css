@@ -1617,6 +1617,13 @@ img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20.aboutpictu
 	.part_head {
 		font-size: 17px !important;
 	}
+	.btn-shade-finder{
+		width: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 12px;
+		margin-top: 6px !important;
+	}
 }
 
 @media screen and (min-width: 0px) and (max-width: 614px) {
@@ -2103,9 +2110,11 @@ a.card.border-0.banner-03.hover-zoom-in{
 	.shade-heading {
 		font-size: 1.5rem;
 	}
-
+    .box-shade-finder{
+		width: 507px;
+	}
 	.shade-finder-last {
-		height: 50% !important;
+		height: 59.5% !important;
 	}
 	.selfi {
 		width: 20%;
@@ -2292,6 +2301,9 @@ a.card.border-0.banner-03.hover-zoom-in{
 	.rev-btnns {
 		font-size: 1rem;
 	}
+	.box-shade-finder {
+		width: auto;
+	}
     .start-fromscratch.back-to-shadefinderpage {
 		right: 34px;
 		font-size: 15px;
@@ -2359,7 +2371,7 @@ a.card.border-0.banner-03.hover-zoom-in{
 		height: 675px !important;
 	}
 	.shade-finder-last {
-		height: 73% !important;
+		height: 69.5% !important;
 	}
 	.shade-heading {
 		font-size: 2.5rem;
