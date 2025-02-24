@@ -853,11 +853,11 @@
                                                             ng-show="SecondSectionEdit == '0'">For Women </h3>
                                                         <div class="col-md-6 mb-6 mb-md-0">
                                                             <img id="p15"
-                                                                src="https://jusoutbeauty.com/site/public/uploads/product/images/292.jpg"
+                                                                src="https://jusoutbeauty.com/public/uploads/product/images/292.jpg"
                                                                 alt="Image"
                                                                 class="prod_img_detail_acc fadeInLeft animated img1-section2 img-w35">
                                                             <img id="p16"
-                                                                src="https://jusoutbeauty.com/site/public/uploads/product/images/293.jpg"
+                                                                src="https://jusoutbeauty.com/public/uploads/product/images/293.jpg"
                                                                 alt="Image"
                                                                 class="prod_img_detail_acc_sec fadeInLeft animated img2-section2 img-w20">
 
@@ -1365,7 +1365,7 @@
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
                                                                                 style="background-color:#57813a96">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Glycerin</p>
@@ -1381,7 +1381,7 @@
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
                                                                                 style="background-color:#57813a96">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Polyethylene Terephthalate</p>
@@ -1396,7 +1396,7 @@
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
                                                                                 style="background-color:#57813a96">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Caprylic/Capric Triglyceride</p>
@@ -1411,7 +1411,7 @@
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
                                                                                 style="background-color:#57813a96">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Phenoxyethanol</p>
@@ -1453,7 +1453,7 @@
                                                                             <div
                                                                                 class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Talc</p>
@@ -1466,7 +1466,7 @@
                                                                             <div
                                                                                 class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Zinc Stearate</p>
@@ -1478,7 +1478,7 @@
                                                                             <div
                                                                                 class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Sodium Dehydroacetate</p>
@@ -1492,7 +1492,7 @@
                                                                             <div
                                                                                 class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section">
                                                                                 <img class="spot-section-img"
-                                                                                    src="https://jusoutbeauty.com/site/assets-web/images/cannabis-ingredient.webp">
+                                                                                    src="https://jusoutbeauty.com/assets-web/images/cannabis-ingredient.webp">
                                                                                 <p
                                                                                     class="text-primary font-weight-500 lh-14375 mb-3 pt-4 ">
                                                                                     Iron Oxides - CI
@@ -1577,7 +1577,7 @@
                                                             <div class="row" id="steps_users">
                                                                 <div class="col-md-4 mb-6 mb-md-0 ">
                                                                     <div class="card border-0">
-                                                                        <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527807-106.jpg"
+                                                                        <img src="https://jusoutbeauty.com/public/uploads/product/uses/1683527807-106.jpg"
                                                                             alt="Image"
                                                                             class="card-img h_to_use_img">
                                                                         <div
@@ -1595,7 +1595,7 @@
 
                                                                 <div class="col-md-4 mb-6 mb-md-0 pt-14 step_2">
                                                                     <div class="card border-0">
-                                                                        <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527845-107.jpg"
+                                                                        <img src="https://jusoutbeauty.com/public/uploads/product/uses/1683527845-107.jpg"
                                                                             alt="Image"
                                                                             class="card-img h_to_use_img">
                                                                         <div
@@ -1613,7 +1613,7 @@
 
                                                                 <div class="col-md-4 mb-6 mb-md-0 ">
                                                                     <div class="card border-0">
-                                                                        <img src="https://jusoutbeauty.com/site/public/uploads/product/uses/1683527885-108.jpg"
+                                                                        <img src="https://jusoutbeauty.com/public/uploads/product/uses/1683527885-108.jpg"
                                                                             alt="Image"
                                                                             class="card-img h_to_use_img">
                                                                         <div
@@ -1887,10 +1887,10 @@
 
                                             <a href="javascript:;" class="d-block overflow-hidden productdetail"
                                                 data-id="106">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/255.jpg"
+                                                <img src="https://jusoutbeauty.com/public/uploads/product/images/255.jpg"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/256.jpg"
+                                                <img src="https://jusoutbeauty.com/public/uploads/product/images/256.jpg"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 image-hover">
                                             </a>
@@ -1955,10 +1955,10 @@
 
                                             <a href="javascript:;" class="d-block overflow-hidden productdetail"
                                                 data-id="119">
-                                                <img src="https://www.jusoutbeauty.com/site/public/uploads/product/images/319.jpg"
+                                                <img src="https://www.jusoutbeauty.com/public/uploads/product/images/319.jpg"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://www.jusoutbeauty.com/site/public/uploads/product/images/320.jpg"
+                                                <img src="https://www.jusoutbeauty.com/public/uploads/product/images/320.jpg"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 image-hover">
                                             </a>
@@ -2023,10 +2023,10 @@
 
                                             <a href="javascript:;" class="d-block overflow-hidden productdetail"
                                                 data-id="120">
-                                                <img src="https://jusoutbeauty.com/site/assets-web/images/product_placeholder.png"
+                                                <img src="https://jusoutbeauty.com/assets-web/images/product_placeholder.png"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/assets-web/images/product_placeholder.png"
+                                                <img src="https://jusoutbeauty.com/assets-web/images/product_placeholder.png"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 image-hover">
                                             </a>
@@ -2092,10 +2092,10 @@
 
                                             <a href="javascript:;" class="d-block overflow-hidden productdetail"
                                                 data-id="108">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/274.jpg"
+                                                <img src="https://jusoutbeauty.com/public/uploads/product/images/274.jpg"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 img-h30-m image-active">
-                                                <img src="https://jusoutbeauty.com/site/public/uploads/product/images/270.jpg"
+                                                <img src="https://jusoutbeauty.com/public/uploads/product/images/270.jpg"
                                                     alt="Product 01"
                                                     class="card-img-top all-products img-h60 image-hover">
                                             </a>
@@ -2356,7 +2356,7 @@
 
                                     <div class="col-lg-12 text-right">
                                         <a style="text-decoration-line: underline;font"
-                                            href="https://jusoutbeauty.com/site/subscription"><em>Read More
+                                            href="https://jusoutbeauty.com/subscription"><em>Read More
                                                 >></em></a>
                                     </div>
 

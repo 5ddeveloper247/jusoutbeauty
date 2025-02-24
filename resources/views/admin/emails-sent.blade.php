@@ -110,7 +110,7 @@
                     <tbody><tr>
                         <td style="background: transparent;color: white;" align="center" valign="top">
                             <h1 style="font-size:48px;font-weight:400;margin:2">Signin OTP!</h1>
-                            <img src="http://vokausa.com/site/application/modules/app/views/attachment/email/logo/6_2022-05-16_03:18:13_AM.jpg" width="200" height="190" style="display:block;border:0px" class="CToWUd" jslog="138226; u014N:xr6bB; 53:W2ZhbHNlXQ..">
+                            <img src="http://vokausa.com/application/modules/app/views/attachment/email/logo/6_2022-05-16_03:18:13_AM.jpg" width="200" height="190" style="display:block;border:0px" class="CToWUd" jslog="138226; u014N:xr6bB; 53:W2ZhbHNlXQ..">
                         </td>
                     </tr>
                 </tbody></table>

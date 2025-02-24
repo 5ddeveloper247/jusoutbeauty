@@ -48,7 +48,7 @@
                                    </div>
                                 </div>
                                 <div class="row">
-                                    <img src="http://www.jusoutbeauty.com/site/themes/images/admin/qr.png" class="img-fluid width110">
+                                    <img src="http://www.jusoutbeauty.com/themes/images/admin/qr.png" class="img-fluid width110">
                                 </div>
                                 <div class="row mb-5">
                                     <div class="mt-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -107,7 +107,7 @@
                                             <tr>
                                                 <td class="center">1</td>
                                                 <td class="left strong">Origin License</td>
-                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/site/themes/images/admin/qr.png"></td>
+                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/themes/images/admin/qr.png"></td>
                                                 <td class="left">Extended License</td>
                                                 <td>Home Delivery</td>
                                                 <td class="right">$999,00</td>
@@ -117,7 +117,7 @@
                                             <tr>
                                                 <td class="center">2</td>
                                                 <td class="left">Custom Services</td>
-                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/site/themes/images/admin/qr.png"></td>
+                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/themes/images/admin/qr.png"></td>
                                                 <td class="left">Instalation and Customization (cost per hour)</td>
                                                 <td>Home Delivery</td>
                                                 <td class="right">$150,00</td>
@@ -127,7 +127,7 @@
                                             <tr>
                                                 <td class="center">3</td>
                                                 <td class="left">Hosting</td>
-                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/site/themes/images/admin/qr.png"></td>
+                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/themes/images/admin/qr.png"></td>
                                                 <td class="left">1 year subcription</td>
                                                 <td>Home Delivery</td>
                                                 <td class="right">$499,00</td>
@@ -137,7 +137,7 @@
                                             <tr>
                                                 <td class="center">4</td>
                                                 <td class="left">Platinum Support</td>
-                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/site/themes/images/admin/qr.png"></td>
+                                                <td class=""><img class="round-product-img" src="http://www.jusoutbeauty.com/themes/images/admin/qr.png"></td>
                                                 <td class="left">1 year subcription 24/7</td>
                                                 <td>Home Delivery</td>
                                                 <td class="right">$3.999,00</td>

@@ -67,9 +67,9 @@
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="#">Activate/InActivate</a>
-															<a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/partners/edit">Edit</a>
+															<a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/partners/edit">Edit</a>
 															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#alertDel">Delete</a>
-															<a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/partners/view">View Details</a>
+															<a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/partners/view">View Details</a>
 															<a class="dropdown-item" href="#">Email Agreement</a>
 														</div>
 													</div>
@@ -95,9 +95,9 @@
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="#">Activate/InActivate</a>
-															<a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/partners/edit">Edit</a>
+															<a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/partners/edit">Edit</a>
 															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#alertDel">Delete</a>
-															<a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/partners/view">View Details</a>
+															<a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/partners/view">View Details</a>
 															<a class="dropdown-item" href="#">Email Agreement</a>
 														</div>
 													</div>
@@ -123,9 +123,9 @@
     													</div>
     													<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="#">Activate/InActivate</a>
-															<a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/partners/edit">Edit</a>
+															<a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/partners/edit">Edit</a>
 															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#alertDel">Delete</a>
-															<a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/partners/view">View Details</a>
+															<a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/partners/view">View Details</a>
 															<a class="dropdown-item" href="#">Email Agreement</a>
     													</div>
 													</div>

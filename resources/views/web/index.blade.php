@@ -684,11 +684,11 @@ $userId = session('userId');
                                                 {{-- @else --}}
                                                 {{-- <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                                         <li class="list-inline-item" title="New shade">
-                                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
                                                                 </a>
                                                                 </li>
                                                                                                             <li class="list-inline-item" title="Fair100">
-                                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                                <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
                                                                 </a>
                                                                 </li>
                                                         </ul> --}}
@@ -935,11 +935,11 @@ $userId = session('userId');
                                         {{-- <br> --}}
                                         {{-- <ul style="visibility: hidden" class=" list-inline mb-0 shop-swatch-color-03 d-flex align-items-center">
                                             <li class="list-inline-item" title="New shade">
-                                                    <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                    <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/public/uploads/shades/36.jpg'); background-repeat:no-repeat;background-position: center;">
                                                     </a>
                                                     </li>
                                                                                                 <li class="list-inline-item" title="Fair100">
-                                                    <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/site/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
+                                                    <a href="javascript:;" class="d-block swatches-item" style="background-image: url('http://www.jusoutbeauty.com/public/uploads/shades/24.jpg'); background-repeat:no-repeat;background-position: center;">
                                                     </a>
                                                     </li>
                                             </ul> --}}

@@ -781,7 +781,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 						<a href="images/big/img1.jpg"
 							data-exthumbimage="images/big/img1.jpg"
 							data-src="images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4"> <img
-							src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img1.jpg"
+							src="http://www.jusoutbeauty.com/themes/images/admin/big/img1.jpg"
 							style="width: 100%;" />
 						</a>
 					</div>

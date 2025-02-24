@@ -44,7 +44,7 @@
 
         <div class="row contac_box pt-6 mb-2">
             <div class="col-lg-6 px-4 pt-2 mb-2">
-            <a href="http://jusoutbeauty.com/site/information">Return to information</a>
+            <a href="http://jusoutbeauty.com/information">Return to information</a>
             </div>
             <div class="col-lg-6">
              <a href="#" class="btn btn-primary right_btn">Continue Shipping</a>

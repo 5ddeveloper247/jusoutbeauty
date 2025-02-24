@@ -163,7 +163,7 @@ var site = '<?php echo session('site');?>';
 																		<a href="javascript:;" ng-repeat="image in row.images" class="card shadee border-0 hover-change-content insta-secc insta-section-image submit-btn">
 																			<img src="@{{image.downPath}}" alt="alt" class="card-img"
 																				ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}},image.downPath);" width="445" height="411">
-																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img" width="445" height="411"> --}}
+																			{{-- <img src="http://www.jusoutbeauty.com/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img" width="445" height="411"> --}}
 																		</a>
 
 																		<p class="text-center mb-0 text-white hoverimages-text p-2" >@{{row.DESCRIPTION | limitTo:60}}</p>
@@ -220,7 +220,7 @@ var site = '<?php echo session('site');?>';
 																		<a href="javascript:;" ng-repeat="img in row.images" class="card shadee border-0 hover-change-content insta-secc insta_section_shade_finder insta-section-image submit-btn">
 																			<img src="@{{img.downPath}}" alt="alt" class="card-img objectfit-cover"
 																				ng-click="chooseOptionLevelTwo(@{{row.LEVEL_ONE_TYPE_ID}},img.downPath);">
-																			{{-- <img src="http://www.jusoutbeauty.com/site/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img objectfit-cover"> --}}
+																			{{-- <img src="http://www.jusoutbeauty.com/public/uploads/shadefinder/46.jpg" alt="alt" class="card-img objectfit-cover"> --}}
 																		</a>
 
 																		<p class="text-center mb-0 text-white hoverimages-text p-2" >@{{row.DESCRIPTION | limitTo:60}}</p>

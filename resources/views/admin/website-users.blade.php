@@ -88,7 +88,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
 														<div class="dropdown-menu dropdown-menu-right">
     													    <a class="dropdown-item" href="javascript:;">Active</a>
 															<a class="dropdown-item" href="javascript:;">InActive</a>
-    													    <a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/view_website_user">View Details</a>
+    													    <a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/view_website_user">View Details</a>
     													</div>
 													</div>
 												</td>												
@@ -113,7 +113,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
     													<div class="dropdown-menu dropdown-menu-right">
     													    <a class="dropdown-item" href="javascript:;">Active</a>
 															<a class="dropdown-item" href="javascript:;">InActive</a>
-    													    <a class="dropdown-item" href="http://www.jusoutbeauty.com/site/app/admin/view_website_user">View Details</a>
+    													    <a class="dropdown-item" href="http://www.jusoutbeauty.com/app/admin/view_website_user">View Details</a>
     													</div>
 													</div>
 												</td>

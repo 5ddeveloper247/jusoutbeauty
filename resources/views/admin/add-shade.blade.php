@@ -42,28 +42,28 @@
 										</div>
 										<div id="lightgallery" class="row mt-3">
 									<a href="images/big/img1.jpg" data-exthumbimage="images/big/img1.jpg" data-src="images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img1.jpg" style="width:100%;"/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img1.jpg" style="width:100%;"/>
 									</a>
 									<a href="images/big/img2.jpg" data-exthumbimage="images/big/img2.jpg" data-src="images/big/img2.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img2.jpg" style="width:100%;" />
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img2.jpg" style="width:100%;" />
 									</a>
 									<a href="images/big/img3.jpg" data-exthumbimage="images/big/img3.jpg" data-src="images/big/img3.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img3.jpg" style="width:100%;" />
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img3.jpg" style="width:100%;" />
 									</a>
 									<a href="images/big/img4.jpg" data-exthumbimage="images/big/img4.jpg" data-src="images/big/img4.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img4.jpg" style="width:100%;" />
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img4.jpg" style="width:100%;" />
 									</a>
 									<a href="images/big/img5.jpg" data-exthumbimage="images/big/img5.jpg" data-src="images/big/img5.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img5.jpg" style="width:100%;"/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img5.jpg" style="width:100%;"/>
 									</a>
 									<a href="images/big/img6.jpg" data-exthumbimage="images/big/img6.jpg" data-src="images/big/img6.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img6.jpg" style="width:100%;" />
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img6.jpg" style="width:100%;" />
 									</a>
 									<a href="images/big/img7.jpg" data-exthumbimage="images/big/img7.jpg" data-src="images/big/img7.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img7.jpg" style="width:100%;" />
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img7.jpg" style="width:100%;" />
 									</a>
 									<a href="images/big/img8.jpg" data-exthumbimage="images/big/img8.jpg" data-src="images/big/img8.jpg" class="col-lg-3 col-md-6 mb-4">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/big/img8.jpg" style="width:100%;" />
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/big/img8.jpg" style="width:100%;" />
 									</a>
 								</div>
                                  <div class=" ml-0 ml-sm-12 ml-sm-0 mt-3">

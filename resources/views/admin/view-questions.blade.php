@@ -9,27 +9,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="http://www.jusoutbeauty.com/site/themes/images/admin/Logo-01.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://www.jusoutbeauty.com/themes/images/admin/Logo-01.png">
 
     <!-- Summernote -->
-    <link href="http://www.jusoutbeauty.com/site/themes/third_party/admin/summernote/summernote.css" rel="stylesheet">
-    <link href="http://www.jusoutbeauty.com/site/themes/third_party/admin/jqvmap/css/jqvmap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="http://www.jusoutbeauty.com/site/themes/third_party/admin/chartist/css/chartist.min.css">
+    <link href="http://www.jusoutbeauty.com/themes/third_party/admin/summernote/summernote.css" rel="stylesheet">
+    <link href="http://www.jusoutbeauty.com/themes/third_party/admin/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://www.jusoutbeauty.com/themes/third_party/admin/chartist/css/chartist.min.css">
 	
 	<!-- Datatables -->
-    <link href="http://www.jusoutbeauty.com/site/themes/third_party/admin/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="http://www.jusoutbeauty.com/themes/third_party/admin/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 	
-    <link href="http://www.jusoutbeauty.com/site/themes/third_party/admin/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="http://www.jusoutbeauty.com/themes/third_party/admin/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 	
 	<!-- DropeZone -->
-	<link href="http://www.jusoutbeauty.com/site/themes/third_party/admin/dropzone/dist/dropzone.css" rel="stylesheet">
+	<link href="http://www.jusoutbeauty.com/themes/third_party/admin/dropzone/dist/dropzone.css" rel="stylesheet">
 	
 	<!-- Multi Select -->
-    <link rel="stylesheet" href="http://www.jusoutbeauty.com/site/themes/third_party/admin/select2/css/select2.min.css">
+    <link rel="stylesheet" href="http://www.jusoutbeauty.com/themes/third_party/admin/select2/css/select2.min.css">
     
-	<link href="http://www.jusoutbeauty.com/site/themes/third_party/admin/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="http://www.jusoutbeauty.com/site/themes/css/admin/style.css" rel="stylesheet">
-    <link href="http://www.jusoutbeauty.com/site/themes/customcss/admin/custom.css" rel="stylesheet">
+	<link href="http://www.jusoutbeauty.com/themes/third_party/admin/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="http://www.jusoutbeauty.com/themes/css/admin/style.css" rel="stylesheet">
+    <link href="http://www.jusoutbeauty.com/themes/customcss/admin/custom.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	
 	
@@ -55,7 +55,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="http://www.jusoutbeauty.com/site/app/admin" class="brand-logo">
+            <a href="http://www.jusoutbeauty.com/app/admin" class="brand-logo">
 				<!--<svg class="logo-abbr" width="64px" height="64px">
 					<path class="svg-logo-path" fill-rule="evenodd"  fill="rgb(135, 67, 223)"
 					d="M21.000,-0.000 L42.999,-0.000 C54.598,-0.000 64.000,9.402 64.000,21.000 L64.000,43.000 C64.000,54.598 54.598,64.000 42.999,64.000 L21.000,64.000 C9.402,64.000 -0.000,54.598 -0.000,43.000 L-0.000,21.000 C-0.000,9.402 9.402,-0.000 21.000,-0.000 Z"/>
@@ -65,7 +65,7 @@
 				<!-- <svg class="brand-title"  width="101" height="47" fill-rule="evenodd" fill="#272727">
 					<path class="svg-logo-text-path" d="M95.253 22.25l-.635-3.875H86.3l-2.033 3.875h-5.683L90.586.312h6.286L101 22.25h-5.747zM92.682 6.187l-4.256 8.125h5.557l-1.301-8.125zm-24.82 11.688h9.589l-.794 4.375H60.91l.729-4.063 11.938-13.5h-9.524l.793-4.375h15.748l-.73 4.063-12.002 13.5zm-13.218-4.313l3.587 8.688h-6.127l-3.143-8.281h-1.302l-1.493 8.281h-5.429L44.674.312h9.112c5.461 0 7.652 3.094 6.954 6.907-.476 2.75-2.476 5.343-6.096 6.343zm-1.969-8.875H49.31l-.984 5.5h3.365c2.032 0 3.175-1.031 3.493-2.75.317-1.656-.477-2.75-2.509-2.75zm-20.352-.156l-.793 4.563h7.27l-.73 4.031h-7.271l-.888 4.906h8.223l-.762 4.219H23.719L27.656.312h13.653l-.762 4.219h-8.224zM20.637 26h-6.573l-2.126-3.719c-.795.125-1.619.188-2.477.188C3.746 22.469 0 18.719 0 13.25 0 5.469 5.461 0 13.176 0c5.81 0 9.524 3.687 9.524 9.125 0 4.937-2.19 9-5.778 11.281L20.637 26zM17.303 9.719c0-2.969-1.746-4.813-4.826-4.813-4.35 0-7.048 3.594-7.048 7.781 0 2.969 1.714 4.844 4.857 4.844 4.318 0 7.017-3.656 7.017-7.812zM73.255 44.49c-1.056 0-1.806-.54-2.165-1.1V47h-.96v-8.08h.96v1.01c.349-.58 1.109-1.1 2.165-1.1 1.552 0 2.744 1.1 2.744 2.81 0 1.7-1.192 2.85-2.744 2.85zm-.201-4.87c-1.046 0-1.964.76-1.964 2.03 0 1.29.918 2.04 1.964 2.04 1.067 0 1.964-.76 1.964-2.05s-.897-2.02-1.964-2.02zm-6.934 4.87c-1.056 0-1.805-.54-2.164-1.1V47h-.961v-8.08h.961v1.01c.348-.58 1.108-1.1 2.164-1.1 1.552 0 2.744 1.1 2.744 2.81 0 1.7-1.192 2.85-2.744 2.85zm-.201-4.87c-1.045 0-1.963.76-1.963 2.03 0 1.29.918 2.04 1.963 2.04 1.067 0 1.964-.76 1.964-2.05s-.897-2.02-1.964-2.02zm-5.689 3.23h-3.209l-.592 1.55h-1.013l2.66-6.93h1.109l2.65 6.93h-1.013l-.592-1.55zm-1.604-4.26l-1.331 3.52h2.661l-1.33-3.52zM50.467 37h.961v7.4h-.961V37zm-2.594 6.38c-.349.59-1.098 1.11-2.165 1.11-1.541 0-2.734-1.15-2.734-2.85 0-1.71 1.193-2.81 2.745-2.81 1.077 0 1.816.52 2.154 1.09v-1h.971v5.48h-.971v-1.02zm-1.964-3.76c-1.056 0-1.954.73-1.954 2.02s.898 2.05 1.954 2.05 1.964-.75 1.964-2.04c0-1.27-.908-2.03-1.964-2.03zm-6.211 3.28v-3.23h-.749v-.75h.749v-1.38h.961v1.38h1.51v.75h-1.51v3.23c0 .54.211.73.803.73h.707v.77h-.866c-1.024 0-1.605-.4-1.605-1.5zm-3.189-1.48v2.98h-.96v-5.48h.96v.89c.327-.61.951-.99 1.869-.99v.94h-.254c-.918 0-1.615.39-1.615 1.66zm-5.191 3.07c-1.636 0-2.882-1.1-2.882-2.84 0-1.73 1.288-2.82 2.925-2.82 1.647 0 2.925 1.09 2.925 2.82 0 1.74-1.321 2.84-2.968 2.84zm.032-4.87c-1.014 0-1.932.65-1.932 2.03 0 1.39.898 2.04 1.9 2.04s1.985-.65 1.985-2.04c0-1.38-.961-2.03-1.953-2.03zm-6.293 1.87h-1.416v2.91h-.96v-6.97h2.376c1.731 0 2.544.9 2.544 2.04 0 1.06-.718 2.02-2.544 2.02zm0-3.31h-1.416v2.56h1.416c1.097 0 1.562-.49 1.562-1.27 0-.81-.465-1.29-1.562-1.29zm-9.2 6.31c-1.056 0-1.806-.5-2.165-1.1v1.01h-.961V37h.961v2.94c.37-.61 1.14-1.11 2.165-1.11 1.562 0 2.745 1.1 2.745 2.81 0 1.7-1.193 2.85-2.745 2.85zm-.201-4.87c-1.045 0-1.964.76-1.964 2.03 0 1.29.919 2.04 1.964 2.04 1.066 0 1.963-.76 1.963-2.05s-.897-2.02-1.963-2.02zm-7.154 4.87c-1.637 0-2.882-1.1-2.882-2.84 0-1.73 1.287-2.82 2.924-2.82 1.646 0 2.924 1.09 2.924 2.82 0 1.74-1.319 2.84-2.966 2.84zm.031-4.87c-1.013 0-1.932.65-1.932 2.03 0 1.39.897 2.04 1.901 2.04s1.985-.65 1.985-2.04c0-1.38-.961-2.03-1.954-2.03zm-6.485 4.85C.823 44.47 0 43.73 0 42.51h.96c.011.64.328 1.15 1.088 1.15s1.066-.5 1.066-1.08v-5.15h.971v5.15c0 1.16-.823 1.89-2.037 1.89z"/>
 				</svg>-->
-				<img class="brand-title brand-title-custom" src="http://www.jusoutbeauty.com/site/themes/images/admin/Logo-01.png">
+				<img class="brand-title brand-title-custom" src="http://www.jusoutbeauty.com/themes/images/admin/Logo-01.png">
             </a>
             <div class="nav-control">
                 <div class="hamburger">
@@ -112,7 +112,7 @@
 									<li class="active dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -124,7 +124,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -136,7 +136,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -148,7 +148,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -161,7 +161,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -173,7 +173,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -185,7 +185,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -198,7 +198,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -210,7 +210,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -223,7 +223,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -235,7 +235,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -247,7 +247,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -259,7 +259,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -272,7 +272,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -284,7 +284,7 @@
 									<li class="dz-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon offline"></span>
 											</div>
 											<div class="user_info">
@@ -318,7 +318,7 @@
 							<div class="card-body msg_card_body dz-scroll" id="DZ_W_Contacts_Body3">
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										Hi, how are you samim?
@@ -331,12 +331,12 @@
 										<span class="msg_time_send">8:55 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-								<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
+								<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										I am good too, thank you for your chat template
@@ -349,12 +349,12 @@
 										<span class="msg_time_send">9:05 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-								<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
+								<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										I am looking for your next templates
@@ -367,12 +367,12 @@
 										<span class="msg_time_send">9:10 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										Bye, see you
@@ -381,7 +381,7 @@
 								</div>
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										Hi, how are you samim?
@@ -394,12 +394,12 @@
 										<span class="msg_time_send">8:55 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-								<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
+								<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										I am good too, thank you for your chat template
@@ -412,12 +412,12 @@
 										<span class="msg_time_send">9:05 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-								<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
+								<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										I am looking for your next templates
@@ -430,12 +430,12 @@
 										<span class="msg_time_send">9:10 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
 								<div class="d-flex justify-content-start mb-4">
 									<div class="img_cont_msg">
-										<img src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
+										<img src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 									<div class="msg_cotainer">
 										Bye, see you
@@ -616,7 +616,7 @@
 											<li>
 												<div class="timeline-panel">
 													<div class="media mr-2">
-														<img alt="image" width="50" src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg">
+														<img alt="image" width="50" src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg">
 													</div>
 													<div class="media-body">
 														<h6 class="mb-1">Dr sultads Send you Photo</h6>
@@ -649,7 +649,7 @@
 											 <li>
 												<div class="timeline-panel">
 													<div class="media mr-2">
-														<img alt="image" width="50" src="http://www.jusoutbeauty.com/site/themes/images/admin/avatar/1.jpg">
+														<img alt="image" width="50" src="http://www.jusoutbeauty.com/themes/images/admin/avatar/1.jpg">
 													</div>
 													<div class="media-body">
 														<h6 class="mb-1">Dr sultads Send you Photo</h6>
@@ -700,7 +700,7 @@
 										<span class="text-black"><strong>David Heree</strong></span>
 										<p class="fs-12 mb-0">Super Admin</p>
 									</div>
-                                    <img src="http://www.jusoutbeauty.com/site/themes/images/admin/profile/17.jpg" width="20" alt=""/>
+                                    <img src="http://www.jusoutbeauty.com/themes/images/admin/profile/17.jpg" width="20" alt=""/>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="./app-profile.html" class="dropdown-item ai-icon">
@@ -730,14 +730,14 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
-                    <li><a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin" aria-expanded="false">
+                    <li><a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin" aria-expanded="false">
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
                         
                     </li>
                     <li>
-                        <a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin/partners" aria-expanded="false">
+                        <a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin/partners" aria-expanded="false">
                             <i class="flaticon-381-user"></i>
 							<span class="nav-text">Partners</span>
 					    </a>
@@ -747,8 +747,8 @@
 							<span class="nav-text">Users</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/admin_users">Admin Users</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/website_usres">Website Users</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/admin_users">Admin Users</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/website_usres">Website Users</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -756,7 +756,7 @@
 							<span class="nav-text">Category</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/view_categories">View All</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/view_categories">View All</a></li>
                            
                         </ul>
                     </li>
@@ -766,18 +766,18 @@
 						</a>
                         <ul aria-expanded="false">
                         
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/view_products">View All</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/add_product">Add</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/view_products">View All</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/add_product">Add</a></li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Ingredients</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="http://www.jusoutbeauty.com/site/app/admin/view_all_ingredients">View All</a></li>
-                                    <li><a href="http://www.jusoutbeauty.com/site/app/admin/add_new_ingredient">Add new</a></li>
+                                    <li><a href="http://www.jusoutbeauty.com/app/admin/view_all_ingredients">View All</a></li>
+                                    <li><a href="http://www.jusoutbeauty.com/app/admin/add_new_ingredient">Add new</a></li>
                                 </ul>
                             </li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shades</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="http://www.jusoutbeauty.com/site/app/admin/view_all_shades">View All</a></li>
-                                    <li><a href="http://www.jusoutbeauty.com/site/app/admin/add_shade">Add new</a></li>
+                                    <li><a href="http://www.jusoutbeauty.com/app/admin/view_all_shades">View All</a></li>
+                                    <li><a href="http://www.jusoutbeauty.com/app/admin/add_shade">Add new</a></li>
                                 </ul>
                             </li>
                            
@@ -789,13 +789,13 @@
 						</a>
                         <ul aria-expanded="false">
                         
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/blogs">View All</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/add_blog">Add</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/blogs">View All</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/add_blog">Add</a></li>
                             
                            
                         </ul>
                     </li>
-                    <li><a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin/shadefinderquiz" aria-expanded="false">
+                    <li><a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin/shadefinderquiz" aria-expanded="false">
 							<i class="fa fa-bullhorn"></i>
 							<span class="nav-text">Shade Finder Quiz</span>
 						</a>
@@ -805,7 +805,7 @@
 							<span class="nav-text">Orders</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/orders">View All</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/orders">View All</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -813,7 +813,7 @@
 							<span class="nav-text">APIS</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/apis">View All</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/apis">View All</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -821,8 +821,8 @@
 							<span class="nav-text">OTP System</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/sms_apis">SMS APIs</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/sms_templates">SMS Template</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/sms_apis">SMS APIs</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/sms_templates">SMS Template</a></li>
                             
                         </ul>
                     </li>
@@ -832,39 +832,39 @@
 							<span class="nav-text">Website Setup</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/header">Header</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/footer">Footer</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/home_page">Home Page</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/header">Header</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/footer">Footer</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/home_page">Home Page</a></li>
                         </ul>
                     </li>
                     
                      <li>
-                        <a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin/payments" aria-expanded="false">
+                        <a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin/payments" aria-expanded="false">
 							<i class="fa fa-credit-card"></i>
 							<span class="nav-text">Payment</span>
 						</a>
                     </li>
                     <li>
-                        <a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin/delivery" aria-expanded="false">
+                        <a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin/delivery" aria-expanded="false">
 							<i class="fa fa-truck"></i>
 							<span class="nav-text">Delivery</span>
 						</a>
                     </li>
                     <li>
-                        <a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin/reviews" aria-expanded="false">
+                        <a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin/reviews" aria-expanded="false">
 							<i class="fa fa-comments"></i>
 							<span class="nav-text">Reviews</span>
 						</a>
                     </li>
                     
                     <li>
-                        <a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin/questions" aria-expanded="false">
+                        <a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin/questions" aria-expanded="false">
 							<i class="fa fa-question-circle "></i>
 							<span class="nav-text">Questions</span>
 						</a>
                     </li>
                     <li>
-                        <a class="ai-icon" href="http://www.jusoutbeauty.com/site/app/admin/shadefinder" aria-expanded="false">
+                        <a class="ai-icon" href="http://www.jusoutbeauty.com/app/admin/shadefinder" aria-expanded="false">
 							<i class="fa fa-search"></i>
 							<span class="nav-text">Shade Finder</span>
 						</a>
@@ -874,8 +874,8 @@
 							<span class="nav-text">Emails</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/emails/settings">Email Settings</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/emails/sent">Sent Emails</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/emails/settings">Email Settings</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/emails/sent">Sent Emails</a></li>
                         </ul>
                     </li>
                     
@@ -885,8 +885,8 @@
 							<span class="nav-text">Subscription</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/subscription/allsub">Subscriptions</a></li>
-                            <li><a href="http://www.jusoutbeauty.com/site/app/admin/subscription/usersubscriptions">User's Subscriptions</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/subscription/allsub">Subscriptions</a></li>
+                            <li><a href="http://www.jusoutbeauty.com/app/admin/subscription/usersubscriptions">User's Subscriptions</a></li>
                         </ul>
                     </li>
                     
@@ -1043,45 +1043,45 @@
         ***********************************-->    
     
 <!-- Required vendors -->
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/global/global.min.js"></script>
-	<script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-	<script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/chart.js/Chart.bundle.min.js"></script>
-	<script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/owl-carousel/owl.carousel.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/global/global.min.js"></script>
+	<script src="http://www.jusoutbeauty.com/themes/third_party/admin/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<script src="http://www.jusoutbeauty.com/themes/third_party/admin/chart.js/Chart.bundle.min.js"></script>
+	<script src="http://www.jusoutbeauty.com/themes/third_party/admin/owl-carousel/owl.carousel.js"></script>
 	
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/moment/moment.min.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/moment/moment.min.js"></script>
 	<!-- Date Range -->
 	
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/bootstrap-daterangepicker/daterangepicker.js"></script>
 	<!-- Chart piety plugin files -->
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/peity/jquery.peity.min.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/peity/jquery.peity.min.js"></script>
 	
 	<!-- Apex Chart -->
-	<script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/apexchart/apexchart.js"></script>
+	<script src="http://www.jusoutbeauty.com/themes/third_party/admin/apexchart/apexchart.js"></script>
 	
     
 	<!-- Dashboard 1 -->
-	<script src="http://www.jusoutbeauty.com/site/themes/js/admin/dashboard/dashboard-1.js"></script>
+	<script src="http://www.jusoutbeauty.com/themes/js/admin/dashboard/dashboard-1.js"></script>
 	<!-- Datatables -->
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="http://www.jusoutbeauty.com/site/themes/js/admin/plugins-init/datatables.init.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/js/admin/plugins-init/datatables.init.js"></script>
     
     <!-- Summernote -->
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/summernote/js/summernote.min.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/summernote/js/summernote.min.js"></script>
     <!-- Summernote init -->
-    <script src="http://www.jusoutbeauty.com/site/themes/js/admin/plugins-init/summernote-init.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/js/admin/plugins-init/summernote-init.js"></script>
     
     <!-- Dropezone -->
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/dropzone/dist/dropzone.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/dropzone/dist/dropzone.js"></script>
     
     <!-- Select2 -->
     
-	<script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="http://www.jusoutbeauty.com/site/themes/third_party/admin/select2/js/select2.full.min.js"></script>
-    <script src="http://www.jusoutbeauty.com/site/themes/js/admin/plugins-init/select2-init.js"></script>
+	<script src="http://www.jusoutbeauty.com/themes/third_party/admin/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/third_party/admin/select2/js/select2.full.min.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/js/admin/plugins-init/select2-init.js"></script>
     
     
-    <script src="http://www.jusoutbeauty.com/site/themes/js/admin/custom.min.js"></script>
-	<script src="http://www.jusoutbeauty.com/site/themes/js/admin/deznav-init.js"></script>
+    <script src="http://www.jusoutbeauty.com/themes/js/admin/custom.min.js"></script>
+	<script src="http://www.jusoutbeauty.com/themes/js/admin/deznav-init.js"></script>
 	
     
 	<script>

@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => 'http://www.jusoutbeauty.com/site',//env('APP_URL', 'http://localhost'),
+    'url' => 'http://www.jusoutbeauty.com',//env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),
 

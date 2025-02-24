@@ -78,7 +78,7 @@
                         of zero, so it will not cause irritation or clog pores,
                         but rather provide a host of benefits such as general
                         healing, antiseptic, antibacterial and antiviral.
-                        <a href="http://www.jusoutbeauty.com/site/who-we-are">Read More...</a>
+                        <a href="http://www.jusoutbeauty.com/who-we-are">Read More...</a>
                     </p>
 
                 </div>
@@ -115,7 +115,7 @@
                         burns and abrasions, itch prevention, softens the skin, increases elasticity, reduces
                         inflammation and helps supply oxygen to the skin cells. It is a disinfectant, antimicrobial,
                         antibacterial, antiseptic, anti-fungal and antiviral.
-                        <a href="http://www.jusoutbeauty.com/site/ingredients">Read More...</a>
+                        <a href="http://www.jusoutbeauty.com/ingredients">Read More...</a>
                     </p>
                 </div>
             </div>
@@ -140,7 +140,7 @@
                         A perfectly natural way to nourish dry, unhappy skin.
                         It infuses skin with moisture, enhancing shine,
                         elasticity, and youthful glow to hair and skin.
-                        <a href="http://www.jusoutbeauty.com/site/eco-vibes">Read More...</a>
+                        <a href="http://www.jusoutbeauty.com/eco-vibes">Read More...</a>
                     </p>
                 </div>
             </div>
@@ -161,7 +161,7 @@
                     <p>The trick here is to pick a formula that looks moist (that's sexy), but not superglossy (that can
                         verge into slutty territory). Look for lipsticks with "moisturizing," "creamy," or "butter" in
                         their names, and select one that has a little brown in it.
-                        <a href="http://www.jusoutbeauty.com/site/lusty-looks">Read More...</a>
+                        <a href="http://www.jusoutbeauty.com/lusty-looks">Read More...</a>
                     </p>
                 </div>
             </div>

@@ -56,7 +56,7 @@
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="#">Enable/Disable</a>
-															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/site/app/admin/shadefinderquiz/edit">Edit</a>
+															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/app/admin/shadefinderquiz/edit">Edit</a>
 														</div>
 													</div>
 												</td>												
@@ -82,7 +82,7 @@
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="#">Enable/Disable</a>
-															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/site/app/admin/shadefinderquiz/edit">Edit</a>
+															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/app/admin/shadefinderquiz/edit">Edit</a>
 														</div>
 													</div>
 												</td>												
@@ -107,7 +107,7 @@
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="#">Enable/Disable</a>
-															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/site/app/admin/shadefinderquiz/edit">Edit</a>
+															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/app/admin/shadefinderquiz/edit">Edit</a>
 														</div>
 													</div>
 												</td>												
@@ -132,7 +132,7 @@
 														</div>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="#">Enable/Disable</a>
-															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/site/app/admin/shadefinderquiz/edit">Edit</a>
+															<a class="dropdown-item"  href="http://www.jusoutbeauty.com/app/admin/shadefinderquiz/edit">Edit</a>
 														</div>
 													</div>
 												</td>												

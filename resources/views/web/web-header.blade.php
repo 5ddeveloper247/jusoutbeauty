@@ -692,7 +692,7 @@ $userId = session('userId');
                             <div class="dropdown-menu dropdown-menu-right">
                                 <?php if(session()->has('userId')){?>
 
-                                <a href="/site/userDashboard" class="dropdown-item ai-icon">
+                                <a href="/userDashboard" class="dropdown-item ai-icon">
                                     <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                         width="18" height="18" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -719,7 +719,7 @@ $userId = session('userId');
                                 </a>
                                 <?php if(session()->has('userId')){?>
 
-                                <a href="/site/userlogout" class="dropdown-item ai-icon">
+                                <a href="/userlogout" class="dropdown-item ai-icon">
                                     <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
                                         width="18" height="18" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
