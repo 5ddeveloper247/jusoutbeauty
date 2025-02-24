@@ -4,6 +4,11 @@ var userId = '<?php echo session('userId');?>';
 var site = '<?php echo session('site');?>';
 var baseurl = "<?php echo url('/assets-admin');?>";
 </script>
+<style>
+	table.dataTable thead .sorting {
+    background-position: center right 0px;
+}
+</style>
 	<div ng-app="project1">
         <!--**********************************
             Content body start
@@ -13,7 +18,7 @@ var baseurl = "<?php echo url('/assets-admin');?>";
                 <!-- row -->
 				<div class="row">
 					<div class="col-10">
-						<div class="page-titles pt-0 pb-0 mb-0">
+						<div class="page-titles pt-0 pb-0 mb-0 mt-1">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="javascript:void(0)">Features</a></li>
 								<li class="breadcrumb-item active"><a href="javascript:void(0)">View All</a></li>

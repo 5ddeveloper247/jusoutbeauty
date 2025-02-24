@@ -88,8 +88,8 @@ class HomeController extends Controller
 
 
    		$data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
-        
-		
+
+
 		//dd($data['categoryProducts'][0]['CATEGORY_SLUG']);
 
    		$data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
@@ -355,6 +355,61 @@ class HomeController extends Controller
         // dd('ehllo');
        return view('web.store-all')->with ( $data );
    	}
+
+  //search
+
+
+//   public function searchalistjax(){
+//     $result = DB::table('jb_product_tbl')->select('NAME')->where(['STATUS'=>'active','IS_DELETED'=>'0'])->get();
+
+//     return response()->json($result);
+// }
+    // public function searchalistjax(){
+
+
+    //     $result = DB::table('jb_product_tbl')->select('NAME')->where('status','0')->get();
+    //     $data =  [];
+    //     foreach($result as $item){
+    //         $data[] =$item['name'];
+    //     }
+    //     return $data;
+    // }
+
+
+
+  public function search(Request $request) {
+
+    $data ['categoryProducts'] = $this->getProductsCategoriesWiseForWebiste();
+    $data ['footerSocialIcons'] = $this->getFooterSocialIconsDataForWebsite();
+    $data['routine'] = $this->getAllRouteByNameForWebiste();
+    $data['routineformbl'] = $this->getAllRouteByNameForWebiste();
+    $data['page'] = 'search';
+    $data['searchProduct'] = $request->name;
+    return view('web.search-all')->with ( $data );
+}
+
+
+public function getSearchAll (Request $request) {
+    $ShadeModel = new ShadesModel();
+    $ProductModel = new ProductModel();
+    $BundleModel = new BundleProductModel();
+    $CategoryModel = new CategoryModel();
+
+    $details = $_REQUEST ['details'];
+    $userId = $details ['userId'];
+    $lowerlimit = $details ['lowerlimit'];
+    $search = $details ['searchProduct'];
+    $arrRes ['searchProduct'] =  $search;
+
+    $arrRes ['products'] = $ProductModel->getAllProductDetailsForAllSearchListing($search);
+    $arrRes ['list1'] = $ShadeModel->getAllActiveShadesListing();
+     $arrRes ['list2'] = $CategoryModel->getAllSubSubCategoryDetailsForFilter($lowerlimit);
+
+    //   $arrRes['products'] =DB::table('jb_product_tbl')->where('NAME','LIKE','%'.$search.'%')
+    //   ->where('IS_DELETED', 0)->get();
+
+    echo json_encode ( $arrRes );
+}
 
 
 

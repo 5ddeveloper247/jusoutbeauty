@@ -1,26 +1,50 @@
 @include('web.web-header')
+
 <style>
-    @media only screen and (max-width: 599px) {
-        .subs_pag_subs {
-            height: 350px;
-        }
-        .subs-heading{
-            background-color: #f9f9f9;
-            padding-top:83px;
-            padding-bottom:183px
-        }
-    }
     .quick_view_product_image {
         width: 250px;
         height: 250px;
         margin: 0px auto;
         display: flex;
     }
-    .subs-heading{
-            background-color: #f9f9f9;
-            padding-top:183px;
-            padding-bottom:183px
+
+    .subs-heading {
+        background-color: #f9f9f9;
+        padding-top: 183px;
+        padding-bottom: 183px
+    }
+
+    .subs_pag_subs {
+        height: 80vh;
+    }
+
+    .subs-heading {
+        height: 80vh;
+    }
+
+    @media only screen and (max-width: 599px) {
+        .subs_pag_subs {
+            height: 350px;
         }
+
+        .subs-heading {
+            background-color: #f9f9f9;
+            padding-top: 83px;
+            padding-bottom: 183px;
+        }
+    }
+    @media only screen and (min-width: 768px) {
+        .subs-heading{
+		padding-top: 113px;
+	}
+    }
+    @media only screen and (min-width:1023px) {
+        .subs-heading {
+            padding-top: 16vh;
+        }
+    }
+   
+  
 
 </style>
 
@@ -33,7 +57,7 @@
                     <img src="" style="height: 400px;">
                 </div>
                 <div class="col-lg-4 subs_pag_subs">
-                    <div class="text-center subs-heading" style="background-color: rgba(0, 111, 122, 1); ">
+                    <div class="text-center subs-heading" style="background-color: #8ed1c9; ">
                         <h2 class="fs-24 fs-sm-36 text-center mb-8 text-white">
                             Subscribe + Save 10% Off
                         </h2>
@@ -81,8 +105,8 @@
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
             </div>
         </section>
-        <section class="pt-8 pb-8 " style="background-color:#f38c7b;">
-            <h2 class="fs-24 fs-sm-36 text-center mb-8 text-white" >
+        <section class="pt-8 pb-8 " style="background-color:#c0a9bd;">
+            <h2 class="fs-24 fs-sm-36 text-center mb-8 text-white">
                 Keep It Simple</h2>
 
             <div class="row px-10 pt-6">
@@ -92,7 +116,7 @@
                         <img src="{{ url('/assets-web') }}/images/kisimp.webp">
                     </div>
                     <div class="text-center pt-4">
-                        <p  class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         </p>
                     </div>
                 </div>
@@ -101,7 +125,7 @@
                         <img src="{{ url('/assets-web') }}/images/kisimp.webp">
                     </div>
                     <div class="text-center pt-4">
-                        <p  class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         </p>
                     </div>
                 </div>
@@ -110,7 +134,7 @@
                         <img src="{{ url('/assets-web') }}/images/kisimp.webp">
                     </div>
                     <div class="text-center pt-4">
-                        <p  class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         </p>
                     </div>
                 </div>
@@ -119,7 +143,7 @@
                         <img src="{{ url('/assets-web') }}/images/kisimp.webp">
                     </div>
                     <div class="text-center pt-4">
-                        <p  class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         </p>
                     </div>
                 </div>
@@ -618,12 +642,71 @@
                 </div>
             </div>
         </section>
+
+        <section>
+            <div class="container mt-2 custom custom-sub">
+                <div id="myCarousel" class="carousel slide carslider" data-ride="carousel" style="">
+                    <div class="carousel-inner">
+                        <div class="carousel-item car1" ng-repeat="row in displayCollectionProductssss track by $index"
+                            ng-class="{ 'active': $index === 0 }">
+                            <a href="{{ url('/') }}/Products/@{{ row.CATEGORY_SLUG }}/@{{ row.SUB_CATEGORY_SLUG ? row.SUB_CATEGORY_SLUG + '/' : '' }}@{{ row.SLUG }}"
+                                data-id="@{{ row.PRODUCT_ID }}">
+                                <img src="@{{ row.primaryImage }}" alt="@{{ row.NAME }}"
+                                    class="d-block w-100">
+                                <div class="overlay">
+                                <div class="carousel-caption caption">
+                                    <h5 class="text-gray font-weight-500 text-capitalize "> @{{ row.CATEGORY }}</h5>
+                                    <p class="text-white text-capitalize">@{{ row.NAME }}</p>
+                                    <p class="text-white mb-0 shop-subtitle card-title cards_length lh-14375 product-subtitle text-capitalize" style="height:48px">@{{ row.SUB_TITLE }}</p>
+                                    <ul class="list-inline mb-0 shop-swatch-color-03 d-flex align-items-center text-white">
+                                        <li class="list-inline-item" ng-repeat="shade in row.shades"
+                                            title="@{{ shade.SHADE_NAME }}">
+                                            <a href="javascript:;" class="d-block swatches-item"
+                                                style="background-image: url('@{{ shade.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                 
+                                 <!-- <p class="text-white mb-0 card-title lh-14375" ng-show="row.DISC_AMOUNT > '0'">
+                                        <span>$@{{ row.DISC_AMOUNT }}</span>
+                                        <span class="small"><del> $@{{ row.UNIT_PRICE }}</del></span>
+                                    </p> -->
+                                    <p  class="text-white mb-0 card-title lh-14375 d-flex justify-content-between" ng-show="row.DISC_AMOUNT <= '0'">
+                                        {{-- <span ng-if="row.DISC_AMOUNT > 0">$@{{ row.DISC_AMOUNT }}</span> --}}
+                                        <span>$@{{ row.UNIT_PRICE }}</span>
+                                        <span> @{{ row.UNIT }}</span>
+                                    </p>
+                                    <!-- <p>
+                                         @{{ row.UNIT }} 
+                                    </p> -->
+                                
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev subprev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next subnxt" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+
     </div>
     <div class="modal fade quick-view" id="productQuickView" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content p-0">
                 <div class="modal-body p-0">
-                    <button type="button" class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10" data-dismiss="modal" aria-label="Close">
+                    <button type="button"
+                        class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10"
+                        data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="fs-20">
                             <i class="fal fa-times"></i>
                         </span>
@@ -631,22 +714,28 @@
                     <div class="row no-gutters" id="quick_view_product_details">
                         <div class="col-sm-6">
 
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2000">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"
+                                data-interval="2000">
                                 <div class="carousel-inner" ng-show="productImagesLoop != ''">
-                                    <div class="carousel-item @{{$first == '1' ? 'active' : ''}}" ng-repeat="row in productImagesLoop">
-                                        <img class="d-block w-100" style="height:35rem" src="@{{row.downPath}}" alt="First slide">
+                                    <div class="carousel-item @{{ $first == '1' ? 'active' : '' }}"
+                                        ng-repeat="row in productImagesLoop">
+                                        <img class="d-block w-100" style="height:35rem" src="@{{ row.downPath }}"
+                                            alt="First slide">
                                     </div>
                                 </div>
                                 <div class="carousel-inner" ng-show="productImagesBundle != ''">
-                                    <div class="carousel-item active" >
-                                        <img class="d-block w-100" style="height:35rem" src="@{{productImagesBundle}}" alt="First slide">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" style="height:35rem" src="@{{ productImagesBundle }}"
+                                            alt="First slide">
                                     </div>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                    data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                    data-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -658,9 +747,11 @@
                                 <h2 class="fs-24 mb-0">@{{ QuickView_name }}</h2>
                             </div>
                             <div class="primary-summary-inner" style="max-height: 31rem;overflow: scroll;">
-                                <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="category_name != ''">
+                                <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1"
+                                    ng-show="category_name != ''">
                                     @{{ category_name }}, @{{ subCategory_name }}</p>
-                                <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1" ng-show="bundleProductNames != ''">
+                                <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-0 pt-1 pb-1"
+                                    ng-show="bundleProductNames != ''">
                                     @{{ bundleProductNames }}</p>
                                 <div class="row">
                                     <div class="col-lg-8">
@@ -691,161 +782,207 @@
                                 </div>
                                 <p class="mb-3" style="max-height:150px;overflow:auto">@{{ short_description }}</p>
 
-                                <div style="margin-bottom: 0px;" ng-if="displayCollectionProductShadesQuickView != ''">
-                                    <button class="accordion_inc shadeAccord-btn" data-id="1">1. Choose Shade</button>
+                                <div style="margin-bottom: 0px;"
+                                    ng-if="displayCollectionProductShadesQuickView != ''">
+                                    <button class="accordion_inc shadeAccord-btn" data-id="1">1. Choose
+                                        Shade</button>
                                     <div class="panel_inc" id="chooseShade_container_1">
                                         <div class="form-group shop-swatch-color shop-swatch-color-02 mb-1">
                                             <!-- </label> -->
-                                            <img src="@{{selectedShadeImg_p}}" alt="Product Image" class="var text-capitalize quick_view_product_image " ng-show="selectedShadeImg_p != ''">
+                                            <img src="@{{ selectedShadeImg_p }}" alt="Product Image"
+                                                class="var text-capitalize quick_view_product_image "
+                                                ng-show="selectedShadeImg_p != ''">
                                             <br>
-                                            <label class="mb-2"><span class="font-weight-500 text-primary mr-2">Color:</span>
-                                                <span class="var text-capitalize btn-shade">@{{ selectedShadeName }}</span></label>
+                                            <label class="mb-2"><span
+                                                    class="font-weight-500 text-primary mr-2">Color:</span>
+                                                <span
+                                                    class="var text-capitalize btn-shade">@{{ selectedShadeName }}</span></label>
                                             <ul class="list-inline d-flex justify-content-start mb-0">
-                                               <li class="list-inline-item" ng-repeat="row in displayCollectionProductShadesQuickView"
-                                               ng-click="chooseProdShade(row.PRODUCT_SHADE_ID, row.SHADE_ID, row.PRODUCT_ID, row.SHADE_NAME, row.prodShadeImag_p, row.prodShadeImag_s)"
-                                               title="@{{ row.SHADE_NAME }}">
-                                                   <a href="javascript:;" class="d-block swatches-item" style="background-image: url('@{{ row.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;"> </a>
-                                               </li>
+                                                <li class="list-inline-item"
+                                                    ng-repeat="row in displayCollectionProductShadesQuickView"
+                                                    ng-click="chooseProdShade(row.PRODUCT_SHADE_ID, row.SHADE_ID, row.PRODUCT_ID, row.SHADE_NAME, row.prodShadeImag_p, row.prodShadeImag_s)"
+                                                    title="@{{ row.SHADE_NAME }}">
+                                                    <a href="javascript:;" class="d-block swatches-item"
+                                                        style="background-image: url('@{{ row.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;">
+                                                    </a>
+                                                </li>
 
-                                              </ul>
+                                            </ul>
 
                                             <input type="hidden" id="shadeId" value="">
-                                           <input type="hidden" id="prodShadeId" value="">
-                                           <input type="hidden" id="shadeName" value="">
-                                           <input type="hidden" id="productId" value="">
-                                           <input type="hidden" id="shadeExistChk" value="@{{(displayCollectionProductShadesQuickView.length == 0 || displayCollectionProductShadesQuickView.length == undefined) ? 'false' : 'true'}}">
+                                            <input type="hidden" id="prodShadeId" value="">
+                                            <input type="hidden" id="shadeName" value="">
+                                            <input type="hidden" id="productId" value="">
+                                            <input type="hidden" id="shadeExistChk" value="@{{ (displayCollectionProductShadesQuickView.length == 0 || displayCollectionProductShadesQuickView.length == undefined) ? 'false' : 'true' }}">
 
 
                                         </div>
-                                        <a href="javascript:;" class="btn btn-primary" ng-click="confirmProductShade();">Continue</a>
+                                        <a href="javascript:;" class="btn btn-primary"
+                                            ng-click="confirmProductShade();">Continue</a>
                                     </div>
                                 </div>
 
-                                <div class="chooseShade-container" style="margin-bottom: 30px;" ng-if="displayCollectionBundleProductShadesQuickView != ''">
-                                   <div id="shadeBundlechooser_container_@{{row.BUNDLE_LINE_ID}}" ng-repeat="row in displayCollectionBundleProductShadesQuickView">
-                                       <button class="accordion_inc_prod_detail shadeAccord-btn" data-id="@{{row.BUNDLE_LINE_ID}}">@{{row.seqNo}}. Choose Shade Product @{{row.productName}}</button><!-- chooseShadeBtn -->
-                                       <div class="panel_inc_prod_detail" id="chooseShade_container_@{{row.BUNDLE_LINE_ID}}">
-                                           <div class="form-group shop-swatch-color shop-swatch-color-02 mb-6 widget-color">
+                                <div class="chooseShade-container" style="margin-bottom: 30px;"
+                                    ng-if="displayCollectionBundleProductShadesQuickView != ''">
+                                    <div id="shadeBundlechooser_container_@{{ row.BUNDLE_LINE_ID }}"
+                                        ng-repeat="row in displayCollectionBundleProductShadesQuickView">
+                                        <button class="accordion_inc_prod_detail shadeAccord-btn"
+                                            data-id="@{{ row.BUNDLE_LINE_ID }}">@{{ row.seqNo }}. Choose Shade
+                                            Product @{{ row.productName }}</button><!-- chooseShadeBtn -->
+                                        <div class="panel_inc_prod_detail"
+                                            id="chooseShade_container_@{{ row.BUNDLE_LINE_ID }}">
+                                            <div
+                                                class="form-group shop-swatch-color shop-swatch-color-02 mb-6 widget-color">
 
-                                               <img src="" alt="Product Image" class="var text-capitalize quick_view_product_image bundleLineShadeImg" id="bundleLineShadeImg_@{{row.BUNDLE_LINE_ID}}" style="display:none;">
-                                               <br>
+                                                <img src="" alt="Product Image"
+                                                    class="var text-capitalize quick_view_product_image bundleLineShadeImg"
+                                                    id="bundleLineShadeImg_@{{ row.BUNDLE_LINE_ID }}"
+                                                    style="display:none;">
+                                                <br>
 
-                                               <label class="mb-2">
-                                                   <span class="font-weight-500 text-primary mr-2">Color:</span>
-                                                   <span class="var text-capitalize" id="shadeName1_@{{row.BUNDLE_LINE_ID}}"></span>
-                                               </label>
-                                               <ul class="list-inline d-flex justify-content-start mb-0">
-                                                   <li class="list-inline-item" class="list-inline-item" ng-repeat="list in row.productShades"
-                                                   ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
-                                                   title="@{{list.SHADE_NAME}}">
-                                                       <a href="javascript:;" class="d-block swatches-item shade_chooser@{{row.BUNDLE_LINE_ID}}" id="shadeAnchor_@{{list.PRODUCT_SHADE_ID}}" style="background-image: url('@{{list.shadeprimaryImage}}'); background-repeat:no-repeat;background-position: center;"> </a>
-                                                   </li>
+                                                <label class="mb-2">
+                                                    <span class="font-weight-500 text-primary mr-2">Color:</span>
+                                                    <span class="var text-capitalize"
+                                                        id="shadeName1_@{{ row.BUNDLE_LINE_ID }}"></span>
+                                                </label>
+                                                <ul class="list-inline d-flex justify-content-start mb-0">
+                                                    <li class="list-inline-item" class="list-inline-item"
+                                                        ng-repeat="list in row.productShades"
+                                                        ng-click="chooseBundleProdShade(row.BUNDLE_LINE_ID, list.PRODUCT_SHADE_ID, list.SHADE_ID, list.PRODUCT_ID, list.SHADE_NAME, list.prodShadeImag_p, list.prodShadeImag_s)"
+                                                        title="@{{ list.SHADE_NAME }}">
+                                                        <a href="javascript:;"
+                                                            class="d-block swatches-item shade_chooser@{{ row.BUNDLE_LINE_ID }}"
+                                                            id="shadeAnchor_@{{ list.PRODUCT_SHADE_ID }}"
+                                                            style="background-image: url('@{{ list.shadeprimaryImage }}'); background-repeat:no-repeat;background-position: center;">
+                                                        </a>
+                                                    </li>
 
-                                               </ul>
+                                                </ul>
 
-                                               <input type="hidden" id="shadeId_@{{row.BUNDLE_LINE_ID}}" value="">
-                                               <input type="hidden" id="prodShadeId_@{{row.BUNDLE_LINE_ID}}" value="">
-                                               <input type="hidden" id="shadeName_@{{row.BUNDLE_LINE_ID}}" value="">
-                                               <input type="hidden" id="productId_@{{row.BUNDLE_LINE_ID}}" value="">
-                                               <input type="hidden" id="shadeExistChk_@{{row.BUNDLE_LINE_ID}}" value="@{{(row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true'}}">
-                                           </div>
-                                           <a href="javascript:;" class="btn btn-primary" ng-click="confirmBundleProductShade(@{{row.BUNDLE_LINE_ID}});">Continue</a>
-                                       </div>
-                                   </div>
-                               </div>
+                                                <input type="hidden" id="shadeId_@{{ row.BUNDLE_LINE_ID }}"
+                                                    value="">
+                                                <input type="hidden" id="prodShadeId_@{{ row.BUNDLE_LINE_ID }}"
+                                                    value="">
+                                                <input type="hidden" id="shadeName_@{{ row.BUNDLE_LINE_ID }}"
+                                                    value="">
+                                                <input type="hidden" id="productId_@{{ row.BUNDLE_LINE_ID }}"
+                                                    value="">
+                                                <input type="hidden" id="shadeExistChk_@{{ row.BUNDLE_LINE_ID }}"
+                                                    value="@{{ (row.productShades.length == 0 || row.productShades.length == undefined) ? 'false' : 'true' }}">
+                                            </div>
+                                            <a href="javascript:;" class="btn btn-primary"
+                                                ng-click="confirmBundleProductShade(@{{ row.BUNDLE_LINE_ID }});">Continue</a>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <form>
+                                <form>
 
-                               <input type="radio" id="single-sub" name="subscriptioncheck" value="One-Time Purchase"
-                                   checked>
-                               <label for="single-sub" class="cursor-pointer">One-Time Purchase</label><br>
+                                    <input type="radio" id="single-sub" name="subscriptioncheck"
+                                        value="One-Time Purchase" checked>
+                                    <label for="single-sub" class="cursor-pointer">One-Time Purchase</label><br>
 
-                               <input type="radio" id="multiple-sub" name="subscriptioncheck" value="subscription">
-                               <label for="multiple-sub" class="cursor-pointer">Subscription</label><br>
-                           </form>
-                            <div class=" form-group mb-0 sub-form" style="display: none;">
-                                <div class="d-flex align-items-center mb-1">
-                                    <label class="text-primary fs-16 font-weight-bold mb-0" for="size">Subcription Option: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="#" data-toggle="tooltip" data-placement="left" title="Click to see more Ingredients" class="text-right"> <span data-toggle="modal" data-target="#learnmore_pop">Learn More </span>
-                                    </a>
+                                    <input type="radio" id="multiple-sub" name="subscriptioncheck"
+                                        value="subscription">
+                                    <label for="multiple-sub" class="cursor-pointer">Subscription</label><br>
+                                </form>
+                                <div class=" form-group mb-0 sub-form" style="display: none;">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <label class="text-primary fs-16 font-weight-bold mb-0"
+                                            for="size">Subcription Option: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#" data-toggle="tooltip" data-placement="left"
+                                            title="Click to see more Ingredients" class="text-right"> <span
+                                                data-toggle="modal" data-target="#learnmore_pop">Learn More </span>
+                                        </a>
 
-                                    <div class="modal fade quick-view" id="learnmore_pop" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog" style="max-width: 631px !important;">
-                                            <div class="modal-content p-0">
-                                                <div class="modal-body p-0">
-                                                    <button type="button" class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10 close_learnmore_pop">
-                                                        <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-                                                    </button>
-                                                    <div class="pop_content">
+                                        <div class="modal fade quick-view" id="learnmore_pop" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" style="max-width: 631px !important;">
+                                                <div class="modal-content p-0">
+                                                    <div class="modal-body p-0">
+                                                        <button type="button"
+                                                            class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10 close_learnmore_pop">
+                                                            <span aria-hidden="true" class="fs-20"><i
+                                                                    class="fal fa-times"></i></span>
+                                                        </button>
+                                                        <div class="pop_content">
 
-                                                        <div class="row">
+                                                            <div class="row">
 
-                                                            <p class="col-lg-12">@{{ subscriptionDetails }}</p>
+                                                                <p class="col-lg-12">@{{ subscriptionDetails }}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <select class="form-control w-100 cursor-pointer" id="subsOption"
+                                        ng-model="subs_id" ng-change="fetchSubscriptionDetail();">
+                                        <option value="" class="cursor-pointer">Choose an option</option>
+                                        <option value="@{{ row.ID }}" class="select-subsoptn"
+                                            ng-repeat="row in subscriptionLov">@{{ row.TITLE }}</option>
+                                    </select>
                                 </div>
-                               <select class="form-control w-100 cursor-pointer" id="subsOption" ng-model="subs_id" ng-change="fetchSubscriptionDetail();">
-                                   <option value="" class="cursor-pointer">Choose an option</option>
-                                   <option value="@{{row.ID}}" class="select-subsoptn" ng-repeat="row in subscriptionLov">@{{row.TITLE}}</option>
-                               </select>
+                                <form class="cart-roww">
+                                    <div class="row align-items-end no-gutters mx-n2 mb-1">
+                                        <div class="col-sm-3 form-group px-2 mb-0">
+                                            <label class="text-primary fs-16 font-weight-bold mb-1"
+                                                for="number">Quantity: </label>
+
+                                            <div class="input-group position-relative w-100">
+                                                <a href="javascript:;"
+                                                    class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
+                                                    <i class="far fa-minus"></i>
+                                                </a>
+
+                                                <input name="number" type="number" id="quantity"
+                                                    class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput"
+                                                    value="1">
+
+                                                <a href="javascript:;"
+                                                    class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
+                                                    <i class="far fa-plus"></i>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-8 mb-0 px-2">
+                                            <button type="button"
+                                                class="btn btn-primary btn-block text-capitalize quick-addto-cart"
+                                                data-type="@{{ productType }}" data-id="@{{ QuickView_productId }}"
+                                                data-quantity='1' data-subs='1'>Add to cart</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <p class="text-primary lh-14375 mb-0 sub-line" style="display: none;">
+                                    @{{ subscriptionNote1 }}</p>
+                                <p class="text-primary lh-14375 mb-0 sub-below-line" style="display: none;">
+                                    @{{ subscriptionNote2 }}</p>
+
                             </div>
-                            <form class="cart-roww">
-                                <div class="row align-items-end no-gutters mx-n2 mb-1">
-                                    <div class="col-sm-3 form-group px-2 mb-0">
-                                        <label class="text-primary fs-16 font-weight-bold mb-1" for="number">Quantity: </label>
-
-                                        <div class="input-group position-relative w-100">
-                                           <a href="javascript:;"
-                                               class="down position-absolute pos-fixed-left-center pl-2 z-index-2 addsubquantity">
-                                               <i class="far fa-minus"></i>
-                                           </a>
-
-                                           <input name="number" type="number" id="quantity"
-                                               class="form-control w-100 px-6 text-center input-quality bg-transparent text-primary quantityinput"
-                                               value="1">
-
-                                           <a href="javascript:;"
-                                               class="up position-absolute pos-fixed-right-center pr-2 z-index-2 addsubquantity">
-                                               <i class="far fa-plus"></i>
-                                           </a>
-                                       </div>
-
-                                    </div>
-                                    <div class="col-sm-8 mb-0 px-2">
-                                        <button type="button"
-                                           class="btn btn-primary btn-block text-capitalize quick-addto-cart"
-                                           data-type="@{{productType}}"
-                                           data-id="@{{QuickView_productId}}"
-                                           data-quantity='1' data-subs='1'>Add to cart</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <p class="text-primary lh-14375 mb-0 sub-line" style="display: none;">@{{ subscriptionNote1 }}</p>
-                            <p class="text-primary lh-14375 mb-0 sub-below-line" style="display: none;">@{{ subscriptionNote2 }}</p>
-
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-    </div>
 </main>
+
+
+
+
+<br>
 @include('web.web-footer')
 {{-- <script src="{{ url('/assets-web') }}/customjs/script_userhome.js?v={{time()}}"></script> --}}
-<script src="{{ url('/assets-web') }}/customjs/script_subscription.js?v={{time()}}"></script>
+<script src="{{ url('/assets-web') }}/customjs/script_subscription.js?v={{ time() }}"></script>
 
 <script>
     function close_topbar() {
         $("#topbar").removeClass('d-xl-flex');
-        $("#content").css('padding-top','77px');
+        $("#content").css('padding-top', '77px');
         // $("#details-header").removeClass('mt-15');
         // $("#details-header").addClass('mt-11');
-
     }
 </script>

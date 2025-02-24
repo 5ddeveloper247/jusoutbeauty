@@ -68,7 +68,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 				$scope.levelOneQuestionId = data.levelOne.LEVEL_ONE_ID;
 				$scope.levelOneQuestionTitle = data.levelOne.TITLE;
-
+				
 				$scope.displayCollectionLevelOneTypesOptions = data.levelOneType;
 				$scope.displayCollectionLevelOneTypes = data.levelOneType;
 
@@ -77,8 +77,11 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 				if ($('.slick-slider1').hasClass('slick-initialized')) {
 				    $('.slick-slider1').slick('destroy');
 				}
+				if ($('.slick-slider11').hasClass('slick-initialized')) {
+				    $('.slick-slider11').slick('destroy');
+				}
 
-//				setTimeout(function(){ 
+//				setTimeout(function(){
 //
 //					$('.slick-slider3').slick({
 //						"slidesToShow": 1,"infinite":false,"autoplay":false,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
@@ -112,9 +115,11 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
                                     {"breakpoint": 992,
                                         "settings": {"slidesToShow": 2}},
-
+                                    
+									{"breakpoint": 800,
+                                        "settings": {"slidesToShow": 1}},
                                     {"breakpoint": 768,
-                                        "settings": {"slidesToShow": 2}},
+                                        "settings": {"slidesToShow": 1}},
 
                                     {"breakpoint": 576,
                                         "settings": {"slidesToShow": 1}}
@@ -122,6 +127,42 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 
 
 						});
+
+						$('.slick-slider11').slick({
+							slidesToShow: 6,
+							autoplaySpeed: 1500,
+							"infinite":true,
+							"autoplay":false,
+							"dots":false,
+							"arrows":true,
+							prevArrow:"<button type='button' class='slick-prev pull-left nav-btn-prev' style='left:-30px; right: auto; top:21px'><i class='fas fa-angle-left'></i></button>",
+							nextArrow:"<button type='button' class='slick-next pull-right nav-btn-nxt'style='right:-30px; left: auto;top:21px'><i class='fas fa-angle-right'></i></button>",
+							"responsive":[
+								{
+									breakpoint: 1030, // 800x600
+									settings: { slidesToShow: 3 }
+								  },
+								{
+									breakpoint: 1024, // 800x600
+									settings: { slidesToShow: 3 }
+								  },
+						
+								  {
+									breakpoint: 768, // 600x800
+									settings: { slidesToShow: 2 }
+								  },
+								  {
+									breakpoint: 600, // 480x320
+									settings: { slidesToShow: 2 }
+								  },
+								  {
+									breakpoint: 480, // 320x480
+									settings: { slidesToShow: 1 }
+								  }
+										]
+	
+	
+							});
 //					"slidesToShow": 2,"infinite":true,"autoplay":true,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
 //					"slidesToShow": 1,"infinite":false,"autoplay":false,"dots":false,"arrows":true,"responsive":[{"breakpoint": 1366,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]
 					console.log('12');
@@ -171,7 +212,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
                     }
                     return product;
                 });
-               
+
                 $scope.levelOneLatestImg = typeImage != '' ? typeImage : data.levelTypeImage.downPath;
 
 				$scope.viewFlag = 'YL';
@@ -565,7 +606,7 @@ myApp.controller('projectinfo1',function($scope,$rootScope,$timeout,$http,$windo
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
-			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			toastr.error('...Choose subscription first...', '', {timeOut: 3000})
 		}
 	}
 	$scope.hideSubscrptionDetailModal = function(){

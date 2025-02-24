@@ -53,13 +53,13 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 
 	});
 	$(document).on("click", ".shadeAccord-btn", function () {
-	
+
 		// initializeHcSticky()
 		var i = $(this).attr('data-id');
 		$("#chooseShade_container_"+i).slideToggle('slow');
 
 	});
-	
+
 	// function initializeHcSticky() {
 	// 	var header_sticky_height = 0;
 
@@ -72,7 +72,7 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	// $('.primary-summary.summary-sticky > .primary-summary-inner').hcSticky({
 	// 	stickTo: '#summary-sticky',
 	// 	top: header_sticky_height + 80
-	// });  
+	// });
 
 	$(document).on("click", "#chooseShadeBtn2", function () {
 
@@ -411,14 +411,17 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 		});
 	});
 
-	 $scope.showSubscrptionDetailModal = function(){
-		 if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
-			 $('#learnmore_pop').modal('show');
-		 }else{
-			 toastr.error('Choose subscription first...', '', {timeOut: 3000})
-		 }
 
-	 }
+	//  $scope.showSubscrptionDetailModal = function(){
+	// 	 if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
+	// 		 $('#learnmore_pop').modal('show');
+	// 	 }else{
+	// 		 toastr.error('..Choose subscription first.....', '', {timeOut: 3000})
+	// 	 }
+
+	//  }
+
+
 	 $scope.hideSubscrptionDetailModal = function(){
 		 $('#learnmore_pop').modal('hide');
 	 }
@@ -699,15 +702,17 @@ myApp.controller('projectinfo1',function($scope,$compile,$rootScope,$timeout,$ht
 	});
 
 	$scope.showSubscrptionDetailModal = function(){
+        // alert('i am ')
 		if($scope.subscriptionDetails != '' && $("#subsOption").val() != ''){
 			$('#learnmore_pop').modal('show');
 		}else{
-			toastr.error('Choose subscription first...', '', {timeOut: 3000})
+			toastr.error('Choose subscription first.......', '', {timeOut: 3000})
 		}
 	}
 	$scope.hideSubscrptionDetailModal = function(){
 		$('#learnmore_pop').modal('hide');
 	}
+
     $scope.fetchSubscriptionDetail = function(){
 
 		var subscriptionId = $("#subsOption").val();

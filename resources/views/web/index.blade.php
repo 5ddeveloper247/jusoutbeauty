@@ -270,7 +270,7 @@ $userId = session('userId');
     .sticky-area {
         background-color: transparent;
     }
-
+   
     @media screen and (min-width: 0px) and (max-width: 575px) {
         #instaFeed_html {
             width: 371px;
@@ -310,6 +310,16 @@ $userId = session('userId');
             margin-left: -40px;
             color: #fff;
         }
+        .cookie-txt{
+    font-size: 10.5px !important;
+    
+    }
+    #acceptCookiesBtn, #declineCookiesBtn{
+        font-size: 10.5px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    
     }
 
     @media screen and (min-width: 576px) {
@@ -505,7 +515,7 @@ $userId = session('userId');
 <div class="cookies_blocker" style="display: none;"></div>
 <main id="content" style="padding-top: 0px !important" ng-app="project1">
     <div ng-controller="projectinfo1">
-        <section class="slick-slider custom-dots-01 mx-0 slider-home-08 d-none d-md-block"
+        <section class="slick-slider custom-dots-01 mx-0 slider-home-08 d-md-block"
             data-slick-options='{"slidesToShow": 1,"infinite":true,"autoplay":true,"dots":true,"arrows":false,"fade":true,"cssEase":"ease-in-out","speed":600,"responsive":[{"breakpoint": 576,"settings": {"dots": false}}]}'>
 
             @if (isset($homeBanner) && !empty($homeBanner))
@@ -578,7 +588,7 @@ $userId = session('userId');
                             @if (isset($trending) && !empty($trending))
 
                                 @foreach ($trending as $trend)
-                                    <div class="box product py-2" data-animate="fadeInUp">
+                                    <div class="box product py-2 px-2" data-animate="fadeInUp">
                                         <div class="card border-0">
                                             <div class="position-relative hover-zoom-in">
                                                 {{-- productdetail ---> removed after made href url --}}
@@ -691,7 +701,7 @@ $userId = session('userId');
                                                         @if ($trend['DISC_AMOUNT'] > 0)
                                                             <p class="text-primary mb-0 card-title lh-14375">
                                                                 ${{ $trend['DISC_AMOUNT'] }}</p>
-                                                            <small class="ml-1 mt-1 lh-14375"><del>
+                                                            <small class="ml-1 mt-1 lh-14375 del"><del>
                                                                     ${{ $trend['PRODUCT_PRICE'] }}</del></small>
                                                         @else
                                                             <p class="text-primary mb-0 card-title lh-14375">
@@ -723,12 +733,12 @@ $userId = session('userId');
 
 
 
-        <section class="bg-img-cover-center h-100 py-16 py-lg-19 d-none d-sm-block pay-section"
+        <section class="bg-img-cover-center h-100 py-16 py-lg-19  d-sm-block pay-section"
             style="background-image: url('{{ url('/assets-web') }}/images/shopnow-ban.jpg');" data-animated-id="4">
             <div class="container container-xl">
                 <div class="d-flex">
                     <div class="ml-auto d-flex flex-column align-items-center" style="margin: 0 auto !important;">
-                        <h2 class="mb-7 text-center part_head text-capitalize">Pay less, stay
+                        <h2 class="index-product mb-7 text-center part_head text-capitalize">Pay less, stay
                             in fashion!</h3>
 
                             <a href="{{ session('site') }}/Shop-All" class="btn btn-primary">All Products</a>
@@ -747,7 +757,7 @@ $userId = session('userId');
                     <div class="slick-slider custom-slider-03"
                         data-slick-options='{"slidesToShow": 3,"dots":true,"autoplay":true,"arrows":false,"centerMode":false,"centerPadding":"450px","infinite":true,"responsive":[
 								{"breakpoint": 560,"settings": {"slidesToShow": 1,"centerMode":false,"arrows":false}},
-								{"breakpoint": 1450,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
+								{"breakpoint": 1024,"settings": {"slidesToShow": 2,"centerMode":false,"arrows":false}},
 								{"breakpoint": 2199,"settings": {"slidesToShow": 3,"centerMode":false,"arrows":false}},
 								{"breakpoint": 1200,"settings": {"centerMode":false,"arrows":false}},
 								{"breakpoint": 992,"settings": {"centerMode":false,"arrows":false}}]}'>
@@ -764,29 +774,29 @@ $userId = session('userId');
                                             </p>
                                             <ul class="list-inline mb-5 d-flex fs-15">
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '1' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '2' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '3' ? 'color: #f9a7a9;' : 'color: #f9a7a9;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '4' ? 'color: #f9a7a9;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
                                                 <li class="mr-0"
-                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #3d94b7;' : 'color: #60686b;' }}">
+                                                    style="{{ $review['STAR_RATING'] >= '5' ? 'color: #f9a7a9;' : 'color: #60686b;' }}">
                                                     <i class="fas fa-star"></i>
                                                 </li>
 
                                             </ul>
-                                            <p
-                                                class="card-text our-reviews-card-text fs-20 fs-sm-24 text-primary lh-1444 mw-750 mx-auto">
+                                            <p class="card-text our-reviews-card-text text-primary lh-1444 mw-750 mx-auto"
+                                                style="font-size: 17px !important">
                                                 {{ $review['REVIEW_DESCRIPTION_TRIM'] }}</p>
 
                                         </div>
@@ -808,7 +818,7 @@ $userId = session('userId');
 
 
 
-        <section id="section-next" class="py-10 py-lg-13" style="background-color: #94b73d ;">
+        <section id="section-next" class="py-10 py-lg-13" style="background-color: #8ed1c9 ;">
             <h2 class="text-center mb-1  text-white">Created For You</h2>
             <br>
             <div class="container container-custom">
@@ -941,9 +951,9 @@ $userId = session('userId');
                                             <div
                                                 class="@if (strlen($for['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
                                                 @if ($for['DISC_AMOUNT'] > 0)
-                                                    <p class="text-primary mb-0 card-title lh-14375">
+                                                    <p class="p-index text-primary mb-0 card-title lh-14375">
                                                         ${{ $for['DISC_AMOUNT'] }}</p>
-                                                    <small class="ml-1 mt-1 lh-14375"><del>
+                                                    <small class="ml-1 mt-1 lh-14375 del"><del>
                                                             ${{ $for['PRODUCT_PRICE'] }}</del></small>
                                                 @else
                                                     <p class="text-primary mb-0 card-title lh-14375">
@@ -1046,7 +1056,7 @@ $userId = session('userId');
 
 
         <section class="box-shadow-bottom py-10 py-lg-13"
-            style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover; background-color:#fffff">
+            style="background-image: url('{{ url('/assets-web') }}/images/brownBg.jpeg'); background-repeat: no-repeat; background-size: cover; background-color:#fffff">
 
             <div class="container container-custom container-xl">
                 <h2 class="mb-0 text-center lh-13 text-center-mbl" data-animate="fadeInUp">Are You
@@ -1088,7 +1098,7 @@ $userId = session('userId');
                     @if (isset($bestSeller) && !empty($bestSeller))
                         {{-- <div class="col-sm-6 mb-0 mb-sm-0 product-inclusive" data-animate="fadeInUp"
                             style="background-image: url('{{ $bestSeller['IMAGE_DOWNPATH'] }}');">
-                            <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in"
+                            <a href="javascript:;" class="card border-0 banner-03 hover-zoom-in main-page"
                                 style="background-color: unset !important; height: 600px;">
                                 <div class="card-img bg-img-cover-center"></div>
                                 <div class="card-img-overlay d-flex flex-column p-2">
@@ -1168,7 +1178,7 @@ $userId = session('userId');
 
 
 
-        <section class="py-12 py-lg-12" style="background-color: #3d94b7;">
+        <section class="py-12 py-lg-12" style="background-color: #c0a9bd">
             <div class="container container-custom container-xl">
                 <h2 class="text-center mb-8 lh-128 text-white">Our Blog
                 </h2>
@@ -1748,12 +1758,12 @@ $userId = session('userId');
 
 <div class="cookie-frame open" style="display:none;z-index: 100000000;!important;">
     <div class="cookie-content d-flex align-items-center justify-content-center row pr-5 pl-5">
-        <div class="col-sm-8 text">
-            <p class="text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="font-size: 14px; text-align:left;">By clicking
+        <div class="col-6 col-sm-8 text">
+            <p class="cookie-txt text-dark mt-2 mt-md-5 mr-2 mr-md-5" style="">By clicking
                 Accept Cookies, you agree to the storing of cookies on your device to enhance
                 site navigation, analyze site usage, and assist in our marketing efforts.</p>
         </div>
-        <div class="d-flex justify-content-center col-sm-4">
+        <div class="d-flex justify-content-center col-6 col-sm-4">
             <button class="btn btn-outline-primary mr-2" id="acceptCookiesBtn">Accept</button>
             <button class="btn btn-my" id="declineCookiesBtn">Decline</button>
         </div>

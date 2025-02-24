@@ -15117,10 +15117,10 @@ button.bg-green-dark:focus {
         padding: 3.125rem !important
     }
 
-    .pt-lg-8,
+    /* .pt-lg-8,
     .py-lg-8 {
         padding-top: 3.125rem !important
-    }
+    } */
 
     .pr-lg-8,
     .px-lg-8 {
@@ -24012,7 +24012,7 @@ a.hover-dark:focus {
 }
 
 a.hover-white:hover {
-    color: #fff !important
+    color: #0e0d21 !important
 }
 
 a.hover-white:focus {
@@ -27824,7 +27824,7 @@ a:hover {
 
 img {
     max-width: 100%;
-    height: auto
+    height: auto;
 }
 
 svg.icon {

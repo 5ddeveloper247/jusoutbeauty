@@ -2,7 +2,7 @@
 <?php $userId = session('userId'); ?>
 <script>
     var site = '<?php echo session('
-                                                                                    site '); ?>';
+                                                                                                                                    site '); ?>';
 
     var bundleId = "";
     var productId = "<?php echo isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : ''; ?>";
@@ -116,7 +116,7 @@
     .ag-courses-item_bg {
         height: 128px;
         width: 128px;
-        background-color: #3d94b7;
+        background-color: #8ed1c9;
         z-index: 1;
         position: absolute;
         top: -75px;
@@ -136,7 +136,7 @@
     .ag-courses-item_link {
         display: block;
         padding: 30px 20px;
-        background-color: #f3c9b3;
+        background-color: #f9a7a9;
         overflow: hidden;
         position: relative;
     }
@@ -217,14 +217,14 @@
     .img-product-gall {
         height: 28rem;
     }
-
+/* 
     .img1-section2 {
         height: 26rem;
     }
 
     .img2-section2 {
-        height: 13rem;
-    }
+        height: 23rem;
+    } */
 
     /* width */
     .spot-section {
@@ -240,11 +240,11 @@
         padding: 1.25rem;
         border-radius: 0;
     }
-
+/* 
     .fix {
-        height: 480px;
+        height: 46rem;
         overflow: hidden;
-    }
+    } */
 
     /* ::-webkit-scrollbar {
         width: 5px;
@@ -279,25 +279,26 @@
     }
 
     img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20 {
-        width: 53% !important;
-        margin-top: 298px;
-        margin-left: -123px;
+        width: 53% ;
+        margin-top: 239px;
+    margin-left: -133px;
     }
 
     #pills-recently-viewed {
         max-height: unset !important
     }
 
-    .uses_img {
+    /* .uses_img {
         width: 100% !important;
         height: 32rem;
-    }
+    } */
 
     @media only screen and (max-width: 480px) {
+/*      
         .uses_img {
             width: 100% !important;
             height: 25rem;
-        }
+        } */
 
         .last-section-pro-detail {
             flex-direction: column !important;
@@ -308,14 +309,17 @@
         a#pills-recommendations-tab,
         #pills-recently-viewed-tab,
         #pills-recently-viewed-tab {
-            font-size: 14px !important
+            font-size: 11px !important;
+            padding: 2px;
+
         }
 
         a#writeQuestion_btn {
             position: absolute;
-            bottom: 159px;
-            left: 179px;
-            font-size: 11px
+            bottom: 0px;
+            left: 15px;
+            font-size: 11px;
+            padding: 2px;
         }
 
         .card-img-overlay {
@@ -382,6 +386,10 @@
         .img1-section2 {
             height: 17rem;
         }
+        .img2-section2 {
+    height: 17rem;
+    width: 100%
+}
 
         .ingredientTabBtn,
         .revque_btn {
@@ -399,8 +407,8 @@
         .spot-section {
             height: unset !important;
         }
+ 
     }
-
     .cursor-pointer {
         cursor: pointer;
     }
@@ -459,17 +467,19 @@
                     </div>
                     <div class="col-md-6 col-xl-4 pl-xl-6 pl-md-3 primary-summary summary-sticky" id="summary-sticky">
 
-                        <div class="primary-summary-inner" style="width:380px">
+                        <div class="primary-summary-inner" style="padding-right:60px">
                             <h2 class="mb-0 text-capitalize productDetailHeading"><?= $productDetails['NAME'] ?></h2>
-                            <p class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-1 py-2">
+                            <p class="text-muted fs-11 font-weight-500 text-uppercase mb-1 py-2"
+                                style="padding-right:0px;
+                            text-align: justify;">
                                 <?= $productDetails['SUB_TITLE'] ?></p>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="row" style="width:380px">
+                                    <div class="row lh-14375-2" style="padding-right:0px">
                                         <div
                                             class="@if (strlen($productDetails['DISC_AMOUNT'] < 6)) col-sm-6 @else col-sm-7 @endif col-9 d-flex justify-content-evenly">
                                             @if ($productDetails['DISC_AMOUNT'] > 0)
-                                                <p class="text-primary mb-0 card-title lh-14375">
+                                                <p class=" mb-0 card-title lh-14375 ">
                                                     ${{ $productDetails['DISC_AMOUNT'] }}</p>
                                                 <small class="ml-1 mt-1 lh-14375"><del>
                                                         ${{ $productDetails['UNIT_PRICE'] }}</del></small>
@@ -480,8 +490,8 @@
                                         </div>
                                         <div
                                             class="@if (strlen($productDetails['DISC_AMOUNT'] < 6)) col-sm-6 @else  col-sm-5 @endif col-3">
-                                            <p class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis"
-                                                style="margin-right:-10px">
+                                            <p
+                                                class="text-primary mb-0 card-title lh-14375 text-right text-right-sm ellipsis">
                                                 {{ $productDetails['UNIT'] }}</p>
                                         </div>
                                     </div>
@@ -497,7 +507,7 @@
 
                                 </div>
                             </div>
-                            <p class="mb-3" style="width:370px; text-align: justify;">
+                            <p class="mb-3" style="padding-right:0px; text-align: left;">
                                 <?= $productDetails['SHORT_DESCRIPTION'] ?></p>
 
                             <div class="chooseShade-container" style="margin-bottom: 30px;"
@@ -574,22 +584,23 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <label class="text-primary fs-16 font-weight-bold mb-0 " for="size">Subcription
                                         Option: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:;" data-toggle="tooltip" data-placement="left"
+
+                                        <a
+                                        href="javascript:;"
+                                        data-toggle="tooltip " data-placement="left"
                                         title="Click to see more" class="text-right">
-                                        <span ng-click="showSubscrptionDetailModal();">Learn More </span>
-                                        <!-- data-toggle="modal" data-target="#learnmore_pop" -->
+                                        <span ng-click="showSubscrptionDetailModal();">.Learn More.... </span>
+                                        {{-- <!-- data-toggle="modal" data-target="#learnmore_pop" --> --}}
                                     </a>
-
-
                                 </div>
                                 <select class="form-control w-100 cursor-pointer" id="subsOption" ng-model="subs_id"
-                                    ng-change="fetchSubscriptionDetail();" style="width:370px !important">
+                                    ng-change="fetchSubscriptionDetail();" style="padding-right:60px !important">
                                     <option value="" class="cursor-pointer">Choose an option</option>
                                     <option value="@{{ row.ID }}" class="select-subsoptn"
                                         ng-repeat="row in subscriptionLov">@{{ row.TITLE }}</option>
                                 </select>
                             </div>
-                            <form class="cart-roww">
+                            <form class="cart-roww" style="padding-right:0px">
                                 <div class="row align-items-end no-gutters mx-n2">
                                     <?php if( $productDetails['INV_QUANTITY'] > 0){?>
                                     <div class="col-sm-4 form-group px-2 mb-6">
@@ -622,13 +633,13 @@
                                             ?>
                                         <button type="button"
                                             class="btn btn-primary btn-block text-capitalize addto-cart"
-                                            style="width:370px !important" data-type="single"
+                                            style="padding-right:60px !important" data-type="single"
                                             data-id="<?= isset($productDetails['PRODUCT_ID']) ? $productDetails['PRODUCT_ID'] : '' ?>"
                                             data-quantity='1' data-subs='1'>Add to cart</button>
 
                                         <?php }
                                         else{
-                                            echo'<button type="button" style="width:370px !important"
+                                            echo'<button type="button" style="padding-right:60px !important"
 	                                            class="btn btn-primary btn-block text-capitalize" disabled>Out of Stock</button>';
                                         }
                                     }else if($productDetails['INV_QUANTITY_FLAG'] == 'inv' && $productDetails['INV_QUANTITY'] > 0){?>
@@ -662,7 +673,7 @@
         </section>
 
         <?php if(isset($features) && !empty($features)){?>
-        <section class="pb-11 pb-lg-6">
+        <section class="pb-8 pb-lg-6">
             <div class="container container-custom container-xxl mt-8">
                 <h2 class="text-center my-4">Features</h2>
                 <div class="slick-slider "
@@ -703,7 +714,7 @@
             </div>
         </section>
         <?php  } ?>
-        <section class="pb-11 pb-lg-6">
+        <section class="pb-8 pb-lg-6">
             <div class="container container-custom container-xxl">
                 <div class="collapse-tabs">
                     <ul class="nav nav-pills d-md-flex d-block border-bottom" style="display: none !important;"
@@ -750,12 +761,11 @@
                                                         <?php }?>
 
                                                     </div>
-                                                    <div class="col-md-6 pro-details" style="">
+                                                    <div class="col-md-6 pro-details pl-6 pl-md-2 pl-lg-4 pl-xl-4" style="padding-right: 75px; overflow:auto !important">
                                                         <h2 class="mb-2 text-capitalize">
                                                             <?= $productDetails['DESCRIPTION_TITLE'] ?></h2>
                                                         <p class="productDetailAboutSection"
-                                                            style="padding-right: 60px;
-                                                        text-align: justify;">
+                                                            style="text-align: justify;">
                                                             <?= $productDetails['DESCRIPTION'] ?></p>
                                                     </div>
                                                 </div>
@@ -763,10 +773,10 @@
                                                 <hr>
 
                                                 <div class="row pt-10 subsc_ec">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 px-6 pl-xl-5">
                                                         <h2 class="mb-2">
                                                             {{ $productDetails['SUBSCRIPTION_NOTE_TITLE'] }}</h2>
-                                                        <div class="productDetailSubscriptionSection">
+                                                        <div class="text-justify productDetailSubscriptionSection pr-9 pr-md-0" >
                                                             <p class="mb-6 ">
                                                                 {{ $productDetails['SUBSCRIPTION_NOTE_DESCRIPTION'] }}
                                                             </p>
@@ -774,7 +784,7 @@
                                                             <a href="javascript:;" data-link="<?php echo $productDetails['SUBSCRIPTION_NOTE_LINK']; ?>"
                                                                 data-toggle="tooltip" data-placement="left"
                                                                 title="Click to see more Ingredients"
-                                                                class="preview btn btn-primary subscrReadMoreLink">
+                                                                class="preview btn btn-primary subscrReadMoreLink mx-1">
                                                                 <span>Read More</span>
                                                             </a>
                                                         </div>
@@ -783,16 +793,16 @@
                                                     <div class="col-md-6 mb-6 mb-md-0">
                                                         <img src="{{ $productDetails['SUBSCRIPTION_NOTE_IMAGE']->DOWN_PATH ?? '' }}                                                        "
                                                             alt="The Iconic Silhouette "
-                                                            class="fadeInRight animated subs_img">
+                                                            class="fadeInRight animated subs_img product_img">
 
                                                     </div>
                                                 </div>
                                                 <br>
                                                 <hr>
-                                                <section class="pt-10 pt-lg-8 py-5">
+                                                <section class="pt-8 pt-lg-8 py-5">
                                                     <div class="">
                                                         <div class="row no-gutters">
-                                                            <div class="col-md-8 mb-8 mb-md-0">
+                                                            <div class="col-md-8 mb-4 mb-md-0">
                                                                 <div class="fix">
                                                                     <div class=" hover-zoom-in">
                                                                         <?php
@@ -800,7 +810,7 @@
                                                                         <video
                                                                             src="<?= isset($productDetails['videoDetails']['V_3']) ? $productDetails['videoDetails']['V_3'] : '' ?>"
                                                                             alt="Video background"
-                                                                            class="card-img"></video>
+                                                                            class="card-img product-video"></video>
                                                                         <?php }else{?>
                                                                         <img class="card-img_if"
                                                                             src="{{ url('assets-web') }}/images/img-video.jpg"
@@ -821,12 +831,12 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4 pl-xl-7 pl-7 productDetailVideoSection"
-                                                                style="padding-right:60px; text-align:justify">
+                                                            <div class="col-md-4 pl-xl-5 pl-5 productDetailVideoSection"
+                                                                style="padding-right:60px; text-align:justify;">
                                                                 <h2 class="mb-2 text-capitalize">
                                                                     <?= isset($productDetails['videoDetails']['V_1']) ? $productDetails['videoDetails']['V_1'] : '' ?>
                                                                 </h2>
-                                                                <p><?= isset($productDetails['videoDetails']['V_2']) ? $productDetails['videoDetails']['V_2'] : '' ?>
+                                                                <p class="prvideo"><?= isset($productDetails['videoDetails']['V_2']) ? $productDetails['videoDetails']['V_2'] : '' ?>
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -864,7 +874,7 @@
                                                                             <?php if(isset($spotlightIngredients) && !empty($spotlightIngredients)){?>
                                                                             <?php foreach ($spotlightIngredients as $row){?>
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                style="background-color:#94b73d">
+                                                                                style="background-color:#8ed1c9">
                                                                                 <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
@@ -909,7 +919,7 @@
                                                                             <?php if(isset($formulatedIngredients) && !empty($formulatedIngredients)){?>
                                                                             <?php foreach ($formulatedIngredients as $row){?>
                                                                             <div class="col-sm-6 col-lg-3 mb-6 mb-lg-0 ing_sec_inc_prod_detail pt-5 pb-5 spot-section"
-                                                                                style="background-color:#94b73d">
+                                                                                style="background-color:#8ed1c9">
                                                                                 <img class="spot-section-img"
                                                                                     src="<?= isset($row['image']['downPath']) ? $row['image']['downPath'] : url('assets-web') . '/images/cannabis-ingredient.webp' ?>">
                                                                                 <p
@@ -993,7 +1003,7 @@
                                                 </section>
                                                 <br>
 
-                                                <section style="background-color: #f38c7b;">
+                                                <section style="background-color: #f9a7a9;">
                                                     <div class="pb-10 pb-lg-8 py-8">
                                                         <div class="container container-xl">
                                                             <h2 class="text-center mb-9" style="color: #fff;">How To
@@ -1024,7 +1034,7 @@
                                                                             class="card-body pt-6 px-0 pb-0 text-center">
                                                                             <a href="#"
                                                                                 class="fs-18 font-weight-500 lh-1444"><?= $row['USES_TITLE'] ?></a>
-                                                                            <p class="mb-6">
+                                                                            <p class="mb-6 px-2">
                                                                                 <?= $row['USES_DESCRIPTION'] ?></p>
                                                                         </div>
                                                                     </div>
@@ -1051,7 +1061,7 @@
 
                                                                 <img class="clinical-note"
                                                                     src="<?= $productDetails['clinicalImage'][0]['downPath'] ?>"
-                                                                    alt="Clinical Note">
+                                                                    alt="Clinical Note" >
 
                                                                 <?php }else{?>
 
@@ -1061,11 +1071,10 @@
 
                                                                 <?php }?>
                                                             </div>
-                                                            <div class="col-md-7 px-6 px-md-0 pl-xl-7 productDetailLutiesSection"
-                                                                style="">
+                                                            <div class="col-md-7 px-4 pl-xl-7 text-justify productDetailLutiesSection"
+                                                                style="padding-right:60px !important; ">
                                                                 <h2 class="mb-2">Lutie's Hint</h2>
-                                                                <p class=""
-                                                                    style="padding-right:60px; text-align:justify">
+                                                                <p class="">
                                                                     <?= $productDetails['CLINICAL_NOTE'] ?></p>
                                                             </div>
                                                         </div>
@@ -1087,13 +1096,20 @@
 
         <section class="py-6 py-lg-6 insta_sec_home">
             <div class="container container-custom container-xl">
-                <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
-                <p class="text-center mb-3 mx-auto" style="padding-right:60px; text-align:justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a tempore?
-                    Obcaecati voluptatem pariatur ab dolor laborum, a incidunt quisquam illo accusantium alias hic
-                    molestiae eius quasi, fugit expedita ut minus, delectus animi vero magnam accusamus numquam ipsum
-                    atque. Fugiat hic,
-                </p>
+                <div class="d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <h2 class="mb-3 text-center text-capitalize">Snap a selfi</h2>
+                        <p class="text-center mb-3 mx-auto" style="">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odit est aspernatur quaerat a
+                            tempore?
+                            Obcaecati voluptatem pariatur ab dolor laborum, a incidunt quisquam illo accusantium alias
+                            hic
+                            molestiae eius quasi, fugit expedita ut minus, delectus animi vero magnam accusamus numquam
+                            ipsum
+                            atque. Fugiat hic,
+                        </p>
+                    </div>
+                </div>
                 <div class="text-center mb-9">
                     <a href="javascript:;" class="preview btn btn-primary" data-toggle="modal"
                         data-target="#productselfi">
@@ -1277,21 +1293,15 @@
                                         <i class="fas fa-star" style="color: @{{ averageRatingRound >= '5' ? 'black' : 'gray' }};"></i>
                                     </li>
                                 </ul>
-                                <p class="text-center mb-0 fs-15 text-primary lh-1">
+                                <p class="text-center mb-0 fs-15 text-primary lh-1 btnrow">
                                     <span class="d-inline-block border-right pr-1 mr-1">5.0</span>See
                                     @{{ ratingfive }} Reviews
                                 </p>
                             </div>
-                            <div class="mt-6 mt-md-10">
-                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
-                                    id="writeReview_btn">Write
-                                    a Review</a>
-                                <!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
-                            </div>
-                        </div>
+        </div>
 
-                        <div class="col-3 question_sec">
-                            <div class="row" style="">
+                        <div class="col-3 question_sec justify-content-between">
+                            <div class="row " style="">
                                 <div class="side">
                                     <div>5 star</div>
                                 </div>
@@ -1348,15 +1358,24 @@
                                     <div>@{{ ratingone }}</div>
                                 </div>
                             </div>
-
-                            <div class=" mt-6 mt-md-9 mt-786-100">
-                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
-                                    id="writeQuestion_btn">Write Your Question</a>
-                            </div>
                         </div>
                         <div class="col-3 d-none d-md-block d-lg-block d-xl-block d-xxl-block"></div>
                     </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-3"><div class="mt-9 mt-md-9 mt-786-100">
+                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
+                                    id="writeReview_btn">Write
+                                    a Review</a>
+                                <!-- 						<p class="rev-bottomtext">20 Rewards Points On Review</p> -->
+                            </div></div> 
+                            <div class="col-3">    <div class=" mt-6 mt-md-9 mt-786-100">
+                                <a href="javascript:;" class="btn btn-outline-primary rev-btnns"
+                                    id="writeQuestion_btn">Write Your Question</a>
+                            </div></div>
+                            <div class="col-3"></div>
                 </div>
                 <div class="p-0 m-0" id="">
                     <div class="" id="pillsReviews_container">
@@ -1675,7 +1694,7 @@
                                                                     class="fs-12 text-primary font-italic">@{{ row.DATE }}</span>
                                                             </div>
                                                         </div>
-                                                        <p class="mb-6 text-justify">@{{ row.REVIEW_DESCRIPTION }}</p>
+                                                        <p class="mb-6 text-justify product-p">@{{ row.REVIEW_DESCRIPTION }}</p>
 
                                                         <!-- <br><br>
                                                          <div>
@@ -3510,11 +3529,11 @@
                                                     </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <a href="#" data-toggle="tooltip" data-placement="top"
                                                         title="Click to see more Ingredients" class="text-right">
-                                                        <span ng-click="showSubscrptionDetailModal();">Learn More
+                                                        <span ng-click="showSubscrptionDetailModal();">Learn More..
                                                         </span>
                                                     </a>
 
-                                                    <div class="modal fade quick-view" id="learnmore_pop"
+                                                    {{-- <div class="modal fade quick-view" id="learnmore_pop"
                                                         tabindex="-1" aria-hidden="true">
                                                         <div class="modal-dialog"
                                                             style="max-width: 631px !important;">
@@ -3545,11 +3564,11 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <select class="form-control w-100 cursor-pointer" id="subsOption"
                                                     ng-model="subs_id" ng-change="fetchSubscriptionDetail();"
-                                                    style="width:370px !important">
+                                                    style="padding-right:60px !important">
                                                     <option value="" class="cursor-pointer">Choose an option
                                                     </option>
                                                     <option value="@{{ row.ID }}" class="select-subsoptn"
@@ -3557,7 +3576,7 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <form class="cart-roww">
+                                            <form class="cart-roww" style="padding-right:60px">
                                                 <div class="row align-items-end no-gutters mx-n2 mb-1">
                                                     <div class="col-sm-3 form-group px-2 mb-0">
                                                         <label class="text-primary fs-16 font-weight-bold mb-1"
@@ -3624,7 +3643,6 @@
                                     style="max-height: 500px;
                             overflow: auto;">
                                     @{{ subscriptionDetails }}</p>
-
                             </div>
                             <div class="row">
 

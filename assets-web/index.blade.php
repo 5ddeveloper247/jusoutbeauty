@@ -518,7 +518,7 @@
 
                             @if (isset($trending) && !empty($trending))
                                 @foreach ($trending as $trend)
-                                    <div class="box product py-2" data-animate="fadeInUp">
+                                    <div class="box product py-2 " data-animate="fadeInUp">
                                         <div class="card border-0">
                                             <div class="position-relative hover-zoom-in">
                                                 <a href="javascript:;" class="d-block overflow-hidden productdetail"

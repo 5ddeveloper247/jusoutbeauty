@@ -15,9 +15,6 @@
     background: $body-bg;
     display: block;
 	
-	
-	
-	
 	[class*="col-"]{
 		display: block !important;
 		max-width: 100%;
@@ -95,7 +92,6 @@
             }
         }
     }
-
     .breadcrumb-widget{
         .border-dark{
             border-color: $gray-300!important;

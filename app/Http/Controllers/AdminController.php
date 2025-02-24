@@ -1042,6 +1042,8 @@ class AdminController extends Controller
 		// print_r('<pre>');
         // print_r($data['adminMenu']);
         // exit();
+
+        // ($data['adminMenu']);
    		return view('admin.dashboard')->with($data);
    	}
 
@@ -4753,7 +4755,22 @@ class AdminController extends Controller
 		$arrRes ['productUses'] = $ProductUses->getAllProductUsesByProduct($productId);
 		$arrRes ['subCategory'] = $Category->getSubCategoryLovWrtCategory($arrRes ['details']['P_8']);
 		$arrRes ['subSubCategory'] = $Category->getSubSubCategoryLovWrtSubCategory($arrRes ['details']['P_9']);
+        $product_lov = DB::table('jb_product_tbl')->where('CATEGORY_ID',$arrRes ['details']['P_8'])->where('IS_DELETED',0)->where('STATUS','active')->orderby('PRODUCT_ID', 'desc')->get();
+        if($product_lov->isEmpty()){
+            $arrRes ['done'] = false;
+			$arrRes ['product'] = [];
+			echo json_encode ( $arrRes );
+			die();
+        }else{
+             // $arrRes['product']=$product_lov;
+             $i=0;
+             foreach ($product_lov as $row){
+                 $arrRes['product'][$i]['id'] = $row->PRODUCT_ID;
+                 $arrRes['product'][$i]['name'] = $row->NAME;
+                 $i++;
+             }
 
+        }
 		echo json_encode ( $arrRes );
 	}
 
@@ -6277,7 +6294,7 @@ class AdminController extends Controller
 	}
 
 
-	
+
 	public function deleteShadeFinderLevel1Type(Request $request) {
 		$ShadeFinder = new ShadeFinderModel();
 
@@ -6346,7 +6363,7 @@ class AdminController extends Controller
 		echo json_encode ( $arrRes );
 	}
 
-	
+
 
 
 	public function saveAdminShadeFinderLevel2Info(Request $request) {
@@ -9842,6 +9859,7 @@ class AdminController extends Controller
 				echo json_encode ( $arrRes );
 				die ();
 			}
+
 			if (strlen($data['C_2']) < 8) {
 				$arrRes ['done'] = false;
 				$arrRes ['msg'] = 'New Password must be minimum 8 characters.';
@@ -9941,6 +9959,11 @@ class AdminController extends Controller
 			$details = $_REQUEST ['details'];
 			$userid = $details['updateduserId'];
 			$UserMenuControl = new UserMenuControlModel();
+
+
+
+
+
             //validating the Input Fields
 
             if ($details['user']['FirstName'] == '') {
@@ -9967,6 +9990,9 @@ class AdminController extends Controller
 				die ();
 			}
 
+
+
+
 			if ($details['user']['PhoneNumber'] == '') {
 
 				$arrRes ['done'] = false;
@@ -9975,9 +10001,11 @@ class AdminController extends Controller
 				die ();
 			}
             // Phone number validation
-			if (!preg_match('/^[+]?[1-9][0-9]{11,14}$/',$details['user']['PhoneNumber'])) {
+
+
+			if (!preg_match('/^[0-9]{9,16}$/',$details['user']['PhoneNumber']) ) {
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Phone Number Must Be Between 11 to 14';
+				$arrRes ['msg'] = 'Phone Number Must Be Between 10 to 14';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -10023,10 +10051,14 @@ class AdminController extends Controller
 				die ();
 			}
 
-			if (strlen($details['user']['Password']) < 8) {
+// password validaion to check its strength
+            $uppercase = preg_match('@[A-Z]@', $details['user']['Password'] );
+            $lowercase = preg_match('@[a-z]@', $details['user']['Password'] );
+            $number    = preg_match('@[0-9]@', $details['user']['Password'] );
+            if(!$uppercase || !$lowercase || !$number || strlen($details['user']['Password'] ) < 8) {
 
 				$arrRes ['done'] = false;
-				$arrRes ['msg'] = 'Password must be equal to or greater then 8 characters';
+				$arrRes ['msg'] = 'Must contain at least one number and one uppercase and lowercase letter and minimum 8 characters';
 				echo json_encode ( $arrRes );
 				die ();
 			}
@@ -10211,6 +10243,8 @@ class AdminController extends Controller
 		$UserMenuControl = new UserMenuControlModel();
 
 		$arrRes['allNavLinks'] = $UserMenuControl->getAllNavLinks();
+        $arrRes['getDashboardNavLinks'] = $UserMenuControl->getDashboardNavLinks();
+
 
 		echo json_encode($arrRes);
 	}

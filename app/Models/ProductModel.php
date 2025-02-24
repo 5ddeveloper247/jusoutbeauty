@@ -1140,16 +1140,16 @@ class ProductModel extends Model
     		$where =array(['a.CATEGORY_ID','=',$catId]);
     	}
 
-    	$where = array_merge($where, array(['jct.STATUS','=','active']));
-//     	$where = array_merge($where, array(['jsct.STATUS','=','active']));
-//     	$where = array_merge($where, array(['jssct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jsct.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jssct.STATUS','=','active']));
 
     	$result = DB::table('jb_product_tbl as a')->where('a.IS_DELETED', 0)->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
     	->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
     	->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
     	->leftJoin ( 'jb_product_shades_tbl as jpst', 'a.PRODUCT_ID', '=', 'jpst.PRODUCT_ID' )
     	->leftJoin ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
-    	->where($where)
+    	->where('a.STATUS', 'active')->where('a.CATEGORY_ID', 8)
     	->orderBy('a.PRODUCT_ID','asc')->groupBy('a.PRODUCT_ID')->get();
 
 //     	    	$query = DB::getQueryLog(); dd($query);
@@ -1241,8 +1241,10 @@ class ProductModel extends Model
     			$k = 1;
     		}
     		$k++;
+            $productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
+            $arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
 
-    		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
+            $productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
     		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
     		$arrRes[$i]['images'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "PRODUCT_IMG");
 
@@ -1601,7 +1603,8 @@ class ProductModel extends Model
 
 
     public function getAllProductDetailsForAllShopListing($subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
-    	$WishlistModel = new WishlistModel();
+
+        $WishlistModel = new WishlistModel();
 		$ProductShade = new ProductShadeModel();
         $userDashboardModel = new UserdashboardModel();
     	DB::enableQueryLog();
@@ -1776,6 +1779,188 @@ class ProductModel extends Model
 
     	return isset($arrRes) ? $arrRes : null;
     }
+    public function getAllProductDetailsForAllSearchListing($search='', $subSubCategoryIds=array(), $shadeId='', $minRange='', $maxRange='',$sortingType=''){
+
+        $WishlistModel = new WishlistModel();
+		$ProductShade = new ProductShadeModel();
+        $userDashboardModel = new UserdashboardModel();
+    	DB::enableQueryLog();
+    	$userId = session('userId');
+
+		// $where =array(['a.CATEGORY_ID','!=', '8']); // for nutrition check
+
+    	// $where = array_merge($where, array(['a.STATUS','=','active']));
+    	// $where = array_merge($where, array(['jct.STATUS','=','active']));
+
+    	// // $where = array_merge($where, array(['jsct.STATUS','=','active']));
+    	// // $where = array_merge($where, array(['jssct.STATUS','=','active']));
+
+
+    	// if($shadeId != ''){
+    	// 	$where = array_merge($where, array(['jpst.SHADE_ID','=',$shadeId]));
+    	// }
+
+    	// if($minRange != '' && $maxRange != ''){
+    	// 	$where = array_merge($where, array(['a.UNIT_PRICE','>=',$minRange]));
+    	// 	$where = array_merge($where, array(['a.UNIT_PRICE','<=',$maxRange]));
+    	// }
+
+    	if($sortingType == 1){
+    		$orderByCol = "a.UNIT_PRICE";
+    		$orderBy = "desc";
+    	}else if($sortingType == 2){
+    		$orderByCol = "a.UNIT_PRICE";
+    		$orderBy = "asc";
+    	}else if($sortingType == 3){
+    		$orderByCol = "a.PRODUCT_ID";
+    		$orderBy = "desc";
+    	}else{
+    		$orderByCol = "a.SEQ_NUM";
+    		$orderBy = "asc";
+    	}
+
+    	if(count($subSubCategoryIds) > 0){
+
+    		$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
+    		->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
+    		->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
+    		->leftJoin ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
+    		->leftJoin ( 'jb_product_shades_tbl as jpst', 'a.PRODUCT_ID', '=', 'jpst.PRODUCT_ID' )
+    		// ->where($where)
+            ->whereIn('a.SUB_SUB_CATEGORY_ID',$subSubCategoryIds)
+    		->orderBy("$orderByCol", "$orderBy")
+    		->groupBy('a.PRODUCT_ID')->get();
+
+    	}else{
+
+
+    		$result = DB::table('jb_product_tbl as a')->select('a.*', 'jct.CATEGORY_NAME as categoryName', 'jsct.NAME as subCategoryName')
+    		->leftJoin ( 'jb_category_tbl as jct', 'a.CATEGORY_ID', '=', 'jct.CATEGORY_ID' )
+    		->leftJoin ( 'jb_sub_category_tbl as jsct', 'a.SUB_CATEGORY_ID', '=', 'jsct.SUB_CATEGORY_ID' )
+    		->leftJoin ( 'jb_sub_sub_category_tbl as jssct', 'a.SUB_SUB_CATEGORY_ID', '=', 'jssct.SUB_SUB_CATEGORY_ID' )
+    		->leftJoin ( 'jb_product_shades_tbl as jpst', 'a.PRODUCT_ID', '=', 'jpst.PRODUCT_ID' )
+    		// ->where($where)
+            ->where('a.NAME', 'LIKE', "%{$search}%")
+    		->orderBy("$orderByCol", "$orderBy")->groupBy('a.PRODUCT_ID')->get();
+    	}
+
+    	//     	$query = DB::getQueryLog(); dd($query);
+    	$i=0;
+    	foreach ($result as $row){
+    		$arrRes[$i]['seqNo'] = $i+1;
+    		$arrRes[$i]['PRODUCT_ID'] = $row->PRODUCT_ID;
+    		$arrRes[$i]['SEQ_NUM'] = $row->SEQ_NUM;
+    		$arrRes[$i]['USER_ID'] = $row->USER_ID;
+            // dd($row->SLUG);
+            if($row->SLUG == null || $row->SLUG == ''){
+
+                $name = $row->NAME;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['SLUG']);
+                } else {
+                    $arrRes[$i]['SLUG'] = $row->NAME;
+                    // dd($arrRes[$i]['SLUG']);
+                }
+            }else{
+                $arrRes[$i]['SLUG'] = $row->SLUG;
+                // dd($arrRes[$i]['SLUG']);
+            }
+
+    		$arrRes[$i]['NAME'] = $row->NAME;
+    		$arrRes[$i]['SUB_TITLE'] = $row->SUB_TITLE;
+    		$arrRes[$i]['SUB_TITLE_TXT'] = strlen ( $row->SUB_TITLE ) > 60?substr ( $row->SUB_TITLE, 0, 60 )."..." :$row->SUB_TITLE;
+    		$arrRes[$i]['UNIT'] = $row->UNIT;
+    		$arrRes[$i]['MINIMUM_PURCHASE_QUANTITY'] = $row->MINIMUM_PURCHASE_QUANTITY;
+    		$arrRes[$i]['TAGS'] = $row->TAGS;
+    		$arrRes[$i]['BARCODE'] = $row->BARCODE;
+    		$arrRes[$i]['REFUNDABLE_FLAG'] = $row->REFUNDABLE_FLAG;
+    		$arrRes[$i]['CATEGORY_ID'] = $row->CATEGORY_ID;
+            $arrRes[$i]['CATEGORY'] = $row->categoryName;
+            if($row->categoryName != null || $row->categoryName != ''){
+
+                $name = $row->categoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['CATEGORY_SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['SLUG']);
+                } else {
+                    $arrRes[$i]['CATEGORY_SLUG'] = $row->categoryName;
+                    // dd($arrRes[$i]['SLUG']);
+                }
+            }else{
+                $arrRes[$i]['CATEGORY_SLUG'] = '';
+                // dd($arrRes[$i]['SLUG']);
+            }
+
+    		// $arrRes[$i]['CATEGORY_NAME'] = $row->categoryName;
+    		$arrRes[$i]['SUB_CATEGORY_ID'] = $row->SUB_CATEGORY_ID;
+            $arrRes[$i]['SUB_CATEGORY'] = $row->subCategoryName;
+
+            if($row->subCategoryName != null || $row->subCategoryName != ''){
+
+                $name = $row->subCategoryName;
+                $words = explode(' ', $name);
+                if (count($words) > 1 || strpos($name, ' ') !== false) {
+                    $arrRes[$i]['SUB_CATEGORY_SLUG'] = implode('-', $words);
+                    // dd($arrRes[$i]['SLUG']);
+                } else {
+                    $arrRes[$i]['SUB_CATEGORY_SLUG'] = $row->subCategoryName;
+                    // dd($arrRes[$i]['SLUG']);
+                }
+            }else{
+                $arrRes[$i]['SUB_CATEGORY_SLUG'] = '';
+                // dd($arrRes[$i]['SLUG']);
+            }
+
+    		// $arrRes[$i]['SUB_CATEGORY_NAME'] = $row->subCategoryName;
+    		$arrRes[$i]['SHORT_DESCRIPTION'] = $row->SHORT_DESCRIPTION;
+    		$arrRes[$i]['DESCRIPTION_TITLE'] = $row->DESCRIPTION_TITLE;
+
+            $arrRes[$i]['shades'] = $ProductShade->getAllProductShadesWithImagByProduct($row->PRODUCT_ID);
+			$productShades = $ProductShade->getAllProductShadesProduct($row->PRODUCT_ID);
+
+				if(!empty($productShades)){
+
+					$arrRes[$i]['INV_QUANTITY_FLAG'] = 'shade';
+					$arrRes[$i]['INV_QUANTITY'] = '';
+				}else{
+					$arrRes[$i]['INV_QUANTITY_FLAG'] = 'inv';
+					$arrRes[$i]['INV_QUANTITY'] = $row->QUANTITY != null ? $row->QUANTITY : '0';
+				}
+
+    		$arrRes[$i]['DESCRIPTION'] = base64_decode($row->DESCRIPTION);
+    		$descText = strip_tags(base64_decode($row->DESCRIPTION));
+    		$arrRes[$i]['DESCRIPTION_TEXT'] = strlen ( $descText ) > 50?substr ( $descText, 0, 50 )."..." :$descText;
+    		$arrRes[$i]['UNIT_PRICE'] = number_format($row->UNIT_PRICE,2);
+            $arrRes[$i]['DISC_AMOUNT'] = $userDashboardModel->get_discounted_value_of_product($row->UNIT_PRICE,$row->DISCOUNT_TYPE,$row->DISCOUNT);
+    		$arrRes[$i]['STATUS'] = $row->STATUS;
+    		$arrRes[$i]['DATE'] = $row->DATE;
+
+    		$productImage = $this->getSpecificProductPrimaryImage($row->PRODUCT_ID);
+    		$arrRes[$i]['primaryImage'] = isset($productImage['downPath']) != null ? $productImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
+
+			$productSecImage = $this->getSpecificProductSecondaryImage($row->PRODUCT_ID);
+    		$arrRes[$i]['secondaryImage'] = isset($productSecImage['downPath']) != null ? $productSecImage['downPath'] : url('assets-web')."/images/product_placeholder.png";
+
+    		$arrRes[$i]['images'] = $this->getSpecificProductImagesByCode($row->PRODUCT_ID, "PRODUCT_IMG");
+
+
+    		$arrRes[$i]['wishlistFlag'] = $WishlistModel->getSpecificProductExistByUser1($userId, $row->PRODUCT_ID, 1);
+
+    		$arrRes[$i]['CREATED_BY'] = $row->CREATED_BY;
+    		$arrRes[$i]['CREATED_ON'] = $row->CREATED_ON;
+    		$arrRes[$i]['UPDATED_BY'] = $row->UPDATED_BY;
+    		$arrRes[$i]['UPDATED_ON'] = $row->UPDATED_ON;
+
+    		$i++;
+    	}
+
+    	return isset($arrRes) ? $arrRes : null;
+    }
+
+
 
     public function getAllForSlugUpdate(){
 

@@ -82,15 +82,15 @@
             }
 
             ul.ul-mbl-site {
-                list-style-type: "â–º ";
+                list-style-type:  circle;
             }
 
             form.footer-formm .fa-envelope:before {
                 padding-left: unset
             }
 
-            h2 {
-                font-size: 36px;
+            .footer-heading {
+                font-size: 25px;
                 text-transform: capitalize;
             }
         }
@@ -102,7 +102,7 @@
         <div class="container container-xxl container-footer">
             <div class="row align-items-center first-rw">
                 <div class="col-lg-12 mb-4 mb-lg-0 text-center footer-links-account">
-                    <h2 class="mb-4 footer-text-white">Yu Jus Enough and Let's Be
+                    <h2 class="mb-4 footer-text-white footer-heading">Yu Jus Enough and Let's Be
                         Bestie</h2>
                     <p class="lh-2 mb-4 fs-14 footer-text-white">Don't Mis Out-All the exclusives' events,
                         skincare tips, Special Offers straight to yur inbox</p>
@@ -144,7 +144,7 @@
 
 
             <!--</div>-->
-            <p class="text-align-sm text-subs fs-14 footer-text-white">By subscribing to JusOut Beauty you consent to
+            <p class="text-align-sm  text-subs fs-14 footer-text-white">By subscribing to JusOut Beauty you consent to
                 receive recurring
                 automated promotional and personalized marketing messages (e.g.,
                 cart reminders) via automated technology including email and text
@@ -159,11 +159,11 @@
                 <div class="col-lg-4 mb-4 mb-lg-0 footer_sec"></div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer_sec">
                     <p
-                        class="mb-0 text-uppercase text-left font_size_cl letter-spacing-07px font-weight-600 footer-text-white">
+                        class="mb-0 text-uppercase text-left font_size_cl letter-spacing-07px font-weight-600 footer-text-white ptag">
                         @jusOSkin
                     </p>
                 </div>
-                <div class="col-lg-3 d-flex justify-content-lg-start justify-content-center">
+                <div class="col-lg-3 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
                     <ul class="list-inline icon_size_cl ml-3 mb-0">
 
                         @if (isset($footerSocialIcons))
@@ -183,10 +183,10 @@
                                 <li class="list-inline-item mr-1"><a href="{{ $footerSocialIcons['twitterLink'] }}"
                                         class="text-body social-media" id="tictk" target="_blank">
                                         {{-- <i class="social-media footer-text-white fab fa-tiktok"></i> --}}
-                                        <img style="width: 25px;
+                                        <img style="width: 35px;
                                         padding: 0px;
                                         margin-bottom: 6px;"
-                                            src="{{ url('/assets-admin') }}/images/admin/tictok.png"
+                                            src="{{ url('/assets-admin') }}/images/admin/tiktok-black.png"
                                             class="rounded-circle  user_img social-media" alt="" />
                                     </a>
                                 </li>
@@ -207,8 +207,7 @@
                     </ul>
                 </div>
                 {{-- <div class="col-lg-2 mb-4 mb-lg-0 footer_sec">
-                    <p
-                        class="mb-0 text-uppercase text-left font_size_cl text-primary letter-spacing-07px font-weight-600">
+                    <p class="mb-0 text-uppercase text-left font_size_cl text-primary letter-spacing-07px font-weight-600">
                         @JUSOUTBEAUTY
                     </p>
                 </div>
@@ -253,27 +252,27 @@
             <br>
             <div class="row align-items-center first-rw" style="padding-bottom: 0px !important;">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white">CONTACT
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white ptag">CONTACT
                         US</p>
                 </div>
             </div>
             <div class="row align-items-center first-rw">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px ">
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px ptag ">
                         <a href="mailto:clientservices@jusoutbeauty.com" class="footer-text-white">
                             <i class="fa fa-envelope"> </i> clientservices@jusoutbeauty.com
                         </a>
                     </p>
                 </div>
-                <div class="col-lg-3 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px text-center">
+                <div class="col-lg-2 mb-4 mb-lg-0">
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px text-lg-center ">
                         <a href="tel:+92 866 848 2168" class="footer-text-white">
                             <i class="fa fa-phone"> </i> 866-848-2168
                         </a>
                     </p>
                 </div>
-                <div class="col-lg-5 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px text-right footer-text-white">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px text-lg-right footer-text-white ptag">
                         <i class="fa fa-clock"> </i> Operating Hours: 6am-1am EST Mon-Sat,
                         excluding holidays
 
@@ -283,14 +282,14 @@
             <br>
             <div class="row first-rw footer-aboutus">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white">ABOUT US</p>
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px footer-text-white">Welcome
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 footer-text-white ptag">ABOUT US</p>
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px footer-text-white ptag">Welcome
                         to JusOut Beauty, all inclusive, high performance, natural
                         skincare, and makeup - Yur Jus Enough beauty products to glow from
                         within.</p>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white">COMPANY
+                    <p class="mb-0 text-left fs-14  letter-spacing-07px font-weight-600 footer-text-white ptag">COMPANY
                     </p>
                     <ul>
                         <li><a href="{{ session('site') }}/who-we-are" class="footer-text-white">Meet Founder</a></li>
@@ -305,8 +304,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">CUSTOMER
-                        CARE</p>
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">CUSTOMER CARE</p>
                     <ul>
                         <li><a href="{{ url('/customer-help') }}" onclick="informationflag('customer')"
                                 class="footer-text-white">Customer Service</a></li>
@@ -318,7 +316,7 @@
                         <li><a href="{{ url('/customer-help') }}" id="v-pills-settings-tab-4"
                                 class="footer-text-white" onclick="informationflag('shipping')">Shipping & Returns</a>
                         </li>
-                        <li><a href="{{ session('site') }}/subscription" class="footer-text-white">Subscribe +
+                        <li><a href="{{ url('/subscription') }}" class="footer-text-white">Subscribe +
                                 Save</a></li>
                         <!-- 						<li><a href="#">FAQs</a></li> -->
                         <?php if(session()->has('userId')){?>
@@ -332,7 +330,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">BEAUTY
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">BEAUTY
                         & SKIN</p>
                     <ul>
                         <li><a href="{{ session('site') }}/Shop-All" class="footer-text-white"
@@ -350,7 +348,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 mb-4 mb-lg-0 footer-text-white">
-                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600">OFFERS
+                    <p class="mb-0 text-left fs-14 letter-spacing-07px font-weight-600 ptag">OFFERS
                     </p>
                     <ul>
                         {{-- <li><a href="{{ session('site') }}/user-login">Student Discount</a></li> --}}
@@ -366,14 +364,14 @@
                 </div>
             </div>
             <br>
-            <div class="row align-items-center first-rw footer-text-white">
+            <div class="row first-rw footer-text-white">
 
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <p class="mb-0 text-uppercase text-left fs-14 letter-spacing-07px">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-lg-0 ">
+                    <p class="mb-0 text-uppercase text-left fs-14 letter-spacing-07px text-center">
                         A© 2022 <a href="#" class="footer-text-white">Jusout Beauty</a> All Rights Reserved
                     </p>
                 </div>
-                <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center d-sm-unset">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 text-center d-sm-unset footer-txt">
                     <a href="{{ url('/customer-help') }}" id="v-pills-home-tab"
                         onclick="informationflag('term of use')" class="footer-text-white">Terms of
                         Use</a> &nbsp;|&nbsp; <a href="{{ url('/customer-help') }}" id="v-pills-profile-tab-1"
@@ -415,7 +413,7 @@
         height: 44px;
         bottom: 155px;
         right: 26px;
-        background-color: #3d94b7;
+        background-color: #f9a7a9;
         color: #FFF;
         border-radius: 50px;
         text-align: center;
@@ -477,14 +475,14 @@
     }
 
     .btn-my {
-        color: white !important;
+        color: #0e0d21 !important;
         border-color: #3d94b7;
-        background-color: #3d94b7;
+        background-color: #f4f2f3;
     }
 
     .btn-my:hover {
-        color: white;
-        background-color: #b73d94;
+        color: white !important;
+        background-color: #c0a9bd;
         border-color: #b73d94;
         outline: #b73d94;
     }
@@ -492,9 +490,13 @@
     .btn-my:focus,
     .btn-my:active {
         color: white;
-        background-color: #b73d94;
+        /* background-color: #b73d94; */
         border-color: #b73d94;
         outline: #b73d94;
+    }
+    .cookie-txt{
+    font-size: 12px;
+    text-align: left;
     }
 
     @media (max-width: 174px) {
@@ -549,7 +551,7 @@
             background-color: #f9f9f9;
             padding: 5px;
             padding-bottom: 10px;
-            text-align: center;
+            /* text-align: center; */
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
 
@@ -582,7 +584,7 @@
         }
 
         .cookie-content .text {
-            padding-left: 10px;
+            padding-left: 5px;
         }
     }
 
@@ -606,7 +608,7 @@
         }
 
         .cookie-content .text {
-            padding-left: 30px;
+            padding-left: 10px;
         }
     }
 
@@ -636,11 +638,13 @@
         }
     }
 
-    @media screen and (min-width: 0px) and (max-width: 414px) {
+    @media screen and (min-width: 0px) and (max-width: 425px) {
         .cookie-frame {
             bottom: -78%;
         }
+     
     }
+  
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <a href="https://api.whatsapp.com/send?phone=19142991742" class="float" target="_blank">
@@ -900,8 +904,14 @@
 
                 <li aria-haspopup="true" aria-expanded="false"
                     class="nav-item dropdown py-1 px-0 d-flex justify-content-between">
-                    <a class="nav-link dropdown-toggle p-0 toShopListing" href="javascript:;"
-                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY"> <?= $value['NAME'] ?> </a>
+
+
+                    <a class="nav-link dropdown-toggle p-0 "
+                        href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>"
+                        data-id="<?= $value['CATEGORY_ID'] ?>" data-type="CATEGORY"
+                        data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>" data-type="CATEGORY"> <?= $value['NAME'] ?>
+                    </a>
+
                     <i class="fas fa-plus list-sub-cate-icon " id="menuicon_<?= $value['CATEGORY_ID'] ?>"
                         onclick="menutoggle(<?= $value['CATEGORY_ID'] ?>);"></i>
 
@@ -909,15 +919,21 @@
                 <ul class="list-sub-cate ul-mbl-site ulMblSite" id="ul-mbl-site_<?= $value['CATEGORY_ID'] ?>"
                     style="display:none;">
                     <?php $subCategories = $value['subCategories']; ?>
-                    <li>
-                        <a class="dropdown-link" href="{{ session('site') }}/store">Shop All</a>
-                    </li>
+                    {{-- <li>
+
+
+                        <a class="dropdown-link" href="{{ session('site') }}/Shop-All">Shop All</a>
+                    </li> --}}
                     @if (!empty($subCategories))
                         @foreach ($subCategories as $category)
-                            <li><a class="toShopListing" href="javascript:;"
-                                    data-id="<?= $category['SUB_CATEGORY_ID'] ?>"
-                                    data-type="SUB_CATEGORY">{{ $category['NAME'] }}</a>
-                            </li>
+                            <div class="dropdown-item">
+                                {{-- toShopListing  ---> removed after made url href --}}
+                                <a class="dropdown-link "
+                                    href="<?= url('/') ?>/Store/<?= $value['CATEGORY_SLUG'] ?>/<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                    data-id="<?= $category['SUB_CATEGORY_ID'] ?>" data-type="SUB_CATEGORY"
+                                    data-subcategoryslug="<?= $category['SUB_CATEGORY_SLUG'] ?>"
+                                    data-categoryslug="<?= $value['CATEGORY_SLUG'] ?>">{{ $category['DISPLAY_NAME'] }}</a>
+                            </div>
                         @endforeach
                     @endif
 
@@ -940,7 +956,7 @@
       Nutrition </a></li> -->
                 <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
                         class="nav-link dropdown-toggle p-0 footer-text-white"
-                        href="{{ session('site') }}/user-shade-finder" style="color:white;"> Shade
+                        href="{{ session('site') }}/user-shade-finder" style=""> Shade
                         Finder </a></li>
                 {{-- <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0"><a
                         class="nav-link dropdown-toggle p-0" href="{{ url('become_a_partner') }}"> Partner </a></li> --}}
@@ -1361,6 +1377,7 @@
 </form>
 </body>
 
+
 <!-- angular files -->
 <script src="{{ url('/public') }}/third_party/angular/angular.min.js"></script>
 <script src="{{ url('/public') }}/third_party/angular/drag.js"></script>
@@ -1373,13 +1390,35 @@
 <!-- jquery file upload plugin  -->
 <script src="{{ url('/public') }}/third_party/file-upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="{{ url('/public') }}/third_party/file-upload/js/jquery.fileupload.js"></script>
-
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     var site = "<?php echo session('site'); ?>";
     var checkoutUrl = "<?php echo url('/checkout'); ?>";
 </script>
 <script src="{{ url('/assets-web') }}/customjs/common.js?v={{ time() }}"></script>
 <script>
+    // function searchAllNames(){
+
+    //     $.ajax({
+    //         method  : "GET",
+    //         url: site+"/search-all-names",
+    //         success: function(response){
+    //             // data =[];
+    //             // $.each( response, function( index, value ){
+    //             //     data.push(value.NAME);
+    //                 console.log(response);
+    //                  startautosuggestion(response);
+    //         }
+    //     });
+    // }
+
+    //         function startautosuggestion(availableTags){
+
+    //             $( ".tags" ).autocomplete({
+    //                 source: availableTags
+    //             });
+    //         }
+
     function menutoggle(i) {
 
         if ($("#menuicon_" + i).hasClass('fa-plus')) {
@@ -1456,5 +1495,3 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
-</html>

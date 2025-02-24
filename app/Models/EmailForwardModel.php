@@ -54,7 +54,7 @@ class EmailForwardModel extends Mailable
         $email_html = '';
         try {
             $email_html = view('admin.emails.emailTemplate', $email_details)->render();
-			
+
             Mail::send('admin.emails.emailTemplate', $email_details, function ($message) use ($email_details) {
                if (array_key_exists('from_email', $email_details)) {
                    $message->from($email_details['from_email'], 'Jusoutbeauty');
@@ -68,10 +68,12 @@ class EmailForwardModel extends Mailable
                 }
                 $message->to($email_details['to_email']);
             });
+
             $this->saveEmail($email_details['pageTitle'],$email_html,$email_details);
             return true;
 
-        } catch (\Throwable $e) {
+        }
+        catch (\Throwable $e) {
             return false;
         }
     	//email
@@ -103,48 +105,6 @@ class EmailForwardModel extends Mailable
     	// $response = curl_exec($session);
     	// curl_close($session);
     	// json_decode($response);
-
-
-    //    $check =  Mail::send([], [], function ($message) use ($params) {
-    //         $message->to($params['to'])
-    //                 ->from($params['from'], $params['fromname'])
-    //                 ->subject($params['subject'])
-    //                 ->setBody(new HtmlPart($params['html']), 'text/html');
-    //     });
-
-
- //       $headers = "MIME-Version: 1.0\r\n";
- //      $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
- //       $headers .= "From: $from_email\r\n";
- //       $headers .= "Reply-To: $from_email\r\n";
- //       $headers .= "X-Mailer: PHP/" . phpversion();
-
- //       $toEmail = $to_email;
- //       $subject = $subject;
- //       $emailTemplate = $email_html;
-
-    // $email_html = view('emails.custom_email', [
-    //     'page_title' => $page_title,
-    //     'email_html_body' => $email_html_body,
-    //     'logo' => $logo,
-    // ])->render();
-  //     $check =  mail($toEmail, $subject, $emailTemplate, $headers);
-//   $check =   Mail::send([], [], function ($mailer) use ($to_email, $from_email, $subject, $email_html) {
-//         $mailer->to($to_email);
-//         $mailer->from($from_email);
-//         $mailer->subject($subject);
-//         $mailer->setBody($email_html, 'text/html');
-//     });
-//         if($check){
-//             dd($check);
-//         }
-
-
-     //   mail($toEmail, $subject, $emailTemplate, $headers);
-
-   // 	$this->saveEmail($page_title,$email_html,$email_details);
-
-  //  	return true;
     }
 
     public function saveEmail($page_title,$email_html,$email_details){

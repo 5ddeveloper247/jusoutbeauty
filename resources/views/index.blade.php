@@ -658,13 +658,7 @@
         </section>
 
 
-
-
-
-
-
-
-        <section id="section-next" class="py-10 py-lg-13" style="background-color: #94b73d ;">
+        <section id="section-next" class="py-10 py-lg-13" style="background-color: #8ed1c9 ;">
             <h2 class="text-center fs-24 fs-md-42 mb-1 text-capitalize text-white">Created For You</h2>
             <br>
             <div class="container container-custom">
@@ -805,7 +799,7 @@
         @endif
 
         <section class="box-shadow-bottom py-10 py-lg-13"
-            style="background-image: url('{{ url('/assets-web') }}/images/brownbg.png'); background-repeat: no-repeat; background-size: cover;">
+            style="background-image: url('{{ url('/assets-web') }}/images/brownBg.png'); background-repeat: no-repeat; background-size: cover;">
 
             <div class="container container-custom container-xl">
                 <h2 class="fs-24 fs-md-36 mb-0 text-center lh-13 text-center-mbl" data-animate="fadeInUp">Are You
@@ -883,7 +877,7 @@
 
 
 
-        <section class="py-12 py-lg-12" style="background-color: #3d94b7;">
+        <section class="py-12 py-lg-12" style="background-color: #000">
             <div class="container container-custom container-xl">
                 <h2 class="text-center mb-8 lh-128 fs-24 fs-sm-37 text-white">Our Blog
                 </h2>

@@ -114,7 +114,7 @@
     .card-ing .overlay-content {
         width: 100%;
         height: 100%;
-        background-color: #94b73d;
+        background-color: #8ed1c9;
         cursor: pointer;
         color: #080808;
         display: flex;
@@ -250,7 +250,7 @@
                     <img class="giving-section2-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/giving-section2.jpg"
                         alt="Beeswax">
                 </div>
-                <div class="col-md-6 pl-xl-7 ">
+                <div class="col-md-6 pl-xl-7  ingredient">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Beeswax"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -297,14 +297,14 @@
     {{-- <div class="peachgradientabove">
     </div> --}}
 
-    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#f3c9b3 ;">
+    <section class="pt-10 pt-lg-10 pb-10" style="background-color:#f9a7a9;">
         <div class="container container-custom">
             <div class="row no-gutters align-items-center">
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInRight animated">
                     <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Aloe-vera.jpg"
                         alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first ingredient">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Aloe vera"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -371,7 +371,7 @@
                     <img class="giving-section3-img" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Coconut-Oil.jpg"
                         alt="Designed to last">
                 </div>
-                <div class="col-md-6 pl-xl-7">
+                <div class="col-md-6 pl-xl-7 ingredient">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class=" mb-5">"Coconut Oil"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -557,7 +557,7 @@
                     <img loading="lazy" class="last-section-giving"  style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Rosemary.jpg"
                         alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first ingredient">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2 class='mb-5 '>"Rosemary"</h2>
                     <div style="height: 75vh;overflow:auto">

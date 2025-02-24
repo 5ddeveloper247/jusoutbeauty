@@ -13,7 +13,7 @@ var optionId = '2';
         <div class="content-body" ng-controller="projectinfo1">
             <div class="container-fluid pt-0" >
                 <!-- row -->
-                <div class="row mb-3">
+                <div class="row mb-3 mt-4">
                    <div class="col-10">
                 		<div class="page-titles pt-0 pb-0 mb-0">
 							<ol class="breadcrumb">

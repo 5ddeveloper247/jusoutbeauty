@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-session()->put('site', '');//site
+session()->put('site', '/site');//site
+// session()->put('site', '/site');//site
 
 
 
@@ -74,6 +75,11 @@ Route::middleware(['CheckLoggedInStatus'])->group(function () {
     Route::get('/home', [HomeController::class, 'index']);
 
     Route::get('/Shop-All', [HomeController::class, 'store']);
+
+    // Route::get('/search-all', [HomeController::class, 'search'])->name('search');
+    Route::post('/search-all', [HomeController::class, 'search'])->name('search');
+    Route::post('/get-search-all', [HomeController::class, 'getSearchAll'])->name('getSearchAll');
+    // Route::get('/search-all-names', [HomeController::class, 'searchalistjax'])->name('search');
 
     Route::get('/blog-page', [HomeController::class, 'blogPage']);
     Route::get('/blog-detail/{slug}', [HomeController::class, 'blogDetails']);

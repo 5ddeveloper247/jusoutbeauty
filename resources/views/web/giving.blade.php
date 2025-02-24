@@ -44,8 +44,8 @@
 
     }
 
-        /* Add this style in your CSS file or inside the <style> tag of your HTML */
-        .rab {
+    /* Add this style in your CSS file or inside the <style> tag of your HTML */
+    .rab {
         position: relative;
     }
 
@@ -55,14 +55,16 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency (0.5 in this case) */
-     /* Place the overlay behind the content */
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Adjust the transparency (0.5 in this case) */
+        /* Place the overlay behind the content */
     }
 
     /* Add any additional styles for the text or adjust existing styles as needed */
     .rab h2 {
         position: relative;
-        z-index: 2; /* Set text color to white to make it visible on the dark overlay */
+        z-index: 2;
+        /* Set text color to white to make it visible on the dark overlay */
     }
 
 
@@ -74,16 +76,19 @@
         width: 1%;
         min-width: 0;
     }
-     @media screen and (min-width: 1650px){
-    .py-lg-18 {
-    padding-top: 358px !important;
-    padding-bottom: 358px !important;}
-}
- @media screen and (min-width: 1200px){
-    #content {
-        padding-top: 111px !important
+
+    @media screen and (min-width: 1650px) {
+        .py-lg-18 {
+            padding-top: 358px !important;
+            padding-bottom: 358px !important;
+        }
     }
-}
+
+    @media screen and (min-width: 1200px) {
+        #content {
+            padding-top: 111px !important
+        }
+    }
 </style>
 <main id="content" ng-app="project1" style="padding-top: 183px">
     <div ng-controller="projectinfo1">
@@ -91,17 +96,19 @@
             style="background-repeat: no-repeat ;background-size: cover;background-image: url('{{ url('assets-web') }}/images/960x0.jpg')">
             <div class="overlay"></div>
             <div class="container container-xl">
-            	<div class="row no-gutters" style="justify-content: center">
-                  	<div class="mw-370">
-                    	<h2 class="mb-2 text-center" data-animate= "fadeInRight" style="color: white; font-size: 100px">Giving</h2>
-                	</div>
-            	</div>
-          	</div>
+                <div class="row no-gutters" style="justify-content: center">
+                    <div class="mw-370">
+                        <h2 class="mb-2 text-center" data-animate= "fadeInRight" style="color: white; font-size: 100px">
+                            Giving</h2>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="pt-10 pt-lg-13">
             <div class="container container-custom">
                 <div class="text-center mw-730 mx-auto">
-                    <img class="mb-5" src="{{ url('/assets-web') }}/images/icon-home-09.png" alt="" class="giv_img">
+                    <img class="mb-5" src="{{ url('/assets-web') }}/images/icon-home-09.png" alt=""
+                        class="giv_img">
 
                     <p>Beyond finding honestly good holiday gifts for your loved ones, this season is all about
                         indulgence! What says indulge more than self-care gifts, beauty gift sets + baby gifts for new
@@ -115,16 +122,19 @@
                 </div>
             </div>
         </section>
-        <section class="pt-10 pt-lg-10 mt-10 pb-10" style="background-color:#3d94b7;">
+        <section class="pt-10 pt-lg-10 mt-10 pb-10" style="background-color:#8ed1c9;">
             <div class="container container-custom">
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-6 mb-8 mb-md-0 inc-sec-img">
-                        <img src="{{ url('/assets-web') }}/images/Picture8.jpg" style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
+                        <img src="{{ url('/assets-web') }}/images/Picture8.jpg" class="giving-img"
+                            style="max-height: 400px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;"
                             alt="OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.">
                     </div>
-                    <div class="col-md-6 pl-xl-7">
-                        <h2 class="text-white mb-5 text-uppercase">OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.</h2>
-                        <p class="text-white">We strongly believe that by supporting the most vulnerable in society - elderly, children and
+                    <div class="col-md-6 pl-7" style="padding-right: 60px">
+                        <h2 class="text-white mb-5 text-uppercase">OUR SOCIAL CAUSE IS MINDFULNESS AND A UNIQUE JOURNEY.
+                        </h2>
+                        <p class="text-white text-justify">We strongly believe that by supporting the most vulnerable in society -
+                            elderly, children and
                             young women - we can help give them the opportunity to turn their dreams into reality.
 
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus beatae aliquid qui quasi
@@ -190,13 +200,14 @@
         <section class="py-10 pt-lg-14 pb-lg-13">
             <div class="container full_sec">
                 <h2 class=" text-center mb-5">JUSOUTBEAUTY THE SWEET AND CARING</h3>
-                <p class="text-center mw-670 mx-auto mb-8">
-                    WE ARE BEAUTY BECOMES DAILY BRAND - BIRTH FROM NECESSITY - BUILT FROM POVERTY - WE ARE THE EVERYDAY
-                    BASIC - AFFORDABLE - WITHOUT - LOOSING EFFECTIVENESS
-                </p>
-                <div class="text-center">
-                    <a href="javascript:;" ng-click="donatePayment();" class="btn btn-primary">Donate</a>
-                </div>
+                    <p class="text-center mw-670 mx-auto mb-8">
+                        WE ARE BEAUTY BECOMES DAILY BRAND - BIRTH FROM NECESSITY - BUILT FROM POVERTY - WE ARE THE
+                        EVERYDAY
+                        BASIC - AFFORDABLE - WITHOUT - LOOSING EFFECTIVENESS
+                    </p>
+                    <div class="text-center">
+                        <a href="javascript:;" ng-click="donatePayment();" class="btn btn-primary">Donate</a>
+                    </div>
             </div>
         </section>
 
@@ -219,8 +230,8 @@
                             <div class="col-md-6">
                                 <div class="form-group mb-4">
                                     <label for="lastname" class="sr-only">First Name</label>
-                                    <input type="text" class="form-control" id="lastname" ng-model="giving['G_2']"
-                                        placeholder="Last Name">
+                                    <input type="text" class="form-control" id="lastname"
+                                        ng-model="giving['G_2']" placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -347,7 +358,7 @@
 
 @include('web.web-footer')
 
-<script src="{{ url('/assets-web') }}/customjs/script_usergiving.js?v={{time()}}"></script>
+<script src="{{ url('/assets-web') }}/customjs/script_usergiving.js?v={{ time() }}"></script>
 
 <script src="https://checkout.sandbox.dev.clover.com/sdk.js"></script>
 
@@ -463,9 +474,9 @@
     //         $("#clover_first").show(1000);
     //         $("#show_giving_modal_clover").modal('show');
     //     }
-    	function close_topbar(){
-            $("#topbar").removeClass('d-xl-flex');
-            $("#content").css('padding-top','77px');
+    function close_topbar() {
+        $("#topbar").removeClass('d-xl-flex');
+        $("#content").css('padding-top', '77px');
 
-        }
+    }
 </script>

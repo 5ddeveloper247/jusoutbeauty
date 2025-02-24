@@ -21,6 +21,12 @@
         position: relative;
         z-index: 2; /* Set text color to white to make it visible on the dark overlay */
     }
+    @media only screen and (max-width: 320px) {
+        .bg-img-cover-center {
+    width: 320px !important;
+}
+
+    }
 
     @media only screen and (max-width: 480px) {
 
@@ -28,7 +34,7 @@
             background-size: cover;
             background-position: bottom;
             background-repeat: no-repeat;
-            width: 414px;
+            width: 374px;
             height: auto;
         }
         .text-black{

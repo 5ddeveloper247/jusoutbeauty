@@ -1,3 +1,4 @@
+
 .pref-lang > div{
 	display: flex;
     width: 100px;
@@ -291,6 +292,13 @@ hr {
 	-moz-box-shadow: 0 4px 6px 2px #d6d6d6;
 	box-shadow: 0 4px 6px 2px #d6d6d6;
 }
+.img1-section2 {
+	height: 26rem;
+}
+
+.img2-section2 {
+	height: 23rem;
+}
 
 
 @media screen and (min-width: 0px) and (max-width: 414px) {
@@ -574,7 +582,7 @@ hr {
 		position: absolute;
 		top: 162px;
 		left: 100px;
-		color: #fff;
+		color: #0e0d21;
 		font-size: 42px;
 	}
 	img.inc_image_blog_1_home.inc_image_blog_3 {
@@ -764,7 +772,7 @@ img.item.shop-shade {
         position: absolute;
         top: 169px;
         left: 217px;
-        color: #fff;
+        color: #0e0d21;
         font-size: 34px;
     }
 	.clinical-note{
@@ -860,7 +868,7 @@ img.item.shop-shade {
         position: absolute;
         top: 292px !important;
         left: 284px !important;
-        color: #fff;
+        color: #0e0d21;
         font-size: 40px !important;
     }
 	.clinical-note,.giving-section3-img{
@@ -899,6 +907,9 @@ img.item.shop-shade {
 		width: 85px;
 		flex: 0 0 auto;
 		z-index: 1;
+	}
+	.site_color {
+		background-color: #8ed1c9 !important;
 	}
 	.ag-courses-item_link {
 		display: block;
@@ -1022,10 +1033,10 @@ img.item.shop-shade {
 		margin-left: -123px;
 	} */
 
-	.pro-details{
+	/* .pro-details{
 		height: 57rem !important;
 		overflow-y: auto;
-	}
+	} */
 
 	.header-hidden {
 		top: 125px !important;
@@ -1157,7 +1168,7 @@ img.item.shop-shade {
         position: absolute;
         top: 293px !important;
         left: 357px !important;
-        color: #fff;
+        color: #0e0d21;
         font-size: 40px !important;
 
     }
@@ -1168,7 +1179,7 @@ img.item.shop-shade {
 		height: 36rem!important;
 	}
 	.img2-section2 {
-		height: 29rem!important;
+		height: 29rem;
 	}
 	img.prod_img_detail_acc_sec.fadeInLeft.animated.img2-section2.img-w20 {
 		width: 53% !important;
@@ -1176,7 +1187,7 @@ img.item.shop-shade {
 		margin-left: -212px !important;
 	}
 	.fix {
-		height: 50rem !important;
+		height: 50rem;
     	overflow: hidden;
 	}
 	.spot-section-img {
@@ -1220,14 +1231,14 @@ img.item.shop-shade {
 		font-size: 23px;
 	}
 	.fix {
-		height: 222px !important;
+		height: 222px;
 		overflow: hidden;
 	}
 
 	.yesno h2 {
 		padding: 7px;
 		text-align: center;
-		background-color: #FFF5EE;
+		background-color: #8ed1c9;
 		font-size: 18px;
 	}
 	.container-custom-slider{
@@ -1278,7 +1289,7 @@ img.item.shop-shade {
         position: absolute;
         top: 152px !important;
         left: 104px !important;
-        color: #fff;
+        color: #0e0d21;
         font-size: 27px !important;
     }
     .col-lg-8.col-6.fort_box_home1.cont_box {

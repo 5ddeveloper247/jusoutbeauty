@@ -1,9 +1,20 @@
 @include('admin.admin-header')
+<style>
+    ul.note-dropdown-menu.dropdown-menu.note-check.dropdown-fontsize.show{
+        max-height: 200px;
+        overflow: auto
+    }
+</style>
 <script>
     var userId = '<?php echo session('userId'); ?>';
     var site = '<?php echo session('site'); ?>';
     var baseurl = "<?php echo url('/assets-admin'); ?>";
 </script>
+<style>
+    table.dataTable thead .sorting {
+    background-position: center right 0px;
+}
+</style>
 <div ng-app="project1">
     <!--**********************************
             Content body start
@@ -13,7 +24,7 @@
             <!-- row -->
             <div class="row mt-4">
                 <div class="col-6 ">
-                    <div class="page-titles pt-0 pb-0 mb-0">
+                    <div class="page-titles pt-0 pb-0 mb-0 mt-1">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Products</a></li>
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">View All</a></li>
@@ -25,7 +36,7 @@
                         ng-click="quickAddProduct();">Quick Add Product</a>
                 </div>
                 <div class="col-3">
-                    <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3 float-left"
+                    <a type="button" class="btn btn-rounded btn-warning admin-view-add mb-3"
                         href="javascript:void(0)" ng-click="addNew();">Add new Product</a>
                 </div>
             </div>
@@ -209,15 +220,17 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="col-form-label" for="tags"><b>Product
-                                                                    Category</b> <span
+
+                                                            <label class="col-form-label" for="tags"><b>Product Category</b> <span
                                                                     class="text-danger">*</span></label>
+
                                                             <select class="form-control" id="p8"
                                                                 ng-model="product['P_8']"
                                                                 ng-change="getSubCategoriesWrtCategory();"
                                                                 ng-options="item as item.name for item in categoryLov track by item.id">
                                                                 <option value="">---SELECT---</option>
                                                             </select>
+
                                                         </div>
                                                     </div>
                                                     {{-- <div class="col-sm-6">
@@ -303,14 +316,17 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
+
                                                         <label><b>Product Features<span
                                                                     class="required-field">*</span></b></label>
+
                                                         <select class="default-placeholder select2-hidden-accessible"
                                                             id="p45" multiple='multiple'
                                                             ng-model="product['P_45']"
                                                             ng-options="item as item.name for item in featurelov track by item.id">
                                                             <option value="">---SELECT---</option>
                                                         </select>
+
                                                     </div>
                                                 </div>
                                                 <br>
@@ -318,14 +334,18 @@
 
                                                 <div class="row">
                                                     <div class="col-12">
+
                                                         <label><b>Complete your Jus o Glow<span
                                                                     class="required-field">*</span></b></label>
+
                                                         <select class="default-placeholder select2-hidden-accessible"
                                                             id="p46" multiple='multiple'
                                                             ng-model="product['P_46']"
                                                             ng-options="item as item.name for item in recommended track by item.id">
                                                             <option value="">---SELECT---</option>
                                                         </select>
+
+
                                                     </div>
                                                 </div>
                                                 <br>
@@ -444,7 +464,7 @@
 
                                                     </div>
                                                 </div>
-                                                <!-- <form action="#" class="dropzone">
+                   <!-- <form action="#" class="dropzone">
               <div class="fallback">
                <input name="imagefile" type="file" accept="image/*" />
               </div>
@@ -473,8 +493,7 @@
                                         </div>
                                         <div id="lightgallery1" class="row">
                                             <a class="col-lg-3 col-md-6 mb-4" ng-show="video.V_3 != ''">
-                                                <!-- 													<iframe src="https://ak.picdn.net/shutterstock/videos/1066964725/preview/stock-footage-happy-s-middle-aged-mature-woman-touching-facial-skin-looking-at-camera-pampering-in-mirror-old.webm" title="Beauty Product Video"></iframe> -->
-                                                <iframe src="@{{ video.V_3 }}"
+                                                 <iframe src="@{{ video.V_3 }}"
                                                     title="Beauty Product Video"></iframe>
                                             </a>
 
@@ -493,21 +512,14 @@
 
               </div>
              </div> -->
-                                                <form class="" id="uploadattch2" method="POST"
-                                                    action="uploadProductVideoAttachment"
-                                                    enctype="multipart/form-data">
+                                                <form class="" id="uploadattch2" method="POST" action="uploadProductVideoAttachment" enctype="multipart/form-data">
                                                     <input type="hidden" name="_method" value="POST">
                                                     {{ csrf_field() }}
-                                                    <input type="hidden" id="userId" name="userId"
-                                                        value="<?php echo session('userId'); ?>">
-                                                    <input type="hidden" id="sourceId" name="sourceId"
-                                                        value="@{{ product.ID }}">
-                                                    <input type="hidden" id="videoId" name="videoId"
-                                                        value="@{{ video.ID }}">
-                                                    <input type="hidden" id="sourceCode" name="sourceCode"
-                                                        value="PRODUCT_VIDEO">
-                                                    <input type="file" id="uploadatt2" name="uploadattl"
-                                                        class="file-input" style="display: none;">
+                                                    <input type="hidden" id="userId" name="userId" value="<?php echo session('userId'); ?>">
+                                                    <input type="hidden" id="sourceId" name="sourceId"  value="@{{ product.ID }}">
+                                                    <input type="hidden" id="videoId" name="videoId" value="@{{ video.ID }}">
+                                                    <input type="hidden" id="sourceCode" name="sourceCode"  value="PRODUCT_VIDEO">
+                                                    <input type="file" id="uploadatt2" name="uploadattl" class="file-input" style="display: none;">
                                                 </form>
 
                                             </div>
@@ -1109,7 +1121,7 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item"><a class="nav-link active" id="clinical_note_new"
-                                        data-toggle="tab" href="#clinical_note"> <span> Lustie's Hint </span>
+                                        data-toggle="tab" href="#clinical_note"> <span> Lustie's Hint: </span>
                                     </a></li>
                                 {{-- <li class="nav-item"><a class="nav-link "
 										data-toggle="tab" href="#shipping_conf"> <span> Shipping
@@ -1341,8 +1353,7 @@
                                         <div class="row">
 
                                             <div class="col-sm-12 mb-2">
-                                                <label class="col-form-label"><b>Description</b> </label>
-
+                                                <label class="col-form-label"><b>Description.</b> </label>
                                                 <div class="summernote" id="p43"></div>
                                             </div>
                                         </div>

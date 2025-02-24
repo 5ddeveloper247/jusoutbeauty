@@ -72,7 +72,7 @@
                     <img class="giving-section2-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Beeswax">
                 </div>
-                <div class="col-md-6 pl-xl-7">
+                <div class="col-md-6 pl-7 lusty">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5">"Beeswax"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -126,7 +126,7 @@
                     <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first lusty">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class="mb-5 text-white">"Aloe vera"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -196,7 +196,7 @@
                     <img class="giving-section3-img" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/last-looks.jpg"
                         alt="Designed to last">
                 </div>
-                <div class="col-md-6 pl-xl-7 ">
+                <div class="col-md-6 pl-7 lusty">
                     {{-- <h5>Ingredient</h5> --}}
                     <h2 class=" mb-5">"Coconut Oil"</h2>
                     <div style="height: 75vh;overflow:auto">
@@ -370,7 +370,7 @@
                 <div class="col-md-6 mb-8 mb-md-0 order-first order-md-1 fadeInLeft animated">
                     <img loading="lazy" class="last-section-giving" style=";box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius:10px;" src="{{ url('/assets-web') }}/images/Red-lipstick-for-every-look.png" alt="Our approach">
                 </div>
-                <div class="col-md-6 pr-xl-7 order-1 order-md-first">
+                <div class="col-md-6 pr-xl-7 order-1 order-md-first lusty">
                     {{-- <h5>Lusty looks</h5> --}}
                     <h2>"Red Lips"</h2>
                     <div style="height: 75vh;overflow:auto">
